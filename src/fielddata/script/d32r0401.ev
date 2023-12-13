@@ -1,5 +1,5 @@
 //====================================================================
-//						d32r0401(ƒXƒe[ƒWƒƒr[)
+//						d32r0401(ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ­ãƒ“ãƒ¼)
 //====================================================================
 
 	.text
@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d32r0401evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_stage_lobby
 _EVENT_DATA		ev_stage_lobby_continue
@@ -41,18 +41,18 @@ _EVENT_DATA_END
 
 
 //--------------------------------------------------------------------
-//					    ƒfƒoƒbƒN’è‹`(š‘S‚ÄƒRƒƒ“ƒg‚É‚·‚éI)
+//					    ãƒ‡ãƒãƒƒã‚¯å®šç¾©(â˜…å…¨ã¦ã‚³ãƒ¡ãƒ³ãƒˆã«ã™ã‚‹ï¼)
 //--------------------------------------------------------------------
 #ifdef SCRIPT_PM_DEBUG
-//#define	DEBUG_SAVE_OFF			//ƒZ[ƒu‚È‚µ
-//#define	DEBUG_POKE_CHK_OFF		//“¯‚¶ƒ|ƒPƒ‚ƒ“‚Å’§í‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚È‚µ(—LŒø‚ÅƒfƒoƒbƒN)
+//#define	DEBUG_SAVE_OFF			//ã‚»ãƒ¼ãƒ–ãªã—
+//#define	DEBUG_POKE_CHK_OFF		//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã§æŒ‘æˆ¦ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ãªã—(æœ‰åŠ¹ã§ãƒ‡ãƒãƒƒã‚¯)
 #endif
 
 
 //--------------------------------------------------------------------
-//							’è‹`
+//							å®šç¾©
 //--------------------------------------------------------------------
-//ƒJƒEƒ“ƒ^[’è‹`
+//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å®šç¾©
 #define STAGE_COUNTER_LEFT		(0)
 #define STAGE_COUNTER_RIGHT		(1)
 
@@ -62,13 +62,13 @@ _EVENT_DATA_END
 /********************************************************************/
 ev_d32r0401_obj_change:
 
-	/*ƒŒƒR[ƒh‚ª‚ ‚é”‚ðŽæ“¾‚µ‚Äƒtƒ@ƒ“‚ÌˆÊ’u‚ðˆÚ“®*/
+	/*ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹æ•°ã‚’å–å¾—ã—ã¦ãƒ•ã‚¡ãƒ³ã®ä½ç½®ã‚’ç§»å‹•*/
 	_STAGE_RECORD_POKE_GET	LOCALWORK0
 	_IFVAL_CALL			LOCALWORK0,GE,11,ev_d32r0401_fan_pos_move_2
 	_IFVAL_CALL			LOCALWORK0,GE,101,ev_d32r0401_fan_pos_move_3
 	_END
 
-/*ƒŒƒR[ƒh‚ª‚ ‚é”‚ðŽæ“¾*/
+/*ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹æ•°ã‚’å–å¾—*/
 ev_d32r0401_fan_pos_move_3:
 	_SXY_POS_CHANGE		D32R0401_FANBOY,8,11
 	_OBJ_POS_CHANGE		D32R0401_FANBOY,8,0,11,DIR_LEFT
@@ -86,46 +86,46 @@ ev_d32r0401_fan_pos_move_2:
 /*						INIT_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d32r0401_init_change:
-	/*7˜AŸ‚µ‚½Žž*/
+	/*7é€£å‹ã—ãŸæ™‚*/
 	_IFVAL_JUMP		WK_SCENE_STAGE_LOBBY,EQ,1,ev_d32r0401_init_change_7_win
-	//_JUMP		ev_d32r0401_init_change_7_win		//šDEBUG
+	//_JUMP		ev_d32r0401_init_change_7_win		//â˜…DEBUG
 	_END
 
-/*7˜AŸ‚µ‚½Žž*/
+/*7é€£å‹ã—ãŸæ™‚*/
 ev_d32r0401_init_change_7_win:
 
-	/*TVƒCƒ“ƒ^ƒrƒ…ƒA["7˜AŸŒã"ƒ`ƒFƒbƒN*/
+	/*TVã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼"7é€£å‹å¾Œ"ãƒã‚§ãƒƒã‚¯*/
 	_CALL			ev_d32r0401_tv_interview_check_7_win
 
 	_GET_RND		LOCALWORK7,100
 
-	/*‰ž‰‡‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚çíœ‚·‚é*/
+	/*å¿œæ´ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ã™ã‚‹*/
 	_IF_FLAGOFF_CALL	FV_D32R0401_OUEN,ev_d32r0401_init_change_ouen_del
 
 	////////////////////////////////////////
-	/*ƒfƒoƒbƒN—p‚É100%ˆ—‚És‚­‚æ‚¤‚É‚·‚é*/
+	/*ãƒ‡ãƒãƒƒã‚¯ç”¨ã«100%å‡¦ç†ã«è¡Œãã‚ˆã†ã«ã™ã‚‹*/
 	////////////////////////////////////////
 	_IFVAL_JUMP		LOCALWORK7,LT,30,ev_d32r0401_init_change_7_win_ouen
-	//_JUMP			ev_d32r0401_init_change_7_win_ouen	//šDEBUG
+	//_JUMP			ev_d32r0401_init_change_7_win_ouen	//â˜…DEBUG
 	_END
 
-/*‰ž‰‡‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚çíœ‚·‚é*/
+/*å¿œæ´ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ã™ã‚‹*/
 ev_d32r0401_init_change_ouen_del:
-	_OBJ_DEL		D32R0401_OUEN					/*‹[Ž—3D‚È‚Ì‚Åƒtƒ‰ƒO‘€ì‚¾‚¯‚Å‚Íƒ_ƒI*/
+	_OBJ_DEL		D32R0401_OUEN					/*æ“¬ä¼¼3Dãªã®ã§ãƒ•ãƒ©ã‚°æ“ä½œã ã‘ã§ã¯ãƒ€ãƒ¡ï¼*/
 	_FLAG_SET		FV_D32R0401_OUEN
 	_RET
 
-/*30%‚Å‰ž‰‡oŒ»*/
+/*30%ã§å¿œæ´å‡ºç¾*/
 ev_d32r0401_init_change_7_win_ouen:
 	_IF_FLAGOFF_JUMP	TMFLG_STAGE_OUEN,ev_d32r0401_init_change_7_win_ouen_tmflag
-	//_JUMP			ev_d32r0401_init_change_7_win_ouen_tmflag	//šDEBUG
+	//_JUMP			ev_d32r0401_init_change_7_win_ouen_tmflag	//â˜…DEBUG
 	_END
 
-/*ˆê“úˆê‰ñ*/
+/*ä¸€æ—¥ä¸€å›ž*/
 ev_d32r0401_init_change_7_win_ouen_tmflag:
 	_FLAG_SET		TMFLG_STAGE_OUEN
 
-	/*ƒg[ƒ^ƒ‹ƒŒƒR[ƒh‚É‚æ‚Á‚Ä•ªŠò*/
+	/*ãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦åˆ†å²*/
 	_STAGE_TOTAL_RECORD_GET_EX	LOCALWORK8
 	_IFVAL_JUMP		LOCALWORK8,GE,10000,ev_d32r0401_init_change_7_win_ouen_3
 	_IFVAL_JUMP		LOCALWORK8,GE,1000,ev_d32r0401_init_change_7_win_ouen_2
@@ -133,63 +133,63 @@ ev_d32r0401_init_change_7_win_ouen_tmflag:
 	_END
 
 ev_d32r0401_init_change_7_win_ouen_3:
-	_GET_RND		SYS_WORK_STAGE_OUEN,4		/*Ä“xƒCƒ“‚µ‚½Žž‚Éƒ[ƒN‚Ì’l‚ª•K—v*/
+	_GET_RND		SYS_WORK_STAGE_OUEN,4		/*å†åº¦ã‚¤ãƒ³ã—ãŸæ™‚ã«ãƒ¯ãƒ¼ã‚¯ã®å€¤ãŒå¿…è¦*/
 	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
 	_END
 
 ev_d32r0401_init_change_7_win_ouen_2:
-	_GET_RND		SYS_WORK_STAGE_OUEN,2		/*Ä“xƒCƒ“‚µ‚½Žž‚Éƒ[ƒN‚Ì’l‚ª•K—v*/
+	_GET_RND		SYS_WORK_STAGE_OUEN,2		/*å†åº¦ã‚¤ãƒ³ã—ãŸæ™‚ã«ãƒ¯ãƒ¼ã‚¯ã®å€¤ãŒå¿…è¦*/
 	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
 	_END
 
 ev_d32r0401_init_change_7_win_ouen_1:
-	_LDVAL			SYS_WORK_STAGE_OUEN,0		/*Ä“xƒCƒ“‚µ‚½Žž‚Éƒ[ƒN‚Ì’l‚ª•K—v*/
+	_LDVAL			SYS_WORK_STAGE_OUEN,0		/*å†åº¦ã‚¤ãƒ³ã—ãŸæ™‚ã«ãƒ¯ãƒ¼ã‚¯ã®å€¤ãŒå¿…è¦*/
 	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
 	_END
 
 ev_d32r0401_init_change_7_win_ouen_common:
 	_FLAG_RESET		FV_D32R0401_OUEN
-	_CALL			ev_d32r0401_ouen1_char_code_set/*‰ž‰‡ƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
-	_OBJ_ADD		D32R0401_OUEN				/*‹[Ž—3D‚È‚Ì‚Åƒtƒ‰ƒO‘€ì‚¾‚¯‚Å‚Íƒ_ƒI*/
+	_CALL			ev_d32r0401_ouen1_char_code_set/*å¿œæ´ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
+	_OBJ_ADD		D32R0401_OUEN				/*æ“¬ä¼¼3Dãªã®ã§ãƒ•ãƒ©ã‚°æ“ä½œã ã‘ã§ã¯ãƒ€ãƒ¡ï¼*/
 	_END
 
 /////////////////////////////////////////////////////////////////////////////////////////
-/*TVƒCƒ“ƒ^ƒrƒ…ƒA["7˜AŸŒã"ƒ`ƒFƒbƒN*/
+/*TVã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼"7é€£å‹å¾Œ"ãƒã‚§ãƒƒã‚¯*/
 /////////////////////////////////////////////////////////////////////////////////////////
 ev_d32r0401_tv_interview_check_7_win:
 
-	/*"7˜AŸŒã"ƒCƒ“ƒ^ƒrƒ…ƒA[‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚çíœ‚·‚é*/
+	/*"7é€£å‹å¾Œ"ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ã™ã‚‹*/
 	_IF_FLAGOFF_CALL	FV_TV_INTERVIEW_14,ev_d32r0401_init_change_interview_del
 
 #if 0
 	//FLAG_CHANGE_LABEL
-	ƒCƒ“ƒ^ƒrƒ…[‚ðŽó‚¯‚ÄAŠO‚Éo‚ÄAÄ“x“ü‚Á‚½Žž‚ÉAƒCƒ“ƒ^ƒrƒ…[‚ðÁ‚·•K—v‚ª‚ ‚é
+	ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚’å—ã‘ã¦ã€å¤–ã«å‡ºã¦ã€å†åº¦å…¥ã£ãŸæ™‚ã«ã€ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚’æ¶ˆã™å¿…è¦ãŒã‚ã‚‹
 
 	//INIT_CHANGE_LABEL
-	’§íŒãA˜AŸ”‚ðŒ©‚ÄAƒCƒ“ƒ^ƒrƒ…ƒA[‚ð’Ç‰Á‚·‚é•K—v‚ª‚ ‚é
-	Ä“xA’§í‚µ‚½Žž‚ÉAƒCƒ“ƒ^ƒrƒ…ƒA[‚ª‚·‚Å‚É‚¢‚é‚©‚Åíœ‚·‚é‚©A‚»‚Ì‚Ü‚Ü‚©A‚È‚Ç
+	æŒ‘æˆ¦å¾Œã€é€£å‹æ•°ã‚’è¦‹ã¦ã€ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ã‚’è¿½åŠ ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+	å†åº¦ã€æŒ‘æˆ¦ã—ãŸæ™‚ã«ã€ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãŒã™ã§ã«ã„ã‚‹ã‹ã§å‰Šé™¤ã™ã‚‹ã‹ã€ãã®ã¾ã¾ã‹ã€ãªã©
 #endif
 
-	/*ƒCƒ“ƒ^ƒrƒ…ƒA[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹*/
 	_TV_INTERVIEWER_CHECK	14,LOCALWORK0
 	_IFVAL_JUMP			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
 
-	/*’§í‚µ‚½ƒ|ƒPƒ‚ƒ“‚ª50˜AŸ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*æŒ‘æˆ¦ã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒ50é€£å‹ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_TV_STAGE_RENSYOU_CHECK	LOCALWORK0
 	_IFVAL_JUMP			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
 
 	_FLAG_RESET		FV_TV_INTERVIEW_14
-	_OBJ_ADD		D32R0401_TV_INTERVIEW_14			/*‹[Ž—3D‚È‚Ì‚Åƒtƒ‰ƒO‘€ì‚¾‚¯‚Å‚Íƒ_ƒI*/
+	_OBJ_ADD		D32R0401_TV_INTERVIEW_14			/*æ“¬ä¼¼3Dãªã®ã§ãƒ•ãƒ©ã‚°æ“ä½œã ã‘ã§ã¯ãƒ€ãƒ¡ï¼*/
 	_RET
 
-/*ƒCƒ“ƒ^ƒrƒ…[ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOON*/
+/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ON*/
 ev_d32r0401_flagchange_vanish:
 	_FLAG_SET			FV_TV_INTERVIEW_14
 	_RET
 
-/*ƒCƒ“ƒ^ƒrƒ…ƒA[‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚çíœ‚·‚é*/
+/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ã™ã‚‹*/
 ev_d32r0401_init_change_interview_del:
-	_OBJ_DEL		D32R0401_TV_INTERVIEW_14			/*‹[Ž—3D‚È‚Ì‚Åƒtƒ‰ƒO‘€ì‚¾‚¯‚Å‚Íƒ_ƒI*/
+	_OBJ_DEL		D32R0401_TV_INTERVIEW_14			/*æ“¬ä¼¼3Dãªã®ã§ãƒ•ãƒ©ã‚°æ“ä½œã ã‘ã§ã¯ãƒ€ãƒ¡ï¼*/
 	_FLAG_SET		FV_TV_INTERVIEW_14
 	_RET
 
@@ -197,38 +197,38 @@ ev_d32r0401_init_change_interview_del:
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ’ˆÓI(06.02.09Œ»Ý)
- * EV_SCRIPT_WORK‚ðŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚ÍŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ðŽg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼(06.02.09ç¾åœ¨)
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óŽg—p•s‰ÂI
- * ‘Î‰ž—\’è‚¾‚ªAƒ][ƒ“‚ð‚Ü‚½‚¢‚¾Žž‚Éˆ——Ž‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  */
 /********************************************************************/
-/*ƒoƒgƒ‹ƒXƒe[ƒWƒCƒ“ƒ^ƒrƒ…[*/
+/*ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼*/
 ev_d32r0401_flag_change:
 
-	/*ƒtƒ@ƒ“‚ÌƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+	/*ãƒ•ã‚¡ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 	_GET_MY_SEX		LOCALWORK0
 	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_d32r0401_fangirl_set
 	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_d32r0401_fanboy_set
 
-	/*‰ž‰‡ƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+	/*å¿œæ´ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 	_CALL			ev_d32r0401_ouen1_char_code_set
 
-	/*ƒCƒ“ƒ^ƒrƒ…ƒA[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹*/
 	_TV_INTERVIEWER_CHECK	14,LOCALWORK0
 	_IFVAL_CALL			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
 
-	//ƒ}ƒbƒv‚É“ü‚Á‚Ä‚«‚½ƒ^ƒCƒ~ƒ“ƒO‚Å‚ÍA‚·‚Å‚É•\Ž¦‚³‚ê‚Ä‚¢‚éƒCƒ“ƒ^ƒrƒ…ƒA[‚È‚ç‚»‚Ì‚Ü‚Ü
-	//ƒCƒ“ƒ^ƒrƒ…[‚ðŽó‚¯‚½Œã‚È‚çAÁ‚¦‚é‚æ‚¤‚Éƒtƒ‰ƒO‚ð—§‚Ä‚é
-	//‚¢‚È‚¢ó‘Ô‚©‚ç•\Ž¦‚É‚·‚é‚©‚ÍAINIT_CHANGE‚Ì7˜AŸŒã‚Ìƒ^ƒCƒ~ƒ“ƒO‚Ås‚¤
+	//ãƒžãƒƒãƒ—ã«å…¥ã£ã¦ããŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã¯ã€ã™ã§ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãªã‚‰ãã®ã¾ã¾
+	//ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚’å—ã‘ãŸå¾Œãªã‚‰ã€æ¶ˆãˆã‚‹ã‚ˆã†ã«ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+	//ã„ãªã„çŠ¶æ…‹ã‹ã‚‰è¡¨ç¤ºã«ã™ã‚‹ã‹ã¯ã€INIT_CHANGEã®7é€£å‹å¾Œã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§è¡Œã†
 	//_FLAG_RESET			FV_TV_INTERVIEW_14
 	_END
 
-/*‰ž‰‡ƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+/*å¿œæ´ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 ev_d32r0401_ouen1_char_code_set:
 	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,0,ev_d32r0401_flag_change_ouen1
 	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,1,ev_d32r0401_flag_change_ouen2
@@ -236,18 +236,18 @@ ev_d32r0401_ouen1_char_code_set:
 	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,3,ev_d32r0401_flag_change_ouen4
 	_RET
 
-/*‰ž‰‡ƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+/*å¿œæ´ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 ev_d32r0401_flag_change_ouen1:
 	_GET_MY_SEX		LOCALWORK9
-	_IFVAL_JUMP		LOCALWORK9,EQ,0,d32r0401_support_male_01	//ƒTƒ|[ƒg—
-	_IFVAL_JUMP		LOCALWORK9,EQ,1,d32r0401_support_female_01	//ƒTƒ|[ƒg’j
+	_IFVAL_JUMP		LOCALWORK9,EQ,0,d32r0401_support_male_01	//ã‚µãƒãƒ¼ãƒˆå¥³
+	_IFVAL_JUMP		LOCALWORK9,EQ,1,d32r0401_support_female_01	//ã‚µãƒãƒ¼ãƒˆç”·
 	_RET
 
-d32r0401_support_male_01:	//ƒTƒ|[ƒg—
+d32r0401_support_male_01:	//ã‚µãƒãƒ¼ãƒˆå¥³
 	_LDVAL			OBJCHRWORK1,HEROINE
 	_RET
 
-d32r0401_support_female_01:	//ƒTƒ|[ƒg’j
+d32r0401_support_female_01:	//ã‚µãƒãƒ¼ãƒˆç”·
 	_LDVAL			OBJCHRWORK1,HERO
 	_RET
 
@@ -263,7 +263,7 @@ ev_d32r0401_flag_change_ouen4:
 	_LDVAL			OBJCHRWORK1,MIKAN
 	_RET
 
-/*ƒtƒ@ƒ“‚ÌƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+/*ãƒ•ã‚¡ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 ev_d32r0401_fangirl_set:
 	_LDVAL			OBJCHRWORK3,GIRL2
 	_RET
@@ -274,15 +274,15 @@ ev_d32r0401_fanboy_set:
 
 
 /********************************************************************/
-//						ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Žó•t(¶)
+//						ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«å—ä»˜(å·¦)
 //
 //	SCWK_TEMP0
-//	WK_SCENE_STAGE_TYPE			ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-//	LOCALWORK1					ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-//	LOCALWORK2					ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Å‘I‘ð‚µ‚½ˆÊ’u
-//	LOCALWORK5					ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Å‘I‘ð‚µ‚½ˆÊ’u2
-//	LOCALWORK3					‰Šú‰»AŒp‘±
-//	LOCALWORK4					¶(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹)A‰E(ƒ}ƒ‹ƒ`)‚Ç‚¿‚ç‚ÌŽó•t‚©
+//	WK_SCENE_STAGE_TYPE			ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+//	LOCALWORK1					ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+//	LOCALWORK2					ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§é¸æŠžã—ãŸä½ç½®
+//	LOCALWORK5					ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§é¸æŠžã—ãŸä½ç½®2
+//	LOCALWORK3					åˆæœŸåŒ–ã€ç¶™ç¶š
+//	LOCALWORK4					å·¦(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«)ã€å³(ãƒžãƒ«ãƒ)ã©ã¡ã‚‰ã®å—ä»˜ã‹
 //
 /********************************************************************/
 ev_stage_lobby:
@@ -296,15 +296,15 @@ ev_stage_lobby:
 
 
 /********************************************************************/
-//							ƒ}ƒ‹ƒ`Žó•t(‰E)
+//							ãƒžãƒ«ãƒå—ä»˜(å³)
 //
 //	SCWK_TEMP0
-//	WK_SCENE_STAGE_TYPE			ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-//	LOCALWORK1					ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-//	LOCALWORK2					ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Å‘I‘ð‚µ‚½ˆÊ’u
-//	LOCALWORK5					ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Å‘I‘ð‚µ‚½ˆÊ’u2
-//	LOCALWORK3					‰Šú‰»AŒp‘±
-//	LOCALWORK4					¶(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹)A‰E(ƒ}ƒ‹ƒ`)‚Ç‚¿‚ç‚ÌŽó•t‚©
+//	WK_SCENE_STAGE_TYPE			ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+//	LOCALWORK1					ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+//	LOCALWORK2					ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§é¸æŠžã—ãŸä½ç½®
+//	LOCALWORK5					ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§é¸æŠžã—ãŸä½ç½®2
+//	LOCALWORK3					åˆæœŸåŒ–ã€ç¶™ç¶š
+//	LOCALWORK4					å·¦(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«)ã€å³(ãƒžãƒ«ãƒ)ã©ã¡ã‚‰ã®å—ä»˜ã‹
 //
 /********************************************************************/
 ev_stage_lobby_multi:
@@ -318,38 +318,38 @@ ev_stage_lobby_multi:
 
 
 /********************************************************************/
-//							‹¤’Êˆ—
+//							å…±é€šå‡¦ç†
 /********************************************************************/
 common_01_stage01:
 
-	/*ƒq[ƒvƒ`ƒFƒbƒN*/
+	/*ãƒ’ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯*/
 	_HEAP_CHECK		0
 
-	/*uƒoƒgƒ‹ƒXƒe[ƒW‚Ö@‚æ‚¤‚±‚»Iv*/
+	/*ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã€€ã‚ˆã†ã“ãï¼ã€*/
 	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p01_park_stage01
 	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_RIGHT,ev_mode03_p01_park_stage01
 	_JUMP			park_stage01_start
 	_END
 
 park_stage01_start:
-	/*uƒoƒgƒ‹ƒgƒŒ[ƒh@’§í‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã€€æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p02_park_stage01
 	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_RIGHT,ev_mode03_p02_park_stage01
 
-	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_04,2	/*‚¹‚Â‚ß‚¢‚ð‚«‚­*/
-	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_05,3	/*‚â‚ß‚é*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_04,2	/*ã›ã¤ã‚ã„ã‚’ãã*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_05,3	/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_lobby_choice_01		/*ƒVƒ“ƒOƒ‹*/
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_lobby_choice_02		/*ƒ_ƒuƒ‹*/
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_lobby_choice_03		/*à–¾*/
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,4,ev_lobby_choice_05		/*’§í‚·‚é*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_lobby_choice_01		/*ã‚·ãƒ³ã‚°ãƒ«*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_lobby_choice_02		/*ãƒ€ãƒ–ãƒ«*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_lobby_choice_03		/*èª¬æ˜Ž*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,4,ev_lobby_choice_05		/*æŒ‘æˆ¦ã™ã‚‹*/
 	_JUMP				ev_lobby_choice_04
 	_END
 
 
 /********************************************************************/
-//					ƒƒjƒ…[u‚¹‚Â‚ß‚¢‚ð‚«‚­v	
+//					ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œã›ã¤ã‚ã„ã‚’ããã€	
 /********************************************************************/
 ev_lobby_choice_03:
 	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p03_park_stage01
@@ -359,7 +359,7 @@ ev_lobby_choice_03:
 
 
 /********************************************************************/
-//					ƒƒjƒ…[u‚â‚ß‚év	
+//					ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œã‚„ã‚ã‚‹ã€	
 /********************************************************************/
 ev_lobby_choice_04:
 	_JUMP			park_stage01_end
@@ -368,7 +368,7 @@ ev_lobby_choice_04:
 park_stage01_end:
 	_LDVAL			WK_SCENE_STAGE_LOBBY,0
 
-	/*‚Ü‚½‚Ì‚²—˜—p‚ð‚¨‘Ò‚¿‚µ‚Ä‚¨‚è‚Ü‚·*/
+	/*ã¾ãŸã®ã”åˆ©ç”¨ã‚’ãŠå¾…ã¡ã—ã¦ãŠã‚Šã¾ã™*/
 	_TALKMSG		msg_stage_lobby_10
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -377,13 +377,13 @@ park_stage01_end:
 
 
 /********************************************************************/
-//	‘I‘ð‚µ‚½ƒ^ƒCƒv‚ðƒZƒbƒguƒVƒ“ƒOƒ‹ƒoƒgƒ‹Aƒ_ƒuƒ‹ƒoƒgƒ‹Aƒ}ƒ‹ƒ`v
+//	é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆã€Œã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ã€ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã€ãƒžãƒ«ãƒã€
 /********************************************************************/
 ev_lobby_choice_01:
 	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_SINGLE
 
-	/*ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“”ƒ`ƒFƒbƒN*/
-	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1•Cƒ`ƒFƒbƒN
+	/*æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°ãƒã‚§ãƒƒã‚¯*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1åŒ¹ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_poke_num_ng					//NG
 	
 	_JUMP			ev_lobby_choice_pokesel
@@ -392,12 +392,12 @@ ev_lobby_choice_01:
 ev_lobby_choice_02:
 	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_DOUBLE
 
-	/*ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“”ƒ`ƒFƒbƒN*/
-	/*ŽèŽ‚¿‚É•¡”“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN*/
-	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,2,SCWK_ANSWER				//2•Cƒ`ƒFƒbƒN
+	/*æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°ãƒã‚§ãƒƒã‚¯*/
+	/*æ‰‹æŒã¡ã«è¤‡æ•°åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,2,SCWK_ANSWER				//2åŒ¹ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_double_error					//NG
 
-	//_TEMOTI_POKE_CHK_NUM	SCWK_ANSWER,0									//“¯‚¶Ží—Þ2•Cƒ`ƒFƒbƒN
+	//_TEMOTI_POKE_CHK_NUM	SCWK_ANSWER,0									//åŒã˜ç¨®é¡ž2åŒ¹ãƒã‚§ãƒƒã‚¯
 	//_IFVAL_JUMP				SCWK_ANSWER,EQ,0,ev_stage_double_error			//NG
 
 	_JUMP			ev_lobby_choice_pokesel
@@ -406,8 +406,8 @@ ev_lobby_choice_02:
 ev_lobby_choice_05:
 	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_MULTI
 
-	/*ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“”ƒ`ƒFƒbƒN*/
-	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1•Cƒ`ƒFƒbƒN
+	/*æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°ãƒã‚§ãƒƒã‚¯*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1åŒ¹ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_poke_num_ng					//NG
 	
 	_JUMP			ev_lobby_choice_pokesel
@@ -415,16 +415,16 @@ ev_lobby_choice_05:
 
 
 /********************************************************************/
-/*					ŽQ‰Áo—ˆ‚éƒ|ƒPƒ‚ƒ“‚ª‘«‚è‚È‚¢					*/
+/*					å‚åŠ å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒè¶³ã‚Šãªã„					*/
 /********************************************************************/
 ev_stage_poke_num_ng:
-	/*uŽQ‰Áo—ˆ‚éƒ|ƒPƒ‚ƒ“‚ª‘«‚è‚Ü‚¹‚ñv*/
+	/*ã€Œå‚åŠ å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒè¶³ã‚Šã¾ã›ã‚“ã€*/
 	_TALKMSG		msg_stage_lobby_32
 	_TALKMSG_NG_POKE_NAME	msg_stage_lobby_37,1,0,0,0
 	_JUMP			ev_lobby_choice_04
 	_END
 
-/*ƒ_ƒuƒ‹ƒoƒgƒ‹‚ð‘I‚ñ‚Å‚àAŽèŽ‚¿‚É•¡”“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢‚Å‚·‚æ*/
+/*ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚’é¸ã‚“ã§ã‚‚ã€æ‰‹æŒã¡ã«è¤‡æ•°åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„ã§ã™ã‚ˆ*/
 ev_stage_double_error:
 	_TALKMSG		msg_stage_lobby_36
 	_TALKMSG_NG_POKE_NAME	msg_stage_lobby_37,2,0,0,0
@@ -433,93 +433,93 @@ ev_stage_double_error:
 
 
 /********************************************************************/
-/*						oêƒ|ƒPƒ‚ƒ“‚ð‘I‘ð‚·‚é						*/
+/*						å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠžã™ã‚‹						*/
 /********************************************************************/
 ev_lobby_choice_pokesel:
 
-	/*ŽQ‰Á‚·‚éƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢*/
+	/*å‚åŠ ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„*/
 	_TALKMSG			msg_stage_lobby_30
 	_TALK_CLOSE
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—*/
 	_BSTAGE_TOOLS		STAGE_TOOL_SELECT_POKE,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
 
-	/*‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾*/
+	/*é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—*/
 	_BATTLE_STAGE_POKELIST_GET_RESULT	LOCALWORK2,LOCALWORK5
 	_SET_MAP_PROC
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN*/
+	/*ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP			LOCALWORK2,EQ,0xff,ev_lobby_choice_04
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN(ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒNŒã‚Éˆ—‚·‚é)*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯(ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯å¾Œã«å‡¦ç†ã™ã‚‹)*/
 	_SODATEYA_POKE_FORM_RETURN	LOCALWORK2,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_stage_gira_ng
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN(ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒNŒã‚Éˆ—‚·‚é)*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯(ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯å¾Œã«å‡¦ç†ã™ã‚‹)*/
 	_SODATEYA_POKE_FORM_RETURN	LOCALWORK5,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_stage_gira_ng
 
-	/*ŽèŽ‚¿[„ƒ|ƒPƒ‚ƒ“”Ô†•ÏŠ·@“¯Žž‚Éƒ^ƒ}ƒSƒ`ƒFƒbƒN‚às‚Á‚Ä‚¢‚Ü‚·*/
+	/*æ‰‹æŒã¡ãƒ¼ï¼žãƒã‚±ãƒ¢ãƒ³ç•ªå·å¤‰æ›ã€€åŒæ™‚ã«ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯ã‚‚è¡Œã£ã¦ã„ã¾ã™*/
 	_TEMOTI_MONSNO		LOCALWORK2,LOCALWORK1
-	//_IFVAL_JUMP		LOCALWORK1,EQ,0,ev_lobby_choice_tamago			/*ƒ^ƒ}ƒS*/
-	_IFVAL_JUMP			LOCALWORK1,EQ,0,ev_lobby_choice_04				/*ƒ^ƒ}ƒS*/
-	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Åƒ^ƒ}ƒS‚ª‘I‘ðo—ˆ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚é*/
+	//_IFVAL_JUMP		LOCALWORK1,EQ,0,ev_lobby_choice_tamago			/*ã‚¿ãƒžã‚´*/
+	_IFVAL_JUMP			LOCALWORK1,EQ,0,ev_lobby_choice_04				/*ã‚¿ãƒžã‚´*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§ã‚¿ãƒžã‚´ãŒé¸æŠžå‡ºæ¥ãªã„ã‚ˆã†ã«ã—ã¦ã„ã‚‹*/
 
-	//˜AŸ’†‚©ƒ`ƒFƒbƒN
+	//é€£å‹ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_FLAG,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_10					/*V‹K’§í*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_10					/*æ–°è¦æŒ‘æˆ¦*/
 
-	//˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚Æˆê’v‚·‚é‚©ƒ`ƒFƒbƒN
+	//é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_MONSNO,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
 
 #ifdef	DEBUG_POKE_CHK_OFF	/********************************************/
-	/*ƒfƒoƒbƒN‚Å˜AŸ”‚ð‘€ì‚µ‚½Žž‚ÉAƒNƒŠƒA‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ª0‚Ì‚Ü‚Ü‚È‚Ì‚ÅA*/
-	/*“¯‚¶ƒ|ƒPƒ‚ƒ“‚Å’§í‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚ÍƒXƒ‹[‚³‚¹‚é*/
+	/*ãƒ‡ãƒãƒƒã‚¯ã§é€£å‹æ•°ã‚’æ“ä½œã—ãŸæ™‚ã«ã€ã‚¯ãƒªã‚¢ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ãŒ0ã®ã¾ã¾ãªã®ã§ã€*/
+	/*åŒã˜ãƒã‚±ãƒ¢ãƒ³ã§æŒ‘æˆ¦ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã¯ã‚¹ãƒ«ãƒ¼ã•ã›ã‚‹*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_10
 	//_JUMP			ev_stage_lobby_10
 #endif	/************************************************************/
 
 	_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
-	_IFWK_JUMP		SCWK_ANSWER,EQ,LOCALWORK1,ev_stage_lobby_10			/*˜AŸ’†*/
+	_IFWK_JUMP		SCWK_ANSWER,EQ,LOCALWORK1,ev_stage_lobby_10			/*é€£å‹ä¸­*/
 
-	/*˜AŸ’†‚ÅAV‹Kƒ|ƒPƒ‚ƒ“‚Å’§í‚µ‚æ‚¤‚Æ‚µ‚½Žž*/
+	/*é€£å‹ä¸­ã§ã€æ–°è¦ãƒã‚±ãƒ¢ãƒ³ã§æŒ‘æˆ¦ã—ã‚ˆã†ã¨ã—ãŸæ™‚*/
 	_JUMP			ev_lobby_choice_pokesel_02
 	_END
 
 
 /********************************************************************/
-/*						‹L˜^‚ª‚ ‚é‚¯‚Ç‚Ç‚¤‚·‚éH					*/
+/*						è¨˜éŒ²ãŒã‚ã‚‹ã‘ã©ã©ã†ã™ã‚‹ï¼Ÿ					*/
 /********************************************************************/
 ev_lobby_choice_pokesel_02:
-	/*u›‚Å‚Ì˜AŸ‹L˜^‚ª‚ ‚è‚Ü‚·‚ªA‹L˜^‚ðÁ‚µ‚Ä ‚ÅV‚½‚É’§í‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œâ—‹ã§ã®é€£å‹è¨˜éŒ²ãŒã‚ã‚Šã¾ã™ãŒã€è¨˜éŒ²ã‚’æ¶ˆã—ã¦â–¡ã§æ–°ãŸã«æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿã€*/
 	//_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
 	_POKEMON_NAME_EXTRA	1,LOCALWORK1,0,0
 	_TALKMSG			msg_stage_lobby_31
-	_BMPMENU_INIT		25,13,1,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			/*‚Í‚¢*/
-	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			/*‚¢‚¢‚¦*/
+	_BMPMENU_INIT		25,13,1,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			/*ã¯ã„*/
+	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			/*ã„ã„ãˆ*/
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_stage_menu_yes			/*‚Í‚¢*/
-	_JUMP			ev_lobby_choice_04			/*‚¢‚¢‚¦*/
+	_CASE_JUMP		0,ev_stage_menu_yes			/*ã¯ã„*/
+	_JUMP			ev_lobby_choice_04			/*ã„ã„ãˆ*/
 	_END
 
 ev_stage_menu_yes:
-	/*ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹A7˜AŸ‚µ‚½‚©ƒtƒ‰ƒO‚ÌƒNƒŠƒAAŒ»Ý‚Ì˜AŸ”‚ðƒNƒŠƒA*/
+	/*ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«ã€7é€£å‹ã—ãŸã‹ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ã€ç¾åœ¨ã®é€£å‹æ•°ã‚’ã‚¯ãƒªã‚¢*/
 	_BSTAGE_TOOLS	STAGE_TOOL_SET_NEW_CHALLENGE,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
 	_JUMP			ev_stage_lobby_10
 	_END
 
 
 /********************************************************************/
-//					’§í‚·‚é‘O‚ÉƒZ[ƒu‚·‚éH
+//					æŒ‘æˆ¦ã™ã‚‹å‰ã«ã‚»ãƒ¼ãƒ–ã™ã‚‹ï¼Ÿ
 /********************************************************************/
 ev_stage_lobby_10:
 	//_TALKMSG		msg_stage_lobby_12
@@ -530,28 +530,28 @@ ev_stage_lobby_10:
 
 
 /********************************************************************/
-//							’§í‘OƒZ[ƒu
+//							æŒ‘æˆ¦å‰ã‚»ãƒ¼ãƒ–
 /********************************************************************/
 ev_stage_save:
 
-	/*ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹‚ÌŽž‚ÍA‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å•s³ƒ[ƒNƒZƒbƒg*/
+	/*ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã®æ™‚ã¯ã€ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ä¸æ­£ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_stage_ng_work_set
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_stage_ng_work_set
 
-	//ƒ[ƒJƒ‹•Ï”‚ÍA0‚É‚µ‚ÄƒZ[ƒu‚·‚é
+	//ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã¯ã€0ã«ã—ã¦ã‚»ãƒ¼ãƒ–ã™ã‚‹
 	_LDVAL			LOCALWORK0,0
 
-	//‰ñ•œ
+	//å›žå¾©
 	_PC_KAIFUKU
 
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæžœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_lobby_choice_04
 #endif	/************************************************************/
 
-	/*ƒ}ƒ‹ƒ`‚ÌŽž‚ÍeŽq‘I‘ð‚Ö*/
+	/*ãƒžãƒ«ãƒã®æ™‚ã¯è¦ªå­é¸æŠžã¸*/
 	_IFVAL_JUMP		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_stage_multi_oyako_sel
 
 	_JUMP			park_stage01_battle_saikai
@@ -559,52 +559,52 @@ ev_stage_save:
 
 
 /********************************************************************/
-//							eŽq‘I‘ð
+//							è¦ªå­é¸æŠž
 /********************************************************************/
 ev_stage_multi_oyako_sel:
 	_TALKMSG		msg_stage_multi_01
 	
-	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_014,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_015,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_006,2
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_stage_connect_group		//ƒOƒ‹[ƒv
-	_CASE_JUMP		1,ev_stage_connect_leader		//ƒŠ[ƒ_[
-	_JUMP			ev_lobby_choice_04				//I—¹‚Ö
+	_CASE_JUMP		0,ev_stage_connect_group		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP		1,ev_stage_connect_leader		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP			ev_lobby_choice_04				//çµ‚äº†ã¸
 	_END
 
 
 /********************************************************************/
-//						ƒOƒ‹[ƒv‚É“ü‚é
+//						ã‚°ãƒ«ãƒ¼ãƒ—ã«å…¥ã‚‹
 /********************************************************************/
 ev_stage_connect_group:
-	/*u‚c‚rƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©Hv*/
+	/*ã€Œï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG		msg_stage_multi_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_stage_multi_oyako_sel
 
 	_TALK_CLOSE
 
-	//e‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//è¦ªæ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 
-	//LV50AƒI[ƒvƒ“‚Å’ÊM‚ð•Ï‚¦‚é
+	//LV50ã€ã‚ªãƒ¼ãƒ—ãƒ³ã§é€šä¿¡ã‚’å¤‰ãˆã‚‹
 	_SEL_PARENT_WIN	COMM_MODE_STAGE_MULTI,0,0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_stage_connect_group_cancel	//cancel
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_stage_connect_group_error		//error
 
-	//‚»‚êˆÈŠO‚Í¬Œ÷
+	//ãã‚Œä»¥å¤–ã¯æˆåŠŸ
 	_JUMP			ev_stage_connect_pokechk
 	_END
 
-//ƒOƒ‹[ƒvƒLƒƒƒ“ƒZƒ‹
+//ã‚°ãƒ«ãƒ¼ãƒ—ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_stage_connect_group_cancel:
 	_JUMP			ev_stage_multi_oyako_sel
 	_END
 
-//ƒOƒ‹[ƒv’ÊMƒGƒ‰[
+//ã‚°ãƒ«ãƒ¼ãƒ—é€šä¿¡ã‚¨ãƒ©ãƒ¼
 ev_stage_connect_group_error:
 	_COMM_DIRECT_END
 	_JUMP			ev_stage_multi_oyako_sel
@@ -612,33 +612,33 @@ ev_stage_connect_group_error:
 
 
 /********************************************************************/
-//						ƒŠ[ƒ_[‚É‚È‚é
+//						ãƒªãƒ¼ãƒ€ãƒ¼ã«ãªã‚‹
 /********************************************************************/
 ev_stage_connect_leader:
-	/*u‚c‚rƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©Hv*/
+	/*ã€Œï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG		msg_stage_multi_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_stage_multi_oyako_sel
 
 	_TALK_CLOSE
 
-	//Žq‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//å­æ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 
-	//LV50AƒI[ƒvƒ“‚Å’ÊM‚ð•Ï‚¦‚é
+	//LV50ã€ã‚ªãƒ¼ãƒ—ãƒ³ã§é€šä¿¡ã‚’å¤‰ãˆã‚‹
 	_SEL_CHILD_WIN	COMM_MODE_STAGE_MULTI,0,0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_stage_connect_leader_cancel	//cancel
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_stage_connect_leader_error	//error
 
-	//‚»‚êˆÈŠO‚Í¬Œ÷
+	//ãã‚Œä»¥å¤–ã¯æˆåŠŸ
 	_JUMP			ev_stage_connect_pokechk		
 	_END
 
-//ƒŠ[ƒ_[ƒLƒƒƒ“ƒZƒ‹
+//ãƒªãƒ¼ãƒ€ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_stage_connect_leader_cancel:
 	_JUMP			ev_stage_multi_oyako_sel
 	_END
 
-//ƒŠ[ƒ_[’ÊMƒGƒ‰[
+//ãƒªãƒ¼ãƒ€ãƒ¼é€šä¿¡ã‚¨ãƒ©ãƒ¼
 ev_stage_connect_leader_error:
 	_COMM_DIRECT_END
 	_JUMP			ev_stage_multi_oyako_sel
@@ -646,53 +646,53 @@ ev_stage_connect_leader_error:
 
 
 /********************************************************************/
-//						eŽq‘I‘ð@¬Œ÷
+//						è¦ªå­é¸æŠžã€€æˆåŠŸ
 /********************************************************************/
 ev_stage_connect_pokechk:
-	/*’ÊM“¯Šú(‚¨—F’B‚Ì‘I‘ð‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·)*/
+	/*é€šä¿¡åŒæœŸ(ãŠå‹é”ã®é¸æŠžã‚’å¾…ã£ã¦ã„ã¾ã™)*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_POKE_SELECT
 
-	/*‚¨ŒÝ‚¢‚ª‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ðŒðŠ·*/
-	_STAGE_COMM_MONSNO		LOCALWORK1,SCWK_ANSWER	/*ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒN*/
+	/*ãŠäº’ã„ãŒé¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’äº¤æ›*/
+	_STAGE_COMM_MONSNO		LOCALWORK1,SCWK_ANSWER	/*ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯*/
 
-	/*ƒ|ƒPƒ‚ƒ“‚ª“¯‚¶‚Å‚È‚¢*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãŒåŒã˜ã§ãªã„*/
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_stage_gate_connect_poke_same01
 
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_GO_SAVE
 
-	/*u‚²ˆÄ“à‚Ì@‘O‚É@ƒŒƒ|[ƒg‚ð@‘‚«‚Ü‚·Iv*/
+	/*ã€Œã”æ¡ˆå†…ã®ã€€å‰ã«ã€€ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€æ›¸ãã¾ã™ï¼ã€*/
 	_TALKMSG		msg_stage_multi_03
 
-	/*ƒ}ƒ‹ƒ`‚ÌŽž‚ÍA‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å•s³ƒ[ƒNƒZƒbƒg*/
+	/*ãƒžãƒ«ãƒã®æ™‚ã¯ã€ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ä¸æ­£ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_stage_ng_work_set
 
-	/*ƒI[ƒgƒZ[ƒu*/
+	/*ã‚ªãƒ¼ãƒˆã‚»ãƒ¼ãƒ–*/
 	_CALL			ev_stage_common_auto_save
 	
-	//‚»‚ê‚Å‚Íƒoƒgƒ‹ƒ‹[ƒ€‚Ö
+	//ãã‚Œã§ã¯ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸
 	_JUMP			park_stage01_battle_saikai
 	_END
 
-/*•s³ó‘Ô‚ðƒZƒbƒg‚µ‚ÄƒZ[ƒu*/
+/*ä¸æ­£çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚»ãƒ¼ãƒ–*/
 ev_stage_ng_work_set:
 	_LDVAL			WK_SCENE_STAGE_LOBBY,255
 	_RET
 
 
 /********************************************************************/
-/*						ƒ|ƒPƒ‚ƒ“‚ª“¯‚¶‚Å‚È‚¢						*/
+/*						ãƒã‚±ãƒ¢ãƒ³ãŒåŒã˜ã§ãªã„						*/
 /********************************************************************/
 ev_stage_gate_connect_poke_same01:
 	_CALL			ev_stage_common_sioend
 	_TALK_KEYWAIT	msg_stage_lobby_29
-	_JUMP			ev_lobby_choice_04				//I—¹‚Ö
+	_JUMP			ev_lobby_choice_04				//çµ‚äº†ã¸
 	_END
 
 
 /********************************************************************/
-/*						’ÊMØ’fˆ—ƒR[ƒ‹							*/
+/*						é€šä¿¡åˆ‡æ–­å‡¦ç†ã‚³ãƒ¼ãƒ«							*/
 /********************************************************************/
 ev_stage_common_sioend:
 	//_COMM_RESET
@@ -702,10 +702,10 @@ ev_stage_common_sioend:
 
 
 /********************************************************************/
-//							ƒoƒgƒ‹ƒ‹[ƒ€‚Ö
+//							ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸
 /********************************************************************/
 park_stage01_battle_saikai:
-	//ƒoƒgƒ‹ƒ‚[ƒh‚Å•ªŠò
+	//ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰ã§åˆ†å²
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_mode01_p04_park_stage01
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_mode02_p04_park_stage01
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_mode03_p04_park_stage01
@@ -715,11 +715,11 @@ park_stage01_battle_saikai:
 	_END
 
 frontier_system_go:
-	/*ƒXƒe[ƒW‚Ö*/
+	/*ã‚¹ãƒ†ãƒ¼ã‚¸ã¸*/
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒoƒgƒ‹ƒ‚[ƒh‚Å•ªŠò
+	//ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰ã§åˆ†å²
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_mode01_p04_park_stage01_2
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_mode02_p04_park_stage01_2
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_mode03_p04_park_stage01_2
@@ -731,16 +731,16 @@ frontier_system_go:
 	_FINISH_MAP_PROC
 	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_STAGE_WAY
 
-	/*’ÊMI—¹*/
+	/*é€šä¿¡çµ‚äº†*/
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,frontier_system_go_comm_end
 
-	/*ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A*/
+	/*ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°*/
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒq[ƒvƒ`ƒFƒbƒN*/
+	/*ãƒ’ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯*/
 	_HEAP_CHECK		1
 
 	_END
@@ -751,10 +751,10 @@ frontier_system_go_comm_end:
 
 
 /********************************************************************/
-//						˜b‚µ‚©‚¯OBJIDƒZƒbƒg
+//						è©±ã—ã‹ã‘OBJIDã‚»ãƒƒãƒˆ
 /********************************************************************/
 ev_mode01_p04_park_stage01:
-	/*u‚³‚ ‚³‚ @‚±‚¿‚ç‚É@‚Ç‚¤‚¼Iv*/
+	/*ã€Œã•ã‚ã•ã‚ã€€ã“ã¡ã‚‰ã«ã€€ã©ã†ãžï¼ã€*/
 	_TALK_KEYWAIT	msg_stage_lobby_13
 	_AB_KEYWAIT
 	_TALK_CLOSE
@@ -765,7 +765,7 @@ ev_mode01_p04_park_stage01:
 	_RET
 
 ev_mode02_p04_park_stage01:
-	/*u‚³‚ ‚³‚ @‚±‚¿‚ç‚É@‚Ç‚¤‚¼Iv*/
+	/*ã€Œã•ã‚ã•ã‚ã€€ã“ã¡ã‚‰ã«ã€€ã©ã†ãžï¼ã€*/
 	_TALK_KEYWAIT	msg_stage_lobby_13
 	_AB_KEYWAIT
 	_TALK_CLOSE
@@ -776,14 +776,14 @@ ev_mode02_p04_park_stage01:
 	_RET
 
 ev_mode03_p04_park_stage01:
-	/*u‚³‚ ‚³‚ @‚±‚¿‚ç‚É@‚Ç‚¤‚¼Iv*/
+	/*ã€Œã•ã‚ã•ã‚ã€€ã“ã¡ã‚‰ã«ã€€ã©ã†ãžï¼ã€*/
 	_TALKMSG_NOSKIP	msg_stage_lobby_13
 	_TIME_WAIT		10,SCWK_ANSWER
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_AUTO_SAVE
 
 	_TALK_CLOSE
@@ -793,7 +793,7 @@ ev_mode03_p04_park_stage01:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*Œ³‚ÌˆÊ’u‚É–ß‚·*/
+/*å…ƒã®ä½ç½®ã«æˆ»ã™*/
 ev_mode01_p04_park_stage01_2:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_01_2
 	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_01_2
@@ -812,14 +812,14 @@ ev_mode03_p04_park_stage01_2:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*uƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢B‚Í‚Á‚«‚ñ‚¾‚Ü‚ðŠO‚¹‚Ü‚¹‚ñv*/
+/*ã€Œãƒãƒƒã‚¯ãŒã„ã£ã±ã„ã€‚ã¯ã£ãã‚“ã ã¾ã‚’å¤–ã›ã¾ã›ã‚“ã€*/
 ev_stage_gira_ng:
 	_LDVAL			WK_SCENE_STAGE_LOBBY,0
 	_CHG_COMMON_SCR	SCRID_GIRA_ITEM_NG
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒoƒgƒ‹•”‰®‚Ö
+//ä¸»äººå…¬	ãƒãƒˆãƒ«éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_stage_btl_in_01
 	_ANIME_DATA	AC_WALK_L_8F,4
@@ -836,7 +836,7 @@ _ANIME_LABEL anm_player_stage_btl_in_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Žó•t	ƒoƒgƒ‹•”‰®‚Ö
+//å—ä»˜	ãƒãƒˆãƒ«éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_target_stage_btl_in_01
 	_ANIME_DATA	AC_WALK_L_8F,3
@@ -853,7 +853,7 @@ _ANIME_LABEL anm_target_stage_btl_in_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œ³‚ÌˆÊ’u‚É–ß‚·
+//ä¸»äººå…¬	å…ƒã®ä½ç½®ã«æˆ»ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_stage_btl_in_01_2
 	_ANIME_DATA	AC_WALK_R_2F,4
@@ -872,7 +872,7 @@ _ANIME_LABEL anm_player_stage_btl_in_02_2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Žó•t	Œ³‚ÌˆÊ’u‚É–ß‚·
+//å—ä»˜	å…ƒã®ä½ç½®ã«æˆ»ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_target_stage_btl_in_01_2
 	_ANIME_DATA	AC_WALK_U_2F,3
@@ -889,52 +889,52 @@ _ANIME_LABEL anm_target_stage_btl_in_02_2
 
 //====================================================================
 //
-//						ƒƒbƒZ[ƒW•ªŠò
+//						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²
 //
 //====================================================================
 
 /********************************************************************/
-/*						u‚æ‚¤‚±‚»Iv								*/
+/*						ã€Œã‚ˆã†ã“ãï¼ã€								*/
 /********************************************************************/
-//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 ev_mode01_p01_park_stage01:
 	_TALK_KEYWAIT	msg_stage_lobby_01
 	_RET
 
-//ƒ}ƒ‹ƒ`
+//ãƒžãƒ«ãƒ
 ev_mode03_p01_park_stage01:
 	_TALK_KEYWAIT	msg_stage_lobby_07
 	_RET
 
 
 /********************************************************************/
-/*						u’§í‚µ‚Ü‚·‚©Hv							*/
+/*						ã€ŒæŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿã€							*/
 /********************************************************************/
-//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 ev_mode01_p02_park_stage01:
-	_BMPMENU_INIT_EX	20,9,0,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_01,0	/*ƒVƒ“ƒOƒ‹ƒoƒgƒ‹*/
-	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_02,1	/*ƒ_ƒuƒ‹ƒoƒgƒ‹*/
+	_BMPMENU_INIT_EX	20,9,0,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_01,0	/*ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_02,1	/*ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«*/
 	_TALKMSG		msg_stage_lobby_02
 	_RET
 
-//ƒ}ƒ‹ƒ`
+//ãƒžãƒ«ãƒ
 ev_mode03_p02_park_stage01:
-	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_03,4	/*‚¿‚å‚¤‚¹‚ñ‚·‚é*/
+	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_03,4	/*ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹*/
 	_TALKMSG		msg_stage_lobby_08
 	_RET
 
 
 /********************************************************************/
-/*							à–¾									*/
+/*							èª¬æ˜Ž									*/
 /********************************************************************/
-//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 ev_mode01_p03_park_stage01:
 	_TALKMSG		msg_stage_lobby_03
 	_RET
 
-//ƒ}ƒ‹ƒ`
+//ãƒžãƒ«ãƒ
 ev_mode03_p03_park_stage01:
 	_TALKMSG		msg_stage_lobby_09
 	_RET
@@ -942,39 +942,39 @@ ev_mode03_p03_park_stage01:
 
 //====================================================================
 //
-//				‘±‚«‚©‚çÄŠJ(SCENE_CHANGE_LABEL‚Å‹N“®)
+//				ç¶šãã‹ã‚‰å†é–‹(SCENE_CHANGE_LABELã§èµ·å‹•)
 //
 //====================================================================
 ev_stage_lobby_continue:
 
-	/*ƒq[ƒvƒ`ƒFƒbƒN*/
+	/*ãƒ’ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯*/
 	_HEAP_CHECK		0
 
 	_LDVAL			LOCALWORK3,1
 
-	/*“r’†‚Å_END‚És‚­‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅƒNƒŠƒA‚·‚é*/
+	/*é€”ä¸­ã§_ENDã«è¡Œãã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã‚¯ãƒªã‚¢ã™ã‚‹*/
 	_LDVAL			WK_SCENE_STAGE_LOBBY,0
 
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©ƒ`ƒFƒbƒN
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ãƒã‚§ãƒƒã‚¯
 	//_STAGE_SCRWORK	STAGE_SCRWORK_IS_SAVE_DATA_ENABLE,0,0,SCWK_ANSWER
 	//_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_continue_ng
 
-	/*—LŒø‚¾‚Á‚½*/
+	/*æœ‰åŠ¹ã ã£ãŸ*/
 
-	/*u‚¨‚Ü‚¿‚µ‚Ä‚¨‚è‚Ü‚µ‚½Iv*/
+	/*ã€ŒãŠã¾ã¡ã—ã¦ãŠã‚Šã¾ã—ãŸï¼ã€*/
 	_TALK_KEYWAIT	msg_stage_lobby_27
 
-	/*ƒZ[ƒu‘O‚ÉÄ“xA•s³ó‘Ô‚ðƒZƒbƒg‚µ‚Ä‚¨‚­*/
+	/*ã‚»ãƒ¼ãƒ–å‰ã«å†åº¦ã€ä¸æ­£çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã*/
 	_CALL			ev_stage_ng_work_set
 
-	/*ƒI[ƒgƒZ[ƒu*/
+	/*ã‚ªãƒ¼ãƒˆã‚»ãƒ¼ãƒ–*/
 	_CALL			ev_stage_common_auto_save
 
-	//‚»‚ê‚Å‚Íƒoƒgƒ‹ƒ‹[ƒ€‚Ö
+	//ãã‚Œã§ã¯ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸
 	_JUMP			park_stage01_battle_saikai
 	_END
 
-//‹­§ƒŒƒ|[ƒg@ƒRƒ‚ƒ“
+//å¼·åˆ¶ãƒ¬ãƒãƒ¼ãƒˆã€€ã‚³ãƒ¢ãƒ³
 ev_stage_common_auto_save:
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
 	_ADD_WAITICON
@@ -987,16 +987,16 @@ ev_stage_common_auto_save:
 
 
 /********************************************************************/
-//			ƒŒƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«‚ÌI—¹ƒRƒ‚ƒ“
+//			ãƒ¬ãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã¨ãã®çµ‚äº†ã‚³ãƒ¢ãƒ³
 /********************************************************************/
 ev_stage_lobby_continue_ng:
-	/*u‚¨‹q—lIv*/
+	/*ã€ŒãŠå®¢æ§˜ï¼ã€*/
 	_TALK_KEYWAIT	msg_stage_lobby_28
 
-	/*•s³I—¹Žž‚Ìƒpƒ‰ƒ[ƒ^ˆ—*/
+	/*ä¸æ­£çµ‚äº†æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å‡¦ç†*/
 	//_STAGE_SCRWORK	STAGE_SCRWORK_SET_NG_SCORE,0,0,SCWK_ANSWER
 
-	/*10˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg*/
+	/*10é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ*/
 	_STAGE_SET_CONTINUE_NG	WK_SCENE_STAGE_TYPE,SCWK_ANSWER
 
 	_JUMP			ev_lobby_choice_04
@@ -1004,30 +1004,30 @@ ev_stage_lobby_continue_ng:
 
 
 /********************************************************************/
-//						7˜AŸ‚µ‚Ä–ß‚Á‚Ä‚«‚½
+//						7é€£å‹ã—ã¦æˆ»ã£ã¦ããŸ
 /********************************************************************/
 ev_stage_lobby_7win:
 
-	/*ƒXƒRƒA‰ÁŽZ(ƒVƒ“ƒOƒ‹ƒvƒŒƒC)*/
+	/*ã‚¹ã‚³ã‚¢åŠ ç®—(ã‚·ãƒ³ã‚°ãƒ«ãƒ—ãƒ¬ã‚¤)*/
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_stage_single_score_add
 	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_stage_single_score_add
 
-	/*ƒŠƒ{ƒ“‚Æ‚©‚ð‚ ‚°‚éˆ—*/
+	/*ãƒªãƒœãƒ³ã¨ã‹ã‚’ã‚ã’ã‚‹å‡¦ç†*/
 
-	/*‹L”OƒŠƒ{ƒ“‚ð‚ ‚°‚é*/
+	/*è¨˜å¿µãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹*/
 	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_STAGE,EQ,MEMORY_PRINT_PUT_1ST,stage_m_print_put_1st
 	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_STAGE,EQ,MEMORY_PRINT_PUT_2ND,stage_m_print_put_2nd
 
-	/*‰¼‚Å‹¤’ÊI—¹‚Ö*/
+	/*ä»®ã§å…±é€šçµ‚äº†ã¸*/
 	_JUMP			ev_lobby_choice_04
 	_END
 
-/*ƒXƒRƒA‰ÁŽZ*/
+/*ã‚¹ã‚³ã‚¢åŠ ç®—*/
 ev_stage_single_score_add:
 	_SCORE_ADD		SCORE_ID_STAGE_ROUND
 	_RET
 
-/*‹L”OƒŠƒ{ƒ“‚ð‚ ‚°‚é*/
+/*è¨˜å¿µãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹*/
 stage_m_print_put_1st:
 	_TALK_KEYWAIT	msg_stage_lobby_33
 
@@ -1048,29 +1048,29 @@ stage_m_print_put_2nd:
 	_ME_WAIT
 
 	_LDVAL			SYS_WORK_MEMORY_PRINT_STAGE,MEMORY_PRINT_PUT_OK_2ND
-	_CHG_COMMON_SCR	SCRID_MEMORY_PRINT_CHECK	/*‘S‚ÄŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄƒXƒRƒA‰ÁŽZ*/
+	_CHG_COMMON_SCR	SCRID_MEMORY_PRINT_CHECK	/*å…¨ã¦å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚¹ã‚³ã‚¢åŠ ç®—*/
 	_RET
 
 
 /********************************************************************/
-//						ƒŠƒ^ƒCƒ„‚µ‚Ä–ß‚Á‚Ä‚«‚½
+//						ãƒªã‚¿ã‚¤ãƒ¤ã—ã¦æˆ»ã£ã¦ããŸ
 /********************************************************************/
 ev_stage_lobby_give:
-	/*ƒŠƒ{ƒ“‚Æ‚©‚ð‚ ‚°‚éˆ—*/
+	/*ãƒªãƒœãƒ³ã¨ã‹ã‚’ã‚ã’ã‚‹å‡¦ç†*/
 
-	/*‰¼‚Å‹¤’ÊI—¹‚Ö*/
+	/*ä»®ã§å…±é€šçµ‚äº†ã¸*/
 	_JUMP			ev_lobby_choice_04
 	_END
 
 
 /********************************************************************/
 //
-//							ƒAƒjƒ
+//							ã‚¢ãƒ‹ãƒ¡
 //
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹•”‰®‚Ö
+//ä¸»äººå…¬	ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stage_lobby_roomin_left
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -1079,7 +1079,7 @@ _ANIME_LABEL anm_stage_lobby_roomin_left
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ}ƒ‹ƒ`•”‰®‚Ö
+//ä¸»äººå…¬	ãƒžãƒ«ãƒéƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stage_lobby_roomin_right
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -1089,63 +1089,63 @@ _ANIME_LABEL anm_stage_lobby_roomin_right
 
 
 /********************************************************************/
-/*								ŽR’j								*/
+/*								å±±ç”·								*/
 /********************************************************************/
 ev_d32r0401_mount:
 	_EASY_OBJ_MSG	msg_d32r0401_mount_01
 	_END
 
 /********************************************************************/
-/*							Œú’…­—								*/
+/*							åŽšç€å°‘å¥³								*/
 /********************************************************************/
 ev_d32r0401_girl4:
 	_EASY_OBJ_MSG	msg_d32r0401_girl4_01
 	_END
 
 /********************************************************************/
-/*							—‚ÌŽq									*/
+/*							å¥³ã®å­									*/
 /********************************************************************/
 ev_d32r0401_babygirl1:
 	_EASY_OBJ_MSG	msg_d32r0401_babygirl1_01
 	_END
 
 /********************************************************************/
-/*						ƒ|ƒPƒ‚ƒ“	ƒpƒ`ƒŠƒX						*/
+/*						ãƒã‚±ãƒ¢ãƒ³	ãƒ‘ãƒãƒªã‚¹						*/
 /********************************************************************/
 ev_d32r0401_poke:
 	_EASY_VOICE_MSG	msg_d32r0401_poke_01,MONSNO_PATIRISSU,0
 	_END
 
 /********************************************************************/
-/*							˜a•—˜Vl								*/
+/*							å’Œé¢¨è€äºº								*/
 /********************************************************************/
 ev_d32r0401_oldman1:
 	_EASY_OBJ_MSG	msg_d32r0401_oldman1_01
 	_END
 
 /********************************************************************/
-/*							ƒAƒCƒhƒ‹								*/
+/*							ã‚¢ã‚¤ãƒ‰ãƒ«								*/
 /********************************************************************/
 ev_d32r0401_idol:
 	_EASY_OBJ_MSG	msg_d32r0401_idol_01
 	_END
 
 /********************************************************************/
-/*							‚¨‚Î‚³‚ñ								*/
+/*							ãŠã°ã•ã‚“								*/
 /********************************************************************/
 ev_d32r0401_middlewoman1:
 	_EASY_OBJ_MSG	msg_d32r0401_middlewoman1_01
 	_END
 
 /********************************************************************/
-/*							ƒƒCƒh									*/
+/*							ãƒ¡ã‚¤ãƒ‰									*/
 /********************************************************************/
 ev_d32r0401_maid:
 	_EASY_OBJ_MSG	msg_d32r0401_maid_01
 	_END
 
 /********************************************************************/
-/*							­”N									*/
+/*							å°‘å¹´									*/
 /********************************************************************/
 ev_d32r0401_boy:
 	_EASY_OBJ_MSG	msg_d32r0401_boy_01
@@ -1153,29 +1153,29 @@ ev_d32r0401_boy:
 
 
 /********************************************************************/
-/*							ƒ{[ƒiƒX								*/
+/*							ãƒœãƒ¼ãƒŠã‚¹								*/
 /********************************************************************/
 ev_d32r0401_bonus:
 	_TALK_OBJ_START
 
-	/*‰‰ñ‰ï˜b*/
+	/*åˆå›žä¼šè©±*/
 	_IF_FLAGOFF_JUMP	FE_D32R0401_BONUS_TALK,ev_d32r0401_bonus_first
 
 	_STAGE_TOTAL_NUMBER_NAME	1,2,3,4,SYS_WORK_STAGE_TOTAL_LV,SCWK_ANSWER
 
-	/*‹L˜^‚ª‚È‚¢Žž*/
+	/*è¨˜éŒ²ãŒãªã„æ™‚*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d32r0401_bonus_0
 
-	/*ƒŒƒR[ƒhXV‚µ‚Ä‚È‚¢Žž*/
+	/*ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°ã—ã¦ãªã„æ™‚*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_d32r0401_bonus_2
 
-	/*‘S‚ÄƒQƒbƒg‚µ‚½Žž*/
+	/*å…¨ã¦ã‚²ãƒƒãƒˆã—ãŸæ™‚*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_d32r0401_bonus_3
 
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_d32r0401_bonus_02
 
-	/*‚²‚Ù‚¤‚Ñ‚ÉBP‚ð‚³‚µ‚ ‚°‚Ü‚·*/
+	/*ã”ã»ã†ã³ã«BPã‚’ã•ã—ã‚ã’ã¾ã™*/
 	_TALK_KEYWAIT	msg_d32r0401_bonus_03
 
 	_ME_PLAY		ME_BP_GET
@@ -1185,13 +1185,13 @@ ev_d32r0401_bonus:
 	_JUMP			ev_d32r0401_bonus_end
 	_END
 
-/*‹L˜^‚ª‚È‚¢Žž*/
+/*è¨˜éŒ²ãŒãªã„æ™‚*/
 ev_d32r0401_bonus_0:
 	_TALK_KEYWAIT	msg_d32r0401_bonus_01
 	_JUMP			ev_d32r0401_bonus_end
 	_END
 
-/*ƒŒƒR[ƒhXV‚µ‚Ä‚È‚¢Žž*/
+/*ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°ã—ã¦ãªã„æ™‚*/
 ev_d32r0401_bonus_2:
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_d32r0401_bonus_06
@@ -1199,13 +1199,13 @@ ev_d32r0401_bonus_2:
 	_JUMP			ev_d32r0401_bonus_end
 	_END
 
-/*‘S‚ÄƒQƒbƒg‚µ‚½Žž*/
+/*å…¨ã¦ã‚²ãƒƒãƒˆã—ãŸæ™‚*/
 ev_d32r0401_bonus_3:
 	_TALK_KEYWAIT	msg_d32r0401_bonus_07
 	_JUMP			ev_d32r0401_bonus_end
 	_END
 
-/*‰‰ñ‰ï˜b*/
+/*åˆå›žä¼šè©±*/
 ev_d32r0401_bonus_first:
 	_FLAG_SET		FE_D32R0401_BONUS_TALK
 	_TALK_KEYWAIT	msg_d32r0401_bonus_01
@@ -1220,7 +1220,7 @@ ev_d32r0401_bonus_end:
 
 
 /********************************************************************/
-/*							ƒtƒ@ƒ“									*/
+/*							ãƒ•ã‚¡ãƒ³									*/
 /********************************************************************/
 ev_d32r0401_fanboy:
 	_TALK_OBJ_START
@@ -1234,7 +1234,7 @@ ev_d32r0401_fanboy:
 ev_d32r0401_fanboy_sub:
 	_PLAYER_NAME	0
 
-	/*ƒŒƒR[ƒh‚ª‚ ‚é”‚ðŽæ“¾*/
+	/*ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹æ•°ã‚’å–å¾—*/
 	_STAGE_RECORD_POKE_GET	SCWK_TEMP1
 
 	_IFVAL_JUMP		SCWK_TEMP1,GE,475,ev_d32r0401_fanboy_10
@@ -1247,66 +1247,66 @@ ev_d32r0401_fanboy_sub:
 	_IFVAL_JUMP		SCWK_TEMP1,GE,11,ev_d32r0401_fanboy_3
 	_IFVAL_JUMP		SCWK_TEMP1,GE,1,ev_d32r0401_fanboy_2
 
-	/*0•C*/
+	/*0åŒ¹*/
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_01
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*475•C`*/
+/*475åŒ¹ã€œ*/
 ev_d32r0401_fanboy_10:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_10
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*351•C`*/
+/*351åŒ¹ã€œ*/
 ev_d32r0401_fanboy_9:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_09
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*251•C`*/
+/*251åŒ¹ã€œ*/
 ev_d32r0401_fanboy_8:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_08
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*151•C`*/
+/*151åŒ¹ã€œ*/
 ev_d32r0401_fanboy_7:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_07
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*101•C`*/
+/*101åŒ¹ã€œ*/
 ev_d32r0401_fanboy_6:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_06
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*51•C`*/
+/*51åŒ¹ã€œ*/
 ev_d32r0401_fanboy_5:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_05
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*31•C`*/
+/*31åŒ¹ã€œ*/
 ev_d32r0401_fanboy_4:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_04
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*11•C`*/
+/*11åŒ¹ã€œ*/
 ev_d32r0401_fanboy_3:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_03
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*1•C`*/
+/*1åŒ¹ã€œ*/
 ev_d32r0401_fanboy_2:
 	_TALK_KEYWAIT	msg_d32r0401_fanboy_02
 	_JUMP			ev_d32r0401_fanboy_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0401_fanboy_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -1315,7 +1315,7 @@ ev_d32r0401_fanboy_end:
 
 
 /********************************************************************/
-/*							ƒtƒ@ƒ“(—)								*/
+/*							ãƒ•ã‚¡ãƒ³(å¥³)								*/
 /********************************************************************/
 ev_d32r0401_fangirl:
 	_TALK_OBJ_START
@@ -1329,7 +1329,7 @@ ev_d32r0401_fangirl:
 ev_d32r0401_fangirl_sub:
 	_PLAYER_NAME	0
 
-	/*ƒŒƒR[ƒh‚ª‚ ‚é”‚ðŽæ“¾*/
+	/*ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹æ•°ã‚’å–å¾—*/
 	_STAGE_RECORD_POKE_GET	SCWK_TEMP1
 
 	_IFVAL_JUMP		SCWK_TEMP1,GE,475,ev_d32r0401_fangirl_10
@@ -1342,66 +1342,66 @@ ev_d32r0401_fangirl_sub:
 	_IFVAL_JUMP		SCWK_TEMP1,GE,11,ev_d32r0401_fangirl_3
 	_IFVAL_JUMP		SCWK_TEMP1,GE,1,ev_d32r0401_fangirl_2
 
-	/*0•C*/
+	/*0åŒ¹*/
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_01
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*475•C`*/
+/*475åŒ¹ã€œ*/
 ev_d32r0401_fangirl_10:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_10
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*351•C`*/
+/*351åŒ¹ã€œ*/
 ev_d32r0401_fangirl_9:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_09
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*251•C`*/
+/*251åŒ¹ã€œ*/
 ev_d32r0401_fangirl_8:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_08
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*151•C`*/
+/*151åŒ¹ã€œ*/
 ev_d32r0401_fangirl_7:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_07
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*101•C`*/
+/*101åŒ¹ã€œ*/
 ev_d32r0401_fangirl_6:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_06
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*51•C`*/
+/*51åŒ¹ã€œ*/
 ev_d32r0401_fangirl_5:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_05
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*31•C`*/
+/*31åŒ¹ã€œ*/
 ev_d32r0401_fangirl_4:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_04
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*11•C`*/
+/*11åŒ¹ã€œ*/
 ev_d32r0401_fangirl_3:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_03
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*1•C`*/
+/*1åŒ¹ã€œ*/
 ev_d32r0401_fangirl_2:
 	_TALK_KEYWAIT	msg_d32r0401_fangirl_02
 	_JUMP			ev_d32r0401_fangirl_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0401_fangirl_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -1410,14 +1410,14 @@ ev_d32r0401_fangirl_end:
 
 
 /********************************************************************/
-/*							—L–¼l									*/
+/*							æœ‰åäºº									*/
 /********************************************************************/
 ev_d32r0401_ouen:
 	_TALK_OBJ_START
 
 	_PLAYER_NAME	0
 
-	/*”»•Ê—p‚Éƒ[ƒN‚ÉƒLƒƒƒ‰ƒZƒbƒg*/
+	/*åˆ¤åˆ¥ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã«ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ*/
 	_LDWK			LOCALWORK1,OBJCHRWORK1
 
 	_IFVAL_JUMP		LOCALWORK1,EQ,HERO,ev_d32_r0401_hero

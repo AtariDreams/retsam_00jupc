@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_app_no.h
- * @bfief	ƒ|ƒPƒbƒ`ƒAƒvƒŠƒiƒ“ƒo[’è‹`
+ * @bfief	ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼å®šç¾©
  * @author	taya GAME FREAK inc.
  * @date	2006.02.11
  */
@@ -12,34 +12,34 @@
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒbƒ`ƒAƒvƒŠƒiƒ“ƒo[’è‹`
+ * @brief	ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼å®šç¾©
  */
 //----------------------------------------------------------
-#define	POKETCH_APPID_DWATCH			(0)		// ƒfƒWƒ^ƒ‹ŽžŒv
-#define	POKETCH_APPID_CALC				(1)		// “d‘ì
-#define	POKETCH_APPID_MEMO				(2)		// ƒƒ‚’ 
-#define	POKETCH_APPID_PEDOMETER			(3)		// –œ•àŒv
-#define	POKETCH_APPID_POKELIST			(4)		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
-#define	POKETCH_APPID_NATSUKI_CHECK		(5)		// ‚È‚Â‚«ƒ`ƒFƒbƒJ[
-#define	POKETCH_APPID_DOWSING			(6)		// ƒ_ƒEƒWƒ“ƒOƒ}ƒVƒ“
-#define	POKETCH_APPID_SEED_SEARCHER		(7)		// ‚«‚Ì‚ÝƒT[ƒ`ƒƒ[
-#define	POKETCH_APPID_SODATEYA_CAMERA	(8)		// ‚»‚¾‚Ä‚âƒJƒƒ‰
-#define	POKETCH_APPID_POKEMON_HISTORY	(9)		// ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[
-#define	POKETCH_APPID_COUNTER			(10)	// ƒJƒEƒ“ƒ^[
-#define	POKETCH_APPID_AWATCH			(11)	// ƒAƒiƒƒOŽžŒv
-#define	POKETCH_APPID_MAP_MARKING		(12)	// ƒ}ƒbƒvƒ}[ƒLƒ“ƒO
-#define	POKETCH_APPID_COMM_SEARCHER		(13)	// ‚Â‚¤‚µ‚ñƒT[ƒ`ƒƒ[
-#define	POKETCH_APPID_COINTOSS			(14)	// ƒRƒCƒ“ƒgƒX
-#define	POKETCH_APPID_WAZA_EFF_CHECK	(15)	// ‚í‚´Œø‰Êƒ`ƒFƒbƒJ[
-#define	POKETCH_APPID_CALENDER			(16)	// ƒJƒŒƒ“ƒ_[
-#define	POKETCH_APPID_DOTART			(17)	// ƒhƒbƒgƒA[ƒg
-#define	POKETCH_APPID_ROULETTE			(18)	// ƒ‹[ƒŒƒbƒg
-#define	POKETCH_APPID_POKEMON_COUNTER	(19)	// ƒ|ƒPƒ‚ƒ“ƒJƒEƒ“ƒ^[
-#define	POKETCH_APPID_KITCHEN_TIMER		(20)	// ƒLƒbƒ`ƒ“ƒ^ƒCƒ}[
-#define	POKETCH_APPID_COLOR_CHANGER		(21)	// ƒJƒ‰[ƒ`ƒFƒ“ƒWƒƒ[
-#define	POKETCH_APPID_LOVETESTER		(22)	// ƒ‰ƒuƒeƒXƒ^[
-#define	POKETCH_APPID_STOPWATCH			(23)	// ƒXƒgƒbƒvƒEƒHƒbƒ`
-#define	POKETCH_APPID_ALARM_WATCH		(24)	// ƒAƒ‰[ƒ€ŽžŒv
+#define	POKETCH_APPID_DWATCH			(0)		// ãƒ‡ã‚¸ã‚¿ãƒ«æ™‚è¨ˆ
+#define	POKETCH_APPID_CALC				(1)		// é›»å“
+#define	POKETCH_APPID_MEMO				(2)		// ãƒ¡ãƒ¢å¸³
+#define	POKETCH_APPID_PEDOMETER			(3)		// ä¸‡æ­©è¨ˆ
+#define	POKETCH_APPID_POKELIST			(4)		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
+#define	POKETCH_APPID_NATSUKI_CHECK		(5)		// ãªã¤ããƒã‚§ãƒƒã‚«ãƒ¼
+#define	POKETCH_APPID_DOWSING			(6)		// ãƒ€ã‚¦ã‚¸ãƒ³ã‚°ãƒžã‚·ãƒ³
+#define	POKETCH_APPID_SEED_SEARCHER		(7)		// ãã®ã¿ã‚µãƒ¼ãƒãƒ£ãƒ¼
+#define	POKETCH_APPID_SODATEYA_CAMERA	(8)		// ãã ã¦ã‚„ã‚«ãƒ¡ãƒ©
+#define	POKETCH_APPID_POKEMON_HISTORY	(9)		// ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼
+#define	POKETCH_APPID_COUNTER			(10)	// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+#define	POKETCH_APPID_AWATCH			(11)	// ã‚¢ãƒŠãƒ­ã‚°æ™‚è¨ˆ
+#define	POKETCH_APPID_MAP_MARKING		(12)	// ãƒžãƒƒãƒ—ãƒžãƒ¼ã‚­ãƒ³ã‚°
+#define	POKETCH_APPID_COMM_SEARCHER		(13)	// ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒãƒ£ãƒ¼
+#define	POKETCH_APPID_COINTOSS			(14)	// ã‚³ã‚¤ãƒ³ãƒˆã‚¹
+#define	POKETCH_APPID_WAZA_EFF_CHECK	(15)	// ã‚ã–åŠ¹æžœãƒã‚§ãƒƒã‚«ãƒ¼
+#define	POKETCH_APPID_CALENDER			(16)	// ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼
+#define	POKETCH_APPID_DOTART			(17)	// ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆ
+#define	POKETCH_APPID_ROULETTE			(18)	// ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+#define	POKETCH_APPID_POKEMON_COUNTER	(19)	// ãƒã‚±ãƒ¢ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+#define	POKETCH_APPID_KITCHEN_TIMER		(20)	// ã‚­ãƒƒãƒãƒ³ã‚¿ã‚¤ãƒžãƒ¼
+#define	POKETCH_APPID_COLOR_CHANGER		(21)	// ã‚«ãƒ©ãƒ¼ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼
+#define	POKETCH_APPID_LOVETESTER		(22)	// ãƒ©ãƒ–ãƒ†ã‚¹ã‚¿ãƒ¼
+#define	POKETCH_APPID_STOPWATCH			(23)	// ã‚¹ãƒˆãƒƒãƒ—ã‚¦ã‚©ãƒƒãƒ
+#define	POKETCH_APPID_ALARM_WATCH		(24)	// ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆ
 
 #define	POKETCH_APPID_MAX	(25)
 

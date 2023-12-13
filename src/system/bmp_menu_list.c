@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	bmp_menu_list.h
- * @brief	bmp_menu �� bmp_list �Ŏg�p���镶����w��\���̂̏���
+ * @brief	bmp_menu と bmp_list で使用する文字列指定構造体の処理
  * @author	taya
  * @date	2005.12.02
  *
- * bmp_menu �� bmp_list �őS�������^�E�����p�r�̍\���̂�ʌɒ�`���Ă���̂ł܂Ƃ߂Ă����B
+ * bmp_menu と bmp_list で全く同じ型・同じ用途の構造体を別個に定義しているのでまとめておく。
  *
  */
 //============================================================================================
@@ -21,23 +21,23 @@
 static BMP_MENULIST_DATA*  SeekEmptyListPos( BMP_MENULIST_DATA* list, u32* heapID );
 
 
-/// ���X�g�̏I�[�R�[�h
+/// リストの終端コード
 #define LIST_ENDCODE		((const void*)0xffffffff)
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@���쐬����B
- * �쐬��ABMP_MENULIST_AddArchiveString �� BMP_MENULIST_AddString ���g���ĕ�������Z�b�g����
+ * リストバッファを作成する。
+ * 作成後、BMP_MENULIST_AddArchiveString か BMP_MENULIST_AddString を使って文字列をセットする
  *
- * @param   maxElems		���X�g�ɓo�^���镶����̍ő匏��
- * @param   heapID			���X�g�쐬��q�[�vID
+ * @param   maxElems		リストに登録する文字列の最大件数
+ * @param   heapID			リスト作成先ヒープID
  *
- * @retval  BMP_MENULIST_DATA*		�쐬���ꂽ���X�g�o�b�t�@
+ * @retval  BMP_MENULIST_DATA*		作成されたリストバッファ
  */
 //------------------------------------------------------------------
 BMP_MENULIST_DATA*  BMP_MENULIST_Create( u32 maxElems, u32 heapID )
 {
-	// �w�萔���P���߂ɍ���Ă����A�Ō�ɏI�[�R�[�h��u���ĊǗ�����
+	// 指定数より１つ多めに作っておき、最後に終端コードを置いて管理する
 	BMP_MENULIST_DATA* list = sys_AllocMemory( heapID, sizeof(BMP_MENULIST_DATA)*(maxElems+1) );
 	if( list )
 	{
@@ -58,10 +58,10 @@ BMP_MENULIST_DATA*  BMP_MENULIST_Create( u32 maxElems, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@��j������
- * ��BMP_MENULIST_Create�ō쐬�������̈ȊO��n���Ă̓_���B
+ * リストバッファを破棄する
+ * ※BMP_MENULIST_Createで作成したもの以外を渡してはダメ。
  *
- * @param   list		���X�g�o�b�t�@
+ * @param   list		リストバッファ
  *
  */
 //------------------------------------------------------------------
@@ -73,12 +73,12 @@ void BMP_MENULIST_Delete( BMP_MENULIST_DATA* list_top )
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɕ����񁕃p�����[�^���Z�b�g����i�}�l�[�W������ăA�[�J�C�u�f�[�^����ǂݍ��݁j
+ * リストバッファに文字列＆パラメータをセットする（マネージャを介してアーカイブデータから読み込み）
  *
- * @param   list		[in] ���X�g�o�b�t�@
- * @param   man			[in] ���b�Z�[�W�f�[�^�}�l�[�W��
- * @param   strID		������ID
- * @param   param		������p�����[�^
+ * @param   list		[in] リストバッファ
+ * @param   man			[in] メッセージデータマネージャ
+ * @param   strID		文字列ID
+ * @param   param		文字列パラメータ
  *
  */
 //------------------------------------------------------------------
@@ -97,11 +97,11 @@ void BMP_MENULIST_AddArchiveString( BMP_MENULIST_DATA* list, const MSGDATA_MANAG
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɕ����񁕃p�����[�^���Z�b�g����i������𒼐ڎw��j
+ * リストバッファに文字列＆パラメータをセットする（文字列を直接指定）
  *
- * @param   list		[in] ���X�g�o�b�t�@
- * @param   str			[in] ������
- * @param   param		������p�����[�^
+ * @param   list		[in] リストバッファ
+ * @param   str			[in] 文字列
+ * @param   param		文字列パラメータ
  *
  */
 //------------------------------------------------------------------
@@ -121,9 +121,9 @@ void BMP_MENULIST_AddString( BMP_MENULIST_DATA* list, const STRBUF* str, u32 par
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɑ��̃��X�g�̃f�[�^��Link����
- * @param   list		[inout] ���X�g�o�b�t�@
- * @param   insList		[in] ���X�g�|�C���^
+ * リストバッファに他のリストのデータをLinkする
+ * @param   list		[inout] リストバッファ
+ * @param   insList		[in] リストポインタ
  *
  */
 //------------------------------------------------------------------
@@ -142,10 +142,10 @@ void BMP_MENULIST_AddLinkList( BMP_MENULIST_DATA* list, const BMP_MENULIST_DATA*
 
 //------------------------------------------------------------------
 /**
- * ���X�g�̐擪����󂫂�����ʒu���V�[�N����
+ * リストの先頭から空きがある位置をシークする
  *
- * @param   list		[in]  �󂫈ʒu�|�C���^�i�������NULL�j
- * @param   heapID		[out] ���X�g�쐬���ɕۑ������q�[�vID���󂯎��
+ * @param   list		[in]  空き位置ポインタ（無ければNULL）
+ * @param   heapID		[out] リスト作成時に保存したヒープIDを受け取る
  *
  * @retval  BMP_MENULIST_DATA*		
  */
@@ -178,10 +178,10 @@ static BMP_MENULIST_DATA*  SeekEmptyListPos( BMP_MENULIST_DATA* list, u32* heapI
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@��STRBUF��j������
- * ��BMP_MENULIST_Create�ō쐬�������̈ȊO��n���Ă̓_���B
+ * リストバッファのSTRBUFを破棄する
+ * ※BMP_MENULIST_Createで作成したもの以外を渡してはダメ。
  *
- * @param   list		���X�g�o�b�t�@
+ * @param   list		リストバッファ
  *
  */
 //------------------------------------------------------------------

@@ -2,13 +2,13 @@
 /**
  *
  *	@file		imc_playsys.c
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *	@author		tomoya takahashi 
  *	@data		2005.12.27
  *
  *
- * ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN‚ğì¬‚µ‚Ä•\¦‚·‚éˆÈŠO‚Ì•û–@‚Å
- * •\¦‚·‚éƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[
+ * ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ã‚’ä½œæˆã—ã¦è¡¨ç¤ºã™ã‚‹ä»¥å¤–ã®æ–¹æ³•ã§
+ * è¡¨ç¤ºã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -32,24 +32,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define IMC_PLAYSYS_OBJLIST_NUM	( IMC_RBOX_OBJ_CONTEST_MAX )
@@ -59,63 +59,63 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 typedef struct _IMC_PLAYERSYS{
-	// •`‰æŠÖŒW
+	// æç”»é–¢ä¿‚
 	IMC_DRAW_DATA drawSys;
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒf[ƒ^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 	IMC_OBJLIST_TBL	objListTbl;
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
 	IMC_ACCESSORIE_OBJ_TBL* acce;
 
-	// ‰E‰æ–Êƒf[ƒ^
+	// å³ç”»é¢ãƒ‡ãƒ¼ã‚¿
 	IMC_RIGHT_BOX rbox;
-	IMC_RBOX_PLAYER rbox_player;		// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+	IMC_RBOX_PLAYER rbox_player;		// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	POKEMON_PARAM* poke_para;
 
-	// ƒq[ƒvID
+	// ãƒ’ãƒ¼ãƒ—ID
 	int		heap_id;
 
-	// Œ»İ’†SÀ•W
+	// ç¾åœ¨ä¸­å¿ƒåº§æ¨™
 	int x;
 	int y;
-	int center_ofs_x;	// ’†S‚Ü‚Å‚ÌÀ•W
-	int center_ofs_y;	// ’†S‚Ü‚Å‚ÌÀ•W
+	int center_ofs_x;	// ä¸­å¿ƒã¾ã§ã®åº§æ¨™
+	int center_ofs_y;	// ä¸­å¿ƒã¾ã§ã®åº§æ¨™
 	u16 rota_num;
 	VecFx32 scale;
-	GXRgb color;		// ‘S‘Ì•`‰æƒJƒ‰[
+	GXRgb color;		// å…¨ä½“æç”»ã‚«ãƒ©ãƒ¼
 
-	BOOL BG_use;				// BGg—pƒtƒ‰ƒO
+	BOOL BG_use;				// BGä½¿ç”¨ãƒ•ãƒ©ã‚°
 
-	BOOL draw_flag;			// •`‰æON:TRUE OFF:FALSE
+	BOOL draw_flag;			// æç”»ON:TRUE OFF:FALSE
 } IMC_PLAYERSYS;
 
 
 //-------------------------------------
-//	‰Eƒ{ƒbƒNƒX@‰Šú‰»ƒf[ƒ^
+//	å³ãƒœãƒƒã‚¯ã‚¹ã€€åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const IMC_SAVEDATA_POKEMON* p_poke;
 	const IMC_SAVEDATA_ACCESSORIE* p_acce[ IMC_SAVEDATA_CONTEST_ACCE_NUM ];
 	int acce_num;
-	GF_BGL_INI* p_bg_ini;	// BGƒVƒXƒeƒ€	NOBG‚Ì‚Æ‚«‚ÍNULL‚ÅOK
+	GF_BGL_INI* p_bg_ini;	// BGã‚·ã‚¹ãƒ†ãƒ 	NOBGã®ã¨ãã¯NULLã§OK
 	int bg_id;				// BGID
-							// GF_BGL_FRAME2_M‚ÌƒRƒ“ƒgƒ[ƒ‹ƒZƒbƒg‚ğ“à•”‚Ås‚¢‚Ü‚·B
-	int x;				// ‘S‘Ì‚Ì’†S
-	int y;				// ‘S‘Ì‚Ì’†S
-	int heap_id;		// g—p‚·‚éƒq[ƒvID
+							// GF_BGL_FRAME2_Mã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆã‚’å†…éƒ¨ã§è¡Œã„ã¾ã™ã€‚
+	int x;				// å…¨ä½“ã®ä¸­å¿ƒ
+	int y;				// å…¨ä½“ã®ä¸­å¿ƒ
+	int heap_id;		// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
 } IMC_PLAYERSYS_INIT_LOCAL;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static IMC_PLAYERSYS_PTR initPlayerSys( const IMC_PLAYERSYS_INIT_LOCAL* cp_init );
@@ -142,12 +142,12 @@ static void loadAcceDataPlayer( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRES_DATA* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[¶¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”Ÿæˆ
  *
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	save_data	ƒZ[ƒuƒf[ƒ^
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	save_data	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	¶¬‚³‚ê‚½ƒf[ƒ^
+ *	@return	ç”Ÿæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -156,10 +156,10 @@ IMC_PLAYERSYS_PTR IMC_TelevisionPlayerInit( const IMC_PLAYERSYS_INIT* cp_init, c
 {
 	IMC_PLAYERSYS_INIT_LOCAL init_local;
 
-	// ˆø”ƒf[ƒ^İ’è
+	// å¼•æ•°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setInitParamData( &init_local, cp_init );
 
-	// ƒZ[ƒuƒf[ƒ^İ’è
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setTelevisionSaveData( &init_local, save_data );
 	
 	return initPlayerSys( &init_local );
@@ -169,10 +169,10 @@ IMC_PLAYERSYS_PTR IMC_TelevisionPlayerInit_NoBG( const IMC_PLAYERSYS_INIT* cp_in
 {
 	IMC_PLAYERSYS_INIT_LOCAL init_local;
 
-	// ˆø”ƒf[ƒ^İ’è
+	// å¼•æ•°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setInitParamData( &init_local, cp_init );
 
-	// ƒZ[ƒuƒf[ƒ^İ’è
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setTelevisionSaveData( &init_local, save_data );
 	
 	return initPlayerSys_NoBG( &init_local );
@@ -182,10 +182,10 @@ IMC_PLAYERSYS_PTR IMC_ContestPlayerInit( const IMC_PLAYERSYS_INIT* cp_init, cons
 {
 	IMC_PLAYERSYS_INIT_LOCAL init_local;
 	
-	// ˆø”ƒf[ƒ^İ’è
+	// å¼•æ•°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setInitParamData( &init_local, cp_init );
 
-	// ƒZ[ƒuƒf[ƒ^İ’è
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setContestSaveData( &init_local, save_data );
 	
 	return initPlayerSys( &init_local );
@@ -195,10 +195,10 @@ IMC_PLAYERSYS_PTR IMC_ContestPlayerInit_NoBG( const IMC_PLAYERSYS_INIT* cp_init,
 {
 	IMC_PLAYERSYS_INIT_LOCAL init_local;
 	
-	// ˆø”ƒf[ƒ^İ’è
+	// å¼•æ•°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setInitParamData( &init_local, cp_init );
 
-	// ƒZ[ƒuƒf[ƒ^İ’è
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	setContestSaveData( &init_local, save_data );
 	
 	return initPlayerSys_NoBG( &init_local );
@@ -207,9 +207,9 @@ IMC_PLAYERSYS_PTR IMC_ContestPlayerInit_NoBG( const IMC_PLAYERSYS_INIT* cp_init,
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@retval	none
  *
@@ -218,11 +218,11 @@ IMC_PLAYERSYS_PTR IMC_ContestPlayerInit_NoBG( const IMC_PLAYERSYS_INIT* cp_init,
 void IMC_PlayerMain( IMC_PLAYERSYS_PTR p_sys )
 {
 	if( p_sys->BG_use == TRUE ){
-		// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+		// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 		IMC_RBOX_PLAYER_Main( &p_sys->rbox_player );
 	}
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	if( p_sys->draw_flag == TRUE ){
 		mainDrawSys( p_sys );
 	}
@@ -231,9 +231,9 @@ void IMC_PlayerMain( IMC_PLAYERSYS_PTR p_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[I—¹
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼çµ‚äº†
  *
- *	@param	p_sys		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@retval	none
  *
@@ -241,23 +241,23 @@ void IMC_PlayerMain( IMC_PLAYERSYS_PTR p_sys )
 //-----------------------------------------------------------------------------
 void IMC_PlayerEnd( IMC_PLAYERSYS_PTR p_sys )
 {
-	// ‰Eƒ{ƒbƒNƒX”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ç ´æ£„
 	if(p_sys->BG_use){
 		deleteRightBoxBG( p_sys );
 	}
 	deleteRightBox( p_sys );
 
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^”jŠü
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_ACCE_ObjTblDelete( p_sys->acce );
 	p_sys->acce = NULL;
 	
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 	IMC_OBJLIST_TblDelete( &p_sys->objListTbl );
 	
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	deleteDrawSys( p_sys );
 
-	// ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
 	sys_FreeMemoryEz( p_sys->poke_para );
 
 	sys_FreeMemoryEz( p_sys );
@@ -266,9 +266,9 @@ void IMC_PlayerEnd( IMC_PLAYERSYS_PTR p_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	VBlankŠúŠÔ’†‚ÉŒÄ‚ÔŠÖ”
+ *	@brief	VBlankæœŸé–“ä¸­ã«å‘¼ã¶é–¢æ•°
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -282,10 +282,10 @@ void IMC_PlayerVblank( IMC_PLAYERSYS_PTR p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒOİ’è
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	flag	•`‰æƒtƒ‰ƒO
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	æç”»ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -297,12 +297,12 @@ void IMC_Player_SetDrawFlag( IMC_PLAYERSYS_PTR p_sys, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒOæ“¾
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ
- *	@retval	FALSE	”ñ•`‰æ
+ *	@retval	TRUE	æç”»
+ *	@retval	FALSE	éæç”»
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_Player_GetDrawFlag( CONST_IMC_PLAYERSYS_PTR p_sys )
@@ -312,10 +312,10 @@ BOOL IMC_Player_GetDrawFlag( CONST_IMC_PLAYERSYS_PTR p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•`‰æ@ƒtƒ‰ƒOONOFF
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªæç”»ã€€ãƒ•ãƒ©ã‚°ONOFF
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -327,12 +327,12 @@ void IMC_Player_SetAcceDrawFlag( IMC_PLAYERSYS_PTR p_sys, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•`‰æ@ƒtƒ‰ƒOæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªæç”»ã€€ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ
- *	@retval	FALSE	”ñ•`‰æ
+ *	@retval	TRUE	æç”»
+ *	@retval	FALSE	éæç”»
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_Player_GetAcceDrawFlag( CONST_IMC_PLAYERSYS_PTR p_sys )
@@ -342,11 +342,11 @@ BOOL IMC_Player_GetAcceDrawFlag( CONST_IMC_PLAYERSYS_PTR p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ğİ’è
+ *	@brief	åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
- *	@param	x		xÀ•W
- *	@param	y		yÀ•W
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	x		xåº§æ¨™
+ *	@param	y		yåº§æ¨™
  *
  *	@return	none
  */
@@ -355,7 +355,7 @@ void IMC_Player_SetMatrix( IMC_PLAYERSYS_PTR p_sys, int x, int y )
 {
 	IMC_RBOX_ListMatSet( &p_sys->rbox, p_sys->x, p_sys->y, x, y );
 
-	//@BG‚ğg‚Á‚Ä‚¢‚é‚Æ‚«‚ÍBG–Ê‚àİ’è
+	//ã€€BGã‚’ä½¿ã£ã¦ã„ã‚‹ã¨ãã¯BGé¢ã‚‚è¨­å®š
 	if( p_sys->BG_use ){
 		GF_BGL_ScrollSet( p_sys->drawSys.BG_Ini, GF_BGL_FRAME2_M, GF_BGL_SCROLL_X_SET, IMC_RBOX_AREA_X - x );
 		GF_BGL_ScrollSet( p_sys->drawSys.BG_Ini, GF_BGL_FRAME2_M, GF_BGL_SCROLL_Y_SET, IMC_RBOX_AREA_Y - y );
@@ -367,11 +367,11 @@ void IMC_Player_SetMatrix( IMC_PLAYERSYS_PTR p_sys, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“],Šg‘å‚Ì’†SƒIƒtƒZƒbƒg’l‚ğİ’è
+ *	@brief	å›è»¢,æ‹¡å¤§æ™‚ã®ä¸­å¿ƒã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’è¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	x		‚˜ƒIƒtƒZƒbƒg
- *	@param	y		‚™ƒIƒtƒZƒbƒg
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	y		ï½™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return
  */
@@ -384,10 +384,10 @@ void IMC_Player_SetRotScaleCenterOfs( IMC_PLAYERSYS_PTR p_sys, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šeİ’è
+ *	@brief	å›è»¢å„è¨­å®š
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	rota		‰ñ“]Šp
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	rota		å›è»¢è§’
  *
  *	@return	none
  */
@@ -399,12 +399,12 @@ void IMC_Player_SetRota( IMC_PLAYERSYS_PTR p_sys, u16 rota )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šg‘åk¬’lİ’è
+ *	@brief	æ‹¡å¤§ç¸®å°å€¤è¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	x		‚˜Šg‘å
- *	@param	y		‚™Šg‘å
- *	@param	z		‚šŠg‘å
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜æ‹¡å¤§
+ *	@param	y		ï½™æ‹¡å¤§
+ *	@param	z		ï½šæ‹¡å¤§
  *
  *	@return	none
  */
@@ -418,11 +418,11 @@ void IMC_Player_SetScale( IMC_PLAYERSYS_PTR p_sys, fx32 x, fx32 y, fx32 z )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ğ’†S‚Æ‚µ‚½À•W‚Æ’†SƒIƒtƒZƒbƒg‚Ìİ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸­å¿ƒã¨ã—ãŸåº§æ¨™ã¨ä¸­å¿ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã®è¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	x		‚˜À•W	i‚±‚±‚Í¶ã‚Å‚Í‚È‚­ƒ|ƒPƒ‚ƒ“‚Ì’†SÀ•Wj
- *	@param	y		‚™À•W	i‚±‚±‚Í¶ã‚Å‚Í‚È‚­ƒ|ƒPƒ‚ƒ“‚Ì’†SÀ•Wj
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™	ï¼ˆã“ã“ã¯å·¦ä¸Šã§ã¯ãªããƒã‚±ãƒ¢ãƒ³ã®ä¸­å¿ƒåº§æ¨™ï¼‰
+ *	@param	y		ï½™åº§æ¨™	ï¼ˆã“ã“ã¯å·¦ä¸Šã§ã¯ãªããƒã‚±ãƒ¢ãƒ³ã®ä¸­å¿ƒåº§æ¨™ï¼‰
  *
  *	@param	none
  */
@@ -435,22 +435,22 @@ void IMC_Player_SetPokeMatrix( IMC_PLAYERSYS_PTR p_sys, int x, int y )
 	int all_left, all_top;
 	int c_x, c_y;
 
-	// ƒ|ƒPƒ‚ƒ“ƒTƒCƒY
+	// ãƒã‚±ãƒ¢ãƒ³ã‚µã‚¤ã‚º
 	IMC_POKE_SizeGet( &p_sys->rbox.boxDraw.poke, &pokesizx, &pokesizy );
 
-	//@ƒ|ƒPƒ‚ƒ“À•W
+	//ã€€ãƒã‚±ãƒ¢ãƒ³åº§æ¨™
 	IMC_RBOX_GetPokeMatrix( &p_sys->rbox, &pokex, &pokey );
 
-	// ‘S‘Ì‚ÌˆÚ“®’lŒvZ
+	// å…¨ä½“ã®ç§»å‹•å€¤è¨ˆç®—
 	dis_x = x - pokex;
 	dis_y = y - pokey;
 
-	// ‘S‘Ì‚ğˆÚ“®
+	// å…¨ä½“ã‚’ç§»å‹•
 	all_left = p_sys->x + dis_x;
 	all_top = p_sys->y + dis_y;
 	IMC_Player_SetMatrix( p_sys, all_left, all_top );
 
-	// ‰ñ“]@Šg‘å@‚Ì’†SÀ•W‚ğİ’è
+	// å›è»¢ã€€æ‹¡å¤§ã€€ã®ä¸­å¿ƒåº§æ¨™ã‚’è¨­å®š
 	c_x  = x - all_left; 
 	c_y  = y - all_top; 
 	IMC_Player_SetRotScaleCenterOfs( p_sys, c_x, c_y );
@@ -458,25 +458,25 @@ void IMC_Player_SetPokeMatrix( IMC_PLAYERSYS_PTR p_sys, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚Ì‘«ÕÀ•W‚ğİ’è‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®è¶³è·¡åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	x		‚˜À•W	i‚±‚±‚Í¶ã‚Å‚Í‚È‚­ƒ|ƒPƒ‚ƒ“‚Ì‘«Œ³À•Wj
- *	@param	y		‚™À•W	i‚±‚±‚Í¶ã‚Å‚Í‚È‚­ƒ|ƒPƒ‚ƒ“‚Ì‘«Œ³À•Wj
- *	@param	height	‚»‚Ìƒ|ƒPƒ‚ƒ“‚Ì‚‚³
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™	ï¼ˆã“ã“ã¯å·¦ä¸Šã§ã¯ãªããƒã‚±ãƒ¢ãƒ³ã®è¶³å…ƒåº§æ¨™ï¼‰
+ *	@param	y		ï½™åº§æ¨™	ï¼ˆã“ã“ã¯å·¦ä¸Šã§ã¯ãªããƒã‚±ãƒ¢ãƒ³ã®è¶³å…ƒåº§æ¨™ï¼‰
+ *	@param	height	ãã®ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void IMC_Player_SetPokeMatrix_Ground( IMC_PLAYERSYS_PTR p_sys, int x, int y, int height )
 {
-	int oy;	// YƒIƒtƒZƒbƒg’l
+	int oy;	// Yã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 	fx32 scale_y_height;
 
-	// ’†S‚©‚ç‘«Œ³‚Ü‚Å‚Ì‚‚³‚É•ÏX
+	// ä¸­å¿ƒã‹ã‚‰è¶³å…ƒã¾ã§ã®é«˜ã•ã«å¤‰æ›´
 	height = (SOFT_SPRITE_SIZE_Y/2) - height;
 	
-	// ’†S‚©‚ç‚Ì’l‚Ì¡‚ÌŠg‘å’l‚Å‚Ì’l‚ğ‹‚ß‚é
+	// ä¸­å¿ƒã‹ã‚‰ã®å€¤ã®ä»Šã®æ‹¡å¤§å€¤ã§ã®å€¤ã‚’æ±‚ã‚ã‚‹
 	scale_y_height = FX_Mul( height * FX32_ONE, p_sys->scale.y );
 	oy = scale_y_height >> FX32_SHIFT;
 
@@ -485,10 +485,10 @@ void IMC_Player_SetPokeMatrix_Ground( IMC_PLAYERSYS_PTR p_sys, int x, int y, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æFw’è
+ *	@brief	æç”»è‰²æŒ‡å®š
  *
- *	@param	p_sys	ƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
- *	@param	color	F
+ *	@param	p_sys	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	color	è‰²
  *
  *	@return	none
  */
@@ -497,17 +497,17 @@ void IMC_Player_SetColor( IMC_PLAYERSYS_PTR p_sys, GXRgb color )
 {
 	p_sys->color = color;
 
-	// ‘SƒAƒNƒZƒTƒŠAƒ|ƒPƒ‚ƒ“‚ÉF‚ğİ’è
+	// å…¨ã‚¢ã‚¯ã‚»ã‚µãƒªã€ãƒã‚±ãƒ¢ãƒ³ã«è‰²ã‚’è¨­å®š
 	IMC_RBOX_SetObjColor( &p_sys->rbox, color );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æF@æ“¾
+ *	@brief	æç”»è‰²ã€€å–å¾—
  *
- *	@param	p_sys	ƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
+ *	@param	p_sys	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	F
+ *	@return	è‰²
  */
 //-----------------------------------------------------------------------------
 GXRgb IMC_Player_GetColor( CONST_IMC_PLAYERSYS_PTR cp_sys )
@@ -517,10 +517,10 @@ GXRgb IMC_Player_GetColor( CONST_IMC_PLAYERSYS_PTR cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—Dæ‡ˆÊ‚ğİ’è	æ“ª‚ÌƒAƒNƒZƒTƒŠ‚Ì—Dæ‡ˆÊ
+ *	@brief	å„ªå…ˆé †ä½ã‚’è¨­å®š	å…ˆé ­ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã®å„ªå…ˆé †ä½
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	pri		—Dæ‡ˆÊ
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pri		å„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 void IMC_Player_SetPriority( IMC_PLAYERSYS_PTR p_sys, int pri )
@@ -538,56 +538,56 @@ void IMC_Player_AddPriority( IMC_PLAYERSYS_PTR p_sys, int pri )
 //-----------------------------------------------------------------------------
 /**
  *
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  * 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€ì¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static IMC_PLAYERSYS_PTR initPlayerSys( const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	IMC_PLAYERSYS* p_sys;		// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
-	BOOL	check;				// Áª¯¸—p
+	IMC_PLAYERSYS* p_sys;		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	BOOL	check;				// ãƒã‚§ãƒƒã‚¯ç”¨
 
 
-	// ƒVƒXƒeƒ€ƒ[ƒN¶¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 	p_sys = sys_AllocMemory( cp_init->heap_id, sizeof(IMC_PLAYERSYS) );
 	memset( p_sys, 0, sizeof(IMC_PLAYERSYS) );
 
-	// ƒq[ƒvID
+	// ãƒ’ãƒ¼ãƒ—ID
 	p_sys->heap_id	= cp_init->heap_id;
 	p_sys->poke_para = PokemonParam_AllocWork( cp_init->heap_id );
 	ImcSaveData_GetUtilPokePara( cp_init->p_poke, p_sys->poke_para );
 
-	// •`‰æƒf[ƒ^İ’è‚ğs‚¢‚Ü‚·B
+	// æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®šã‚’è¡Œã„ã¾ã™ã€‚
 	initDrawSys( p_sys, cp_init );
-	// BG–Ê‚ğg—p‚·‚é‚Ì‚ÅA•\¦
+	// BGé¢ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€è¡¨ç¤º
 	IMC_DRAW_InitSysPlayerBG( &p_sys->drawSys, cp_init->p_bg_ini, cp_init->heap_id );
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	IMC_OBJLIST_TblInit( &p_sys->objListTbl, IMC_PLAYSYS_OBJLIST_NUM, cp_init->heap_id );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^ì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_sys->acce = IMC_ACCE_ObjTblInit( IMC_PLAYSYS_ACCE_NUM, cp_init->heap_id );
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initRightBox( p_sys, cp_init );
 	initRightBoxBG( p_sys, cp_init );
 
-	// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[‚É“o˜^
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ç™»éŒ²
 	IMC_RBOX_PLAYER_Init( &p_sys->rbox_player, &p_sys->rbox, cp_init->heap_id );
 
 	p_sys->BG_use = TRUE;
 	p_sys->draw_flag = TRUE;
 
-	// À•W‚È‚Ç‚Ì‰Šúƒf[ƒ^‘ã“ü
+	// åº§æ¨™ãªã©ã®åˆæœŸãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	initWorkParam( p_sys, cp_init );
 
 	return p_sys;
@@ -595,44 +595,44 @@ static IMC_PLAYERSYS_PTR initPlayerSys( const IMC_PLAYERSYS_INIT_LOCAL* cp_init 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€ì¬		BG‚È‚µVer
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ		BGãªã—Ver
  *
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static IMC_PLAYERSYS_PTR initPlayerSys_NoBG( const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	IMC_PLAYERSYS* p_sys;		// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
-	BOOL	check;				// Áª¯¸—p
+	IMC_PLAYERSYS* p_sys;		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	BOOL	check;				// ãƒã‚§ãƒƒã‚¯ç”¨
 
-	// ƒVƒXƒeƒ€ƒ[ƒN¶¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 	p_sys = sys_AllocMemory( cp_init->heap_id, sizeof(IMC_PLAYERSYS) );
 	memset( p_sys, 0, sizeof(IMC_PLAYERSYS) );
 
-	// ƒq[ƒvID
+	// ãƒ’ãƒ¼ãƒ—ID
 	p_sys->heap_id	= cp_init->heap_id;
 	p_sys->poke_para = PokemonParam_AllocWork( cp_init->heap_id );
 	ImcSaveData_GetUtilPokePara( cp_init->p_poke, p_sys->poke_para );
 
-	// •`‰æƒf[ƒ^İ’è‚ğs‚¢‚Ü‚·B
+	// æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®šã‚’è¡Œã„ã¾ã™ã€‚
 	initDrawSys( p_sys, cp_init );
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	IMC_OBJLIST_TblInit( &p_sys->objListTbl, IMC_PLAYSYS_OBJLIST_NUM, cp_init->heap_id );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^ì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_sys->acce = IMC_ACCE_ObjTblInit( IMC_PLAYSYS_ACCE_NUM, cp_init->heap_id );
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initRightBox( p_sys, cp_init );
 
 	p_sys->BG_use = FALSE;
 	p_sys->draw_flag = TRUE;
 
 
-	// À•W‚È‚Ç‚Ì‰Šúƒf[ƒ^‘ã“ü
+	// åº§æ¨™ãªã©ã®åˆæœŸãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	initWorkParam( p_sys, cp_init );
 
 	return p_sys;
@@ -642,10 +642,10 @@ static IMC_PLAYERSYS_PTR initPlayerSys_NoBG( const IMC_PLAYERSYS_INIT_LOCAL* cp_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€ƒf[ƒ^ì¬
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_sys			ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
- *	@param	cp_init			‰Šú‰»ƒf[ƒ^
+ *	@param	p_sys			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_init			åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -654,20 +654,20 @@ static IMC_PLAYERSYS_PTR initPlayerSys_NoBG( const IMC_PLAYERSYS_INIT_LOCAL* cp_
 //-----------------------------------------------------------------------------
 static void initDrawSys( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	IMC_DRAW_LOADRES_DATA loadData;	// ‰æ‘œƒf[ƒ^“Ç‚İ‚İƒf[ƒ^
+	IMC_DRAW_LOADRES_DATA loadData;	// ç”»åƒãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
 	
-	// ‰æ–Êƒf[ƒ^İ’è
+	// ç”»é¢ãƒ‡ãƒ¼ã‚¿è¨­å®š
 //	IMC_DRAW_SetUp();
 
-	// •`‰æƒVƒXƒeƒ€ì¬
-	// ƒvƒŒƒCƒ„[—p‰Šú‰»ŠÖ”‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢«
-	// Ú×@•K—v‚È•`‰æƒVƒXƒeƒ€‚Ìì¬
-	//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
-	//	ƒAƒNƒZƒTƒŠ—pƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€
-	//	ƒAƒNƒZƒTƒŠ—pƒpƒŒƒbƒgƒIƒtƒZƒbƒgƒe[ƒuƒ‹
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨åˆæœŸåŒ–é–¢æ•°ã‚’ä½œæˆã—ã¦ãã ã•ã„â†“
+	// è©³ç´°ã€€å¿…è¦ãªæç”»ã‚·ã‚¹ãƒ†ãƒ ã®ä½œæˆ
+	//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	//	ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+	//	ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	SWSP_SYSDATA swsp;
 
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_sys->drawSys.p_handle = ArchiveDataHandleOpen( ARC_IMAGECLIP_GRA, cp_init->heap_id );
 
 	
@@ -677,25 +677,25 @@ static void initDrawSys( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* c
 	swsp.heap		= cp_init->heap_id;
 	IMC_DRAW_InitSysPlayer( &p_sys->drawSys, &swsp, cp_init->heap_id );
 
-	// •`‰æƒf[ƒ^ì¬
-	// ‚±‚±‚àƒvƒŒƒCƒ„[—p‰Šú‰»ŠÖ”‚ğì¬«
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^‚©‚ç•K—v‚ÈƒeƒNƒXƒ`ƒƒAƒpƒŒƒbƒg‚Ìƒe[ƒuƒ‹
-	// ‚ğì¬
+	// æç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// ã“ã“ã‚‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨åˆæœŸåŒ–é–¢æ•°ã‚’ä½œæˆâ†“
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ†ãƒ¼ãƒ–ãƒ«
+	// ã‚’ä½œæˆ
 	imc_draw_MakeLoadSWSP_player( &p_sys->drawSys, &loadData, cp_init, cp_init->heap_id );
 
-	// •`‰æƒf[ƒ^Vram“]‘—
+	// æç”»ãƒ‡ãƒ¼ã‚¿Vramè»¢é€
 	IMC_DRAW_LoadResource( &p_sys->drawSys, &loadData );
 
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_DRAW_DestLoadSWSP( &loadData );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€ƒƒCƒ“ŠÖ”
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_sys	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -713,9 +713,9 @@ static void mainDrawSys( IMC_PLAYERSYS* p_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€”jŠüŠÖ”
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„é–¢æ•°
  *
- *	@param	p_sys	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -724,20 +724,20 @@ static void mainDrawSys( IMC_PLAYERSYS* p_sys )
 //-----------------------------------------------------------------------------
 static void deleteDrawSys( IMC_PLAYERSYS* p_sys )
 {
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_DRAW_DeleteResource( &p_sys->drawSys );
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	IMC_DRAW_DeleteSysPlayer( &p_sys->drawSys );
 	if(p_sys->BG_use){
 		IMC_DRAW_DeleteSysPlayerBG(&p_sys->drawSys);
 	}
 
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( p_sys->drawSys.p_handle );
 
 
-	// •`‰æ–Êİ’è”jŠü
+	// æç”»é¢è¨­å®šç ´æ£„
 //	IMC_DRAW_PutBack();
 }
 
@@ -745,10 +745,10 @@ static void deleteDrawSys( IMC_PLAYERSYS* p_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_sys		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	p_sys		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -757,12 +757,12 @@ static void deleteDrawSys( IMC_PLAYERSYS* p_sys )
 //-----------------------------------------------------------------------------
 static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	IMC_RIGHT_BOX_INIT	rbox_init;	// ‰Eƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+	IMC_RIGHT_BOX_INIT	rbox_init;	// å³ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 	int poke_x, poke_y, poke_pri;
 
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
-	// •`‰æƒf[ƒ^
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	memset( &rbox_init, 0, sizeof(IMC_RIGHT_BOX_INIT) );
 	rbox_init.SWSP_drawSys		= p_sys->drawSys.SWSP_drawSys;
 	rbox_init.SWSP_charData		= p_sys->drawSys.SWSP_charData;
@@ -771,12 +771,12 @@ static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* 
 	rbox_init.SSM_drawSys		= p_sys->drawSys.SSM_drawSys;
 	rbox_init.BG_Ini			= p_sys->drawSys.BG_Ini;
 
-	rbox_init.acce		= p_sys->acce;			// ƒAƒNƒZƒTƒŠƒf[ƒ^
-	rbox_init.objListTbl= &p_sys->objListTbl;	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹
+	rbox_init.acce		= p_sys->acce;			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+	rbox_init.objListTbl= &p_sys->objListTbl;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	rbox_init.acce_count_max = IMC_RBOX_OBJ_CONTEST_MAX;
 	IMC_RBOX_InitSys( &p_sys->rbox, &rbox_init );
 	
-	// ƒ|ƒPƒ‚ƒ“‚ğ“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’ç™»éŒ²
 	{
 		SOFT_SPRITE_ARC	arc;
 		poke_x = ImcSaveData_GetUtilPokeX( cp_init->p_poke );
@@ -785,8 +785,8 @@ static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* 
 		IMC_RBOX_AddPokePlayer( &p_sys->rbox, p_sys->poke_para, &arc, poke_x, poke_y, poke_pri, cp_init->heap_id );
 	}
 
-	// ‰Eƒ{ƒbƒNƒX‚É”z’u‚·‚éƒf[ƒ^‚ğì¬
-	// ƒf[ƒ^‚©‚ç”z’u‚ğs‚¤‚æ‚¤‚É‚·‚é
+	// å³ãƒœãƒƒã‚¯ã‚¹ã«é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+	// ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é…ç½®ã‚’è¡Œã†ã‚ˆã†ã«ã™ã‚‹
 	{
 		int i;
 		int x,y;
@@ -799,7 +799,7 @@ static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* 
 			y = ImcSaveData_GetUtilAcceMatY( cp_init->p_acce[i] );
 			pri = ImcSaveData_GetUtilAccePri( cp_init->p_acce[i] );
 			
-			// ‰EƒAƒNƒZƒTƒŠ”z’u
+			// å³ã‚¢ã‚¯ã‚»ã‚µãƒªé…ç½®
 			IMC_RBOX_AddAccessorieEasy( &p_sys->rbox, acce_no, 
 					x, y, pri );
 		}
@@ -810,10 +810,10 @@ static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬		BG–Ê‰Šú‰»
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ		BGé¢åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[ƒVƒXƒeƒ€
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	p_sys		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -822,15 +822,15 @@ static void initRightBox( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* 
 //-----------------------------------------------------------------------------
 static void initRightBoxBG( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	// BG‚ğ•\¦
-	// ƒf[ƒ^‚©‚çBG‚Ìƒf[ƒ^NO‚ğİ’è‚·‚é
+	// BGã‚’è¡¨ç¤º
+	// ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰BGã®ãƒ‡ãƒ¼ã‚¿NOã‚’è¨­å®šã™ã‚‹
 	IMC_RBOX_BGSet( &p_sys->rbox, cp_init->bg_id, cp_init->heap_id );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒXƒf[ƒ^”jŠü
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	p_sys 
  *
@@ -841,16 +841,16 @@ static void initRightBoxBG( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL
 //-----------------------------------------------------------------------------
 static void deleteRightBox( IMC_PLAYERSYS* p_sys )
 {
-	// ‰Eƒ{ƒbƒNƒX”z’uƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹é…ç½®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_RBOX_DeleteAccessorieAll( &p_sys->rbox );
 	
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_RBOX_DeleteSys( &p_sys->rbox );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Eƒ{ƒbƒNƒXBG
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹BG
  *
  *	@param	p_sys 
  *
@@ -859,49 +859,49 @@ static void deleteRightBox( IMC_PLAYERSYS* p_sys )
 //-----------------------------------------------------------------------------
 static void deleteRightBoxBG( IMC_PLAYERSYS* p_sys )
 {
-	// BG‚ğƒNƒŠ[ƒ“
+	// BGã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	IMC_RBOX_BGClean( &p_sys->rbox );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNƒf[ƒ^‚Ì‰Šúİ’è
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸè¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void initWorkParam( IMC_PLAYERSYS* p_sys, const IMC_PLAYERSYS_INIT_LOCAL* cp_init )
 {
-	// Œ»İÀ•Wİ’è
+	// ç¾åœ¨åº§æ¨™è¨­å®š
 	p_sys->x = IMC_RBOX_END_SX;
 	p_sys->y = IMC_RBOX_END_SY;
 	p_sys->center_ofs_x = (IMC_RBOX_AREA_WIDTH/2);
 	p_sys->center_ofs_y = (IMC_RBOX_AREA_HEIGHT/2);
 
-	// ƒXƒP[ƒ‹’lİ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«å€¤è¨­å®š
 	p_sys->scale.x = FX32_ONE;
 	p_sys->scale.y = FX32_ONE;
 	p_sys->scale.z = FX32_ONE;
 
-	// ‰ñ“]Šp
+	// å›è»¢è§’
 	p_sys->rota_num = 0;
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	IMC_Player_SetMatrix( p_sys, cp_init->x, cp_init->y );
 
-	// F
+	// è‰²
 	p_sys->color = GX_RGB( 31,31,31 );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ˆø”‚Ì’l‚ğ‘ã“ü
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ å¼•æ•°ã®å€¤ã‚’ä»£å…¥
  *
- *	@param	p_init		‰Šú‰»ƒ[ƒN
- *	@param	cp_param	ƒf[ƒ^
+ *	@param	p_init		åˆæœŸåŒ–ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -916,10 +916,10 @@ static void setInitParamData( IMC_PLAYERSYS_INIT_LOCAL* p_init, const IMC_PLAYER
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒrƒAƒNƒZƒTƒŠƒf[ƒ^æ“¾ŠÖ”
+ *	@brief	ãƒ†ãƒ¬ãƒ“ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *
- *	@param	p_init		Ši”[æ
- *	@param	save_data	ƒZ[ƒuƒf[ƒ^
+ *	@param	p_init		æ ¼ç´å…ˆ
+ *	@param	save_data	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -928,13 +928,13 @@ static void setTelevisionSaveData( IMC_PLAYERSYS_INIT_LOCAL* p_init, const IMC_T
 {
 	int i;
 
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	p_init->p_poke = ImcSaveData_GetTelevisionPokemon( save_data );
 	
-	// ƒAƒNƒZƒTƒŠ
+	// ã‚¢ã‚¯ã‚»ã‚µãƒª
 	p_init->acce_num = 0;
 	for( i=0; i<IMC_SAVEDATA_TELEVISION_ACCE_NUM; i++ ){
-		// ƒAƒNƒZƒTƒŠİ’èƒ`ƒFƒbƒN
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šãƒã‚§ãƒƒã‚¯
 		if( ImcSaveData_CheckTelevisionAcceDataSet( save_data, i ) ){
 			p_init->p_acce[ p_init->acce_num ] = ImcSaveData_GetTelevisionAcce( save_data, i );
 			p_init->acce_num ++;
@@ -946,10 +946,10 @@ static void setTelevisionSaveData( IMC_PLAYERSYS_INIT_LOCAL* p_init, const IMC_T
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒAƒNƒZƒTƒŠƒf[ƒ^æ“¾ŠÖ”
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *
- *	@param	p_init		Ši”[æ
- *	@param	save_data	ƒZ[ƒuƒf[ƒ^
+ *	@param	p_init		æ ¼ç´å…ˆ
+ *	@param	save_data	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -958,13 +958,13 @@ static void setContestSaveData( IMC_PLAYERSYS_INIT_LOCAL* p_init, const IMC_CONT
 {
 	int i;
 
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	p_init->p_poke = ImcSaveData_GetContestPokemon( save_data );
 	
-	// ƒAƒNƒZƒTƒŠ
+	// ã‚¢ã‚¯ã‚»ã‚µãƒª
 	p_init->acce_num = 0;
 	for( i=0; i<IMC_SAVEDATA_CONTEST_ACCE_NUM; i++ ){
-		// ƒAƒNƒZƒTƒŠİ’èƒ`ƒFƒbƒN
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šãƒã‚§ãƒƒã‚¯
 		if( ImcSaveData_CheckContestAcceDataSet( save_data, i ) ){
 			p_init->p_acce[ p_init->acce_num ] = ImcSaveData_GetContestAcce( save_data, i );
 			p_init->acce_num ++;
@@ -977,36 +977,36 @@ static void setContestSaveData( IMC_PLAYERSYS_INIT_LOCAL* p_init, const IMC_CONT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒvƒ‰ƒCƒg—p‚Ì“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ğì¬	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[—p
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã®èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	loadData	ì¬æ
- *	@param	pp_acce		ƒAƒNƒZƒTƒŠƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	acce_num	ƒAƒNƒZƒTƒŠ”
- *	@param	heap		ƒq[ƒv
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	loadData	ä½œæˆå…ˆ
+ *	@param	pp_acce		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	acce_num	ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void imc_draw_MakeLoadSWSP_player( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRES_DATA* loadData, const IMC_PLAYERSYS_INIT_LOCAL* cp_init, int heap )
 {
-	// SWSP‚ÌƒŠƒ\[ƒX“o˜^ƒf[ƒ^ƒƒ‚ƒŠ‚ğŠm•Û
+	// SWSPã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 	IMC_DRAW_SWSPResDataAllocMemory( loadData, heap );
 	
-	// ƒAƒNƒZƒTƒŠ—pƒŠƒ\[ƒX
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ãƒªã‚½ãƒ¼ã‚¹
 	loadAcceDataPlayer( drawData, loadData, cp_init, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒf[ƒ^‚Ìì¬@ƒvƒŒƒCƒ„[‚È‚Ç—p
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ã®ä½œæˆã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã©ç”¨
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	loadData		“Ç‚İ‚İƒf[ƒ^Ši”[æ
- *	@param	pp_acce		ƒAƒNƒZƒTƒŠƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	acce_num	ƒAƒNƒZƒTƒŠ”
- *	@param	heap			g—p‚·‚éƒq[ƒv
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	loadData		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	pp_acce		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	acce_num	ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
+ *	@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1015,52 +1015,52 @@ static void imc_draw_MakeLoadSWSP_player( IMC_DRAW_DATA* drawData, IMC_DRAW_LOAD
 //-----------------------------------------------------------------------------
 static void loadAcceDataPlayer( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRES_DATA* loadData, const IMC_PLAYERSYS_INIT_LOCAL* cp_init, int heap )
 {
-	int i;			// ƒ‹[ƒv—p
-	int cont_id;	// ƒf[ƒ^“o˜^æID
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int cont_id;	// ãƒ‡ãƒ¼ã‚¿ç™»éŒ²å…ˆID
 	void* buff;
 	int acce_no;
 
-	// ƒAƒNƒZƒTƒŠ—pƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for(i=0; i<cp_init->acce_num; i++ ){
 		acce_no = ImcSaveData_GetUtilAcceNo( cp_init->p_acce[i] );
 
-		// ŠÇ—IDæ“¾
+		// ç®¡ç†IDå–å¾—
 		cont_id = IMC_ACCE_CHAR_CONT_ID( acce_no );
 		
-		// “¯‚¶‚à‚Ì‚ğ“o˜^Ï‚İ‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+		// åŒã˜ã‚‚ã®ã‚’ç™»éŒ²æ¸ˆã¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( RESM_CheckID( loadData->SWSP_charRes, cont_id ) == TRUE ){
 			
-			// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 			buff = ArcUtil_HDL_Load(drawData->p_handle,
 					IMC_ACCE_ARC_NO_GET( acce_no ),
 					FALSE, heap, ALLOC_BOTTOM);
 
-			// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^
+			// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 			RESM_AddResNormal( loadData->SWSP_charRes, buff, cont_id );		
 
-			// ƒAƒ“ƒpƒbƒNŒã‚Ìƒf[ƒ^‚ğ“o˜^
+			// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 			NNS_G2dGetUnpackedCharacterData( buff, &loadData->SWSP_charTbl[ cont_id ].res_file );
 			
-			// ƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^İ’è
+			// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿è¨­å®š
 			loadData->SWSP_charTbl[ cont_id ].s_sys = drawData->SWSP_drawSys;
 		}
 	}
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“o˜^
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	buff = ArcUtil_HDL_Load(drawData->p_handle,
 			IMC_DRAW_ACCESSORIE_PLTT_ARC, FALSE, heap, ALLOC_BOTTOM);
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	RESM_AddResNormal( loadData->SWSP_plttRes, buff, IMC_DRAW_ACCESSORIE_PLTT_ID );		
 	
-	// ƒAƒ“ƒpƒbƒN
+	// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
 	NNS_G2dGetUnpackedPaletteData( buff,
 			&loadData->SWSP_plttTbl[ IMC_DRAW_ACCESSORIE_PLTT_ID ].res_file );
 
-	// •`‰æƒVƒXƒeƒ€ƒf[ƒ^
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 	loadData->SWSP_plttTbl[ IMC_DRAW_ACCESSORIE_PLTT_ID ].s_sys = drawData->SWSP_drawSys;
 
-	// “Ç‚İ‚İ‚·‚¤
+	// èª­ã¿è¾¼ã¿ã™ã†
 	loadData->SWSP_plttTbl[ IMC_DRAW_ACCESSORIE_PLTT_ID ].load_num = IMC_DRAW_ACCESSORIE_PLTT_NUM;
 	
 }
@@ -1075,10 +1075,10 @@ static void loadAcceDataPlayer( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRES_DATA* 
 #include "include/application/imageClip/imc_drawsys.h"
 
 //-------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒvŠO•”ƒf[ƒ^
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	const IMC_TELEVISION_SAVEDATA* p_imc_one_data;
 	GF_BGL_INI*		BG_Ini;
 	IMC_PLAYERSYS_PTR p_player;
@@ -1093,28 +1093,28 @@ static void IMC_PlayTelevision_Vblank( void* p_work )
 	GF_BGL_VBlankFunc( p_ip->BG_Ini );
 }
 
-// ƒ`ƒFƒbƒN—pƒvƒƒbƒN
+// ãƒã‚§ãƒƒã‚¯ç”¨ãƒ—ãƒ­ãƒƒã‚¯
 PROC_RESULT IMC_PlayTelevision_ProcInit( PROC* proc, int* seq )
 {
 	IMC_PLAY_WORK* p_ip;
 	IMC_PROC_PLAY_WORK* p_proc_w;
 	
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DATA, 0x20000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DRAW, 0x40000 );
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒNì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_ip = PROC_AllocWork( proc, sizeof( IMC_PLAY_WORK ), HEAPID_IMAGECLIP_DATA );
 	memset( p_ip, 0, sizeof( IMC_PLAY_WORK ) );
 
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”İ’è
-	sys_VBlankFuncChange( IMC_PlayTelevision_Vblank, p_ip );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( IMC_PlayTelevision_Vblank, p_ip );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^‚ğæ“¾
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	p_proc_w = PROC_GetParentWork( proc );
 
-	// •`‰æŠÖŒW
+	// æç”»é–¢ä¿‚
 	IMC_DRAW_SetUp();
 	
 	p_ip->BG_Ini = GF_BGL_BglIniAlloc( HEAPID_IMAGECLIP_DRAW );
@@ -1142,14 +1142,14 @@ PROC_RESULT IMC_PlayTelevision_ProcMain( PROC* proc, int* seq )
 	IMC_Player_SetColor( p_ip->p_player, color );//*/
 
 	{
-		//‚R‚c•`‰æŠJn
+		//ï¼“ï¼¤æç”»é–‹å§‹
 		GF_G3X_Reset();
 
 		NNS_G2dSetupSoftwareSpriteCamera();
 
 		IMC_PlayerMain( p_ip->p_player );
 
-		/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+		/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 		GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 	}
 
@@ -1215,19 +1215,19 @@ PROC_RESULT IMC_PlayTelevision_ProcEnd( PROC* proc, int* seq )
 
 	IMC_PlayerEnd( p_ip->p_player );
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	sys_FreeMemoryEz( p_ip->BG_Ini );
 
-	// •`‰æ–Êİ’è”jŠü
+	// æç”»é¢è¨­å®šç ´æ£„
 	IMC_DRAW_PutBack();
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DATA );
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DRAW );
 

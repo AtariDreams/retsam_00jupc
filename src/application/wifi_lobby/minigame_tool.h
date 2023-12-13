@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		minigame_tool.h
- *	@brief		�~�j�Q�[���c�[��
+ *	@brief		ミニゲームツール
  *	@author		tomoya takahashi	
  *	@data		2007.10.22
  *
@@ -21,55 +21,55 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-// �����Ŏg�p����ʐM�����萔	�i�~�j�Q�[���Ƃ��Ԃ�Ȃ��悤�Ɂj
+// 内部で使用する通信同期定数	（ミニゲームとかぶらないように）
 enum{
 	MNGM_SYNC_START	= 128,
-	MNGM_SYNC_END,			// �S�̂̏I�������킹�܂��B
-	MNGM_SYNC_RESULT_END,	// ���ʉ�ʂ̏I�������킹�܂��B
+	MNGM_SYNC_END,			// 全体の終了をあわせます。
+	MNGM_SYNC_RESULT_END,	// 結果画面の終了をあわせます。
 };
 
-#define MNGM_COUNT_PALNUM		( 3 )	//�J�E���g�_�E���Ŏg�p����p���b�g�{��
+#define MNGM_COUNT_PALNUM		( 3 )	//カウントダウンで使用するパレット本数
 
 
-// ���犄�K�W�F�b�g�A�b�v�f�[�g�萔
+// 風千割ガジェットアップデート定数
 #define MNGM_BALLOON_GADGET_UPDATE	( 10 )
 
-// Balance�{�[���ŉ������Ȃ������Ƃ��ɓ����Ă���score�̒l
+// Balanceボールで何もしなかったときに入っているscoreの値
 #define MNGM_BALANCEBALL_NOTOUCH_SCORE	( 0 )
 
 
-// Rare�Q�[���^�C�v
+// Rareゲームタイプ
 typedef enum {
-	// �ʂ���
+	// 玉いれ
 	MNGM_RAREGAME_BUCKET_NORMAL	= 0,
 	MNGM_RAREGAME_BUCKET_REVERSE,
 	MNGM_RAREGAME_BUCKET_BIG,
 	MNGM_RAREGAME_BUCKET_NUM,
 
-	// �ʏ��
+	// 玉乗り
 	MNGM_RAREGAME_BALANCEBALL_NORMAL = 0,
 	MNGM_RAREGAME_BALANCEBALL_BIG,
 	MNGM_RAREGAME_BALANCEBALL_NUM,
 
-	// ���犄
+	// 風千割
 	MNGM_RAREGAME_BALLOON_NORMAL = 0,
-	MNGM_RAREGAME_BALLOON_THICK,	//��
-	MNGM_RAREGAME_BALLOON_FINE,		//��
+	MNGM_RAREGAME_BALLOON_THICK,	//太
+	MNGM_RAREGAME_BALLOON_FINE,		//細
 	MNGM_RAREGAME_BALLOON_NUM,
 } MNGM_RAREGAME_TYPE;
 
-// Rare�Q�[���̃p�[�Z���e�[�W	MAX��100
-// �ʂ���
+// Rareゲームのパーセンテージ	MAXが100
+// 玉いれ
 #define MNGM_RAREPAR_BUCKET_NORMAL		(75)
 #define MNGM_RAREPAR_BUCKET_REVERSE		(15)
 #define MNGM_RAREPAR_BUCKET_BIG			(10)
-// �ʏ��
+// 玉乗り
 #define MNGM_RAREPAR_BALANCEBALL_NORMAL	(85)
 #define MNGM_RAREPAR_BALANCEBALL_BIG	(15)
-// ���犄
+// 風千割
 #define MNGM_RAREPAR_BALLOON_NORMAL		(85)
 #define MNGM_RAREPAR_BALLOON_THICK		(15)
 #define MNGM_RAREPAR_BALLOON_FINE		(0)
@@ -77,67 +77,67 @@ typedef enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	�~�j�Q�[��WiFi���r�[���
+///	ミニゲームWiFiロビー情報
 //=====================================
 typedef struct {
 	WFLBY_ITEMTYPE			gadget;
-	WFLBY_MINIGAME_PLIDX	plidx;		// �v���C���[�C���f�b�N�X
-	WFLBY_VIPFLAG			vipflag;	// VIP�t���O
-	BOOL					error_end;	// �G���[�I���`�F�b�N
+	WFLBY_MINIGAME_PLIDX	plidx;		// プレイヤーインデックス
+	WFLBY_VIPFLAG			vipflag;	// VIPフラグ
+	BOOL					error_end;	// エラー終了チェック
 
-	// 080627 mystatus�擾�ɂ��g�p
-	MYSTATUS*				p_mystate[WFLBY_MINIGAME_MAX];	// �S����MYSTATUS
+	// 080627 mystatus取得にも使用
+	MYSTATUS*				p_mystate[WFLBY_MINIGAME_MAX];	// 全員のMYSTATUS
 
-	// �g�s�b�N�𐶐�����K�v���o�Ă����̂ŁA����SYSTEM���̂����Ă��܂�
-	WFLBY_SYSTEM*			p_wflbysystem;	// �������ATOPIC�̐����ɂ����g�p���Ȃ�
+	// トピックを生成する必要が出てきたので、もうSYSTEM自体を入れてしまう
+	WFLBY_SYSTEM*			p_wflbysystem;	// ただし、TOPICの生成にしか使用しない
 } WFLBY_MINIGAME_WK;
 
 
 //-------------------------------------
-///	�G���g���[�A���ʉ�ʋ��ʃ��[�N
-//  �z��̒��g�͂��ׂăv���C���[no�ŎQ�Ƃ��܂�
+///	エントリー、結果画面共通ワーク
+//  配列の中身はすべてプレイヤーnoで参照します
 //=====================================
 typedef struct {
-	SAVEDATA*				p_save;		// �Z�[�u�f�[�^
-	u8	pnetid[WFLBY_MINIGAME_MAX];		// �v���C���[�ɑΉ�����NETID
-	u8	num;							// �G���g���[�l��
-	u8	my_playerid;					// �����̃v���C���[ID
-	u8	vchat;							// vchat�Ή���
-	u8	replay;							// ������x�V�Ԃ����₷�邩
-	WFLBY_MINIGAME_WK*		p_lobby_wk;	// ���r�[�p���
+	SAVEDATA*				p_save;		// セーブデータ
+	u8	pnetid[WFLBY_MINIGAME_MAX];		// プレイヤーに対応するNETID
+	u8	num;							// エントリー人数
+	u8	my_playerid;					// 自分のプレイヤーID
+	u8	vchat;							// vchat対応か
+	u8	replay;							// もう一度遊ぶか質問するか
+	WFLBY_MINIGAME_WK*		p_lobby_wk;	// ロビー用情報
 } MNGM_ENRES_PARAM;
 
 
 //-------------------------------------
-///	�G���g���[��ʃ��[�N
+///	エントリー画面ワーク
 //=====================================
 typedef struct _MNGM_ENTRYWK MNGM_ENTRYWK;
 
 //-------------------------------------
-///	���ʉ�ʃ��[�N
-//  �z��̒��g�͂��ׂăv���C���[no�ŎQ�Ƃ��܂�
+///	結果画面ワーク
+//  配列の中身はすべてプレイヤーnoで参照します
 //=====================================
 typedef struct _MNGM_RESULTWK MNGM_RESULTWK;
 typedef struct {
 
-	//	�ʂ���A�ʏ��p�X�R�A�f�[�^
-	u32 score[ WFLBY_MINIGAME_MAX ];	// �e�Q�[���ł̃X�R�A
-	u8	result[ WFLBY_MINIGAME_MAX ];	// �v���C���[No��INDEX�ɂ�������(0.1.2.3)
+	//	玉いれ、玉乗り用スコアデータ
+	u32 score[ WFLBY_MINIGAME_MAX ];	// 各ゲームでのスコア
+	u8	result[ WFLBY_MINIGAME_MAX ];	// プレイヤーNoをINDEXにした順位(0.1.2.3)
 
-	// ���犄�p�@��������
+	// 風千割用　割った数
 	u32 balloon; 
 
 } MNGM_RESULT_PARAM;
 
 
 //-------------------------------------
-///	START	TIMEUP	���[�N
+///	START	TIMEUP	ワーク
 //=====================================
 typedef struct _MNGM_COUNTWK MNGM_COUNTWK;
 
@@ -146,11 +146,11 @@ typedef struct _MNGM_COUNTWK MNGM_COUNTWK;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�G���g���[��ʁA���ʉ�ʋ��ʃp�����[�^�c�[��
+///	エントリー画面、結果画面共通パラメータツール
 //=====================================
 extern void MNGM_ENRES_PARAM_Init( MNGM_ENRES_PARAM* p_param, BOOL lobby_flag, SAVEDATA* p_save, BOOL vchat, WFLBY_MINIGAME_WK* p_lobby_wk );
 extern u32 MNGM_ENRES_PARAM_GetNetIDtoPlNO( const MNGM_ENRES_PARAM* cp_param, u32 netid );
@@ -161,7 +161,7 @@ extern MYSTATUS* MNGM_ENRES_PARAM_GetMystatus( const MNGM_ENRES_PARAM* cp_param,
 
 
 //-------------------------------------
-///	�G���g���[��ʃ��[�N
+///	エントリー画面ワーク
 //=====================================
 extern MNGM_ENTRYWK* MNGM_ENTRY_InitBallSlow( const MNGM_ENRES_PARAM* cp_commparam, u32 heapID );
 extern MNGM_ENTRYWK* MNGM_ENTRY_InitBalanceBall( const MNGM_ENRES_PARAM* cp_commparam, u32 heapID );
@@ -171,7 +171,7 @@ extern BOOL MNGM_ENTRY_Wait( const MNGM_ENTRYWK* cp_wk );
 extern MNGM_RAREGAME_TYPE MNGM_ENTRY_GetRareGame( const MNGM_ENTRYWK* cp_wk );
 
 //-------------------------------------
-///	���ʉ�ʃ��[�N
+///	結果画面ワーク
 //=====================================
 extern MNGM_RESULTWK* MNGM_RESULT_InitBallSlow( const MNGM_ENRES_PARAM* cp_commparam, const MNGM_RESULT_PARAM* cp_param,  u32 heapID );
 extern MNGM_RESULTWK* MNGM_RESULT_InitBalanceBall( const MNGM_ENRES_PARAM* cp_commparam, const MNGM_RESULT_PARAM* cp_param, u32 heapID );
@@ -180,17 +180,17 @@ extern void MNGM_RESULT_Exit( MNGM_RESULTWK* p_wk );
 extern BOOL MNGM_RESULT_Wait( const MNGM_RESULTWK* cp_wk );
 extern BOOL MNGM_RESULT_GetReplay( const MNGM_RESULTWK* cp_wk );
 
-// ���ʉ�ʃp�����[�^�����c�[��
-// ����K�W�F�b�g�p�����[�^�̐ݒ�c�[���Ȃǂ��ǉ����Ă���
+// 結果画面パラメータ生成ツール
+// 今後ガジェットパラメータの設定ツールなども追加していく
 
-// �ʓ����Ƌʏ��́Ascore�f�[�^�����ׂĐݒ肵�Ă��炱�̊֐����Ă�ł��������B
+// 玉投げと玉乗りは、scoreデータをすべて設定してからこの関数を呼んでください。
 extern void MNGM_RESULT_CalcRank( MNGM_RESULT_PARAM* p_param, u32 plnum );
 
 
 
 //-------------------------------------
-///	�ؒf�G���[�`�F�b�N
-//	Wi-Fi�L��̂Ƃ��ɂ������삵�܂���
+///	切断エラーチェック
+//	Wi-Fi広場のときにしか動作しません
 //=====================================
 extern BOOL MNGM_ERROR_CheckDisconnect( MNGM_ENRES_PARAM* p_commparam );
 extern BOOL MNGM_ERROR_DisconnectWait( const MNGM_ENRES_PARAM* cp_commparam );
@@ -198,8 +198,8 @@ extern BOOL MNGM_ERROR_DisconnectWait( const MNGM_ENRES_PARAM* cp_commparam );
 
 
 //-------------------------------------
-///	START	TIMEUP	���[�N
-//	H�u�����N�g�p���܂��B
+///	START	TIMEUP	ワーク
+//	Hブランク使用します。
 //=====================================
 extern MNGM_COUNTWK* MNGM_COUNT_Init( CLACT_SET_PTR p_clset, u32 heapID );
 extern void MNGM_COUNT_Exit( MNGM_COUNTWK* p_wk );

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_app_tool.c
- * @brief	í“¬—pƒAƒvƒŠ‹¤’Êˆ—
+ * @brief	æˆ¦é—˜ç”¨ã‚¢ãƒ—ãƒªå…±é€šå‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	06.03.30
  */
@@ -15,29 +15,29 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+// é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
 struct _BAPP_CURSOR_MVWK {
-	BCURSOR_PTR	cursor;			// ƒJ[ƒ\ƒ‹ƒf[ƒ^
-	const POINTER_WORK * cp_wk;	// ƒJ[ƒ\ƒ‹ˆÊ’uƒ[ƒN
-	u8	cur_flg;				// ƒJ[ƒ\ƒ‹ON/OFF
-	u8	cur_pos;				// ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	old_pos;				// ‘O‰ñ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u32	mv_tbl;					// ˆÚ“®ƒe[ƒuƒ‹
+	BCURSOR_PTR	cursor;			// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+	const POINTER_WORK * cp_wk;	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ¯ãƒ¼ã‚¯
+	u8	cur_flg;				// ã‚«ãƒ¼ã‚½ãƒ«ON/OFF
+	u8	cur_pos;				// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	old_pos;				// å‰å›žã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u32	mv_tbl;					// ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 };
 
-// ƒL[‘S•”
+// ã‚­ãƒ¼å…¨éƒ¨
 #define	PAD_KEY_ALL	( PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT )
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNì¬
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 BAPP_CURSOR_MVWK * BAPP_CursorMoveWorkAlloc( u32 heap )
@@ -49,11 +49,11 @@ BAPP_CURSOR_MVWK * BAPP_CursorMoveWorkAlloc( u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN‰ð•ú
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 void BAPP_CursorMoveWorkFree( BAPP_CURSOR_MVWK * wk )
@@ -63,11 +63,11 @@ void BAPP_CursorMoveWorkFree( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNŽæ“¾FƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 BCURSOR_PTR BAPP_CursorMvWkGetBCURSOR_PTR( BAPP_CURSOR_MVWK * wk )
@@ -77,11 +77,11 @@ BCURSOR_PTR BAPP_CursorMvWkGetBCURSOR_PTR( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNŽæ“¾FƒJ[ƒ\ƒ‹ˆÊ’u
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹ˆÊ’u
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  */
 //--------------------------------------------------------------------------------------------
 u8 BAPP_CursorMvWkGetPos( BAPP_CURSOR_MVWK * wk )
@@ -91,11 +91,11 @@ u8 BAPP_CursorMvWkGetPos( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNŽæ“¾FƒJ[ƒ\ƒ‹ON/OFF
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚«ãƒ¼ã‚½ãƒ«ON/OFF
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹ON/OFF
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ON/OFF
  */
 //--------------------------------------------------------------------------------------------
 u8 BAPP_CursorMvWkGetFlag( BAPP_CURSOR_MVWK * wk )
@@ -105,10 +105,10 @@ u8 BAPP_CursorMvWkGetFlag( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNƒZƒbƒgFƒJ[ƒ\ƒ‹ON/OFF
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆï¼šã‚«ãƒ¼ã‚½ãƒ«ON/OFF
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	flg		ON/OFFƒtƒ‰ƒO
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		ON/OFFãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -120,10 +120,10 @@ void BAPP_CursorMvWkSetFlag( BAPP_CURSOR_MVWK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNƒZƒbƒgFƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆï¼šã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	flg		ƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -135,10 +135,10 @@ void BAPP_CursorMvWkSetBCURSOR_PTR( BAPP_CURSOR_MVWK * wk, BCURSOR_PTR cur )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNƒZƒbƒgFƒJ[ƒ\ƒ‹ˆÊ’u
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆï¼šã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	pos		ƒJ[ƒ\ƒ‹ˆÊ’u
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  *
  * @return	none
  */
@@ -157,9 +157,9 @@ void BAPP_CursorMvWkSetPos( BAPP_CURSOR_MVWK * wk, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÊ’u‰Šú‰»
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åˆæœŸåŒ–
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -172,10 +172,10 @@ void BAPP_CursorMvWkPosInit( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNƒZƒbƒgFƒJ[ƒ\ƒ‹ˆÊ’uƒ[ƒN
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆï¼šã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ¯ãƒ¼ã‚¯
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	pwk		ƒJ[ƒ\ƒ‹ˆÊ’uƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	pwk		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -194,10 +194,10 @@ void BAPP_CursorMvWkSetPoint( BAPP_CURSOR_MVWK * wk, const POINTER_WORK * pwk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒNƒZƒbƒgFˆÚ“®ƒe[ƒuƒ‹
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆï¼šç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	mv_tbl	ˆÚ“®ƒe[ƒuƒ‹
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	mv_tbl	ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @return	none
  */
@@ -209,12 +209,12 @@ void BAPP_CursorMvWkSetMvTbl( BAPP_CURSOR_MVWK * wk, u32 mv_tbl )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹•\Ž¦
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = •\Ž¦"
- * @retval	"FALSE = ”ñ•\Ž¦"
+ * @retval	"TRUE = è¡¨ç¤º"
+ * @retval	"FALSE = éžè¡¨ç¤º"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BAPP_CursorOnOffCheck( BAPP_CURSOR_MVWK * wk )
@@ -236,13 +236,13 @@ static u8 BAPP_CursorOnOffCheck( BAPP_CURSOR_MVWK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ÉˆÚ“®‚·‚é‚©
+ * å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã«ç§»å‹•ã™ã‚‹ã‹
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
- * @param	mv		ˆÚ“®•ûŒü
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ç§»å‹•æ–¹å‘
  *
- * @retval	"TRUE = ˆÚ“®‚·‚é"
- * @retval	"FALSE = ˆÚ“®‚µ‚È‚¢"
+ * @retval	"TRUE = ç§»å‹•ã™ã‚‹"
+ * @retval	"FALSE = ç§»å‹•ã—ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BAPP_OldCursorSetCheck( const POINTER_WORK * pw, u8 mv )
@@ -274,11 +274,11 @@ static u8 BAPP_OldCursorSetCheck( const POINTER_WORK * pw, u8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®
+ * é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
- * @param	wk		‘I‘ðƒJ[ƒ\ƒ‹ˆÚ“®ƒ[ƒN
+ * @param	wk		é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ¯ãƒ¼ã‚¯
  *
- * @return	“®ìŒ‹‰Ê
+ * @return	å‹•ä½œçµæžœ
  */
 //--------------------------------------------------------------------------------------------
 u32 BAPP_CursorMove( BAPP_CURSOR_MVWK * wk )

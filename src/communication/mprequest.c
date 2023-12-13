@@ -2,7 +2,7 @@
  * @version "$Id: mprequest.c,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file mprequest.c
- * @brief –³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ ó‘Ô‘JˆÚŠÖ”
+ * @brief ç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª çŠ¶æ…‹é·ç§»é–¢æ•°
  * 
  */
 #include "mpconnect.h"
@@ -12,9 +12,9 @@
 #include "mpdebug.h"
 
 /**
- * PORT’ÊM‚ðs‚¤
+ * PORTé€šä¿¡ã‚’è¡Œã†
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestSetMPData(const void *buf, u32 size, u16 aid_bitmap)
 {
@@ -36,9 +36,9 @@ BOOL MpRequestSetMPData(const void *buf, u32 size, u16 aid_bitmap)
 
 
 /**
- * –³üƒfƒoƒCƒX‚ðŽg—p‰Â”\‚Èó‘Ô‚É‚·‚é
+ * ç„¡ç·šãƒ‡ãƒã‚¤ã‚¹ã‚’ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã«ã™ã‚‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestEnable(void)
 {
@@ -58,9 +58,9 @@ BOOL MpRequestEnable(void)
 
 
 /**
- * –³üƒfƒoƒCƒX‚ðŽg—p•s‰Â‚Ìó‘Ô‚É‚·‚é
+ * ç„¡ç·šãƒ‡ãƒã‚¤ã‚¹ã‚’ä½¿ç”¨ä¸å¯ã®çŠ¶æ…‹ã«ã™ã‚‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestDisable(void)
 {
@@ -83,10 +83,10 @@ BOOL MpRequestDisable(void)
 
 
 /**
- * Žw’èƒ`ƒƒƒ“ƒlƒ‹‚Ì“d”gŽg—p—¦‚ð‘ª’è
+ * æŒ‡å®šãƒãƒ£ãƒ³ãƒãƒ«ã®é›»æ³¢ä½¿ç”¨çŽ‡ã‚’æ¸¬å®š
  *
- * @param ƒ`ƒƒƒ“ƒlƒ‹”Ô†i1,7,13j 
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @param ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ï¼ˆ1,7,13ï¼‰ 
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestSearchChannel(u32 channel)
 {
@@ -106,9 +106,9 @@ BOOL MpRequestSearchChannel(u32 channel)
 
   
 /**
- * e‹@‚Æ‚µ‚Ä•K—v‚Èƒpƒ‰ƒ[ƒ^‚ðÝ’è
+ * è¦ªæ©Ÿã¨ã—ã¦å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestSetParentParameter(void)
 {
@@ -118,7 +118,7 @@ BOOL MpRequestSetParentParameter(void)
   MpUserGameInfo *info = MpGetUserGameInfo();
   MpDataParentMP *parent_data = MpGetDataParentMP();
 
-  /* MpRequestSearchChannel‚Å’Tõ‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹”Ô†‚ðŽw’è */
+  /* MpRequestSearchChannelã§æŽ¢ç´¢ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ã‚’æŒ‡å®š */
   param->channel = parent_data->channel;
   
   param->userGameInfo = (u16*)info;
@@ -138,9 +138,9 @@ BOOL MpRequestSetParentParameter(void)
 
 
 /**
- * e‹@‚Æ‚µ‚ÄŠˆ“®ŠJŽn
+ * è¦ªæ©Ÿã¨ã—ã¦æ´»å‹•é–‹å§‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestStartParent(void)
 {
@@ -161,9 +161,9 @@ BOOL MpRequestStartParent(void)
 
 
 /**
- * Žq‹@‚Æ‚µ‚Äe‹@‚ÌƒXƒLƒƒƒ“ŠJŽn
+ * å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestStartScan(void)
 {
@@ -183,9 +183,9 @@ BOOL MpRequestStartScan(void)
 
 
 /**
- * Žq‹@‚Æ‚µ‚Ä“Á’è‚Ìe‹@‚ÌƒXƒLƒƒƒ“ŠJŽn
+ * å­æ©Ÿã¨ã—ã¦ç‰¹å®šã®è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestStartScan2(void)
 {
@@ -197,7 +197,7 @@ BOOL MpRequestStartScan2(void)
     WMScanParam *scan_param = MpGetScanParameter();
     MpDataChildMP *dcmp = MpGetDataChildMP();
 
-    /* Ú‘±æ‚ÌMACƒAƒhƒŒƒX‚ðŽw’è‚·‚é */
+    /* æŽ¥ç¶šå…ˆã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®šã™ã‚‹ */
     scan_param->bssid[0] = dcmp->user_list[dcmp->select].mac_vendor.u.data[0];
     scan_param->bssid[1] = dcmp->user_list[dcmp->select].mac_vendor.u.data[1];
     scan_param->bssid[2] = dcmp->user_list[dcmp->select].mac_addr.u.data[0];
@@ -218,9 +218,9 @@ BOOL MpRequestStartScan2(void)
 
 
 /**
- * Žq‹@‚Ìe‹@ƒXƒLƒƒƒ“I—¹
+ * å­æ©Ÿã®è¦ªæ©Ÿã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestEndScan(void)
 {
@@ -242,9 +242,9 @@ BOOL MpRequestEndScan(void)
 
 
 /**
- * e‹@‚Ö‚ÌÚ‘±ŠJŽn
+ * è¦ªæ©Ÿã¸ã®æŽ¥ç¶šé–‹å§‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestStartConnect(void)
 {
@@ -266,10 +266,10 @@ BOOL MpRequestStartConnect(void)
 
 
 /**
- * Ú‘±‰ðœ
+ * æŽ¥ç¶šè§£é™¤
  *
- * @param ‘ÎÛAID
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @param å¯¾è±¡AID
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestDisConnect(u16 aid)
 {
@@ -289,10 +289,10 @@ BOOL MpRequestDisConnect(u16 aid)
 
 
 /**
- * •¡”‚ÌŽq‹@‚Æ‚ÌÚ‘±‰ðœ ie‹@ê—pj
+ * è¤‡æ•°ã®å­æ©Ÿã¨ã®æŽ¥ç¶šè§£é™¤ ï¼ˆè¦ªæ©Ÿå°‚ç”¨ï¼‰
  *
- * @param ‘ÎÛAIDƒrƒbƒgƒ}ƒbƒv
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @param å¯¾è±¡AIDãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestDisConnectChildren(u16 aid_bit)
 {
@@ -312,9 +312,9 @@ BOOL MpRequestDisConnectChildren(u16 aid_bit)
 
 
 /**
- * MP’ÊMƒ‚[ƒhŠJŽn
+ * MPé€šä¿¡ãƒ¢ãƒ¼ãƒ‰é–‹å§‹
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestStartMP(void)
 {
@@ -354,9 +354,9 @@ BOOL MpRequestStartMP(void)
 
 
 /**
- * –³üƒfƒoƒCƒX‚É“dŒ¹“Š“ü
+ * ç„¡ç·šãƒ‡ãƒã‚¤ã‚¹ã«é›»æºæŠ•å…¥
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestPowerOn(void)
 {
@@ -375,9 +375,9 @@ BOOL MpRequestPowerOn(void)
 
 
 /**
- * –³üƒfƒoƒCƒX‚Ì“dŒ¹OFF
+ * ç„¡ç·šãƒ‡ãƒã‚¤ã‚¹ã®é›»æºOFF
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestPowerOff(void)
 {
@@ -400,9 +400,9 @@ BOOL MpRequestPowerOff(void)
 
 
 /**
- * WM‚ðƒŠƒZƒbƒg WM‚ÌREADYAIDLEƒXƒe[ƒgˆÈŠO‘S‚Ä‚ÌƒXƒe[ƒg‚©‚çIDLEƒXƒe[ƒg‚ÉˆÚs
+ * WMã‚’ãƒªã‚»ãƒƒãƒˆ WMã®READYã€IDLEã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–å…¨ã¦ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‹ã‚‰IDLEã‚¹ãƒ†ãƒ¼ãƒˆã«ç§»è¡Œ
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestReset(void)
 {
@@ -424,9 +424,9 @@ BOOL MpRequestReset(void)
 
 
 /**
- * WM‚ðI—¹ WM‚ÌIDLEƒXƒe[ƒg‚©‚ç–³ü‹@”\‘S’âŽ~‚ÉˆÚs
+ * WMã‚’çµ‚äº† WMã®IDLEã‚¹ãƒ†ãƒ¼ãƒˆã‹ã‚‰ç„¡ç·šæ©Ÿèƒ½å…¨åœæ­¢ã«ç§»è¡Œ
  *
- * @return ƒGƒ‰[‚ª”­¶‚µ‚½ê‡FALSE‚ª•Ô‚é
+ * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆFALSEãŒè¿”ã‚‹
  */
 BOOL MpRequestEnd(void)
 {

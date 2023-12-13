@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	seedsys.c
- * @brief	ƒtƒB[ƒ‹ƒh‚Å‚Ì‚«‚Ì‚İ¬’·ˆ—‚È‚Ç
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã®ãã®ã¿æˆé•·å‡¦ç†ãªã©
  * @author	tamada GAME FREAK inc.
  * @date	2006.02.09
  */
@@ -50,7 +50,7 @@ struct SEEDSYS_WORK {
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İID¨ƒAƒCƒeƒ€ƒiƒ“ƒo[‚É•ÏŠ·
+ * @brief	ãã®ã¿IDâ†’ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã«å¤‰æ›
  */
 //----------------------------------------------------------
 static u16 nuts2item(int type)
@@ -62,7 +62,7 @@ static u16 nuts2item(int type)
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€ƒiƒ“ƒo[¨‚«‚Ì‚İID‚Ö‚Ì•ÏŠ·
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼â†’ãã®ã¿IDã¸ã®å¤‰æ›
  */
 //----------------------------------------------------------
 static u16 item2nuts(int itemno)
@@ -74,7 +74,7 @@ static u16 item2nuts(int itemno)
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒRƒ„ƒVw’è¨ƒAƒCƒeƒ€ƒiƒ“ƒo[‚Ö‚Ì•ÏŠ·
+ * @brief	ã‚³ãƒ¤ã‚·æŒ‡å®šâ†’ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã¸ã®å¤‰æ›
  */
 //----------------------------------------------------------
 static u16 compost2item(SEEDCOMPOST compost)
@@ -86,7 +86,7 @@ static u16 compost2item(SEEDCOMPOST compost)
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€ƒiƒ“ƒo[¨ƒRƒ„ƒVw’è‚Ö‚Ì•ÏŠ·
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼â†’ã‚³ãƒ¤ã‚·æŒ‡å®šã¸ã®å¤‰æ›
  */
 //----------------------------------------------------------
 static SEEDCOMPOST item2compost(int itemno)
@@ -101,9 +101,9 @@ static SEEDCOMPOST item2compost(int itemno)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ¬’·§ŒäƒVƒXƒeƒ€‚Ì¶¬
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID		Šm•Û‚·‚éƒq[ƒv‚ÌID
+ * @brief	ãã®ã¿æˆé•·åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ ã®ç”Ÿæˆ
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID		ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
  */
 //----------------------------------------------------------
 SEEDSYS_WORK * SeedSys_Init(FIELDSYS_WORK * fsys, int heapID)
@@ -119,8 +119,8 @@ SEEDSYS_WORK * SeedSys_Init(FIELDSYS_WORK * fsys, int heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ¬’·§ŒäƒVƒXƒeƒ€‚Ì‰ğ•ú
- * @param	seedsys		SEEDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã®ã¿æˆé•·åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ ã®è§£æ”¾
+ * @param	seedsys		SEEDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void SeedSys_Finish(SEEDSYS_WORK * seedsys)
@@ -132,8 +132,8 @@ void SeedSys_Finish(SEEDSYS_WORK * seedsys)
 
 //----------------------------------------------------------
 /**
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	diff_minute	‚·‚·‚ñ‚¾ŠÔi•ª’PˆÊj
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	diff_minute	ã™ã™ã‚“ã æ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  */
 //----------------------------------------------------------
 void SeedSys_Growth(FIELDSYS_WORK * fsys, int diff_minute)
@@ -200,10 +200,10 @@ static BOOL CheckInScreen(FIELDSYS_WORK * fsys, const VecFx32 * pos)
 
 //----------------------------------------------------------
 /**
- * @brief	‹ŠEƒ`ƒFƒbƒN
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è¦–ç•Œãƒã‚§ãƒƒã‚¯
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‹ŠE‚É“ü‚Á‚½‚ç¬’·ƒtƒ‰ƒO‚ğON‚É‚·‚é
+ * è¦–ç•Œã«å…¥ã£ãŸã‚‰æˆé•·ãƒ•ãƒ©ã‚°ã‚’ONã«ã™ã‚‹
  */
 //----------------------------------------------------------
 void SeedSys_CheckInScreen(FIELDSYS_WORK * fsys)
@@ -226,11 +226,11 @@ void SeedSys_CheckInScreen(FIELDSYS_WORK * fsys)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ‚ªA‚¦‚ç‚ê‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		‚«‚Ì‚İ‚ªA‚¦‚ç‚ê‚é
- * @retval	FALSE		‚«‚Ì‚İ‚ÍA‚¦‚ç‚ê‚È‚¢
+ * @brief	ãã®ã¿ãŒæ¤ãˆã‚‰ã‚Œã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ãã®ã¿ãŒæ¤ãˆã‚‰ã‚Œã‚‹
+ * @retval	FALSE		ãã®ã¿ã¯æ¤ãˆã‚‰ã‚Œãªã„
  */
 //----------------------------------------------------------
 BOOL SeedSys_EnableSetKinomi(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
@@ -251,10 +251,10 @@ BOOL SeedSys_EnableSetKinomi(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚ğûŠn‚·‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		‚«‚Ì‚İ‚ğæ‚ê‚½‚©‚Ç‚¤‚©
+ * @brief	æœ¨ã®å®Ÿã‚’åç©«ã™ã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		ãã®ã¿ã‚’å–ã‚ŒãŸã‹ã©ã†ã‹
  */
 //----------------------------------------------------------
 BOOL SeedSys_TakeNuts(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
@@ -264,7 +264,7 @@ BOOL SeedSys_TakeNuts(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
 	id = FieldOBJ_ParamGet(fldobj, FLDOBJ_PARAM_0);
 	type = SEEDBED_GetSeedType(sbed, id);
 	num = SEEDBED_GetSeedCount(sbed, id);
-	//ƒeƒŒƒrƒgƒsƒbƒN¶¬
+	//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 	TVTOPIC_Entry_TakeNuts(fsys, nuts2item(type), SEEDBED_GetSeedHP(sbed,id), num);
 	SEEDBED_GetHarvest(sbed, id);
 	FieldOBJ_SeedHarvestFlagSet(fldobj);
@@ -275,10 +275,10 @@ BOOL SeedSys_TakeNuts(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
 //============================================================================================
 //-------------------------------------------------------------------------
 /**
- * @brief	”ì—¿‚ğ‚Ü‚­
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_compost	”ì—¿‚Ìí—ŞiƒAƒCƒeƒ€ƒiƒ“ƒo[j
+ * @brief	è‚¥æ–™ã‚’ã¾ã
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_compost	è‚¥æ–™ã®ç¨®é¡ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼‰
  */
 //-------------------------------------------------------------------------
 void SeedSys_SetCompost(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj, u16 item_compost)
@@ -291,10 +291,10 @@ void SeedSys_SetCompost(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj, u16 item_com
 
 //-------------------------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚ğA‚¦‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_nuts	‚«‚Ì‚İ‚Ìí—ŞiƒAƒCƒeƒ€ƒiƒ“ƒo[j
+ * @brief	æœ¨ã®å®Ÿã‚’æ¤ãˆã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_nuts	ãã®ã¿ã®ç¨®é¡ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼‰
  */
 //-------------------------------------------------------------------------
 void SeedSys_SetNuts(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj, u16 item_nuts)
@@ -307,9 +307,9 @@ void SeedSys_SetNuts(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj, u16 item_nuts)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	…‚ğ‚Ü‚­
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ°´ã‚’ã¾ã
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-------------------------------------------------------------------------
 void SeedSys_SetWater(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
@@ -322,10 +322,10 @@ void SeedSys_SetWater(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚Ìó‘Ô‚ğæ“¾‚·‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	SEEDSTAT	–Ø‚ÌÀ‚Ìó‘Ô
+ * @brief	æœ¨ã®å®Ÿã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	SEEDSTAT	æœ¨ã®å®Ÿã®çŠ¶æ…‹
  */
 //-------------------------------------------------------------------------
 SEEDSTAT SeedSys_GetSeedStatus(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -338,10 +338,10 @@ SEEDSTAT SeedSys_GetSeedStatus(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR f
 
 //-------------------------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚Ìí—Ş‚ğæ“¾‚·‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16			–Ø‚ÌÀ‚Ìí—ŞiƒAƒCƒeƒ€ƒiƒ“ƒo[j
+ * @brief	æœ¨ã®å®Ÿã®ç¨®é¡ã‚’å–å¾—ã™ã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16			æœ¨ã®å®Ÿã®ç¨®é¡ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼‰
  */
 //-------------------------------------------------------------------------
 int SeedSys_GetSeedType(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -353,10 +353,10 @@ int SeedSys_GetSeedType(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
 }
 //-------------------------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚Ìí—Ş‚ğæ“¾‚·‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int			–Ø‚ÌÀ‚Ìí—Şi‚O`ITEM_NUTS_MAX)
+ * @brief	æœ¨ã®å®Ÿã®ç¨®é¡ã‚’å–å¾—ã™ã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int			æœ¨ã®å®Ÿã®ç¨®é¡ï¼ˆï¼ã€œITEM_NUTS_MAX)
  */
 //-------------------------------------------------------------------------
 u16 SeedSys_GetSeedTypeItem(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -369,10 +369,10 @@ u16 SeedSys_GetSeedTypeItem(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldo
 
 //-------------------------------------------------------------------------
 /**
- * @brief	”ì—¿‚Ìí—Ş‚ğæ“¾‚·‚é
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16			”ì—¿‚Ìí—ŞiƒAƒCƒeƒ€ƒiƒ“ƒo[j
+ * @brief	è‚¥æ–™ã®ç¨®é¡ã‚’å–å¾—ã™ã‚‹
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16			è‚¥æ–™ã®ç¨®é¡ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼‰
  */
 //-------------------------------------------------------------------------
 u16 SeedSys_GetCompost(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -385,9 +385,9 @@ u16 SeedSys_GetCompost(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	…‚Ìó‘Ô‚ğæ“¾
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ°´ã®çŠ¶æ…‹ã‚’å–å¾—
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	u16
  */
 //-------------------------------------------------------------------------
@@ -402,10 +402,10 @@ SEEDGROUND SeedSys_GetGroundStatus(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_P
 
 //-------------------------------------------------------------------------
 /**
- * @brief	–Ø‚ÌÀ‚Ì¶‚Á‚½”‚ğæ“¾
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int			¶‚Á‚½–Ø‚ÌÀ‚Ì”
+ * @brief	æœ¨ã®å®Ÿã®ç”Ÿã£ãŸæ•°ã‚’å–å¾—
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int			ç”Ÿã£ãŸæœ¨ã®å®Ÿã®æ•°
  */
 //-------------------------------------------------------------------------
 int SeedSys_GetSeedCount(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -422,10 +422,10 @@ int SeedSys_GetSeedCount(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
 //
 //-------------------------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ‚Ég‚¦‚é‚Ç‚¤‚®‚Ìƒ`ƒFƒbƒN
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		–Ø‚ÌÀ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éFIELDOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u32			g—p‰Â”\‚ÈƒAƒCƒeƒ€‚Ìî•ñiSEEDITEMCHK`QÆj
+ * @brief	ãã®ã¿ã«ä½¿ãˆã‚‹ã©ã†ãã®ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		æœ¨ã®å®Ÿã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹FIELDOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u32			ä½¿ç”¨å¯èƒ½ãªã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ï¼ˆSEEDITEMCHKã€œå‚ç…§ï¼‰
  */
 //-------------------------------------------------------------------------
 u32 SeedSys_ItemUseCheck(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
@@ -436,15 +436,15 @@ u32 SeedSys_ItemUseCheck(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
 	}
 	switch (SeedSys_GetSeedStatus(fsys, fldobj)) {
 	case SEEDSTAT_NOTHING:
-		//A‚¦‚ç‚ê‚Ä‚¢‚È‚¢ê‡A‚«‚Ì‚İ‚ğg‚¦‚é
+		//æ¤ãˆã‚‰ã‚Œã¦ã„ãªã„å ´åˆã€ãã®ã¿ã‚’ä½¿ãˆã‚‹
 		chk_value |= SEEDITEMCHK_USE_SEED;
 		if (SeedSys_GetCompost(fsys, fldobj) == 0) {
-		//‚³‚ç‚É‚±‚â‚µ‚ª–„‚ß‚ç‚ê‚Ä‚¢‚È‚¢ê‡A‚±‚â‚µ‚ğg‚¦‚é
+		//ã•ã‚‰ã«ã“ã‚„ã—ãŒåŸ‹ã‚ã‚‰ã‚Œã¦ã„ãªã„å ´åˆã€ã“ã‚„ã—ã‚’ä½¿ãˆã‚‹
 			chk_value |= SEEDITEMCHK_USE_COMPOST;
 		}
 		break;
 	default:
-		//’ÊíA‚«‚Ì‚İ‚ªA‚¦‚ç‚ê‚Ä‚¢‚é‚Æ‚±‚ë‚Å‚Í‚¶‚å‚¤‚ë‚ğg‚¤‚±‚Æ‚ª‚Å‚«‚é
+		//é€šå¸¸ã€ãã®ã¿ãŒæ¤ãˆã‚‰ã‚Œã¦ã„ã‚‹ã¨ã“ã‚ã§ã¯ã˜ã‚‡ã†ã‚ã‚’ä½¿ã†ã“ã¨ãŒã§ãã‚‹
 		chk_value |= SEEDITEMCHK_USE_ZYOURO;
 		break;
 	}
@@ -455,7 +455,7 @@ u32 SeedSys_ItemUseCheck(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj)
 //============================================================================================
 //
 //
-//	‚İ‚¸‚â‚è“®ìƒCƒxƒ“ƒg
+//	ã¿ãšã‚„ã‚Šå‹•ä½œã‚¤ãƒ™ãƒ³ãƒˆ
 //
 //
 //============================================================================================
@@ -504,7 +504,7 @@ static BOOL HitCheck(FIELDSYS_WORK * fsys, EV_SEEDWATER_WORK * esw, int dir)
 	} else if (dir == DIR_DOWN) {
 		gz ++;
 	} else {
-		GF_ASSERT_MSG(0, "is•ûŒü‚ª‚¨‚©‚µ‚¢I\n");
+		GF_ASSERT_MSG(0, "é€²è¡Œæ–¹å‘ãŒãŠã‹ã—ã„ï¼\n");
 	}
 	if (GetHitAttr(fsys, gx, gz)) {
 		return TRUE;
@@ -540,7 +540,7 @@ static FIELD_OBJ_PTR GetFrontFldObj(FIELDSYS_WORK * fsys, EV_SEEDWATER_WORK * es
 	} else if (esw->dir == DIR_DOWN) {
 		gz += 1;
 	} else {
-		GF_ASSERT_MSG(0, "©‹@‚ÌŒü‚«‚ª‚¨‚©‚µ‚¢I\n");
+		GF_ASSERT_MSG(0, "è‡ªæ©Ÿã®å‘ããŒãŠã‹ã—ã„ï¼\n");
 	}
 	return FieldOBJ_SearchGridPos(fsys->fldobjsys, gx, gz, FALSE);
 }
@@ -651,7 +651,7 @@ static BOOL GMEVENT_SeedWater(GMEVENT_CONTROL * event)
 		break;
 
 	case SW_SEQ_END:
-		//©‹@‚ÌŒ©‚½–Ú‚ğ’Êí‚É–ß‚·
+		//è‡ªæ©Ÿã®è¦‹ãŸç›®ã‚’é€šå¸¸ã«æˆ»ã™
 		Player_DirSet(fsys->player, esw->dir);
 		FieldOBJ_MovePause(Player_FieldOBJGet(fsys->player));
 //		Player_RequestSet(fsys->player, HERO_REQBIT_NORMAL);
@@ -664,7 +664,7 @@ static BOOL GMEVENT_SeedWater(GMEVENT_CONTROL * event)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	…‚â‚èƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	æ°´ã‚„ã‚Šã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  */
 //-------------------------------------------------------------------------
 void EventCall_SeedWater(FIELDSYS_WORK * fsys)
@@ -679,7 +679,7 @@ void EventCall_SeedWater(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	…‚â‚èƒCƒxƒ“ƒgI—¹i©‹@ƒtƒH[ƒ€‚ğ’Êí‚É–ß‚·j
+ * @brief	æ°´ã‚„ã‚Šã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ï¼ˆè‡ªæ©Ÿãƒ•ã‚©ãƒ¼ãƒ ã‚’é€šå¸¸ã«æˆ»ã™ï¼‰
  */
 //-------------------------------------------------------------------------
 void SeedSys_ResetPlayerForm(FIELDSYS_WORK * fsys)

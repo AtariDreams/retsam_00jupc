@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	fieldobj_header.h
- * @brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒNƒgƒwƒbƒ_[\‘¢‘Ì’è‹`ƒwƒbƒ_[
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“å®šç¾©ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	kagaya
  * @data	05.07.13
  */
@@ -13,113 +13,113 @@
 //	typedef strcut
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
-//	FIELD_OBJ “®ìA•`‰æŠÖ”ƒ[ƒNƒTƒCƒY (byte size)
+//	FIELD_OBJ å‹•ä½œã€æç”»é–¢æ•°ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º (byte size)
 //--------------------------------------------------------------
-#define FLDOBJ_MOVE_WORK_SIZE		(16)					///<“®ìŠÖ”—pƒ[ƒNƒTƒCƒY
-#define FLDOBJ_MOVE_SUB_WORK_SIZE	(16)					///<“®ìƒTƒuŠÖ”—pƒ[ƒNƒTƒCƒY
-#define FLDOBJ_MOVE_CMD_WORK_SIZE	(16)					///<“®ìƒRƒ}ƒ“ƒh—pƒ[ƒNƒTƒCƒY
-#define FLDOBJ_DRAW_WORK_SIZE		(32)					///<•`‰æŠÖ”—pƒ[ƒNƒTƒCƒY
+#define FLDOBJ_MOVE_WORK_SIZE		(16)					///<å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+#define FLDOBJ_MOVE_SUB_WORK_SIZE	(16)					///<å‹•ä½œã‚µãƒ–é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+#define FLDOBJ_MOVE_CMD_WORK_SIZE	(16)					///<å‹•ä½œã‚³ãƒãƒ³ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+#define FLDOBJ_DRAW_WORK_SIZE		(32)					///<æç”»é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-//	Œ^’è‹`
+//	å‹å®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_H FIELD_OBJ_H;
 typedef struct _TAG_FIELD_OBJ_SAVE_DATA * FIELD_OBJ_SAVE_DATA_PTR;
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_H\‘¢‘Ì
+///	FIELD_OBJ_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_H
 {
-	unsigned short id;										///<¯•ÊID
-	unsigned short obj_code;								///<•\¦‚·‚éOBJƒR[ƒh
-	unsigned short move_code;								///<“®ìƒR[ƒh
-	unsigned short event_type;								///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-	unsigned short event_flag;								///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-	unsigned short event_id;								///<ƒCƒxƒ“ƒgID
-	short dir;												///<w’è•ûŒü
-	unsigned short param0;									///<w’èƒpƒ‰ƒƒ^ 0
-	unsigned short param1;									///<w’èƒpƒ‰ƒƒ^ 1
-	unsigned short param2;									///<w’èƒpƒ‰ƒƒ^ 2
-	short move_limit_x;										///<X•ûŒüˆÚ“®§ŒÀ
-	short move_limit_z;										///<Z•ûŒüˆÚ“®§ŒÀ
-	unsigned short gx;										///<ƒOƒŠƒbƒhX
-	unsigned short gz;										///<ƒOƒŠƒbƒhZ
-	int gy;													///<Y’l fx32Œ^
+	unsigned short id;										///<è­˜åˆ¥ID
+	unsigned short obj_code;								///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+	unsigned short move_code;								///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	unsigned short event_type;								///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	unsigned short event_flag;								///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+	unsigned short event_id;								///<ã‚¤ãƒ™ãƒ³ãƒˆID
+	short dir;												///<æŒ‡å®šæ–¹å‘
+	unsigned short param0;									///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 0
+	unsigned short param1;									///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 1
+	unsigned short param2;									///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 2
+	short move_limit_x;										///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+	short move_limit_z;										///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+	unsigned short gx;										///<ã‚°ãƒªãƒƒãƒ‰X
+	unsigned short gz;										///<ã‚°ãƒªãƒƒãƒ‰Z
+	int gy;													///<Yå€¤ fx32å‹
 };
 
-#define FIELD_OBJ_H_SIZE (sizeof(FIELD_OBJ_H))				///<FIELD_OBJ_HƒTƒCƒY
+#define FIELD_OBJ_H_SIZE (sizeof(FIELD_OBJ_H))				///<FIELD_OBJ_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_SAVE_DATA\‘¢‘Ì
+///	FIELD_OBJ_SAVE_DATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_SAVE_DATA
 {
-	u32 status_bit;											///<ƒXƒe[ƒ^ƒXƒrƒbƒg
-	u32 move_bit;											///<“®ìƒrƒbƒg
+	u32 status_bit;											///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
+	u32 move_bit;											///<å‹•ä½œãƒ“ãƒƒãƒˆ
 	u8 obj_id;												///<OBJ ID
-	u8 move_code;											///<“®ìƒR[ƒh
-	s8 move_limit_x;										///<X•ûŒüˆÚ“®§ŒÀ
-	s8 move_limit_z;										///<Z•ûŒüˆÚ“®§ŒÀ
-	s8 dir_head;											///<FIELD_OBJ_Hw’è•ûŒü
-	s8 dir_disp;											///<Œ»İŒü‚¢‚Ä‚¢‚é•ûŒü
-	s8 dir_move;											///<Œ»İ“®‚¢‚Ä‚¢‚é•ûŒü
-	u8 dummy;												///<ƒ_ƒ~[
-	u16 zone_id;											///<ƒ][ƒ“ ID
-	u16 obj_code;											///<OBJƒR[ƒh
-	u16 event_type;											///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-	u16 event_flag;											///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-	u16 event_id;											///<ƒCƒxƒ“ƒgID
-	s16 param0;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	s16 param1;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	s16 param2;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	s16 gx_init;											///<‰ŠúƒOƒŠƒbƒhX
-	s16 gy_init;											///<‰ŠúƒOƒŠƒbƒhY
-	s16 gz_init;											///<‰ŠúƒOƒŠƒbƒhZ
-	s16 gx_now;												///<Œ»İƒOƒŠƒbƒhX
-	s16 gy_now;												///<Œ»İƒOƒŠƒbƒhY
-	s16 gz_now;												///<Œ»İƒOƒŠƒbƒhZ
-	fx32 fx32_y;											///<fx32Œ^‚Ì‚‚³’l
-	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<“®ìŠÖ”—pƒ[ƒN
-	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<“®ìƒTƒuŠÖ”—pƒ[ƒN
+	u8 move_code;											///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	s8 move_limit_x;										///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+	s8 move_limit_z;										///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+	s8 dir_head;											///<FIELD_OBJ_HæŒ‡å®šæ–¹å‘
+	s8 dir_disp;											///<ç¾åœ¨å‘ã„ã¦ã„ã‚‹æ–¹å‘
+	s8 dir_move;											///<ç¾åœ¨å‹•ã„ã¦ã„ã‚‹æ–¹å‘
+	u8 dummy;												///<ãƒ€ãƒŸãƒ¼
+	u16 zone_id;											///<ã‚¾ãƒ¼ãƒ³ ID
+	u16 obj_code;											///<OBJã‚³ãƒ¼ãƒ‰
+	u16 event_type;											///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	u16 event_flag;											///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+	u16 event_id;											///<ã‚¤ãƒ™ãƒ³ãƒˆID
+	s16 param0;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	s16 param1;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	s16 param2;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	s16 gx_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰X
+	s16 gy_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Y
+	s16 gz_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Z
+	s16 gx_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰X
+	s16 gy_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Y
+	s16 gz_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Z
+	fx32 fx32_y;											///<fx32å‹ã®é«˜ã•å€¤
+	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<å‹•ä½œã‚µãƒ–é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
 }FIELD_OBJ_SAVE_DATA;
 
 #define FIELD_OBJ_SAVE_DATA_SIZE (sizeof(FIELD_OBJ_SAVE_DATA))	///<FIELD_OBJ_SAVE_DATA size
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_SAVE_DATA\‘¢‘Ì old
+///	FIELD_OBJ_SAVE_DATAæ§‹é€ ä½“ old
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_SAVE_DATA_OLD
 {
-	u32 status_bit;											///<ƒXƒe[ƒ^ƒXƒrƒbƒg
-	u32 move_bit;											///<“®ìƒrƒbƒg
+	u32 status_bit;											///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
+	u32 move_bit;											///<å‹•ä½œãƒ“ãƒƒãƒˆ
 	u32 obj_id;												///<OBJ ID
-	u32 zone_id;											///<ƒ][ƒ“ ID
-	u32 obj_code;											///<OBJƒR[ƒh
-	u32 move_code;											///<“®ìƒR[ƒh
-	u32 event_type;											///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-	u32 event_flag;											///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-	u32 event_id;											///<ƒCƒxƒ“ƒgID
-	int dir_head;											///<FIELD_OBJ_Hw’è•ûŒü
-	int dir_disp;											///<Œ»İŒü‚¢‚Ä‚¢‚é•ûŒü
-	int dir_move;											///<Œ»İ“®‚¢‚Ä‚¢‚é•ûŒü
-	int param0;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int param1;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int param2;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int move_limit_x;										///<X•ûŒüˆÚ“®§ŒÀ
-	int move_limit_z;										///<Z•ûŒüˆÚ“®§ŒÀ
-	int gx_init;											///<‰ŠúƒOƒŠƒbƒhX
-	int gy_init;											///<‰ŠúƒOƒŠƒbƒhY
-	int gz_init;											///<‰ŠúƒOƒŠƒbƒhZ
-	int gx_now;												///<Œ»İƒOƒŠƒbƒhX
-	int gy_now;												///<Œ»İƒOƒŠƒbƒhY
-	int gz_now;												///<Œ»İƒOƒŠƒbƒhZ
-	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<“®ìŠÖ”—pƒ[ƒN
-	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<“®ìƒTƒuŠÖ”—pƒ[ƒN
+	u32 zone_id;											///<ã‚¾ãƒ¼ãƒ³ ID
+	u32 obj_code;											///<OBJã‚³ãƒ¼ãƒ‰
+	u32 move_code;											///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	u32 event_type;											///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	u32 event_flag;											///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+	u32 event_id;											///<ã‚¤ãƒ™ãƒ³ãƒˆID
+	int dir_head;											///<FIELD_OBJ_HæŒ‡å®šæ–¹å‘
+	int dir_disp;											///<ç¾åœ¨å‘ã„ã¦ã„ã‚‹æ–¹å‘
+	int dir_move;											///<ç¾åœ¨å‹•ã„ã¦ã„ã‚‹æ–¹å‘
+	int param0;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int param1;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int param2;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int move_limit_x;										///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+	int move_limit_z;										///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+	int gx_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰X
+	int gy_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Y
+	int gz_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Z
+	int gx_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰X
+	int gy_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Y
+	int gz_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Z
+	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<å‹•ä½œã‚µãƒ–é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
 }FIELD_OBJ_SAVE_DATA_OLD;
 
 #define FIELD_OBJ_SAVE_DATA_OLD_SIZE (sizeof(FIELD_OBJ_SAVE_DATA_OLD))

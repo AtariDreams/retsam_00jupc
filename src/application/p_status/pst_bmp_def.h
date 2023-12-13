@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_bmp.h
- * @brief	É|ÉPÉÇÉìÉXÉeÅ[É^ÉXâÊñ  BMPíËã`
+ * @brief	„Éù„Ç±„É¢„É≥„Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢ BMPÂÆöÁæ©
  * @author	Hiroyuki Nakamura
  * @date	2006.02.24
  */
@@ -9,170 +9,170 @@
 
 
 //============================================================================================
-//	å≈íËï∂éöóÒ
+//	Âõ∫ÂÆöÊñáÂ≠óÂàó
 //============================================================================================
-// ÅuÉ|ÉPÉÇÉìÇ∂ÇÂÇ§ÇŸÇ§Åv
+// „Äå„Éù„Ç±„É¢„É≥„Åò„Çá„ÅÜ„Åª„ÅÜ„Äç
 #define	WIN_P1_TITLE_PX		( 1 )
 #define	WIN_P1_TITLE_PY		( 0 )
 #define	WIN_P1_TITLE_SX		( 13 )
 #define	WIN_P1_TITLE_SY		( 2 )
 #define	WIN_P1_TITLE_PAL	( 15 )
 #define	WIN_P1_TITLE_CGX	( 1 )
-// ÅuÉgÉåÅ[ÉiÅ[ÉÅÉÇÅv
+// „Äå„Éà„É¨„Éº„Éä„Éº„É°„É¢„Äç
 #define	WIN_P2_TITLE_PX		( 1 )
 #define	WIN_P2_TITLE_PY		( 0 )
 #define	WIN_P2_TITLE_SX		( 11 )
 #define	WIN_P2_TITLE_SY		( 2 )
 #define	WIN_P2_TITLE_PAL	( 15 )
 #define	WIN_P2_TITLE_CGX	( WIN_P1_TITLE_CGX + WIN_P1_TITLE_SX * WIN_P1_TITLE_SY )
-// ÅuÉ|ÉPÉÇÉìÇÃÇ§ÇËÇÂÇ≠Åv
+// „Äå„Éù„Ç±„É¢„É≥„ÅÆ„ÅÜ„Çä„Çá„Åè„Äç
 #define	WIN_P3_TITLE_PX		( 1 )
 #define	WIN_P3_TITLE_PY		( 0 )
 #define	WIN_P3_TITLE_SX		( 14 )
 #define	WIN_P3_TITLE_SY		( 2 )
 #define	WIN_P3_TITLE_PAL	( 15 )
 #define	WIN_P3_TITLE_CGX	( WIN_P2_TITLE_CGX + WIN_P2_TITLE_SX * WIN_P2_TITLE_SY )
-// ÅuÉRÉìÉfÉBÉVÉáÉìÅv
+// „Äå„Ç≥„É≥„Éá„Ç£„Ç∑„Éß„É≥„Äç
 #define	WIN_P4_TITLE_PX		( 1 )
 #define	WIN_P4_TITLE_PY		( 0 )
 #define	WIN_P4_TITLE_SX		( 11 )
 #define	WIN_P4_TITLE_SY		( 2 )
 #define	WIN_P4_TITLE_PAL	( 15 )
 #define	WIN_P4_TITLE_CGX	( WIN_P3_TITLE_CGX + WIN_P3_TITLE_SX * WIN_P3_TITLE_SY )
-// ÅuÇΩÇΩÇ©Ç§ÇÌÇ¥Åv
+// „Äå„Åü„Åü„Åã„ÅÜ„Çè„Åñ„Äç
 #define	WIN_P5_TITLE_PX		( 1 )
 #define	WIN_P5_TITLE_PY		( 0 )
 #define	WIN_P5_TITLE_SX		( 9 )
 #define	WIN_P5_TITLE_SY		( 2 )
 #define	WIN_P5_TITLE_PAL	( 15 )
 #define	WIN_P5_TITLE_CGX	( WIN_P4_TITLE_CGX + WIN_P4_TITLE_SX * WIN_P4_TITLE_SY )
-// ÅuÉRÉìÉeÉXÉgÇÌÇ¥Åv
+// „Äå„Ç≥„É≥„ÉÜ„Çπ„Éà„Çè„Åñ„Äç
 #define	WIN_P6_TITLE_PX		( 1 )
 #define	WIN_P6_TITLE_PY		( 0 )
 #define	WIN_P6_TITLE_SX		( 11 )
 #define	WIN_P6_TITLE_SY		( 2 )
 #define	WIN_P6_TITLE_PAL	( 15 )
 #define	WIN_P6_TITLE_CGX	( WIN_P5_TITLE_CGX + WIN_P5_TITLE_SX * WIN_P5_TITLE_SY )
-// ÅuÇ‡ÇøÇ‡ÇÃÅv
+// „Äå„ÇÇ„Å°„ÇÇ„ÅÆ„Äç
 #define	WIN_MOTIMONO_PX		( 1 )
 #define	WIN_MOTIMONO_PY		( 20 )
 #define	WIN_MOTIMONO_SX		( 6 )
 #define	WIN_MOTIMONO_SY		( 2 )
 #define	WIN_MOTIMONO_PAL	( 15 )
 #define	WIN_MOTIMONO_CGX	( WIN_P6_TITLE_CGX + WIN_P6_TITLE_SX * WIN_P6_TITLE_SY )
-// ÅuÇ∏Ç©ÇÒNo.Åv
+// „Äå„Åö„Åã„ÇìNo.„Äç
 #define	WIN_P1_ZUKANNO_PX	( 14 )
 #define	WIN_P1_ZUKANNO_PY	( 5 )
 #define	WIN_P1_ZUKANNO_SX	( 9 )
 #define	WIN_P1_ZUKANNO_SY	( 2 )
 #define	WIN_P1_ZUKANNO_PAL	( 15 )
 #define	WIN_P1_ZUKANNO_CGX	( WIN_MOTIMONO_CGX + WIN_MOTIMONO_SX * WIN_MOTIMONO_SY )
-// ÅuÇ»Ç‹Ç¶Åv
+// „Äå„Å™„Åæ„Åà„Äç
 #define	WIN_P1_NAME_PX		( 14 )
 #define	WIN_P1_NAME_PY		( 7 )
 #define	WIN_P1_NAME_SX		( 5 )
 #define	WIN_P1_NAME_SY		( 2 )
 #define	WIN_P1_NAME_PAL		( 15 )
 #define	WIN_P1_NAME_CGX		( WIN_P1_ZUKANNO_CGX + WIN_P1_ZUKANNO_SX * WIN_P1_ZUKANNO_SY )
-// ÅuÉ^ÉCÉvÅv
+// „Äå„Çø„Ç§„Éó„Äç
 #define	WIN_P1_TYPE_PX		( 14 )
 #define	WIN_P1_TYPE_PY		( 9 )
 #define	WIN_P1_TYPE_SX		( 5 )
 #define	WIN_P1_TYPE_SY		( 2 )
 #define	WIN_P1_TYPE_PAL		( 15 )
 #define	WIN_P1_TYPE_CGX		( WIN_P1_NAME_CGX + WIN_P1_NAME_SX * WIN_P1_NAME_SY )
-// ÅuÇ®Ç‚Åv
+// „Äå„Åä„ÇÑ„Äç
 #define	WIN_P1_OYA_PX		( 14 )
 #define	WIN_P1_OYA_PY		( 11 )
 #define	WIN_P1_OYA_SX		( 5 )
 #define	WIN_P1_OYA_SY		( 2 )
 #define	WIN_P1_OYA_PAL		( 15 )
 #define	WIN_P1_OYA_CGX		( WIN_P1_TYPE_CGX + WIN_P1_TYPE_SX * WIN_P1_TYPE_SY )
-// ÅuIDNo.Åv
+// „ÄåIDNo.„Äç
 #define	WIN_P1_IDNO_PX		( 14 )
 #define	WIN_P1_IDNO_PY		( 13 )
 #define	WIN_P1_IDNO_SX		( 5 )
 #define	WIN_P1_IDNO_SY		( 2 )
 #define	WIN_P1_IDNO_PAL		( 15 )
 #define	WIN_P1_IDNO_CGX		( WIN_P1_OYA_CGX + WIN_P1_OYA_SX * WIN_P1_OYA_SY )
-// ÅuÇ∞ÇÒÇ¥Ç¢ÇÃÅ@ÇØÇ¢ÇØÇÒÇøÅv
+// „Äå„Åí„Çì„Åñ„ÅÑ„ÅÆ„ÄÄ„Åë„ÅÑ„Åë„Çì„Å°„Äç
 #define	WIN_P1_NOWEXP_PX	( 14 )
 #define	WIN_P1_NOWEXP_PY	( 15 )
 #define	WIN_P1_NOWEXP_SX	( 15 )
 #define	WIN_P1_NOWEXP_SY	( 2 )
 #define	WIN_P1_NOWEXP_PAL	( 15 )
 #define	WIN_P1_NOWEXP_CGX	( WIN_P1_IDNO_CGX + WIN_P1_IDNO_SX * WIN_P1_IDNO_SY )
-// ÅuÇ¬Ç¨ÇÃÉåÉxÉãÇ‹Ç≈Åv
+// „Äå„Å§„Åé„ÅÆ„É¨„Éô„É´„Åæ„Åß„Äç
 #define	WIN_P1_NEXTLV_PX	( 14 )
 #define	WIN_P1_NEXTLV_PY	( 19 )
 #define	WIN_P1_NEXTLV_SX	( 12 )
 #define	WIN_P1_NEXTLV_SY	( 2 )
 #define	WIN_P1_NEXTLV_PAL	( 15 )
 #define	WIN_P1_NEXTLV_CGX	( WIN_P1_NOWEXP_CGX + WIN_P1_NOWEXP_SX * WIN_P1_NOWEXP_SY )
-// ÅuÇ†Ç∆Åv
+// „Äå„ÅÇ„Å®„Äç
 #define	WIN_P1_ATO_PX		( 19 )
 #define	WIN_P1_ATO_PY		( 21 )
 #define	WIN_P1_ATO_SX		( 3 )
 #define	WIN_P1_ATO_SY		( 2 )
 #define	WIN_P1_ATO_PAL		( 15 )
 #define	WIN_P1_ATO_CGX		( WIN_P1_NEXTLV_CGX + WIN_P1_NEXTLV_SX * WIN_P1_NEXTLV_SY )
-// ÅuHPÅv
+// „ÄåHP„Äç
 #define	WIN_P3_HP_PX		( 18 )
 #define	WIN_P3_HP_PY		( 4 )
 #define	WIN_P3_HP_SX		( 2 )
 #define	WIN_P3_HP_SY		( 2 )
 #define	WIN_P3_HP_PAL		( 15 )
 #define	WIN_P3_HP_CGX		( WIN_P1_ATO_CGX + WIN_P1_ATO_SX * WIN_P1_ATO_SY )
-// ÅuÇ±Ç§Ç∞Ç´Åv
+// „Äå„Åì„ÅÜ„Åí„Åç„Äç
 #define	WIN_P3_POW_PX		( 16 )
 #define	WIN_P3_POW_PY		( 7 )
 #define	WIN_P3_POW_SX		( 6 )
 #define	WIN_P3_POW_SY		( 2 )
 #define	WIN_P3_POW_PAL		( 15 )
 #define	WIN_P3_POW_CGX		( WIN_P3_HP_CGX + WIN_P3_HP_SX * WIN_P3_HP_SY )
-// ÅuÇ⁄Ç§Ç¨ÇÂÅv
+// „Äå„Åº„ÅÜ„Åé„Çá„Äç
 #define	WIN_P3_DEF_PX		( 16 )
 #define	WIN_P3_DEF_PY		( 9 )
 #define	WIN_P3_DEF_SX		( 6 )
 #define	WIN_P3_DEF_SY		( 2 )
 #define	WIN_P3_DEF_PAL		( 15 )
 #define	WIN_P3_DEF_CGX		( WIN_P3_POW_CGX + WIN_P3_POW_SX * WIN_P3_POW_SY )
-// ÅuÇ∆Ç≠Ç±Ç§Åv
+// „Äå„Å®„Åè„Åì„ÅÜ„Äç
 #define	WIN_P3_SPP_PX		( 16 )
 #define	WIN_P3_SPP_PY		( 11 )
 #define	WIN_P3_SPP_SX		( 6 )
 #define	WIN_P3_SPP_SY		( 2 )
 #define	WIN_P3_SPP_PAL		( 15 )
 #define	WIN_P3_SPP_CGX		( WIN_P3_DEF_CGX + WIN_P3_DEF_SX * WIN_P3_DEF_SY )
-// ÅuÇ∆Ç≠Ç⁄Ç§Åv
+// „Äå„Å®„Åè„Åº„ÅÜ„Äç
 #define	WIN_P3_SPD_PX		( 16 )
 #define	WIN_P3_SPD_PY		( 13 )
 #define	WIN_P3_SPD_SX		( 6 )
 #define	WIN_P3_SPD_SY		( 2 )
 #define	WIN_P3_SPD_PAL		( 15 )
 #define	WIN_P3_SPD_CGX		( WIN_P3_SPP_CGX + WIN_P3_SPP_SX * WIN_P3_SPP_SY )
-// ÅuÇ∑ÇŒÇ‚Ç≥Åv
+// „Äå„Åô„Å∞„ÇÑ„Åï„Äç
 #define	WIN_P3_AGI_PX		( 16 )
 #define	WIN_P3_AGI_PY		( 15 )
 #define	WIN_P3_AGI_SX		( 6 )
 #define	WIN_P3_AGI_SY		( 2 )
 #define	WIN_P3_AGI_PAL		( 15 )
 #define	WIN_P3_AGI_CGX		( WIN_P3_SPD_CGX + WIN_P3_SPD_SX * WIN_P3_SPD_SY )
-// ÅuÇ∆Ç≠ÇπÇ¢Åv
+// „Äå„Å®„Åè„Åõ„ÅÑ„Äç
 #define	WIN_P3_SPA_PX		( 14 )
 #define	WIN_P3_SPA_PY		( 18 )
 #define	WIN_P3_SPA_SX		( 6 )
 #define	WIN_P3_SPA_SY		( 2 )
 #define	WIN_P3_SPA_PAL		( 15 )
 #define	WIN_P3_SPA_CGX		( WIN_P3_AGI_CGX + WIN_P3_AGI_SX * WIN_P3_AGI_SY )
-// ÅuÇØÇ√Ç‚Åv
+// „Äå„Åë„Å•„ÇÑ„Äç
 #define	WIN_P4_KEDUYA_PX	( 14 )
 #define	WIN_P4_KEDUYA_PY	( 20 )
 #define	WIN_P4_KEDUYA_SX	( 5 )
 #define	WIN_P4_KEDUYA_SY	( 2 )
 #define	WIN_P4_KEDUYA_PAL	( 15 )
 #define	WIN_P4_KEDUYA_CGX	( WIN_P3_SPA_CGX + WIN_P3_SPA_SX * WIN_P3_SPA_SY )
-// ÅuÇπÇ¢Ç©Ç≠Åv
+// „Äå„Åõ„ÅÑ„Åã„Åè„Äç
 #define	WIN_P4_SEIKAKU_PX	( 1 )
 #define	WIN_P4_SEIKAKU_PY	( 22 )
 #define	WIN_P4_SEIKAKU_SX	( 6 )
@@ -180,21 +180,21 @@
 #define	WIN_P4_SEIKAKU_PAL	( 15 )
 #define	WIN_P4_SEIKAKU_CGX	( WIN_P4_KEDUYA_CGX + WIN_P4_KEDUYA_SX * WIN_P4_KEDUYA_SY )
 /*
-// ÅuÇ≠ÇÌÇµÇ≠Åv
+// „Äå„Åè„Çè„Åó„Åè„Äç
 #define	WIN_P5_KUWASIKU_PX	( 26 )
 #define	WIN_P5_KUWASIKU_PY	( 0 )
 #define	WIN_P5_KUWASIKU_SX	( 6 )
 #define	WIN_P5_KUWASIKU_SY	( 2 )
 #define	WIN_P5_KUWASIKU_PAL	( 15 )
 #define	WIN_P5_KUWASIKU_CGX	( WIN_P4_SEIKAKU_CGX + WIN_P4_SEIKAKU_SX * WIN_P4_SEIKAKU_SY )
-// ÅuÇ¢ÇÍÇ©Ç¶Åv
+// „Äå„ÅÑ„Çå„Åã„Åà„Äç
 #define	WIN_P5_IREKAE_PX	( 26 )
 #define	WIN_P5_IREKAE_PY	( 0 )
 #define	WIN_P5_IREKAE_SX	( 6 )
 #define	WIN_P5_IREKAE_SY	( 2 )
 #define	WIN_P5_IREKAE_PAL	( 15 )
 #define	WIN_P5_IREKAE_CGX	( WIN_P5_KUWASIKU_CGX + WIN_P5_KUWASIKU_SX * WIN_P5_KUWASIKU_SY )
-// ÅuÇØÇ¡ÇƒÇ¢Åv
+// „Äå„Åë„Å£„Å¶„ÅÑ„Äç
 #define	WIN_P5_KETTEI_PX	( 26 )
 #define	WIN_P5_KETTEI_PY	( 0 )
 #define	WIN_P5_KETTEI_SX	( 6 )
@@ -202,28 +202,28 @@
 #define	WIN_P5_KETTEI_PAL	( 15 )
 #define	WIN_P5_KETTEI_CGX	( WIN_P5_IREKAE_CGX + WIN_P5_IREKAE_SX * WIN_P5_IREKAE_SY )
 */
-// ÅuÇ‡Ç«ÇÈÅv
+// „Äå„ÇÇ„Å©„Çã„Äç
 #define	WIN_P5_MODORU_PX	( 21 )
 #define	WIN_P5_MODORU_PY	( 20 )
 #define	WIN_P5_MODORU_SX	( 5 )
 #define	WIN_P5_MODORU_SY	( 2 )
 #define	WIN_P5_MODORU_PAL	( 15 )
 #define	WIN_P5_MODORU_CGX	( WIN_P4_SEIKAKU_CGX + WIN_P4_SEIKAKU_SX * WIN_P4_SEIKAKU_SY )
-// ÅuÇ‘ÇÒÇÈÇ¢Åv
+// „Äå„Å∂„Çì„Çã„ÅÑ„Äç
 #define	WIN_P5_BUNRUI_PX	( 1 )
 #define	WIN_P5_BUNRUI_PY	( 8 )
 #define	WIN_P5_BUNRUI_SX	( 6 )
 #define	WIN_P5_BUNRUI_SY	( 2 )
 #define	WIN_P5_BUNRUI_PAL	( 15 )
 #define	WIN_P5_BUNRUI_CGX	( WIN_P5_MODORU_CGX + WIN_P5_MODORU_SX * WIN_P5_MODORU_SY )
-// ÅuÇ¢ÇËÇÂÇ≠Åv
+// „Äå„ÅÑ„Çä„Çá„Åè„Äç
 #define	WIN_P5_IRYOKU_PX	( 1 )
 #define	WIN_P5_IRYOKU_PY	( 10 )
 #define	WIN_P5_IRYOKU_SX	( 6 )
 #define	WIN_P5_IRYOKU_SY	( 2 )
 #define	WIN_P5_IRYOKU_PAL	( 15 )
 #define	WIN_P5_IRYOKU_CGX	( WIN_P5_BUNRUI_CGX + WIN_P5_BUNRUI_SX * WIN_P5_BUNRUI_SY )
-// ÅuÇﬂÇ¢ÇøÇ„Ç§Åv
+// „Äå„ÇÅ„ÅÑ„Å°„ÇÖ„ÅÜ„Äç
 #define	WIN_P5_HIT_PX	( 1 )
 #define	WIN_P5_HIT_PY	( 12 )
 #define	WIN_P5_HIT_SX	( 8 )
@@ -231,7 +231,7 @@
 #define	WIN_P5_HIT_PAL	( 15 )
 #define	WIN_P5_HIT_CGX	( WIN_P5_IRYOKU_CGX + WIN_P5_IRYOKU_SX * WIN_P5_IRYOKU_SY )
 /*
-// ÅuÇ‡Ç«ÇÈÅv
+// „Äå„ÇÇ„Å©„Çã„Äç
 #define	WIN_P8_MODORU_PX	( 26 )
 #define	WIN_P8_MODORU_PY	( 0 )
 #define	WIN_P8_MODORU_SX	( 5 )
@@ -239,28 +239,28 @@
 #define	WIN_P8_MODORU_PAL	( 15 )
 #define	WIN_P8_MODORU_CGX	( WIN_P5_HIT_CGX + WIN_P5_HIT_SX * WIN_P5_HIT_SY )
 */
-// ÅuÇ‡Ç«ÇËÇ‹Ç∑Åv
+// „Äå„ÇÇ„Å©„Çä„Åæ„Åô„Äç
 #define	WIN_P8_MODORIMASU_PX	( 18 )
 #define	WIN_P8_MODORIMASU_PY	( 11 )
 #define	WIN_P8_MODORIMASU_SX	( 9 )
 #define	WIN_P8_MODORIMASU_SY	( 2 )
 #define	WIN_P8_MODORIMASU_PAL	( 15 )
 #define	WIN_P8_MODORIMASU_CGX	( WIN_P5_HIT_CGX + WIN_P5_HIT_SX * WIN_P5_HIT_SY )
-// ÅuÉAÉsÅ[ÉãÉ|ÉCÉìÉgÅv
+// „Äå„Ç¢„Éî„Éº„É´„Éù„Ç§„É≥„Éà„Äç
 #define	WIN_P6_AP_POINT_PX	( 2 )
 #define	WIN_P6_AP_POINT_PY	( 13 )
 #define	WIN_P6_AP_POINT_SX	( 12 )
 #define	WIN_P6_AP_POINT_SY	( 2 )
 #define	WIN_P6_AP_POINT_PAL	( 15 )
 #define	WIN_P6_AP_POINT_CGX	( WIN_P8_MODORIMASU_CGX + WIN_P8_MODORIMASU_SX * WIN_P8_MODORIMASU_SY )
-// ÅuÇ‡Ç¡ÇƒÇ¢ÇÈÇ©Ç∏Åv
+// „Äå„ÇÇ„Å£„Å¶„ÅÑ„Çã„Åã„Åö„Äç
 #define	WIN_P7_MOTTEIRU_PX	( 14 )
 #define	WIN_P7_MOTTEIRU_PY	( 21 )
 #define	WIN_P7_MOTTEIRU_SX	( 12 )
 #define	WIN_P7_MOTTEIRU_SY	( 2 )
 #define	WIN_P7_MOTTEIRU_PAL	( 15 )
 #define	WIN_P7_MOTTEIRU_CGX	( WIN_P6_AP_POINT_CGX + WIN_P6_AP_POINT_SX * WIN_P6_AP_POINT_SY )
-// ÅuÇ´ÇÀÇÒÉäÉ{ÉìÅv
+// „Äå„Åç„Å≠„Çì„É™„Éú„É≥„Äç
 #define	WIN_P7_TITLE_PX		( 1 )
 #define	WIN_P7_TITLE_PY		( 0 )
 #define	WIN_P7_TITLE_SX		( 11 )
@@ -270,30 +270,30 @@
 
 
 //============================================================================================
-//	â¬ïœï∂éöóÒ
+//	ÂèØÂ§âÊñáÂ≠óÂàó
 //============================================================================================
-// ÉAÉCÉeÉÄñº
+// „Ç¢„Ç§„ÉÜ„É†Âêç
 #define	WIN_ITEMNAME_PX		( 1 )
 #define	WIN_ITEMNAME_PY		( 22 )
 #define	WIN_ITEMNAME_SX		( 12 )
 #define	WIN_ITEMNAME_SY		( 2 )
 #define	WIN_ITEMNAME_PAL	( 15 )
 #define	WIN_ITEMNAME_CGX	( WIN_P7_TITLE_CGX + WIN_P7_TITLE_SX * WIN_P7_TITLE_SY )
-// ÉåÉxÉã
+// „É¨„Éô„É´
 #define	WIN_LV_PX	( 1 )
 #define	WIN_LV_PY	( 5 )
 #define	WIN_LV_SX	( 6 )
 #define	WIN_LV_SY	( 2 )
 #define	WIN_LV_PAL	( 15 )
 #define	WIN_LV_CGX	( WIN_ITEMNAME_CGX + WIN_ITEMNAME_SX * WIN_ITEMNAME_SY )
-// ÉjÉbÉNÉlÅ[ÉÄ
+// „Éã„ÉÉ„ÇØ„Éç„Éº„É†
 #define	WIN_NICKNAME_PX		( 3 )
 #define	WIN_NICKNAME_PY		( 3 )
 #define	WIN_NICKNAME_SX		( 9 )
 #define	WIN_NICKNAME_SY		( 2 )
 #define	WIN_NICKNAME_PAL	( 15 )
 #define	WIN_NICKNAME_CGX	( WIN_LV_CGX + WIN_LV_SX * WIN_LV_SY )
-// ÉKÉCÉhÉÅÉbÉZÅ[ÉW
+// „Ç¨„Ç§„Éâ„É°„ÉÉ„Çª„Éº„Ç∏
 #define	WIN_GUIDE_PX		( 26 )
 #define	WIN_GUIDE_PY		( 0 )
 #define	WIN_GUIDE_SX		( 6 )
@@ -301,24 +301,24 @@
 #define	WIN_GUIDE_PAL		( 15 )
 #define	WIN_GUIDE_CGX		( WIN_NICKNAME_CGX + WIN_NICKNAME_SX * WIN_NICKNAME_SY )
 
-/*** Ç±ÇÍà»ç~ÇÕÉyÅ[ÉWñàÇÃóÃàÊ ***/
+/*** „Åì„Çå‰ª•Èôç„ÅØ„Éö„Éº„Ç∏ÊØé„ÅÆÈ†òÂüü ***/
 #define	ADD_WIN_PAGE_CGX	( WIN_GUIDE_CGX + WIN_GUIDE_SX * WIN_GUIDE_SY )
-// ÉyÅ[ÉWÇPÅiÉ|ÉPÉÇÉìèÓïÒÅj
-// ê}ä”No.
+// „Éö„Éº„Ç∏ÔºëÔºà„Éù„Ç±„É¢„É≥ÊÉÖÂ†±Ôºâ
+// Âõ≥ÈëëNo.
 #define	A_WIN_P1_LIBNUM_PX	( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_LIBNUM_PY	( 5 )
 #define	A_WIN_P1_LIBNUM_SX	( 6 )
 #define	A_WIN_P1_LIBNUM_SY	( 2 )
 #define	A_WIN_P1_LIBNUM_PAL	( 15 )
 #define	A_WIN_P1_LIBNUM_CGX	( ADD_WIN_PAGE_CGX )
-// ñºëO
+// ÂêçÂâç
 #define	A_WIN_P1_NAME_PX	( 23 )
 #define	A_WIN_P1_NAME_PY	( 7 )
 #define	A_WIN_P1_NAME_SX	( 8 )
 #define	A_WIN_P1_NAME_SY	( 2 )
 #define	A_WIN_P1_NAME_PAL	( 15 )
 #define	A_WIN_P1_NAME_CGX	( A_WIN_P1_LIBNUM_CGX + A_WIN_P1_LIBNUM_SX * A_WIN_P1_LIBNUM_SY )
-// êeñº
+// Ë¶™Âêç
 #define	A_WIN_P1_OYANAME_PX		( 23 )
 #define	A_WIN_P1_OYANAME_PY		( 11 )
 #define	A_WIN_P1_OYANAME_SX		( 8 )
@@ -332,14 +332,14 @@
 #define	A_WIN_P1_IDNO_SY	( 2 )
 #define	A_WIN_P1_IDNO_PAL	( 15 )
 #define	A_WIN_P1_IDNO_CGX	( A_WIN_P1_OYANAME_CGX + A_WIN_P1_OYANAME_SX * A_WIN_P1_OYANAME_SY )
-// åªç›ÇÃåoå±íl
+// ÁèæÂú®„ÅÆÁµåÈ®ìÂÄ§
 #define	A_WIN_P1_NOWEXP_PX	( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_NOWEXP_PY	( 17 )
 #define	A_WIN_P1_NOWEXP_SX	( 6 ) // MatchComment: 7 -> 6
 #define	A_WIN_P1_NOWEXP_SY	( 2 )
 #define	A_WIN_P1_NOWEXP_PAL	( 15 )
 #define	A_WIN_P1_NOWEXP_CGX	( A_WIN_P1_IDNO_CGX + A_WIN_P1_IDNO_SX * A_WIN_P1_IDNO_SY + 2 ) // MatchComment: add 2
-// éüÇÃÉåÉxÉãÇ‹Ç≈@
+// Ê¨°„ÅÆ„É¨„Éô„É´„Åæ„Åß@
 #define	A_WIN_P1_NEXTEXP_PX		( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_NEXTEXP_PY		( 21 )
 #define	A_WIN_P1_NEXTEXP_SX		( 6 )
@@ -347,8 +347,8 @@
 #define	A_WIN_P1_NEXTEXP_PAL	( 15 )
 #define	A_WIN_P1_NEXTEXP_CGX	( A_WIN_P1_NOWEXP_CGX+A_WIN_P1_NOWEXP_SX*A_WIN_P1_NOWEXP_SY + 2 ) // MatchComment: add 2
 
-// ÉyÅ[ÉWÇQÅiÉgÉåÅ[ÉiÅ[ÉÅÉÇÅj
-// ÉgÉåÅ[ÉiÅ[ÉÅÉÇ
+// „Éö„Éº„Ç∏ÔºíÔºà„Éà„É¨„Éº„Éä„Éº„É°„É¢Ôºâ
+// „Éà„É¨„Éº„Éä„Éº„É°„É¢
 #define	A_WIN_P2_TMEMO_PX	( 14 )
 #define	A_WIN_P2_TMEMO_PY	( 5 )
 #define	A_WIN_P2_TMEMO_SX	( 17 )
@@ -356,7 +356,7 @@
 #define	A_WIN_P2_TMEMO_PAL	( 15 )
 #define	A_WIN_P2_TMEMO_CGX	( ADD_WIN_PAGE_CGX )
 
-// ÉyÅ[ÉWÇRÅiÉ|ÉPÉÇÉìî\óÕÅj
+// „Éö„Éº„Ç∏ÔºìÔºà„Éù„Ç±„É¢„É≥ËÉΩÂäõÔºâ
 // HP/MHP
 #define	A_WIN_P3_HP_PX	( 23 )
 #define	A_WIN_P3_HP_PY	( 4 )
@@ -364,49 +364,49 @@
 #define	A_WIN_P3_HP_SY	( 2 )
 #define	A_WIN_P3_HP_PAL	( 15 )
 #define	A_WIN_P3_HP_CGX	( ADD_WIN_PAGE_CGX )
-// çUåÇ
+// ÊîªÊíÉ
 #define	A_WIN_P3_POW_PX		( 25 )
 #define	A_WIN_P3_POW_PY		( 7 )
 #define	A_WIN_P3_POW_SX		( 3 )
 #define	A_WIN_P3_POW_SY		( 2 )
 #define	A_WIN_P3_POW_PAL	( 15 )
 #define	A_WIN_P3_POW_CGX	( A_WIN_P3_HP_CGX + A_WIN_P3_HP_SX * A_WIN_P3_HP_SY )
-// ñhå‰
+// Èò≤Âæ°
 #define	A_WIN_P3_DEF_PX		( 25 )
 #define	A_WIN_P3_DEF_PY		( 9 )
 #define	A_WIN_P3_DEF_SX		( 3 )
 #define	A_WIN_P3_DEF_SY		( 2 )
 #define	A_WIN_P3_DEF_PAL	( 15 )
 #define	A_WIN_P3_DEF_CGX	( A_WIN_P3_POW_CGX + A_WIN_P3_POW_SX * A_WIN_P3_POW_SY )
-// ì¡çU
+// ÁâπÊîª
 #define	A_WIN_P3_SPP_PX		( 25 )
 #define	A_WIN_P3_SPP_PY		( 11 )
 #define	A_WIN_P3_SPP_SX		( 3 )
 #define	A_WIN_P3_SPP_SY		( 2 )
 #define	A_WIN_P3_SPP_PAL	( 15 )
 #define	A_WIN_P3_SPP_CGX	( A_WIN_P3_DEF_CGX + A_WIN_P3_DEF_SX * A_WIN_P3_DEF_SY )
-// ì¡ñh
+// ÁâπÈò≤
 #define	A_WIN_P3_SPD_PX		( 25 )
 #define	A_WIN_P3_SPD_PY		( 13 )
 #define	A_WIN_P3_SPD_SX		( 3 )
 #define	A_WIN_P3_SPD_SY		( 2 )
 #define	A_WIN_P3_SPD_PAL	( 15 )
 #define	A_WIN_P3_SPD_CGX	( A_WIN_P3_SPP_CGX + A_WIN_P3_SPP_SX * A_WIN_P3_SPP_SY )
-// ëfëÅÇ≥
+// Á¥†Êó©„Åï
 #define	A_WIN_P3_AGI_PX		( 25 )
 #define	A_WIN_P3_AGI_PY		( 15 )
 #define	A_WIN_P3_AGI_SX		( 3 )
 #define	A_WIN_P3_AGI_SY		( 2 )
 #define	A_WIN_P3_AGI_PAL	( 15 )
 #define	A_WIN_P3_AGI_CGX	( A_WIN_P3_SPD_CGX + A_WIN_P3_SPD_SX * A_WIN_P3_SPD_SY )
-// ì¡ê´ñº
+// ÁâπÊÄßÂêç
 #define	A_WIN_P3_SPANAME_PX		( 21 )
 #define	A_WIN_P3_SPANAME_PY		( 18 )
 #define	A_WIN_P3_SPANAME_SX		( 11 )
 #define	A_WIN_P3_SPANAME_SY		( 2 )
 #define	A_WIN_P3_SPANAME_PAL	( 15 )
 #define	A_WIN_P3_SPANAME_CGX	( A_WIN_P3_AGI_CGX + A_WIN_P3_AGI_SX * A_WIN_P3_AGI_SY )
-// ì¡ê´ê‡ñæ
+// ÁâπÊÄßË™¨Êòé
 #define	A_WIN_P3_SPAINFO_PX		( 14 )
 #define	A_WIN_P3_SPAINFO_PY		( 20 )
 #define	A_WIN_P3_SPAINFO_SX		( 18 )
@@ -414,57 +414,57 @@
 #define	A_WIN_P3_SPAINFO_PAL	( 15 )
 #define	A_WIN_P3_SPAINFO_CGX	( A_WIN_P3_SPANAME_CGX+A_WIN_P3_SPANAME_SX*A_WIN_P3_SPANAME_SY )
 
-// ÉyÅ[ÉWÇTÅiêÌÇ§ãZÅj
-// ãZñºÇP
+// „Éö„Éº„Ç∏ÔºïÔºàÊà¶„ÅÜÊäÄÔºâ
+// ÊäÄÂêçÔºë
 #define	A_WIN_P5_WAZA1_PX	( 21 )
 #define	A_WIN_P5_WAZA1_PY	( 4 )
 #define	A_WIN_P5_WAZA1_SX	( 11 )
 #define	A_WIN_P5_WAZA1_SY	( 4 )
 #define	A_WIN_P5_WAZA1_PAL	( 15 )
 #define	A_WIN_P5_WAZA1_CGX	( ADD_WIN_PAGE_CGX )
-// ãZñºÇQ
+// ÊäÄÂêçÔºí
 #define	A_WIN_P5_WAZA2_PX	( 21 )
 #define	A_WIN_P5_WAZA2_PY	( 8 )
 #define	A_WIN_P5_WAZA2_SX	( 11 )
 #define	A_WIN_P5_WAZA2_SY	( 4 )
 #define	A_WIN_P5_WAZA2_PAL	( 15 )
 #define	A_WIN_P5_WAZA2_CGX	( A_WIN_P5_WAZA1_CGX + A_WIN_P5_WAZA1_SX * A_WIN_P5_WAZA1_SY )
-// ãZñºÇR
+// ÊäÄÂêçÔºì
 #define	A_WIN_P5_WAZA3_PX	( 21 )
 #define	A_WIN_P5_WAZA3_PY	( 12 )
 #define	A_WIN_P5_WAZA3_SX	( 11 )
 #define	A_WIN_P5_WAZA3_SY	( 4 )
 #define	A_WIN_P5_WAZA3_PAL	( 15 )
 #define	A_WIN_P5_WAZA3_CGX	( A_WIN_P5_WAZA2_CGX + A_WIN_P5_WAZA2_SX * A_WIN_P5_WAZA2_SY )
-// ãZñºÇS
+// ÊäÄÂêçÔºî
 #define	A_WIN_P5_WAZA4_PX	( 21 )
 #define	A_WIN_P5_WAZA4_PY	( 16 )
 #define	A_WIN_P5_WAZA4_SX	( 11 )
 #define	A_WIN_P5_WAZA4_SY	( 4 )
 #define	A_WIN_P5_WAZA4_PAL	( 15 )
 #define	A_WIN_P5_WAZA4_CGX	( A_WIN_P5_WAZA3_CGX + A_WIN_P5_WAZA3_SX * A_WIN_P5_WAZA3_SY )
-// ãZñºÇT
+// ÊäÄÂêçÔºï
 #define	A_WIN_P5_WAZA5_PX	( 21 )
 #define	A_WIN_P5_WAZA5_PY	( 20 )
 #define	A_WIN_P5_WAZA5_SX	( 11 )
 #define	A_WIN_P5_WAZA5_SY	( 4 )
 #define	A_WIN_P5_WAZA5_PAL	( 15 )
 #define	A_WIN_P5_WAZA5_CGX	( A_WIN_P5_WAZA4_CGX + A_WIN_P5_WAZA4_SX * A_WIN_P5_WAZA4_SY )
-// à–óÕ
+// Â®ÅÂäõ
 #define	A_WIN_P5_ATC_PX		( 12 )
 #define	A_WIN_P5_ATC_PY		( 10 )
 #define	A_WIN_P5_ATC_SX		( 3 )
 #define	A_WIN_P5_ATC_SY		( 2 )
 #define	A_WIN_P5_ATC_PAL	( 15 )
 #define	A_WIN_P5_ATC_CGX	( A_WIN_P5_WAZA5_CGX + A_WIN_P5_WAZA5_SX * A_WIN_P5_WAZA5_SY )
-// ñΩíÜ
+// ÂëΩ‰∏≠
 #define	A_WIN_P5_HIT_PX		( 12 )
 #define	A_WIN_P5_HIT_PY		( 12 )
 #define	A_WIN_P5_HIT_SX		( 3 )
 #define	A_WIN_P5_HIT_SY		( 2 )
 #define	A_WIN_P5_HIT_PAL	( 15 )
 #define	A_WIN_P5_HIT_CGX	( A_WIN_P5_ATC_CGX + A_WIN_P5_ATC_SX * A_WIN_P5_ATC_SY )
-// ãZê‡ñæ
+// ÊäÄË™¨Êòé
 #define	A_WIN_P5_INFO_PX	( 1 )
 #define	A_WIN_P5_INFO_PY	( 14 )
 #define	A_WIN_P5_INFO_SX	( 15 )
@@ -472,8 +472,8 @@
 #define	A_WIN_P5_INFO_PAL	( 15 )
 #define	A_WIN_P5_INFO_CGX	( A_WIN_P5_HIT_CGX + A_WIN_P5_HIT_SX * A_WIN_P5_HIT_SY )
 
-// ÉyÅ[ÉWÇUÅiÉRÉìÉeÉXÉgãZÅj
-// ãZê‡ñæ
+// „Éö„Éº„Ç∏ÔºñÔºà„Ç≥„É≥„ÉÜ„Çπ„ÉàÊäÄÔºâ
+// ÊäÄË™¨Êòé
 #define	A_WIN_P6_INFO_PX	( 1 )
 #define	A_WIN_P6_INFO_PY	( 18 )
 #define	A_WIN_P6_INFO_SX	( 15 )
@@ -481,8 +481,8 @@
 #define	A_WIN_P6_INFO_PAL	( 15 )
 #define	A_WIN_P6_INFO_CGX	( A_WIN_P5_WAZA5_CGX + A_WIN_P5_WAZA5_SX * A_WIN_P5_WAZA5_SY )
 
-// ÉyÅ[ÉWÇVÅiãLîOÉäÉ{ÉìÅj
-// ???Ç±
+// „Éö„Éº„Ç∏ÔºóÔºàË®òÂøµ„É™„Éú„É≥Ôºâ
+// ???„Åì
 #define	A_WIN_P7_NUM_PX		( 26 )
 #define	A_WIN_P7_NUM_PY		( 21 )
 #define	A_WIN_P7_NUM_SX		( 5 )
@@ -496,14 +496,14 @@
 #define	A_WIN_P7_MAX_SY		( 2 )
 #define	A_WIN_P7_MAX_PAL	( 15 )
 #define	A_WIN_P7_MAX_CGX	( A_WIN_P7_NUM_CGX + A_WIN_P7_NUM_SX * A_WIN_P7_NUM_SY )
-// ÉäÉ{Éìñº
+// „É™„Éú„É≥Âêç
 #define	A_WIN_P7_NAME_PX	( 1 )
 #define	A_WIN_P7_NAME_PY	( 18 )
 #define	A_WIN_P7_NAME_SX	( 21 )
 #define	A_WIN_P7_NAME_SY	( 2 )
 #define	A_WIN_P7_NAME_PAL	( 15 )
 #define	A_WIN_P7_NAME_CGX	( A_WIN_P7_MAX_CGX + A_WIN_P7_MAX_SX * A_WIN_P7_MAX_SY )
-// ÉäÉ{Éìê‡ñæ
+// „É™„Éú„É≥Ë™¨Êòé
 #define	A_WIN_P7_INFO_PX	( 1 )
 #define	A_WIN_P7_INFO_PY	( 20 )
 #define	A_WIN_P7_INFO_SX	( 30 )
@@ -514,29 +514,29 @@
 
 //============================================================================================
 //============================================================================================
-// É|ÉãÉgä÷òAÇÃÉRÉìÉfÉBÉVÉáÉìÉyÅ[ÉW
-// ÅuÇØÇ¡ÇƒÇ¢Åv
+// „Éù„É´„ÉàÈñ¢ÈÄ£„ÅÆ„Ç≥„É≥„Éá„Ç£„Ç∑„Éß„É≥„Éö„Éº„Ç∏
+// „Äå„Åë„Å£„Å¶„ÅÑ„Äç
 #define	A_WIN_COND_KETTEI_PX	( 26 )
 #define	A_WIN_COND_KETTEI_PY	( 0 )
 #define	A_WIN_COND_KETTEI_SX	( 5 )
 #define	A_WIN_COND_KETTEI_SY	( 2 )
 #define	A_WIN_COND_KETTEI_PAL	( 15 )
 #define	A_WIN_COND_KETTEI_CGX	( ADD_WIN_PAGE_CGX )
-// ÅuÇ‡Ç«ÇÈÅv
+// „Äå„ÇÇ„Å©„Çã„Äç
 #define	A_WIN_COND_MODORU_PX	( 28 )
 #define	A_WIN_COND_MODORU_PY	( 0 )
 #define	A_WIN_COND_MODORU_SX	( 4 )
 #define	A_WIN_COND_MODORU_SY	( 2 )
 #define	A_WIN_COND_MODORU_PAL	( 15 )
 #define	A_WIN_COND_MODORU_CGX	(A_WIN_COND_KETTEI_CGX+A_WIN_COND_KETTEI_SX*A_WIN_COND_KETTEI_SY)
-// ÅuÇ∑Ç´Ç»ÇΩÇ◊Ç‡ÇÃÅv
+// „Äå„Åô„Åç„Å™„Åü„Åπ„ÇÇ„ÅÆ„Äç
 #define	A_WIN_COND_LIKE_PX		( 1 )
 #define	A_WIN_COND_LIKE_PY		( 20 )
 #define	A_WIN_COND_LIKE_SX		( 12 )
 #define	A_WIN_COND_LIKE_SY		( 4 )
 #define	A_WIN_COND_LIKE_PAL		( 15 )
 #define	A_WIN_COND_LIKE_CGX		(A_WIN_COND_MODORU_CGX+A_WIN_COND_MODORU_SX*A_WIN_COND_MODORU_SY)
-// ÉÅÉbÉZÅ[ÉW
+// „É°„ÉÉ„Çª„Éº„Ç∏
 #define	A_WIN_COND_MSG_PX		( 2 )
 #define	A_WIN_COND_MSG_PY		( 21 )
 #define	A_WIN_COND_MSG_SX		( 27 )

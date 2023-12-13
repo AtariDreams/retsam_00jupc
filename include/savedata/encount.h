@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	encount.h
- * @bfief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒAƒNƒZƒXŠÖ˜A
+ * @bfief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢é€£
  * @author	Nozomu Saito
  *
  *
@@ -15,19 +15,19 @@
 
 #define	ENC_RND_SEED_SAFARI		(1)
 #define ENC_RND_SEED_GENERATE	(2)
-#define ENC_RND_SEED_UNKNOWN	(0)		//Žg‚í‚È‚¢‚¯‚Çˆê‰ž
+#define ENC_RND_SEED_UNKNOWN	(0)		//ä½¿ã‚ãªã„ã‘ã©ä¸€å¿œ
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚h‚c
-#define MP_PARAM_ZONE_ID	(1)		//ƒ][ƒ“‚h‚c
-#define MP_PARAM_POW_RND	(2)		//ƒpƒ[—”
-#define MP_PARAM_PER_RND	(3)		//ŒÂ«—”
-#define MP_PARAM_MONSNO		(4)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-#define MP_PARAM_HP			(5)		//‚g‚o
-#define MP_PARAM_LV			(6)		//‚k‚u
-#define MP_PARAM_COND		(7)		//ó‘ÔˆÙí
-#define MP_PARAM_ENC		(8)		//ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒOiŒ»ÝˆÚ“®’†‚©‚Ç‚¤‚©j
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼©ï¼¤
+#define MP_PARAM_ZONE_ID	(1)		//ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
+#define MP_PARAM_POW_RND	(2)		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+#define MP_PARAM_PER_RND	(3)		//å€‹æ€§ä¹±æ•°
+#define MP_PARAM_MONSNO		(4)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+#define MP_PARAM_HP			(5)		//ï¼¨ï¼°
+#define MP_PARAM_LV			(6)		//ï¼¬ï¼¶
+#define MP_PARAM_COND		(7)		//çŠ¶æ…‹ç•°å¸¸
+#define MP_PARAM_ENC		(8)		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°ï¼ˆç¾åœ¨ç§»å‹•ä¸­ã‹ã©ã†ã‹ï¼‰
 
-#define HILL_BACK_POKE_NONE	(0xffff)	//— ŽRƒ|ƒPƒ‚ƒ“‚¢‚È‚¢ó‘Ô
+#define HILL_BACK_POKE_NONE	(0xffff)	//è£å±±ãƒã‚±ãƒ¢ãƒ³ã„ãªã„çŠ¶æ…‹
 
 typedef struct ENC_SV_DATA_tag * ENC_SV_PTR;
 typedef struct MV_POKE_DATA_tag * MPD_PTR;

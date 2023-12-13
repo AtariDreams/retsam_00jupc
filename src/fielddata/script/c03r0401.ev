@@ -1,6 +1,6 @@
 //====================================================================
 //						c03r0401.gmm
-//					�V�e�B�O�R�Er0401
+//					シティ０３・r0401
 //====================================================================
 	.text
 
@@ -8,11 +8,11 @@
 	.include	"../../../include/msgdata/msg_c03r0401.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c03r0401_woman6
 _EVENT_DATA		ev_c03r0401_assistantm
@@ -30,53 +30,53 @@ _EVENT_DATA		ev_c03r0401_case5
 _EVENT_DATA		ev_c03r0401_woman
 _EVENT_DATA		ev_c03r0401_bigman
 _EVENT_DATA		ev_c03r0401_oldman
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 /********************************************************************/
-/*							�󂯕t��								*/
+/*							受け付け								*/
 /********************************************************************/
 ev_c03r0401_woman6:
 	_EASY_OBJ_MSG	msg_c03r0401_woman6_01
 	_END
 
 /********************************************************************/
-/*							����									*/
+/*							助手									*/
 /********************************************************************/
-//SCWK_PARAM0 -> �J�Z�L�̑���
-//SCWK_PARAM1 -> ��ސ��l��
-//SCWK_PARAM2 -> �A�C�e���ԍ��i�J�Z�L�ԍ��j
-//SCWK_PARAM3 -> ���j���[�I��
-//LOCALWORK1�`7 -> ���j���[1�`7(�A�C�e���ԍ�����j
+//SCWK_PARAM0 -> カセキの総数
+//SCWK_PARAM1 -> 種類数獲得
+//SCWK_PARAM2 -> アイテム番号（カセキ番号）
+//SCWK_PARAM3 -> メニュー選択
+//LOCALWORK1〜7 -> メニュー1〜7(アイテム番号入り）
 
 ev_c03r0401_assistantm:
 	_TALK_OBJ_START
 
-	//���Ε�����
+	//化石復元中
 	_IF_FLAGON_JUMP	FH_01,ev_c03r0401_assistantm_06
 
-	//���A
+	//挨拶
 	_TALKMSG		msg_c03r0401_assistantm_01
 
-	//�T���Z�b�g����O
+	//探検セット入手前
 	_IF_FLAGOFF_JUMP	FE_TANKENSETTO_GET,ev_c03r0401_assistantm_10
 
-	//�|�P���������������Ă���
+	//ポケモンをあずかっている
 	_IFVAL_JUMP		WK_SCENE_KASEKI_MONSNO,NE,0,c03r0401_uketori_chk
 
-	//���΂������邩 -> SCWK_PARAM0
+	//化石が何個あるか -> SCWK_PARAM0
 	_KASEKI_COUNT	SCWK_PARAM0
 
-	//���΂Ȃ�
+	//化石なし
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_c03r0401_assistantm_09
 
 	_TALKMSG		msg_c03r0401_assistantm_02
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c03r0401_assistantm_05	//������
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c03r0401_assistantm_05	//いいえ
 
-	_IFVAL_JUMP		SCWK_PARAM0,EQ,1,ev_c03r0401_one_kaseki	//1�̂�
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,1,ev_c03r0401_one_kaseki	//1個のみ
 
 
-	//��ސ��l�� -> SCWK_PARAM1
+	//種類数獲得 -> SCWK_PARAM1
 	_LDVAL			SCWK_PARAM1,0
 	_ITEM_CHK		ITEM_HIMITUNOKOHAKU,1,SCWK_ANSWER
 	_ADD_WK			SCWK_PARAM1,SCWK_ANSWER
@@ -93,16 +93,16 @@ ev_c03r0401_assistantm:
 	_ITEM_CHK		ITEM_ZUGAINOKASEKI,1,SCWK_ANSWER
 	_ADD_WK			SCWK_PARAM1,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_PARAM1,EQ,1,ev_c03r0401_one_kaseki	//1��ނ̂݁�1�̂�
+	_IFVAL_JUMP		SCWK_PARAM1,EQ,1,ev_c03r0401_one_kaseki	//1種類のみ＝1個のみ
 
-	_LDVAL				SCWK_TEMP0,0		//���j���[���Ԗڂ�
-	_LDVAL				SCWK_TEMP1,0		//�e�[�u���̉��Ԗڂ�
-	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM3					//B�L�����Z���L��
+	_LDVAL				SCWK_TEMP0,0		//メニューｘ番目か
+	_LDVAL				SCWK_TEMP1,0		//テーブルの何番目か
+	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM3					//Bキャンセル有効
 
 
 c03r0401_menu_loop1:
 
-	//SCWK_ANSWER <- �����Ă��邩 , LOCALWORK0 <- �A�C�e���ԍ�
+	//SCWK_ANSWER <- 持っているか , LOCALWORK0 <- アイテム番号
 	_IFVAL_CALL			SCWK_TEMP1,EQ,0,ev_c03r0401_assistantm_itemno_check_1
 	_IFVAL_CALL			SCWK_TEMP1,EQ,1,ev_c03r0401_assistantm_itemno_check_2
 	_IFVAL_CALL			SCWK_TEMP1,EQ,2,ev_c03r0401_assistantm_itemno_check_3
@@ -110,10 +110,10 @@ c03r0401_menu_loop1:
 	_IFVAL_CALL			SCWK_TEMP1,EQ,4,ev_c03r0401_assistantm_itemno_check_5
 	_IFVAL_CALL			SCWK_TEMP1,EQ,5,ev_c03r0401_assistantm_itemno_check_6
 	_IFVAL_CALL			SCWK_TEMP1,EQ,6,ev_c03r0401_assistantm_itemno_check_7
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c03r0401_menu_skip1					//�Y������A�C�e���Ȃ�
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c03r0401_menu_skip1					//該当するアイテムなし
 
 		
-	//LOCALWORKx  <-  LOCALWORK0�i�A�C�e���ԍ����Z�b�g
+	//LOCALWORKx  <-  LOCALWORK0（アイテム番号をセット
 	_IFVAL_CALL			SCWK_TEMP0,EQ,0,ev_c03r0401_assistantm_itemno_set_1
 	_IFVAL_CALL			SCWK_TEMP0,EQ,1,ev_c03r0401_assistantm_itemno_set_2
 	_IFVAL_CALL			SCWK_TEMP0,EQ,2,ev_c03r0401_assistantm_itemno_set_3
@@ -123,7 +123,7 @@ c03r0401_menu_loop1:
 	_IFVAL_CALL			SCWK_TEMP0,EQ,6,ev_c03r0401_assistantm_itemno_set_7
 
 
-	//���b�Z�[�W�ԍ��i���j���[�p�擾�j
+	//メッセージ番号（メニュー用取得）
 	_LDWK				SCWK_TEMP2,SCWK_TEMP1
 	_ADD_WK				SCWK_TEMP2,msg_kaseki_01
 
@@ -131,26 +131,26 @@ c03r0401_menu_loop1:
 
 	_JUMP				ev_c03r0401_menu_skip2
 
-//�Y������A�C�e���Ȃ�
+//該当するアイテムなし
 ev_c03r0401_menu_skip1:
-	_ADD_WK				SCWK_TEMP1,1		//���̍���
+	_ADD_WK				SCWK_TEMP1,1		//次の項目
 	_JUMP				c03r0401_menu_loop1
 
-//�Y������A�C�e������
+//該当するアイテムあり
 ev_c03r0401_menu_skip2:
-	_ADD_WK				SCWK_TEMP0,1		//���̃��j���[
-	_ADD_WK				SCWK_TEMP1,1		//���̍���
+	_ADD_WK				SCWK_TEMP0,1		//次のメニュー
+	_ADD_WK				SCWK_TEMP1,1		//次の項目
 
 	_IFWK_JUMP			SCWK_TEMP0,NE,SCWK_PARAM1,c03r0401_menu_loop1
 
-	_BMPMENU_MAKE_LIST16	msg_ev_win_049,SCWK_TEMP0		//���j���[�F��߂�
+	_BMPMENU_MAKE_LIST16	msg_ev_win_049,SCWK_TEMP0		//メニュー：やめる
 
 	_BMPMENU_START
 
-	//�L�����Z�����ꂽ
+	//キャンセルされた
 	_IFVAL_JUMP			SCWK_PARAM3,EQ,0xff,ev_c03r0401_assistantm_05
 
-	//��߂�I��
+	//やめる選択
 	_IFWK_JUMP			SCWK_PARAM3,EQ,LOCALWORK0,ev_c03r0401_assistantm_05
 
 	//LOCALWORKx -> SCWK_PARAM2
@@ -162,18 +162,18 @@ ev_c03r0401_menu_skip2:
 	_IFVAL_CALL			SCWK_PARAM3,EQ,5,ev_c03r0401_assistantm_localwork6_itemno_get
 	_IFVAL_CALL			SCWK_PARAM3,EQ,6,ev_c03r0401_assistantm_localwork7_itemno_get
 
-	//�A�C�e���i���΁j�ԍ����A�����X�^�[�ԍ��֕ϊ�(0:���΂ł͂Ȃ��Ƃ��͂O�j
+	//アイテム（化石）番号を、モンスター番号へ変換(0:化石ではないときは０）
 	_ITEMNO_TO_MONSNO		WK_SCENE_KASEKI_MONSNO,SCWK_PARAM2
-	_IFVAL_JUMP		WK_SCENE_KASEKI_MONSNO,EQ,0,ev_c03r0401_assistantm_05	//���ΈȊO��I��
+	_IFVAL_JUMP		WK_SCENE_KASEKI_MONSNO,EQ,0,ev_c03r0401_assistantm_05	//化石以外を選択
 
-	//���΂����炷
+	//化石を減らす
 	_SUB_ITEM		SCWK_PARAM2,1,SCWK_ANSWER
 
-	//���ʉ��Ε�������
+	//共通化石復元中へ
 	_JUMP			ev_c03r0401_assistantm_06
 
 //--------------------------------
-//SCWK_ANSWER <- �����Ă��邩 , LOCALWORK0 <- �A�C�e���ԍ�
+//SCWK_ANSWER <- もっているか , LOCALWORK0 <- アイテム番号
 ev_c03r0401_assistantm_itemno_check_1:
 	_LDVAL			LOCALWORK0,ITEM_HIMITUNOKOHAKU
 	_ITEM_CHK		LOCALWORK0,1,SCWK_ANSWER
@@ -210,7 +210,7 @@ ev_c03r0401_assistantm_itemno_check_7:
 	_RET
 
 
-//���j���[����ۑ� LOCALWORK0 -> LOCALWORKx
+//メニュー情報を保存 LOCALWORK0 -> LOCALWORKx
 ev_c03r0401_assistantm_itemno_set_1:
 	_LDWK			LOCALWORK1,LOCALWORK0
 	_RET
@@ -240,7 +240,7 @@ ev_c03r0401_assistantm_itemno_set_7:
 	_RET
 
 
-/*���j���[�\�z���ɃZ�b�g���ꂽ�A�C�e���ԍ���SCWK_PARAM2��*/
+/*メニュー構築時にセットされたアイテム番号をSCWK_PARAM2へ*/
 
 ev_c03r0401_assistantm_localwork1_itemno_get:
 	_LDWK			SCWK_PARAM2,LOCALWORK1
@@ -272,21 +272,21 @@ ev_c03r0401_assistantm_localwork7_itemno_get:
 
 //--------------------------------
 
-//���������P�̂�
+//かせきが１個のみ
 ev_c03r0401_one_kaseki:
-	_KASEKI_ITEMNO	SCWK_PARAM2,SCWK_TEMP0,1		//�莝���̉��΂������ăA�C�e���ԍ��ɂ��ĕԂ�(SCWK_TEMP0==dummy)
+	_KASEKI_ITEMNO	SCWK_PARAM2,SCWK_TEMP0,1		//手持ちの化石を見つけてアイテム番号にして返す(SCWK_TEMP0==dummy)
 
-	//�A�C�e���i���΁j�ԍ����A�����X�^�[�ԍ��֕ϊ�
+	//アイテム（化石）番号を、モンスター番号へ変換
 	_ITEMNO_TO_MONSNO		WK_SCENE_KASEKI_MONSNO,SCWK_PARAM2
 
-	//���΂����炷
+	//化石を減らす
 	_SUB_ITEM		SCWK_PARAM2,1,SCWK_ANSWER
 
-	//���ʉ��Ε�������
+	//共通化石復元中へ
 	_JUMP			ev_c03r0401_assistantm_06
 
 
-//���Ε���������
+//化石復元準備中
 ev_c03r0401_assistantm_06:
 	_FLAG_SET		FH_01
 	_TALKMSG		msg_c03r0401_assistantm_06
@@ -295,7 +295,7 @@ ev_c03r0401_assistantm_06:
 	_TALK_OBJ_END
 	_END
 
-//���΂𕜌����Ȃ�
+//化石を復元しない
 ev_c03r0401_assistantm_05:
 	_TALKMSG		msg_c03r0401_assistantm_05
 	_LAST_KEYWAIT
@@ -303,19 +303,19 @@ ev_c03r0401_assistantm_05:
 	_TALK_OBJ_END
 	_END
 
-//�󂯎��邩���`�F�b�N
+//受け取れるかをチェック
 c03r0401_uketori_chk:
-	//�|�P�����ԍ��[�������o�b�t�@��
+	//ポケモン番号ー＞文字バッファへ
 	_POKEMON_NAME_EXTRA	0,WK_SCENE_KASEKI_MONSNO,0,0
 	_TALK_KEYWAIT		msg_c03r0401_assistantm_07
 
-	//�|�P�������J�E���g
+	//ポケモン数カウント
 	_GET_POKE_COUNT		SCWK_ANSWER
 
-	//6�̂���Ȃ�󂯎��Ȃ�
+	//6体いるなら受け取れない
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,6,ev_c03r0401_assistantm_08
 
-	//�|�P�����ԍ��[�������o�b�t�@��
+	//ポケモン番号ー＞文字バッファへ
 	_POKEMON_NAME_EXTRA	1,WK_SCENE_KASEKI_MONSNO,0,0
 	_PLAYER_NAME		0
 
@@ -323,11 +323,11 @@ c03r0401_uketori_chk:
 	_TALKMSG		msg_c03r0401_assistantm_11
 	_ME_WAIT
 
-	//�|�P�����Ƃ��Ēǉ�
+	//ポケモンとして追加
 	_ADD_POKEMON	WK_SCENE_KASEKI_MONSNO,20,0,SCWK_ANSWER
 	_RECORD_INC		RECID_FOSSIL_RESTORE
 
-	//�a����ԉ���
+	//預け状態解除
 	_LDVAL			WK_SCENE_KASEKI_MONSNO,0
 
 	_TALKMSG		msg_c03r0401_assistantm_12
@@ -336,20 +336,20 @@ c03r0401_uketori_chk:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,c03r0401_name_change_no
 	_END
 
-//���O�ύX����
+//名前変更あり
 c03r0401_name_change_yes:
 	_TALK_CLOSE
 
 	_GET_POKE_COUNT	LOCALWORK0
-	_SUB_WK			LOCALWORK0,1		//"�ő吔�[�P"�ύX���ꂽPOS
+	_SUB_WK			LOCALWORK0,1		//"最大数ー１"変更されたPOS
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//���O����
+	//名前入力
 	_NAMEIN_POKE	LOCALWORK0,SCWK_ANSWER
 
-	//�������͂��Ă��Ȃ��A�ύX���Ă��Ȃ���"�ł͂Ȃ���"
+	//何も入力していない、変更していない時"ではない時"
 	_IFVAL_CALL		SCWK_ANSWER,NE,1,ev_c03r0401_name_change_record_inc
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -358,18 +358,18 @@ c03r0401_name_change_yes:
 	_TALK_OBJ_END
 	_END
 
-//�������͂��Ă��Ȃ��A�ύX���Ă��Ȃ���"�ł͂Ȃ���"
+//何も入力していない、変更していない時"ではない時"
 ev_c03r0401_name_change_record_inc:
 	_RECORD_INC		RECID_NICKNAME
 	_RET
 
-//���O�ύX�Ȃ�
+//名前変更なし
 c03r0401_name_change_no:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//�莝���������ς��Ŏ󂯎��Ȃ�
+//手持ちがいっぱいで受け取れない
 ev_c03r0401_assistantm_08:
 	_TALKMSG		msg_c03r0401_assistantm_08
 	_LAST_KEYWAIT
@@ -377,7 +377,7 @@ ev_c03r0401_assistantm_08:
 	_TALK_OBJ_END
 	_END
 
-//���΂��Ȃ��Ƃ�
+//化石がないとき
 ev_c03r0401_assistantm_09:
 	_TALKMSG		msg_c03r0401_assistantm_09
 	_LAST_KEYWAIT
@@ -385,7 +385,7 @@ ev_c03r0401_assistantm_09:
 	_TALK_OBJ_END
 	_END
 
-//�T���Z�b�g����O
+//探検セット入手前
 ev_c03r0401_assistantm_10:
 	_TALKMSG		msg_c03r0401_assistantm_10
 	_LAST_KEYWAIT
@@ -394,77 +394,77 @@ ev_c03r0401_assistantm_10:
 	_END
 
 /********************************************************************/
-/*							�R�j									*/
+/*							山男									*/
 /********************************************************************/
 ev_c03r0401_mount:
 	_EASY_OBJ_MSG	msg_c03r0401_mount_01
 	_END
 
 /********************************************************************/
-/*							���̎q									*/
+/*							女の子									*/
 /********************************************************************/
 ev_c03r0401_babygirl1:
 	_EASY_OBJ_MSG	msg_c03r0401_babygirl1_01
 	_END
 
 /********************************************************************/
-/*							���N									*/
+/*							少年									*/
 /********************************************************************/
 ev_c03r0401_boy1:
 	_EASY_OBJ_MSG	msg_c03r0401_boy1_01
 	_END
 
 /********************************************************************/
-/*						�Ǎۂ̒I�@��								*/
+/*						壁際の棚　左								*/
 /********************************************************************/
 ev_c03r0401_rack1:
 	_EASY_MSG	msg_c03r0401_rack1_01
 	_END
 
 /********************************************************************/
-/*						�Ǎۂ̒I�@��								*/
+/*						壁際の棚　中								*/
 /********************************************************************/
 ev_c03r0401_rack2:
 	_EASY_MSG	msg_c03r0401_rack2_01
 	_END
 
 /********************************************************************/
-/*						�Ǎۂ̒I�@�E								*/
+/*						壁際の棚　右								*/
 /********************************************************************/
 ev_c03r0401_rack3:
 	_EASY_MSG	msg_c03r0401_rack3_01
 	_END
 
 /********************************************************************/
-/*						�K���X�P�[�X�@�Z							*/
+/*						ガラスケース　短							*/
 /********************************************************************/
 ev_c03r0401_case1:
 	_EASY_MSG	msg_c03r0401_case1_01
 	_END
 
 /********************************************************************/
-/*						�K���X�P�[�X�@�Z							*/
+/*						ガラスケース　短							*/
 /********************************************************************/
 ev_c03r0401_case2:
 	_EASY_MSG	msg_c03r0401_case2_01
 	_END
 
 /********************************************************************/
-/*						�K���X�P�[�X�@��							*/
+/*						ガラスケース　長							*/
 /********************************************************************/
 ev_c03r0401_case3:
 	_EASY_MSG	msg_c03r0401_case3_01
 	_END
 
 /********************************************************************/
-/*						�K���X�P�[�X�@��							*/
+/*						ガラスケース　長							*/
 /********************************************************************/
 ev_c03r0401_case4:
 	_EASY_MSG	msg_c03r0401_case4_01
 	_END
 
 /********************************************************************/
-/*						�K���X�P�[�X�@��							*/
+/*						ガラスケース　長							*/
 /********************************************************************/
 ev_c03r0401_case5:
 	_EASY_MSG	msg_c03r0401_case5_01
@@ -472,7 +472,7 @@ ev_c03r0401_case5:
 
 
 /********************************************************************/
-/*								����								*/
+/*								女性								*/
 /********************************************************************/
 ev_c03r0401_woman:
 	_EASY_OBJ_MSG	msg_c03r0401_woman_01
@@ -480,7 +480,7 @@ ev_c03r0401_woman:
 
 
 /********************************************************************/
-/*								�N								*/
+/*								青年								*/
 /********************************************************************/
 ev_c03r0401_bigman:
 	_EASY_OBJ_MSG	msg_c03r0401_bigman_01
@@ -488,7 +488,7 @@ ev_c03r0401_bigman:
 
 
 /********************************************************************/
-/*								�V�l								*/
+/*								老人								*/
 /********************************************************************/
 ev_c03r0401_oldman:
 	_EASY_OBJ_MSG	msg_c03r0401_oldman_01

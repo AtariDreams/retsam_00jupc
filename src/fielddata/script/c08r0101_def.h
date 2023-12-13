@@ -1,13 +1,13 @@
 #ifndef _C08R0101_DEF_H_
 #define _C08R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C08R0101_WOMAN1		(1)
 #define	SCRID_C08R0101_SEAMAN		(2)
 #define	SCRID_C08R0101_SUNGLASSES		(3)
 #define	SCRID_C08R0101_MIDDLEMAN1		(4)
 #define	SCRID_C08R0101_FLAG_CHANGE		(5)
 #define	SCRID_C08R0101_GIRL1		(6)
-#define	SCRID_C08R0101_DATA_MAX		(6)		//最大数
+#define	SCRID_C08R0101_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_C08R0101_DEF_H_

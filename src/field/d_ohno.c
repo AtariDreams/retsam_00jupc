@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	d_ohno.c
- * @bfief	‘å–ì—pƒfƒoƒbƒOƒ‹[ƒ`ƒ“
+ * @bfief	å¤§é‡ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ«ãƒ¼ãƒãƒ³
  * @author	katsumi ohno
  * @date	05/07/08
  */
@@ -54,19 +54,19 @@
 #include "d_nohara.h"							//Debug_FrontierWifiMultiRecordMaxSet
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
 #include "d_ohno.h"
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
-//#define COMM_DEBUG (1)   // ’ÊM‚ÌƒfƒoƒbƒO‚ğ‚·‚éê‡’è‹`‚·‚é
+//#define COMM_DEBUG (1)   // é€šä¿¡ã®ãƒ‡ãƒãƒƒã‚°ã‚’ã™ã‚‹å ´åˆå®šç¾©ã™ã‚‹
 
-// ƒƒjƒ…[‚ğƒ^ƒXƒN‚É“o˜^‚µ‚Ä‚¢‚­Û‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB[
-// d‚Ë‚é‚²‚Æ‚É‚ ‚ª‚é‚æ‚¤‚É‚·‚é‚½‚ß’è‹`‚µ‚Ä‚¨‚­
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚¿ã‚¹ã‚¯ã«ç™»éŒ²ã—ã¦ã„ãéš›ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+// é‡ã­ã‚‹ã”ã¨ã«ã‚ãŒã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚å®šç¾©ã—ã¦ãŠã
 enum menuTaskPri_e {
     _MENU_ROLE_PRI = 0,
     _MENU_TALK_PRI = _MENU_ROLE_PRI,
@@ -77,24 +77,24 @@ enum menuTaskPri_e {
 };
 
 
-#define _TCB_COMMCHECK_PRT   (10)    ///< ƒtƒB[ƒ‹ƒh‚ğ•à‚­’ÊM‚ÌŠÄ‹ƒ‹[ƒ`ƒ“‚ÌPRI
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _TCB_COMMCHECK_PRT   (10)    ///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ­©ãé€šä¿¡ã®ç›£è¦–ãƒ«ãƒ¼ãƒãƒ³ã®PRI
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 
-// ƒlƒbƒgƒ[ƒNó‹µ\‘¢‘Ì
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³æ§‹é€ ä½“
 typedef struct{
     FIELDSYS_WORK* pFSys;
-    GF_BGL_BMPWIN win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
-    BMPLIST_WORK* lw;		// BMPƒƒjƒ…[ƒ[ƒN
+    GF_BGL_BMPWIN win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
+    BMPLIST_WORK* lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
     MSGDATA_MANAGER* msgman;
     BMPMENU_WORK* pYesNoWork;
 	BMPLIST_DATA*   menulist;
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
-	STRBUF* pStrBuf[2]; // ƒƒbƒZ[ƒW‚ğ‡¬‚µ‚Äo—Í‚·‚éê‡‚ÌŠi”[êŠ
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
+	STRBUF* pStrBuf[2]; // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆæˆã—ã¦å‡ºåŠ›ã™ã‚‹å ´åˆã®æ ¼ç´å ´æ‰€
     pEndFunc func;
     u32 list_id;
-    u16 connectIndex;  // ‚Â‚È‚®e‹@‚ÌINDEX
-    s16 packetByte;   // ƒfƒoƒbƒO‚Å‘—M‚·‚éƒpƒPƒbƒgƒoƒCƒg
+    u16 connectIndex;  // ã¤ãªãè¦ªæ©Ÿã®INDEX
+    s16 packetByte;   // ãƒ‡ãƒãƒƒã‚°ã§é€ä¿¡ã™ã‚‹ãƒ‘ã‚±ãƒƒãƒˆãƒã‚¤ãƒˆ
     //	u8 mode;
     u8 waitMode;
     u8 endState;
@@ -103,23 +103,23 @@ typedef struct{
 
 static _NET_INFO_WORK* _pNet = NULL;
 
-#define _LOCAL_WIN_PX (2)   // GF_BGL_BmpAdd‚Åg—p‚·‚é •¶šƒEƒCƒ“ƒhƒE‚ÌPX’l
-#define _LOCAL_WIN_PY (18)   // GF_BGL_BmpAdd‚Åg—p‚·‚é •¶šƒEƒCƒ“ƒhƒE‚ÌPY’l
-#define _LOCAL_WIN_SX (28)   // GF_BGL_BmpAdd‚Åg—p‚·‚é •¶šƒEƒCƒ“ƒhƒE‚ÌSX’l
-#define _LOCAL_WIN_SY (4)   // GF_BGL_BmpAdd‚Åg—p‚·‚é •¶šƒEƒCƒ“ƒhƒE‚ÌSY’l
+#define _LOCAL_WIN_PX (2)   // GF_BGL_BmpAddã§ä½¿ç”¨ã™ã‚‹ æ–‡å­—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®PXå€¤
+#define _LOCAL_WIN_PY (18)   // GF_BGL_BmpAddã§ä½¿ç”¨ã™ã‚‹ æ–‡å­—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®PYå€¤
+#define _LOCAL_WIN_SX (28)   // GF_BGL_BmpAddã§ä½¿ç”¨ã™ã‚‹ æ–‡å­—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®SXå€¤
+#define _LOCAL_WIN_SY (4)   // GF_BGL_BmpAddã§ä½¿ç”¨ã™ã‚‹ æ–‡å­—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®SYå€¤
 
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 typedef void (*pNetFunc)(_NET_INFO_WORK *);
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 static void _listCreate(_NET_INFO_WORK* pNet,u8 x,u8 y,u8 width,u8 height,u16 chrofs, int length);
-// e‹@@q‹@‘I‘ğ
+// è¦ªæ©Ÿã€€å­æ©Ÿé¸æŠ
 static void _roleMenuFunc(TCB_PTR tcb, void* work);
 static void _roleMenuEnd(TCB_PTR tcb,_NET_INFO_WORK* pNet);
 static void _commScriptBattle(_NET_INFO_WORK* pNet);
@@ -134,10 +134,10 @@ static void _commBattleParentConnect( _NET_INFO_WORK* pNet );
 static void _commContestChildConnect( _NET_INFO_WORK* pNet );
 static void _commContestParentConnect( _NET_INFO_WORK* pNet );
 
-   // ƒtƒB[ƒ‹ƒh‚ğ“®‚­’ÊM’†‚Ì’ÊM‚ÌŠÄ‹
+   // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å‹•ãé€šä¿¡ä¸­ã®é€šä¿¡ã®ç›£è¦–
 static void _commCheckFunc(TCB_PTR tcb, void* work);
 
-//’ÊM—Ê‚ğ•ÏX‚·‚éƒfƒoƒbƒO@@’ÊM•‰‰×
+//é€šä¿¡é‡ã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ã€€ï¼ã€€é€šä¿¡è² è·
 static void _commSendQuantity(_NET_INFO_WORK* pNetOld);
 static void _commSendQuantityLineCallBack(void);
 static void _commSendQuantityFunc(TCB_PTR tcb, void* work);
@@ -166,7 +166,7 @@ static void _underRecordMax(_NET_INFO_WORK* pNet);
 static void _friendMax(_NET_INFO_WORK* pNet);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/14
-// uƒ^ƒ}v‚ğ“üè‚·‚éƒfƒoƒbƒOƒ‚[ƒh‚ğ’Ç‰Á
+// ã€Œã‚¿ãƒã€ã‚’å…¥æ‰‹ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 static void _commBagStone(_NET_INFO_WORK* pNet);
 // ----------------------------------------------------------------------------
 static void _commBagTresureUp(_NET_INFO_WORK* pNet);
@@ -179,11 +179,11 @@ static void _flagChange(_NET_INFO_WORK* pNet);
 static void _wifiListMax(_NET_INFO_WORK* pNet);
 
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 
 //==============================================================================
-//	eq‘I‘ğƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
 static const struct {
 	u32  str_id;
@@ -208,7 +208,7 @@ static const struct {
     { DebugOhno_Stone99, (u32)_stoneAdd99 },
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// uƒ^ƒ}v‚ğ“üè‚·‚éƒfƒoƒbƒOƒ‚[ƒh‚ğ’Ç‰Á
+	// ã€Œã‚¿ãƒã€ã‚’å…¥æ‰‹ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 	{ DebugOhno_Stone99Bag,  (u32)_commBagStone },
 // ----------------------------------------------------------------------------
 
@@ -230,47 +230,47 @@ static const struct {
 
 };
 
-///eq‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER DebugMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   // 
-    NELEMS(DebugMenuList),	// ƒŠƒXƒg€–Ú”
-    5,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    NELEMS(DebugMenuList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    5,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
 };
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pƒŠƒXƒg‚Ìì¬
- * @param   header ƒŠƒXƒgƒwƒbƒ_[
- * @param   x,y   ŠJnÀ•W
- * @param   width,height  •‚‚³
- * @param   chrofs  ƒLƒƒƒ‰ƒNƒ^[‚ğ‚¨‚­ƒIƒtƒZƒbƒg
+ * @brief   æ±ç”¨ãƒªã‚¹ãƒˆã®ä½œæˆ
+ * @param   header ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+ * @param   x,y   é–‹å§‹åº§æ¨™
+ * @param   width,height  å¹…é«˜ã•
+ * @param   chrofs  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’ãŠãã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @retval  none
  */
 //--------------------------------------------------------------
 static void _listCreate(_NET_INFO_WORK* pNet, u8 x,u8 y,u8 width,u8 height,u16 chrofs,int length)
 {
     BMPLIST_HEADER list_h;
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(pNet->pFSys->bgl,&pNet->win,
                      GF_BGL_FRAME3_M, x, y, width, height, FLD_SYSFONT_PAL, chrofs);
     BmpMenuWinWrite(&pNet->win, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
@@ -290,7 +290,7 @@ static void _listCreate(_NET_INFO_WORK* pNet, u8 x,u8 y,u8 width,u8 height,u16 c
 
 //==============================================================================
 /**
- * ’ÊM‚ÌƒfƒoƒbƒO‚Ì‹N“®‚ğs‚¤
+ * é€šä¿¡ã®ãƒ‡ãƒãƒƒã‚°ã®èµ·å‹•ã‚’è¡Œã†
  * @param   none
  * @retval  none
  */
@@ -327,9 +327,9 @@ void DebugCommMenuInit(void* pFieldSys)
 
 //--------------------------------------------------------------
 /**
- * @brief   eq–ğŠ„‚ğŒˆ‚ß‚éƒƒjƒ…[Às•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªå­å½¹å‰²ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -351,7 +351,7 @@ static void _roleMenuFunc(TCB_PTR tcb, void* work)
         _roleMenuEnd(tcb, pNet);
         {
             pNetFunc func = (pNetFunc)ret;
-            func(pNet);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pNet);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
         }
         sys_FreeMemoryEz(pNet);
         break;
@@ -360,9 +360,9 @@ static void _roleMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   eq‘I‘ğƒƒjƒ…[ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pNet		ƒlƒbƒgƒ[ƒNó‹µ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pNet		ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -379,15 +379,15 @@ static void _roleMenuEnd(TCB_PTR tcb,_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ_ƒCƒŒƒNƒgÚ‘±ƒJƒEƒ“ƒ^[‚Ìƒƒjƒ…[‚ğ‹N“®
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆæ¥ç¶šã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’èµ·å‹•
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
 static void _commScriptBattle(_NET_INFO_WORK* pNet)
 {
     FieldSystemProc_SeqHoldEnd();
-	//˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^‚Í"NULL"‚È‚Ì‚Å’ˆÓI
+	//è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿ã¯"NULL"ãªã®ã§æ³¨æ„ï¼
 	EventSet_Script( pNet->pFSys, SCRID_CONNECT_COLOSSEUM, NULL );
 	//EventSet_Script( pNet->pFSys, SCRID_CONNECT_UNION, NULL );
 	//EventSet_Script( pNet->pFSys, SCRID_CONNECT_RECORD, NULL );
@@ -395,22 +395,22 @@ static void _commScriptBattle(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ_ƒCƒŒƒNƒgÚ‘±ƒJƒEƒ“ƒ^[‚Ìƒƒjƒ…[‚ğ‹N“®
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆæ¥ç¶šã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’èµ·å‹•
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
 static void _commScriptContest(_NET_INFO_WORK* pNet)
 {
     FieldSystemProc_SeqHoldEnd();
-	//˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^‚Í"NULL"‚È‚Ì‚Å’ˆÓI
+	//è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿ã¯"NULL"ãªã®ã§æ³¨æ„ï¼
     EventSet_Script( pNet->pFSys, SCRID_CONNECT_CONTEST, NULL );
 }
 
 //==============================================================================
-//	eq‘I‘ğƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
-///eq‘I‘ğƒƒjƒ…[‚Ì€–ÚƒƒbƒZ[ƒW
+///è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static const struct {
 	u32  str_id;
 	u32  param;
@@ -424,8 +424,8 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹‚ÌŠÈˆÕÚ‘±‚ğs‚¤
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒãƒˆãƒ«ã®ç°¡æ˜“æ¥ç¶šã‚’è¡Œã†
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -458,9 +458,9 @@ static void _commBattleChild(_NET_INFO_WORK* pNetOld)
 
 //--------------------------------------------------------------
 /**
- * @brief   eq–ğŠ„‚ğŒˆ‚ß‚éƒƒjƒ…[Às•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªå­å½¹å‰²ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -482,7 +482,7 @@ static void _battleChildMenuFunc(TCB_PTR tcb, void* work)
         _roleMenuEnd(tcb, pNet);
         {
             pNetFunc func = (pNetFunc)ret;
-            func(pNet);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pNet);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
         }
         sys_FreeMemoryEz(pNet);
         break;
@@ -510,9 +510,9 @@ static void _commBattleChildConnect( _NET_INFO_WORK* pNet )
 }
 
 //==============================================================================
-//	eq‘I‘ğƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
-///eq‘I‘ğƒƒjƒ…[‚Ì€–Ú
+///è¦ªå­é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®
 static const struct {
 	u32  str_id;
 	u32  param;
@@ -526,8 +526,8 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹‚ÌŠÈˆÕÚ‘±‚ğs‚¤
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒãƒˆãƒ«ã®ç°¡æ˜“æ¥ç¶šã‚’è¡Œã†
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -558,9 +558,9 @@ static void _commBattleParent(_NET_INFO_WORK* pNetOld)
 
 //--------------------------------------------------------------
 /**
- * @brief   eq–ğŠ„‚ğŒˆ‚ß‚éƒƒjƒ…[Às•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªå­å½¹å‰²ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -582,7 +582,7 @@ static void _battleParentMenuFunc(TCB_PTR tcb, void* work)
         _roleMenuEnd(tcb, pNet);
         {
             pNetFunc func = (pNetFunc)ret;
-            func(pNet);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pNet);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
         }
         sys_FreeMemoryEz(pNet);
         break;
@@ -608,9 +608,9 @@ static void _commBattleParentConnect( _NET_INFO_WORK* pNet )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgÚ‘±ƒeƒXƒg
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæ¥ç¶šãƒ†ã‚¹ãƒˆ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -640,9 +640,9 @@ static void _commContestParentConnect( _NET_INFO_WORK* pNet )
 
 
 //==============================================================================
-//	’ÊM—Ê•ÏXƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	é€šä¿¡é‡å¤‰æ›´ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
-///’ÊM—Ê•ÏXƒƒjƒ…[‚Ì€–ÚƒƒbƒZ[ƒW
+///é€šä¿¡é‡å¤‰æ›´ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static const struct {
 	u32  str_id;
 	u32  param;
@@ -651,12 +651,12 @@ static const struct {
 };
 
 
-#define _DEBUG_QUANTITY_MAX (250)   /// ƒeƒXƒg‘—M—Ê 250‚Éİ’è  
+#define _DEBUG_QUANTITY_MAX (250)   /// ãƒ†ã‚¹ãƒˆé€ä¿¡é‡ 250ã«è¨­å®š  
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM—Ê‚ğ•ÏX‚·‚éƒfƒoƒbƒOƒEƒCƒ“ƒhƒE‚ğŠJ‚­
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é€šä¿¡é‡ã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -703,7 +703,7 @@ static void _commSendQuantity(_NET_INFO_WORK* pNetOld)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˆêƒ‰ƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ä¸€ãƒ©ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -728,9 +728,9 @@ static void _commSendQuantityLineCallBack(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM—Ê‚ğ•ÏX‚·‚éƒfƒoƒbƒOƒƒjƒ…[Às•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é€šä¿¡é‡ã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -739,11 +739,11 @@ static void _commSendQuantityFunc(TCB_PTR tcb, void* work)
     _NET_INFO_WORK* pNet = work;
     u32	ret;
     int i;
-    char dummyBuff[_DEBUG_QUANTITY_MAX];   // ãŒÀ
+    char dummyBuff[_DEBUG_QUANTITY_MAX];   // ä¸Šé™
 
 #if 0
     if(CommCommandIsThrowOuted()){
-        OHNO_PRINT("ƒRƒ}ƒ“ƒhÌ‚Ä‚Ü‚µ‚½\n");
+        OHNO_PRINT("ã‚³ãƒãƒ³ãƒ‰æ¨ã¦ã¾ã—ãŸ\n");
     }
 #endif
 
@@ -811,7 +811,7 @@ extern void CommSwitchAutoMove_Debug(void);
 
 static void _commAutoMove(_NET_INFO_WORK* pNet)
 {
-#if 0   // ‘å—e—Ê’ÊMƒeƒXƒg
+#if 0   // å¤§å®¹é‡é€šä¿¡ãƒ†ã‚¹ãƒˆ
     int i;
     u8* pbuf = sys_AllocMemory(HEAPID_FIELD, 5000);
 
@@ -833,7 +833,7 @@ static void _commUnder(_NET_INFO_WORK* pNet)
 {
     SpScriptStart( pNet->pFSys, SCRID_DEBUG_UG_MOUNT_OFF );
     SysFlag_UgFirstSet(SaveData_GetEventWork(pNet->pFSys->savedata));
-    // ƒfƒoƒbƒO—p‚Éw’è‚ÌˆÊ’u‚É‰º‚è‚Ä‚¢‚­‚Ì‚Ég—p
+    // ãƒ‡ãƒãƒƒã‚°ç”¨ã«æŒ‡å®šã®ä½ç½®ã«ä¸‹ã‚Šã¦ã„ãã®ã«ä½¿ç”¨
     DebugOhnoCommDebugUnderNo(0);
     Debug_ChangeUnderGroundDirect(pNet->pFSys, 169, 392);
 }
@@ -842,7 +842,7 @@ static void _commUnder1(_NET_INFO_WORK* pNet)
 {
     SpScriptStart( pNet->pFSys, SCRID_DEBUG_UG_MOUNT_OFF );
     SysFlag_UgFirstSet(SaveData_GetEventWork(pNet->pFSys->savedata));
-    // ƒfƒoƒbƒO—p‚Éw’è‚ÌˆÊ’u‚É‰º‚è‚Ä‚¢‚­‚Ì‚Ég—p
+    // ãƒ‡ãƒãƒƒã‚°ç”¨ã«æŒ‡å®šã®ä½ç½®ã«ä¸‹ã‚Šã¦ã„ãã®ã«ä½¿ç”¨
     DebugOhnoCommDebugUnderNo(1);
     Debug_ChangeUnderGroundDirect(pNet->pFSys, 169, 392);
 }
@@ -853,7 +853,7 @@ static void _commUnder2(_NET_INFO_WORK* pNet)
     //_commBagTrap(pNet);
     SpScriptStart( pNet->pFSys, SCRID_DEBUG_UG_MOUNT_OFF );
     SysFlag_UgFirstSet(SaveData_GetEventWork(pNet->pFSys->savedata));
-    // ƒfƒoƒbƒO—p‚Éw’è‚ÌˆÊ’u‚É‰º‚è‚Ä‚¢‚­‚Ì‚Ég—p
+    // ãƒ‡ãƒãƒƒã‚°ç”¨ã«æŒ‡å®šã®ä½ç½®ã«ä¸‹ã‚Šã¦ã„ãã®ã«ä½¿ç”¨
     DebugOhnoCommDebugUnderNo(2);
     Debug_ChangeUnderGroundDirect(pNet->pFSys, 169, 392);
 }
@@ -881,9 +881,9 @@ static void _commUnderNormal(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p ƒpƒ\ƒRƒ“‚É‘S‚Ä‚Ì‚à‚Ì‚ğ“ü‚ê‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ ãƒ‘ã‚½ã‚³ãƒ³ã«å…¨ã¦ã®ã‚‚ã®ã‚’å…¥ã‚Œã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -902,9 +902,9 @@ static void _commPcGoods(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p ƒOƒbƒY‚É‚©‚©‚éƒyƒiƒ‹ƒeƒB[‚ğÁ‚·
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ ã‚°ãƒƒã‚ºã«ã‹ã‹ã‚‹ãƒšãƒŠãƒ«ãƒ†ã‚£ãƒ¼ã‚’æ¶ˆã™
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -913,17 +913,17 @@ static void _commGoodsPenaDel(_NET_INFO_WORK* pNet)
 {
     SAVEDATA* pSave = GameSystem_GetSaveData(pNet->pFSys);
 
-    UnderGroundDataMinUpdate(pSave, 24*60+1, FALSE); // ŠÔ‚ği‚ß‚Ä
-    UnderGroundDataLoadUpdate(pSave); // ƒtƒ‰ƒOXV
+    UnderGroundDataMinUpdate(pSave, 24*60+1, FALSE); // æ™‚é–“ã‚’é€²ã‚ã¦
+    UnderGroundDataLoadUpdate(pSave); // ãƒ•ãƒ©ã‚°æ›´æ–°
     FieldSystemProc_SeqHoldEnd();
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p ƒƒi‚ğ‚©‚Î‚ñ‚É’Ç‰Á
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ ãƒ¯ãƒŠã‚’ã‹ã°ã‚“ã«è¿½åŠ 
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -933,7 +933,7 @@ static void _commBagTrap(_NET_INFO_WORK* pNet)
     SAVEDATA* pSave = GameSystem_GetSaveData(pNet->pFSys);
     UNDERGROUNDDATA* pU = SaveData_GetUnderGroundData(pSave);
 
-    for(i = 0; i < 40;i++){  // ‚·‚Ä
+    for(i = 0; i < 40;i++){  // ã™ã¦
         UnderGroundDelTrapBagItem(pU,0);
     }
     
@@ -989,9 +989,9 @@ static void _commBagTrap(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p ‚¿‚©‚É‚©‚¹‚«‚ğ‚¤‚ß‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ ã¡ã‹ã«ã‹ã›ãã‚’ã†ã‚ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1028,7 +1028,7 @@ static void _commPlatinaReturn(_NET_INFO_WORK* pNet)
 
 //------------------------------------------------------------------
 /**
- * WIFIMATCHŒÄ‚Ño‚µƒeƒXƒg
+ * WIFIMATCHå‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  * @param   tcb		
  * @param   work		
  * @retval  none		
@@ -1036,14 +1036,14 @@ static void _commPlatinaReturn(_NET_INFO_WORK* pNet)
 //------------------------------------------------------------------
 static void _commWifiMatch(_NET_INFO_WORK* pNet)
 {
-    //P2Pƒ}ƒbƒ`ƒ“ƒOƒ{[ƒh
+    //P2Pãƒãƒƒãƒãƒ³ã‚°ãƒœãƒ¼ãƒ‰
 	EventSet_Script( pNet->pFSys, SCRID_CONNECT_WIFI_P2P_MATCH, NULL );
 }
 
 
 //------------------------------------------------------------------
 /**
- * —F’B“o˜^
+ * å‹é”ç™»éŒ²
  * @param   tcb		
  * @param   work		
  * @retval  none		
@@ -1055,13 +1055,13 @@ static void _commWifiFriend(_NET_INFO_WORK* pNet)
     ZKN_HEIGHT_GRAM_PTR pZKN = PokeRegulationInit(HEAPID_FIELD);
     PokeRegulationEnd(pZKN);
 
-    //—F’B“o˜^
+    //å‹é”ç™»éŒ²
     EventSet_WifiAutoReg(pNet->pFSys);
 }
 
 //------------------------------------------------------------------
 /**
- * ’x‰„”­¶
+ * é…å»¶ç™ºç”Ÿ
  * @param   tcb		
  * @param   work		
  * @retval  none		
@@ -1087,7 +1087,7 @@ static void _delayTask(TCB_PTR tcb, void* work)
         pWork->timer++;
         if(pWork->timer > pWork->num){
             OS_WaitIrq(TRUE, OS_IE_V_BLANK);
-//            sys_MainKeyRead();	//ƒL[î•ñ“Ç‚İæ‚è
+//            sys_MainKeyRead();	//ã‚­ãƒ¼æƒ…å ±èª­ã¿å–ã‚Š
         }
         else{
             pWork->timer = 0;
@@ -1122,7 +1122,7 @@ static void _stoneAdd99(_NET_INFO_WORK* pNet)
     for(i = 0; i < 99 ;){
         int x = MATH_Rand32(&sRand, 400)+64;
         int z = MATH_Rand32(&sRand, 400)+64;
-        if(!GetHitAttr(pNet->pFSys,x,z)){  // ‚ ‚½‚è‚ª‚ ‚éê‡
+        if(!GetHitAttr(pNet->pFSys,x,z)){  // ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆ
             continue;
         }
         Debug_UgDigStoneAdd( STONE_TYPE_PEARL,
@@ -1142,7 +1142,7 @@ static void _stoneDAndP(_NET_INFO_WORK* pNet)
 
 
 //==============================================================================
-//	ƒnƒ^ƒŒƒxƒ‹
+//	ãƒã‚¿ãƒ¬ãƒ™ãƒ«
 //==============================================================================
 
 static const struct {
@@ -1158,8 +1158,8 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÌƒŒƒxƒ‹‚ğ•Ï‚¦‚é
- * @param   pNet		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ——ã®ãƒ¬ãƒ™ãƒ«ã‚’å¤‰ãˆã‚‹
+ * @param   pNet		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1193,9 +1193,9 @@ static void _flagLevelChangeStart(_NET_INFO_WORK* pNetOld)
 
 //--------------------------------------------------------------
 /**
- * @brief    Šø‚ÌƒŒƒxƒ‹‚ğ•Ï‚¦‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief    æ——ã®ãƒ¬ãƒ™ãƒ«ã‚’å¤‰ãˆã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1217,7 +1217,7 @@ static void _flagLevelChangeFunc(TCB_PTR tcb, void* work)
         _roleMenuEnd(tcb, pNet);
         {
             pNetFunc func = (pNetFunc)ret;
-            func(pNet);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pNet);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
         }
         sys_FreeMemoryEz(pNet);
         break;
@@ -1301,11 +1301,11 @@ static void _wifiListMax(_NET_INFO_WORK* pNet)
             WifiList_CopyData( pList, i, 0);
         }
 
-		// ƒJƒ“ƒXƒg’l‚Ìİ’è
+		// ã‚«ãƒ³ã‚¹ãƒˆå€¤ã®è¨­å®š
 		WifiList_SetCountStopNum( pList, i );
     }
 
-	// ƒtƒƒ“ƒeƒBƒA‚Ì‹L˜^‚ÌƒJƒ“ƒXƒg’l‚Ìİ’è
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®è¨˜éŒ²ã®ã‚«ãƒ³ã‚¹ãƒˆå€¤ã®è¨­å®š
 	Debug_FrontierWifiMultiRecordMaxSet( pNet->pFSys );
 
     FieldSystemProc_SeqHoldEnd();
@@ -1313,7 +1313,7 @@ static void _wifiListMax(_NET_INFO_WORK* pNet)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/14
-// uƒ^ƒ}v‚ğ“üè‚·‚éƒfƒoƒbƒOƒ‚[ƒh‚ğ’Ç‰Á
+// ã€Œã‚¿ãƒã€ã‚’å…¥æ‰‹ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
 static void _commBagStone(_NET_INFO_WORK* pNet)
 {
@@ -1336,9 +1336,9 @@ static void _commBagStone(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p  ã‚©‚ç‡”Ô‚É•ó•¨‚ğƒoƒbƒO‚É’Ç‰Á
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨  ä¸Šã‹ã‚‰é †ç•ªã«å®ç‰©ã‚’ãƒãƒƒã‚°ã«è¿½åŠ 
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1348,7 +1348,7 @@ static void _commBagTresureUp(_NET_INFO_WORK* pNet)
     SAVEDATA* pSave = GameSystem_GetSaveData(pNet->pFSys);
     UNDERGROUNDDATA* pU = SaveData_GetUnderGroundData(pSave);
 
-    for(i=0;i<UG_ITEM_BAG_NUM_MAX;i++){ // ‚¯‚·
+    for(i=0;i<UG_ITEM_BAG_NUM_MAX;i++){ // ã‘ã™
         UnderGroundDelTreasureBagItem(pU,0);
     }
     for(i=DIG_PARTS_TREASURE_MIN;i < DIG_PARTS_TREASURE_MAX;i++){
@@ -1359,9 +1359,9 @@ static void _commBagTresureUp(_NET_INFO_WORK* pNet)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p  ã‚©‚ç‡”Ô‚É•ó•¨‚ğƒoƒbƒO‚É’Ç‰Á
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨  ä¸Šã‹ã‚‰é †ç•ªã«å®ç‰©ã‚’ãƒãƒƒã‚°ã«è¿½åŠ 
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1371,7 +1371,7 @@ static void _commBagTresureDown(_NET_INFO_WORK* pNet)
     SAVEDATA* pSave = GameSystem_GetSaveData(pNet->pFSys);
     UNDERGROUNDDATA* pU = SaveData_GetUnderGroundData(pSave);
 
-    for(i=0;i<UG_ITEM_BAG_NUM_MAX;i++){ // ‚¯‚·
+    for(i=0;i<UG_ITEM_BAG_NUM_MAX;i++){ // ã‘ã™
         UnderGroundDelTreasureBagItem(pU,0);
     }
     for(i=DIG_PARTS_TREASURE_MAX-1 ;i >= DIG_PARTS_TREASURE_MIN ; i--){

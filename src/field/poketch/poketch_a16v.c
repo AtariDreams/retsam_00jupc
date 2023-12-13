@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a16v.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo16:ƒ‹[ƒŒƒbƒgj@•`‰æ
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo16:ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆï¼‰ã€€æç”»
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -31,7 +31,7 @@
 #define WRITE_COLOR	(0x01)
 #define ERASE_COLOR	(0x04)
 
-// ƒAƒNƒ^[‚h‚c
+// ã‚¢ã‚¯ã‚¿ãƒ¼ï¼©ï¼¤
 enum {
 	ACTID_ARROW,
 	ACTID_BUTTON_START,
@@ -40,7 +40,7 @@ enum {
 
 	ACTID_MAX,
 };
-// ƒAƒNƒ^[ƒAƒjƒ‚h‚c
+// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ï¼©ï¼¤
 enum {
 	ANM_ARROW,
 	ANM_START_FREE,
@@ -50,7 +50,7 @@ enum {
 	ANM_CLEAR_FREE,
 	ANM_CLEAR_PUSH,
 };
-// ƒAƒNƒ^[ƒŒƒCƒAƒEƒg
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 enum {
 	ACTPOS_ARROW_X = 96,
 	ACTPOS_ARROW_Y = 96,
@@ -79,9 +79,9 @@ struct _POKETCH_A16_VIEWWORK {
 	GF_BGL_BMPWIN    bmpwin;
 	u32              bmpwin_chartop;
 
-	BOOL             arrow_quit_flag;	// ‹­§’âŽ~
-	BOOL             arrow_stop_flag;	// ƒXƒgƒbƒvƒ{ƒ^ƒ“‚Å‚Ì’âŽ~
-	BOOL             arrow_max_speed_flag;	// Å‚‘¬‚É’B‚µ‚½
+	BOOL             arrow_quit_flag;	// å¼·åˆ¶åœæ­¢
+	BOOL             arrow_stop_flag;	// ã‚¹ãƒˆãƒƒãƒ—ãƒœã‚¿ãƒ³ã§ã®åœæ­¢
+	BOOL             arrow_max_speed_flag;	// æœ€é«˜é€Ÿã«é”ã—ãŸ
 
 	u16              arrow_rot;
 	u16              arrow_rot_speed;
@@ -112,9 +112,9 @@ static void CmdStopArrow( TCB_PTR tcb, void* wk_ptr );
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param   wk_ptr		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX‚ð•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   wk_ptr		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -144,9 +144,9 @@ BOOL Poketch_A16_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœ
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param   wk		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -200,7 +200,7 @@ static void cleanup_actors( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ * @brief	ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //------------------------------------------------------------------
 static const POKETCH_VIEW_CMD CmdTbl[] = {
@@ -220,10 +220,10 @@ static const POKETCH_VIEW_CMD CmdTbl[] = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌƒZƒbƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cmd		ƒRƒ}ƒ“ƒh
- * @param   view_wk_adrs	ƒ[ƒN—ÌˆæƒAƒhƒŒƒX
+ * @param   cmd		ã‚³ãƒžãƒ³ãƒ‰
+ * @param   view_wk_adrs	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -233,11 +233,11 @@ void Poketch_A16_SetViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i’P”­j
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå˜ç™ºï¼‰
  *
- * @param   cmd			ƒRƒ}ƒ“ƒh
+ * @param   cmd			ã‚³ãƒžãƒ³ãƒ‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A16_WaitViewCommand(VIEWWORK* wk, u32 cmd)
@@ -246,9 +246,9 @@ BOOL Poketch_A16_WaitViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i‘S•”j
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå…¨éƒ¨ï¼‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A16_WaitViewCommandAll(VIEWWORK* wk)
@@ -260,9 +260,9 @@ BOOL Poketch_A16_WaitViewCommandAll(VIEWWORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœ
+ * ã‚³ãƒžãƒ³ãƒ‰å‰Šé™¤
  *
- * @param   cwk		ƒRƒ}ƒ“ƒhƒ[ƒN
+ * @param   cwk		ã‚³ãƒžãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -274,10 +274,10 @@ static void DeleteCommand(POKETCH_CMD_WORK* cwk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–Ê\’z
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -353,10 +353,10 @@ static void setup_bmpwin( VIEWWORK* wk, u32 charno )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFI—¹ˆ—
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -384,7 +384,7 @@ static void CmdQuit(TCB_PTR tcb, void *wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFƒsƒNƒZƒ‹ó‘ÔXV
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ”ã‚¯ã‚»ãƒ«çŠ¶æ…‹æ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -427,7 +427,7 @@ static void CmdPixelSetEnd( TCB_PTR tcb, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFƒ{ƒ^ƒ“ó‘ÔXV
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœã‚¿ãƒ³çŠ¶æ…‹æ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -447,7 +447,7 @@ static void CmdUpdateButton( TCB_PTR tcb, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF•`‰æ—ÌˆæƒNƒŠƒA
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šæç”»é ˜åŸŸã‚¯ãƒªã‚¢
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -466,7 +466,7 @@ static void CmdClearPixels( TCB_PTR tcb, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF–îˆó‰ñ“]ŠJŽn
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šçŸ¢å°å›žè»¢é–‹å§‹
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -522,7 +522,7 @@ static void CmdStartArrow( TCB_PTR tcb, void* wk_ptr )
 		PACT_SetRotate( vwk->actor[ACTID_ARROW], vwk->arrow_rot );
 		if( vwk->arrow_stop_flag )
 		{
-			vwk->arrow_rand_wait = gf_mtRand() & 7;	// “K“–‚É7ƒtƒŒ[ƒ€‚Ì”ÍˆÍ‚­‚ç‚¢‚ÅƒEƒFƒCƒg‚ð“ü‚ê‚é
+			vwk->arrow_rand_wait = gf_mtRand() & 7;	// é©å½“ã«7ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç¯„å›²ãã‚‰ã„ã§ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 			if( vwk->arrow_rot_speed > ARROW_SPEED_STOP_MAX )
 			{
 				vwk->arrow_rot_speed = ARROW_SPEED_STOP_MAX;
@@ -564,7 +564,7 @@ static void CmdStartArrow( TCB_PTR tcb, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF–îˆó‰ñ“]™X‚É’âŽ~
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šçŸ¢å°å›žè»¢å¾ã€…ã«åœæ­¢
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -595,7 +595,7 @@ static void CmdStopArrow( TCB_PTR tcb, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * –îˆó‰ñ“]ŒãAÅ‘åƒXƒs[ƒh‚É’B‚·‚é‚Ì‚ð‘Ò‚Â
+ * çŸ¢å°å›žè»¢å¾Œã€æœ€å¤§ã‚¹ãƒ”ãƒ¼ãƒ‰ã«é”ã™ã‚‹ã®ã‚’å¾…ã¤
  *
  * @param   wk		
  *

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndCaptureSetPostOutputEffectCallback</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndCaptureSetPostOutputEffectCallback</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef void (*NNSSndCaptureCallback)(
@@ -26,7 +26,7 @@
         void* <var>arg</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAHMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -34,11 +34,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>func</code></strong></em></td>
-<td>�R�[���o�b�N�֐��̃|�C���^�ł��B</td>
+<td>コールバック関数のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>arg</code></strong></em></td>
-<td>�R�[���o�b�N�֐��̈����ƂȂ�p�����[�^�ł��B</td>
+<td>コールバック関数の引数となるパラメータです。</td>
 </tr>
 </tbody>
 </table>
@@ -46,45 +46,45 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDA3MWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAENWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�o�̓G�t�F�N�g�̌㏈���R�[���o�b�N��o�^���܂��B
+出力エフェクトの後処理コールバックを登録します。
 </p>
       <p>
-�o�^�����֐�<em><strong><code>func</code></strong></em>�́A
-<tt class="function"><a href="NNS_SndCaptureStartOutputEffect.html">NNS_SndCaptureStartOutputEffect</a></tt>�֐���
-�o�̓G�t�F�N�g�������s���Ă���ԁA
-�o�̓G�t�F�N�g�����̒���ŌĂт�����܂��B
-���O�ɏ������s�������ꍇ�́A
-<tt class="function"><a href="NNS_SndCaptureSetOutputEffectCallback.html">NNS_SndCaptureSetOutputEffectCallback</a></tt>�֐�
-�ŃR�[���o�b�N�֐���o�^���܂��B
+登録した関数<em><strong><code>func</code></strong></em>は、
+<tt class="function"><a href="NNS_SndCaptureStartOutputEffect.html">NNS_SndCaptureStartOutputEffect</a></tt>関数で
+出力エフェクト処理を行っている間、
+出力エフェクト処理の直後で呼びだされます。
+直前に処理を行いたい場合は、
+<tt class="function"><a href="NNS_SndCaptureSetOutputEffectCallback.html">NNS_SndCaptureSetOutputEffectCallback</a></tt>関数
+でコールバック関数を登録します。
 </p>
       <p>
-�R�[���o�b�N�֐�<em><strong><code>func</code></strong></em>�̈����ɂ́A
-�k�~�L�T�[����<em><strong><code>bufferL</code></strong></em>����тq�~�L�T�[����<em><strong><code>bufferR</code></strong></em>��
-�擪�A�h���X�̃|�C���^�ƁA�o�b�t�@�̃T�C�Y<em><strong><code>len</code></strong></em>��������܂��B
-�t�H�[�}�b�g<em><strong><code>format</code></strong></em>�͕K���A16�r�b�gPCM��\��
-<span class="symbol">NNS_SND_CAPTURE_FORMAT_PCM16</span>������܂��B
-���[�U�[����<em><strong><code>arg</code></strong></em>�́A
-<tt class="function">NNS_SndCaptureSetPostOutputEffectCallback</tt>�֐��̈����ɓ��ꂽ���̂Ɠ������̂��n����܂��B
+コールバック関数<em><strong><code>func</code></strong></em>の引数には、
+Ｌミキサー成分<em><strong><code>bufferL</code></strong></em>およびＲミキサー成分<em><strong><code>bufferR</code></strong></em>の
+先頭アドレスのポインタと、バッファのサイズ<em><strong><code>len</code></strong></em>が入れられます。
+フォーマット<em><strong><code>format</code></strong></em>は必ず、16ビットPCMを表す
+<span class="symbol">NNS_SND_CAPTURE_FORMAT_PCM16</span>が入ります。
+ユーザー引数<em><strong><code>arg</code></strong></em>は、
+<tt class="function">NNS_SndCaptureSetPostOutputEffectCallback</tt>関数の引数に入れたものと同じものが渡されます。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-<tt class="function"><a href="NNS_SndCaptureStartEffect.html">NNS_SndCaptureStartEffect</a></tt>�֐���
-�R�[���o�b�N�֐��Ƃ͈قȂ�A�n���ꂽ�o�b�t�@�ɂ̓R�[���o�b�N�֐����ł����A�N�Z�X���邱�Ƃ͂ł��܂���B
+<tt class="function"><a href="NNS_SndCaptureStartEffect.html">NNS_SndCaptureStartEffect</a></tt>関数の
+コールバック関数とは異なり、渡されたバッファにはコールバック関数内でしかアクセスすることはできません。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndCaptureStartOutputEffect.html">NNS_SndCaptureStartOutputEffect</a>, <a href="NNS_SndCaptureSetOutputEffectCallback.html">NNS_SndCaptureSetOutputEffectCallback</a>, <a href="NNS_SndCaptureStartEffect.html">NNS_SndCaptureStartEffect</a></p>
-<h2>����</h2>
-<p>2005/01/11 ����<br></p>
+<h2>履歴</h2>
+<p>2005/01/11 初版<br></p>
 </div>
 </body>
 </html>

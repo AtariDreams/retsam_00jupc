@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_204.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			204@©•ª‚Ì“ÁU‚ªA‚ª‚­‚Á‚Æ‰º‚ª‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			204ã€€è‡ªåˆ†ã®ç‰¹æ”»ãŒã€ãŒãã£ã¨ä¸‹ãŒã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

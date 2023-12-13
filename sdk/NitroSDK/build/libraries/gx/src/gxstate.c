@@ -18,10 +18,10 @@
   do-indent.
 
   Revision 1.29  2005/02/28 04:26:31  yosizaki
-  SDK_NO_MESSAGE ‚ÉŠÖ‚·‚é¬‚³‚ÈC³.
+  SDK_NO_MESSAGE ã«é–¢ã™ã‚‹å°ã•ãªä¿®æ­£.
 
   Revision 1.28  2004/12/03 04:31:58  takano_makoto
-  GX_SetBankForBGExŠÖ”‚Ì’Ç‰Á‚Ì‚½‚ßABG‚ÌRegionCheck‚ğC³
+  GX_SetBankForBGExé–¢æ•°ã®è¿½åŠ ã®ãŸã‚ã€BGã®RegionCheckã‚’ä¿®æ­£
 
   Revision 1.27  2004/11/25 11:29:01  takano_makoto
   add GX_SetBankForBGEx

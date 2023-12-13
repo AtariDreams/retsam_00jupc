@@ -12,40 +12,40 @@
 
   $Log: makelcf.h,v $
   Revision 1.28  2007/07/09 12:17:54  yasu
-  TARGET_NAME ‚ÌƒTƒ|[ƒg
+  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.27  2007/04/10 14:13:20  yasu
-  •¡”‚Ì SEARCH_SYMBOL ‘Î‰
+  è¤‡æ•°ã® SEARCH_SYMBOL å¯¾å¿œ
 
   Revision 1.26  2007/02/20 00:28:10  kitase_hirotake
   indent source
 
   Revision 1.25  2007/01/19 04:35:14  yosizaki
-  copyright‚ğXV.
+  copyrightã‚’æ›´æ–°.
 
   Revision 1.24  2007/01/15 04:58:20  yosizaki
   increase DEFAULT_IRQSTACKSIZE to 0x800.
 
   Revision 1.23  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.22  2006/04/06 09:05:42  kitase_hirotake
-  .itcm.bss .dtcm.bss .wram.bss ‚É‘Î‰
+  .itcm.bss .dtcm.bss .wram.bss ã«å¯¾å¿œ
 
   Revision 1.21  2006/03/29 13:13:22  yasu
-  IF-ELSE-ENDIF ‚ÌƒTƒ|[ƒg
+  IF-ELSE-ENDIF ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.20  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.19  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.18  2005/08/26 11:23:11  yasu
-  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰
+  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 
   Revision 1.17  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.16  2005/02/28 05:26:03  yosizaki
   do-indent.
@@ -80,7 +80,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.6  2004/01/15 10:49:47  yasu
-  Static StackSize ‚ÌÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.5  2004/01/15 06:52:55  yasu
   change default suffix

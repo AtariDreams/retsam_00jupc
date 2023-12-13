@@ -2,7 +2,7 @@
 /**
  *
  *	@file		field_trade.c
- *	@brief		ƒQ[ƒ€“àŒğŠ·
+ *	@brief		ã‚²ãƒ¼ãƒ å†…äº¤æ›
  *	@author		tomoya takahashi
  *	@data		2006.05.15
  *
@@ -28,24 +28,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define FLD_TRADE_GET_POKE_GMM(x)	(x)
@@ -54,48 +54,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŒğŠ·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+//	äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u32 monsno;			// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u32 hp_rnd;			// HP—”
-	u32 at_rnd;			// UŒ‚—”
-	u32 df_rnd;			// –hŒä—”
-	u32 sp_rnd;			// ‘¬‚³—”
-	u32 sa_rnd;			// “ÁU—”
-	u32 sd_rnd;			// “Á–h—”
-	u32 speabino;		// “Áê”\—Í
+	u32 monsno;			// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u32 hp_rnd;			// HPä¹±æ•°
+	u32 at_rnd;			// æ”»æ’ƒä¹±æ•°
+	u32 df_rnd;			// é˜²å¾¡ä¹±æ•°
+	u32 sp_rnd;			// é€Ÿã•ä¹±æ•°
+	u32 sa_rnd;			// ç‰¹æ”»ä¹±æ•°
+	u32 sd_rnd;			// ç‰¹é˜²ä¹±æ•°
+	u32 speabino;		// ç‰¹æ®Šèƒ½åŠ›
 	u32	mons_id;		// ID
-	u32 style;			// ‚©‚Á‚±‚æ‚³
-	u32 beautiful;		// ‚¤‚Â‚­‚µ‚³
-	u32 cute;			// ‚©‚í‚¢‚³
-	u32 clever;			// ‚©‚µ‚±‚³
-	u32 strong;			// ‚½‚­‚Ü‚µ‚³
-	u32 mons_rnd;		// ŒÅ‘Ì—”
-	u32 item;			// ƒAƒCƒeƒ€
-	u32 oya_sex;		// e«•Ê
-	u32 fur;			// –Ñ‰
-	u32 world_code;		// e‚Ì‘ƒR[ƒh
-	u32 change_monsno;	// ŒğŠ·‚·‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	u32 style;			// ã‹ã£ã“ã‚ˆã•
+	u32 beautiful;		// ã†ã¤ãã—ã•
+	u32 cute;			// ã‹ã‚ã„ã•
+	u32 clever;			// ã‹ã—ã“ã•
+	u32 strong;			// ãŸãã¾ã—ã•
+	u32 mons_rnd;		// å›ºä½“ä¹±æ•°
+	u32 item;			// ã‚¢ã‚¤ãƒ†ãƒ 
+	u32 oya_sex;		// è¦ªæ€§åˆ¥
+	u32 fur;			// æ¯›è‰¶
+	u32 world_code;		// è¦ªã®å›½ã‚³ãƒ¼ãƒ‰
+	u32 change_monsno;	// äº¤æ›ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 } FLD_TRADE_POKEDATA;
 
 
 typedef struct _FLD_TRADE_WORK {
-	FLD_TRADE_POKEDATA* p_pokedata;		// ŒğŠ·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	FLD_TRADE_POKEDATA* p_pokedata;		// äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	POKEMON_PARAM*		p_pp;			// ŒğŠ·ƒ|ƒPƒ‚ƒ“
-	MYSTATUS*			p_myste;		// ŒğŠ·‘Šèƒpƒ‰ƒ[ƒ^
-	u32 trade_no;						// ŒğŠ·ƒiƒ“ƒo[
+	POKEMON_PARAM*		p_pp;			// äº¤æ›ãƒã‚±ãƒ¢ãƒ³
+	MYSTATUS*			p_myste;		// äº¤æ›ç›¸æ‰‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u32 trade_no;						// äº¤æ›ãƒŠãƒ³ãƒãƒ¼
 	u32 heapID;
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static STRBUF* FLD_TradeGetGmm( u32 heapID, u32 idx );
@@ -105,12 +105,12 @@ static void FLD_TradeSetPokeParam( POKEMON_PARAM* p_pp, FLD_TRADE_POKEDATA* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNŠm•Û
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- *	@param	heapID		ƒq[ƒvID
- *	@param	trade_no	ŒğŠ·”Ô†
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	trade_no	äº¤æ›ç•ªå·
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLD_TRADE_WORK* FLD_TradeAlloc( u32 heapID, u32 trade_no )
@@ -124,17 +124,17 @@ FLD_TRADE_WORK* FLD_TradeAlloc( u32 heapID, u32 trade_no )
 	p_work = sys_AllocMemory( heapID, sizeof(FLD_TRADE_WORK) );
 	memset( p_work, 0, sizeof(FLD_TRADE_WORK) );
 
-	// ŒğŠ·ƒf[ƒ^“Ç‚İ‚İ
+	// äº¤æ›ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->p_pokedata = ArcUtil_Load( ARC_FIELD_TRADE_POKE, trade_no, FALSE, heapID, ALLOC_TOP );
 
 	
 	p_work->heapID = heapID;
 	p_work->trade_no = trade_no;
 
-	// ŒğŠ·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_work->p_pp = PokemonParam_AllocWork( heapID );
 
-	// eƒf[ƒ^ì¬
+	// è¦ªãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_work->p_myste = MyStatus_AllocWork( heapID );
 	MyStatus_Init( p_work->p_myste );
 	str = FLD_TradeGetGmm( heapID, FLD_TRADE_GET_OYA_GMM( trade_no ) );
@@ -148,7 +148,7 @@ FLD_TRADE_WORK* FLD_TradeAlloc( u32 heapID, u32 trade_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
  *	@param	p_work		
  */
@@ -163,11 +163,11 @@ void FLD_TradeDelete( FLD_TRADE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒğŠ·‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+ *	@brief	äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_work		ƒ[ƒN
+ *	@param	cp_work		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 FLD_TradeMonsno( const FLD_TRADE_WORK* cp_work )
@@ -177,11 +177,11 @@ u32 FLD_TradeMonsno( const FLD_TRADE_WORK* cp_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒğŠ·‚É•K—v‚Èƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+ *	@brief	äº¤æ›ã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_work		ƒ[ƒN
+ *	@param	cp_work		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 FLD_TradeChangeMonsno( const FLD_TRADE_WORK* cp_work )
@@ -191,11 +191,11 @@ u32 FLD_TradeChangeMonsno( const FLD_TRADE_WORK* cp_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e«•Ê@æ“¾
+ *	@brief	è¦ªæ€§åˆ¥ã€€å–å¾—
  *
- *	@param	cp_work		ƒ[ƒN
+ *	@param	cp_work		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	«•Ê
+ *	@return	æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 FLD_TradeOyaSex( const FLD_TRADE_WORK* cp_work )
@@ -205,21 +205,21 @@ u32 FLD_TradeOyaSex( const FLD_TRADE_WORK* cp_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒğŠ·
+ *	@brief	äº¤æ›
  *
- *	@param	p_fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- *	@param	p_work		ŒğŠ·ƒ[ƒN
- *	@param	party_pos	ƒp[ƒeƒB[ƒ|ƒWƒVƒ‡ƒ“
+ *	@param	p_fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_work		äº¤æ›ãƒ¯ãƒ¼ã‚¯
+ *	@param	party_pos	ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ãƒã‚¸ã‚·ãƒ§ãƒ³
  */
 //-----------------------------------------------------------------------------
 void FLD_Trade( FIELDSYS_WORK * p_fsys, FLD_TRADE_WORK* p_work, int party_pos )
 {
 	POKEPARTY * party = SaveData_GetTemotiPokemon( p_fsys->savedata );
 
-	// ŒğŠ·Às
+	// äº¤æ›å®Ÿè¡Œ
 	PokeParty_SetMemberData( party, party_pos, p_work->p_pp );
 
-	// }ŠÓ‚É“o˜^
+	// å›³é‘‘ã«ç™»éŒ²
 	SaveData_GetPokeRegister( p_fsys->savedata, p_work->p_pp );
 }
 
@@ -228,21 +228,21 @@ void FLD_TradeDemoDataMake( FIELDSYS_WORK * p_fsys, FLD_TRADE_WORK* p_work, int 
 	POKEPARTY * party = SaveData_GetTemotiPokemon( p_fsys->savedata );
 	POKEMON_PARAM* p_chg_poke;
 	STRBUF* str;
-	u32 lev;		// ƒŒƒxƒ‹
+	u32 lev;		// ãƒ¬ãƒ™ãƒ«
 	int time_zone;
 
-	// ŒğŠ·‚·‚éƒ|ƒPƒ‚ƒ“
+	// äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
 	p_chg_poke = PokeParty_GetMemberPointer( party, party_pos );
 	lev = PokeParaGet( p_chg_poke, ID_PARA_level, NULL );
 	
-	// ŒğŠ·ƒ|ƒPƒ‚ƒ“‚Ìì¬
+	// äº¤æ›ãƒã‚±ãƒ¢ãƒ³ã®ä½œæˆ
 	FLD_TradeSetPokeParam( p_work->p_pp, p_work->p_pokedata, lev, p_work->trade_no, p_work->heapID, p_fsys->location->zone_id );
 
-	// ƒfƒ‚—p‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ÉŠi”[
+	// ãƒ‡ãƒ¢ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ ¼ç´
 	PokeCopyPPtoPP( p_chg_poke, sendPoke );
 	PokeCopyPPtoPP( p_work->p_pp, recvPoke );
 
-	// ƒfƒ‚ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_demo->sendPoke	= PPPPointerGet( sendPoke );
 	p_demo->recvPoke	= PPPPointerGet( recvPoke );
 	p_demo->partner	= p_work->p_myste;
@@ -264,8 +264,8 @@ void FLD_TradeDemoDataMake( FIELDSYS_WORK * p_fsys, FLD_TRADE_WORK* p_work, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWæ“¾
- *	”jŠü‚ª•K—v
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
+ *	ç ´æ£„ãŒå¿…è¦
  */
 //-----------------------------------------------------------------------------
 static STRBUF* FLD_TradeGetGmm( u32 heapID, u32 idx )
@@ -281,12 +281,12 @@ static STRBUF* FLD_TradeGetGmm( u32 heapID, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€‚Éƒf[ƒ^‚Ìİ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ã«ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- *	@param	p_pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- *	@param	p_data		ƒf[ƒ^
- *	@param	lev			ƒŒƒxƒ‹
- *	@param	trade_no	tradeƒiƒ“ƒo[
+ *	@param	p_pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	lev			ãƒ¬ãƒ™ãƒ«
+ *	@param	trade_no	tradeãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void FLD_TradeSetPokeParam( POKEMON_PARAM* p_pp, FLD_TRADE_POKEDATA* p_data, u32 lev, u32 trade_no, u32 heapID, u32 zone_id )
@@ -296,23 +296,23 @@ static void FLD_TradeSetPokeParam( POKEMON_PARAM* p_pp, FLD_TRADE_POKEDATA* p_da
 	u32 placeid;
 
 	
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[@ƒŒƒxƒ‹@ŒÅ‘Ì—”@IDİ’è
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã€€ãƒ¬ãƒ™ãƒ«ã€€å›ºä½“ä¹±æ•°ã€€IDè¨­å®š
 	PokeParaSet( p_pp, 
 			p_data->monsno,
 			lev, POW_RND, 
 			RND_SET, p_data->mons_rnd,
 			ID_SET, p_data->mons_id );
 
-	// ƒjƒbƒNƒl[ƒ€
+	// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	str = FLD_TradeGetGmm( heapID, FLD_TRADE_GET_POKE_GMM(trade_no) );
 	PokeParaPut( p_pp, ID_PARA_nickname_buf, str );
 	STRBUF_Delete(str);
 
-	// ƒjƒbƒNƒl[ƒ€ƒtƒ‰ƒO
+	// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°
 	nickname_flg = 1;
 	PokeParaPut( p_pp, ID_PARA_nickname_flag, &nickname_flg );
 
-	// Šeí—”İ’è
+	// å„ç¨®ä¹±æ•°è¨­å®š
 	PokeParaPut( p_pp, ID_PARA_hp_rnd, &p_data->hp_rnd );
 	PokeParaPut( p_pp, ID_PARA_pow_rnd, &p_data->at_rnd );
 	PokeParaPut( p_pp, ID_PARA_def_rnd, &p_data->df_rnd );
@@ -320,37 +320,37 @@ static void FLD_TradeSetPokeParam( POKEMON_PARAM* p_pp, FLD_TRADE_POKEDATA* p_da
 	PokeParaPut( p_pp, ID_PARA_spepow_rnd, &p_data->sa_rnd );
 	PokeParaPut( p_pp, ID_PARA_spedef_rnd, &p_data->sd_rnd );
 
-	// “Á«
+	// ç‰¹æ€§
 //	PokeParaPut( p_pp, ID_PARA_speabino, &p_data->speabino );
 
-	// ‚©‚Á‚±‚æ‚³‚È‚Ç
+	// ã‹ã£ã“ã‚ˆã•ãªã©
 	PokeParaPut( p_pp, ID_PARA_style, &p_data->style );
 	PokeParaPut( p_pp, ID_PARA_beautiful, &p_data->beautiful );
 	PokeParaPut( p_pp, ID_PARA_cute, &p_data->cute );
 	PokeParaPut( p_pp, ID_PARA_clever, &p_data->clever );
 	PokeParaPut( p_pp, ID_PARA_strong, &p_data->strong );
 	
-	// ƒAƒCƒeƒ€
+	// ã‚¢ã‚¤ãƒ†ãƒ 
 	PokeParaPut( p_pp, ID_PARA_item, &p_data->item );
 
-	// e‚Ì–¼‘O
+	// è¦ªã®åå‰
 	str = FLD_TradeGetGmm( heapID, FLD_TRADE_GET_OYA_GMM(trade_no) );
 	PokeParaPut( p_pp, ID_PARA_oyaname_buf, str );
 	STRBUF_Delete(str);
 
-	// e‚Ì«•Ê	
+	// è¦ªã®æ€§åˆ¥	
 	PokeParaPut( p_pp, ID_PARA_oyasex, &p_data->oya_sex );
 
-	// ‘ƒR[ƒh
+	// å›½ã‚³ãƒ¼ãƒ‰
 	PokeParaPut( p_pp, ID_PARA_country_code, &p_data->world_code );
 
-	// ƒgƒŒ[ƒi[ƒƒ‚İ’è
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢è¨­å®š
 	placeid = ZoneData_GetPlaceNameID( zone_id );
 	TrainerMemoSetPP( p_pp, NULL, TRMEMO_OFFTRADE_PLACESET, placeid, heapID );
 
-	// ŒvZ‚µ‚È‚¨‚µ
+	// è¨ˆç®—ã—ãªãŠã—
 	PokeParaCalc( p_pp );
 
-	// ƒŒƒA‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+	// ãƒ¬ã‚¢ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 	GF_ASSERT( PokeRareGet( p_pp ) == FALSE );
 }

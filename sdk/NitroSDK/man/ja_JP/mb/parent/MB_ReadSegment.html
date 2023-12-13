@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MB_ReadSegment</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_ReadSegment</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,54 +22,54 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>file</STRONG></EM></TD>
-      <TD width="87%">�v���O�����t�@�C���̃n���h����ێ�����FSFile�\����<BR>
-	  ���̃t�@�C���̃V�[�N�ʒu�̓v���O�����o�C�i���̐擪���w���Ă���K�v������܂��B<BR>
-	  �܂��A�V�[�N�ʒu�͂��̊֐�����Ԃ����Ƃ��Ɍ��̈ʒu��ێ����܂��B<br>
+      <TD width="87%">プログラムファイルのハンドルを保持するFSFile構造体<BR>
+	  このファイルのシーク位置はプログラムバイナリの先頭を指している必要があります。<BR>
+	  また、シーク位置はこの関数から返ったときに元の位置を保持します。<br>
 	  <br>
-	  ���̃|�C���^��NULL���w�肵���ꍇ�͐e�@�A�v���P�[�V�������g��<br>
-	  �_�E�����[�h�v���O�����t�@�C���Ƃ݂Ȃ��ăZ�O�����g�𒊏o���܂��B<br>
+	  このポインタにNULLを指定した場合は親機アプリケーション自身を<br>
+	  ダウンロードプログラムファイルとみなしてセグメントを抽出します。<br>
 	  </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>buf</STRONG></EM></TD>
-      <TD width="87%">���o�����Z�O�����g�����i�[���郁�����ւ̃|�C���^</TD>
+      <TD width="87%">抽出したセグメント情報を格納するメモリへのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
-      <TD width="87%">buf�̃o�C�g�T�C�Y<BR>
-	  ���̃T�C�Y�́A���Ȃ��Ƃ�<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>�ȏ�ł���K�v������܂��B</TD>
+      <TD width="87%">bufのバイトサイズ<BR>
+	  このサイズは、少なくとも<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>以上である必要があります。</TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�v���O�������琳�����Z�O�����g���𒊏o�ł����ꍇ��TRUE�A�����łȂ��ꍇ��FALSE��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>プログラムから正しくセグメント情報を抽出できた場合はTRUE、そうでない場合はFALSEを返します。</p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�w�肵���v���O�����t�@�C������A�_�E�����[�h�����ɒ��ڕK�v�ƂȂ�Z�O�����g��񂾂��𒊏o���܂��B<br>
-���[�U�A�v���P�[�V�����́A���̊֐��œ���ꂽ�Z�O�����g�f�[�^��p����<A href="MB_RegisterFile.html">MB_RegisterFile</A>�֐����Ăяo���K�v������܂��B<br>
+指定したプログラムファイルから、ダウンロード処理に直接必要となるセグメント情報だけを抽出します。<br>
+ユーザアプリケーションは、この関数で得られたセグメントデータを用いて<A href="MB_RegisterFile.html">MB_RegisterFile</A>関数を呼び出す必要があります。<br>
 <br>
-�w�肵���o�b�t�@�̃T�C�Y��<a href="MB_GetSegmentLength.html">MB_GetSegmentLength</A>�֐��̕Ԃ�l�ȏ�ł���ꍇ�́A<br>
-���̊֐��Ăяo���̒��őO�����đS�ẴZ�O�����g�f�[�^����������ɏ������܂��B<br>
+指定したバッファのサイズが<a href="MB_GetSegmentLength.html">MB_GetSegmentLength</A>関数の返り値以上である場合は、<br>
+この関数呼び出しの中で前もって全てのセグメントデータをメモリ上に準備します。<br>
 <br>
-�T�C�Y�������������������<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>�ȏ�ł���ꍇ�́A<br>
-��������ɏ����ł��Ȃ��c��̕������A�w��̃A�[�J�C�u����K�v�ɉ����ē��I�ɓǂݍ��ނ悤�ݒ肳��܂��B<br>
-���̐ݒ�̏ꍇ�A�q�@�̗v���֑����ɉ����ł��Ȃ��󋵂����΂��Δ������邽�߂ɓ]�������͎኱�ቺ���܂��B<br>
-<font color="#800000">���̐ݒ���g�p����ƁAMB���C�u�����̓����ŃX���b�h���ЂƂ��������I�ɋN�����܂��B�ڍׂ� [��������] �̍����Q�Ƃ��������B</font><br>
+サイズがそれよりも小さくかつ<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>以上である場合は、<br>
+メモリ上に準備できない残りの部分を、指定のアーカイブから必要に応じて動的に読み込むよう設定されます。<br>
+この設定の場合、子機の要求へ即座に応答できない状況がしばしば発生するために転送効率は若干低下します。<br>
+<font color="#800000">この設定を使用すると、MBライブラリの内部でスレッドがひとつだけ自動的に起動します。詳細は [内部動作] の項を参照ください。</font><br>
 <br>
-�T�C�Y��<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>�����ł���ꍇ�͎��s���܂��B<br>
+サイズが<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>未満である場合は失敗します。<br>
 <br>
 <br>
 <pre>
-��:
+例:
     BOOL    reg_file_done = FALSE;
 
     FSFile file[1];
@@ -90,29 +90,29 @@
     }
 <BR>
 </pre><BR>
-<h2>��������</h2>
+<h2>内部動作</h2>
 <p>
-���̊֐��͓�����FS_ReadFile�֐����Ăяo���܂��B<br>
+この関数は内部でFS_ReadFile関数を呼び出します。<br>
 <br>
-�A�[�J�C�u���瓮�I�ɓǂݍ��ނ悤�ݒ肳�ꂽ�Z�O�����g�f�[�^���g�p����<A href="MB_RegisterFile.html">MB_RegisterFile</A>�֐����Ăяo�����ꍇ�A<br>
-�A�[�J�C�u�փA�N�Z�X���邽�߂̃X���b�h�������łЂƂ��������I�ɋN������_�ɒ��ӂ��Ă��������B<br>
-���̃X���b�h��<A href="../common/MB_End.html">MB_End</a>�֐���<A href="../common/MB_EndToIdle.html">MB_EndToIdle</a>�֐�����������܂ő��݂��܂��B<br>
-���̃X���b�h�̗D��x��0�ŁA�q�@�Q�̃Z�O�����g�f�[�^�v������������܂ŃX���[�v���A�K�v�ɉ����ĕs����ɃJ�[�h�A�N�Z�X���s���܂��B<br>
+アーカイブから動的に読み込むよう設定されたセグメントデータを使用して<A href="MB_RegisterFile.html">MB_RegisterFile</A>関数を呼び出した場合、<br>
+アーカイブへアクセスするためのスレッドが内部でひとつだけ自動的に起動する点に注意してください。<br>
+このスレッドは<A href="../common/MB_End.html">MB_End</a>関数か<A href="../common/MB_EndToIdle.html">MB_EndToIdle</a>関数が完了するまで存在します。<br>
+このスレッドの優先度は0で、子機群のセグメントデータ要求が発生するまでスリープし、必要に応じて不定期にカードアクセスを行います。<br>
 </p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>
 <br>
 <A href="MB_GetSegmentLength.html">MB_GetSegmentLength</A> 
 <A href="MB_RegisterFile.html">MB_RegisterFile</A> 
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/04/11 �^�X�N�X���b�h�Ɋւ��������ǋL<br>
-2004/12/07 �x�����[�h�����ɂ��āA�K�p�Ώۂ�NITRO-CARD����C�ӂ̃A�[�J�C�u�Ɋg�����ꂽ���ƂɂƂ��Ȃ��L�q�ύX<br>
-2004/11/11 �N���[���u�[�g���J�ɔ����L�q�ύX. �x�����[�h�����ǉ��ɔ����L�q�ύX<br>
-2004/09/10 �t�@�C���|�C���^��NULL���w�肵���ۂ̓��������ǉ�<br>
-2004/08/09 ����<BR>
+2005/04/11 タスクスレッドに関する説明を追記<br>
+2004/12/07 遅延リード方式について、適用対象がNITRO-CARDから任意のアーカイブに拡張されたことにともなう記述変更<br>
+2004/11/11 クローンブート公開に伴う記述変更. 遅延リード方式追加に伴う記述変更<br>
+2004/09/10 ファイルポインタにNULLを指定した際の動作説明を追加<br>
+2004/08/09 初版<BR>
 </P>
 </body>
 </html>

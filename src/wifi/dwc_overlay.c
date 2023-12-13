@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	dwc_rapstart.c
- * @bfief	DWC�̃I�[�o�[���C���Ǘ�  ������풓�ɔz�u
+ * @bfief	DWCのオーバーレイを管理  これを常駐に配置
  * @author	k.ohno
  * @date	06/02/23
  */
@@ -21,7 +21,7 @@ FS_EXTERN_OVERLAY(dpw_common);
 
 //==============================================================================
 /**
- * $brief   NitroDwc���ł܂��Ă���I�[�o�[���C�̈�����[�h����
+ * $brief   NitroDwcが固まっているオーバーレイ領域をロードする
  *
  * @param   none		
  *
@@ -35,7 +35,7 @@ void DwcOverlayStart(void)
 
 //==============================================================================
 /**
- * $brief   NitroDwc���ł܂��Ă���I�[�o�[���C�̈�����
+ * $brief   NitroDwcが固まっているオーバーレイ領域を解放
  *
  * @param   none		
  *
@@ -49,7 +49,7 @@ void DwcOverlayEnd(void)
 
 //==============================================================================
 /**
- * $brief   Wifi�ݒ�A�v�����Ăяo�����߂̗̈�����[�h
+ * $brief   Wifi設定アプリを呼び出すための領域をロード
  *
  * @param   none		
  *
@@ -63,7 +63,7 @@ void DwcUtilOverlayStart(void)
 
 //==============================================================================
 /**
- * $brief   Wifi�ݒ�A�v�����Ăяo�����߂̗̈�����
+ * $brief   Wifi設定アプリを呼び出すための領域を解放
  *
  * @param   none		
  *
@@ -77,7 +77,7 @@ void DwcUtilOverlayEnd(void)
 
 //==============================================================================
 /**
- * $brief   Wifi�A�v���Ăяo��
+ * $brief   Wifiアプリ呼び出し
  *
  * @param   savedata		
  * @param   HeapID		
@@ -137,7 +137,7 @@ void DwcTestOverlayEnd(void)
 
 //==============================================================================
 /**
- * $brief   ���E�����E�o�g���^���[�I�[�o�[���C���ʗ̈惍�[�h
+ * $brief   世界交換・バトルタワーオーバーレイ共通領域ロード
  *
  * @param   none		
  *
@@ -146,13 +146,13 @@ void DwcTestOverlayEnd(void)
 //==============================================================================
 void DpwCommonOverlayStart(void)
 {
-	// �T�[�o�[�A�N�Z�X���C�u�������ʃI�[�o�[���C�̈�ǂݍ���
+	// サーバーアクセスライブラリ共通オーバーレイ領域読み込み
 	Overlay_Load(FS_OVERLAY_ID(dpw_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 }
 
 //==============================================================================
 /**
- * $brief    ���E�����E�o�g���^���[�I�[�o�[���C���ʗ̈���
+ * $brief    世界交換・バトルタワーオーバーレイ共通領域解放
  *
  * @param   none		
  *
@@ -161,7 +161,7 @@ void DpwCommonOverlayStart(void)
 //==============================================================================
 void DpwCommonOverlayEnd(void)
 {
-	// �T�[�o�[�A�N�Z�X���ʃI�[�o�[���C���
+	// サーバーアクセス共通オーバーレイ解放
 	Overlay_UnloadID(FS_OVERLAY_ID(dpw_common));
 }
 
@@ -177,7 +177,7 @@ void DpwCommonOverlayEnd(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�X�^�[�g���j���[����Ăяo�����Wi-Fi�ݒ���
+ * @brief	スタートメニューから呼び出されるWi-Fi設定画面
  * @param	NONE
  * @return	NONE
  */

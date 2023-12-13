@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	factory.s
- * @brief	uƒtƒ@ƒNƒgƒŠ[T‚¦Žºvƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg
+ * @brief	ã€Œãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æŽ§ãˆå®¤ã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
  * @author	nohara
  * @date	2007.04.11
  */
@@ -22,44 +22,44 @@
 
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_PARAM0	Žü‰ñ”ŒvŽZ—p
-//	FSW_PARAM1	ƒŠƒXƒg‚ÅŽg—p
-//	FSW_PARAM2	“GƒgƒŒ[ƒi[1‚ÌOBJƒR[ƒh
-//	FSW_PARAM3	“GƒgƒŒ[ƒi[2‚ÌOBJƒR[ƒh
-//	FSW_PARAM6	ˆÄ“à‚·‚él
-//	FSW_LOCAL2	’ÊM’è‹`
-//	FSW_LOCAL3	‹L˜^‚µ‚½‚©
-//	FSW_LOCAL5	˜^‰æŒvŽZ‚ÉŽg—p
-//	FSW_LOCAL7	ŽålŒö‚ÌŒ©‚½–Ú
+//	FSW_PARAM0	å‘¨å›žæ•°è¨ˆç®—ç”¨
+//	FSW_PARAM1	ãƒªã‚¹ãƒˆã§ä½¿ç”¨
+//	FSW_PARAM2	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM3	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM6	æ¡ˆå†…ã™ã‚‹äºº
+//	FSW_LOCAL2	é€šä¿¡å®šç¾©
+//	FSW_LOCAL3	è¨˜éŒ²ã—ãŸã‹
+//	FSW_LOCAL5	éŒ²ç”»è¨ˆç®—ã«ä½¿ç”¨
+//	FSW_LOCAL7	ä¸»äººå…¬ã®è¦‹ãŸç›®
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_factory_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		fss_factory_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END						//çµ‚äº†
 
 //--------------------------------------------------------------------
-//					     ƒfƒoƒbƒN’è‹`
+//					     ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define DEBUG_BTL_OFF					//ƒoƒgƒ‹ƒIƒtƒfƒoƒbƒN
-//#define DEBUG_BTL_LOSE_OFF			//ƒoƒgƒ‹”s–kƒIƒtƒfƒoƒbƒN
-//#define DEBUG_7BTL_OFF				//ƒoƒgƒ‹7‰ñƒIƒtƒfƒoƒbƒN
+//#define DEBUG_BTL_OFF					//ãƒãƒˆãƒ«ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_LOSE_OFF			//ãƒãƒˆãƒ«æ•—åŒ—ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_7BTL_OFF				//ãƒãƒˆãƒ«7å›žã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
 
 
 /********************************************************************/
 //
-//		SCENE_FACTORY:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//		SCENE_FACTORY:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		ASSISTANTW,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_set_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		ASSISTANTW,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
@@ -68,7 +68,7 @@ _RESOURCE_LABEL	pcwoman2_set_resource
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_FACTORY:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_FACTORY:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_SIO_USER_0			(1)
@@ -79,11 +79,11 @@ _RESOURCE_LABEL	pcwoman2_set_resource
 #define OBJID_ETC					(98)
 #define OBJID_ETC2					(99)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
 _ACTOR_LABEL	default_set_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_ASSISTANTW,ASSISTANTW,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*10,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
@@ -91,7 +91,7 @@ _ACTOR_LABEL	default_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,8*24,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*18,8*24,ON
 	_ACTOR_DATA				OBJID_ASSISTANTW,ASSISTANTW,WF2DMAP_WAY_C_DOWN, \
@@ -105,9 +105,9 @@ _ACTOR_LABEL	pcwoman2_set_actor
 							8*12,8*22,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-//í“¬Œã‚É–ß‚Á‚Ä‚«‚½Žž
+//æˆ¦é—˜å¾Œã«æˆ»ã£ã¦ããŸæ™‚
 _ACTOR_LABEL	btl_after_set_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_ASSISTANTW,ASSISTANTW,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*10,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
@@ -115,7 +115,7 @@ _ACTOR_LABEL	btl_after_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	btl_after_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,8*12,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*18,8*12,ON
 	_ACTOR_DATA				OBJID_ASSISTANTW,ASSISTANTW,WF2DMAP_WAY_C_DOWN, \
@@ -126,30 +126,30 @@ _ACTOR_LABEL	btl_after_set_actor_multi
 
 /********************************************************************/
 //
-//	SCENE_FACTORY_BTL:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE_FACTORY_BTL:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_scene2_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_scene2_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_FACTORY_BTL:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_FACTORY_BTL:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 _ACTOR_LABEL	default_scene2_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
 							8*16,8*24,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_scene2_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,8*24,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*18,8*24,ON
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
@@ -157,7 +157,7 @@ _ACTOR_LABEL	default_scene2_actor_multi
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒŠƒ\[ƒX
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ãƒªã‚½ãƒ¼ã‚¹
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _RESOURCE_LABEL	etc_set_resource
@@ -169,7 +169,7 @@ _RESOURCE_LABEL	etc_set_resource2
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒAƒNƒ^[
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _ACTOR_LABEL	etc_set_actor
@@ -186,12 +186,12 @@ _ACTOR_LABEL	etc_set_actor2
 
 /********************************************************************/
 //
-//					ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//					ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//ƒŒƒ“ƒ^ƒ‹Žó•t‚Ì‘O‚Ü‚ÅˆÚ“®
+//ãƒ¬ãƒ³ã‚¿ãƒ«å—ä»˜ã®å‰ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_center
 	_ANIME_DATA	FC_WALK_U_8F,6
@@ -202,7 +202,7 @@ _ANIME_LABEL anm_player_go_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Œ©‘—‚é
+//è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA	FC_WAIT_8F,1
@@ -216,7 +216,7 @@ _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ‹[ƒ€‚ÖˆÚ“®
+//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_btl_room
 	_ANIME_DATA	FC_WAIT_8F,2
@@ -240,14 +240,14 @@ _ANIME_LABEL anm_man_left_walk
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//˜b‚·“®ì
+//è©±ã™å‹•ä½œ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stay_walk_left
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_btl_center
 	_ANIME_DATA	FC_WALK_U_8F,1
@@ -264,7 +264,7 @@ _ANIME_LABEL anm_player_go_btl_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_room_in
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -300,7 +300,7 @@ _ANIME_LABEL etc_anime_room_in_brain_02
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_go_out
 	_ANIME_DATA	FC_WALK_U_8F,3
@@ -321,7 +321,7 @@ _ANIME_LABEL etc_anime_go_out_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒLƒ‡ƒƒLƒ‡ƒ
+//ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_kyorokyoro
 	_ANIME_DATA	FC_STAY_WALK_U_8F,1
@@ -340,64 +340,64 @@ _ANIME_LABEL anm_player_kyorokyoro
 
 /********************************************************************/
 //
-//						ƒŒƒ“ƒ^ƒ‹`‘Îí`ŒðŠ·
+//						ãƒ¬ãƒ³ã‚¿ãƒ«ã€œå¯¾æˆ¦ã€œäº¤æ›
 //
 /********************************************************************/
 fss_factory_start:
 	//_EVENT_START
 
-	/*lobby‚Å‘I‘ð‚µ‚½ƒ^ƒCƒv‚ÆƒŒƒxƒ‹‚ª•K—v*/
+	/*lobbyã§é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã¨ãƒ¬ãƒ™ãƒ«ãŒå¿…è¦*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_FACTORY_TYPE,FSW_LOCAL1	/*type*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_FACTORY_LEVEL,FSW_LOCAL2	/*level*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK3,FSW_LOCAL3				/*init*/
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	/*‚±‚±‚Å‚Í‚Ü‚¾ƒ[ƒN‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢*/
+	/*ã“ã“ã§ã¯ã¾ã ãƒ¯ãƒ¼ã‚¯ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„*/
 	//_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	//_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_start_multi
 	_IFVAL_JUMP		FSW_LOCAL1,EQ,FACTORY_TYPE_MULTI,ev_factory_start_multi
 	_IFVAL_JUMP		FSW_LOCAL1,EQ,FACTORY_TYPE_WIFI_MULTI,ev_factory_start_multi
 
 	_LDVAL				FSW_PARAM6,BFSM
-	_CHAR_RESOURCE_SET	default_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP			ev_factory_start_data_set
 	_END
 
 ev_factory_start_multi:
 
-	/*Ÿ”s‚ÉŠÖŒW‚È‚­’ÊMƒtƒƒ“ƒeƒBƒA‚É’§í(’ÊM‚Í’†’f‚ª‚È‚¢‚Ì‚Åæ“ª‚Åˆ—‚µ‚Ä‚à‘åä•v)*/
+	/*å‹æ•—ã«é–¢ä¿‚ãªãé€šä¿¡ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã«æŒ‘æˆ¦(é€šä¿¡ã¯ä¸­æ–­ãŒãªã„ã®ã§å…ˆé ­ã§å‡¦ç†ã—ã¦ã‚‚å¤§ä¸ˆå¤«)*/
 	_SCORE_ADD			SCORE_ID_FRONTIER_COMM
 
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP			ev_factory_start_data_set
 	_END
 
 ev_factory_start_data_set:
 
-	/*—U“±ˆõ*/
-	_CHAR_RESOURCE_SET	pcwoman2_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			pcwoman2_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	/*èª˜å°Žå“¡*/
+	_CHAR_RESOURCE_SET	pcwoman2_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			pcwoman2_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*ƒ[ƒNŠm•Û*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿*/
 	_BATTLE_REC_INIT
 	_FACTORY_WORK_ALLOC	FSW_LOCAL3,FSW_LOCAL1,FSW_LOCAL2
 
-	/*ƒŒ[ƒ‹’Ç‰Á*/
+	/*ãƒ¬ãƒ¼ãƒ«è¿½åŠ */
 	_FACTORY_TOOL	FA_ID_ADD_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_comm_basic
 
 	_JUMP			ev_factory_start_2
 	_END
 
-/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_factory_multi_comm_basic:
 	_CALL			ev_factory_comm_command_initialize_1
 	_JUMP			ev_factory_multi_comm_basic_retry
@@ -406,12 +406,12 @@ ev_factory_multi_comm_basic:
 ev_factory_multi_comm_basic_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_BASIC
 	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_comm_basic_retry		/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_comm_basic_retry		/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_BASIC_AFTER
 	_COMM_RESET
@@ -424,26 +424,26 @@ ev_factory_multi_comm_basic_retry:
 //
 /********************************************************************/
 ev_factory_start_2:
-	/*ƒ[ƒN‰Šú‰»*/
+	/*ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–*/
 	_FACTORY_WORK_INIT	FSW_LOCAL3
 
-	/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_comm_tr
 
 	_JUMP			ev_factory_start_3
 	_END
 
-/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_factory_multi_comm_tr:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_TR
 	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_comm_tr		/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_comm_tr		/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_TR_AFTER
 	_COMM_RESET
@@ -456,18 +456,18 @@ ev_factory_multi_comm_tr:
 //
 /********************************************************************/
 ev_factory_start_3:
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*u‚«‚ë‚­‚·‚év‚ÅŽg—p‚·‚éƒ[ƒN‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ã€Œãã‚ãã™ã‚‹ã€ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL			FSW_LOCAL3,0
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_start_3_multi
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_center
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_center
 	_OBJ_ANIME		OBJID_PCWOMAN2,anm_pcwoman2_go_center
@@ -478,7 +478,7 @@ ev_factory_start_3:
 
 ev_factory_start_3_multi:
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_center
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_center
 	_OBJ_ANIME		OBJID_PCWOMAN2,anm_pcwoman2_go_center
@@ -491,36 +491,36 @@ ev_factory_start_3_multi:
 
 ev_factory_room_start:
 
-	/*—U“±ˆõíœ*/
+	/*èª˜å°Žå“¡å‰Šé™¤*/
 	_ACTOR_FREE		OBJID_PCWOMAN2
 	_CHAR_RESOURCE_FREE	FSW_PARAM6
 
-	/*¡‰½l–Ú‚©Žæ“¾*/
+	/*ä»Šä½•äººç›®ã‹å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_ROUND,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_renshou_0		/*0		*/
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒƒjƒ…[•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ã®ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã—ãªã„*/
 	_LDVAL			FSW_LOCAL3,1
 	_JUMP			ev_factory_room_saikai							/*1-7	*/
 	_END
 
 
 /********************************************************************/
-/*							˜AŸ” 0								*/
+/*							é€£å‹æ•° 0								*/
 /********************************************************************/
 ev_factory_room_renshou_0:
-	/*‘ÎíƒgƒŒ[ƒi[‚Ìî•ñ‚ðŽæ“¾*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æƒ…å ±ã‚’å–å¾—*/
 	_CALL			ev_factory_room_tr_info_msg
 	_JUMP			ev_factory_room_go_rental
 	_END
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[î•ñ								*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±								*/
 /********************************************************************/
 ev_factory_room_tr_info_msg:
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_room_tr_info_msg
 
@@ -529,7 +529,7 @@ ev_factory_room_tr_info_msg:
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[î•ñ(“GƒgƒŒ[ƒi[2l)					*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±(æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2äºº)					*/
 /********************************************************************/
 ev_factory_multi_room_tr_info_msg:
 	_COMM_RESET
@@ -539,33 +539,33 @@ ev_factory_multi_room_tr_info_msg:
 	_END
 
 ev_factory_multi_room_tr_info_msg_retry:
-	/*’ÊMF“Gƒ|ƒPƒ‚ƒ“‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ•µãƒã‚±ãƒ¢ãƒ³ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_ENEMY
 	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_room_tr_info_msg_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_room_tr_info_msg_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_ENEMY_AFTER
 	_COMM_RESET
 
-	/*“Gƒ|ƒPƒ‚ƒ“¶¬*/
+	/*æ•µãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ*/
 	_FACTORY_TOOL	FA_ID_ENEMY_POKE_CREATE,0,0,FSW_ANSWER
 
-	/*Žü‰ñ”‚ðŽæ“¾*/
+	/*å‘¨å›žæ•°ã‚’å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_LAP,0,0,FSW_ANSWER
 	_LDWK			FSW_PARAM0,FSW_ANSWER
-	_IFVAL_CALL		FSW_PARAM0,EQ,0,ev_factory_multi_lap_0	/*1Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,1,ev_factory_multi_lap_1	/*2Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,2,ev_factory_multi_lap_2	/*3Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,3,ev_factory_multi_lap_3	/*4Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,GE,4,ev_factory_multi_lap_4	/*5Žü–ÚˆÈ~*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,0,ev_factory_multi_lap_0	/*1å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,1,ev_factory_multi_lap_1	/*2å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,2,ev_factory_multi_lap_2	/*3å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,3,ev_factory_multi_lap_3	/*4å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,GE,4,ev_factory_multi_lap_4	/*5å‘¨ç›®ä»¥é™*/
 	_RET
 
-/*1Žü–Ú*/
+/*1å‘¨ç›®*/
 ev_factory_multi_lap_0:
 	_FACTORY_TOOL	FA_ID_GET_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA	1,FSW_ANSWER,0,0
@@ -580,7 +580,7 @@ ev_factory_multi_lap_0:
 	_TALKMSG	msg_factory_room_36
 	_RET
 
-/*2Žü–Ú*/
+/*2å‘¨ç›®*/
 ev_factory_multi_lap_1:
 	_FACTORY_TOOL	FA_ID_GET_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA	1,FSW_ANSWER,0,0
@@ -591,7 +591,7 @@ ev_factory_multi_lap_1:
 	_TALKMSG	msg_factory_room_37
 	_RET
 
-/*3Žü–Ú*/
+/*3å‘¨ç›®*/
 ev_factory_multi_lap_2:
 	_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	_WAZA_NAME		0,FSW_ANSWER
@@ -602,36 +602,36 @@ ev_factory_multi_lap_2:
 	_TALKMSG	msg_factory_room_38
 	_RET
 
-/*4Žü–Ú*/
+/*4å‘¨ç›®*/
 ev_factory_multi_lap_3:
-	/*ƒgƒŒ[ƒi[‚P‚©‚Q‚Ì‚Ç‚¿‚ç‚©‚Ìƒ‰ƒ“ƒ_ƒ€‚¾‚ªA‚PA‚Q‚Æ‚à’m‚ç‚È‚¢‚Ì‚Å‚Ç‚¿‚ç‚Å‚à‚¢‚¢‚Í‚¸*/
+	/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼‘ã‹ï¼’ã®ã©ã¡ã‚‰ã‹ã®ãƒ©ãƒ³ãƒ€ãƒ ã ãŒã€ï¼‘ã€ï¼’ã¨ã‚‚çŸ¥ã‚‰ãªã„ã®ã§ã©ã¡ã‚‰ã§ã‚‚ã„ã„ã¯ãš*/
 	_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	_WAZA_NAME		0,FSW_ANSWER
 
 	_TALKMSG	msg_factory_room_39
 	_RET
 
-/*5Žü–Ú*/
+/*5å‘¨ç›®*/
 ev_factory_multi_lap_4:
 	_JUMP			ev_factory_lap_4
 	_END
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[î•ñ(“GƒgƒŒ[ƒi[1l)					*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±(æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1äºº)					*/
 /********************************************************************/
 ev_factory_room_tr_info_msg_2:
-	/*Žü‰ñ”‚ðŽæ“¾*/
+	/*å‘¨å›žæ•°ã‚’å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_LAP,0,0,FSW_ANSWER
 	_LDWK			FSW_PARAM0,FSW_ANSWER
-	_IFVAL_CALL		FSW_PARAM0,EQ,0,ev_factory_lap_0	/*1Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,1,ev_factory_lap_1	/*2Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,2,ev_factory_lap_2	/*3Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,EQ,3,ev_factory_lap_3	/*4Žü–Ú*/
-	_IFVAL_CALL		FSW_PARAM0,GE,4,ev_factory_lap_4	/*5Žü–ÚˆÈ~*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,0,ev_factory_lap_0	/*1å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,1,ev_factory_lap_1	/*2å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,2,ev_factory_lap_2	/*3å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,EQ,3,ev_factory_lap_3	/*4å‘¨ç›®*/
+	_IFVAL_CALL		FSW_PARAM0,GE,4,ev_factory_lap_4	/*5å‘¨ç›®ä»¥é™*/
 	_RET
 
-/*1Žü–Ú*/
+/*1å‘¨ç›®*/
 ev_factory_lap_0:
 	//_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	//_WAZA_NAME		0,FSW_ANSWER
@@ -651,7 +651,7 @@ ev_factory_lap_0:
 	_TALKMSG	msg_factory_room_30
 	_RET
 
-/*2Žü–Ú*/
+/*2å‘¨ç›®*/
 ev_factory_lap_1:
 	//_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	//_WAZA_NAME		0,FSW_ANSWER
@@ -666,7 +666,7 @@ ev_factory_lap_1:
 	_TALKMSG	msg_factory_room_31
 	_RET
 
-/*3Žü–Ú*/
+/*3å‘¨ç›®*/
 ev_factory_lap_2:
 	_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	_WAZA_NAME		0,FSW_ANSWER
@@ -676,7 +676,7 @@ ev_factory_lap_2:
 	_TALKMSG	msg_factory_room_32
 	_RET
 
-/*4Žü–Ú*/
+/*4å‘¨ç›®*/
 ev_factory_lap_3:
 	_FACTORY_TOOL	FA_ID_GET_WAZANO,0,0,FSW_ANSWER
 	_WAZA_NAME		0,FSW_ANSWER
@@ -692,12 +692,12 @@ ev_factory_lap_3:
 	_TALKMSG	msg_factory_room_33
 	_RET
 
-/*5Žü–Ú*/
+/*5å‘¨ç›®*/
 ev_factory_lap_4:
 	_FACTORY_TOOL	FA_ID_GET_LARGE_TYPE,0,0,FSW_ANSWER
 
-	_IFVAL_CALL		FSW_ANSWER,NE,0xff,ev_factory_lap_4_0		/*“¯‚¶ƒ^ƒCƒv‚ª‘¶Ý*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,0xff,ev_factory_lap_4_1		/*“¯‚¶ƒ^ƒCƒv‚ª‚È‚¢*/
+	_IFVAL_CALL		FSW_ANSWER,NE,0xff,ev_factory_lap_4_0		/*åŒã˜ã‚¿ã‚¤ãƒ—ãŒå­˜åœ¨*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0xff,ev_factory_lap_4_1		/*åŒã˜ã‚¿ã‚¤ãƒ—ãŒãªã„*/
 	_RET
 
 ev_factory_lap_4_0:
@@ -710,10 +710,10 @@ ev_factory_lap_4_1:
 	_RET
 
 ev_factory_room_go_rental:
-	/*uƒŒƒ“ƒ^ƒ‹‚ð@s‚¢‚Ü‚·v*/
+	/*ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ã‚’ã€€è¡Œã„ã¾ã™ã€*/
 	_TALKMSG	msg_factory_room_1
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_room_go_rental
 
@@ -721,7 +721,7 @@ ev_factory_room_go_rental:
 	_END
 
 ev_factory_multi_room_go_rental:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 	_JUMP			ev_factory_multi_room_go_rental_retry
 	_END
@@ -729,52 +729,52 @@ ev_factory_multi_room_go_rental:
 ev_factory_multi_room_go_rental_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_RENTAL
 	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_room_go_rental_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_room_go_rental_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“¶¬*/
+	/*ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ*/
 	_FACTORY_TOOL	FA_ID_RENTAL_POKE_CREATE,0,0,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_RENTAL
-	_COMM_RESET		/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET		/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_JUMP			ev_factory_room_go_rental_2
 	_END
 
 ev_factory_room_go_rental_2:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒŒƒ“ƒ^ƒ‹ŒÄ‚Ño‚µ*/
+	/*ãƒ¬ãƒ³ã‚¿ãƒ«å‘¼ã³å‡ºã—*/
 	_TALK_CLOSE
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rental_sync
 
 	_FACTORY_RENTAL_CALL
 	//_SET_MAP_PROC
 
-	/*ƒŒƒ“ƒ^ƒ‹‚·‚é‚¾‚¯‚Å‚àŒðŠ·‰ñ”‚ª+1‚³‚ê‚é*/
+	/*ãƒ¬ãƒ³ã‚¿ãƒ«ã™ã‚‹ã ã‘ã§ã‚‚äº¤æ›å›žæ•°ãŒ+1ã•ã‚Œã‚‹*/
 	_FACTORY_TOOL	FA_ID_INC_TRADE_COUNT,0,0,FSW_ANSWER
 
-	_FACTORY_RENTAL_PARTY_SET		/*ƒŒƒ“ƒ^ƒ‹POKEPARTY‚ÌƒZƒbƒg*/
+	_FACTORY_RENTAL_PARTY_SET		/*ãƒ¬ãƒ³ã‚¿ãƒ«POKEPARTYã®ã‚»ãƒƒãƒˆ*/
 
-	/*ƒŒ[ƒ‹’Ç‰Á*/
+	/*ãƒ¬ãƒ¼ãƒ«è¿½åŠ */
 	_FACTORY_TOOL	FA_ID_ADD_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_go_rental_multi
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -787,7 +787,7 @@ ev_factory_room_go_rental_multi:
 	_COMM_RESET
 	_RET
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_factory_room_rental_sync:
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_RENTAL_CALL
@@ -796,19 +796,19 @@ ev_factory_room_rental_sync:
 
 
 /********************************************************************/
-/*						ƒoƒgƒ‹‚ÖŒü‚©‚¤								*/
+/*						ãƒãƒˆãƒ«ã¸å‘ã‹ã†								*/
 /********************************************************************/
 ev_factory_room_go:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_go_multi
 
-	/*u‚»‚ê‚Å‚Í@‚¨‚­‚É@‚Ç‚¤‚¼v*/
+	/*ã€Œãã‚Œã§ã¯ã€€ãŠãã«ã€€ã©ã†ãžã€*/
 	_TALKMSG		msg_factory_room_2
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_ASSISTANTW,anm_man_left_walk
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_room
@@ -819,14 +819,14 @@ ev_factory_room_go:
 
 ev_factory_room_go_multi:
 
-	/*u‚»‚ê‚Å‚Í@‚¨‚­‚É@‚Ç‚¤‚¼v*/
+	/*ã€Œãã‚Œã§ã¯ã€€ãŠãã«ã€€ã©ã†ãžã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_2
 	_TIME_WAIT		FRONTIER_COMMON_WAIT,FSW_ANSWER
 	_TALK_CLOSE
 
 	_CALL			ev_factory_comm_command_initialize_2
 
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_ASSISTANTW,anm_man_left_walk
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_room
@@ -838,13 +838,13 @@ ev_factory_room_go_multi:
 	_END
 
 ev_factory_room_go_2:
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_SE_WAIT		SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_go_2_multi
 
@@ -854,38 +854,38 @@ ev_factory_room_go_2:
 	_CHAR_RESOURCE_FREE	ASSISTANTW
 	//_CHAR_RESOURCE_FREE	FSW_LOCAL7
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
 	_MAP_CHANGE		FSS_SCENEID_FACTORY_BTL
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_scene2_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_btl_center
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_center
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Ì’n–ÊƒpƒŒƒbƒgØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã®åœ°é¢ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ*/
 	_CALL			ev_btl_room_pal_chg
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FACTORY_TOOL	FA_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_leader_1st_02
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_factory_leader_2nd_02
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL			ev_factory_trainer_set_1
 	_OBJ_ANIME		OBJID_ETC,etc_anime_room_in
 	_OBJ_ANIME_WAIT
@@ -895,7 +895,7 @@ ev_factory_room_go_2:
 	_OBJ_ANIME			OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_FACTORY_TOOL	FA_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_FACTORY_APPEAR	0
 	_AB_KEYWAIT
@@ -914,31 +914,31 @@ ev_factory_room_go_2_multi:
 	_ACTOR_FREE		OBJID_MINE
 	_CHAR_RESOURCE_FREE	ASSISTANTW
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
 	_MAP_CHANGE		FSS_SCENEID_FACTORY_BTL
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_btl_center
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_center
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_player_go_btl_center
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_go_btl_center_multi
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Ì’n–ÊƒpƒŒƒbƒgØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã®åœ°é¢ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ*/
 	_CALL			ev_btl_room_pal_chg
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL			ev_factory_trainer_set_2
 	_OBJ_ANIME		OBJID_ETC,etc_anime_room_in_sio
 	_OBJ_ANIME		OBJID_ETC2,etc_anime_room_in_multi
@@ -949,7 +949,7 @@ ev_factory_room_go_2_multi:
 	_OBJ_ANIME		OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_FACTORY_TOOL	FA_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_FACTORY_APPEAR	0
 	_TIME_WAIT		30,FSW_ANSWER
@@ -958,13 +958,13 @@ ev_factory_room_go_2_multi:
 	_OBJ_ANIME		OBJID_ETC2,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_FACTORY_TOOL	FA_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_FACTORY_APPEAR	1
 	_TIME_WAIT		30,FSW_ANSWER
 	_TALK_CLOSE
 
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 
 	_JUMP			ev_factory_battle
@@ -972,7 +972,7 @@ ev_factory_room_go_2_multi:
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[‚ÌŒ©‚½–ÚƒZƒbƒg						*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è¦‹ãŸç›®ã‚»ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_factory_trainer_set_1:
 	_FACTORY_TOOL	FA_ID_GET_TR_OBJ_CODE,0,0,FSW_ANSWER
@@ -1004,15 +1004,15 @@ ev_factory_trainer_set_brain:
 //
 /********************************************************************/
 ev_factory_battle:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_battle
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FACTORY_TOOL	FA_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_leader_1st_31
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_factory_leader_2nd_31
@@ -1029,20 +1029,20 @@ ev_factory_leader_2nd_31:
 	_JUMP			ev_factory_battle_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_factory_multi_battle:
-	/*’ÊMFŽèŽ‚¿‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ‰‹æŒã¡ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_TEMOTI
 	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_battle	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_multi_battle	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*ƒyƒA‚Ìƒ|ƒPƒ‚ƒ“¶¬*/
+	/*ãƒšã‚¢ã®ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ*/
 	_FACTORY_TOOL	FA_ID_PAIR_POKE_CREATE,0,0,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_BATTLE
 	_COMM_RESET
@@ -1057,39 +1057,39 @@ ev_factory_battle_2:
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	_FACTORY_BATTLE_CALL
 	_FACTORY_CALL_GET_RESULT
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*‘Îí•”‰®‚Ì’n–ÊƒpƒŒƒbƒgØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã®åœ°é¢ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ*/
 	_FACTORY_TOOL	FA_ID_BTL_ROOM_PAL_CHG,4,0,FSW_ANSWER
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*í“¬Œ‹‰Ê‚Å•ªŠò*/
+	/*æˆ¦é—˜çµæžœã§åˆ†å²*/
 	_FACTORY_LOSE_CHECK		FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_lose		/*”s–k*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_lose		/*æ•—åŒ—*/
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*Ÿ—˜*/
+	/*å‹åˆ©*/
 	_RECORD_INC		RECID_FACTORY_WIN
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FACTORY_TOOL	FA_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_leader_1st_03
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_factory_leader_2nd_03
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
@@ -1097,12 +1097,12 @@ ev_factory_battle_2:
 	_END
 
 ev_factory_battle_2_sub:
-	_CALL			ev_factory_enemy_tr_go_out			/*“GƒgƒŒ[ƒi[‘ÞêƒAƒjƒ*/
+	_CALL			ev_factory_enemy_tr_go_out			/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´ã‚¢ãƒ‹ãƒ¡*/
 	_JUMP			ev_factory_battle_3
 	_END
 
 ev_factory_battle_3:
-	_CALL			ev_factory_room_return			/*€”õ•”‰®‚É–ß‚é*/
+	_CALL			ev_factory_room_return			/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 	_JUMP			ev_factory_battle_4
 	_END
 
@@ -1112,16 +1112,16 @@ ev_factory_battle_4:
 	_JUMP			ev_factory_room_renshou_17
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*¡‰½l–Ú+1*/
+	/*ä»Šä½•äººç›®+1*/
 	_FACTORY_TOOL	FA_ID_INC_ROUND,1,0,FSW_ANSWER
 
-	/*˜AŸ”+1*/
+	/*é€£å‹æ•°+1*/
 	_FACTORY_TOOL	FA_ID_INC_RENSYOU,0,0,FSW_ANSWER
 
 #ifndef DEBUG_7BTL_OFF	/********************************************/
-	/*¡7l–Ú‚Å‚È‚¢Žž‚Í“ª‚É–ß‚é*/
+	/*ä»Š7äººç›®ã§ãªã„æ™‚ã¯é ­ã«æˆ»ã‚‹*/
 	_FACTORY_TOOL	FA_ID_GET_ROUND,0,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,NE,7,ev_factory_room_renshou_17		/*˜AŸ”‚ª1-6‚ÌŽž*/
+	_IFVAL_JUMP		FSW_ANSWER,NE,7,ev_factory_room_renshou_17		/*é€£å‹æ•°ãŒ1-6ã®æ™‚*/
 #endif	/************************************************************/
 
 	_JUMP			ev_factory_room_7_win
@@ -1129,20 +1129,20 @@ ev_factory_battle_4:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(‹L˜^)							*/
+/*							7é€£å‹ã—ãŸ(è¨˜éŒ²)							*/
 /********************************************************************/
 ev_factory_room_7_win:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_7_win_bp_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX	FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_7_win_bp
 	_JUMP			ev_factory_room_7_win_rec_yes
 	_END
@@ -1152,35 +1152,35 @@ ev_factory_room_7_win_bp_sub:
 	_JUMP			ev_factory_room_7_win_bp
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_room_7_win_rec_yes:
-	_CALL			ev_factory_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL			ev_factory_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_JUMP			ev_factory_room_7_win_bp
 	_END
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(BPŽæ“¾)						*/
+/*							7é€£å‹ã—ãŸ(BPå–å¾—)						*/
 /********************************************************************/
 ev_factory_room_7_win_bp:
-	//7˜AŸ(ƒNƒŠƒA)ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_FACTORY_TOOL	FA_ID_SET_CLEAR,0,0,FSW_ANSWER
 
-	/*7˜AŸ‚µ‚½‚Ì‚ÅI—¹‚Ö*/
-	//_LDVAL			WK_SCENE_FACTORY_LOBBY,1				/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,1			/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	/*7é€£å‹ã—ãŸã®ã§çµ‚äº†ã¸*/
+	//_LDVAL			WK_SCENE_FACTORY_LOBBY,1				/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,1			/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	/*uƒoƒgƒ‹ƒgƒŒ[ƒh@‚V‚¹‚ñ@‚Æ‚Á‚Ï@‚¨‚ß‚Å‚Æ‚¤v*/
+	/*ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã€€ï¼—ã›ã‚“ã€€ã¨ã£ã±ã€€ãŠã‚ã§ã¨ã†ã€*/
 	_TALKMSG		msg_factory_lobby_20
 
-	_PLAYER_NAME	0											/*ƒvƒŒƒCƒ„[–¼ƒZƒbƒg*/
+	_PLAYER_NAME	0											/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚»ãƒƒãƒˆ*/
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_FACTORY_TOOL	FA_ID_GET_BP_POINT,0,0,FSW_ANSWER
-	_NUMBER_NAME	1,FSW_ANSWER								/*”’lƒZƒbƒg*/
+	_NUMBER_NAME	1,FSW_ANSWER								/*æ•°å€¤ã‚»ãƒƒãƒˆ*/
 	_BTL_POINT_ADD	FSW_ANSWER
 
-	/*u‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_TALKMSG		msg_factory_lobby_21
 	_ME_PLAY		ME_BP_GET
 	_ME_WAIT
@@ -1190,7 +1190,7 @@ ev_factory_room_7_win_bp:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½I—¹							*/
+/*							7é€£å‹ã—ãŸçµ‚äº†							*/
 /********************************************************************/
 ev_factory_room_bp_end:
 	_JUMP			ev_factory_lose_timing
@@ -1198,15 +1198,15 @@ ev_factory_room_bp_end:
 
 
 /********************************************************************/
-/*							˜AŸ” 1-7								*/
+/*							é€£å‹æ•° 1-7								*/
 /********************************************************************/
 ev_factory_room_renshou_17:
-	/*uƒ|ƒPƒ‚ƒ“‚ð@‚©‚¢‚Ó‚­@‚µ‚Ü‚µ‚å‚¤v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ã‹ã„ãµãã€€ã—ã¾ã—ã‚‡ã†ã€*/
 	_TALKMSG		msg_factory_room_3
 	_ME_PLAY		SEQ_ASA
 	_ME_WAIT
 
-	/*ƒoƒgƒ‹ŒÄ‚Ño‚µ‚Ìí“¬ƒpƒ‰ƒ[ƒ^‚ð¶¬‚·‚éŽž‚É‰ñ•œˆ—‚ð“ü‚ê‚Ä‚¢‚é*/
+	/*ãƒãƒˆãƒ«å‘¼ã³å‡ºã—ã®æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹æ™‚ã«å›žå¾©å‡¦ç†ã‚’å…¥ã‚Œã¦ã„ã‚‹*/
 	//_PC_KAIFUKU
 
 	_JUMP			ev_factory_room_saikai
@@ -1214,10 +1214,10 @@ ev_factory_room_renshou_17:
 
 
 /********************************************************************/
-/*						’†’fƒZ[ƒu‚©‚ç‚ÌÄŠJ						*/
+/*						ä¸­æ–­ã‚»ãƒ¼ãƒ–ã‹ã‚‰ã®å†é–‹						*/
 /********************************************************************/
 ev_factory_room_saikai:
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FACTORY_TOOL	FA_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_leader_1st_01
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_factory_leader_2nd_01
@@ -1226,7 +1226,7 @@ ev_factory_room_saikai:
 	_END
 
 ev_factory_room_saikai_00:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
@@ -1234,7 +1234,7 @@ ev_factory_room_saikai_00:
 	_END
 
 ev_factory_room_saikai_02:
-	/*uŽŸ‚Í@›í–Ú‚Å‚·‚æv*/
+	/*ã€Œæ¬¡ã¯ã€€â—‹æˆ¦ç›®ã§ã™ã‚ˆã€*/
 	_FACTORY_TOOL	FA_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK			FSW_ANSWER,1
 	_NUMBER_NAME	0,FSW_ANSWER
@@ -1245,27 +1245,27 @@ ev_factory_room_saikai_02:
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[¶¬							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ							*/
 /********************************************************************/
 ev_factory_room_menu_make:
 
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_menu_make_comm
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_factory_room_menu_make_04_set
 
 	_JUMP			ev_factory_room_menu_make_03_set
 	_END
 
-/*’ÊM‚ÌŽž‚Ìƒƒjƒ…[*/
+/*é€šä¿¡ã®æ™‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_factory_room_menu_make_comm:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_menu_make_01_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_factory_room_menu_make_02_set
 
 	_JUMP			ev_factory_room_menu_make_01_set
@@ -1291,7 +1291,7 @@ ev_factory_room_menu_make_04_set:
 	_JUMP				ev_factory_room_menu_make_sub
 	_END
 
-/*‚Ç‚Ìƒƒjƒ…[Œ`Ž®‚É‚·‚é‚©*/
+/*ã©ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å½¢å¼ã«ã™ã‚‹ã‹*/
 ev_factory_room_menu_make_sub:
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_factory_room_menu_make_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_factory_room_menu_make_02
@@ -1300,42 +1300,42 @@ ev_factory_room_menu_make_sub:
 	_END
 
 ev_factory_room_menu_make_01:
-	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
+	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
 	_JUMP			ev_factory_room_yasumu_next
 	_END
 
 ev_factory_room_menu_make_02:
-	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*ãã‚ãã™ã‚‹*/
 	_JUMP			ev_factory_room_yasumu_next
 	_END
 
 ev_factory_room_menu_make_03:
-	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*ã‚„ã™ã‚€*/
 	_JUMP			ev_factory_room_yasumu_next
 	_END
 
 ev_factory_room_menu_make_04:
-	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*‚«‚ë‚­‚·‚é*/
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*ãã‚ãã™ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*ã‚„ã™ã‚€*/
 	_JUMP			ev_factory_room_yasumu_next
 	_END
 
 ev_factory_room_yasumu_next:
-	_BMPLIST_MAKE_LIST	msg_factory_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3	/*ƒŠƒ^ƒCƒA*/
+	_BMPLIST_MAKE_LIST	msg_factory_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_BMPLIST_START
 	_JUMP			ev_factory_room_menu_sel
 	_END
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[Œ‹‰Ê							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµæžœ							*/
 /********************************************************************/
 ev_factory_room_menu_sel:
 
@@ -1343,27 +1343,27 @@ ev_factory_room_menu_sel:
 	_JUMP			ev_room_choice_01
 #endif	//DEBUG_FRONTIER_LOOP
 
-	_IFVAL_JUMP		FSW_PARAM1,EQ,0,ev_room_choice_01	/*‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP		FSW_PARAM1,EQ,1,ev_room_choice_02	/*‚«‚ë‚­‚·‚é*/
-	_IFVAL_JUMP		FSW_PARAM1,EQ,2,ev_room_choice_03	/*‚â‚·‚Þ*/
-	_IFVAL_JUMP		FSW_PARAM1,EQ,3,ev_room_choice_04	/*ƒŠƒ^ƒCƒA*/
+	_IFVAL_JUMP		FSW_PARAM1,EQ,0,ev_room_choice_01	/*ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP		FSW_PARAM1,EQ,1,ev_room_choice_02	/*ãã‚ãã™ã‚‹*/
+	_IFVAL_JUMP		FSW_PARAM1,EQ,2,ev_room_choice_03	/*ã‚„ã™ã‚€*/
+	_IFVAL_JUMP		FSW_PARAM1,EQ,3,ev_room_choice_04	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_JUMP			ev_room_choice_04
 	_END
 
 
 /********************************************************************/
-/*						u‚Â‚Ã‚¯‚év								*/
+/*						ã€Œã¤ã¥ã‘ã‚‹ã€								*/
 /********************************************************************/
 ev_room_choice_01:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_room_choice_01_multi
 	_JUMP			ev_room_choice_01_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_room_choice_01_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME		0
 	_TALKMSG		msg_factory_room_10
 	_JUMP			ev_room_choice_01_multi_retry
@@ -1371,19 +1371,19 @@ ev_room_choice_01_multi:
 
 ev_room_choice_01_multi_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_RETIRE
-	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER						/*0=‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER						/*0=ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_RETIRE_FLAG,0,0,FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_giveup_yes_multi	/*ƒŠƒ^ƒCƒA*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_giveup_yes_multi	/*ãƒªã‚¿ã‚¤ã‚¢*/
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_MENU
 	_COMM_RESET
@@ -1391,9 +1391,9 @@ ev_room_choice_01_multi_retry:
 	_JUMP			ev_room_choice_01_2
 	_END
 
-/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
+/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
 ev_factory_room_giveup_yes_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME		0
 	_TALKMSG_NOSKIP	msg_factory_room_12
 	_TIME_WAIT		FRONTIER_COMMON_WAIT,FSW_ANSWER
@@ -1401,18 +1401,18 @@ ev_factory_room_giveup_yes_multi:
 	_END
 
 ev_room_choice_01_2:
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL			FSW_LOCAL3,0
 
-	_FACTORY_BTL_AFTER_PARTY_SET		/*ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg*/
+	_FACTORY_BTL_AFTER_PARTY_SET		/*ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ*/
 
-	/*‘ÎíƒgƒŒ[ƒi[‚Ìî•ñ‚ðŽæ“¾*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æƒ…å ±ã‚’å–å¾—*/
 	_CALL			ev_factory_room_tr_info_msg
 
-	/*ŒðŠ·ƒ‚[ƒh*/
+	/*äº¤æ›ãƒ¢ãƒ¼ãƒ‰*/
 	_FACTORY_TOOL	FA_ID_SET_MODE,FACTORY_MODE_TRADE,0,FSW_ANSWER
 
-	/*uƒ|ƒPƒ‚ƒ“‚Ì@‚±‚¤‚©‚ñ‚ð@‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã€€ã“ã†ã‹ã‚“ã‚’ã€€ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG		msg_factory_room_5
 
 #ifdef DEBUG_FRONTIER_LOOP
@@ -1424,10 +1424,10 @@ ev_room_choice_01_2:
 	_JUMP			ev_factory_room_trade_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_room_trade_yes:
 
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_trade_yes_multi
 
@@ -1435,31 +1435,31 @@ ev_factory_room_trade_yes:
 	_END
 
 ev_factory_room_trade_yes_multi:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 	_JUMP			ev_factory_room_trade_yes_multi_retry
 	_END
 
 ev_factory_room_trade_yes_multi_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_TRADE_YESNO
-	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER								/*0=ŒðŠ·‚µ‚½‚¢*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_yes_multi_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_FACTORY_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER								/*0=äº¤æ›ã—ãŸã„*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_yes_multi_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*—¼•ûA•Ð•û‚ªŒðŠ·‚ð‘I‚ñ‚Å‚¢‚½‚çŒðŠ·‰æ–Ê‚Öi‚Þ*/
+	/*ä¸¡æ–¹ã€ç‰‡æ–¹ãŒäº¤æ›ã‚’é¸ã‚“ã§ã„ãŸã‚‰äº¤æ›ç”»é¢ã¸é€²ã‚€*/
 	_JUMP			ev_factory_room_trade_yes_pair
 	_END
 
 ev_factory_room_trade_yes_pair:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_TALK_CLOSE
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_multi_room_trade
 
@@ -1467,43 +1467,43 @@ ev_factory_room_trade_yes_pair:
 	_END
 
 ev_factory_multi_room_trade:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_TRADE
-	_COMM_RESET		/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET		/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_JUMP			ev_factory_room_trade_yes_2
 	_END
 
 ev_factory_room_trade_yes_2:
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_trade_sync
 
-	/*ŒðŠ·ŒÄ‚Ño‚µ*/
+	/*äº¤æ›å‘¼ã³å‡ºã—*/
 	_FACTORY_TRADE_CALL
-	_FACTORY_TRADE_POKE_CHANGE								/*’†‚ÅŒðŠ·‰ñ”+1*/
+	_FACTORY_TRADE_POKE_CHANGE								/*ä¸­ã§äº¤æ›å›žæ•°+1*/
 
-	/*ƒŒ[ƒ‹’Ç‰Á*/
+	/*ãƒ¬ãƒ¼ãƒ«è¿½åŠ */
 	_FACTORY_TOOL	FA_ID_ADD_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*Œ»Ý‚ÌŒðŠ·‰ñ”+1*/
+	/*ç¾åœ¨ã®äº¤æ›å›žæ•°+1*/
 	//_FACTORY_TOOL	FA_ID_INC_TRADE_COUNT,0,0,FSW_ANSWER	//
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_go_trade_multi
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_JUMP			ev_factory_room_trade_after
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_factory_room_trade_sync:
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_TRADE_CALL
@@ -1516,9 +1516,9 @@ ev_factory_room_go_trade_multi:
 	_COMM_RESET
 	_RET
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_factory_room_trade_no:
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_trade_no_multi
 
@@ -1526,25 +1526,25 @@ ev_factory_room_trade_no:
 	_END
 
 ev_factory_room_trade_no_multi:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 	_JUMP			ev_factory_room_trade_no_multi_retry
 
 ev_factory_room_trade_no_multi_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_TRADE_YESNO
-	_FACTORY_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER								/*1=ŒðŠ·‚µ‚½‚­‚È‚¢*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_no_multi_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_FACTORY_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER								/*1=äº¤æ›ã—ãŸããªã„*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_no_multi_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	_FACTORY_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*‘ŠŽè‚ªŒðŠ·‚µ‚½‚¢‚©‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒäº¤æ›ã—ãŸã„ã‹ã‚’å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_TRADE_YESNO_FLAG,0,0,FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªŒðŠ·‚µ‚½‚¢‚ð‘I‚ñ‚Å‚¢‚½‚ç*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_yes_pair	/*ŒðŠ·‰æ–Ê‚Öi‚Þ*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒäº¤æ›ã—ãŸã„ã‚’é¸ã‚“ã§ã„ãŸã‚‰*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_trade_yes_pair	/*äº¤æ›ç”»é¢ã¸é€²ã‚€*/
 
-	/*“ñl‚Æ‚àŒðŠ·‚ð‘I‚Î‚È‚©‚Á‚½Žž*/
+	/*äºŒäººã¨ã‚‚äº¤æ›ã‚’é¸ã°ãªã‹ã£ãŸæ™‚*/
 	_JUMP			ev_factory_room_trade_no_2
 	_END
 
@@ -1554,58 +1554,58 @@ ev_factory_room_trade_no_2:
 	_END
 
 ev_factory_room_trade_after:
-	_FACTORY_TRADE_AFTER_PARTY_SET			/*ƒgƒŒ[ƒhŒã‚ÌPOKEPARTY‚ÌƒZƒbƒg*/
-	_JUMP			ev_factory_room_go		/*ƒoƒgƒ‹‚Ö*/
+	_FACTORY_TRADE_AFTER_PARTY_SET			/*ãƒˆãƒ¬ãƒ¼ãƒ‰å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ*/
+	_JUMP			ev_factory_room_go		/*ãƒãƒˆãƒ«ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							‹L˜^‚·‚é*/
+/*							è¨˜éŒ²ã™ã‚‹*/
 /********************************************************************/
 ev_room_choice_02:
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX	FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_rec_no
 	_JUMP			ev_factory_room_rec_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_room_rec_yes:
-	_CALL			ev_factory_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
-	_JUMP			ev_factory_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_CALL			ev_factory_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
+	_JUMP			ev_factory_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_factory_room_rec_no:
-	_JUMP			ev_factory_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_factory_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							‹¤’Ê‹L˜^*/
+/*							å…±é€šè¨˜éŒ²*/
 /********************************************************************/
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_factory_room_rec_win:
-	_CALL				ev_factory_room_rec_common		/*LOCAL5Žg—p’†*/
+	_CALL				ev_factory_room_rec_common		/*LOCAL5ä½¿ç”¨ä¸­*/
 	//_ADD_WK			FSW_LOCAL5,1
-	//_SUB_WK			FSW_LOCAL5,1					/*ƒ‰ƒEƒ“ƒh”‚Å‚Í‚È‚­Ÿ—˜”‚È‚Ì‚Å*/
+	//_SUB_WK			FSW_LOCAL5,1					/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã§ã¯ãªãå‹åˆ©æ•°ãªã®ã§*/
 	_JUMP				ev_factory_room_rec
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_factory_room_rec_lose:
-	_CALL				ev_factory_room_rec_common		/*LOCAL5Žg—p’†*/
+	_CALL				ev_factory_room_rec_common		/*LOCAL5ä½¿ç”¨ä¸­*/
 	_ADD_WK				FSW_LOCAL5,1
 	_JUMP				ev_factory_room_rec
 	_END
 
-/*‹¤’Ê•”•ª*/
+/*å…±é€šéƒ¨åˆ†*/
 ev_factory_room_rec_common:
-	//˜AŸ”Žæ“¾
+	//é€£å‹æ•°å–å¾—
 	_FACTORY_TOOL		FA_ID_GET_RENSYOU,0,0,FSW_LOCAL5
 	_RET
 
@@ -1614,7 +1614,7 @@ ev_factory_room_rec:
 	_END
 
 ev_factory_room_rec_sub:
-	/*‹L˜^‚µ‚½ƒ[ƒNƒZƒbƒg*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_LDVAL				FSW_LOCAL3,1
 
 	_TALKMSG_ALL_PUT	msg_factory_room_6_4
@@ -1624,7 +1624,7 @@ ev_factory_room_rec_sub:
 	_JUMP				ev_factory_room_rec_lv100
 	_END
 
-/*˜^‰æƒf[ƒ^ƒZ[ƒu*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–*/
 ev_factory_room_rec_lv50:
 	_FACTORY_TOOL		FA_ID_GET_TYPE,0,0,FSW_ANSWER
 	_BATTLE_REC_SAVE	FRONTIER_NO_FACTORY_LV50,FSW_ANSWER,FSW_LOCAL5,FSW_LOCAL5
@@ -1644,91 +1644,91 @@ ev_factory_room_rec_sub2:
 
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_factory_room_rec_true
 
-	/*u‹L˜^o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€*/
 	_TALKMSG			msg_factory_room_6_2
 	_RET
 
 ev_factory_room_rec_true:
 	_SE_PLAY			SEQ_SE_DP_SAVE
-	/*u‹L˜^‚³‚ê‚Ü‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_factory_room_6_1
 	_RET
 	
-/*˜^‰æƒf[ƒ^‚ª‚È‚¢ŽžƒƒbƒZ[ƒW*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_factory_room_rec_msg1:
 	_TALKMSG			msg_factory_room_6
 	_RET
 
-/*‚·‚Å‚É˜^‰æƒf[ƒ^‚ª‚ ‚éŽžƒƒbƒZ[ƒW*/
+/*ã™ã§ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_factory_room_rec_msg2:
 	_TALKMSG			msg_factory_room_6_3
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚·‚Þ*/
+/*							ã‚„ã™ã‚€*/
 /********************************************************************/
 ev_room_choice_03:
-	/*uƒŒƒ|[ƒg‚ð‚©‚¢‚ÄI—¹‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã‚’ã‹ã„ã¦çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG		msg_factory_room_7
 	_YES_NO_WIN		FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_rest_no
 	_JUMP			ev_factory_room_rest_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_room_rest_yes:
-	//_LDVAL			WK_SCENE_FACTORY_LOBBY,2			/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,2		/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_FACTORY_LOBBY,2			/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,2		/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_FACTORY_TOOL	FA_ID_SAVE_REST_PLAY_DATA,0,0,FSW_ANSWER
 
-	_CALL			ev_factory_save				/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL			ev_factory_save				/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_TALK_CLOSE
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_FACTORY_WORK_FREE
 
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_FACTORY_TOOL	FA_ID_SYSTEM_RESET,0,0,FSW_ANSWER
 
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_factory_room_rest_no:
-	_JUMP			ev_factory_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_factory_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							ƒŠƒ^ƒCƒA*/
+/*							ãƒªã‚¿ã‚¤ã‚¢*/
 /********************************************************************/
 ev_room_choice_04:
-	/*uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì’§í‚ð’†Ž~‚·‚éHv*/
+	/*ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®æŒ‘æˆ¦ã‚’ä¸­æ­¢ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG		msg_factory_room_8
 	_YES_NO_WIN_EX	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_giveup_no
 
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_giveup_yes_multi_wait_msg
 
-	/*uƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Æ@‚¨—a‚©‚è‚µ‚Ä‚¢‚½ƒ|ƒPƒ‚ƒ“‚ð@ŒðŠ·‚µ‚Ü‚µ‚å‚¤Iv*/
+	/*ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã¨ã€€ãŠé ã‹ã‚Šã—ã¦ã„ãŸãƒã‚±ãƒ¢ãƒ³ã‚’ã€€äº¤æ›ã—ã¾ã—ã‚‡ã†ï¼ã€*/
 	_TALKMSG		msg_factory_lobby_23
 
 	_JUMP			ev_factory_room_giveup_yes
 	_END
 
-/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 ev_factory_room_giveup_yes_multi_wait_msg:
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 	_JUMP			ev_factory_room_giveup_yes_multi_retry
@@ -1736,8 +1736,8 @@ ev_factory_room_giveup_yes_multi_wait_msg:
 
 ev_factory_room_giveup_yes_multi_retry:
 	_LDVAL			FSW_LOCAL2,FACTORY_COMM_RETIRE
-	_FACTORY_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER								/*1=ƒŠƒ^ƒCƒ„*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_giveup_yes_multi_retry	/*‘—MŽ¸”sAÄ‘—M‚Ö*/
+	_FACTORY_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER								/*1=ãƒªã‚¿ã‚¤ãƒ¤*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_room_giveup_yes_multi_retry	/*é€ä¿¡å¤±æ•—ã€å†é€ä¿¡ã¸*/
 
 	//_FACTORY_RECV_BUF	FSW_LOCAL2
 	//_COMM_RESET
@@ -1745,13 +1745,13 @@ ev_factory_room_giveup_yes_multi_retry:
 	_END
 
 ev_factory_room_giveup_yes_multi_sync:
-	/*uƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Æ@‚¨—a‚©‚è‚µ‚Ä‚¢‚½ƒ|ƒPƒ‚ƒ“‚ð@ŒðŠ·‚µ‚Ü‚µ‚å‚¤Iv*/
+	/*ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã¨ã€€ãŠé ã‹ã‚Šã—ã¦ã„ãŸãƒã‚±ãƒ¢ãƒ³ã‚’ã€€äº¤æ›ã—ã¾ã—ã‚‡ã†ï¼ã€*/
 	_TALKMSG		msg_factory_lobby_23
 
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_GIVE
 	//_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_MENU
@@ -1759,42 +1759,42 @@ ev_factory_room_giveup_yes_multi_sync:
 	_JUMP			ev_factory_room_giveup_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_room_giveup_yes:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_FACTORY_TOOL	FA_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_FACTORY_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_FACTORY_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP				ev_factory_room_end_save
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_factory_room_giveup_no:
-	_JUMP			ev_factory_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_factory_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*								”s–k*/
+/*								æ•—åŒ—*/
 /********************************************************************/
 ev_factory_lose:
-	_CALL			ev_factory_enemy_tr_go_out				/*“GƒgƒŒ[ƒi[‘ÞêƒAƒjƒ*/
-	_CALL			ev_factory_room_return					/*€”õ•”‰®‚É–ß‚é*/
+	_CALL			ev_factory_enemy_tr_go_out				/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´ã‚¢ãƒ‹ãƒ¡*/
+	_CALL			ev_factory_room_return					/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_factory_lose_timing_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_factory_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER								/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_lose_rec_no	/*u‚¢‚¢‚¦v*/
-	_JUMP			ev_factory_lose_rec_yes					/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX	FSW_ANSWER								/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_lose_rec_no	/*ã€Œã„ã„ãˆã€*/
+	_JUMP			ev_factory_lose_rec_yes					/*ã€Œã¯ã„ã€*/
 	_END
 
 ev_factory_lose_timing_sub:
@@ -1802,29 +1802,29 @@ ev_factory_lose_timing_sub:
 	_JUMP			ev_factory_lose_timing_call
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_factory_lose_rec_yes:
-	_CALL			ev_factory_room_rec_lose				/*”s–k‚Ì‹L˜^*/
+	_CALL			ev_factory_room_rec_lose				/*æ•—åŒ—ã®è¨˜éŒ²*/
 	_JUMP			ev_factory_lose_timing_call
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_factory_lose_rec_no:
 	_JUMP			ev_factory_lose_timing_call
 	_END
 
 ev_factory_lose_timing_call:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_FACTORY_TOOL	FA_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_FACTORY_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_FACTORY_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP			ev_factory_lose_timing
 	_END
 
 ev_factory_lose_timing:
-	/*uƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Æ@‚¨—a‚©‚è‚µ‚Ä‚¢‚½ƒ|ƒPƒ‚ƒ“‚ð@ŒðŠ·‚µ‚Ü‚µ‚å‚¤Iv*/
+	/*ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã¨ã€€ãŠé ã‹ã‚Šã—ã¦ã„ãŸãƒã‚±ãƒ¢ãƒ³ã‚’ã€€äº¤æ›ã—ã¾ã—ã‚‡ã†ï¼ã€*/
 	_TALKMSG		msg_factory_lobby_23
 
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
@@ -1832,9 +1832,9 @@ ev_factory_lose_timing:
 	_JUMP			ev_factory_room_end_save
 	_END
 
-/*’ÊM“¯Šú*/
+/*é€šä¿¡åŒæœŸ*/
 ev_factory_multi_lose_timing:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_factory_room_wait
 
 	_COMM_RESET
@@ -1844,22 +1844,22 @@ ev_factory_multi_lose_timing:
 	_END
 
 ev_factory_room_end_save:
-	_CALL				ev_factory_save				/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_factory_save				/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_TALK_CLOSE
 	_JUMP				ev_factory_room_end
 	_END
 
 
 /********************************************************************/
-/*							‹¤’ÊI—¹								*/
+/*							å…±é€šçµ‚äº†								*/
 /********************************************************************/
 ev_factory_room_end:
 
-	/*ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é*/
+	/*ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_factory_multi_end_timing
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -1869,50 +1869,50 @@ ev_factory_room_end:
 	_FACTORY_TOOL	FA_ID_GET_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,FACTORY_TYPE_WIFI_MULTI,ev_factory_room_end_wifi
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_FACTORY_WORK_FREE
 
-	/*2Dƒ}ƒbƒvT‚¦Žº‚Ö*/
+	/*2Dãƒžãƒƒãƒ—æŽ§ãˆå®¤ã¸*/
 	//
 
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
-/*ƒ}ƒ‹ƒ`‚Ì‚Ý*/
+/*ãƒžãƒ«ãƒã®ã¿*/
 ev_factory_room_multi_tv:
-	/*TVˆ—*/
+	/*TVå‡¦ç†*/
 	_TV_TEMP_FRIEND_SET	FRONTIER_NO_FACTORY_LV50
 	//_TV_TEMP_FRIEND_SET	FRONTIER_NO_FACTORY_LV100
 	_RET
 
 
 /********************************************************************/
-/*						ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é						*/	
+/*						ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹						*/	
 /********************************************************************/
 ev_factory_multi_end_timing:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_SAVE_AFTER
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_RET
 
 
 /********************************************************************/
-/*						WIFI‚Í‘Ò‚¿‡‚í‚¹‰æ–Ê‚Ö–ß‚é					*/
+/*						WIFIã¯å¾…ã¡åˆã‚ã›ç”»é¢ã¸æˆ»ã‚‹					*/
 /********************************************************************/
 ev_factory_room_end_wifi:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*ƒŒ[ƒ‹íœ*/
+	/*ãƒ¬ãƒ¼ãƒ«å‰Šé™¤*/
 	_FACTORY_TOOL	FA_ID_DEL_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_FACTORY_WORK_FREE
 
@@ -1921,10 +1921,10 @@ ev_factory_room_end_wifi:
 
 
 /********************************************************************/
-//							‹¤’ÊƒZ[ƒu	
+//							å…±é€šã‚»ãƒ¼ãƒ–	
 /********************************************************************/
 ev_factory_save:
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_factory_lobby_24
 	_ADD_WAITICON
 	_REPORT_DIV_SAVE	FSW_ANSWER
@@ -1935,10 +1935,10 @@ ev_factory_save:
 
 
 /********************************************************************/
-/*						‹¤’ÊF€”õ•”‰®‚É–ß‚é(CALL)					*/	
+/*						å…±é€šï¼šæº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹(CALL)					*/	
 /********************************************************************/
 ev_factory_room_return:
-	/*ŒðŠ·•”‰®‚É–ß‚é*/
+	/*äº¤æ›éƒ¨å±‹ã«æˆ»ã‚‹*/
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_SE_WAIT		SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -1955,16 +1955,16 @@ ev_factory_room_return:
 
 	_MAP_CHANGE		FSS_SCENEID_FACTORY
 
-	/*ƒŒ[ƒ‹’Ç‰Á*/
+	/*ãƒ¬ãƒ¼ãƒ«è¿½åŠ */
 	_FACTORY_TOOL	FA_ID_ADD_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			btl_after_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			btl_after_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_RET
@@ -1978,30 +1978,30 @@ ev_factory_room_return_multi:
 
 	_MAP_CHANGE		FSS_SCENEID_FACTORY
 
-	/*ƒŒ[ƒ‹’Ç‰Á*/
+	/*ãƒ¬ãƒ¼ãƒ«è¿½åŠ */
 	_FACTORY_TOOL	FA_ID_ADD_MAP_RAIL_TCB,0,0,FSW_ANSWER
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			btl_after_set_actor_multi	/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			btl_after_set_actor_multi	/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_RET
 
 
 /********************************************************************/
-/*						‹¤’ÊF“GƒgƒŒ[ƒi[‘Þê(CALL)				*/	
+/*						å…±é€šï¼šæ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´(CALL)				*/	
 /********************************************************************/
 ev_factory_enemy_tr_go_out:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_FACTORY_TOOL	FA_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_enemy_tr_go_out_multi
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME		OBJID_ETC,etc_anime_go_out
 	_OBJ_ANIME_WAIT
 	_ACTOR_FREE		OBJID_ETC
@@ -2011,7 +2011,7 @@ ev_factory_enemy_tr_go_out:
 ev_factory_enemy_tr_go_out_multi:
 	_CALL			ev_factory_comm_command_initialize_3
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME		OBJID_ETC,etc_anime_go_out_sio
 	_OBJ_ANIME		OBJID_ETC2,etc_anime_go_out_multi
 	_OBJ_ANIME_WAIT
@@ -2023,7 +2023,7 @@ ev_factory_enemy_tr_go_out_multi:
 
 
 /********************************************************************/
-/*					‘Îí•”‰®‚Ì’n–ÊƒpƒŒƒbƒgØ‚è‘Ö‚¦					*/
+/*					å¯¾æˆ¦éƒ¨å±‹ã®åœ°é¢ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ					*/
 /********************************************************************/
 ev_btl_room_pal_chg:
 	_FACTORY_TOOL	FA_ID_BTL_ROOM_PAL_CHG,0,0,FSW_ANSWER
@@ -2039,37 +2039,37 @@ ev_btl_room_pal_chg:
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚Ì—¬‚ê								*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æµã‚Œ								*/
 /********************************************************************/
 ev_factory_leader_1st_01:
 ev_factory_leader_2nd_01:
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢ = ’†’f•œ‹A‚Æ‚µ‚Äl‚¦‚é*/
-	/*“oê‚µ‚Ü‚·‚æƒƒbƒZ[ƒW‚Í•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ = ä¸­æ–­å¾©å¸°ã¨ã—ã¦è€ƒãˆã‚‹*/
+	/*ç™»å ´ã—ã¾ã™ã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯è¡¨ç¤ºã—ãªã„*/
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,1,ev_factory_room_saikai_00
 
-	/*ˆê“xƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚½‚©*/
+	/*ä¸€åº¦ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã‹*/
 	_FACTORY_TOOL	FA_ID_BRAIN_APPEAR_MSG_CHK,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_factory_room_saikai_00
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*uƒuƒŒ[ƒ“‚Æ‚ÌŸ•‰‚É‚È‚è‚Ü‚·IŠoŒå‚Í‚¢‚¢‚Å‚·‚©Hv*/
+	/*ã€Œãƒ–ãƒ¬ãƒ¼ãƒ³ã¨ã®å‹è² ã«ãªã‚Šã¾ã™ï¼è¦šæ‚Ÿã¯ã„ã„ã§ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_factory_room_boss_01
 	_JUMP				ev_factory_room_saikai_02
 	_END
 
 ev_factory_leader_1st_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_factory_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_CALL				ev_factory_leader_common
 	_TALKMSG			msg_factory_room_boss_02
 	_TALK_CLOSE
@@ -2078,14 +2078,14 @@ ev_factory_leader_1st_02:
 	_END
 
 ev_factory_leader_2nd_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_factory_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_CALL				ev_factory_leader_common
 	_TALKMSG			msg_factory_room_boss_03
 	_TALK_CLOSE
@@ -2093,32 +2093,32 @@ ev_factory_leader_2nd_02:
 	_JUMP				ev_factory_room_go_2_sub
 	_END
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 ev_factory_leader_common:
-	/*ŽålŒö‚Ìƒ|ƒPƒ‚ƒ“–¼‚ðBuf0,1,2‚ÉƒZƒbƒg*/
+	/*ä¸»äººå…¬ã®ãƒã‚±ãƒ¢ãƒ³åã‚’Buf0,1,2ã«ã‚»ãƒƒãƒˆ*/
 	_FACTORY_TOOL		FA_ID_BRAIN_PLAYER_POKE_NAME,0,0,FSW_ANSWER
 
-	_GET_RND			FSW_ANSWER,90				/*0 - 89‚ÌŠÔ‚Åƒ‰ƒ“ƒ_ƒ€*/
-	_ADD_WK				FSW_ANSWER,10				/*10 - 99‚ÌŠÔ‚É‚·‚é*/
+	_GET_RND			FSW_ANSWER,90				/*0 - 89ã®é–“ã§ãƒ©ãƒ³ãƒ€ãƒ */
+	_ADD_WK				FSW_ANSWER,10				/*10 - 99ã®é–“ã«ã™ã‚‹*/
 	_NUMBER_NAME		3,FSW_ANSWER
 	_RET
 
-/*“oê*/
+/*ç™»å ´*/
 ev_factory_leader_appear:
-	/*“§–¾‚É‚µ‚ÄƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*é€æ˜Žã«ã—ã¦ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_factory_trainer_set_brain
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain
 	_OBJ_ANIME_WAIT
 
-	/*ƒLƒ‡ƒƒLƒ‡ƒ*/
+	/*ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­*/
 	_OBJ_ANIME		OBJID_MINE,anm_player_kyorokyoro
 	_OBJ_ANIME_WAIT
 
-	/*’nkƒZƒbƒg*/
+	/*åœ°éœ‡ã‚»ãƒƒãƒˆ*/
 	//_SHAKE_SET		0,2,0,6
 	//_SHAKE_WAIT
 
-	/*ƒp[ƒeƒBƒNƒ‹‰‰o*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¼”å‡º*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0,FACTORY_SPA, FSS_CAMERA_ORTHO
 
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, FACTORY_BF_WARP01
@@ -2126,13 +2126,13 @@ ev_factory_leader_appear:
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, FACTORY_BF_WARP03
 	_SE_PLAY			SEQ_SE_PL_FAC01
 
-	/*’nkƒZƒbƒg*/
+	/*åœ°éœ‡ã‚»ãƒƒãƒˆ*/
 	_TIME_WAIT			36,FSW_ANSWER
 	//_SE_PLAY			SE_SHAKE
 	_SHAKE_SET			0,3,2,10
-	//_SHAKE_WAIT				/*‚È‚­‚Ä‚à‚æ‚¢‚ªAI—¹‚µ‚Ä‚©‚çƒ}ƒbƒv‘JˆÚ‚È‚Ç‚·‚é‚æ‚¤‚É‚·‚é*/
+	//_SHAKE_WAIT				/*ãªãã¦ã‚‚ã‚ˆã„ãŒã€çµ‚äº†ã—ã¦ã‹ã‚‰ãƒžãƒƒãƒ—é·ç§»ãªã©ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 
-	/*ƒp[ƒeƒBƒNƒ‹ˆ—’†‚ÉƒuƒŒ[ƒ“‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‡¦ç†ä¸­ã«ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’è¡¨ç¤º*/
 	_TIME_WAIT			11,FSW_ANSWER
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_02
 	_OBJ_ANIME_WAIT
@@ -2145,57 +2145,57 @@ ev_factory_leader_appear:
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚ÉŸ—˜Œã‚Ì—¬‚ê						*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©å¾Œã®æµã‚Œ						*/
 /********************************************************************/
 ev_factory_leader_1st_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_FACTORY,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_NONE,ev_factory_meory_print_put_1st
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_factory_room_boss_04
 	_TALK_CLOSE
 	_JUMP				ev_factory_battle_2_sub
 	_END
 
-/*Žó•t‚Å1st‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§1stè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_factory_meory_print_put_1st:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_FACTORY,MEMORY_PRINT_PUT_1ST
 	_RET
 
 ev_factory_leader_2nd_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_factory_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_FACTORY,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_PUT_OK_1ST,ev_factory_meory_print_put_2nd
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_factory_room_boss_05
 	_TALK_CLOSE
 	_JUMP				ev_factory_battle_2_sub
 	_END
 
-/*Žó•t‚Å2nd‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§2ndè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_factory_meory_print_put_2nd:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_FACTORY,MEMORY_PRINT_PUT_2ND
 	_RET
 
 
 /********************************************************************/
-/*						˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)				*/
+/*						é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)				*/
 /********************************************************************/
 ev_factory_rensyou_get:
-	/*˜AŸ”Žæ“¾*/
+	/*é€£å‹æ•°å–å¾—*/
 	_FACTORY_TOOL	FA_ID_GET_RENSYOU,0,0,FSW_ANSWER
 
-	/*‚·‚Å‚É9999‚ÌŽž‚ÍA0 ƒIƒŠƒWƒ“‚Ì•â³‚ð‚©‚¯‚È‚¢*/
+	/*ã™ã§ã«9999ã®æ™‚ã¯ã€0 ã‚ªãƒªã‚¸ãƒ³ã®è£œæ­£ã‚’ã‹ã‘ãªã„*/
 	_IFVAL_JUMP		FSW_ANSWER,GE,FACTORY_RENSYOU_MAX,ev_factory_rensyou_ret
 
 	_ADD_WK			FSW_ANSWER,1
@@ -2213,7 +2213,7 @@ ev_factory_comm_command_initialize_1:
 	_FACTORY_TOOL		FA_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_INIT_1
 	_COMM_RESET
@@ -2224,7 +2224,7 @@ ev_factory_comm_command_initialize_2:
 	_FACTORY_TOOL		FA_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_INIT_2
 	_COMM_RESET
@@ -2235,7 +2235,7 @@ ev_factory_comm_command_initialize_3:
 	_FACTORY_TOOL		FA_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FACTORY_INIT_3
 	_COMM_RESET

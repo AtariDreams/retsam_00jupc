@@ -13,7 +13,7 @@
 #
 # $Log: sdkindent,v $
 # Revision 1.2  2006/01/16 00:38:57  kitase_hirotake
-# 2005->2006 �s�K�v�ȃC���f���g���s��Ȃ��悤�ɕύX
+# 2005->2006 不必要なインデントを行わないように変更
 #
 # Revision 1.1  2004/09/29 02:05:00  yasu
 # Add code beautifier for NITRO-SDK

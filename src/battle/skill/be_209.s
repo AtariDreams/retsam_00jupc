@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_209.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			209�@�}���ɓ�����₷���B�P�O���̊m���ő�����ǂ���Ԃɂ���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			209　急所に当たりやすい。１０％の確率で相手をどく状態にする。
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

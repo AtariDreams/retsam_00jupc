@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		bct_surver.c
- *	@brief		ƒT[ƒo[
+ *	@brief		ã‚µãƒ¼ãƒãƒ¼
  *	@author		tomoya takahashi
  *	@data		2007.06.19
  *
@@ -15,51 +15,51 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒT[ƒo[ƒ[ƒN
+///	ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _BCT_SURVER{
 	s32 time;
-	BOOL countdown;	// ƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚é‚©
+	BOOL countdown;	// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹ã‹
 	u32 comm_num;
 	BCT_SCORE_COMM score;
-	u32 score_msk;						// ƒXƒRƒA‚ðŠi”[‚µ‚½NETIDƒ}ƒXƒN
-	u32 ranktbl[ BCT_PLAYER_NUM ];		// ‡ˆÊŒvŽZ—pƒe[ƒuƒ‹
-	const BCT_GAMEDATA* cp_gamedata;	// ƒQ[ƒ€ƒf[ƒ^
-	u16 nutsin_count;					// –Ø‚ÌŽÀ‚ª“ü‚Á‚½”
-	u8	now_tbl_idx;					// ¡‚ÌƒQ[ƒ€’iŠK 
-	u8	tbl_idx_change;					// ƒe[ƒuƒ‹‚ÌƒCƒ“‚ÅƒNƒX‚ª•Ï‚í‚Á‚½
+	u32 score_msk;						// ã‚¹ã‚³ã‚¢ã‚’æ ¼ç´ã—ãŸNETIDãƒžã‚¹ã‚¯
+	u32 ranktbl[ BCT_PLAYER_NUM ];		// é †ä½è¨ˆç®—ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
+	const BCT_GAMEDATA* cp_gamedata;	// ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+	u16 nutsin_count;					// æœ¨ã®å®ŸãŒå…¥ã£ãŸæ•°
+	u8	now_tbl_idx;					// ä»Šã®ã‚²ãƒ¼ãƒ æ®µéšŽ 
+	u8	tbl_idx_change;					// ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ã§ã‚¯ã‚¹ãŒå¤‰ã‚ã£ãŸ
 } ;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static u32 BCT_SURVER_ScoreSetNumGet( const BCT_SURVER* cp_wk );
@@ -67,14 +67,14 @@ static u32 BCT_SURVER_ScoreSetNumGet( const BCT_SURVER* cp_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo[ƒ[ƒN‚Ìì¬
+ *	@brief	ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
  *
- *	@param	heapID		Žg—p‚·‚éƒq[ƒv
- *	@param	timeover	ŽžŠÔ§ŒÀ
- *	@param	comm_num	’ÊMl”
- *	@param	cp_gamedata	ƒQ[ƒ€ƒf[ƒ^
+ *	@param	heapID		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	timeover	æ™‚é–“åˆ¶é™
+ *	@param	comm_num	é€šä¿¡äººæ•°
+ *	@param	cp_gamedata	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ì¬‚µ‚½ƒ[ƒN
+ *	@return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 BCT_SURVER* BCT_SURVER_Init( u32 heapID, u32 timeover, u32 comm_num, const BCT_GAMEDATA* cp_gamedata )
@@ -94,9 +94,9 @@ BCT_SURVER* BCT_SURVER_Init( u32 heapID, u32 timeover, u32 comm_num, const BCT_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo[ƒ[ƒN‚Ì”jŠü
+ *	@brief	ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_Delete( BCT_SURVER* p_wk )
@@ -106,15 +106,15 @@ void BCT_SURVER_Delete( BCT_SURVER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo[ƒ[ƒNƒƒCƒ“
+ *	@brief	ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	I—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	çµ‚äº†
  *
-// FALSE‚ª‹A‚Á‚Ä‚«‚½‚çI—¹
-// I—¹–½—ß‚ÆƒXƒRƒA‚ð‚Ý‚ñ‚È‚É‘—‚é
+// FALSEãŒå¸°ã£ã¦ããŸã‚‰çµ‚äº†
+// çµ‚äº†å‘½ä»¤ã¨ã‚¹ã‚³ã‚¢ã‚’ã¿ã‚“ãªã«é€ã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_SURVER_Main( BCT_SURVER* p_wk )
@@ -130,23 +130,23 @@ BOOL BCT_SURVER_Main( BCT_SURVER* p_wk )
 		return FALSE;
 	}
 
-	// ŽŸ‚Ì’iŠKƒ`ƒFƒbƒN
+	// æ¬¡ã®æ®µéšŽãƒã‚§ãƒƒã‚¯
 	for( i=p_wk->now_tbl_idx; i<p_wk->cp_gamedata->tblnum; i++ ){
 		if( p_wk->cp_gamedata->p_tbl[i].nuts_num >= p_wk->nutsin_count ){
 			break;
 		}
 	}
 
-	// ƒCƒ“ƒfƒbƒNƒX‚ªp_wk->cp_gamedata.tblnum‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚½‚ç
-	// ‚P‚Â–ß‚·
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒp_wk->cp_gamedata.tblnumã«ãªã£ã¦ã—ã¾ã£ãŸã‚‰
+	// ï¼‘ã¤æˆ»ã™
 	if( i == p_wk->cp_gamedata->tblnum ){
 		i--;
 	}
-	// ƒCƒ“ƒfƒbƒNƒX‚ª•Ï‚í‚Á‚½‚çÝ’è
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå¤‰ã‚ã£ãŸã‚‰è¨­å®š
 	if( i != p_wk->now_tbl_idx ){
 		p_wk->now_tbl_idx = i;
 
-		// ‚³‚ç‚É’iŠK‚ª•Ï‚í‚Á‚½ƒtƒ‰ƒO‚ðÝ’è
+		// ã•ã‚‰ã«æ®µéšŽãŒå¤‰ã‚ã£ãŸãƒ•ãƒ©ã‚°ã‚’è¨­å®š
 		p_wk->tbl_idx_change = TRUE;
 //		OS_TPrintf( "game data idx chenge %d\n", p_wk->now_tbl_idx );
 	}
@@ -156,12 +156,12 @@ BOOL BCT_SURVER_Main( BCT_SURVER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒŒƒxƒ‹‚Ì•ÏX‚ðƒ`ƒFƒbƒN
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«ã®å¤‰æ›´ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒŒƒxƒ‹‚ª•Ï‚í‚Á‚Ä‚é
- *	@retval	FALSE	ƒŒƒxƒ‹‚ª•Ï‚í‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒ¬ãƒ™ãƒ«ãŒå¤‰ã‚ã£ã¦ã‚‹
+ *	@retval	FALSE	ãƒ¬ãƒ™ãƒ«ãŒå¤‰ã‚ã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_SURVER_CheckGameLevelChange( const BCT_SURVER* cp_wk )
@@ -171,9 +171,9 @@ BOOL BCT_SURVER_CheckGameLevelChange( const BCT_SURVER* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒŒƒxƒ‹‚Ì•ÏXƒtƒ‰ƒO‚ðƒNƒŠƒA
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«ã®å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_ClearGameLevelChange( BCT_SURVER* p_wk )
@@ -183,11 +183,11 @@ void BCT_SURVER_ClearGameLevelChange( BCT_SURVER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒŒƒxƒ‹‚Ì•ÏXƒtƒ‰ƒO‚ðƒNƒŠƒA
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«ã®å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒŒƒxƒ‹
+ *	@return	ãƒ¬ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 u32	BCT_SURVER_GetGameLevel( const BCT_SURVER* cp_wk )
@@ -197,17 +197,17 @@ u32	BCT_SURVER_GetGameLevel( const BCT_SURVER* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽóM–Ø‚ÌŽÀƒf[ƒ^Ý’è
+ *	@brief	å—ä¿¡æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	cp_data	–Ø‚ÌŽÀƒf[ƒ^
- *	@param	plno	ƒlƒbƒgID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data	æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
+ *	@param	plno	ãƒãƒƒãƒˆID
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_SetNutData( BCT_SURVER* p_wk, const BCT_NUT_COMM* cp_data, u32 plno )
 {
 	if( cp_data->in_flag ){
-		// ŒÂ”ƒJƒEƒ“ƒg
+		// å€‹æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 		p_wk->nutsin_count ++;
 //		OS_TPrintf( "nutsin count %d\n", p_wk->nutsin_count );
 	} 
@@ -215,11 +215,11 @@ void BCT_SURVER_SetNutData( BCT_SURVER* p_wk, const BCT_NUT_COMM* cp_data, u32 p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒRƒA‚ðÝ’è‚·‚é
+ *	@brief	ã‚¹ã‚³ã‚¢ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	score		ƒXƒRƒA
- *	@param	plno		ƒlƒbƒgID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	score		ã‚¹ã‚³ã‚¢
+ *	@param	plno		ãƒãƒƒãƒˆID
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_ScoreSet( BCT_SURVER* p_wk, u32 score, u32 plno )
@@ -227,29 +227,29 @@ void BCT_SURVER_ScoreSet( BCT_SURVER* p_wk, u32 score, u32 plno )
 	int innum;
 	int i;
 
-	// Å‘å’lƒI[ƒo[ƒ`ƒFƒbƒN
+	// æœ€å¤§å€¤ã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( score > BCT_SCORE_MAX ){
 		score = BCT_SCORE_MAX;
 	}
 	
-	// ‚Ü‚¾“o˜^‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã¾ã ç™»éŒ²ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( (p_wk->score_msk & (1 << plno)) == 0 ){
 
 		p_wk->score.score[ plno ] = score;
 //		OS_Printf( "p_wk->score_msk %x  score = %d\n", p_wk->score_msk, score );
-		// Žæ“¾Š®—¹
+		// å–å¾—å®Œäº†
 		p_wk->score_msk |= (1 << plno);
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ý‚ñ‚È‚©‚çƒXƒRƒA‚ðŽóM‚µ‚½‚©‚ðƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã¿ã‚“ãªã‹ã‚‰ã‚¹ã‚³ã‚¢ã‚’å—ä¿¡ã—ãŸã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	 cp_wk		ƒ[ƒN
+ *	@param	 cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‚Ý‚ñ‚È‚©‚çŽóM‚µ‚½
- *	@retval	FALSE	‚Ý‚ñ‚È‚©‚çŽóM‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã¿ã‚“ãªã‹ã‚‰å—ä¿¡ã—ãŸ
+ *	@retval	FALSE	ã¿ã‚“ãªã‹ã‚‰å—ä¿¡ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_SURVER_ScoreAllUserGetCheck( const BCT_SURVER* cp_wk )
@@ -264,10 +264,10 @@ BOOL BCT_SURVER_ScoreAllUserGetCheck( const BCT_SURVER* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ý‚ñ‚È‚ÌƒXƒRƒA‚ðŽæ“¾‚·‚é
+ *	@brief	ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_data		‚Ý‚ñ‚È‚ÌƒXƒRƒAŠi”[æ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_ScoreGet( BCT_SURVER* p_wk, BCT_SCORE_COMM* p_data )
@@ -277,10 +277,10 @@ void BCT_SURVER_ScoreGet( BCT_SURVER* p_wk, BCT_SCORE_COMM* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒoƒJƒEƒ“ƒgƒ_ƒEƒ“Ý’è
+ *	@brief	ã‚µãƒ¼ãƒã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void BCT_SURVER_SetCountDown( BCT_SURVER* p_wk, BOOL flag )
@@ -293,11 +293,11 @@ void BCT_SURVER_SetCountDown( BCT_SURVER* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒRƒA‚ðÝ’è‚µ‚½”‚ð‹‚ß‚é
+ *	@brief	ã‚¹ã‚³ã‚¢ã‚’è¨­å®šã—ãŸæ•°ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒXƒRƒA‚ðÝ’è‚µ‚½”
+ *	@return	ã‚¹ã‚³ã‚¢ã‚’è¨­å®šã—ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 static u32 BCT_SURVER_ScoreSetNumGet( const BCT_SURVER* cp_wk )

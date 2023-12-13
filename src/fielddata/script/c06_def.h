@@ -1,7 +1,7 @@
 #ifndef _C06_DEF_H_
 #define _C06_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C06_FLAG_CHANGE		(1)
 #define	SCRID_C06_BIGMAN1		(2)
 #define	SCRID_C06_ASSISTANTM		(3)
@@ -25,6 +25,6 @@
 #define	SCRID_POS_C06_LEADER		(21)
 #define	SCRID_POS_C06_RIVAL_GATE		(22)
 #define	SCRID_POS_C06_POKE		(23)
-#define	SCRID_C06_DATA_MAX		(23)		//最大数
+#define	SCRID_C06_DATA_MAX		(23)		//譛螟ｧ謨ｰ
 
 #endif //_C06_DEF_H_

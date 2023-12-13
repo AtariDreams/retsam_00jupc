@@ -1,6 +1,6 @@
 /**
  *	@file	confing.h
- *	@brief	コンフィグ画面外部公開ヘッダ
+ *	@brief	繧ｳ繝ｳ繝輔ぅ繧ｰ逕ｻ髱｢螟夜Κ蜈ｬ髢九�倥ャ繝
  *	@date	06.01.30
  *	@author	Miyuki Iwasawa
  */
@@ -8,7 +8,7 @@
 #ifndef __H_CONFIG_H__
 #define __H_CONFIG_H__
 
-///外部公開ワーク
+///螟夜Κ蜈ｬ髢九Ρ繝ｼ繧ｯ
 typedef struct _CONFIG_PARAM
 {
 	u16 msg_spd:4;
@@ -20,7 +20,7 @@ typedef struct _CONFIG_PARAM
 	u16 pad_dmy:1;
 }CONFIG_PARAM;
 
-///オーバーレイプロセス
+///繧ｪ繝ｼ繝舌�ｼ繝ｬ繧､繝励Ο繧ｻ繧ｹ
 extern PROC_RESULT ConfigProc_Init( PROC *proc,int *seq);
 extern PROC_RESULT ConfigProc_Main( PROC *proc,int *seq);
 extern PROC_RESULT ConfigProc_End( PROC *proc,int *seq);

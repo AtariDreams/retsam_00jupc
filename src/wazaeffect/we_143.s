@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_143.s
- * @brief	ƒSƒbƒhƒo[ƒh			143
+ * @brief	ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰			143
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒSƒbƒhƒo[ƒh			143
+//	â– ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰			143
 //
 //
 // =============================================================================
@@ -39,7 +39,7 @@ WEST_143_TURN_1:
 	LOAD_PARTICLE_DROP	0,W_143_SPA	
 	ADD_PARTICLE 	0,W_143_143_GODBARD_CHARGE, EMTFUNC_ATTACK_POS
 	
-	///< ƒp[ƒeƒBƒAƒ^ƒbƒN
+	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¢ã‚¿ãƒƒã‚¯
 	PTAT_JP			PTAT
 	
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 10, WE_PAL_BLACK
@@ -109,7 +109,7 @@ SIDE_ENEMY:
 ///< turn2
 WEST_143_TURN_2:
 
-	///< ”wŒi
+	///< èƒŒæ™¯
 	LOAD_PARTICLE_DROP	0,W_143_SPA
 	
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  WEDEF_HAIKEI_SPEED_X
@@ -121,7 +121,7 @@ WEST_143_TURN_2:
 	//SE_L			SEQ_SE_DP_W327
 	HAIKEI_CHG_WAIT
 
-	///< ”¼“§–¾ƒtƒF[ƒhƒ|ƒP
+	///< åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚±
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0,
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0

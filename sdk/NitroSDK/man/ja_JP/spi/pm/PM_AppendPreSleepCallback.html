@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>PM_AppendPreSleepCallback</TITLE>
@@ -9,46 +9,46 @@
 </HEAD>
 <BODY>
 <H1 align="left">PM_AppendPreSleepCallback</H1>
-<H2>\•¶</H2>
+<H2>æ§‹æ–‡</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/spi.h&gt;</CODE></PRE>
   <PRE><CODE>void PM_AppendPreSleepCallback( PMSleepCallbackInfo* info );
 </CODE></PRE>
 </DL>
-<H2>ˆø”</H2>
+<H2>å¼•æ•°</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>info</STRONG></EM></TD>
-      <TD width="87%">’Ç‰Á‚·‚éƒR[ƒ‹ƒoƒbƒN‚Ìî•ñ‚ğŠÜ‚ñ‚¾\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^</TD>
+      <TD width="87%">è¿½åŠ ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®æƒ…å ±ã‚’å«ã‚“ã æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>•Ô‚è’l</H2>
-<P>‚È‚µB</P>
-<H2>à–¾</H2>
-<P>ƒXƒŠ[ƒvƒ‚[ƒh‚ÉˆÚs‚·‚éÛ‚ÌƒR[ƒ‹ƒoƒbƒN‚ğ“o˜^‚µ‚Ü‚·B<BR>
-ƒR[ƒ‹ƒoƒbƒNƒŠƒXƒg‚Ìæ“ª‚É“o˜^‚³‚ê‚Ü‚·B</P>
-<P>ƒR[ƒ‹ƒoƒbƒN‚Í‚»‚ê‚¼‚ê•¡”“o˜^‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚·BƒR[ƒ‹ƒoƒbƒN‚Í void*
-Œ^ˆø”‚ğ1‚Âæ‚évoidŒ^ŠÖ”‚Å</P>
+<H2>è¿”ã‚Šå€¤</H2>
+<P>ãªã—ã€‚</P>
+<H2>èª¬æ˜</H2>
+<P>ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹éš›ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ç™»éŒ²ã—ã¾ã™ã€‚<BR>
+ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²ã•ã‚Œã¾ã™ã€‚</P>
+<P>ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ãã‚Œãã‚Œè¤‡æ•°ç™»éŒ²ã™ã‚‹ã“ã¨ãŒå¯èƒ½ã§ã™ã€‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ void*
+å‹å¼•æ•°ã‚’1ã¤å–ã‚‹voidå‹é–¢æ•°ã§</P>
 <BLOCKQUOTE><CODE>typedef void (*PMSleepCallback)( void* );</CODE></BLOCKQUOTE>
-<P>‚Å’è‹`‚³‚ê‚Ä‚¢‚Ü‚·B‚±‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚Í <CODE><A href="PM_GoSleepMode.html">PM_GoSleepMode()</A></CODE> ‚Ì’†‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B</P>
-<P>“o˜^‚·‚éÛ‚ÍAƒR[ƒ‹ƒoƒbƒN‚Æˆø”‚Ìî•ñ(‚ÆAƒŠƒXƒg‚ğ\’z‚·‚é‚½‚ß‚Ìî•ñ‚ğŠÜ‚ñ‚¾\‘¢‘Ì)
-‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğw’è‚µ‚Ü‚·B‚±‚Ì\‘¢‘Ì‚ÍˆÈ‰º‚Ì‚æ‚¤‚É’è‹`‚³‚ê‚Ä‚¢‚Ü‚·B</P>
+<P>ã§å®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¯ <CODE><A href="PM_GoSleepMode.html">PM_GoSleepMode()</A></CODE> ã®ä¸­ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚</P>
+<P>ç™»éŒ²ã™ã‚‹éš›ã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¨å¼•æ•°ã®æƒ…å ±(ã¨ã€ãƒªã‚¹ãƒˆã‚’æ§‹ç¯‰ã™ã‚‹ãŸã‚ã®æƒ…å ±ã‚’å«ã‚“ã æ§‹é€ ä½“)
+ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡å®šã—ã¾ã™ã€‚ã“ã®æ§‹é€ ä½“ã¯ä»¥ä¸‹ã®ã‚ˆã†ã«å®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚</P>
 <BLOCKQUOTE><CODE>typedef struct PMiSleepCallbackInfo  PMSleepCallbackInfo;<BR>
 struct PMiSleepCallbackInfo<BR>
 {<BR>
-@@PMSleepCallback callback;<BR>
-@@void* arg;<BR>
-@@PMSleepCallbackInfo* next;<BR>
+ã€€ã€€PMSleepCallback callback;<BR>
+ã€€ã€€void* arg;<BR>
+ã€€ã€€PMSleepCallbackInfo* next;<BR>
 };<BR>
 </CODE></BLOCKQUOTE>
-<P>ƒR[ƒ‹ƒoƒbƒNî•ñ‚ÖƒR[ƒ‹ƒoƒbƒN‚ğ“o˜^‚·‚é‚½‚ß‚ÌŠÖ” <CODE><A href="PM_SetSleepCallbackInfo.html">PM_SetSleepCallbackInfo()</A></CODE>‚à—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</P>
-<P>ƒR[ƒ‹ƒoƒbƒN‚ÍƒŠƒXƒg‚Ìæ“ª‚©‚ç‡‚ÉÀs‚³‚ê‚Ü‚·B</P>
-<P>ƒXƒŠ[ƒvƒ‚[ƒh‚ÉˆÚs‚·‚é‚Æ‚«‚ÌƒR[ƒ‹ƒoƒbƒN“o˜^‚Å‚ÍA<CODE><A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback()</A></CODE> ‚ÍƒŠƒXƒg‚Ìæ“ª‚ÉA<CODE><A href="PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback()</A></CODE> ‚ÍƒŠƒXƒg‚Ì––”ö‚É“o˜^‚µ‚Ü‚·B </P>
-<P>ƒXƒŠ[ƒvƒ‚[ƒh‚©‚ç•œ‹A‚·‚é‚Æ‚«‚ÌƒR[ƒ‹ƒoƒbƒN“o˜^‚Å‚ÍA<CODE><A href="PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback()</A></CODE> ‚ÍƒŠƒXƒg‚Ìæ“ª‚ÉA<CODE><A href="PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback()</A></CODE> ‚ÍƒŠƒXƒg‚Ì––”ö‚É“o˜^‚µ‚Ü‚·B</P>
-<BLOCKQUOTE>(—á)<BR>
+<P>ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æƒ…å ±ã¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ç™»éŒ²ã™ã‚‹ãŸã‚ã®é–¢æ•° <CODE><A href="PM_SetSleepCallbackInfo.html">PM_SetSleepCallbackInfo()</A></CODE>ã‚‚ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</P>
+<P>ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ãƒªã‚¹ãƒˆã®å…ˆé ­ã‹ã‚‰é †ã«å®Ÿè¡Œã•ã‚Œã¾ã™ã€‚</P>
+<P>ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹ã¨ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²ã§ã¯ã€<CODE><A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback()</A></CODE> ã¯ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ã€<CODE><A href="PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback()</A></CODE> ã¯ãƒªã‚¹ãƒˆã®æœ«å°¾ã«ç™»éŒ²ã—ã¾ã™ã€‚ </P>
+<P>ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰å¾©å¸°ã™ã‚‹ã¨ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²ã§ã¯ã€<CODE><A href="PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback()</A></CODE> ã¯ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ã€<CODE><A href="PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback()</A></CODE> ã¯ãƒªã‚¹ãƒˆã®æœ«å°¾ã«ç™»éŒ²ã—ã¾ã™ã€‚</P>
+<BLOCKQUOTE>(ä¾‹)<BR>
 <CODE><BR>
 //---- sleep callback info<BR>
 <FONT color="#ff0000">PMSleepCallbackinfo c1info;<BR>
@@ -57,42 +57,42 @@ PMSleepCallbackinfo c2info;</FONT><BR>
 //---- Callback before sleep mode<BR>
 void myCallback1( void* )<BR>
 {<BR>
-@@OS_Printf( &quot;go to sleep mode.\n&quot; );<BR>
+ã€€ã€€OS_Printf( &quot;go to sleep mode.\n&quot; );<BR>
 }<BR>
 <BR>
 //---- Callback after sleep mode<BR>
 void myCallback2( void* )<BR>
 {<BR>
-@@OS_Printf( &quot;now return from sleep mode.\n&quot; );<BR>
+ã€€ã€€OS_Printf( &quot;now return from sleep mode.\n&quot; );<BR>
 }<BR>
 <BR>
 //---- Main<BR>
 void NitroMain( void )<BR>
 {<BR>
-@@@F<BR>
-@@//---- set callback to callback info<BR>
-@@<FONT color="#ff0000">PM_SetSleepCallbackInfo( &amp;c1info, myCallback1, NULL );<BR>
-@@PM_SetSleepCallbackInfo( &amp;c2info, myCallback2, NULL );</FONT><BR>
+ã€€ã€€ã€€ï¼š<BR>
+ã€€ã€€//---- set callback to callback info<BR>
+ã€€ã€€<FONT color="#ff0000">PM_SetSleepCallbackInfo( &amp;c1info, myCallback1, NULL );<BR>
+ã€€ã€€PM_SetSleepCallbackInfo( &amp;c2info, myCallback2, NULL );</FONT><BR>
 <BR>
-@@//---- set pre-callback for sleep mode<BR>
-@@<FONT color="#ff0000">PM_AppendPreSleepCallback( &amp;c1info );</FONT><BR>
+ã€€ã€€//---- set pre-callback for sleep mode<BR>
+ã€€ã€€<FONT color="#ff0000">PM_AppendPreSleepCallback( &amp;c1info );</FONT><BR>
 <BR>
-@@//---- set post-callback for sleep mode<BR>
-@@<FONT color="#ff0000">PM_AppendPostSleepCallback( &amp;c2info );</FONT><BR>
+ã€€ã€€//---- set post-callback for sleep mode<BR>
+ã€€ã€€<FONT color="#ff0000">PM_AppendPostSleepCallback( &amp;c2info );</FONT><BR>
 <BR>
-@@//---- go to sleep mode<BR>
-@@PM_GoSleepMode(...);<BR>
-@@@F<BR>
+ã€€ã€€//---- go to sleep mode<BR>
+ã€€ã€€PM_GoSleepMode(...);<BR>
+ã€€ã€€ã€€ï¼š<BR>
 }</CODE></BLOCKQUOTE>
-<H2>QÆ</H2>
+<H2>å‚ç…§</H2>
 <P><CODE><A href="PM_Init.html">PM_Init</A>, <A href="PM_GetLEDPattern.html">PM_GoSleepMode</A>,<BR>
 <A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback</A>, <A href="PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback</A>,<BR>
 <A href="PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback</A>, <A href="PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback</A>,<BR>
 <A href="PM_DeletePreSleepCallback.html"></A><A href="PM_DeletePreSleepCallback.html">PM_DeletePreSleepCallback</A>, <A href="PM_DeletePreSleepCallback.html">PM_DeletePostSleepCallback</A>,</CODE><BR>
 <CODE><A href="PM_SetSleepCallbackInfo.html">PM_SetSleepCallbackInfo</A></CODE></P>
-<H2>—š—ğ</H2>
-<P>2005/09/14 <CODE>PM_SetSleepCallback</CODE> ¨ <CODE>PM_SetSleepCallbackInfo<BR>
-</CODE>2005/06/02 ƒR[ƒ‹ƒoƒbƒN‚ÌŒÄ‚ÑŒ³‚ğ–¾‹L‚µ‚½<BR>
-2004/10/06 ‰”Å</P>
+<H2>å±¥æ­´</H2>
+<P>2005/09/14 <CODE>PM_SetSleepCallback</CODE> â†’ <CODE>PM_SetSleepCallbackInfo<BR>
+</CODE>2005/06/02 ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‘¼ã³å…ƒã‚’æ˜è¨˜ã—ãŸ<BR>
+2004/10/06 åˆç‰ˆ</P>
 </BODY>
 </HTML>

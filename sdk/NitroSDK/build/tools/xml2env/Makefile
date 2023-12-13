@@ -13,7 +13,7 @@
 #
 #  $Log: Makefile,v $
 #  Revision 1.1  2005/10/21 00:04:37  okubata_ryoma
-#  xml2env�̒ǉ�
+#  xml2envの追加
 #
 #  Initial Upload
 #

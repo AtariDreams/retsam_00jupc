@@ -2,7 +2,7 @@
 //============================================================================================ 
 /**
  * @file	d_mori.c
- * @bfief	X ƒfƒoƒbƒOƒƒjƒ…[
+ * @bfief	æ£® ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @author	mori GAME FREAK inc.
  */
 //============================================================================================
@@ -50,7 +50,7 @@
 #include "d_mori2.h"
 
 //---------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //---------------------------------------------------------------------------------------------
 #define	DEBUG_WK_SIZE		( 4*16 )
 
@@ -78,7 +78,7 @@ typedef struct{
 
 
 //---------------------------------------------------------------------------------------------
-// ŠÖ”ƒvƒƒgƒ^ƒCƒv
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //---------------------------------------------------------------------------------------------
 static void DebugMenuExit(GF_BGL_INI *ini);
 static void DebugMenuExitSub( TCB_PTR _tcb );
@@ -119,34 +119,34 @@ void DebugTradeListFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys);
 
 
 //--------------------------------------------------------------------------------------------
-// ƒfƒoƒbƒOƒƒjƒ…[—p’è‹`
+// ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å®šç¾©
 //--------------------------------------------------------------------------------------------
 #define DMORI_BMPMENU_NUM	( 10 )
 
 static const BMPLIST_HEADER d_menu_list_h = {
 	NULL,
-	MainBmpListCB1,			// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	MainBmpListCB2,			// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	MainBmpListCB1,			// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	MainBmpListCB2,			// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	DMORI_BMPMENU_NUM,		// ƒŠƒXƒg€–Ú”
-	10,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_BLACK,			// •¶šF
-	FBMP_COL_WHITE,			// ”wŒiF
-	FBMP_COL_BLK_SDW,		// •¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	POKE_SYSTEM,			// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	DMORI_BMPMENU_NUM,		// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,			// æ–‡å­—è‰²
+	FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	POKE_SYSTEM,			// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
 
-typedef void (*bglFunc)(GF_BGL_INI *ini, FIELDSYS_WORK* fsys);	// ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef void (*bglFunc)(GF_BGL_INI *ini, FIELDSYS_WORK* fsys);	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
 static const u8 datadata[4]={0x77,0x77,0x77,0x73,};
 static const STRCODE testname[]={h_T__,h_e__,h_s__,h_t__,h_N__,h_a__,h_m__,h_e__,h_A__,h_B__,EOM_,};
@@ -155,7 +155,7 @@ static const STRCODE parentname[]={h_T__,h_e__,h_s__,h_t__,h_N__,h_a__,h_m__,EOM
 
 //==============================================================================
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[‰Šú‰»ŠÖ”ifld_debug.c‚©‚çŒÄ‚Î‚ê‚Ü‚·)
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–é–¢æ•°ï¼ˆfld_debug.cã‹ã‚‰å‘¼ã°ã‚Œã¾ã™)
  *
  * @param   none		
  *
@@ -168,23 +168,23 @@ void DebugMoriMenuInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 	u8 work[4];
 	u8 outwork[4];
 
-	// ƒ^ƒXƒN“o˜^•ƒ[ƒNƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	u32 * wk             = (u32 *)TCB_GetWork( PMDS_taskAdd( DebugMoriMenuMain, sizeof(DEBUG_MORI_WORK), 0, HEAPID_BASE_DEBUG ) );
 	DEBUG_MORI_WORK *dmw = (DEBUG_MORI_WORK*)wk;
 
-	// BMP_WIN\‘¢‘ÌŠm•Û
+	// BMP_WINæ§‹é€ ä½“ç¢ºä¿
 	GF_BGL_BMPWIN *win = GF_BGL_BmpWinAllocGet( HEAPID_BASE_DEBUG, 1 );
 
 
 
-	// •¶š—ñƒf[ƒ^“Ç‚İ‚İ€”õ
+	// æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿æº–å‚™
 	dmw->man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_debug_mori_dat, HEAPID_BASE_DEBUG );
 
 
-	// BMP_WIN“o˜^
+	// BMP_WINç™»éŒ²
 	GF_BGL_BmpWinAdd( ini, win, FLD_MBGFRM_FONT, 1, 1, 15, 20, FLD_SYSFONT_PAL, 1 );
 
-	// BMP_WIN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğƒ^ƒXƒNƒ[ƒN‚É•Û‘¶
+	// BMP_WINæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
 	wk[ WK_WIN_INDEX ] = (u32)win;
 
 
@@ -203,24 +203,24 @@ void DebugMoriMenuInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 	BMP_MENULIST_AddArchiveString( dmw->ld, dmw->man, menu_msg24, (u32)DebugTamagoFuka );
 
 
-	// BMP_LIST\‘¢‘Ì‚ğƒZƒbƒg
+	// BMP_LISTæ§‹é€ ä½“ã‚’ã‚»ãƒƒãƒˆ
 	list_h      = d_menu_list_h;
 	list_h.win  = win;
 	list_h.list = dmw->ld;
 
 
 	wk[ WK_LIST_ID ]    = (u32)BmpListSet( &list_h, 0, 0 ,HEAPID_BASE_DEBUG);
-	wk[ WK_GF_BGL_INI ] = (u32)ini;			// fieldsys->bgl‚Ì•Û‘¶
-	wk[ WK_FIELDSYS ]   = (u32)fsys;		// fieldsys‚Ì•Û‘¶
+	wk[ WK_GF_BGL_INI ] = (u32)ini;			// fieldsys->bglã®ä¿å­˜
+	wk[ WK_FIELDSYS ]   = (u32)fsys;		// fieldsysã®ä¿å­˜
 
-	// BMP•\¦ŠJn
+	// BMPè¡¨ç¤ºé–‹å§‹
 	GF_BGL_BmpWinOn( win );
 
 
 	
 	MSGMAN_Delete( dmw->man );
 
-	// ƒ^ƒXƒNƒV[ƒPƒ“ƒX—p•Ï”‚Ì‰Šú‰»
+	// ã‚¿ã‚¹ã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨å¤‰æ•°ã®åˆæœŸåŒ–
 	wk[ WK_SEQ ] = 0;
 
 
@@ -245,7 +245,7 @@ static void LongNameResearch(void);
 
 static void LongNameResearch(void)
 {
-	// ’·‚¢ƒAƒCƒeƒ€–¼‚ğ’²‚×‚éƒuƒƒbƒN
+	// é•·ã„ã‚¢ã‚¤ãƒ†ãƒ åã‚’èª¿ã¹ã‚‹ãƒ–ãƒ­ãƒƒã‚¯
 	{
 		int i;
 		STRBUF *strbuf = STRBUF_Create( 20, HEAPID_BASE_DEBUG );
@@ -257,7 +257,7 @@ static void LongNameResearch(void)
 			longitem[i][1] = 0;
 		}
 
-		// ‘S‚Ä‚ÌƒAƒCƒeƒ€–¼•¶š—ñ‚ğæ“¾‚µ’·‚³‚ğ’²‚×‚é
+		// å…¨ã¦ã®ã‚¢ã‚¤ãƒ†ãƒ åæ–‡å­—åˆ—ã‚’å–å¾—ã—é•·ã•ã‚’èª¿ã¹ã‚‹
 		for(i=1;i<ITEM_DATA_MAX;i++){
 			
 			GetItemName( strbuf, i, HEAPID_BASE_DEBUG );
@@ -266,7 +266,7 @@ static void LongNameResearch(void)
 			longitem[9][0] = i;
 			longitem[9][1] = length;
 
-			// ”z—ñ‚Ì10”Ô–Ú‚É‘}“ü‚µAƒ\[ƒg‚µ‚Äƒgƒbƒv10‚ğŒˆ‚ß‚é
+			// é…åˆ—ã®10ç•ªç›®ã«æŒ¿å…¥ã—ã€ã‚½ãƒ¼ãƒˆã—ã¦ãƒˆãƒƒãƒ—10ã‚’æ±ºã‚ã‚‹
 			MATH_QSort( (void*)longitem, 
                     10, 
                     8, 
@@ -281,7 +281,7 @@ static void LongNameResearch(void)
 	}
 }
 
-// ƒ\[ƒg—p‚Ì”äŠrŠÖ”
+// ã‚½ãƒ¼ãƒˆç”¨ã®æ¯”è¼ƒé–¢æ•°
 s32 longItemCompFunc( void *elem1, void *elem2 )
 {
 	int *item1, *item2;
@@ -309,7 +309,7 @@ static void MainBmpListCB2( BMPLIST_WORK * work, u32 param, u8 y )
 
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[BmpList‰ğ•ú
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼BmpListè§£æ”¾
  *
  * @param   wk		
  *
@@ -321,14 +321,14 @@ static void DebugMoriBmpMenuExit( u32 * wk )
 	BMPLIST_WORK    *list = (BMPLIST_WORK*)wk[WK_LIST_ID];
 	DEBUG_MORI_WORK *dmw  = (DEBUG_MORI_WORK*)wk;
 
-	// BMP_LIST‰ğ•ú
+	// BMP_LISTè§£æ”¾
 	BmpListExit( list, NULL, NULL );
 	BMP_MENULIST_Delete( dmw->ld );
 
-	// BMP_WIN•\¦OFF
+	// BMP_WINè¡¨ç¤ºOFF
 	GF_BGL_BmpWinOff( (GF_BGL_BMPWIN*)wk[WK_WIN_INDEX] );
 
-	// BMP_WIN—Ìˆæíœ
+	// BMP_WINé ˜åŸŸå‰Šé™¤
 	GF_BGL_BmpWinDel( (GF_BGL_BMPWIN*)wk[WK_WIN_INDEX] );
 
 	GF_BGL_BmpWinFree( (GF_BGL_BMPWIN*)wk[ WK_WIN_INDEX ], 1 );
@@ -339,7 +339,7 @@ static u16 *ChildList;
 
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[‰ğ•úˆ—
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼è§£æ”¾å‡¦ç†
  *
  * @param   tcb		
  *
@@ -352,13 +352,13 @@ static void DebugMenuExitSub( TCB_PTR tcb )
 	u16 result;
 	int different=0,i;
 	
-	// BMPLIST/WIN‰ğ•ú
+	// BMPLIST/WINè§£æ”¾
 	DebugMoriBmpMenuExit( wk );
 
-	// ƒ^ƒXƒNÁ‹
+	// ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	PMDS_taskDel( tcb );
 
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 
@@ -367,7 +367,7 @@ static void DebugMenuExitSub( TCB_PTR tcb )
 
 //------------------------------------------------------------------
 /**
- * ŒÄ‚Ño‚µ
+ * å‘¼ã³å‡ºã—
  *
  * @param   none		
  *
@@ -385,7 +385,7 @@ static void DebugMenuExit( GF_BGL_INI *ini )
 
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[ƒƒCƒ“
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³
  *
  * @param   _tcb		
  * @param   work		
@@ -411,7 +411,7 @@ static void DebugMoriMenuMain( TCB_PTR _tcb, void * work )
 			OS_Printf("wbppokemon size = %d\n",sizeof(WPBPokemonInfo));
 			DebugMenuExitSub( _tcb );
 
-			OS_Printf( "%d‚Ìq‹Ÿ‚Í %d\n",185,PokeSearchChild(185));
+			OS_Printf( "%dã®å­ä¾›ã¯ %d\n",185,PokeSearchChild(185));
 
 			break;
 		default:
@@ -436,7 +436,7 @@ static void DebugMoriMenuMain( TCB_PTR _tcb, void * work )
 #if 0
 
 //---------------------------------------------------------------------------------------
-// Ú‘±ƒŠƒXƒgˆ—ƒeƒXƒg
+// æ¥ç¶šãƒªã‚¹ãƒˆå‡¦ç†ãƒ†ã‚¹ãƒˆ
 //---------------------------------------------------------------------------------------
 
 
@@ -475,42 +475,42 @@ static CONNECT_MEMBER_WORK *pcmw = NULL;
 
 
 //---------------------------------------------------------------------------------------------
-// ŠÖ”ƒvƒƒgƒ^ƒCƒv
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //---------------------------------------------------------------------------------------------
 void ConnectListMain(TCB_PTR tcb, void *work);
 void ConnectListLineCB(BMPLIST_WORK * work,u32 param,u8 y);
 
 //--------------------------------------------------------------------------------------------
-// ƒfƒoƒbƒOƒƒjƒ…[—p’è‹`
+// ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å®šç¾©
 //--------------------------------------------------------------------------------------------
 
 
 
 static const BMPLIST_HEADER connect_list_h = {
-	NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	MainBmpListCB1,			// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	ConnectListLineCB,		// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	MainBmpListCB1,			// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	ConnectListLineCB,		// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	10,	// ƒŠƒXƒg€–Ú”
-	7,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	POKE_SYSTEM,				// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	10,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	7,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	POKE_SYSTEM,				// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
 //==============================================================================
 /**
- * Ú‘±ƒeƒXƒg‰æ–Ê‰Šú‰»
+ * æ¥ç¶šãƒ†ã‚¹ãƒˆç”»é¢åˆæœŸåŒ–
  *
  * @param   ini		
  *
@@ -521,37 +521,37 @@ static void DebugMenuCallConnectList(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 {
 	BMPLIST_HEADER	list_h;
 
-	// ƒ^ƒXƒN“o˜^•ƒ[ƒNƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	u32 * wk = (u32 *)TCB_GetWork( PMDS_taskAdd( ConnectListMain, sizeof(CONNECT_MEMBER_WORK), 0, HEAPID_BASE_DEBUG ) );
 	CONNECT_MEMBER_WORK *cmw = (CONNECT_MEMBER_WORK *)wk;
 
-	// BMP_WIN\‘¢‘ÌŠm•Û
+	// BMP_WINæ§‹é€ ä½“ç¢ºä¿
 //	GF_BGL_BMPWIN *win =  GF_BGL_BmpWinAllocGet( HEAPID_BASE_DEBUG, 1 );
-	// BMP_WIN\‘¢‘ÌŠm•Û
+	// BMP_WINæ§‹é€ ä½“ç¢ºä¿
 	GF_BGL_BMPWIN *talkwin =  GF_BGL_BmpWinAllocGet( HEAPID_BASE_DEBUG, 2 );
 
-	// ƒ^ƒXƒNƒV[ƒPƒ“ƒX‰Šú‰»
+	// ã‚¿ã‚¹ã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
 	wk[ WK_SEQ ]        = 0;
 
-	// BMP_WIN“o˜^
+	// BMP_WINç™»éŒ²
 //	GF_BGL_BmpWinAdd( ini , win,FLD_MBGFRM_FONT, 1, 1, 20, 10, FLD_SYSFONT_PAL, 1 );
 //	wk[ WK_WIN_INDEX ]  = (u32)win;
 
-	// BMP_LIST“o˜^
+	// BMP_LISTç™»éŒ²
 //	list_h              = connect_list_h;
 //	list_h.win          = win;
 //	wk[ WK_LIST_ID ]    = (u32)BmpListSet( &list_h, 0, 0,HEAPID_BASE_DEBUG );
-//	wk[ WK_GF_BGL_INI ] = (u32)ini;					//FieldSys->bgl‚Ì•Û‘¶
+//	wk[ WK_GF_BGL_INI ] = (u32)ini;					//FieldSys->bglã®ä¿å­˜
 
 
-	// BMP_WIN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğƒ^ƒXƒNƒ[ƒN‚É•Û‘¶
+	// BMP_WINæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
 	GF_BGL_BmpWinAdd( ini, talkwin, FLD_MBGFRM_FONT, 
 				FLD_MSG_WIN_PX, FLD_MSG_WIN_PY, FLD_MSG_WIN_SX, FLD_MSG_WIN_SY, FLD_SYSFONT_PAL, FLD_MSG_WIN_CGX );
 	wk[ WK_TALK_INDEX ] = (u32)talkwin;
-	FieldMsgPrintInit(PALTYPE_SUB_BG, MSG_PRINT_NO_INIT);				// ƒTƒu‰æ–ÊVRAM‚ÉƒtƒHƒ“ƒg‚ÆƒpƒŒƒbƒg‚ğ“]‘—
-//	FieldTalkWinPut( talkwin );			// ƒTƒu‰æ–ÊƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE•\¦ŠJn
+	FieldMsgPrintInit(PALTYPE_SUB_BG, MSG_PRINT_NO_INIT);				// ã‚µãƒ–ç”»é¢VRAMã«ãƒ•ã‚©ãƒ³ãƒˆã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
+//	FieldTalkWinPut( talkwin );			// ã‚µãƒ–ç”»é¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹
 
-	// BMP_WIN•\¦ON
+	// BMP_WINè¡¨ç¤ºON
 //	GF_BGL_BmpWinOn( win );
 
 	cmw->UTF16Table = sys_LoadFile(HEAPID_BASE_DEBUG, "data/UTF16.dat");
@@ -569,12 +569,12 @@ static void DebugMenuCallConnectList(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 
 
 static const char *errcode[]={
-	"WPB_STATECODE_START",        /* ‚·‚êˆá‚¢‘Ò‹@ŠJn */
-	"WPB_STATECODE_PARENT_FOUND", /* e‹@‚ğ”­Œ©‚µ‚½ */
-	"WPB_STATECODE_CONNECTED",    /* Ú‘±Š®—¹ */
-	"WPB_STATECODE_EXCHANGED",    /* ƒf[ƒ^ŒğŠ·Š®—¹ */
-	"WPB_STATECODE_DISCONNECTED", /* Ø’f’Ê’m */
-	"WPB_STATECODE_END",          /* ‚·‚êˆá‚¢‘Ò‹@I—¹ */
+	"WPB_STATECODE_START",        /* ã™ã‚Œé•ã„å¾…æ©Ÿé–‹å§‹ */
+	"WPB_STATECODE_PARENT_FOUND", /* è¦ªæ©Ÿã‚’ç™ºè¦‹ã—ãŸ */
+	"WPB_STATECODE_CONNECTED",    /* æ¥ç¶šå®Œäº† */
+	"WPB_STATECODE_EXCHANGED",    /* ãƒ‡ãƒ¼ã‚¿äº¤æ›å®Œäº† */
+	"WPB_STATECODE_DISCONNECTED", /* åˆ‡æ–­é€šçŸ¥ */
+	"WPB_STATECODE_END",          /* ã™ã‚Œé•ã„å¾…æ©Ÿçµ‚äº† */
 
 };
 
@@ -583,7 +583,7 @@ static u16 testnickname[]={GE_,bou_,HU_,RI_,EOM_};
 static u16 surechigairesult[]={to_,spc_,su_,re_,ti_,ga_,ttu_,ta_,EOM_};
 #define TEST_GGID	0x135
 
-// ƒQ[ƒ€ŠÔ‹¤’Êî•ñ
+// ã‚²ãƒ¼ãƒ é–“å…±é€šæƒ…å ±
 
 static const WPBPokemonInfo TestWPBPokeInfo = {
 	4,
@@ -598,29 +598,29 @@ static const WPBPokemonInfo TestWPBPokeInfo = {
 	1,
 	0,
 	0,
-	{0xFF71, 0xFF77, 0xFF84, 0x0000,}, //ƒAƒLƒg
+	{0xFF71, 0xFF77, 0xFF84, 0x0000,}, //ã‚¢ã‚­ãƒˆ
 	4,
-	{0x305F, 0x3044, 0x3078, 0x3093, 0x3060, 0x3088, 0x306D, 0x306D, 0x306D,0x0000,}, // ‘å•Ï‚¾‚æ‚Ë
+	{0x305F, 0x3044, 0x3078, 0x3093, 0x3060, 0x3088, 0x306D, 0x306D, 0x306D,0x0000,}, // å¤§å¤‰ã ã‚ˆã­
 	9,
 };
 #if 0
 typedef struct WPBPokemonInfo {
-	u32 version;        // ƒ|ƒPƒ‚ƒ“DSƒ\ƒtƒg‚Æ‚µ‚Ä‚ÌID”Ô†
-	u32 tryTime;        // ¡‰ñ‚·‚êˆá‚¤‚Ü‚Å‚É‚©‚©‚Á‚½ŠÔ (•b) (•s–¾‚Í -1)
-	u32 tryCount;       // Œ»İ‚Ü‚Å‚Ì‚·‚êˆá‚¢s‰ñ” (•s–¾‚Í -1)
-	u32 successCount;   // Œ»İ‚Ü‚Å‚Ì‚·‚êˆá‚¢¬Œ÷‰ñ” (•s–¾‚Í -1)
-	u32 totalTime;      // Œ»İ‚Ü‚Å‚Ì‘‚·‚êˆá‚¢sŠÔ (•b) (•s–¾‚Í -1)
-	u16 gameName[128];  // ƒQ[ƒ€–¼ (UTF-16LE)
-	u8  image[32*32/2]; // ƒAƒCƒRƒ“ƒf[ƒ^
-	u8  pltt[16*2];     // ƒAƒCƒRƒ“ƒpƒŒƒbƒg
-	u8  macAddress[WM_SIZE_BSSID]; // ©•ª‚ÌmacAddress
-	u8  present;        // ƒvƒŒƒ[ƒ“ƒg
-	u8  favoriteColor;  // ‚¨‹C‚É“ü‚è‚ÌF ( 0 ` 15 )
-	u16 sex_birth;      // «•ÊA’a¶“úA”N—îî•ñ
-	u16 nickName[ 10 ]; // ƒjƒbƒNƒl[ƒ€ (UTF16)
-	u16 nickNameLength; // ƒjƒbƒNƒl[ƒ€•¶š”( 0 ` 10 )
-	u16 comment[ 39 ];  // ƒRƒƒ“ƒg (UTF16)
-	u16 commentLength;  // ƒRƒƒ“ƒg•¶š”( 0 ` 39 )
+	u32 version;        // ãƒã‚±ãƒ¢ãƒ³DSã‚½ãƒ•ãƒˆã¨ã—ã¦ã®IDç•ªå·
+	u32 tryTime;        // ä»Šå›ã™ã‚Œé•ã†ã¾ã§ã«ã‹ã‹ã£ãŸæ™‚é–“ (ç§’) (ä¸æ˜ã¯ -1)
+	u32 tryCount;       // ç¾åœ¨ã¾ã§ã®ã™ã‚Œé•ã„è©¦è¡Œå›æ•° (ä¸æ˜ã¯ -1)
+	u32 successCount;   // ç¾åœ¨ã¾ã§ã®ã™ã‚Œé•ã„æˆåŠŸå›æ•° (ä¸æ˜ã¯ -1)
+	u32 totalTime;      // ç¾åœ¨ã¾ã§ã®ç·ã™ã‚Œé•ã„è©¦è¡Œæ™‚é–“ (ç§’) (ä¸æ˜ã¯ -1)
+	u16 gameName[128];  // ã‚²ãƒ¼ãƒ å (UTF-16LE)
+	u8  image[32*32/2]; // ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u8  pltt[16*2];     // ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆ
+	u8  macAddress[WM_SIZE_BSSID]; // è‡ªåˆ†ã®macAddress
+	u8  present;        // ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ
+	u8  favoriteColor;  // ãŠæ°—ã«å…¥ã‚Šã®è‰² ( 0 ã€œ 15 )
+	u16 sex_birth;      // æ€§åˆ¥ã€èª•ç”Ÿæ—¥ã€å¹´é½¢æƒ…å ±
+	u16 nickName[ 10 ]; // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ  (UTF16)
+	u16 nickNameLength; // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ æ–‡å­—æ•°( 0 ã€œ 10 )
+	u16 comment[ 39 ];  // ã‚³ãƒ¡ãƒ³ãƒˆ (UTF16)
+	u16 commentLength;  // ã‚³ãƒ¡ãƒ³ãƒˆæ–‡å­—æ•°( 0 ã€œ 39 )
 } WPBPokemonInfo;
 
 #endif
@@ -633,11 +633,11 @@ void WpbCallBack(WPBCallback *arg);
 
 //------------------------------------------------------------------
 /**
- * sys_AllocMemory‚©‚ç–á‚Á‚½’l‚ğ32ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚ÌƒAƒhƒŒƒX‚É•â³‚·‚é
+ * sys_AllocMemoryã‹ã‚‰è²°ã£ãŸå€¤ã‚’32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã«è£œæ­£ã™ã‚‹
  *
- * @param   adr		Alloc‚Åæ“¾‚µ‚½ƒAƒhƒŒƒXiÀÛ‚ÌƒTƒCƒY‚æ‚è32ƒoƒCƒg‘½‚­Šm•Û‚µ‚Ä‚¨‚­)
+ * @param   adr		Allocã§å–å¾—ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆå®Ÿéš›ã®ã‚µã‚¤ã‚ºã‚ˆã‚Š32ãƒã‚¤ãƒˆå¤šãç¢ºä¿ã—ã¦ãŠã)
  *
- * @retval  u8*		32ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚ÉC³‚µ‚½ƒAƒhƒŒƒX
+ * @retval  u8*		32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã«ä¿®æ­£ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 static u8* GetAlignment32Adr(u8 *adr)
@@ -655,9 +655,9 @@ static void WpbSetUp(CONNECT_MEMBER_WORK *cmw)
 {
 	cmw->sWmBuffer = sys_AllocMemory( HEAPID_BASE_DEBUG, WM_SYSTEM_BUF_SIZE+64 );
 	if(cmw->sWmBuffer==NULL){
-		OS_Printf("cmw->sWmBuffer‚ªŠm•Û‚Å‚«‚Ä‚¢‚È‚¢\n");
+		OS_Printf("cmw->sWmBufferãŒç¢ºä¿ã§ãã¦ã„ãªã„\n");
 	}
-	// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 	CommVRAMDInitialize();
 
 	pcmw = cmw;
@@ -693,7 +693,7 @@ static void WpbInit(CONNECT_MEMBER_WORK *cmw)
 	int code;
 	u8 *sWmBuffer_a,*wpbBuf_a;
 
-	// ’ÊM‰Šú‰»
+	// é€šä¿¡åˆæœŸåŒ–
 	sWmBuffer_a = GetAlignment32Adr(cmw->sWmBuffer);
 	code = WM_Init( sWmBuffer_a, 2 );
 
@@ -701,7 +701,7 @@ static void WpbInit(CONNECT_MEMBER_WORK *cmw)
 
 	cmw->wpbBuf = sys_AllocMemory( HEAPID_BASE_DEBUG, sizeof(WPBBuf)+64 );
 	if(cmw->wpbBuf==NULL){
-		OS_Printf("cmw->wpbBuf‚ªŠm•Û‚Å‚«‚Ä‚¢‚È‚¢\n");
+		OS_Printf("cmw->wpbBufãŒç¢ºä¿ã§ãã¦ã„ãªã„\n");
 	}
 	wpbBuf_a = GetAlignment32Adr(cmw->wpbBuf);
 	WPB_SetBuffer((WPBBuf*)wpbBuf_a);
@@ -716,7 +716,7 @@ static void WpbInit(CONNECT_MEMBER_WORK *cmw)
 
 
 	if(WPB_Start()==WM_ERRCODE_INVALID_PARAM){
-		OS_Printf("ŠÖ”‚É“n‚µ‚½ƒpƒ‰ƒ[ƒ^‚ª•s³\n");
+		OS_Printf("é–¢æ•°ã«æ¸¡ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£\n");
 	}
 }
 
@@ -761,7 +761,7 @@ static void WpbCallBack(WPBCallback *arg)
 		break;
 	}
 
-	OS_Printf("----------‚·‚ê‚¿‚ª‚¢state = %s\n",errcode[arg->state]);
+	OS_Printf("----------ã™ã‚Œã¡ãŒã„state = %s\n",errcode[arg->state]);
 }
 
 
@@ -770,7 +770,7 @@ static const u16 teststr[]={TE_,SU_,TO_,de_,su_,EOM_};
 
 //==============================================================================
 /**
- * Ú‘±‰æ–ÊƒeƒXƒgƒƒCƒ“
+ * æ¥ç¶šç”»é¢ãƒ†ã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
  * @param   tcb		
  * @param   work		
@@ -785,7 +785,7 @@ void ConnectListMain(TCB_PTR tcb, void *work)
 
 
 	switch( cmw->wk[ WK_SEQ ] ){
-	case 0:		// ’ÊM‰Šú‰»
+	case 0:		// é€šä¿¡åˆæœŸåŒ–
 		WpbSetUp(cmw);
 		cmw->wk[WK_SEQ]++;
 		break;
@@ -836,9 +836,9 @@ void ConnectListMain(TCB_PTR tcb, void *work)
 		WVR_TerminateAsync( NULL , NULL);
 		sys_FreeMemoryEz( cmw->UTF16Table );
 //		DebugMenuExitSub( tcb );
-		// ƒ^ƒXƒNÁ‹
+		// ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		PMDS_taskDel( tcb );
-		// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 		FieldSystemProc_SeqHoldEnd();
 		break;
 	}
@@ -847,7 +847,7 @@ void ConnectListMain(TCB_PTR tcb, void *work)
 		return;
 	}
 	
-	// ‚·‚êˆá‚¢’ÊM‚Åƒf[ƒ^‚ğóM‚µ‚½‚çƒEƒCƒ“ƒhƒE‚É•¶š—ñ‚ª•\¦‚³‚ê‚é
+	// ã™ã‚Œé•ã„é€šä¿¡ã§ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«æ–‡å­—åˆ—ãŒè¡¨ç¤ºã•ã‚Œã‚‹
 	switch(cmw->wk[WK_MES_SEQ]){
 	case 0:
 		if(cmw->StockNum!=cmw->OldStockNum){
@@ -895,28 +895,28 @@ void ConnectListLineCB(BMPLIST_WORK * work,u32 param,u8 y)
 
 #if	0
 //--------------------------------------------------------------------------------------------
-// ƒfƒoƒbƒOƒƒjƒ…[—p’è‹`
+// ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å®šç¾©
 //--------------------------------------------------------------------------------------------
 
 static const BMPLIST_HEADER micfunc_list_h = {
-	NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	MainBmpListCB1,			// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	ConnectListLineCB,		// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	MainBmpListCB1,			// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	ConnectListLineCB,		// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	10,	// ƒŠƒXƒg€–Ú”
-	10,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	POKE_SYSTEM,				// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	10,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	POKE_SYSTEM,				// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 static const VOamAnm WM_IconAnim0[]={
@@ -955,9 +955,9 @@ static const VOamAnm * WM_IconAnimTbl[]={
 
 //==============================================================================
 /**
- * ƒ}ƒCƒNƒeƒXƒg—p‚Ì‰Šú‰»
+ * ãƒã‚¤ã‚¯ãƒ†ã‚¹ãƒˆç”¨ã®åˆæœŸåŒ–
  *
- * @param   ini		GF_BGL_INI‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ini		GF_BGL_INIã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -967,23 +967,23 @@ void DebugMicFuncInit(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 	BMPLIST_HEADER	  list_h;
 	MSGDATA_MANAGER   *man;
 
-	// ƒ^ƒXƒN“o˜^•ƒ[ƒNƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	u32 *wk               = (u32 *)TCB_GetWork( PMDS_taskAdd( DebugMicFuncMain, sizeof(CONNECT_MEMBER_WORK), 0, HEAPID_BASE_DEBUG ) );
 	DEBUG_MORI_WORK *dmw  = (DEBUG_MORI_WORK *)wk;
 
-	// BMP_WIN\‘¢‘ÌŠm•Û
+	// BMP_WINæ§‹é€ ä½“ç¢ºä¿
 	GF_BGL_BMPWIN *win =  GF_BGL_BmpWinAllocGet( HEAPID_BASE_DEBUG, 1 );
 
-	// ƒ^ƒXƒNƒV[ƒPƒ“ƒX‰Šú‰»
+	// ã‚¿ã‚¹ã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
 	wk[ WK_SEQ ]        = 0;
 
-	// BMP_WIN“o˜^
+	// BMP_WINç™»éŒ²
 	GF_BGL_BmpWinAdd( ini ,win,FLD_MBGFRM_FONT, 1, 1, 10, 20, FLD_SYSFONT_PAL, 1 );
 
-	// BMP_WIN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğƒ^ƒXƒNƒ[ƒN‚Ì•Û‘¶
+	// BMP_WINæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¿å­˜
 	wk[ WK_WIN_INDEX ]  = (u32)win;
 
-	// •¶š—ñƒf[ƒ^“Ç‚İ‚İ€”õ
+	// æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿æº–å‚™
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_debug_mori_dat, HEAPID_BASE_DEBUG );
 
 	dmw->ld = BMP_MENULIST_Create( 10, HEAPID_BASE_DEBUG );
@@ -1000,19 +1000,19 @@ void DebugMicFuncInit(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 
 	MSGMAN_Delete(man);
 	
-	// BMP_LIST“o˜^
+	// BMP_LISTç™»éŒ²
 	list_h              = micfunc_list_h;
 	list_h.win          = win;
 	list_h.list			= dmw->ld;
 	wk[ WK_LIST_ID ]    = (u32)BmpListSet( &list_h, 0, 0, HEAPID_BASE_DEBUG);
-	wk[ WK_GF_BGL_INI ] = (u32)ini;					//FieldSys->bgl‚Ì•Û‘¶
+	wk[ WK_GF_BGL_INI ] = (u32)ini;					//FieldSys->bglã®ä¿å­˜
 	wk[ WK_MIC_PARAM  ] = MIC_SAMPLING_RATE_8K;
 	wk[ WK_FIELDSYS   ] = (u32)fsys;
 
-	// BMP_WIN•\¦‚n‚m
+	// BMP_WINè¡¨ç¤ºï¼¯ï¼®
 	GF_BGL_BmpWinOn( win );
 
-	// ”gŒ`Ä¶—pƒ`ƒƒƒ“ƒlƒ‹‚ğŠm•Û‚·‚é
+	// æ³¢å½¢å†ç”Ÿç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ç¢ºä¿ã™ã‚‹
 	Snd_WaveOutAllocChannel( WAVEOUT_CH_NORMAL );
 
 	wk[ WK_WM_ICON ] = (u32)AddWirelessIconOAM(0,HEAPID_BASE_DEBUG,240,0,0,WM_IconAnimTbl);
@@ -1020,13 +1020,13 @@ void DebugMicFuncInit(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 	Snd_Stop();
 }
 
-#define MIC_PLAY_TIME	(2)	// 2•b
+#define MIC_PLAY_TIME	(2)	// 2ç§’
 
 //------------------------------------------------------------------
 /**
- * ƒ}ƒCƒNİ’è‚Æ˜^‰¹ŠJn
+ * ãƒã‚¤ã‚¯è¨­å®šã¨éŒ²éŸ³é–‹å§‹
  *
- * @param   rate	ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg(8Khz‚È‚ç8000)
+ * @param   rate	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ(8Khzãªã‚‰8000)
  *
  * @retval  none		
  */
@@ -1034,16 +1034,16 @@ void DebugMicFuncInit(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 static void SamplingStart(int rate)
 {
 	MICAutoParam		mic_param;
-	mic_param.type   = MIC_SAMPLING_TYPE_SIGNED_8BIT;	// ƒTƒ“ƒvƒŠƒ“ƒOí•Ê
-    mic_param.buffer = Snd_GetDebugWaveBufAdrs();       // Œ‹‰ÊŠi”[ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^ 
-    mic_param.size   = rate*MIC_PLAY_TIME;      					// ƒoƒbƒtƒ@ƒTƒCƒY
+	mic_param.type   = MIC_SAMPLING_TYPE_SIGNED_8BIT;	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥
+    mic_param.buffer = Snd_GetDebugWaveBufAdrs();       // çµæœæ ¼ç´ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ 
+    mic_param.size   = rate*MIC_PLAY_TIME;      					// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 	if((mic_param.size&0x1f)!=0){
 		mic_param.size &= 0xffffffe0;
 	}
-    mic_param.rate   = HW_CPU_CLOCK_ARM7 /rate;         // ƒTƒ“ƒvƒŠƒ“ƒOüŠú( ARM7‚ÌƒNƒƒbƒN” )
-    mic_param.loop_enable = FALSE;                  	// ƒoƒbƒtƒ@ƒtƒ‹‚Ìƒ‹[ƒv‰Â”Û
-    mic_param.full_callback = NULL;     			    // ƒoƒbƒtƒ@ƒtƒ‹‚ÌƒR[ƒ‹ƒoƒbƒN
-    mic_param.full_arg      = NULL;                     // ã‹LƒR[ƒ‹ƒoƒbƒN‚Éw’è‚·‚éˆø”
+    mic_param.rate   = HW_CPU_CLOCK_ARM7 /rate;         // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸ( ARM7ã®ã‚¯ãƒ­ãƒƒã‚¯æ•° )
+    mic_param.loop_enable = FALSE;                  	// ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ«æ™‚ã®ãƒ«ãƒ¼ãƒ—å¯å¦
+    mic_param.full_callback = NULL;     			    // ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ«æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+    mic_param.full_arg      = NULL;                     // ä¸Šè¨˜ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æŒ‡å®šã™ã‚‹å¼•æ•°
 
 	Snd_MicStartAutoSampling(&mic_param);
 
@@ -1051,9 +1051,9 @@ static void SamplingStart(int rate)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰¹ºƒf[ƒ^‚ğw’è‚Ì’l‚ÅŠ„‚Á‚ÄA‚Ü‚½Œ³‚É–ß‚·
- *          —á‚¦‚Î8bitƒf[ƒ^‚ğ16‚ÅŠ„‚Á‚Ä‰¹º‚É—]‚è•Ï‚í‚è‚ª–³‚¢‚Ì‚Å‚ ‚ê‚Î
- *          ”¼•ª‚Ì4bit‚É‰º‚°‚Ä‹L˜^‚µ‚Ä‚à—Ç‚¢‚±‚Æ‚É‚È‚é
+ * $brief   éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šã®å€¤ã§å‰²ã£ã¦ã€ã¾ãŸå…ƒã«æˆ»ã™
+ *          ä¾‹ãˆã°8bitãƒ‡ãƒ¼ã‚¿ã‚’16ã§å‰²ã£ã¦éŸ³å£°ã«ä½™ã‚Šå¤‰ã‚ã‚ŠãŒç„¡ã„ã®ã§ã‚ã‚Œã°
+ *          åŠåˆ†ã®4bitã«ä¸‹ã’ã¦è¨˜éŒ²ã—ã¦ã‚‚è‰¯ã„ã“ã¨ã«ãªã‚‹
  *
  * @param   adr		
  * @param   size		
@@ -1086,7 +1086,7 @@ static void SamplingDataSearchDiff( s8 *adr, int size, int diff )
 				w = adr[i-1]-adr[i];
 			}
 			if(w>diff){
-				OS_Printf("·‚ª%d‚æ‚è‚¨‚¨‚«‚¢  pos=%d, ·=%d\n",diff,i,w);
+				OS_Printf("å·®ãŒ%dã‚ˆã‚ŠãŠãŠãã„  pos=%d, å·®=%d\n",diff,i,w);
 			}
 		}
 	}
@@ -1094,10 +1094,10 @@ static void SamplingDataSearchDiff( s8 *adr, int size, int diff )
 
 //==============================================================================
 /**
- * ƒ}ƒCƒNˆ—‚ÌBMP_LISTƒƒCƒ“Šª”
+ * ãƒã‚¤ã‚¯å‡¦ç†ã®BMP_LISTãƒ¡ã‚¤ãƒ³å·»æ•°
  *
- * @param   tcb		ƒ^ƒXƒN
- * @param   work	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb		ã‚¿ã‚¹ã‚¯
+ * @param   work	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -1110,53 +1110,53 @@ void DebugMicFuncMain(TCB_PTR tcb, void *work)
 
 	switch( cmw->wk[ WK_SEQ ] ){
 	case 0:
-		// BMPLISTƒƒCƒ“ˆ—
+		// BMPLISTãƒ¡ã‚¤ãƒ³å‡¦ç†
 		ret = BmpListMain( (BMPLIST_WORK*)cmw->wk[WK_LIST_ID] );
 	switch( ret ){
-		case 1:		// ˜^‰¹ 8Khz
+		case 1:		// éŒ²éŸ³ 8Khz
 			cmw->wk[WK_MIC_PARAM] = 8000;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 2:		// ˜^‰¹ 4Khz
+		case 2:		// éŒ²éŸ³ 4Khz
 			cmw->wk[WK_MIC_PARAM] = 4000;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 3:		// ˜^‰¹ 2Khz
+		case 3:		// éŒ²éŸ³ 2Khz
 			cmw->wk[WK_MIC_PARAM] = 2000;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
 
-		case 4:		// ˜^‰¹ 1.75Khz
+		case 4:		// éŒ²éŸ³ 1.75Khz
 			cmw->wk[WK_MIC_PARAM] = 1750;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 5:		// ˜^‰¹ 1.5Khz
+		case 5:		// éŒ²éŸ³ 1.5Khz
 			cmw->wk[WK_MIC_PARAM] = 1500;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 6:		// ˜^‰¹ 1.25Khz
+		case 6:		// éŒ²éŸ³ 1.25Khz
 			cmw->wk[WK_MIC_PARAM] = 1250;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
 
 
-		case 7:		// ˜^‰¹ 1Khz
+		case 7:		// éŒ²éŸ³ 1Khz
 			cmw->wk[WK_MIC_PARAM] = 1000;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 8:		// ˜^‰¹ 500hz
+		case 8:		// éŒ²éŸ³ 500hz
 			cmw->wk[WK_MIC_PARAM] = 512;
 			SamplingStart(cmw->wk[WK_MIC_PARAM]);
 			break;
-		case 10:		// Ä¶
+		case 10:		// å†ç”Ÿ
 			{
 				WAVEOUT_WORK waveout_wk;
-				waveout_wk.handle			= Snd_WaveOutHandleGet(WAVEOUT_CH_NORMAL);	//”gŒ`Ä¶ƒnƒ“ƒhƒ‹
-				waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;	//”gŒ`ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
-				waveout_wk.dataaddr			= Snd_GetDebugWaveBufAdrs();//”gŒ`ƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
-				waveout_wk.loopFlag			= FALSE;					//ƒ‹[ƒvƒtƒ‰ƒO
-				waveout_wk.loopStartSample	= 0;						//ƒ‹[ƒvŠJnƒTƒ“ƒvƒ‹ˆÊ’u
-				waveout_wk.samples			= cmw->wk[WK_MIC_PARAM]*MIC_PLAY_TIME;	//”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹”
+				waveout_wk.handle			= Snd_WaveOutHandleGet(WAVEOUT_CH_NORMAL);	//æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
+				waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;	//æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+				waveout_wk.dataaddr			= Snd_GetDebugWaveBufAdrs();//æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+				waveout_wk.loopFlag			= FALSE;					//ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
+				waveout_wk.loopStartSample	= 0;						//ãƒ«ãƒ¼ãƒ—é–‹å§‹ã‚µãƒ³ãƒ—ãƒ«ä½ç½®
+				waveout_wk.samples			= cmw->wk[WK_MIC_PARAM]*MIC_PLAY_TIME;	//æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«æ•°
 				if((waveout_wk.samples&0x1f)!=0){
 					waveout_wk.samples &= 0xffffffe0;
 				}
@@ -1175,14 +1175,14 @@ void DebugMicFuncMain(TCB_PTR tcb, void *work)
 					SamplingDataSearchDiff( (s8*)waveout_wk.dataaddr, waveout_wk.samples, 32 );
 //					SamplingDataFab((s8*)waveout_wk.dataaddr, waveout_wk.samples,64);
 				}
-				waveout_wk.sampleRate		= cmw->wk[WK_MIC_PARAM];	//”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-				waveout_wk.volume			= 127;						//‰¹—Ê
-				waveout_wk.speed			= 32768;					//Ä¶ƒXƒs[ƒh
-				waveout_wk.pan				= 64;						//ƒpƒ“(0-127)
+				waveout_wk.sampleRate		= cmw->wk[WK_MIC_PARAM];	//æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+				waveout_wk.volume			= 127;						//éŸ³é‡
+				waveout_wk.speed			= 32768;					//å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
+				waveout_wk.pan				= 64;						//ãƒ‘ãƒ³(0-127)
 				Snd_WaveOutStart( &waveout_wk, WAVEOUT_CH_NORMAL );
 			}
 			break;
-		case 11:		// Ä¶‚ğI—¹‚µ‚ÄƒEƒCƒ“ƒhƒE‚àƒNƒ[ƒY
+		case 11:		// å†ç”Ÿã‚’çµ‚äº†ã—ã¦ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚‚ã‚¯ãƒ­ãƒ¼ã‚º
 			Snd_WaveOutStop(WAVEOUT_CH_NORMAL);
 		case BMPLIST_NULL:
 			break;
@@ -1190,7 +1190,7 @@ void DebugMicFuncMain(TCB_PTR tcb, void *work)
 			WirelessIconEnd((VINTR_WIRELESS_ICON*)cmw->wk[ WK_WM_ICON ]);
 			DebugMenuExitSub( tcb );
 
-			// ”gŒ`Ä¶—pƒ`ƒƒƒ“ƒlƒ‹‚ğŠJ•ú‚·‚é
+			// æ³¢å½¢å†ç”Ÿç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’é–‹æ”¾ã™ã‚‹
 			Snd_WaveOutFreeChannel(WAVEOUT_CH_NORMAL);
 			break;
 		default:
@@ -1205,7 +1205,7 @@ void DebugMicFuncMain(TCB_PTR tcb, void *work)
 			DebugMoriBmpMenuExit( work );
 			PMDS_taskDel( tcb );
 
-			// ”gŒ`Ä¶—pƒ`ƒƒƒ“ƒlƒ‹‚ğŠJ•ú‚·‚é
+			// æ³¢å½¢å†ç”Ÿç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’é–‹æ”¾ã™ã‚‹
 			Snd_WaveOutFreeChannel(WAVEOUT_CH_NORMAL);
 		}
 	}
@@ -1220,9 +1220,9 @@ void DebugNameInFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 {
 	TEST_PROC_WORK *namein_test = NULL;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	namein_test = sys_AllocMemory( HEAPID_BASE_DEBUG, sizeof( TEST_PROC_WORK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestNameIn_Call, namein_test, 8);
 
 	namein_test->seq  = 0;
@@ -1243,7 +1243,7 @@ void DebugNameInFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 
 //==============================================================================
 /**
- * ŒğŠ·ƒŠƒXƒgŒÄ‚Ño‚µƒeƒXƒgƒ^ƒXƒN‰Šú‰»
+ * äº¤æ›ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  *
  * @param   ini		
  * @param   fsys		
@@ -1255,9 +1255,9 @@ void DebugTradeListFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 {
 	TEST_PROC_WORK *tradelist_proc = NULL;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	tradelist_proc = sys_AllocMemory( HEAPID_BASE_DEBUG, sizeof( TEST_PROC_WORK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestTradeList_Call, tradelist_proc, 8);
 
 	tradelist_proc->seq  = 0;
@@ -1269,7 +1269,7 @@ void DebugTradeListFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 
 //==============================================================================
 /**
- * ŒğŠ·ƒŠƒXƒgŒÄ‚Ño‚µƒeƒXƒgƒ^ƒXƒN‰Šú‰»
+ * äº¤æ›ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  *
  * @param   ini		
  * @param   fsys		
@@ -1281,9 +1281,9 @@ void DebugWorldTradeFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 {
 	TEST_PROC_WORK *worldtrade_proc = NULL;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	worldtrade_proc = sys_AllocMemory( HEAPID_BASE_DEBUG, sizeof( TEST_PROC_WORK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestWorldTrade_Call, worldtrade_proc, 8);
 
 	worldtrade_proc->seq  = 0;
@@ -1295,7 +1295,7 @@ void DebugWorldTradeFuncInit(GF_BGL_INI * ini, FIELDSYS_WORK *fsys)
 #if 0
 //------------------------------------------------------------------
 /**
- * Wifiƒoƒgƒ‹ƒ^ƒ[ŒÄ‚Ño‚µƒeƒXƒg
+ * Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  *
  * @param   tcb		
  * @param   work		
@@ -1308,32 +1308,32 @@ static void TestWifiBTower_Call( TCB_PTR tcb, void* work )
 	TEST_PROC_WORK* wk = work;
 	
 	switch( wk->seq ){
-	case 0:		// ƒtƒF[ƒhƒAƒEƒg
+	case 0:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		FieldSystemProc_SeqHoldEnd();		
 		wk->seq++;
 		break;
 
-	case 1:		// ƒtƒB[ƒ‹ƒh”jŠü
+	case 1:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç ´æ£„
 		if(wk->sub == 0){
 			wk->sub++;
 
-			// WIFIƒoƒgƒ‹ƒ^ƒ[PROCì¬
+			// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼PROCä½œæˆ
 			Field_WifiBattleTowerConnect_SetProc( wk->fsys, wk->flag, 0 );
 
 			GameSystem_FinishFieldProc( wk->fsys );
 
 		}else{
 
-			// I—¹‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+			// çµ‚äº†ãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( FieldEvent_Cmd_WaitMapProcStart( wk->fsys ) == FALSE ){
 				wk->sub = 0;
 				wk->seq++;
 			}
 		}
 		break;
-	case 2:		// ƒ^ƒ[I—¹‘Ò‚¿
+	case 2:		// ã‚¿ãƒ¯ãƒ¼çµ‚äº†å¾…ã¡
 		if( GameSystem_CheckSubProcExists( wk->fsys ) == FALSE ){
-			// ƒtƒB[ƒ‹ƒh•œ‹A
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			GameSystem_CreateFieldProc( wk->fsys );
 			wk->seq++;
 
@@ -1342,7 +1342,7 @@ static void TestWifiBTower_Call( TCB_PTR tcb, void* work )
 	case 3:
 		if( GameSystem_CheckFieldProcExists(wk->fsys) ){
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
-			// ƒ^ƒXƒNI—¹
+			// ã‚¿ã‚¹ã‚¯çµ‚äº†
 			TCB_Delete( tcb );
 			sys_FreeMemoryEz( work );
 		}
@@ -1353,7 +1353,7 @@ static void TestWifiBTower_Call( TCB_PTR tcb, void* work )
 
 static TEST_PROC_WORK *CommonBTowerSetUp( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 {
-	// ƒ^ƒXƒN—pƒ[ƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 	TEST_PROC_WORK *btower_proc = sys_AllocMemory( HEAPID_BASE_DEBUG, sizeof( TEST_PROC_WORK ) );
 
 	btower_proc->seq  = 0;
@@ -1366,7 +1366,7 @@ static TEST_PROC_WORK *CommonBTowerSetUp( GF_BGL_INI * ini, FIELDSYS_WORK *fsys 
 
 //==============================================================================
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ŒÄ‚Ño‚µƒeƒXƒgƒ^ƒXƒN‰Šú‰»
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  *
  * @param   ini		
  * @param   fsys		
@@ -1380,7 +1380,7 @@ static void DebugWifiBTowerFuncInit0( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	
 	btower_proc->flag = 0;
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestWifiBTower_Call, btower_proc, 8);
 
 }
@@ -1391,7 +1391,7 @@ static void DebugWifiBTowerFuncInit1( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	
 	btower_proc->flag = 1;
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestWifiBTower_Call, btower_proc, 8);
 
 }
@@ -1402,7 +1402,7 @@ static void DebugWifiBTowerFuncInit2( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	
 	btower_proc->flag = 2;
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(TestWifiBTower_Call, btower_proc, 8);
 
 }
@@ -1417,7 +1417,7 @@ static void DebugSodateya1000Po( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 
 	SodateyaPlusWalk( sw, 1000 );
 	
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 
@@ -1429,17 +1429,17 @@ static void DebugSodateya10000Po( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 
 	SodateyaPlusWalk( sw, 1000 );
 	
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 
 static void DebugFriendListClear( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 {
 	FRIEND_LIST *flist = SaveData_GetFriendList( fsys->savedata );
-	// ‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒI[ƒ‹ƒNƒŠƒA
+	// ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ã‚ªãƒ¼ãƒ«ã‚¯ãƒªã‚¢
 	FriendList_Init( flist );
 
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 
@@ -1450,13 +1450,13 @@ static void DebugLongName( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	PokeParaPut( pp, ID_PARA_nickname, (u8*)testname );
 	PokeParaPut( pp, ID_PARA_oyaname, (u8*)parentname );
 
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ˆç‚Ä‰®‚É³‚µ‚¢ƒ|ƒPƒ‚ƒ“‚ª‚¢‚ê‚Îƒ^ƒ}ƒSƒtƒ‰ƒO‚ªƒZƒbƒg‚³‚ê‚é
+ * @brief   è‚²ã¦å±‹ã«æ­£ã—ã„ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚Œã°ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹
  *
  * @param   ini		
  * @param   fsys		
@@ -1470,13 +1470,13 @@ static void DebugSodateyaTamgoSet( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	
 	sw = SaveData_GetSodateyaWork(fsys->savedata);
 	
-	if(PokeAzukeruCheck(sw)==2){			//2‘Ì‚¢‚Ä
-		if(SodateyaGetAffinity(sw) < 3){	//q‹Ÿ‚ª¶‚Ü‚ê‚Ä‚à‚¢‚¢‘Š«‚È‚ç
-			SodateyaWork_SetEggFlag(sw,gf_fix_rand(sys.vsync_counter));			//ƒ^ƒ}ƒS—”‚ğƒZƒbƒg
+	if(PokeAzukeruCheck(sw)==2){			//2ä½“ã„ã¦
+		if(SodateyaGetAffinity(sw) < 3){	//å­ä¾›ãŒç”Ÿã¾ã‚Œã¦ã‚‚ã„ã„ç›¸æ€§ãªã‚‰
+			SodateyaWork_SetEggFlag(sw,gf_fix_rand(sys.vsync_counter));			//ã‚¿ãƒã‚´ä¹±æ•°ã‚’ã‚»ãƒƒãƒˆ
 		}
 	}
 	
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 
 
@@ -1486,7 +1486,7 @@ static void DebugSodateyaTamgoSet( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚Ä‚à‚¿‚Ìƒ^ƒ}ƒS‚ª›z‰»‚·‚é‚æ‚¤‚Éƒpƒ‰ƒ[ƒ^•ÏX
+ * @brief   ã¦ã‚‚ã¡ã®ã‚¿ãƒã‚´ãŒå­µåŒ–ã™ã‚‹ã‚ˆã†ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
  *
  * @param   ini		
  * @param   fsys		
@@ -1514,7 +1514,7 @@ static void DebugTamagoFuka( GF_BGL_INI * ini, FIELDSYS_WORK *fsys )
 	
 	SodateyaWork_SetEggCount( sw, 253 );
 	
-	// ƒtƒB[ƒ‹ƒhˆ—ƒ|[ƒYó‘Ô‚©‚ç•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‹ã‚‰å¾©å¸°
 	FieldSystemProc_SeqHoldEnd();
 }
 

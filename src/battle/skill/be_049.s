@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_049.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			049@“G‚ğu‚±‚ñ‚ç‚ñvó‘Ô‚É‚·‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			049ã€€æ•µã‚’ã€Œã“ã‚“ã‚‰ã‚“ã€çŠ¶æ…‹ã«ã™ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2005.12.07

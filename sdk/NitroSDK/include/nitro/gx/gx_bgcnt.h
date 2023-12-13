@@ -18,25 +18,25 @@
   Copyright fix
 
   Revision 1.46  2007/01/19 08:31:06  kitase_hirotake
-  GXBg23Control256x16Affine �֌W�̒ǉ�
+  GXBg23Control256x16Affine 関係の追加
 
   Revision 1.45  2006/01/18 02:11:21  kitase_hirotake
   do-indent
 
   Revision 1.44  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.43  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.42  2005/02/09 07:16:27  takano_makoto
-  G2*_GetBG3Control*�֐��̕s��C��
+  G2*_GetBG3Control*関数の不具合修正
 
   Revision 1.41  2005/02/08 12:02:35  takano_makoto
-  GXBg23ControlAffine����colorMode�����o���폜
+  GXBg23ControlAffineからcolorModeメンバを削除
 
   Revision 1.40  2004/12/27 04:45:05  takano_makoto
-  ���W�X�^��Getter�֐���ǉ�
+  レジスタのGetter関数を追加
 
   Revision 1.39  2004/11/02 17:06:20  takano_makoto
   fix comments.

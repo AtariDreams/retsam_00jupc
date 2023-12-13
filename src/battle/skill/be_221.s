@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_221.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			221�@�G�̂g�o�������ȉ��̏ꍇ�A�Z�̈З͂��Q�{�ɂȂ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			221　敵のＨＰが半分以下の場合、技の威力が２倍になる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.10

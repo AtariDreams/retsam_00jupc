@@ -15,28 +15,28 @@
   INDENT SOURCE
 
   Revision 1.8  2005/07/28 13:52:25  seiki_masashi
-  IP_ERR_* �萔�̒ǉ�
+  IP_ERR_* 定数の追加
 
   Revision 1.7  2005/07/28 13:32:44  seiki_masashi
-  IP_GetConfigError, IP_ClearConfigError ��ǉ�
+  IP_GetConfigError, IP_ClearConfigError を追加
 
   Revision 1.6  2005/07/28 11:16:54  yasu
-  IP_Get* �֌W�ׂ̍��Ȋ֐��̒ǉ�
+  IP_Get* 関係の細かな関数の追加
 
   Revision 1.5  2005/07/27 14:04:59  yasu
-  gctest ���Ŏg�p���Ă���ϐ��̒ǉ�
+  gctest 内で使用している変数の追加
 
   Revision 1.4  2005/07/27 13:18:55  yasu
-  gctest ���Ŏg�p���Ă���ϐ��̒ǉ�
+  gctest 内で使用している変数の追加
 
   Revision 1.3  2005/07/27 11:59:48  yasu
-  SOC �֐��ǉ�
+  SOC 関数追加
 
   Revision 1.2  2005/07/15 12:35:48  yasu
-  IP ����̒�`�ǉ�
+  IP 周りの定義追加
 
   Revision 1.1  2005/06/22 13:17:17  yasu
-  �v���t�B�N�X��ύX����}�N���W
+  プレフィクスを変更するマクロ集
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

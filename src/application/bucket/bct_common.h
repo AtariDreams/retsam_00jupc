@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		bct_common.h
- *	@brief		‹¤’Êƒwƒbƒ_
+ *	@brief		å…±é€šãƒ˜ãƒƒãƒ€
  *	@author		tomoya takahashi
  *	@data		2007.06.19
  *
@@ -14,74 +14,74 @@
 
 #include "savedata/mystatus.h"
 
-// ƒfƒoƒbƒN’è”
+// ãƒ‡ãƒãƒƒã‚¯å®šæ•°
 #ifdef PM_DEBUG
-//#define BCT_DEBUG_AUTOSLOW		// Ž©“®”­ŽË
-//#define BCT_DEBUG_NOT_TIMECOUNT	// ŽžŠÔ§ŒÀ‚È‚µ
+//#define BCT_DEBUG_AUTOSLOW		// è‡ªå‹•ç™ºå°„
+//#define BCT_DEBUG_NOT_TIMECOUNT	// æ™‚é–“åˆ¶é™ãªã—
 //
-//#define BCT_DEBUG			// OS_PRINT	–Ø‚ÌŽÀ”
-//#define BCT_DEBUG_HITZONE	// “–‚½‚è”»’èƒ][ƒ“‚Ì•\Ž¦
-//#define BCT_DEBUG_TIMESELECT // ŽžŠÔ‘I‘ðmode
+//#define BCT_DEBUG			// OS_PRINT	æœ¨ã®å®Ÿæ•°
+//#define BCT_DEBUG_HITZONE	// å½“ãŸã‚Šåˆ¤å®šã‚¾ãƒ¼ãƒ³ã®è¡¨ç¤º
+//#define BCT_DEBUG_TIMESELECT // æ™‚é–“é¸æŠžmode
 #endif
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define BCT_PLAYER_NUM	(4)		// ƒvƒŒƒCƒ„[”
-#define BCT_SCORE_MAX	(99999)	// ƒXƒRƒAÅ‘å’l
-#define BCT_MIDDLE_SCORE_SEND_TIMING	( 30 )	// `ƒVƒ“ƒN‚É‚P‰ñ‘—M‚·‚é
-#define BCT_SPECIAL_BALL_COUNT	(5)	// ƒXƒyƒVƒƒƒ‹ƒ{[ƒ‹‚É‚È‚éƒJƒEƒ“ƒg
-#define BCT_NUTS_COUNT_START_BONUS_NUM	(3)	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^‚ðo‚·”
+#define BCT_PLAYER_NUM	(4)		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+#define BCT_SCORE_MAX	(99999)	// ã‚¹ã‚³ã‚¢æœ€å¤§å€¤
+#define BCT_MIDDLE_SCORE_SEND_TIMING	( 30 )	// ã€œã‚·ãƒ³ã‚¯ã«ï¼‘å›žé€ä¿¡ã™ã‚‹
+#define BCT_SPECIAL_BALL_COUNT	(5)	// ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒœãƒ¼ãƒ«ã«ãªã‚‹ã‚«ã‚¦ãƒ³ãƒˆ
+#define BCT_NUTS_COUNT_START_BONUS_NUM	(3)	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ã‚’å‡ºã™æ•°
 
-// ƒŒƒAƒQ[ƒ€î•ñ
+// ãƒ¬ã‚¢ã‚²ãƒ¼ãƒ æƒ…å ±
 #define BCT_GAMETYPE_PAR_MAX		(100)
-#define BCT_GAMETYPE_NORAL_PAR		(75)		// ’Êí
-#define BCT_GAMETYPE_ROT_RET_PAR	(15)		// ‹t‰ñ“]ƒp[ƒZƒ“ƒe[ƒW
-#define BCT_GAMETYPE_SCA_RET_PAR	(10)		// ƒXƒP[ƒ‹ƒp[ƒZƒ“ƒe[ƒW
+#define BCT_GAMETYPE_NORAL_PAR		(75)		// é€šå¸¸
+#define BCT_GAMETYPE_ROT_RET_PAR	(15)		// é€†å›žè»¢ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
+#define BCT_GAMETYPE_SCA_RET_PAR	(10)		// ã‚¹ã‚±ãƒ¼ãƒ«ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 
-// ’ÊM“¯Šú—p
+// é€šä¿¡åŒæœŸç”¨
 enum{
 	BCT_SYNCID_NONE,
 	BCT_SYNCID_GAMESTART,
 	BCT_SYNCID_CLIENT_TOUCHPEN_END,
-	BCT_SYNCID_END,		// I—¹“¯Šú
-	BCT_SYNCID_ERR_END,	// ƒGƒ‰[ƒ`ƒFƒbƒNI—¹“¯Šú
+	BCT_SYNCID_END,		// çµ‚äº†åŒæœŸ
+	BCT_SYNCID_ERR_END,	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯çµ‚äº†åŒæœŸ
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒQ[ƒ€‘O‚É‘—M‚·‚éƒQ[ƒ€‚Ìî•ñ
+///	ã‚²ãƒ¼ãƒ å‰ã«é€ä¿¡ã™ã‚‹ã‚²ãƒ¼ãƒ ã®æƒ…å ±
 //=====================================
 typedef struct {
-	u8 scale_rev;	// Šg‘å—¦‚Ì”½“]
-	u8 rota_rev;	// ‰ñ“]•ûŒü‚Ì”½“]
+	u8 scale_rev;	// æ‹¡å¤§çŽ‡ã®åè»¢
+	u8 rota_rev;	// å›žè»¢æ–¹å‘ã®åè»¢
 	u8 pad0;
 	u8 pad1;
 } BCT_GAME_TYPE_WK;
 
 
 //-------------------------------------
-/// –Ø‚ÌŽÀ’ÊM
+/// æœ¨ã®å®Ÿé€šä¿¡
 //=====================================
 typedef struct{
-	u16 pl_no;		// ƒvƒŒƒCƒ„[NO
-	u16	in_flag;	// –Ø‚ÌŽÀ‚ªƒ}ƒ‹ƒm[ƒ€‚É“ü‚Á‚½‚©	4
-	VecFx16 way;	// •ûˆÊ							
-	VecFx16 mat;	// À•W
-	fx16	power;	// ƒpƒ[						8
-	s8 bonus;		//	ƒ{[ƒiƒX					12
-	u8 special;		// ƒXƒyƒVƒƒƒ‹ƒ{[ƒ‹
+	u16 pl_no;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
+	u16	in_flag;	// æœ¨ã®å®ŸãŒãƒžãƒ«ãƒŽãƒ¼ãƒ ã«å…¥ã£ãŸã‹	4
+	VecFx16 way;	// æ–¹ä½							
+	VecFx16 mat;	// åº§æ¨™
+	fx16	power;	// ãƒ‘ãƒ¯ãƒ¼						8
+	s8 bonus;		//	ãƒœãƒ¼ãƒŠã‚¹					12
+	u8 special;		// ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒœãƒ¼ãƒ«
 } BCT_NUT_COMM;
 
 
 //-------------------------------------
-///	‚Ý‚ñ‚È‚ÌƒXƒRƒA
+///	ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢
 //=====================================
 typedef struct {
 	u32 score[ BCT_PLAYER_NUM ];
@@ -90,19 +90,19 @@ typedef struct {
 
 
 //-------------------------------------
-/// ƒQ[ƒ€\¬ƒf[ƒ^1ƒe[ƒuƒ‹ƒf[ƒ^
+/// ã‚²ãƒ¼ãƒ æ§‹æˆãƒ‡ãƒ¼ã‚¿1ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	s32	nuts_num;		// ‚±‚Ìƒe[ƒuƒ‹‚ðŽQÆ‚·‚é”ÍˆÍ‚Ì–Ø‚ÌŽÀ‚Ì”
-	s32	rota_speed;		// ‰ñ“]ƒXƒs[ƒh
-	s32 camera_ta_y;	// ƒJƒƒ‰ƒ^[ƒQƒbƒgYÀ•W
-	s32	camera_an_x;	// ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚˜
-	s32 pos_z;			// ‚šˆÊ’u
-	s32 size;			// ƒTƒCƒY
+	s32	nuts_num;		// ã“ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å‚ç…§ã™ã‚‹ç¯„å›²ã®æœ¨ã®å®Ÿã®æ•°
+	s32	rota_speed;		// å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
+	s32 camera_ta_y;	// ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆYåº§æ¨™
+	s32	camera_an_x;	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ï½˜
+	s32 pos_z;			// ï½šä½ç½®
+	s32 size;			// ã‚µã‚¤ã‚º
 } BCT_GAMEDATA_ONE;
 
 //-------------------------------------
-///	ƒQ[ƒ€\¬ƒf[ƒ^	
+///	ã‚²ãƒ¼ãƒ æ§‹æˆãƒ‡ãƒ¼ã‚¿	
 //=====================================
 typedef struct {
 	u32 tblnum;
@@ -114,7 +114,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #endif		// __BCT_COMMON_H__

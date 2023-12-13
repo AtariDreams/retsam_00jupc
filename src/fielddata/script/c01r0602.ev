@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c01r0602evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c01r0602
 _EVENT_DATA		ev_c01r0602_artist
@@ -29,81 +29,81 @@ _EVENT_DATA		ev_c01r0602_poster1
 _EVENT_DATA		ev_c01r0602_poster2
 _EVENT_DATA		ev_gds_box
 _EVENT_DATA		ev_gds_dress
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
-/*						ŠG•`‚«							*/
+/*						çµµæã							*/
 /********************************************************************/
 ev_c01r0602_artist:
 	_EASY_OBJ_MSG	msg_c01r0602_artist_01
 	_END
 
 /********************************************************************/
-/*						ŽR’j							*/
+/*						å±±ç”·							*/
 /********************************************************************/
 ev_c01r0602_mount:
 	_EASY_OBJ_MSG	msg_c01r0602_mount_01
 	_END
 
 /********************************************************************/
-/*						Šˆ”­­— 							*/
+/*						æ´»ç™ºå°‘å¥³ 							*/
 /********************************************************************/
 ev_c01r0602_girl2:
 	_EASY_OBJ_MSG	msg_c01r0602_girl2_01
 	_END
 
 /********************************************************************/
-/*						‚¨Ÿ­—ŽŽo‚³‚ñ							*/
+/*						ãŠæ´’è½å§‰ã•ã‚“							*/
 /********************************************************************/
 ev_c01r0602_woman2:
 	_EASY_OBJ_MSG	msg_c01r0602_woman2_01
 	_END
 
 /********************************************************************/
-/*						˜V”k							*/
+/*						è€å©†							*/
 /********************************************************************/
 ev_c01r0602_oldwoman1:
 	_EASY_OBJ_MSG	msg_c01r0602_oldwoman1_01
 	_END
 
 /********************************************************************/
-/*						‚¨‚Î‚³‚ñ							*/
+/*						ãŠã°ã•ã‚“							*/
 /********************************************************************/
 ev_c01r0602_middlewoman1:
 	_EASY_OBJ_MSG	msg_c01r0602_middlewoman1_01
 	_END
 
 /********************************************************************/
-/*						Žo‚³‚ñ							*/
+/*						å§‰ã•ã‚“							*/
 /********************************************************************/
 ev_c01r0602_woman1:
 	_EASY_OBJ_MSG	msg_c01r0602_woman1_01
 	_END
 
 /********************************************************************/
-/*						­—							*/
+/*						å°‘å¥³							*/
 /********************************************************************/
 ev_c01r0602_girl1:
 	_EASY_OBJ_MSG	msg_c01r0602_girl1_01
 	_END
 
 /********************************************************************/
-/*						—‚ÌŽq							*/
+/*						å¥³ã®å­							*/
 /********************************************************************/
 ev_c01r0602_babygirl1:
 	_EASY_OBJ_MSG	msg_c01r0602_babygirl1_01
 	_END
 
 /********************************************************************/
-/*						“\Ž†‚P							*/
+/*						è²¼ç´™ï¼‘							*/
 /********************************************************************/
 ev_c01r0602_poster1:
 	_EASY_MSG	msg_c01r0602_poster1_01
 	_END
 
 /********************************************************************/
-/*						“\Ž†‚Q							*/
+/*						è²¼ç´™ï¼’							*/
 /********************************************************************/
 ev_c01r0602_poster2:
 	_EASY_MSG	msg_c01r0602_poster2_01
@@ -113,14 +113,14 @@ ev_c01r0602_poster2:
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ’ˆÓI(06.02.09Œ»Ý)
- * EV_SCRIPT_WORK‚ðŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚ÍŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ðŽg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼(06.02.09ç¾åœ¨)
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óŽg—p•s‰ÂI
- * ‘Î‰ž—\’è‚¾‚ªAƒ][ƒ“‚ð‚Ü‚½‚¢‚¾Žž‚Éˆ——Ž‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  */
 /********************************************************************/
 //ev_c01r0602_flag_change:
@@ -135,7 +135,7 @@ ev_c01r0602:
 
 
 /********************************************************************/
-/*							ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg						*/
+/*							ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_gds_box:
 	_TALK_START
@@ -143,13 +143,13 @@ ev_gds_box:
 	_JUMP			ev_gds_box_menu
 	_END
 
-/*ƒƒjƒ…[*/
+/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_gds_box_menu:
 	_TALK_KEYWAIT	msg_machine4_01
-	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*‚Â‚©‚¤*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*‚¹‚Â‚ß‚¢‚ð‚«‚­*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*‚â‚ß‚é*/
+	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*ã¤ã‹ã†*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*ã›ã¤ã‚ã„ã‚’ãã*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -163,19 +163,19 @@ ev_gds_box_03:
 	_TALK_END
 	_END
 
-/*‚Â‚©‚¤*/
+/*ã¤ã‹ã†*/
 ev_gds_box_01:
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæžœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_box_03			/*Ž¸”s¨I—¹‚Ö*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_box_03			/*å¤±æ•—â†’çµ‚äº†ã¸*/
 
 	_TALK_CLOSE
 	_CHG_COMMON_SCR	SCRID_GDS_CALL
 	_TALK_END
 	_END
 
-/*‚¹‚Â‚ß‚¢*/
+/*ã›ã¤ã‚ã„*/
 ev_gds_box_02:
 	_TALK_KEYWAIT	msg_machine4_02
 	_JUMP			ev_gds_box_menu
@@ -183,7 +183,7 @@ ev_gds_box_02:
 
 
 /********************************************************************/
-/*						ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg						*/
+/*						ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_gds_dress:
 	_TALK_START
@@ -191,13 +191,13 @@ ev_gds_dress:
 	_JUMP			ev_gds_dress_menu
 	_END
 
-/*ƒƒjƒ…[*/
+/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_gds_dress_menu:
 	_TALK_KEYWAIT	msg_machine3_01
-	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*‚Â‚©‚¤*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*‚¹‚Â‚ß‚¢‚ð‚«‚­*/
-	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*‚â‚ß‚é*/
+	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*ã¤ã‹ã†*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*ã›ã¤ã‚ã„ã‚’ãã*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -211,19 +211,19 @@ ev_gds_dress_03:
 	_TALK_END
 	_END
 
-/*‚Â‚©‚¤*/
+/*ã¤ã‹ã†*/
 ev_gds_dress_01:
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæžœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_dress_03		/*Ž¸”s¨I—¹‚Ö*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_dress_03		/*å¤±æ•—â†’çµ‚äº†ã¸*/
 
 	_TALK_CLOSE
 	_CHG_COMMON_SCR	SCRID_GDS_CALL
 	_TALK_END
 	_END
 
-/*‚¹‚Â‚ß‚¢*/
+/*ã›ã¤ã‚ã„*/
 ev_gds_dress_02:
 	_TALK_KEYWAIT	msg_machine3_02
 	_JUMP			ev_gds_dress_menu

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	map_jump.c
- * @brief	ƒ}ƒbƒvƒWƒƒƒ“ƒv§Œä
+ * @brief	ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—åˆ¶å¾¡
  * @date	2006.02.07
  * @author	Nozomu Saito
  */
@@ -12,7 +12,7 @@
 #include "field/location.h"
 #include "ev_mapchange.h"
 #include "field_3d_anime_ev.h"
-#include "system/snd_tool.h"		//‚±‚ê‚ª‚È‚¢‚ÆAfld_bgm.h‚ÅƒGƒ‰[‚ªo‚é
+#include "system/snd_tool.h"		//ã“ã‚ŒãŒãªã„ã¨ã€fld_bgm.hã§ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
 #include "system/wipe.h"
 #include "fld_bgm.h"
 
@@ -49,45 +49,45 @@ static BOOL MJUMPEVT_MapFadeInDunOut(GMEVENT_CONTROL * event);
 
 static void SetEscalatorIOPos(FIELDSYS_WORK *fsys);
 static void SetStairsIOPos(FIELDSYS_WORK *fsys);
-//ƒtƒF[ƒhƒAƒEƒgƒGƒtƒFƒNƒgƒŠƒXƒg
-		//ŠK’i
+//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
+		//éšæ®µ
 static const MAP_JUMP_FUNC MapJumpFadeOutFuncTbl[MAP_JUMP_TYPE_MAX] = {
-	MJUMPEVT_MapFadeOutMat,		//º“à¨ŠO
-	MJUMPEVT_MapFadeOutDoor,	//ƒhƒAiŠOj¨º“à
-	MJUMPEVT_MapFadeOutEsca,	//ƒGƒXƒJƒŒ[ƒ^[
-	MJUMPEVT_MapFadeOutStairs,	//ŠK’i
-	MJUMPEVT_MapFadeOutDunIn,	//ƒ_ƒ“ƒWƒ‡ƒ““ü‚é
-	MJUMPEVT_MapFadeOutDunOut,	//ƒ_ƒ“ƒWƒ‡ƒ“ƒzƒƒCƒgƒAƒEƒg
-	MJUMPEVT_MapFadeOutMat,		//ŠOƒ}ƒbƒg¨‰®“à
+	MJUMPEVT_MapFadeOutMat,		//å®¤å†…â†’å¤–
+	MJUMPEVT_MapFadeOutDoor,	//ãƒ‰ã‚¢ï¼ˆå¤–ï¼‰â†’å®¤å†…
+	MJUMPEVT_MapFadeOutEsca,	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼
+	MJUMPEVT_MapFadeOutStairs,	//éšæ®µ
+	MJUMPEVT_MapFadeOutDunIn,	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥ã‚‹
+	MJUMPEVT_MapFadeOutDunOut,	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
+	MJUMPEVT_MapFadeOutMat,		//å¤–ãƒãƒƒãƒˆâ†’å±‹å†…
 };
 
-//ƒtƒF[ƒhƒCƒ“ƒGƒtƒFƒNƒgƒŠƒXƒg
-		//ŠK’i
+//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
+		//éšæ®µ
 static const MAP_JUMP_FUNC MapJumpFadeInFuncTbl[MAP_JUMP_TYPE_MAX] = {
-	MJUMPEVT_MapFadeInDoor,		//º“à¨ŠO
-	MJUMPEVT_MapFadeInBlack,	//ƒhƒAiŠOj¨º“à
-	MJUMPEVT_MapFadeInEsca,		//ƒGƒXƒJƒŒ[ƒ^[
-	MJUMPEVT_MapFadeInStairs,	//ŠK’i
-	MJUMPEVT_MapFadeInBlack,	//ƒ_ƒ“ƒWƒ‡ƒ““ü‚é
-	MJUMPEVT_MapFadeInDunOut,	//ƒ_ƒ“ƒWƒ‡ƒ“ƒzƒƒCƒgƒCƒ“
-	MJUMPEVT_MapFadeInBlack,	//ŠOƒ}ƒbƒg¨‰®“à
+	MJUMPEVT_MapFadeInDoor,		//å®¤å†…â†’å¤–
+	MJUMPEVT_MapFadeInBlack,	//ãƒ‰ã‚¢ï¼ˆå¤–ï¼‰â†’å®¤å†…
+	MJUMPEVT_MapFadeInEsca,		//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼
+	MJUMPEVT_MapFadeInStairs,	//éšæ®µ
+	MJUMPEVT_MapFadeInBlack,	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥ã‚‹
+	MJUMPEVT_MapFadeInDunOut,	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
+	MJUMPEVT_MapFadeInBlack,	//å¤–ãƒãƒƒãƒˆâ†’å±‹å†…
 };
 
-//ƒ}ƒbƒvƒWƒƒƒ“ƒv•Ê•\¦ˆÊ’u•â³ŠÖ”ŒQ
+//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—åˆ¥è¡¨ç¤ºä½ç½®è£œæ­£é–¢æ•°ç¾¤
 static const MAP_JUMP_POS_SET MapJumpPosSetFuncTbl[MAP_JUMP_TYPE_MAX] = {
-	NULL,						//º“à¨ŠO
-	NULL,						//ƒhƒAiŠOj¨º“à
-	SetEscalatorIOPos,			//ƒGƒXƒJƒŒ[ƒ^[
-	SetStairsIOPos,				//ŠK’i
-	NULL,						//ƒ_ƒ“ƒWƒ‡ƒ““ü‚é
-	NULL,						//ƒ_ƒ“ƒWƒ‡ƒ“o‚é
-	NULL,						//ŠOƒ}ƒbƒg¨‰®“à
+	NULL,						//å®¤å†…â†’å¤–
+	NULL,						//ãƒ‰ã‚¢ï¼ˆå¤–ï¼‰â†’å®¤å†…
+	SetEscalatorIOPos,			//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼
+	SetStairsIOPos,				//éšæ®µ
+	NULL,						//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥ã‚‹
+	NULL,						//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºã‚‹
+	NULL,						//å¤–ãƒãƒƒãƒˆâ†’å±‹å†…
 };
 
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
-	int call_seq;						///<ƒR[ƒ‹æƒV[ƒPƒ“ƒXƒ[ƒN
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	int call_seq;						///<ã‚³ãƒ¼ãƒ«å…ˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 	///FLD_3D_ANIME_WORK_PTR DoorAnimeWork;
 	void	*JumpEffectWork;
 	int JumpType;
@@ -108,16 +108,16 @@ typedef struct WIPE_PARAM_tag
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒCƒxƒ“ƒgƒR[ƒ‹(ƒ‰ƒXƒ^‚Æ‚©‚ğg‚¤ƒƒCƒv‚Ì‚Æ‚«)
- * “à•”‚ÅHƒuƒ‰ƒ“ƒNŠ„‚è‚İ‚ğ’â~‚³‚¹AƒƒCƒvI—¹‚ÅAƒuƒ‰ƒ“ƒNˆ—‚ğÄƒXƒ^[ƒg‚³‚¹‚Ü‚·
- * @param	event		ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param	inPattern	Ø‚è‘Ö‚¦ƒpƒ^[ƒ“”Ô†
- * @param	inMain		ƒƒCƒv@ƒƒCƒ“‰æ–ÊƒƒCƒvƒpƒ^[ƒ“
- * @param	inSub		ƒƒCƒv@ƒTƒu‰æ–ÊƒƒCƒvƒpƒ^[ƒ“
- * @param	inCol		ƒƒCƒv‚ÌF	
- * @param	inDiv		ŠeƒƒCƒvˆ—‚Ì•ªŠ„”	(1.2.3.4.....)
- * @param	inSync		ŠeƒƒCƒv‚Ìˆ—‚ğ•ªŠ„‚µ‚½‚P•Ğ‚ÌƒVƒ“ƒN”	(1.2.3.4.....)
- * @param	inHeap		g—p‚·‚éƒq[ƒv
+ * @brief	ãƒ¯ã‚¤ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«(ãƒ©ã‚¹ã‚¿ã¨ã‹ã‚’ä½¿ã†ãƒ¯ã‚¤ãƒ—ã®ã¨ã)
+ * å†…éƒ¨ã§Hãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ã‚’åœæ­¢ã•ã›ã€ãƒ¯ã‚¤ãƒ—çµ‚äº†ã§ã€ãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã‚’å†ã‚¹ã‚¿ãƒ¼ãƒˆã•ã›ã¾ã™
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param	inPattern	åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·
+ * @param	inMain		ãƒ¯ã‚¤ãƒ—ã€€ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¯ã‚¤ãƒ—ãƒ‘ã‚¿ãƒ¼ãƒ³
+ * @param	inSub		ãƒ¯ã‚¤ãƒ—ã€€ã‚µãƒ–ç”»é¢ãƒ¯ã‚¤ãƒ—ãƒ‘ã‚¿ãƒ¼ãƒ³
+ * @param	inCol		ãƒ¯ã‚¤ãƒ—ã®è‰²	
+ * @param	inDiv		å„ãƒ¯ã‚¤ãƒ—å‡¦ç†ã®åˆ†å‰²æ•°	(1.2.3.4.....)
+ * @param	inSync		å„ãƒ¯ã‚¤ãƒ—ã®å‡¦ç†ã‚’åˆ†å‰²ã—ãŸï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°	(1.2.3.4.....)
+ * @param	inHeap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  * @return none
  */
@@ -143,10 +143,10 @@ void MJUMP_RequestWipe(	GMEVENT_CONTROL * event,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒCƒxƒ“ƒg
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¯ã‚¤ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+ * @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
  */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_Wipe(GMEVENT_CONTROL * event)
@@ -156,7 +156,7 @@ static BOOL MJUMPEVT_Wipe(GMEVENT_CONTROL * event)
 	switch (wp->Seq) {
 	case 0:
 		FLDHBLANK_SYS_Stop( fsys->fldmap->hblanksys );
-		//ƒƒCƒvƒXƒ^[ƒg
+		//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ
 		WIPE_SYS_Start(	wp->Pattern, wp->Main, wp->Sub,
 				wp->Col,wp->Div,wp->Sync,wp->Heap );
 		wp->Seq++;
@@ -174,18 +174,18 @@ static BOOL MJUMPEVT_Wipe(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg(ƒhƒAƒAƒjƒ‚Â‚«)
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	inX			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	inZ			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	inDir		‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
- * @param	inType		ƒWƒƒƒ“ƒvƒ^ƒCƒv
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ(ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã¤ã)
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	inX			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	inZ			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	inDir		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
+ * @param	inType		ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—
  *
- * ‘JˆÚæƒ}ƒbƒv‚Ì‚Ç‚±‚ÉoŒ»‚·‚é‚©‚Ìî•ñ‚ÍŸ‚Ìƒ}ƒbƒv‚ğ“Ç‚İ‚Ş‚Ü‚Å‚Í‚í‚©‚ç‚È‚¢‚Í‚¸‚È‚Ì‚Å
- * –{“–‚ÍÀ•Ww’è‚Í–³‘Ê‚©‚à‚µ‚ê‚È‚¢‚¯‚ÇA”O‚Ì‚½‚ßB‚Ü‚½ƒGƒŠƒA‚Æƒ][ƒ“‚ÌŠÖŒW‚ÍÄl‚³‚ê‚é‚Ì‚Å
- * ƒGƒŠƒAw’è‚à‚¢‚ç‚È‚­‚È‚é‰Â”\«‚ª‚ ‚éB
+ * é·ç§»å…ˆãƒãƒƒãƒ—ã®ã©ã“ã«å‡ºç¾ã™ã‚‹ã‹ã®æƒ…å ±ã¯æ¬¡ã®ãƒãƒƒãƒ—ã‚’èª­ã¿è¾¼ã‚€ã¾ã§ã¯ã‚ã‹ã‚‰ãªã„ã¯ãšãªã®ã§
+ * æœ¬å½“ã¯åº§æ¨™æŒ‡å®šã¯ç„¡é§„ã‹ã‚‚ã—ã‚Œãªã„ã‘ã©ã€å¿µã®ãŸã‚ã€‚ã¾ãŸã‚¨ãƒªã‚¢ã¨ã‚¾ãƒ¼ãƒ³ã®é–¢ä¿‚ã¯å†è€ƒã•ã‚Œã‚‹ã®ã§
+ * ã‚¨ãƒªã‚¢æŒ‡å®šã‚‚ã„ã‚‰ãªããªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã€‚
  */
 //-----------------------------------------------------------------------------
 void MJUMP_ChangeMap(FIELDSYS_WORK * fsys, const int zone, const int door_id,
@@ -194,29 +194,29 @@ void MJUMP_ChangeMap(FIELDSYS_WORK * fsys, const int zone, const int door_id,
 	EVENT_MAPCHG_WORK * emw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_MAPCHG_WORK));
 	emw->seq = 0;
 	emw->call_seq = 0;
-	//ƒƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬
+	//ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	SetLocation(&emw->next, zone, door_id, inX, inZ, inDir);
 
-	//ƒWƒƒƒ“ƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	//ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	emw->JumpType = inType;
 
-	//ƒ}ƒbƒvƒWƒƒƒ“ƒvƒCƒxƒ“ƒg‚ğì¬
+	//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 	FieldEvent_Set(fsys, MJUMPEVT_MapChangeParent, emw);
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg(ƒ}ƒbƒvƒ^ƒCƒv‚ğQÆ‚·‚é)
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	inX			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	inZ			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	inDir			‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ(ãƒãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã‚’å‚ç…§ã™ã‚‹)
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	inX			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	inZ			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	inDir			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
  *
- * ‘JˆÚæƒ}ƒbƒv‚Ì‚Ç‚±‚ÉoŒ»‚·‚é‚©‚Ìî•ñ‚ÍŸ‚Ìƒ}ƒbƒv‚ğ“Ç‚İ‚Ş‚Ü‚Å‚Í‚í‚©‚ç‚È‚¢‚Í‚¸‚È‚Ì‚Å
- * –{“–‚ÍÀ•Ww’è‚Í–³‘Ê‚©‚à‚µ‚ê‚È‚¢‚¯‚ÇA”O‚Ì‚½‚ßB‚Ü‚½ƒGƒŠƒA‚Æƒ][ƒ“‚ÌŠÖŒW‚ÍÄl‚³‚ê‚é‚Ì‚Å
- * ƒGƒŠƒAw’è‚à‚¢‚ç‚È‚­‚È‚é‰Â”\«‚ª‚ ‚éB
+ * é·ç§»å…ˆãƒãƒƒãƒ—ã®ã©ã“ã«å‡ºç¾ã™ã‚‹ã‹ã®æƒ…å ±ã¯æ¬¡ã®ãƒãƒƒãƒ—ã‚’èª­ã¿è¾¼ã‚€ã¾ã§ã¯ã‚ã‹ã‚‰ãªã„ã¯ãšãªã®ã§
+ * æœ¬å½“ã¯åº§æ¨™æŒ‡å®šã¯ç„¡é§„ã‹ã‚‚ã—ã‚Œãªã„ã‘ã©ã€å¿µã®ãŸã‚ã€‚ã¾ãŸã‚¨ãƒªã‚¢ã¨ã‚¾ãƒ¼ãƒ³ã®é–¢ä¿‚ã¯å†è€ƒã•ã‚Œã‚‹ã®ã§
+ * ã‚¨ãƒªã‚¢æŒ‡å®šã‚‚ã„ã‚‰ãªããªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã€‚
  */
 //-----------------------------------------------------------------------------
 void MJUMP_ChangeMapByLocation(FIELDSYS_WORK * fsys, const int zone, const int door_id,
@@ -228,40 +228,40 @@ void MJUMP_ChangeMapByLocation(FIELDSYS_WORK * fsys, const int zone, const int d
 	
 	emw->seq = 0;
 	emw->call_seq = 0;
-	//ƒƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬
+	//ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	SetLocation(&emw->next, zone, door_id, inX, inZ, inDir);
 
-	//Œ»İƒ}ƒbƒví—Ş‚ğ’²‚×‚é
+	//ç¾åœ¨ãƒãƒƒãƒ—ç¨®é¡ã‚’èª¿ã¹ã‚‹
 	now_zone = fsys->location->zone_id;
 	type = 0;
-	if (ZoneData_IsDungeon(now_zone)){		//Œ»İƒ_ƒ“ƒWƒ‡ƒ“
-		//”ò‚Ñæ‚ğ’²‚×‚é
+	if (ZoneData_IsDungeon(now_zone)){		//ç¾åœ¨ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+		//é£›ã³å…ˆã‚’èª¿ã¹ã‚‹
 		if (ZoneData_IsDungeon(zone)){
-			type = M_JUMP_MATIN;			//ƒ_ƒ“ƒWƒ‡ƒ“ŠÔˆÚ“®(•”‰®‚É“ü‚é‚Ì‚Æ“¯‚¶)
+			type = M_JUMP_MATIN;			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³é–“ç§»å‹•(éƒ¨å±‹ã«å…¥ã‚‹ã®ã¨åŒã˜)
 		}else if (ZoneData_IsOutDoor(zone)){
-			type = M_JUMP_DUNOUT;			//ƒ_ƒ“ƒWƒ‡ƒ“ŠO‚Ö
+			type = M_JUMP_DUNOUT;			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤–ã¸
 		}else if (ZoneData_IsRoom(zone)){
-			type = M_JUMP_MATIN;			//•”‰®‚Ì’†‚Ö
+			type = M_JUMP_MATIN;			//éƒ¨å±‹ã®ä¸­ã¸
 		}else{
 			GF_ASSERT(0);
 		}
-	}else if (ZoneData_IsOutDoor(now_zone)){//Œ»İ‰®ŠO
-		//”ò‚Ñæ‚ğ’²‚×‚é
+	}else if (ZoneData_IsOutDoor(now_zone)){//ç¾åœ¨å±‹å¤–
+		//é£›ã³å…ˆã‚’èª¿ã¹ã‚‹
 		if (ZoneData_IsDungeon(zone)){
-			type = M_JUMP_DUNIN;			//ƒ_ƒ“ƒWƒ‡ƒ“‚Ì’†‚Ö
+			type = M_JUMP_DUNIN;			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ä¸­ã¸
 		}else if (ZoneData_IsRoom(zone)){
-			type = M_JUMP_MATIN;			//•”‰®‚Ì’†‚Ö
+			type = M_JUMP_MATIN;			//éƒ¨å±‹ã®ä¸­ã¸
 		}else{
 			GF_ASSERT(0);
 		}
-	}else if (ZoneData_IsRoom(now_zone)){	//Œ»İº“à
-		//”ò‚Ñæ‚ğ’²‚×‚é
+	}else if (ZoneData_IsRoom(now_zone)){	//ç¾åœ¨å®¤å†…
+		//é£›ã³å…ˆã‚’èª¿ã¹ã‚‹
 		if (ZoneData_IsOutDoor(zone)){
-			type = M_JUMP_MATOUT;			//‰®ŠO‚Ö
+			type = M_JUMP_MATOUT;			//å±‹å¤–ã¸
 		}else if(ZoneData_IsRoom(zone)){
-			type = M_JUMP_MATIN;			//•”‰®“à‚ÌˆÚ“®i•”‰®‚É“ü‚é‚Ì‚Æ“¯‚¶j
+			type = M_JUMP_MATIN;			//éƒ¨å±‹å†…ã®ç§»å‹•ï¼ˆéƒ¨å±‹ã«å…¥ã‚‹ã®ã¨åŒã˜ï¼‰
 		}else if (ZoneData_IsDungeon(zone)){
-			type = M_JUMP_MATOUT;			//ƒ_ƒ“ƒWƒ‡ƒ“‚Öi‰®ŠO‚Ö‚Å‚é‚Ì‚Æ“¯‚¶)
+			type = M_JUMP_MATOUT;			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã¸ï¼ˆå±‹å¤–ã¸ã§ã‚‹ã®ã¨åŒã˜)
 		}else{
 			GF_ASSERT(0);
 		}
@@ -269,20 +269,20 @@ void MJUMP_ChangeMapByLocation(FIELDSYS_WORK * fsys, const int zone, const int d
 		GF_ASSERT(0);
 	}
 
-	//ƒWƒƒƒ“ƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	//ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	emw->JumpType = type;
 
-	//ƒ}ƒbƒvƒWƒƒƒ“ƒvƒCƒxƒ“ƒg‚ğì¬
+	//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 	FieldEvent_Set(fsys, MJUMPEVT_MapChangeParent, emw);
 }
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg
+* @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */ 
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapChangeParent(GMEVENT_CONTROL * event)
@@ -292,52 +292,52 @@ static BOOL MJUMPEVT_MapChangeParent(GMEVENT_CONTROL * event)
 	LOCATION_WORK* location = &emw->next;
 
 	switch (emw->seq) {
-	case 0:		//ƒWƒƒƒ“ƒvƒ^ƒCƒv•Ê‚ÉƒtƒF[ƒhƒAƒEƒg‚ÌƒCƒxƒ“ƒg‚ğƒR[ƒ‹
+	case 0:		//ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—åˆ¥ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚³ãƒ¼ãƒ«
 		emw->call_seq = 0;
 
-		//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );
 
 		FieldEvent_Call(event, MapJumpFadeOutFuncTbl[emw->JumpType], emw);
 		(emw->seq) ++;
 		break;
-	case 1:	//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX‚ğI—¹
+	case 1:	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹ã‚’çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(emw->seq) ++;
 		break;
-	case 2:	//ÀÛ‚Éƒf[ƒ^‚ğVƒ}ƒbƒv‚É‘‚«Š·‚¦‚é
+	case 2:	//å®Ÿéš›ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ–°ãƒãƒƒãƒ—ã«æ›¸ãæ›ãˆã‚‹
 		EventCmd_MapChangeByLocation(event, &emw->next);
 		(emw->seq) ++;
 		break;
-	case 3:	//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJn
+	case 3:	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹
 #if 0
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“—×ÚˆÚ“®
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³éš£æ¥ç§»å‹•
 		MP_MovePokemonNeighboring(EncDataSave_GetSaveDataPtr(fsys->savedata));
 #endif
 		EventCmd_StartFieldMap(event);
 		(emw->seq) ++;
 		break;
 	case 4:
-		//ƒWƒƒƒ“ƒvƒ^ƒCƒv•Ê‚ÉA©‹@‚Ì‰Šú•\¦À•W‚ÉƒIƒtƒZƒbƒg‚ğ‚Â‚¯‚é
+		//ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—åˆ¥ã«ã€è‡ªæ©Ÿã®åˆæœŸè¡¨ç¤ºåº§æ¨™ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã¤ã‘ã‚‹
 		if (MapJumpPosSetFuncTbl[emw->JumpType] != NULL){
 			MapJumpPosSetFuncTbl[emw->JumpType](fsys);
 		}
 		(emw->seq) ++;
 		break;
-	case 5:	//ƒWƒƒƒ“ƒvƒ^ƒCƒv•Ê‚ÉƒtƒF[ƒhƒCƒ“‚ÌƒCƒxƒ“ƒg‚ğƒR[ƒ‹
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+	case 5:	//ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—åˆ¥ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚³ãƒ¼ãƒ«
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 
-		//’n–¼•\¦ƒŠƒNƒGƒXƒg
+		//åœ°åè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		PlaceNameRequestByFsys(fsys);
 
 		emw->call_seq = 0;
 		FieldEvent_Call(event, MapJumpFadeInFuncTbl[emw->JumpType], emw);
 		(emw->seq) ++;
 		break;
-	case 6:	//I—¹ˆ—
+	case 6:	//çµ‚äº†å‡¦ç†
 		sys_FreeMemoryEz(emw);
 		return TRUE;
 	}
@@ -346,11 +346,11 @@ static BOOL MJUMPEVT_MapChangeParent(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	0:ƒ}ƒbƒgƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	0:ãƒãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutMat(GMEVENT_CONTROL * event)
@@ -362,7 +362,7 @@ static BOOL MJUMPEVT_MapFadeOutMat(GMEVENT_CONTROL * event)
 	case 0:
 		Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
 /**
-		//"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+		//"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 		{
 			LOCATION_WORK* location = &emw->next;
 			Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
@@ -379,11 +379,11 @@ static BOOL MJUMPEVT_MapFadeOutMat(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	1:ƒhƒAƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	1:ãƒ‰ã‚¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutDoor(GMEVENT_CONTROL * event)
@@ -392,7 +392,7 @@ static BOOL MJUMPEVT_MapFadeOutDoor(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	FLD_3D_ANIME_WORK_PTR	anime_work;
 	switch (emw->call_seq) {
-	case 0:	//ƒhƒAƒAƒjƒƒ[ƒNŠm•Û
+	case 0:	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 		emw->JumpEffectWork = Fld3DAnm_AllocEvent3DAnimeWork();
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		Fld3DAnm_EventSetGrid(	Player_NowGPosXGet( fsys->player ),
@@ -400,16 +400,16 @@ static BOOL MJUMPEVT_MapFadeOutDoor(GMEVENT_CONTROL * event)
 								anime_work	);
 		(emw->call_seq) ++;
 		break;
-	case 1:	//ƒhƒAƒAƒjƒ
+	case 1:	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		if ( Fld3DAnm_EventDoorInAnime(fsys, anime_work) ){
-			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ƒhƒAƒAƒjƒƒ[ƒN‰ğ•ú
+			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 			(emw->call_seq) ++;
 		}
 		break;		
 	case 2:
 /**		
-		//"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+		//"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 		{
 			LOCATION_WORK* location = &emw->next;
 			Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
@@ -418,7 +418,7 @@ static BOOL MJUMPEVT_MapFadeOutDoor(GMEVENT_CONTROL * event)
 		EventCmd_FieldFadeOut(event);
 		(emw->call_seq) ++;
 		break;
-	case 3:		//I—¹ˆ—
+	case 3:		//çµ‚äº†å‡¦ç†
 		return TRUE;
 	}
 	return FALSE;
@@ -426,11 +426,11 @@ static BOOL MJUMPEVT_MapFadeOutDoor(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	2:ƒGƒXƒJƒŒ[ƒ^[ƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	2:ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutEsca(GMEVENT_CONTROL * event)
@@ -439,7 +439,7 @@ static BOOL MJUMPEVT_MapFadeOutEsca(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	FLD_3D_ANIME_WORK_PTR	anime_work;
 	switch (emw->call_seq) {
-	case 0:	//ƒAƒjƒƒ[ƒNŠm•Û
+	case 0:	//ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 		emw->JumpEffectWork = Fld3DAnm_AllocEvent3DAnimeWork();
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		Fld3DAnm_EventSetGrid(	Player_NowGPosXGet( fsys->player ),
@@ -447,14 +447,14 @@ static BOOL MJUMPEVT_MapFadeOutEsca(GMEVENT_CONTROL * event)
 								anime_work	);
 		(emw->call_seq)++;
 		break;
-	case 1:	//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒ@æ‚é
+	case 1:	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ã€€ä¹—ã‚‹
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		if ( Fld3DAnm_EventEscalatorInAnime(fsys, anime_work,Player_DirGet( fsys->player )) ){
-			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ƒAƒjƒƒ[ƒN‰ğ•ú
+			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 			(emw->call_seq)++;
 		}
 		break;		
-	case 2:		//I—¹ˆ—	
+	case 2:		//çµ‚äº†å‡¦ç†	
 		return TRUE;
 	}
 	return FALSE;
@@ -462,11 +462,11 @@ static BOOL MJUMPEVT_MapFadeOutEsca(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	3:ŠK’iƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	3:éšæ®µãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutStairs(GMEVENT_CONTROL * event)
@@ -475,32 +475,32 @@ static BOOL MJUMPEVT_MapFadeOutStairs(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	FIELD_OBJ_PTR fop;
 	switch (emw->call_seq) {
-	case 0:	//©‹@ˆÚ“®
+	case 0:	//è‡ªæ©Ÿç§»å‹•
 		{
 			int dir = Player_DirGet( fsys->player );
 			fop = Player_FieldOBJGet( fsys->player );
 		
-			if (dir == DIR_LEFT){	//¶Œü‚«
+			if (dir == DIR_LEFT){	//å·¦å‘ã
 				FieldOBJ_AcmdSet(fop,AC_WALK_L_16F);
-			}else if (dir == DIR_RIGHT){	//‰EŒü‚«
+			}else if (dir == DIR_RIGHT){	//å³å‘ã
 				FieldOBJ_AcmdSet(fop,AC_WALK_R_16F);
 			}else{
-				GF_ASSERT(0&&"©‹@‚ÌŒü‚«‚ª•s³");
+				GF_ASSERT(0&&"è‡ªæ©Ÿã®å‘ããŒä¸æ­£");
 			}
 		}
 		(emw->call_seq) ++;
 		break;
 	case 1:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹	
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†	
 			(emw->call_seq) ++;
 		}
 		break;
 	case 2:
-		//“ü‚é‰¹
+		//å…¥ã‚‹éŸ³
 		Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-		//ƒtƒF[ƒhƒAƒEƒgŠJn
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 		FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKOUT);
 		
 		(emw->call_seq) ++;
@@ -508,7 +508,7 @@ static BOOL MJUMPEVT_MapFadeOutStairs(GMEVENT_CONTROL * event)
 	case 3:	
 		if (WIPE_SYS_EndCheck()) {
 /**			
-			//"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+			//"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 			{
 				LOCATION_WORK* location = &emw->next;
 				Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
@@ -524,11 +524,11 @@ static BOOL MJUMPEVT_MapFadeOutStairs(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	4:ƒ_ƒ“ƒWƒ‡ƒ““ü‚éƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	4:ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutDunIn(GMEVENT_CONTROL * event)
@@ -553,11 +553,11 @@ static BOOL MJUMPEVT_MapFadeOutDunIn(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	5:ƒ_ƒ“ƒWƒ‡ƒ“o‚éƒtƒF[ƒhƒAƒEƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	5:ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeOutDunOut(GMEVENT_CONTROL * event)
@@ -582,33 +582,33 @@ static BOOL MJUMPEVT_MapFadeOutDunOut(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	switch (emw->call_seq) {
 	case 0:
-		//ƒY[ƒ€‰Šú‰»
-		//ƒJƒƒ‰ƒY[ƒ€
+		//ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
+		//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ 
 		(emw->call_seq) ++;
 		break;
-	case 1:	//ƒJƒƒ‰ƒY[ƒ€‘Ò‚¿
+	case 1:	//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ å¾…ã¡
 		if(1){
 			FIELD_OBJ_PTR fop;
 			fop = Player_FieldOBJGet( fsys->player );
-			//ålŒöÁ‚·
+			//ä¸»äººå…¬æ¶ˆã™
 			FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
-			//“ü‚é‰¹
+			//å…¥ã‚‹éŸ³
 			Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-			//ƒƒCƒvƒXƒ^[ƒg	ƒzƒƒCƒgƒAƒEƒg
+			//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 			WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x7fff,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
 			(emw->call_seq) ++;
 		}
 		break;
-	case 2:	//ƒƒCƒvI—¹‘Ò‚¿
+	case 2:	//ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck() ){
-			//"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+			//"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 			LOCATION_WORK* location = &emw->next;
 			Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
 			(emw->call_seq) ++;
 		}
 		break;
-	case 3:		//I—¹ˆ—
+	case 3:		//çµ‚äº†å‡¦ç†
 		return TRUE;
 	}
 */	
@@ -617,11 +617,11 @@ static BOOL MJUMPEVT_MapFadeOutDunOut(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	0:ŠO‚Éo‚½‚Æ‚«ƒtƒF[ƒhƒCƒ“ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	0:å¤–ã«å‡ºãŸã¨ããƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeInDoor(GMEVENT_CONTROL * event)
@@ -639,7 +639,7 @@ static BOOL MJUMPEVT_MapFadeInDoor(GMEVENT_CONTROL * event)
 									Player_NowGPosXGet( fsys->player ),
 									Player_NowGPosZGet( fsys->player ) );
 			if (MATR_IsDoor(attr)){
-				//©‹@‚ğ”ñ•\¦
+				//è‡ªæ©Ÿã‚’éè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( player, TRUE );
 				(emw->call_seq) = 1;
 			}else{
@@ -651,7 +651,7 @@ static BOOL MJUMPEVT_MapFadeInDoor(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 1:
-		//ƒhƒAƒAƒjƒƒ[ƒNŠm•Û
+		//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 		emw->JumpEffectWork = (FLD_3D_ANIME_WORK_PTR)Fld3DAnm_AllocEvent3DAnimeWork();
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		Fld3DAnm_EventSetGrid(	Player_NowGPosXGet( fsys->player ),
@@ -659,16 +659,16 @@ static BOOL MJUMPEVT_MapFadeInDoor(GMEVENT_CONTROL * event)
 								anime_work	);
 		(emw->call_seq) ++;
 		break;
-	case 2:			//ƒhƒAƒAƒjƒ
+	case 2:			//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		if ( Fld3DAnm_EventDoorOutAnime(fsys, anime_work) ){
-			Fld3DAnm_FreeEvent3DAnimeWork(anime_work);	//ƒhƒAƒAƒjƒƒ[ƒN‰ğ•ú
+			Fld3DAnm_FreeEvent3DAnimeWork(anime_work);	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 			{
 				FIELD_OBJ_PTR player = Player_FieldOBJGet( fsys->player );
-				//©‹@‚ğ•\¦
+				//è‡ªæ©Ÿã‚’è¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( player, FALSE );
 			}
-			return TRUE;		//I—¹
+			return TRUE;		//çµ‚äº†
 		}
 		break;
 	case 3:
@@ -679,11 +679,11 @@ static BOOL MJUMPEVT_MapFadeInDoor(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	1,4:º“àAƒ_ƒ“ƒWƒ‡ƒ““ü‚Á‚½‚Æ‚«ƒuƒ‰ƒbƒNƒCƒ“ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	1,4:å®¤å†…ã€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥ã£ãŸã¨ããƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeInBlack(GMEVENT_CONTROL * event)
@@ -695,20 +695,20 @@ static BOOL MJUMPEVT_MapFadeInBlack(GMEVENT_CONTROL * event)
 	switch (emw->call_seq) {
 	case 0:
 		{
-			//º“à‚ÉƒhƒA‚ª‚ ‚Á‚½‚è‚·‚é‚Ì‚Å“Áêˆ—‚·‚é
+			//å®¤å†…ã«ãƒ‰ã‚¢ãŒã‚ã£ãŸã‚Šã™ã‚‹ã®ã§ç‰¹æ®Šå‡¦ç†ã™ã‚‹
 			u8 attr;
 			FIELD_OBJ_PTR player = Player_FieldOBJGet( fsys->player );
 			attr = GetAttributeLSB( fsys,
 									Player_NowGPosXGet( fsys->player ),
 									Player_NowGPosZGet( fsys->player ) );
-			if (MATR_IsDoor(attr)){	//ƒhƒA‚ª‚ ‚Á‚½‚ç
-				//©‹@‚ğ”ñ•\¦
+			if (MATR_IsDoor(attr)){	//ãƒ‰ã‚¢ãŒã‚ã£ãŸã‚‰
+				//è‡ªæ©Ÿã‚’éè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( player, TRUE );
-				emw->call_seq = 1;		//ƒR[ƒ‹æ‚ÌƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX1‚©‚çƒXƒ^[ƒg
+				emw->call_seq = 1;		//ã‚³ãƒ¼ãƒ«å…ˆã®ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹1ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
 				FieldEvent_Change(event,MJUMPEVT_MapFadeInDoor,emw);
-			}else{					//ƒhƒA‚È‚µ
+			}else{					//ãƒ‰ã‚¢ãªã—
 				FMJ_WORK_PTR work;
-				//ƒtƒF[ƒhƒCƒ“ŠJn
+				//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 				work = MapJump_AllocWork();
 				FieldEvent_Call(event, MapJump_EventFadeInBlack, work);
 				(emw->call_seq) ++;
@@ -723,11 +723,11 @@ static BOOL MJUMPEVT_MapFadeInBlack(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	2:ƒGƒXƒJƒŒ[ƒ^[ƒtƒF[ƒhƒCƒ“ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	2:ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeInEsca(GMEVENT_CONTROL * event)
@@ -736,7 +736,7 @@ static BOOL MJUMPEVT_MapFadeInEsca(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	FLD_3D_ANIME_WORK_PTR	anime_work;
 	switch (emw->call_seq) {
-	case 0:	//ƒAƒjƒƒ[ƒNŠm•Û
+	case 0:	//ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 		emw->JumpEffectWork = Fld3DAnm_AllocEvent3DAnimeWork();
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		Fld3DAnm_EventSetGrid(	Player_NowGPosXGet( fsys->player ),
@@ -744,14 +744,14 @@ static BOOL MJUMPEVT_MapFadeInEsca(GMEVENT_CONTROL * event)
 								anime_work	);
 		(emw->call_seq)++;
 		break;
-	case 1:	//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒ	~‚è‚é
+	case 1:	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡	é™ã‚Šã‚‹
 		anime_work = (FLD_3D_ANIME_WORK_PTR)emw->JumpEffectWork;
 		if ( Fld3DAnm_EventEscalatorOutAnime(fsys, anime_work,Player_DirGet( fsys->player )) ){
-			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ƒAƒjƒƒ[ƒN‰ğ•ú
+			Fld3DAnm_FreeEvent3DAnimeWork(emw->JumpEffectWork);	//ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 			(emw->call_seq)++;
 		}
 		break;
-	case 2:			//I—¹ˆ—
+	case 2:			//çµ‚äº†å‡¦ç†
 		return TRUE;
 	}
 	return FALSE;
@@ -759,11 +759,11 @@ static BOOL MJUMPEVT_MapFadeInEsca(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	3:ŠK’iƒtƒF[ƒhƒCƒ“ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	3:éšæ®µãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeInStairs(GMEVENT_CONTROL * event)
@@ -772,30 +772,30 @@ static BOOL MJUMPEVT_MapFadeInStairs(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK * emw = FieldEvent_GetSpecialWork(event);
 	FIELD_OBJ_PTR fop;
 	switch (emw->call_seq) {
-	case 0:	//©‹@ˆÚ“®
-		//ƒtƒF[ƒhƒCƒ“ŠJn
+	case 0:	//è‡ªæ©Ÿç§»å‹•
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 		FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKIN);
 		fop = Player_FieldOBJGet( fsys->player );
 		
-		if( /*FieldOBJ_AcmdSetCheck(fop) == TRUE*/1 ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
+		if( /*FieldOBJ_AcmdSetCheck(fop) == TRUE*/1 ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
 			int dir;
 			dir = Player_DirGet( fsys->player );
-			if (dir == DIR_LEFT){	//¶Œü‚«
-				FieldOBJ_AcmdSet(fop,AC_WALK_L_16F);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
-			}else if (dir == DIR_RIGHT){	//‰EŒü‚«
-				FieldOBJ_AcmdSet(fop,AC_WALK_R_16F);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
+			if (dir == DIR_LEFT){	//å·¦å‘ã
+				FieldOBJ_AcmdSet(fop,AC_WALK_L_16F);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
+			}else if (dir == DIR_RIGHT){	//å³å‘ã
+				FieldOBJ_AcmdSet(fop,AC_WALK_R_16F);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			}else{
-				GF_ASSERT(0&&"©‹@‚ÌŒü‚«‚ª•s³");
+				GF_ASSERT(0&&"è‡ªæ©Ÿã®å‘ããŒä¸æ­£");
 			}
 		}else{
-			GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+			GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 		}
 		(emw->call_seq) ++;
 		break;
 	case 1:	
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹	
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†	
 			(emw->call_seq) ++;
 		}
 		break;
@@ -804,7 +804,7 @@ static BOOL MJUMPEVT_MapFadeInStairs(GMEVENT_CONTROL * event)
 			(emw->call_seq) ++;
 		}
 		break;
-	case 3:		//I—¹ˆ—
+	case 3:		//çµ‚äº†å‡¦ç†
 		return TRUE;
 	}
 	return FALSE;
@@ -813,11 +813,11 @@ static BOOL MJUMPEVT_MapFadeInStairs(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief	5:ƒ_ƒ“ƒWƒ‡ƒ“o‚éƒtƒF[ƒhƒCƒ“ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒCƒxƒ“ƒgƒR[ƒ‹)
+* @brief	5:ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«)
 *	
-* @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+* @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
 *
-* @return  BOOL	TRUE:I—¹@FALSE:Œp‘±
+* @return  BOOL	TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
 */
 //-----------------------------------------------------------------------------
 static BOOL MJUMPEVT_MapFadeInDunOut(GMEVENT_CONTROL * event)
@@ -837,17 +837,17 @@ static BOOL MJUMPEVT_MapFadeInDunOut(GMEVENT_CONTROL * event)
 	case 1:
 		return TRUE;
 /**		
-		//©‹@‚ğ”ñ•\¦
+		//è‡ªæ©Ÿã‚’éè¡¨ç¤º
 		FieldOBJ_StatusBitSet_Vanish( player, TRUE );
 		(emw->call_seq)++;
 		break;
 	case 1:
-		//ƒƒCƒvƒXƒ^[ƒg	ƒzƒƒCƒgƒCƒ“
+		//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN,
 						WIPE_TYPE_FADEIN,0x7fff,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
 		(emw->call_seq) ++;
 		break;
-	case 2:	//©‹@‚ğ•\¦‚µ‚ÄA•ûŒü•Ê‚É1•à‘Oi
+	case 2:	//è‡ªæ©Ÿã‚’è¡¨ç¤ºã—ã¦ã€æ–¹å‘åˆ¥ã«1æ­©å‰é€²
 		FieldOBJ_StatusBitSet_Vanish( player, FALSE );
 		(emw->call_seq) ++;
 		break;
@@ -855,8 +855,8 @@ static BOOL MJUMPEVT_MapFadeInDunOut(GMEVENT_CONTROL * event)
 		{
 			FIELD_OBJ_PTR fop;
 			fop = Player_FieldOBJGet( fsys->player );
-			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-				FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹	
+			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+				FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†	
 				(emw->call_seq) ++;
 			}
 		}
@@ -872,9 +872,9 @@ static BOOL MJUMPEVT_MapFadeInDunOut(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
-* @brief 2:ƒWƒƒƒ“ƒvŒãAƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒ[ƒVƒ‡ƒ“‚ğl‚¦A©‹@‚Ì‰ŠúˆÊ’u‚ğ•ÏX‚·‚é
+* @brief 2:ã‚¸ãƒ£ãƒ³ãƒ—å¾Œã€ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è€ƒãˆã€è‡ªæ©Ÿã®åˆæœŸä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 *	
-* @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+* @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 *
 * @return	none
 */
@@ -884,8 +884,8 @@ static void SetEscalatorIOPos(FIELDSYS_WORK *fsys)
 	int dir;
 	VecFx32 vec;
 	
-	//ƒ}ƒbƒvoŒ»ˆÊ’u‚©‚ç¶‰E‚PƒOƒŠƒbƒh‚ÌêŠ‚É©‹@‚ğo‚·
-	//©‹@‚ÌÀ•W,•ûŒü‚ğæ“¾
+	//ãƒãƒƒãƒ—å‡ºç¾ä½ç½®ã‹ã‚‰å·¦å³ï¼‘ã‚°ãƒªãƒƒãƒ‰ã®å ´æ‰€ã«è‡ªæ©Ÿã‚’å‡ºã™
+	//è‡ªæ©Ÿã®åº§æ¨™,æ–¹å‘ã‚’å–å¾—
 	dir = Player_DirGet( fsys->player );
 	Player_VecPosGet( fsys->player, &vec );
 	if (dir == DIR_RIGHT){
@@ -893,21 +893,21 @@ static void SetEscalatorIOPos(FIELDSYS_WORK *fsys)
 	}else{	//(dir == DIR_LEFT)
 		vec.x += (FX32_ONE*16);
 	}
-	//‚‚³æ“¾
+	//é«˜ã•å–å¾—
 	vec.y = GetHeightPack(	fsys, vec.y, vec.x, vec.z, NULL);
 
-	//À•WƒZƒbƒg
+	//åº§æ¨™ã‚»ãƒƒãƒˆ
 	Player_VecPosInit( fsys->player, &vec, dir );
-	//©‹@À•W‚ğˆÚ“®‚µ‚½‚Ì‚ÅƒoƒCƒ“ƒh‚µ‚È‚¨‚µ
+	//è‡ªæ©Ÿåº§æ¨™ã‚’ç§»å‹•ã—ãŸã®ã§ãƒã‚¤ãƒ³ãƒ‰ã—ãªãŠã—
 	GFC_ReSetCameraTarget(Player_VecPosPtrGet(fsys->player), fsys->camera_ptr);
 	GFC_BindCameraTarget(Player_VecPosPtrGet(fsys->player), fsys->camera_ptr);
 }
 
 //-----------------------------------------------------------------------------
 /**
-* @brief 3:ƒWƒƒƒ“ƒvŒãAŠK’iƒAƒjƒ[ƒVƒ‡ƒ“‚ğl‚¦A©‹@‚Ì‰ŠúˆÊ’u‚ğ•ÏX‚·‚é
+* @brief 3:ã‚¸ãƒ£ãƒ³ãƒ—å¾Œã€éšæ®µã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è€ƒãˆã€è‡ªæ©Ÿã®åˆæœŸä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 *	
-* @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+* @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 *
 * @return	none
 */
@@ -917,8 +917,8 @@ static void SetStairsIOPos(FIELDSYS_WORK *fsys)
 	int x,z,dir;
 	VecFx32 vec;
 	u8 attr;
-	//©‹@‚ÌŒü‚«‚ğ‚İ‚ÄAƒ}ƒbƒvoŒ»ˆÊ’u‚©‚ç¶‰E‚PƒOƒŠƒbƒh—£‚ê‚½êŠ‚É©‹@‚ğo‚·
-	//©‹@‚ÌÀ•W,•ûŒü‚ğæ“¾
+	//è‡ªæ©Ÿã®å‘ãã‚’ã¿ã¦ã€ãƒãƒƒãƒ—å‡ºç¾ä½ç½®ã‹ã‚‰å·¦å³ï¼‘ã‚°ãƒªãƒƒãƒ‰é›¢ã‚ŒãŸå ´æ‰€ã«è‡ªæ©Ÿã‚’å‡ºã™
+	//è‡ªæ©Ÿã®åº§æ¨™,æ–¹å‘ã‚’å–å¾—
 	dir = Player_DirGet( fsys->player );
 	Player_VecPosGet( fsys->player, &vec );
 	
@@ -926,22 +926,22 @@ static void SetStairsIOPos(FIELDSYS_WORK *fsys)
 	z = Player_NowGPosZGet( fsys->player );
 	
 	attr = GetAttributeLSB( fsys, x, z );
-	if (MATR_IsRightStairs(attr)){//‰EŠK’i‚Ìê‡
-		vec.x += (FX32_ONE*16);	//‰E‚Ö‚PƒOƒŠƒbƒh
+	if (MATR_IsRightStairs(attr)){//å³éšæ®µã®å ´åˆ
+		vec.x += (FX32_ONE*16);	//å³ã¸ï¼‘ã‚°ãƒªãƒƒãƒ‰
 		dir = DIR_LEFT;
-	}else if(MATR_IsLeftStairs(attr)){	//¶ŠK’i‚Ìê‡
-		vec.x -= (FX32_ONE*16);	//¶‚Ö‚PƒOƒŠƒbƒh
+	}else if(MATR_IsLeftStairs(attr)){	//å·¦éšæ®µã®å ´åˆ
+		vec.x -= (FX32_ONE*16);	//å·¦ã¸ï¼‘ã‚°ãƒªãƒƒãƒ‰
 		dir = DIR_RIGHT;
 	}else{
-		//GF_ASSERT(0&&"ŠK’iƒAƒgƒŠƒrƒ…[ƒg‚ª‚Í‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñ");
-		OS_Printf("ŠK’iƒAƒgƒŠƒrƒ…[ƒg‚ª‚Í‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñ\n");
+		//GF_ASSERT(0&&"éšæ®µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãŒã¯ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“");
+		OS_Printf("éšæ®µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãŒã¯ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“\n");
 	}
 	
-	//‚‚³æ“¾
+	//é«˜ã•å–å¾—
 	vec.y = GetHeightPack(	fsys, vec.y, vec.x, vec.z, NULL);
-	//À•WƒZƒbƒg
+	//åº§æ¨™ã‚»ãƒƒãƒˆ
 	Player_VecPosInit( fsys->player, &vec, dir );
-	//©‹@À•W‚ğˆÚ“®‚µ‚½‚Ì‚ÅƒoƒCƒ“ƒh‚µ‚È‚¨‚µ
+	//è‡ªæ©Ÿåº§æ¨™ã‚’ç§»å‹•ã—ãŸã®ã§ãƒã‚¤ãƒ³ãƒ‰ã—ãªãŠã—
 	GFC_ReSetCameraTarget(Player_VecPosPtrGet(fsys->player), fsys->camera_ptr);
 	GFC_BindCameraTarget(Player_VecPosPtrGet(fsys->player), fsys->camera_ptr);
 }

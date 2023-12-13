@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_038.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			038�@�ꌂ�œG��퓬�s�\�ɂ���i�G�̃|�P�����̃��x����������荂���Ɠ�����Ȃ��B�Ⴂ�قǖ������������Ȃ�j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			038　一撃で敵を戦闘不能にする（敵のポケモンのレベルが自分より高いと当たらない。低いほど命中率が高くなる）
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

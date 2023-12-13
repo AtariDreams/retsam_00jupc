@@ -5,7 +5,7 @@
 /*              Copyright (C) 2003-2004 NINTENDO Co.,Ltd.           */
 /********************************************************************/
 /*
-	ROMƒwƒbƒ_—Ìˆæ’è‹`
+	ROMãƒ˜ãƒƒãƒ€é ˜åŸŸå®šç¾©
 
 
 	$Log: mb_rom_header.h,v $
@@ -19,7 +19,7 @@
 	add own_size member.
 	
 	Revision 1.1  2004/09/07 04:26:13  sato_masaki
-	rom_header.h‚ğmb_rom_header.h‚ÉƒŠƒl[ƒ€B
+	rom_header.hã‚’mb_rom_header.hã«ãƒªãƒãƒ¼ãƒ ã€‚
 	
 	Revision 1.6  2004/09/03 12:07:59  sato_masaki
 	small fix
@@ -28,10 +28,10 @@
 	fix typo
 	
 	Revision 1.4  2004/09/03 07:06:28  sato_masaki
-	ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+	ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 	
 	Revision 1.2  2004/08/07 08:20:31  yosiokat
-	RomHeader‚Ìî•ñ‚ğˆê•”C³B
+	RomHeaderã®æƒ…å ±ã‚’ä¸€éƒ¨ä¿®æ­£ã€‚
 	
 	Revision 1.1  2004/08/07 07:15:20  yosizaki
 	(none)
@@ -40,19 +40,19 @@
 	(none)
 	
 	Revision 1.1  2004/07/14 07:40:16  Yosiokat
-	V‹K’Ç‰ÁB
+	æ–°è¦è¿½åŠ ã€‚
 	
 	Revision 1.5  2004/06/23 08:48:38  Yosiokat
-	ƒfƒoƒbƒKã‚Å‚Ì‹N“®ƒƒ‚ƒŠƒNƒŠƒA—}§ƒtƒ‰ƒOdisableClearMemoryPad‚ğ’Ç‰ÁB
+	ãƒ‡ãƒãƒƒã‚¬ä¸Šã§ã®èµ·å‹•æ™‚ãƒ¡ãƒ¢ãƒªã‚¯ãƒªã‚¢æŠ‘åˆ¶ãƒ•ãƒ©ã‚°disableClearMemoryPadã‚’è¿½åŠ ã€‚
 	
 	Revision 1.4  2004/06/17 12:27:32  Yosiokat
-	ROMƒwƒbƒ_‚ÉŒŸ¸ƒJ[ƒh—pƒtƒ‰ƒOinspectCard‚ğ’Ç‰ÁB
+	ROMãƒ˜ãƒƒãƒ€ã«æ¤œæŸ»ã‚«ãƒ¼ãƒ‰ç”¨ãƒ•ãƒ©ã‚°inspectCardã‚’è¿½åŠ ã€‚
 	
 	Revision 1.3  2004/05/21 06:12:18  Yosiokat
-	ƒwƒbƒ_‚ÌC++‘Î‰•”•ª‚Åu};v‚ÌƒZƒ~ƒRƒƒ“‚ªƒGƒ‰[‚É‚È‚Á‚Ä‚¢‚½‚Ì‚ÅAíœB
+	ãƒ˜ãƒƒãƒ€ã®C++å¯¾å¿œéƒ¨åˆ†ã§ã€Œ};ã€ã®ã‚»ãƒŸã‚³ãƒ­ãƒ³ãŒã‚¨ãƒ©ãƒ¼ã«ãªã£ã¦ã„ãŸã®ã§ã€å‰Šé™¤ã€‚
 	
 	Revision 1.2  2004/05/19 08:25:28  yosiokat
-	XVƒƒO‚Ì’Ç‰ÁB
+	æ›´æ–°ãƒ­ã‚°ã®è¿½åŠ ã€‚
 	
 
 */
@@ -70,7 +70,7 @@ extern "C" {
 
 
 
-// ROMƒwƒbƒ_
+// ROMãƒ˜ãƒƒãƒ€
 //----------------------------------------------------------------------
 typedef struct
 {
@@ -90,8 +90,8 @@ typedef struct
     u8      soft_version;              // Soft version
     u8      comp_arm9_boot_area:1;     // Compress arm9 boot area
     u8      comp_arm7_boot_area:1;     // Compress arm7 boot area
-    u8      inspectCard:1;             // ŒŸ¸ƒJ[ƒhƒtƒ‰ƒO
-    u8      disableClearMemoryPad:1;   // IPLƒƒ‚ƒŠƒpƒbƒhƒNƒŠƒAEƒfƒBƒZ[ƒuƒ‹ƒtƒ‰ƒO
+    u8      inspectCard:1;             // æ¤œæŸ»ã‚«ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+    u8      disableClearMemoryPad:1;   // IPLãƒ¡ãƒ¢ãƒªãƒ‘ãƒƒãƒ‰ã‚¯ãƒªã‚¢ãƒ»ãƒ‡ã‚£ã‚»ãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°
     u8:     0;
 
     //
@@ -158,12 +158,12 @@ RomHeader;
 
 
 //----------------------------------------------------------------------
-// ROMƒwƒbƒ_ƒAƒhƒŒƒXŠl“¾
+// ROMãƒ˜ãƒƒãƒ€ã‚¢ãƒ‰ãƒ¬ã‚¹ç²å¾—
 //----------------------------------------------------------------------
 
 #define GetRomHeaderAddr()  ((RomHeader *)HW_ROM_HEADER_BUF)
 
-//EROMƒwƒbƒ_ƒAƒhƒŒƒX‚ğŠl“¾‚µ‚Ü‚·B
+//ãƒ»ROMãƒ˜ãƒƒãƒ€ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç²å¾—ã—ã¾ã™ã€‚
 
 
 

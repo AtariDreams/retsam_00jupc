@@ -1,61 +1,61 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�V�X�e����� (overview)</TITLE>
+<TITLE>システム状態 (overview)</TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">�V�X�e����� (overview)</H1>
-<H2>����</H2>
-<P>���̃J�e�S���ɓ����Ă���֐��́A���CPSR ( Current Program Status Register
-) ��R�v���Z�b�T15 (CP15) ���̏�Ԃ��������̂ɂȂ�܂��B</P>
-<P>CPSR �����ɂ́AFIQ ���荞�݂� IRQ ���荞�݂ɑ΂��鋖�r�b�g�����݂��܂��B</P>
+<H1 align="left">システム状態 (overview)</H1>
+<H2>説明</H2>
+<P>このカテゴリに入っている関数は、主にCPSR ( Current Program Status Register
+) やコプロセッサ15 (CP15) 内の状態を扱うものになります。</P>
+<P>CPSR 内部には、FIQ 割り込みと IRQ 割り込みに対する許可ビットが存在します。</P>
 <BLOCKQUOTE><IMG src="image_cpsr.gif" border="0"></BLOCKQUOTE>
-<P>I �r�b�g���Z�b�g����Ă���ꍇ�� IRQ ���荞�݂��f�B�Z�[�u���ƂȂ�AF �r�b�g���Z�b�g����Ă���ꍇ��
-FIQ ���荞�݂��f�B�Z�[�u���ƂȂ�܂��B</P>
+<P>I ビットがセットされている場合は IRQ 割り込みがディセーブルとなり、F ビットがセットされている場合は
+FIQ 割り込みがディセーブルとなります。</P>
 <HR>
-<P><B>���荞�ݏ�� (IRQ)</B></P>
-<P><CODE><A href="OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE> �� I �r�b�g���N���A���܂��B���Ȃ킿�AIRQ ���荞�݂��C�l�[�u���ɂ��܂��B</P>
-<P><CODE><A href="OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE> �� I �r�b�g���Z�b�g���܂��B���Ȃ킿�AIRQ ���荞�݂��f�B�Z�[�u���ɂ��܂��B</P>
-<P><CODE><A href="OS_RestoreInterrupts.html">OS_RestoreInterrupts()</A></CODE> �� I �r�b�g���w��̏�Ԃɂ��܂��B���Ȃ킿 IRQ���荞�݂��w��̏�Ԃɐݒ肵�܂��B</P>
-<P>�����̊֐��́A�ύX����ȑO�̏�Ԃ�Ԃ��܂��̂ŁA<CODE>OS_EnableInterrupts()</CODE> �� <CODE>OS_DisableInterrupts()</CODE> �ŏ�Ԃ�ύX���ĉ��炩�̏������s�Ȃ������ <CODE>OS_RestoreInterrupts()</CODE> �Ō��̏�Ԃɖ߂����Ƃ��\�ł��B���ۂɁA�ʏ�͎��̗�̂悤�Ɋ��荞�ݏ�Ԃ̕ω��Ƃ��̕��A�Ƃ��y�A�Ŏg�p���܂��B</P>
-<BLOCKQUOTE><CODE>(��)<BR>
+<P><B>割り込み状態 (IRQ)</B></P>
+<P><CODE><A href="OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE> は I ビットをクリアします。すなわち、IRQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE> は I ビットをセットします。すなわち、IRQ 割り込みをディセーブルにします。</P>
+<P><CODE><A href="OS_RestoreInterrupts.html">OS_RestoreInterrupts()</A></CODE> は I ビットを指定の状態にします。すなわち IRQ割り込みを指定の状態に設定します。</P>
+<P>これらの関数は、変更する以前の状態を返しますので、<CODE>OS_EnableInterrupts()</CODE> や <CODE>OS_DisableInterrupts()</CODE> で状態を変更して何らかの処理を行なった後は <CODE>OS_RestoreInterrupts()</CODE> で元の状態に戻すことが可能です。実際に、通常は次の例のように割り込み状態の変化とその復帰とをペアで使用します。</P>
+<BLOCKQUOTE><CODE>(例)<BR>
 OSIntrMode enabled = OS_EnableInterrups();<BR>
-�@�@�@�@:<BR>
+　　　　:<BR>
 (void)OS_RestoreInterrupts( enabled );</CODE></BLOCKQUOTE>
 <HR>
-<P><B>���荞�ݏ�� (IRQ �� FIQ)</B></P>
-<P><FONT color="#ff0033">FIQ ���荞�݂̓f�o�b�O�c�[���Ŏg�p���Ă��邽�߁A�ʏ�A�v���P�[�V�������g�p���邱�Ƃ͏o���܂���B�܂��g���K�v������܂���B</FONT></P>
-<P>IRQ ���荞�݂Ɋւ���֐��Ɠ��l�ɁAIRQ ���荞�݂� FIQ ���荞�݂̗����𓯎��ɐݒ肷��֐����p�ӂ���Ă��܂��B</P>
-<P><CODE><A href="OS_EnableInterrupts_IrqAndFiq.html">OS_EnableInterrupts_IrqAndFiq()</A></CODE> �� I �r�b�g�� F �r�b�g���N���A���܂��B���Ȃ킿�AIRQ ���荞�݂� FIQ ���荞�݂��C�l�[�u���ɂ��܂��B</P>
-<P><CODE><A href="OS_DisableInterrupts_IrqAndFiq.html">OS_DisableInterrupts_IrqAndFiq()</A></CODE> �� I �r�b�g�� F �r�b�g���Z�b�g���܂��B���Ȃ킿�AIRQ ���荞�݂� FIQ ���荞�݂��C�l�[�u���ɂ��܂��B</P>
-<P><CODE><A href="OS_RestoreInterrupts_IrqAndFiq.html">OS_RestoreInterrups()_IrqAndFiq()</A></CODE> �� I �r�b�g�� F �r�b�g���w��̏�Ԃɂ��܂��B���Ȃ킿 IRQ ���荞�݂� FIQ
-���荞�݂��w��̏�Ԃɐݒ肵�܂��B</P>
-<P>����� IRQ ���荞�݂� FIQ ���荞�݂Ɋւ���֐��Q���A��ԕ��A�̂��߂� <CODE>OS_RestoreInterrupts_IrqAndFiq()</CODE> ���p�����AEnable - Restore �܂��� Disable - Restore �̃y�A�Œʏ�͎g�p���܂��B</P>
+<P><B>割り込み状態 (IRQ と FIQ)</B></P>
+<P><FONT color="#ff0033">FIQ 割り込みはデバッグツールで使用しているため、通常アプリケーションが使用することは出来ません。また使う必要もありません。</FONT></P>
+<P>IRQ 割り込みに関する関数と同様に、IRQ 割り込みと FIQ 割り込みの両方を同時に設定する関数も用意されています。</P>
+<P><CODE><A href="OS_EnableInterrupts_IrqAndFiq.html">OS_EnableInterrupts_IrqAndFiq()</A></CODE> は I ビットと F ビットをクリアします。すなわち、IRQ 割り込みと FIQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_DisableInterrupts_IrqAndFiq.html">OS_DisableInterrupts_IrqAndFiq()</A></CODE> は I ビットと F ビットをセットします。すなわち、IRQ 割り込みと FIQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_RestoreInterrupts_IrqAndFiq.html">OS_RestoreInterrups()_IrqAndFiq()</A></CODE> は I ビットと F ビットを指定の状態にします。すなわち IRQ 割り込みと FIQ
+割り込みを指定の状態に設定します。</P>
+<P>これら IRQ 割り込みと FIQ 割り込みに関する関数群も、状態復帰のために <CODE>OS_RestoreInterrupts_IrqAndFiq()</CODE> が用いられ、Enable - Restore または Disable - Restore のペアで通常は使用します。</P>
 <HR>
-<P><B>��Ԏ擾(IRQ, �v���Z�b�T���[�h)</B></P>
-<P>���݂� IRQ ���荞�݂̐ݒ���擾����ɂ� <CODE><A href="OS_GetCpsrIrq.html">OS_GetCpsrIrq()</A></CODE> ��p���܂��B</P>
-<P>���݂̃v���Z�b�T���[�h���擾����ɂ́A<CODE><A href="OS_GetProcMode.html">OS_GetProcMode()</A></CODE> ��p���܂��B�Ȃ��A�ʏ�� �V�X�e�����[�h�œ��삵�Ă��܂��B</P>
-<P>�v���Z�b�T���[�h�Ƃ́AARM�A�[�L�e�N�`���� CPU ���샂�[�h�ŁA���[�U���[�h�AFIQ���[�h�AIRQ���[�h�A�X�[�p�o�C�U���[�h�A�A�{�[�g���[�h�A����`���[�h�A�V�X�e�����[�h��7�����݂��܂��B</P>
+<P><B>状態取得(IRQ, プロセッサモード)</B></P>
+<P>現在の IRQ 割り込みの設定を取得するには <CODE><A href="OS_GetCpsrIrq.html">OS_GetCpsrIrq()</A></CODE> を用います。</P>
+<P>現在のプロセッサモードを取得するには、<CODE><A href="OS_GetProcMode.html">OS_GetProcMode()</A></CODE> を用います。なお、通常は システムモードで動作しています。</P>
+<P>プロセッサモードとは、ARMアーキテクチャの CPU 動作モードで、ユーザモード、FIQモード、IRQモード、スーパバイザモード、アボートモード、未定義モード、システムモードの7つが存在します。</P>
 <HR>
-<P><B>�v���O�����̒�~</B></P>
-<P>���݂̃v���Z�b�T�̎��s���~����֐��Ƃ��āA<CODE><A href="OS_Terminate.html">OS_Terminate()</A></CODE> ���p�ӂ���Ă��܂��B���̊֐��̓����ł́AIRQ ���荞�݂��f�B�Z�[�u���ɂ��āA<CODE>OS_Halt()</CODE> ���Ăԃ��[�v�ƂȂ��Ă��܂��B��������͑��̃X���b�h�Ɉڍs���邱�Ƃ�����܂��񂵁A���荞�݃n���h�����Ă΂�邱�Ƃ�����܂���B</P>
+<P><B>プログラムの停止</B></P>
+<P>現在のプロセッサの実行を停止する関数として、<CODE><A href="OS_Terminate.html">OS_Terminate()</A></CODE> が用意されています。この関数の内部では、IRQ 割り込みをディセーブルにして、<CODE>OS_Halt()</CODE> を呼ぶループとなっています。ここからは他のスレッドに移行することもありませんし、割り込みハンドラが呼ばれることもありません。</P>
 <HR>
 <P><B>CPU HALT</B></P>
-<P>CPU �ŉ������邱�Ƃ������Ƃ��ɁACPU ��HALT�����ď���d�͂�ߖ�����邱�Ƃ��o���܂��BHALT
-��Ԃł����Ă����荞�݂��󂯕t���A���A���܂��BARM9 �AARM7 �Ƃ��� <CODE><A href="OS_Halt.html">OS_Halt()</A></CODE> ��HALT��ԂɂȂ�܂��B</P>
-<P>�Ȃ��A���ɃA�v���P�[�V�������ňӎ�����K�v�͂���܂��񂪁AARM9 �ł� CP15
-�̋@�\��HALT��ԂƂȂ�AARM7 �ł̓V�X�e���R�[�����g�p���Ă��܂��B</P>
+<P>CPU で何もすることが無いときに、CPU をHALTさせて消費電力を節約をすることが出来ます。HALT
+状態であっても割り込みを受け付け、復帰します。ARM9 、ARM7 ともに <CODE><A href="OS_Halt.html">OS_Halt()</A></CODE> でHALT状態になります。</P>
+<P>なお、特にアプリケーション側で意識する必要はありませんが、ARM9 では CP15
+の機能でHALT状態となり、ARM7 ではシステムコールを使用しています。</P>
 <HR>
-<P><B>�E�F�C�g</B></P>
-<P><A href="OS_SpinWait.html"><CODE>OS_SpinWait()</CODE></A> �� CPU �ɂ�郋�[�v�Ŏw��̎��Ԃ����E�F�C�g���܂��B�������ACPU �Ń��[�v���Ă��邾���ł��̂ŁA���荞�݂����������肷�邱�ƂŎw��̎��Ԃ��������ԁA�֐�����߂��Ă��Ȃ��ꍇ������܂��B�w��̎��Ԃ́u�Œ���̃E�F�C�g���ԁv�Ɖ��߂��ĉ������B</P>
-<H2>�Q��</H2>
-<P><CODE><A href="../list_os.html#Cpsr">OS�֐��ꗗ(�V�X�e�����)</A></CODE></P>
-<H2>����</H2>
-<P>2004/12/14 �p������ȂǏC��<BR>
-2004/11/09 ����</P>
+<P><B>ウェイト</B></P>
+<P><A href="OS_SpinWait.html"><CODE>OS_SpinWait()</CODE></A> は CPU によるループで指定の時間だけウェイトします。しかし、CPU でループしているだけですので、割り込みが発生したりすることで指定の時間よりも長い間、関数から戻ってこない場合があります。指定の時間は「最低限のウェイト時間」と解釈して下さい。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Cpsr">OS関数一覧(システム状態)</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/12/14 用語や語尾など修正<BR>
+2004/11/09 初版</P>
 </BODY>
 </HTML>

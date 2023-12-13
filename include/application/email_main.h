@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_main.h
- * @brief	Eƒ[ƒ‹‰æ–Ê‚Ìƒwƒbƒ_
+ * @brief	Eãƒ¡ãƒ¼ãƒ«ç”»é¢ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.10.18(–Ø)
+ * @date	2007.10.18(æœ¨)
  */
 //==============================================================================
 #ifndef __EMAIL_MAIN_H__
@@ -13,87 +13,87 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒTƒuƒvƒƒZƒXw’è
+///ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹æŒ‡å®š
 enum{
-	EMAIL_SUBPROC_MENU,					///<ƒƒjƒ…[
-	EMAIL_SUBPROC_ADDRESS_INPUT,		///<Eƒ[ƒ‹“ü—Í
-	EMAIL_SUBPROC_AUTHENTICATE_INPUT,	///<”FØ”Ô†“ü—Í
-	EMAIL_SUBPROC_PASSWORD_INPUT,		///<ƒpƒXƒ[ƒh“ü—Í
-	EMAIL_SUBPROC_ADDRESS_CHECK,		///<Eƒ[ƒ‹Šm”F
-	EMAIL_SUBPROC_GSPROFILE_GET,		///<©•ª‚Ìƒvƒƒtƒ@ƒCƒ‹IDæ“¾ƒ‚[ƒh
+	EMAIL_SUBPROC_MENU,					///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	EMAIL_SUBPROC_ADDRESS_INPUT,		///<Eãƒ¡ãƒ¼ãƒ«å…¥åŠ›
+	EMAIL_SUBPROC_AUTHENTICATE_INPUT,	///<èªè¨¼ç•ªå·å…¥åŠ›
+	EMAIL_SUBPROC_PASSWORD_INPUT,		///<ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›
+	EMAIL_SUBPROC_ADDRESS_CHECK,		///<Eãƒ¡ãƒ¼ãƒ«ç¢ºèª
+	EMAIL_SUBPROC_GSPROFILE_GET,		///<è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDå–å¾—ãƒ¢ãƒ¼ãƒ‰
 	
 	EMAIL_SUBPROC_END,
 };
 
 
-///“ü—Í‰æ–Ê‚Ì‹N“®ƒ‚[ƒh
+///å…¥åŠ›ç”»é¢ã®èµ·å‹•ãƒ¢ãƒ¼ãƒ‰
 enum{
-	EMAIL_MODE_INPUT_EMAIL,			///<Eƒ[ƒ‹“ü—Íƒ‚[ƒh
-	EMAIL_MODE_INPUT_AUTHENTICATE,	///<”FØ”Ô†“ü—Íƒ‚[ƒh
-	EMAIL_MODE_INPUT_PASSWORD,		///<ƒpƒXƒ[ƒh“ü—Íƒ‚[ƒh
-	EMAIL_MODE_INPUT_EMAIL_CHECK,	///<Eƒ[ƒ‹Šm”Fƒ‚[ƒh
+	EMAIL_MODE_INPUT_EMAIL,			///<Eãƒ¡ãƒ¼ãƒ«å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
+	EMAIL_MODE_INPUT_AUTHENTICATE,	///<èªè¨¼ç•ªå·å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
+	EMAIL_MODE_INPUT_PASSWORD,		///<ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
+	EMAIL_MODE_INPUT_EMAIL_CHECK,	///<Eãƒ¡ãƒ¼ãƒ«ç¢ºèªãƒ¢ãƒ¼ãƒ‰
 };
 
-///”FØƒR[ƒh“ü—Í‚ğƒLƒƒƒ“ƒZƒ‹I—¹‚µ‚½ê‡‚Ì•Ô–
+///èªè¨¼ã‚³ãƒ¼ãƒ‰å…¥åŠ›ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã—ãŸå ´åˆã®è¿”äº‹
 #define EMAIL_AUTHENTICATE_CODE_CANCEL		(0xffffffff)
 
-///Eƒ[ƒ‹ƒAƒhƒŒƒX‚Ì•¶š”ƒTƒCƒY(ƒZ[ƒu‚Å‚Í‚È‚­ƒV[ƒ“‚Åg—p‚·‚éƒq[ƒvƒTƒCƒY—p)
-#define EMAIL_ADDRESS_LEN_SIZE		(100)	//STRBUF‚ÌƒTƒCƒY‚È‚Ì‚Å—]—T‚ğ‚à‚Á‚Ä100•¶š•ª
+///Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ–‡å­—æ•°ã‚µã‚¤ã‚º(ã‚»ãƒ¼ãƒ–ã§ã¯ãªãã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚ºç”¨)
+#define EMAIL_ADDRESS_LEN_SIZE		(100)	//STRBUFã®ã‚µã‚¤ã‚ºãªã®ã§ä½™è£•ã‚’ã‚‚ã£ã¦100æ–‡å­—åˆ†
 
-///ƒAƒhƒŒƒX“ü—Í‰æ–Ê‚ğI—¹‚µ‚½‚Ì–ß‚è’l
+///ã‚¢ãƒ‰ãƒ¬ã‚¹å…¥åŠ›ç”»é¢ã‚’çµ‚äº†ã—ãŸæ™‚ã®æˆ»ã‚Šå€¤
 enum{
-	EMAIL_ADDRESS_RET_SET,			///<ƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚ÄI—¹
-	EMAIL_ADDRESS_RET_CANCEL,		///<ƒAƒhƒŒƒX‚ğƒZƒbƒg‚¹‚¸‚ÉƒLƒƒƒ“ƒZƒ‹‚µ‚ÄI—¹
+	EMAIL_ADDRESS_RET_SET,			///<ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦çµ‚äº†
+	EMAIL_ADDRESS_RET_CANCEL,		///<ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã›ãšã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦çµ‚äº†
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///Eƒ[ƒ‹‰æ–Ê§Œä—pƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
+///Eãƒ¡ãƒ¼ãƒ«ç”»é¢åˆ¶å¾¡ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct{
-	PROC *sub_proc;					///<Às’†‚ÌƒTƒuƒvƒƒZƒX
-	SAVEDATA *savedata;				///<ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CONFIG *config;					///<ƒRƒ“ƒtƒBƒO
+	PROC *sub_proc;					///<å®Ÿè¡Œä¸­ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
+	SAVEDATA *savedata;				///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CONFIG *config;					///<ã‚³ãƒ³ãƒ•ã‚£ã‚°
 
-	void 			*heapPtr;		///<NitroDWC‚É“n‚·ƒq[ƒvƒ[ƒN‚Ì‰ğ•ú—pƒ|ƒCƒ“ƒ^
-	NNSFndHeapHandle heapHandle;	///<heapPtr‚ğ32ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚É‡‚í‚¹‚½ƒ|ƒCƒ“ƒ^
+	void 			*heapPtr;		///<NitroDWCã«æ¸¡ã™ãƒ’ãƒ¼ãƒ—ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾ç”¨ãƒã‚¤ãƒ³ã‚¿
+	NNSFndHeapHandle heapHandle;	///<heapPtrã‚’32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã«åˆã‚ã›ãŸãƒã‚¤ãƒ³ã‚¿
 
-	DWCInetControl   stConnCtrl;							// DWCÚ‘±ƒ[ƒN
+	DWCInetControl   stConnCtrl;							// DWCæ¥ç¶šãƒ¯ãƒ¼ã‚¯
 	
-	u16 authenticate_rand_code;		///<ƒ[ƒJƒ‹‚ÅŒˆ’è‚³‚ê‚é”FØƒR[ƒh‚Ìã3Œ…
+	u16 authenticate_rand_code;		///<ãƒ­ãƒ¼ã‚«ãƒ«ã§æ±ºå®šã•ã‚Œã‚‹èªè¨¼ã‚³ãƒ¼ãƒ‰ã®ä¸Š3æ¡
 	
-	u8 sub_menu_recovery_mode;		///<ƒƒjƒ…[‹N“®‚Ìƒ‚[ƒh
+	u8 sub_menu_recovery_mode;		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•æ™‚ã®ãƒ¢ãƒ¼ãƒ‰
 
 	int comm_initialize_ok;
 
-	int now_process;						// Œ»İÀs’†‚ÌƒTƒuƒvƒƒZƒX
-	int	sub_process;						// ¢ŠEŒğŠ·ƒTƒuƒvƒƒOƒ‰ƒ€§Œäƒiƒ“ƒo[
-	int	sub_nextprocess;					// ¢ŠEŒğŠ·ƒTƒuNEXT§Œäƒiƒ“ƒo[
+	int now_process;						// ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
+	int	sub_process;						// ä¸–ç•Œäº¤æ›ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ åˆ¶å¾¡ãƒŠãƒ³ãƒãƒ¼
+	int	sub_nextprocess;					// ä¸–ç•Œäº¤æ›ã‚µãƒ–NEXTåˆ¶å¾¡ãƒŠãƒ³ãƒãƒ¼
 	int sub_process_mode;					// 
-	int	sub_returnprocess;					// nextƒvƒƒZƒX‚ğŒÄ‚ñ‚ÅI—¹‚µ‚½‚Ì–ß‚èƒvƒƒZƒX
+	int	sub_returnprocess;					// nextãƒ—ãƒ­ã‚»ã‚¹ã‚’å‘¼ã‚“ã§çµ‚äº†ã—ãŸæ™‚ã®æˆ»ã‚Šãƒ—ãƒ­ã‚»ã‚¹
 
-	void *sub_proc_parent_work;		///<ƒTƒuPROCŒÄ‚Ño‚µ‚Éì¬‚·‚éparent_work•Ûƒ|ƒCƒ“ƒ^
+	void *sub_proc_parent_work;		///<ã‚µãƒ–PROCå‘¼ã³å‡ºã—æ™‚ã«ä½œæˆã™ã‚‹parent_workä¿æŒãƒã‚¤ãƒ³ã‚¿
 
-	Dpw_Common_Profile dc_profile;					///<‘—MƒvƒƒtƒB[ƒ‹ƒf[ƒ^
-	Dpw_Common_ProfileResult dc_profile_result;		///<‘—MŒ‹‰ÊóMƒ[ƒN
+	Dpw_Common_Profile dc_profile;					///<é€ä¿¡ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+	Dpw_Common_ProfileResult dc_profile_result;		///<é€ä¿¡çµæœå—ä¿¡ãƒ¯ãƒ¼ã‚¯
 	
-	//ŠeƒTƒuPROCŠÔ‚Ìƒf[ƒ^‚Ì‚â‚èæ‚è‚Åg—p
-	u32 ret_password;		///<ƒpƒXƒ[ƒh“ü—Í‚ÌŒ‹‰Ê’l
-	u32 ret_authenticate_code;	///<”FØƒR[ƒh“ü—Í‚ÌŒ‹‰Ê’l(‰º4Œ…)
-	u8 ret_address_flag;		///<Eƒ[ƒ‹ƒAƒhƒŒƒX“ü—Í‰æ–Ê‚ğI—¹‚µ‚½‚Ìó‘Ô
-	u8 subproc_padding[3];	//ƒpƒfƒBƒ“ƒO
-	STRBUF *email_address;			///<Eƒ[ƒ‹ƒAƒhƒŒƒX‚Ì•¶š—ñƒZƒbƒgêŠ
-	STRBUF *now_email_address;		///<Œ»İİ’è‚³‚ê‚Ä‚¢‚éEƒ[ƒ‹ƒAƒhƒŒƒX
+	//å„ã‚µãƒ–PROCé–“ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚„ã‚Šå–ã‚Šã§ä½¿ç”¨
+	u32 ret_password;		///<ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›ã®çµæœå€¤
+	u32 ret_authenticate_code;	///<èªè¨¼ã‚³ãƒ¼ãƒ‰å…¥åŠ›ã®çµæœå€¤(ä¸‹4æ¡)
+	u8 ret_address_flag;		///<Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹å…¥åŠ›ç”»é¢ã‚’çµ‚äº†ã—ãŸæ™‚ã®çŠ¶æ…‹
+	u8 subproc_padding[3];	//ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+	STRBUF *email_address;			///<Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ–‡å­—åˆ—ã‚»ãƒƒãƒˆå ´æ‰€
+	STRBUF *now_email_address;		///<ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	BOOL dpw_tr_init;		///<TRUE:Dpw_Tr_InitÀsÏ‚İ
+	BOOL dpw_tr_init;		///<TRUE:Dpw_Tr_Initå®Ÿè¡Œæ¸ˆã¿
 }EMAIL_SYSWORK;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 //-- email_main.c --//
 extern PROC_RESULT EmailProc_Init( PROC * proc, int * seq );
@@ -135,7 +135,7 @@ extern void Email_Ascii_to_Strcode(char *src, STRBUF *dest, int heap_id);
 extern BOOL ov98_2249A80(STRBUF *strbuf, int heap_id);
 extern void ov98_2249ACC(const char *address, u32 *dest, int heap_id);
 
-//-- email_test.c ¦Œã‚ÅÁ‚· --//
+//-- email_test.c â€»å¾Œã§æ¶ˆã™ --//
 extern PROC_RESULT EmailAddress_Init( PROC * proc, int * seq );
 extern PROC_RESULT EmailAddress_Main( PROC * proc, int * seq );
 extern PROC_RESULT EmailAddress_End(PROC *proc, int *seq);

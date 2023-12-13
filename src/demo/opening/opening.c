@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	opneing.c
- * @brief	ƒI[ƒvƒjƒ“ƒO
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
  * @author	Satoshi Nohara
  * @date	2005.12.08
  */
@@ -35,42 +35,42 @@
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒN
+//	ãƒ‡ãƒãƒƒã‚¯
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒV[ƒPƒ“ƒX’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
-	SEQ_WELCOME_PM_WORLD,				//ƒI[ƒLƒh”ŽŽmu‚æ‚¤‚±‚»Iv
-	SEQ_KEY_GUIDE,						//‘€ìà–¾
-	SEQ_GAME_GUIDE,						//ƒQ[ƒ€à–¾
-	SEQ_SEX_CHOICE,						//«•Ê‘I‘ð
-	SEQ_NAME_INPUT,						//–¼‘O“ü—Í
-	SEQ_RIVAL_NAME,						//ƒ‰ƒCƒoƒ‹–¼‘O“ü—Í
-	SEQ_ID_CHOICE,						//ID‘I‘ð
-	SEQ_TO_ADVENTURE,					//–`Œ¯‚Ö
+	SEQ_WELCOME_PM_WORLD,				//ã‚ªãƒ¼ã‚­ãƒ‰åšå£«ã€Œã‚ˆã†ã“ãï¼ã€
+	SEQ_KEY_GUIDE,						//æ“ä½œèª¬æ˜Ž
+	SEQ_GAME_GUIDE,						//ã‚²ãƒ¼ãƒ èª¬æ˜Ž
+	SEQ_SEX_CHOICE,						//æ€§åˆ¥é¸æŠž
+	SEQ_NAME_INPUT,						//åå‰å…¥åŠ›
+	SEQ_RIVAL_NAME,						//ãƒ©ã‚¤ãƒãƒ«åå‰å…¥åŠ›
+	SEQ_ID_CHOICE,						//IDé¸æŠž
+	SEQ_TO_ADVENTURE,					//å†’é™ºã¸
 	SEQ_EXIT,
 };
 
-#define OPENING_FADE_SYNC		(8)		//ƒtƒF[ƒhsync”
+#define OPENING_FADE_SYNC		(8)		//ãƒ•ã‚§ãƒ¼ãƒ‰syncæ•°
 
-#define OPENING_MSG_BUF_SIZE	(800)//(1024)	//ƒƒbƒZ[ƒWƒTƒCƒY
-#define OPENING_MENU_BUF_SIZE	(64)	//ƒƒjƒ…[ƒTƒCƒY
+#define OPENING_MSG_BUF_SIZE	(800)//(1024)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚µã‚¤ã‚º
+#define OPENING_MENU_BUF_SIZE	(64)	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚µã‚¤ã‚º
 
-//ƒƒbƒZ[ƒW•\Ž¦ˆÊ’u
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä½ç½®
 enum{
 	OP_OOKIDO_X		= 0, 
 	OP_OOKIDO_Y		= 0,
@@ -80,36 +80,36 @@ enum{
 	OP_GAME_GUIDE_Y = 48,
 };
 
-//ƒI[ƒLƒhOBJƒXƒNƒ[ƒ‹
-#define OP_OOKIDO_SCR_SPD		(2)		//ƒXƒNƒ[ƒ‹ƒXƒs[ƒh
+//ã‚ªãƒ¼ã‚­ãƒ‰OBJã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+#define OP_OOKIDO_SCR_SPD		(2)		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define OP_OOKIDO_SCR_END		(140 * FX32_ONE)
 //#define OP_OOKIDO_SCR_END_2		(90 * FX32_ONE)
-#define OP_OOKIDO_SCR_END_2		(86 * FX32_ONE)	//opening_obj.c‚Ìƒf[ƒ^‚Æ‡‚í‚¹‚é
+#define OP_OOKIDO_SCR_END_2		(86 * FX32_ONE)	//opening_obj.cã®ãƒ‡ãƒ¼ã‚¿ã¨åˆã‚ã›ã‚‹
 
-//ŽålŒöBGƒXƒNƒ[ƒ‹
-#define OP_HERO_SCR_START		(-140)//(-120)	//ƒXƒNƒ[ƒ‹I—¹
-#define OP_HERO_SCR_SPD			(4)		//ƒXƒNƒ[ƒ‹ƒCƒ“ƒXƒs[ƒh
-#define OP_HERO_SCR_SPD2		(2)		//ƒXƒNƒ[ƒ‹’†SƒXƒs[ƒh
-#define OP_HERO_SCR_END			(-70)	//ƒXƒNƒ[ƒ‹I—¹
+//ä¸»äººå…¬BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+#define OP_HERO_SCR_START		(-140)//(-120)	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†
+#define OP_HERO_SCR_SPD			(4)		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define OP_HERO_SCR_SPD2		(2)		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸­å¿ƒã‚¹ãƒ”ãƒ¼ãƒ‰
+#define OP_HERO_SCR_END			(-70)	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†
 
-#define AFF_SCALE_END			(0x700)	//(0x200)	//k¬’l
+#define AFF_SCALE_END			(0x700)	//(0x200)	//ç¸®å°å€¤
 
-//–¼‘O“ü—Íƒ‚[ƒh
+//åå‰å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
 enum{
 	OP_NAMEIN_MODE_HERO = 0,
 	OP_NAMEIN_MODE_RIVAL,
 };
 
-//ƒpƒŒƒbƒg–{”
+//ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define OP_DEMO_PAL				(4)		
 
-//ƒJ[ƒ\ƒ‹‚ð“®‚©‚·‚Ü‚Å‚ÌƒEƒFƒCƒg
+//ã‚«ãƒ¼ã‚½ãƒ«ã‚’å‹•ã‹ã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define OP_YESNO_WAIT			(3)
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -137,7 +137,7 @@ static void NextSeq( OPENING_WORK* wk, int* seq, int next );
 static void OpeningAff( OPENING_WORK *wk );
 static void OpeningAffReset(void);
 
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk );
 static BOOL Seq_KeyGuide( OPENING_WORK* wk );
 static BOOL Seq_GameGuide( OPENING_WORK* wk );
@@ -147,12 +147,12 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk );
 static BOOL Seq_IdChoice( OPENING_WORK* wk );
 static BOOL Seq_ToAdventure( OPENING_WORK* wk );
 
-//–¼‘O“ü—Í
+//åå‰å…¥åŠ›
 static void OpeningNameInCall( OPENING_WORK* wk, u32 mode );
 static void OpeningNameInMainTCB( TCB_PTR tcb, void* work );
 static void OpeningRecover( OPENING_WORK* wk, u32 mode );
 
-//‹¤’Ê‰Šú‰»AI—¹
+//å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 static void opening_init_sub();
 static void opening_init_sub2( OPENING_WORK* wk );
 static void opening_end_sub( OPENING_WORK* wk );
@@ -164,18 +164,18 @@ static void opening_hero_fade_out( OPENING_WORK* wk );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT OpeningProc_Init( PROC * proc, int * seq )
@@ -183,8 +183,8 @@ PROC_RESULT OpeningProc_Init( PROC * proc, int * seq )
 	int i;
 	OPENING_WORK * wk;
 
-	//PLAYER_BGM‚Åƒ^ƒCƒgƒ‹AƒI[ƒvƒjƒ“ƒO‚ð–Â‚ç‚·‚æ‚¤‚É‚·‚é
-	Snd_DataSetByScene( SND_SCENE_OPENING, SEQ_OPENING, 1 );	//ƒI[ƒvƒjƒ“ƒO‹ÈÄ¶
+	//PLAYER_BGMã§ã‚¿ã‚¤ãƒˆãƒ«ã€ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚’é³´ã‚‰ã™ã‚ˆã†ã«ã™ã‚‹
+	Snd_DataSetByScene( SND_SCENE_OPENING, SEQ_OPENING, 1 );	//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°æ›²å†ç”Ÿ
 
 	opening_init_sub();
 
@@ -196,92 +196,92 @@ PROC_RESULT OpeningProc_Init( PROC * proc, int * seq )
 
 	opening_init_sub2(wk);
 
-	//’j—ŽålŒöBG‚ÍÁ‚µ‚Ä‚¨‚­
+	//ç”·å¥³ä¸»äººå…¬BGã¯æ¶ˆã—ã¦ãŠã
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 
 	(*seq) = SEQ_WELCOME_PM_WORLD;
 
 	wk->proc	= proc;
 	wk->sv		= ((MAINWORK *)PROC_GetParentWork(wk->proc))->savedata;
-	wk->config	= SaveData_GetConfig( wk->sv );	//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+	wk->config	= SaveData_GetConfig( wk->sv );	//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT OpeningProc_Main( PROC * proc, int * seq )
 {
 	OPENING_WORK * wk  = PROC_GetWork( proc );
 
-	//–¼‘O“ü—ÍŠÄŽ‹
+	//åå‰å…¥åŠ›ç›£è¦–
 	if( wk->tcb != NULL ){
 		return PROC_RES_CONTINUE;
 	}
 
 	switch( *seq ){
 
-	//ƒI[ƒLƒh”ŽŽmu‚æ‚¤‚±‚»Iv
+	//ã‚ªãƒ¼ã‚­ãƒ‰åšå£«ã€Œã‚ˆã†ã“ãï¼ã€
 	case SEQ_WELCOME_PM_WORLD:
 		if( Seq_WelcomePMWorld(wk) == TRUE ){
 			NextSeq( wk, seq, wk->ret_work );
-			wk->ret_work = 0;	//ƒNƒŠƒA
+			wk->ret_work = 0;	//ã‚¯ãƒªã‚¢
 		}
 		break;
 
-	//‘€ìà–¾
+	//æ“ä½œèª¬æ˜Ž
 	case SEQ_KEY_GUIDE:
 		if( Seq_KeyGuide(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_WELCOME_PM_WORLD );
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Ž
 	case SEQ_GAME_GUIDE:				
 		if( Seq_GameGuide(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_WELCOME_PM_WORLD );
 		}
 		break;
 
-	//«•Ê‘I‘ð
+	//æ€§åˆ¥é¸æŠž
 	case SEQ_SEX_CHOICE:		
 		if( Seq_SexChoice(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_NAME_INPUT );
 		}
 		break;
 
-	//–¼‘O“ü—Í
+	//åå‰å…¥åŠ›
 	case SEQ_NAME_INPUT:			
 		if( Seq_NameIn(wk) == TRUE ){
 			NextSeq( wk, seq, wk->ret_work );
-			wk->ret_work = 0;	//ƒNƒŠƒA
+			wk->ret_work = 0;	//ã‚¯ãƒªã‚¢
 		}
 		break;
 
-	//ƒ‰ƒCƒoƒ‹–¼‘O“ü—Í
+	//ãƒ©ã‚¤ãƒãƒ«åå‰å…¥åŠ›
 	case SEQ_RIVAL_NAME:			
 		if( Seq_RivalNameIn(wk) == TRUE ){
 			NextSeq( wk, seq, wk->ret_work );
-			wk->ret_work = 0;	//ƒNƒŠƒA
+			wk->ret_work = 0;	//ã‚¯ãƒªã‚¢
 		}
 		break;
 
-	//ID‘I‘ð
+	//IDé¸æŠž
 	case SEQ_ID_CHOICE:			
 		if( Seq_IdChoice(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_TO_ADVENTURE );
 		}
 		break;
 
-	//–`Œ¯‚Ö
+	//å†’é™ºã¸
 	case SEQ_TO_ADVENTURE:		
 		if( Seq_ToAdventure(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_EXIT );
@@ -296,19 +296,19 @@ PROC_RESULT OpeningProc_Main( PROC * proc, int * seq )
 		break;
 	}
 
-	CLACT_Draw( wk->ObjWork.ClactSet );			//ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->ObjWork.ClactSet );			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT OpeningProc_End( PROC * proc, int * seq )
@@ -318,9 +318,9 @@ PROC_RESULT OpeningProc_End( PROC * proc, int * seq )
 
 	opening_end_sub( wk );
 
-	PROC_FreeWork( proc );					//ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );					//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		//VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_OPENING );
 
 	Main_SetNextProc(NO_OVERLAY_ID, &FirstGameProcData);
@@ -329,7 +329,7 @@ PROC_RESULT OpeningProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMÝ’è
+ * @brief	VRAMè¨­å®š
  *
  * @param	none
  *
@@ -339,30 +339,30 @@ PROC_RESULT OpeningProc_End( PROC * proc, int * seq )
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		//GX_VRAM_BG_64_E,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BG_128_A,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		//GX_VRAM_BG_64_E,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BG_128_A,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BGÝ’è
+ * @brief	BGè¨­å®š
  *
- * @param	init	BGLƒf[ƒ^
+ * @param	init	BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -376,7 +376,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	//ƒI[ƒLƒh
+	{	//ã‚ªãƒ¼ã‚­ãƒ‰
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -386,7 +386,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -396,7 +396,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, OP_FRM_FONT );
 	}
 
-	{	//ã‰æ–Ê”wŒi
+	{	//ä¸Šç”»é¢èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -406,7 +406,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME2_M );
 	}
 
-	{	//’j—ŽålŒö(256FAŠg‘åk¬)
+	{	//ç”·å¥³ä¸»äººå…¬(256è‰²ã€æ‹¡å¤§ç¸®å°)
 		GF_BGL_BGCNT_HEADER AffineBgCntDat = {
 			0, 0, 0x400, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -416,7 +416,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME3_M );
 	}
 
-	{	//‰º‰æ–Ê”wŒi
+	{	//ä¸‹ç”»é¢èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -429,9 +429,9 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF’j—ŽålŒö
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šç”·å¥³ä¸»äººå…¬
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -440,7 +440,7 @@ static void SetBgGraphic_Sub2( OPENING_WORK * wk, u32 frm  )
 {
 	u8 sex;
 
-	//256FAŠg‘åk¬
+	//256è‰²ã€æ‹¡å¤§ç¸®å°
 	SetPalette_Sub2();
 
 //	ArcUtil_BgCharSet( ARC_OPENING_GRA, NARC_opening_op_character_NCGR, 
@@ -454,9 +454,9 @@ static void SetBgGraphic_Sub2( OPENING_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -475,9 +475,9 @@ static void SetBgGraphic_Sub4( OPENING_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢èƒŒæ™¯
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -495,9 +495,9 @@ static void SetBgGraphic_Sub5( OPENING_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê‘€ìà–¾
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢æ“ä½œèª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -529,9 +529,9 @@ static void SetBgGraphic_Sub6( OPENING_WORK * wk, u32 frm, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê‘€ìà–¾
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢æ“ä½œèª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -549,9 +549,9 @@ static void SetBgGraphic_Sub7( OPENING_WORK * wk, u32 frm )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–ÊƒQ[ƒ€à–¾
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢ã‚²ãƒ¼ãƒ èª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -569,9 +569,9 @@ static void SetBgGraphic_Sub8( OPENING_WORK * wk, u32 frm )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–ÊƒQ[ƒ€à–¾
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢ã‚²ãƒ¼ãƒ èª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -589,16 +589,16 @@ static void SetBgGraphic_Sub9( OPENING_WORK * wk, u32 frm )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‰ð•ú
+ * @brief	BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void BgExit( GF_BGL_INI * ini )
 {
-	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\Ž¦ƒRƒ“ƒgƒ[ƒ‹(•\Ž¦OFF)
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GX_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 |
@@ -606,13 +606,13 @@ static void BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//ƒTƒu‰æ–Ê‚ÌŠe–Ê‚Ì•\Ž¦ƒRƒ“ƒgƒ[ƒ‹(•\Ž¦OFF)
+	//ã‚µãƒ–ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GXS_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//GF_BGL_BGControlSet‚ÅŽæ“¾‚µ‚½ƒƒ‚ƒŠ‚ðŠJ•ú
+	//GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME0_M );
 	GF_BGL_BGControlExit( ini, OP_FRM_FONT );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME3_M );
@@ -624,7 +624,7 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------
 /**
- * @brief	’j—ŽålŒöƒpƒŒƒbƒgÝ’è
+ * @brief	ç”·å¥³ä¸»äººå…¬ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -647,8 +647,8 @@ static void SetPalette_Sub2(void)
 		adr = dat->pRawData;
 
 		DC_FlushRange( dat->pRawData, (16*2)*4 );
-		//“]‘—‚·‚éƒpƒŒƒbƒgƒAƒhƒŒƒXAƒZƒbƒg‚·‚éƒpƒŒƒbƒgRAMƒIƒtƒZƒbƒgA“]‘—ƒTƒCƒY
-		GX_LoadBGPltt( dat->pRawData, 0, (16*2)*4 );			//ƒƒCƒ“
+		//è»¢é€ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã€ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆRAMã‚ªãƒ•ã‚»ãƒƒãƒˆã€è»¢é€ã‚µã‚¤ã‚º
+		GX_LoadBGPltt( dat->pRawData, 0, (16*2)*4 );			//ãƒ¡ã‚¤ãƒ³
 		sys_FreeMemoryEz(buf);
 	}
 
@@ -657,7 +657,7 @@ static void SetPalette_Sub2(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒiƒpƒŒƒbƒgÝ’è
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -669,7 +669,7 @@ static void SetPalette_Sub4(void)
 	void *buf;
 	NNSG2dPaletteData *dat;
 
-	//ƒo[ƒWƒ‡ƒ“‚ÅƒpƒŒƒbƒg•ÏX
+	//ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 	if( PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM ){
 		buf = ArcUtil_PalDataGet(ARC_OPENING_GRA, NARC_opening_op_demo_d_NCLR, &dat,HEAPID_OPENING);
 	}else{
@@ -677,7 +677,7 @@ static void SetPalette_Sub4(void)
 	}
 		
 	DC_FlushRange( dat->pRawData, (16*2) );
-	GX_LoadBGPltt( dat->pRawData, 0, (16*2) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (16*2) );		//ãƒ¡ã‚¤ãƒ³
 	sys_FreeMemoryEz(buf);
 
 	return;
@@ -685,7 +685,7 @@ static void SetPalette_Sub4(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Ê”wŒiƒpƒŒƒbƒgÝ’è
+ * @brief	ä¸‹ç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -704,7 +704,7 @@ static void SetPalette_Sub5(void)
 	}
 		
 	DC_FlushRange( dat->pRawData, (16*2) );
-	GXS_LoadBGPltt( dat->pRawData, 0, (16*2) );		//ƒTƒu
+	GXS_LoadBGPltt( dat->pRawData, 0, (16*2) );		//ã‚µãƒ–
 	sys_FreeMemoryEz(buf);
 
 	return;
@@ -712,7 +712,7 @@ static void SetPalette_Sub5(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê‘€ìà–¾ƒpƒŒƒbƒgÝ’è
+ * @brief	ä¸Šç”»é¢æ“ä½œèª¬æ˜Žãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -727,7 +727,7 @@ static void SetPalette_Sub6(void)
 	buf = ArcUtil_PalDataGet(ARC_OPENING_GRA, NARC_opening_op_tutorial_NCLR, &dat,HEAPID_OPENING);
 		
 	DC_FlushRange( dat->pRawData, (16*2) );
-	GX_LoadBGPltt( dat->pRawData, 0, (16*2*2) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (16*2*2) );		//ãƒ¡ã‚¤ãƒ³
 	sys_FreeMemoryEz(buf);
 
 	return;
@@ -735,7 +735,7 @@ static void SetPalette_Sub6(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Ê‘€ìà–¾ƒpƒŒƒbƒgÝ’è
+ * @brief	ä¸‹ç”»é¢æ“ä½œèª¬æ˜Žãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -750,7 +750,7 @@ static void SetPalette_Sub7(void)
 	buf = ArcUtil_PalDataGet(ARC_OPENING_GRA, NARC_opening_op_tutorial_NCLR, &dat,HEAPID_OPENING);
 		
 	DC_FlushRange( dat->pRawData, (16*2) );
-	GXS_LoadBGPltt( dat->pRawData, 0, (16*2*2) );		//ƒTƒu
+	GXS_LoadBGPltt( dat->pRawData, 0, (16*2*2) );		//ã‚µãƒ–
 	sys_FreeMemoryEz(buf);
 
 	return;
@@ -758,7 +758,7 @@ static void SetPalette_Sub7(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -769,16 +769,16 @@ static void VBlankFunc( void * work )
 {
 	OPENING_WORK* wk = work;
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->pfd != NULL ){
 		PaletteFadeTrans( wk->pfd );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	//ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	//ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -786,9 +786,9 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	ƒL[
+ * @param	ã‚­ãƒ¼
  *
  * @return	none
  */
@@ -800,7 +800,7 @@ static int KeyCheck( int trg )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX•ÏX
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
  * @param	none
  *
@@ -835,9 +835,9 @@ static const fx32 aff_speed[] =
 
 //--------------------------------------------------------------
 /**
- * @brief	k¬
+ * @brief	ç¸®å°
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -847,27 +847,27 @@ static void OpeningAff( OPENING_WORK *wk )
 	MtxFx22 mtx;
     fx32 rScale_x,rScale_y;
 
-	//Œ³‚Ì‘å‚«‚³
+	//å…ƒã®å¤§ãã•
 	//wk->ScaleX = 1 << FX32_SHIFT;
 	//wk->ScaleY = 1 << FX32_SHIFT;
 	
-	//Šg‘å
+	//æ‹¡å¤§
 	//wk->ScaleX += 2 << (FX32_SHIFT - 6);
 	//wk->ScaleY += 2 << (FX32_SHIFT - 6);
 	
-	//k¬
+	//ç¸®å°
 #if 1
-	//ƒXƒ€[ƒY‚Ék¬
+	//ã‚¹ãƒ ãƒ¼ã‚ºã«ç¸®å°
 	wk->ScaleX -= 1 << (FX32_SHIFT - 6);
 	wk->ScaleY -= 1 << (FX32_SHIFT - 6);
-	//wk->ScaleX -= 2 << (FX32_SHIFT - 6);	//‘‚­‚È‚é
+	//wk->ScaleX -= 2 << (FX32_SHIFT - 6);	//æ—©ããªã‚‹
 	//wk->ScaleY -= 2 << (FX32_SHIFT - 6);
-	//wk->ScaleX -= 1 << (FX32_SHIFT - 2);	//‘‚­‚È‚é
+	//wk->ScaleX -= 1 << (FX32_SHIFT - 2);	//æ—©ããªã‚‹
 	//wk->ScaleY -= 1 << (FX32_SHIFT - 2);
-	//wk->ScaleX -= 1 << (FX32_SHIFT - 8);	//’x‚­‚È‚é
+	//wk->ScaleX -= 1 << (FX32_SHIFT - 8);	//é…ããªã‚‹
 	//wk->ScaleY -= 1 << (FX32_SHIFT - 8);
 #else
-	//’iŠK“I‚Ék¬
+	//æ®µéšŽçš„ã«ç¸®å°
 	//wk->ScaleX -= aff_speed[wk->count];
 	//wk->ScaleY -= aff_speed[wk->count];
 	wk->ScaleX -= aff_speed[wk->count/10];
@@ -894,7 +894,7 @@ static void OpeningAff( OPENING_WORK *wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šg‘åk¬ƒŠƒZƒbƒg
+ * @brief	æ‹¡å¤§ç¸®å°ãƒªã‚»ãƒƒãƒˆ
  *
  * @param	none
  *
@@ -923,11 +923,11 @@ static void OpeningAffReset(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒI[ƒLƒh”ŽŽmu‚æ‚¤‚±‚»Iv
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚ªãƒ¼ã‚­ãƒ‰åšå£«ã€Œã‚ˆã†ã“ãï¼ã€
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
@@ -938,27 +938,27 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒI[ƒLƒhƒf[ƒ^ƒZƒbƒg
+	//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	case 0:
-		//‰ŠúÀ•W‚É–ß‚·
-		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ƒI[ƒLƒh
-		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ƒ‰ƒCƒoƒ‹
-		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//‰e
+		//åˆæœŸåº§æ¨™ã«æˆ»ã™
+		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ãƒ©ã‚¤ãƒãƒ«
+		OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//å½±
 
-		//ã‰æ–Ê”wŒi
+		//ä¸Šç”»é¢èƒŒæ™¯
 		SetBgGraphic_Sub4( wk, GF_BGL_FRAME2_M );
 	
-		//‰º‰æ–Ê”wŒi
+		//ä¸‹ç”»é¢èƒŒæ™¯
 		SetBgGraphic_Sub5( wk, GF_BGL_FRAME2_S );
 
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 
 		wk->sub_seq++;
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 1:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -968,18 +968,18 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 		
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 
 			wk->count--;
 			if( wk->count == 0 ){
 
-				//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 				opening_talk_win_put( wk );
 
-				//‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒI[ƒLƒhƒƒbƒZ[ƒW‚ðƒZƒbƒg
-				//u‚æ‚­‚«‚Ä‚­‚ê‚½‚ËIv
+				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã‚ªãƒ¼ã‚­ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆ
+				//ã€Œã‚ˆããã¦ãã‚ŒãŸã­ï¼ã€
 				msg_id = (wk->cancel == 0) ? msg_opening_01 : msg_opening_20;
 				//msg_id = (wk->cancel == 0) ? msg_opening_07 : msg_opening_07;
 				wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_id, 
@@ -992,9 +992,9 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒI[ƒLƒh‚Ìà–¾
+	//ã‚ªãƒ¼ã‚­ãƒ‰ã®èª¬æ˜Ž
 	case 3:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
@@ -1002,19 +1002,19 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		break;
 
 	case 4:
-		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_HAKASE, OP_OOKIDO_SCR_SPD );	//ƒI[ƒLƒh
-		OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, OP_OOKIDO_SCR_SPD );			//‰e
+		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_HAKASE, OP_OOKIDO_SCR_SPD );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, OP_OOKIDO_SCR_SPD );			//å½±
 		//OS_Printf( "vec.x = %d\n", vec.x );
 
-		//ƒXƒNƒ[ƒ‹I—¹ƒ`ƒFƒbƒN
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( vec.x >= OP_OOKIDO_SCR_END ){
-			//OS_Printf( "I—¹vec.x = %d\n", vec.x );
+			//OS_Printf( "çµ‚äº†vec.x = %d\n", vec.x );
 			wk->sub_seq++;
 		}
 		break;
 
 	case 5:
-		//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		OpeningWriteMenuWin( wk->bgl, &wk->bmpwin[BMPWIN_MENU_1] );
 		
 		OpeningInitMenu( wk, &wk->bmpwin[BMPWIN_MENU_1], 3 );
@@ -1027,9 +1027,9 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//‘I‘ð‘Ò‚¿
+	//é¸æŠžå¾…ã¡
 	case 6:
-		//ƒEƒFƒCƒg
+		//ã‚¦ã‚§ã‚¤ãƒˆ
 		if( wk->count != 0 ){
 			wk->count--;
 			break;
@@ -1051,9 +1051,9 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		};
 		break;
 
-	//ƒuƒ‰ƒbƒNƒAƒEƒg
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 	case 7:
-		//u‚¾‚¢‚¶‚å‚¤‚Ôv‚ð‘I‚ñ‚¾Žž
+		//ã€Œã ã„ã˜ã‚‡ã†ã¶ã€ã‚’é¸ã‚“ã æ™‚
 		if( wk->ret_work == SEQ_SEX_CHOICE ){
 			return TRUE;
 		}
@@ -1064,7 +1064,7 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 8:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -1077,25 +1077,25 @@ static BOOL Seq_WelcomePMWorld( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXF‘€ìà–¾
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ“ä½œèª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 {
 	switch( wk->sub_seq ){
 
-	//‘€ìà–¾ƒf[ƒ^ƒZƒbƒg
+	//æ“ä½œèª¬æ˜Žãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	case 0:
-		//‰ï˜bƒEƒBƒ“ƒhƒE‚ðÁ‚·
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 		BmpTalkWinClear( &wk->bmpwin[BMPWIN_OOKIDO], WINDOW_TRANS_ON );
 
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
 		SetPalette_Sub6();
 		SetPalette_Sub7();
@@ -1103,7 +1103,7 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		SetBgGraphic_Sub6( wk, GF_BGL_FRAME2_M, 0 );
 		SetBgGraphic_Sub7( wk, GF_BGL_FRAME2_S );
 
-		//u‚¢‚ë‚¢‚ë‚Èv
+		//ã€Œã„ã‚ã„ã‚ãªã€
 		OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_operation_01, 
 							OP_KEY_GUIDE_X, OP_KEY_GUIDE_Y, MSG_NO_PUT,
 							FBMP_COL_WHITE,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1111,7 +1111,7 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 1:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -1119,20 +1119,20 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			wk->sub_seq++;
 		}
 		break;
 
-	//‘€ìà–¾‰æ–Ê1
+	//æ“ä½œèª¬æ˜Žç”»é¢1
 	case 3:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
 			SetBgGraphic_Sub6( wk, GF_BGL_FRAME2_M, 1 );
 
-			//u‚¶‚å‚¤‚°‚³‚ä‚¤‚Év
+			//ã€Œã˜ã‚‡ã†ã’ã•ã‚†ã†ã«ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_operation_02, 
 							OP_KEY_GUIDE_X, OP_KEY_GUIDE_Y, MSG_NO_PUT, 
 							FBMP_COL_WHITE,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1142,13 +1142,13 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//‘€ìà–¾‰æ–Ê2
+	//æ“ä½œèª¬æ˜Žç”»é¢2
 	case 4:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
 			SetBgGraphic_Sub6( wk, GF_BGL_FRAME2_M, 2 );
 
-			//uƒƒjƒ…[‚ðv
+			//ã€Œãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_operation_03, 
 								OP_KEY_GUIDE_X, OP_KEY_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_WHITE,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1158,13 +1158,13 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//‘€ìà–¾‰æ–Ê3
+	//æ“ä½œèª¬æ˜Žç”»é¢3
 	case 5:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
 			SetBgGraphic_Sub6( wk, GF_BGL_FRAME2_M, 3 );
 
-			//u‚µ‚½‚Ì‚ª‚ß‚ñ‚Ív
+			//ã€Œã—ãŸã®ãŒã‚ã‚“ã¯ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_operation_04, 
 								OP_KEY_GUIDE_X, OP_KEY_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_WHITE,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1174,14 +1174,14 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//‘€ìà–¾‰æ–Ê4
+	//æ“ä½œèª¬æ˜Žç”»é¢4
 	case 6:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 			wk->sub_seq++;
 		}
 		break;
 
-	//ƒuƒ‰ƒbƒNƒAƒEƒg
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 	case 7:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -1189,7 +1189,7 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 8:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_GUIDE] );
@@ -1204,25 +1204,25 @@ static BOOL Seq_KeyGuide( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒQ[ƒ€à–¾
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚²ãƒ¼ãƒ èª¬æ˜Ž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameGuide( OPENING_WORK* wk )
 {
 	switch( wk->sub_seq ){
 
-	//ƒQ[ƒ€à–¾ƒf[ƒ^ƒZƒbƒg
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	case 0:
-		//‰ï˜bƒEƒBƒ“ƒhƒE‚ðÁ‚·
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 		BmpTalkWinClear( &wk->bmpwin[BMPWIN_OOKIDO], WINDOW_TRANS_ON );
 
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
 		SetPalette_Sub6();
 		SetPalette_Sub7();
@@ -1230,7 +1230,7 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		SetBgGraphic_Sub8( wk, GF_BGL_FRAME2_M );
 		SetBgGraphic_Sub9( wk, GF_BGL_FRAME2_S );
 
-		//u‚±‚ê‚©‚ç‚Í‚¶‚Ü‚év
+		//ã€Œã“ã‚Œã‹ã‚‰ã¯ã˜ã¾ã‚‹ã€
 		OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_01, 
 							OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1239,7 +1239,7 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 1:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -1247,18 +1247,18 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			wk->sub_seq++;
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê1
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢1
 	case 3:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
-			//u‚Ü‚¿‚â‚Ý‚¿v
+			//ã€Œã¾ã¡ã‚„ã¿ã¡ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_02, 
 								OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1268,11 +1268,11 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê2
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢2
 	case 4:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
-			//u‚»‚µ‚Ä‚±‚Ü‚Á‚Ä‚¢‚év
+			//ã€Œãã—ã¦ã“ã¾ã£ã¦ã„ã‚‹ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_03, 
 								OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1282,11 +1282,11 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê3
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢3
 	case 5:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
-			//u‚Æ‚«‚É‚µ‚å‚¤‚Ô‚ðv
+			//ã€Œã¨ãã«ã—ã‚‡ã†ã¶ã‚’ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_04, 
 								OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1296,11 +1296,11 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê4
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢4
 	case 6:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
-			//u‚Ú‚¤‚¯‚ñ‚ðv
+			//ã€Œã¼ã†ã‘ã‚“ã‚’ã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_05, 
 								OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1310,11 +1310,11 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê5
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢5
 	case 7:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 
-			//u‚»‚ê‚ªv
+			//ã€Œãã‚ŒãŒã€
 			OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_GUIDE], msg_guide_06, 
 								OP_GAME_GUIDE_X, OP_GAME_GUIDE_Y, MSG_NO_PUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
@@ -1324,14 +1324,14 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒQ[ƒ€à–¾‰æ–Ê6
+	//ã‚²ãƒ¼ãƒ èª¬æ˜Žç”»é¢6
 	case 8:
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
 			wk->sub_seq++;
 		}
 		break;
 
-	//ƒuƒ‰ƒbƒNƒAƒEƒg
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 	case 9:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -1339,7 +1339,7 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 10:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_GUIDE] );
@@ -1354,11 +1354,11 @@ static BOOL Seq_GameGuide( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXF«•Ê‘I‘ð
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ€§åˆ¥é¸æŠž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_SexChoice( OPENING_WORK* wk )
@@ -1369,37 +1369,37 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//«•Ê‘I‘ðƒf[ƒ^ƒZƒbƒg
+	//æ€§åˆ¥é¸æŠžãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	case 0:
 		wk->sex = PM_MALE;
 
-		//’j—ŽålŒö(256FAŠg‘åk¬)
+		//ç”·å¥³ä¸»äººå…¬(256è‰²ã€æ‹¡å¤§ç¸®å°)
 		SetBgGraphic_Sub2( wk, GF_BGL_FRAME3_M );
 
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		//opening_talk_win_put( wk );
 		//GF_BGL_BmpWinOn( &wk->bmpwin[BMPWIN_OOKIDO] );
 
-		//ŽålŒöƒXƒNƒ[ƒ‹ƒCƒ“ŠJŽnˆÊ’uƒZƒbƒg
+		//ä¸»äººå…¬ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³é–‹å§‹ä½ç½®ã‚»ãƒƒãƒˆ
 		GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, OP_HERO_SCR_START );
 
 		wk->sub_seq++;
 		break;
 
 	case 1:
-		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_HAKASE, -(OP_OOKIDO_SCR_SPD) );//ƒI[ƒLƒh
-		OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, -(OP_OOKIDO_SCR_SPD) );		//‰e
+		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_HAKASE, -(OP_OOKIDO_SCR_SPD) );//ã‚ªãƒ¼ã‚­ãƒ‰
+		OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, -(OP_OOKIDO_SCR_SPD) );		//å½±
 
-		//ƒXƒNƒ[ƒ‹I—¹ƒ`ƒFƒbƒN
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( vec.x <= OP_OOKIDO_SCR_END_2 ){
-			//‰ŠúÀ•W‚É–ß‚·
-			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ƒI[ƒLƒh
-			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//‰e
+			//åˆæœŸåº§æ¨™ã«æˆ»ã™
+			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//å½±
 			wk->sub_seq++;
 		}
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		msg_id = (wk->cancel == 0) ? msg_opening_02 : msg_opening_18;
 		//msg_id = (wk->cancel == 0) ? msg_opening_07 : msg_opening_07;
@@ -1413,9 +1413,9 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒI[ƒLƒh‚Ìà–¾
+	//ã‚ªãƒ¼ã‚­ãƒ‰ã®èª¬æ˜Ž
 	case 3:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
@@ -1427,35 +1427,35 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒI[ƒLƒhƒpƒŒƒbƒgƒAƒEƒg‘Ò‚¿
+	//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ã‚¦ãƒˆå¾…ã¡
 	case 4:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
 			wk->count--;
 			if( wk->count == 0 ){
-				//’j—ŽålŒöBG•\Ž¦
+				//ç”·å¥³ä¸»äººå…¬BGè¡¨ç¤º
 				GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 				wk->sub_seq++;
 			}
 		}
 		break;
 
-	//ŽålŒöƒXƒNƒ[ƒ‹ƒCƒ“
+	//ä¸»äººå…¬ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³
 	case 5:
 		GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_INC, OP_HERO_SCR_SPD );
 
-		//ƒXƒNƒ[ƒ‹’l‚wŽæ“¾
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¸å–å¾—
 		if( GF_BGL_ScrollGetX(wk->bgl, GF_BGL_FRAME3_M) < OP_HERO_SCR_END ){
 			break;
 		}
 
 		GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, OP_HERO_SCR_END );
 
-		//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		OpeningWriteMenuWin( wk->bgl, &wk->bmpwin[BMPWIN_MENU_2] );
 		
 		OpeningInitMenu( wk, &wk->bmpwin[BMPWIN_MENU_2], 2 );
@@ -1467,9 +1467,9 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//«•Ê‘I‘ðˆ—
+	//æ€§åˆ¥é¸æŠžå‡¦ç†
 	case 6:
-		//ƒEƒFƒCƒg
+		//ã‚¦ã‚§ã‚¤ãƒˆ
 		if( wk->count != 0 ){
 			wk->count--;
 			break;
@@ -1480,7 +1480,7 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		switch( wk->ret_work ){
 		case BMPMENU_NULL:
 		case BMPMENU_CANCEL:
-			//’j—ŽålŒö(256FAŠg‘åk¬)
+			//ç”·å¥³ä¸»äººå…¬(256è‰²ã€æ‹¡å¤§ç¸®å°)
 			if( sys.trg == PAD_KEY_UP ){
 				wk->sex = PM_MALE;
 			}else if( sys.trg == PAD_KEY_DOWN ){
@@ -1497,34 +1497,34 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		};
 		break;
 
-	//‰E‚ÖÁ‚¦‚é
+	//å³ã¸æ¶ˆãˆã‚‹
 	case 7:
-		//ŽålŒöƒXƒNƒ[ƒ‹ƒAƒEƒg
+		//ä¸»äººå…¬ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
 		GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_DEC, OP_HERO_SCR_SPD );
 
-		//ƒXƒNƒ[ƒ‹’l‚wŽæ“¾
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¸å–å¾—
 		if( GF_BGL_ScrollGetX(wk->bgl, GF_BGL_FRAME3_M) > OP_HERO_SCR_START ){
 			break;
 		}
 
 		GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, OP_HERO_SCR_START );
 
-		//’j—ŽålŒöBG”ñ•\Ž¦
+		//ç”·å¥³ä¸»äººå…¬BGéžè¡¨ç¤º
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 
 		wk->count = 10;
 		wk->sub_seq++;
 		break;
 
-	//ŠÔ
+	//é–“
 	case 8:
 		wk->count--;
 		if( wk->count == 0 ){
 
-			//ƒI[ƒLƒhƒtƒF[ƒhƒCƒ“
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+			//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 16, 0, col );
@@ -1532,11 +1532,11 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒI[ƒLƒh•\Ž¦
+	//ã‚ªãƒ¼ã‚­ãƒ‰è¡¨ç¤º
 	case 9:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
-			//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 			opening_talk_win_put( wk );
 
 			wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_opening_03, 
@@ -1547,9 +1547,9 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒƒbƒZ[ƒW•\Ž¦
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case 10:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
@@ -1559,7 +1559,7 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒuƒ‰ƒbƒNƒAƒEƒg
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 	case 11:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -1567,10 +1567,10 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 12:
 		if( WIPE_SYS_EndCheck() == TRUE ){
-			//‰ï˜bƒEƒBƒ“ƒhƒE‚ðÁ‚·
+			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 			BmpTalkWinClear( &wk->bmpwin[BMPWIN_OOKIDO], WINDOW_TRANS_ON );
 			return TRUE;
 		}
@@ -1582,11 +1582,11 @@ static BOOL Seq_SexChoice( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXF–¼‘O“ü—Í
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåå‰å…¥åŠ›
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_NameIn( OPENING_WORK* wk )
@@ -1603,24 +1603,24 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//–¼‘O“ü—ÍŒÄ‚Ño‚µ
+	//åå‰å…¥åŠ›å‘¼ã³å‡ºã—
 	case 2:
 		wk->tcb = NULL;
 		OpeningNameInCall( wk, OP_NAMEIN_MODE_HERO );
 		wk->sub_seq++;
 		break;
 
-	//–¼‘O“ü—ÍI—¹‘Ò‚¿
+	//åå‰å…¥åŠ›çµ‚äº†å¾…ã¡
 	case 3:
-		//–¼‘O“ü—ÍŠÄŽ‹
+		//åå‰å…¥åŠ›ç›£è¦–
 		if( wk->tcb != NULL ){
 			break;
 		}
 
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		opening_talk_win_put( wk );
 
-		//u›‚­‚ñ‚¾‚ËHv
+		//ã€Œâ—‹ãã‚“ã ã­ï¼Ÿã€
 		msg_id = (wk->sex == PM_MALE) ? msg_opening_16 : msg_opening_17;
 		wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_id, 
 										OP_OOKIDO_X, OP_OOKIDO_Y, CONFIG_GetMsgPrintSpeed(wk->config), 
@@ -1630,14 +1630,14 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//«•Ê‘I‘ðˆ—
+	//æ€§åˆ¥é¸æŠžå‡¦ç†
 	case 4:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
 
-		//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		OpeningWriteMenuWin( wk->bgl, &wk->bmpwin[BMPWIN_YESNO] );
 		OpeningInitMenu( wk, &wk->bmpwin[BMPWIN_YESNO], 2 );
 		OpeningSetMenuData( wk, 0, SEQ_RIVAL_NAME, msg_opening_14 );
@@ -1648,7 +1648,7 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		break;
 
 	case 5:
-		//ƒEƒFƒCƒg
+		//ã‚¦ã‚§ã‚¤ãƒˆ
 		if( wk->count != 0 ){
 			wk->count--;
 			break;
@@ -1670,7 +1670,7 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		};
 		break;
 
-	//ŽålŒöBGƒtƒF[ƒhƒAƒEƒg
+	//ä¸»äººå…¬BGãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 6:
 		opening_hero_fade_out( wk );
 		wk->sub_seq++;
@@ -1678,7 +1678,7 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 
 	case 7:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
-			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );		//’j—ŽålŒöBG”ñ•\Ž¦
+			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );		//ç”·å¥³ä¸»äººå…¬BGéžè¡¨ç¤º
 			GF_BGL_ScrollSet( wk->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, 0 );
 
 			wk->count = 15;
@@ -1689,10 +1689,10 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 	case 8:
 		wk->count--;
 		if( wk->count == 0 ){
-			//ƒI[ƒLƒhƒtƒF[ƒhƒCƒ“
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+			//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 16, 0, col );
 			wk->sub_seq++;
@@ -1703,16 +1703,16 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
 			if( wk->ret_work == SEQ_SEX_CHOICE ){
-				OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-				OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-				OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+				OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+				OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+				OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 				wk->cancel = 1;
 			}else{
 
-				MyStatus_SetMyName( SaveData_GetMyStatus(wk->sv), wk->str );//ŽålŒö‚Ì–¼‘OƒZƒbƒg
-				MyStatus_SetMySex( SaveData_GetMyStatus(wk->sv), wk->sex );	//ŽålŒö‚Ì«•ÊƒZƒbƒg
+				MyStatus_SetMyName( SaveData_GetMyStatus(wk->sv), wk->str );//ä¸»äººå…¬ã®åå‰ã‚»ãƒƒãƒˆ
+				MyStatus_SetMySex( SaveData_GetMyStatus(wk->sv), wk->sex );	//ä¸»äººå…¬ã®æ€§åˆ¥ã‚»ãƒƒãƒˆ
 
-				//u‚¢‚¢‚È‚Ü‚¦‚¾‚Èv
+				//ã€Œã„ã„ãªã¾ãˆã ãªã€
 				msg_id = msg_opening_04;
 				wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_id, 
 										OP_OOKIDO_X, OP_OOKIDO_Y, CONFIG_GetMsgPrintSpeed(wk->config), 
@@ -1726,7 +1726,7 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 		break;
 
 	case 10:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
@@ -1739,11 +1739,11 @@ static BOOL Seq_NameIn( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒ‰ƒCƒoƒ‹–¼‘O“ü—Í
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ©ã‚¤ãƒãƒ«åå‰å…¥åŠ›
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
@@ -1754,10 +1754,10 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 	switch( wk->sub_seq ){
 
 	case 0:
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		opening_talk_win_put( wk );
 
-		//u‚©‚ê‚Ì@‚È‚Ü‚¦‚ð@‚¨‚µ‚¦‚Ä‚­‚ê‚È‚¢‚©Hv
+		//ã€Œã‹ã‚Œã®ã€€ãªã¾ãˆã‚’ã€€ãŠã—ãˆã¦ãã‚Œãªã„ã‹ï¼Ÿã€
 		msg_id = (wk->cancel ==0) ? msg_opening_21 : msg_opening_22;
 
 		wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_id, 
@@ -1770,7 +1770,7 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		break;
 
 	case 1:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
@@ -1782,7 +1782,7 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 	case 2:
 		wk->count--;
 		if( wk->count == 0 ){
-			//ƒI[ƒLƒhƒtƒF[ƒhƒAƒEƒg
+			//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 8, 16, col );
 			wk->sub_seq++;
@@ -1790,15 +1790,15 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		break;
 
 #if 0
-	//ƒI[ƒLƒhƒtƒF[ƒhƒAƒEƒgŒã‚ÉAƒ‰ƒCƒoƒ‹‰¡‚©‚çƒXƒ‰ƒCƒhƒCƒ“
+	//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã«ã€ãƒ©ã‚¤ãƒãƒ«æ¨ªã‹ã‚‰ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
 	case 3:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
-			OpeningClactPosSet( &wk->ObjWork, OP_OBJ_RIVAL, 200, 30 );			//À•W•ÏX
+			OpeningClactPosSet( &wk->ObjWork, OP_OBJ_RIVAL, 200, 30 );			//åº§æ¨™å¤‰æ›´
 
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 16, 0, col );
@@ -1807,25 +1807,25 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		break;
 
 	case 4:
-		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_RIVAL, -(OP_OOKIDO_SCR_SPD) );	//ƒ‰ƒCƒoƒ‹
-		//OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, -(OP_OOKIDO_SCR_SPD) );		//‰e
+		vec = OpeningClactMove( &wk->ObjWork, OP_OBJ_RIVAL, -(OP_OOKIDO_SCR_SPD) );	//ãƒ©ã‚¤ãƒãƒ«
+		//OpeningClactMove( &wk->ObjWork, OP_OBJ_KAGE, -(OP_OOKIDO_SCR_SPD) );		//å½±
 
-		//ƒXƒNƒ[ƒ‹I—¹ƒ`ƒFƒbƒN
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( vec.x <= OP_OOKIDO_SCR_END_2 ){
-			//‰ŠúÀ•W‚É–ß‚·
-			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ƒ‰ƒCƒoƒ‹
-			//OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );	//‰e
+			//åˆæœŸåº§æ¨™ã«æˆ»ã™
+			OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ãƒ©ã‚¤ãƒãƒ«
+			//OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );	//å½±
 			wk->sub_seq++;
 		}
 		break;
 #else
-	//ƒI[ƒLƒhƒtƒF[ƒhƒAƒEƒgŒã‚ÉAƒ‰ƒCƒoƒ‹^‚ñ’†‚©‚çƒtƒF[ƒhƒCƒ“
+	//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã«ã€ãƒ©ã‚¤ãƒãƒ«çœŸã‚“ä¸­ã‹ã‚‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case 3:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 16, 0, col );
@@ -1851,31 +1851,31 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhƒAƒEƒgI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆçµ‚äº†å¾…ã¡
 	case 6:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			wk->sub_seq++;
 		}
 		break;
 
-	//–¼‘O“ü—ÍŒÄ‚Ño‚µ
+	//åå‰å…¥åŠ›å‘¼ã³å‡ºã—
 	case 7:
 		wk->tcb = NULL;
 		OpeningNameInCall( wk, OP_NAMEIN_MODE_RIVAL );
 		wk->sub_seq++;
 		break;
 
-	//–¼‘O“ü—ÍI—¹‘Ò‚¿
+	//åå‰å…¥åŠ›çµ‚äº†å¾…ã¡
 	case 8:
-		//–¼‘O“ü—ÍŠÄŽ‹
+		//åå‰å…¥åŠ›ç›£è¦–
 		if( wk->tcb != NULL ){
 			break;
 		}
 
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		opening_talk_win_put( wk );
 
-		//u›‚Æ@‚¢‚¤‚Ì‚©@‚»‚ê‚Å@‚ ‚Á‚Ä‚¢‚é‚©‚ÈHv
+		//ã€Œâ—‹ã¨ã€€ã„ã†ã®ã‹ã€€ãã‚Œã§ã€€ã‚ã£ã¦ã„ã‚‹ã‹ãªï¼Ÿã€
 		msg_id = msg_opening_23;
 		wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_id, 
 										OP_OOKIDO_X, OP_OOKIDO_Y, CONFIG_GetMsgPrintSpeed(wk->config), 
@@ -1885,14 +1885,14 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//u‚Í‚¢E‚¢‚¢‚¦v‘I‘ðˆ—
+	//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€é¸æŠžå‡¦ç†
 	case 9:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
 
-		//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		OpeningWriteMenuWin( wk->bgl, &wk->bmpwin[BMPWIN_YESNO] );
 
 		OpeningInitMenu( wk, &wk->bmpwin[BMPWIN_YESNO], 2 );
@@ -1904,7 +1904,7 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		break;
 
 	case 10:
-		//ƒEƒFƒCƒg
+		//ã‚¦ã‚§ã‚¤ãƒˆ
 		if( wk->count != 0 ){
 			wk->count--;
 			break;
@@ -1927,7 +1927,7 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 		break;
 
 	case 11:
-		//ƒ‰ƒCƒoƒ‹ƒtƒF[ƒhƒAƒEƒg
+		//ãƒ©ã‚¤ãƒãƒ«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 		PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 8, 16, col );
 		wk->sub_seq++;
@@ -1936,10 +1936,10 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 	case 12:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 
-			//ƒI[ƒLƒhƒtƒF[ƒhƒCƒ“
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+			//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 16, 0, col );
@@ -1957,7 +1957,7 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 
 				{
 					/*******************/
-					//MyStatus_SetMyName( my, wk->str );	//ƒ‰ƒCƒoƒ‹‚Ì–¼‘OƒZƒbƒg
+					//MyStatus_SetMyName( my, wk->str );	//ãƒ©ã‚¤ãƒãƒ«ã®åå‰ã‚»ãƒƒãƒˆ
 					/*******************/
 				}
 
@@ -1972,11 +1972,11 @@ static BOOL Seq_RivalNameIn( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFID‘I‘ð
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šIDé¸æŠž
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_IdChoice( OPENING_WORK* wk )
@@ -1985,14 +1985,14 @@ static BOOL Seq_IdChoice( OPENING_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒf[ƒ^ƒZƒbƒg‚È‚Ç
+	//ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆãªã©
 	case 0:
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ƒI[ƒLƒh
-		//OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ƒ‰ƒCƒoƒ‹
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//‰e
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_OFF );	//ã‚ªãƒ¼ã‚­ãƒ‰
+		//OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ãƒ©ã‚¤ãƒãƒ«
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_OFF );		//å½±
 
 #if 0
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		opening_talk_win_put( wk );
 		
 		msg_id = (wk->cancel == 0) ? msg_opening_04 : msg_opening_05;
@@ -2009,22 +2009,22 @@ static BOOL Seq_IdChoice( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 1:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
 
 		{
 			//---------------------------------------------------------------
-			//ID‚ðƒVƒƒƒbƒtƒ‹‚µ‚Ä‘I‚Ôˆ—‚ª‚È‚¢‚Ì‚Å‰¼‚¾‚ªAID‚ðƒZƒbƒg‚µ‚Ä‚¨‚­
+			//IDã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ã¦é¸ã¶å‡¦ç†ãŒãªã„ã®ã§ä»®ã ãŒã€IDã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 			//---------------------------------------------------------------
 			
-			//‘I‘ðŒ‹‰Ê‚©‚çŒˆ’è‚µ‚½ƒgƒŒ[ƒi[ƒ^ƒCƒv‚Ì”Ô†‚»‚Ì‚à‚Ì‚ðŽZo‚·‚é
+			//é¸æŠžçµæžœã‹ã‚‰æ±ºå®šã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã®ç•ªå·ãã®ã‚‚ã®ã‚’ç®—å‡ºã™ã‚‹
 			int view = UnionView_GetTrainerType( 0x1234, wk->sex, 0 );
 
-			//MYSTATUS‚ÉŽ©•ª‚ÌuŒ©‚½–Úv‚ðŠi”[‚·‚é
+			//MYSTATUSã«è‡ªåˆ†ã®ã€Œè¦‹ãŸç›®ã€ã‚’æ ¼ç´ã™ã‚‹
 			MyStatus_SetTrainerView( SaveData_GetMyStatus(wk->sv), view );
 		}
 
@@ -2045,11 +2045,11 @@ static BOOL Seq_IdChoice( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXF–`Œ¯‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå†’é™ºã¸
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ŽŸ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_ToAdventure( OPENING_WORK* wk )
@@ -2058,12 +2058,12 @@ static BOOL Seq_ToAdventure( OPENING_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒf[ƒ^ƒZƒbƒg‚È‚Ç
+	//ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆãªã©
 	case 0:
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		opening_talk_win_put( wk );
 		
-		WORDSET_RegisterPlayerName( wk->wordset, 0, SaveData_GetMyStatus(wk->sv) );//ŽålŒö–¼ƒZƒbƒg
+		WORDSET_RegisterPlayerName( wk->wordset, 0, SaveData_GetMyStatus(wk->sv) );//ä¸»äººå…¬åã‚»ãƒƒãƒˆ
 		wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_opening_06, 
 		//wk->msg_index = OpeningWriteMsg( wk, &wk->bmpwin[BMPWIN_OOKIDO], msg_opening_07, 
 										OP_OOKIDO_X, OP_OOKIDO_Y, CONFIG_GetMsgPrintSpeed(wk->config), 
@@ -2073,18 +2073,18 @@ static BOOL Seq_ToAdventure( OPENING_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒI[ƒLƒh‰ï˜bI—¹‘Ò‚¿
+	//ã‚ªãƒ¼ã‚­ãƒ‰ä¼šè©±çµ‚äº†å¾…ã¡
 	case 1:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 1 ){
 			break;
 		}
 
 		if( KeyCheck(PAD_BUTTON_A | PAD_BUTTON_B) ){
-			//‰ï˜bƒEƒBƒ“ƒhƒE‚ðÁ‚·
+			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 			BmpTalkWinClear( &wk->bmpwin[BMPWIN_OOKIDO], WINDOW_TRANS_ON );
 
-			OpeningOffBmpWin( wk->bmpwin );		//BMPƒEƒBƒ“ƒhƒEƒIƒt
+			OpeningOffBmpWin( wk->bmpwin );		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
 
 			col = (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM) ? 0x7356 : 0x573b;
 			PaletteFadeReq( wk->pfd, PF_BIT_MAIN_OBJ, 0xffff, 0, 8, 16, col );
@@ -2094,14 +2094,14 @@ static BOOL Seq_ToAdventure( OPENING_WORK* wk )
 		}
 		break;
 
-	//ƒI[ƒLƒhƒtƒF[ƒhƒAƒEƒg
+	//ã‚ªãƒ¼ã‚­ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 2:
 		if( PaletteFadeCheck(wk->pfd) == 0 ){
 		//if( IsFinishedBrightnessChg( MASK_DOUBLE_DISPLAY ) == TRUE ){
 
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+			OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
 			wk->count = 15;
 			wk->sub_seq++;
@@ -2112,9 +2112,9 @@ static BOOL Seq_ToAdventure( OPENING_WORK* wk )
 		wk->count--;
 		if( wk->count == 0 ){
 
-			//’j—ŽålŒö(256FAŠg‘åk¬)
+			//ç”·å¥³ä¸»äººå…¬(256è‰²ã€æ‹¡å¤§ç¸®å°)
 			SetBgGraphic_Sub2( wk, GF_BGL_FRAME3_M );
-			//’j—ŽålŒöBG”ñ•\Ž¦
+			//ç”·å¥³ä¸»äººå…¬BGéžè¡¨ç¤º
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 
 			wk->sub_seq++;
@@ -2149,10 +2149,10 @@ static BOOL Seq_ToAdventure( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	–¼‘O“ü—Í‰æ–ÊŒÄ‚Ño‚µTCB
+ * @brief	åå‰å…¥åŠ›ç”»é¢å‘¼ã³å‡ºã—TCB
  *
- * @param	tcb			TCBƒVƒXƒeƒ€ƒ[ƒN
- * @param	work		ƒ[ƒNƒGƒŠƒAƒ|ƒCƒ“ƒ^
+ * @param	tcb			TCBã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ * @param	work		ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2172,7 +2172,7 @@ static void OpeningNameInCall( OPENING_WORK* wk, u32 mode )
 
 	name_wk = sys_AllocMemory( HEAPID_OPENING, sizeof(OPENING_NAMEIN_WORK) );
 	if( name_wk == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•ÛŽ¸”sI" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—ï¼" );
 		return;
 	}
 	memset( name_wk, 0, sizeof(OPENING_NAMEIN_WORK) );
@@ -2190,25 +2190,25 @@ static void OpeningNameInMainTCB(TCB_PTR tcb,void *work)
 
 	switch( wk->seq_no ){
 
-	//ƒtƒF[ƒhƒAƒEƒg
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 0:
 		wk->seq_no++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 1:
-		//íœˆ—
+		//å‰Šé™¤å‡¦ç†
 		opening_end_sub( wk->op_work );
 
-		//–¼‘O“ü—Í—pˆø”ƒ[ƒNì¬
+		//åå‰å…¥åŠ›ç”¨å¼•æ•°ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		if( wk->mode == OP_NAMEIN_MODE_HERO ){
 			wk->NameInParam = NameIn_ParamAllocMake( HEAPID_OPENING, NAMEIN_MYNAME, 
 														0, NAMEIN_PERSON_LENGTH, NULL );
-			wk->NameInParam->info = wk->op_work->sex;	//’j—
+			wk->NameInParam->info = wk->op_work->sex;	//ç”·å¥³
 		}else{
 			wk->NameInParam = NameIn_ParamAllocMake( HEAPID_OPENING, NAMEIN_RIVALNAME,
 														0, NAMEIN_PERSON_LENGTH, NULL );
-			wk->NameInParam->info = PM_MALE;			//’j
+			wk->NameInParam->info = PM_MALE;			//ç”·
 		}
 
 		wk->proc = PROC_Create( &NameInProcData, wk->NameInParam, HEAPID_OPENING );
@@ -2216,20 +2216,20 @@ static void OpeningNameInMainTCB(TCB_PTR tcb,void *work)
 		wk->seq_no++;
 		break;
 
-	//–¼‘O“ü—Í‰æ–ÊI—¹‘Ò‚¿
+	//åå‰å…¥åŠ›ç”»é¢çµ‚äº†å¾…ã¡
 	case 2:
 		if( ProcMain(wk->proc) == TRUE ){
 
 			STRBUF_GetStringCode( wk->NameInParam->strbuf, wk->op_work->str, 
 										(PERSON_NAME_SIZE + EOM_SIZE) );
 
-			//•œ‹Aˆ—
+			//å¾©å¸°å‡¦ç†
 			PROC_Delete( wk->proc );
 
-			//‰æ–ÊÄ\’z
+			//ç”»é¢å†æ§‹ç¯‰
 			OpeningRecover( wk->op_work, wk->mode );
 
-			//wordset‚ðŠm•Û‚µ‚Ä‚©‚çŒÄ‚Ô
+			//wordsetã‚’ç¢ºä¿ã—ã¦ã‹ã‚‰å‘¼ã¶
 			if( wk->mode == OP_NAMEIN_MODE_HERO ){
 				WORDSET_RegisterWord( wk->op_work->wordset, 0, wk->NameInParam->strbuf, 
 										wk->op_work->sex, TRUE, PM_LANG );
@@ -2238,7 +2238,7 @@ static void OpeningNameInMainTCB(TCB_PTR tcb,void *work)
 										PM_MALE, TRUE, PM_LANG );
 			}
 
-			NameIn_ParamDelete( wk->NameInParam );				//–¼‘O“ü—Íƒ[ƒN‚ð‰ð•ú
+			NameIn_ParamDelete( wk->NameInParam );				//åå‰å…¥åŠ›ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
 		
 			WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 						WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_OPENING );
@@ -2247,7 +2247,7 @@ static void OpeningNameInMainTCB(TCB_PTR tcb,void *work)
 		}
 		break;
 
-	//ƒtƒF[ƒhƒCƒ“I—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³çµ‚äº†å¾…ã¡
 	case 3:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			wk->op_work->tcb = NULL;
@@ -2262,9 +2262,9 @@ static void OpeningNameInMainTCB(TCB_PTR tcb,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰æ–ÊÄ\’z
+ * @brief	ç”»é¢å†æ§‹ç¯‰
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2279,32 +2279,32 @@ static void OpeningRecover( OPENING_WORK* wk, u32 mode )
 
 	opening_init_sub2( wk );
 
-	//’j—ŽålŒöBG•\Ž¦
+	//ç”·å¥³ä¸»äººå…¬BGè¡¨ç¤º
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 
-	OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ƒI[ƒLƒh
-	OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ƒ‰ƒCƒoƒ‹
-	OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//‰e
+	OpeningClactVanish( &wk->ObjWork, OP_OBJ_HAKASE, OP_VANISH_ON );	//ã‚ªãƒ¼ã‚­ãƒ‰
+	OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_ON );		//ãƒ©ã‚¤ãƒãƒ«
+	OpeningClactVanish( &wk->ObjWork, OP_OBJ_KAGE, OP_VANISH_ON );		//å½±
 
-	//‰ŠúÀ•W‚É–ß‚·
-	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ƒI[ƒLƒh
-	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ƒ‰ƒCƒoƒ‹
-	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//‰e
+	//åˆæœŸåº§æ¨™ã«æˆ»ã™
+	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_HAKASE );	//ã‚ªãƒ¼ã‚­ãƒ‰
+	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_RIVAL );		//ãƒ©ã‚¤ãƒãƒ«
+	OpeningClactMoveInit( &wk->ObjWork, OP_OBJ_KAGE );		//å½±
 
-	//ã‰æ–Ê”wŒi
+	//ä¸Šç”»é¢èƒŒæ™¯
 	SetBgGraphic_Sub4( wk, GF_BGL_FRAME2_M );
 	
-	//‰º‰æ–Ê”wŒi
+	//ä¸‹ç”»é¢èƒŒæ™¯
 	SetBgGraphic_Sub5( wk, GF_BGL_FRAME2_S );
 
-	//ƒ‚[ƒh‚É‚æ‚è•ªŠò
+	//ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚Šåˆ†å²
 	if( mode == OP_NAMEIN_MODE_HERO ){
-		//’j—ŽålŒö(256FAŠg‘åk¬)
+		//ç”·å¥³ä¸»äººå…¬(256è‰²ã€æ‹¡å¤§ç¸®å°)
 		SetBgGraphic_Sub2( wk, GF_BGL_FRAME3_M );
 	}else{
-		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ƒ‰ƒCƒoƒ‹
+		OpeningClactVanish( &wk->ObjWork, OP_OBJ_RIVAL, OP_VANISH_OFF );	//ãƒ©ã‚¤ãƒãƒ«
 
-		//’j—ŽålŒöBG‚ÍÁ‚µ‚Ä‚¨‚­
+		//ç”·å¥³ä¸»äººå…¬BGã¯æ¶ˆã—ã¦ãŠã
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 
@@ -2313,7 +2313,7 @@ static void OpeningRecover( OPENING_WORK* wk, u32 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê‰Šú‰»1
+ * @brief	å…±é€šåˆæœŸåŒ–1
  *
  * @param	none
  *
@@ -2325,8 +2325,8 @@ static void opening_init_sub()
 	WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 	WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
   
-	sys_VBlankFuncChange( NULL, NULL );			//VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );				//HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );			//VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );				//HBlankã‚»ãƒƒãƒˆ
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -2337,9 +2337,9 @@ static void opening_init_sub()
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê‰Šú‰»2
+ * @brief	å…±é€šåˆæœŸåŒ–2
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2357,7 +2357,7 @@ static void opening_init_sub2( OPENING_WORK* wk )
 	OpeningSetActor( &wk->ObjWork, OP_OBJ_RIVAL, OP_OBJ_RIVAL, 0 );
 	OpeningSetActor( &wk->ObjWork, OP_OBJ_KAGE, OP_OBJ_HAKASE, 1 );	
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 								NARC_msg_opening_dat, HEAPID_OPENING );
 
@@ -2365,36 +2365,36 @@ static void opening_init_sub2( OPENING_WORK* wk )
 	wk->msg_buf = STRBUF_Create( OPENING_MSG_BUF_SIZE, HEAPID_OPENING );
 	wk->tmp_buf = STRBUF_Create( OPENING_MSG_BUF_SIZE, HEAPID_OPENING );
 
-	//•¶Žš—ñƒoƒbƒtƒ@ì¬
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	for( i=0; i < OPENING_MENU_MAX ;i++ ){
 		wk->menu_buf[i] = STRBUF_Create( OPENING_MENU_BUF_SIZE, HEAPID_OPENING );
 	}
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, OP_FONT_PAL * 32, HEAPID_OPENING );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, OP_MSGFONT_PAL * 32, HEAPID_OPENING );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	OpeningAddBmpWin( wk->bgl, wk->bmpwin );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒNì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	wk->pfd = PaletteFadeInit( HEAPID_OPENING );
 
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ðmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_OBJ, FADE_PAL_ALL_SIZE, HEAPID_OPENING );
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_BG, FADE_PAL_ONE_SIZE*OP_DEMO_PAL, HEAPID_OPENING );
 
-	//ƒI[ƒLƒh
+	//ã‚ªãƒ¼ã‚­ãƒ‰
 	PaletteWorkSet_Arc(
 			wk->pfd, ARC_OPENING_GRA, NARC_opening_op_hakase_NCLR,
 			HEAPID_OPENING, FADE_MAIN_OBJ, 16*2*16, 0 );
 
-	//ƒ‰ƒCƒoƒ‹
+	//ãƒ©ã‚¤ãƒãƒ«
 	PaletteWorkSet_Arc(
 			wk->pfd, ARC_OPENING_GRA, NARC_opening_op_rival_NCLR,
 			HEAPID_OPENING, FADE_MAIN_OBJ, 16*1*16, 16*2 );
 
-	//ŽålŒöBG
+	//ä¸»äººå…¬BG
 	if( PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM ){
 		PaletteWorkSet_Arc(
 				wk->pfd, ARC_OPENING_GRA, NARC_opening_op_demo_d_NCLR,
@@ -2405,22 +2405,22 @@ static void opening_init_sub2( OPENING_WORK* wk )
 				HEAPID_OPENING, FADE_MAIN_BG, (16*2)*OP_DEMO_PAL, 0 );
 	}
 
-	//sys_VBlankFuncChange( VBlankFunc, NULL );	//VBlankƒZƒbƒg
-	sys_VBlankFuncChange( VBlankFunc, (void*)wk );	//VBlankƒZƒbƒg
+	//sys_VBlankFuncChange( VBlankFunc, NULL );	//VBlankã‚»ãƒƒãƒˆ
+	sys_VBlankFuncChange( VBlankFunc, (void*)wk );	//VBlankã‚»ãƒƒãƒˆ
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	wk->ScaleX = 1 << FX32_SHIFT;
 	wk->ScaleY = 1 << FX32_SHIFT;
 	wk->cancel = 0;
 
-	MsgPrintSkipFlagSet( MSG_SKIP_ON );	//ƒXƒLƒbƒv—LŒø
+	MsgPrintSkipFlagSet( MSG_SKIP_ON );	//ã‚¹ã‚­ãƒƒãƒ—æœ‰åŠ¹
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’ÊI—¹
+ * @brief	å…±é€šçµ‚äº†
  *
  * @param	none
  *
@@ -2431,33 +2431,33 @@ static void opening_end_sub( OPENING_WORK* wk )
 {
 	int i;
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->pfd );
 	wk->pfd = NULL;
 
-	OpeningAffReset();						//Šg‘åk¬ƒŠƒZƒbƒg
-	OpeningRereaseCellObject(&wk->ObjWork);	//2DƒIƒuƒWƒFƒNƒgŠÖ˜A—ÌˆæŠJ•ú
-	MSGMAN_Delete( wk->msgman );			//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠJ•ú
+	OpeningAffReset();						//æ‹¡å¤§ç¸®å°ãƒªã‚»ãƒƒãƒˆ
+	OpeningRereaseCellObject(&wk->ObjWork);	//2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£é ˜åŸŸé–‹æ”¾
+	MSGMAN_Delete( wk->msgman );			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£é–‹æ”¾
 	WORDSET_Delete( wk->wordset );
-	STRBUF_Delete( wk->msg_buf );			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
-	STRBUF_Delete( wk->tmp_buf );			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( wk->msg_buf );			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+	STRBUF_Delete( wk->tmp_buf );			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 
 	for( i=0; i < OPENING_MENU_MAX ;i++ ){
-		STRBUF_Delete( wk->menu_buf[i] );	//ƒƒjƒ…[ƒoƒbƒtƒ@ŠJ•ú
+		STRBUF_Delete( wk->menu_buf[i] );	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	}
 
-	OpeningExitBmpWin( wk->bmpwin );		//BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	BgExit( wk->bgl );						//BGLíœ
+	OpeningExitBmpWin( wk->bmpwin );		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	BgExit( wk->bgl );						//BGLå‰Šé™¤
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	none
  *
@@ -2467,13 +2467,13 @@ static void opening_end_sub( OPENING_WORK* wk )
 static void opening_talk_win_put( OPENING_WORK* wk )
 {
 	OpeningTalkWinPut( &wk->bmpwin[BMPWIN_OOKIDO], CONFIG_GetWindowType(wk->config) );
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_OOKIDO], FBMP_COL_WHITE );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_OOKIDO], FBMP_COL_WHITE );	//å¡—ã‚Šã¤ã¶ã—
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ŽålŒöBG‚ÌƒtƒF[ƒhƒCƒ“
+ * @brief	ä¸»äººå…¬BGã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
  * @param	none
  *
@@ -2491,7 +2491,7 @@ static void opening_hero_fade_in( OPENING_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŽålŒöBG‚ÌƒtƒF[ƒhƒAƒEƒg
+ * @brief	ä¸»äººå…¬BGã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
  * @param	none
  *
@@ -2509,7 +2509,7 @@ static void opening_hero_fade_out( OPENING_WORK* wk )
 }
 
 #if 0
-		//ƒEƒBƒ“ƒhƒE‚ÉƒJ[ƒ\ƒ‹‰æ‘œ‚ð•`‰æ
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã‚«ãƒ¼ã‚½ãƒ«ç”»åƒã‚’æç”»
 		//BmpWin_DrawCursorImage(GF_BGL_BMPWIN* win, u32 x, u32 y);
 #endif
 

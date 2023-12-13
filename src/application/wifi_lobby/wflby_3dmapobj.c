@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dmapobj.c
- *	@brief		ƒ}ƒbƒv•\Ž¦•¨ŠÇ—
+ *	@brief		ãƒžãƒƒãƒ—è¡¨ç¤ºç‰©ç®¡ç†
  *	@author		tomoya takahashi
  *	@data		2007.11.14
  *
@@ -24,24 +24,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 #ifdef PM_DEBUG
-//#define WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME	// ˆ—‘¬“x‚ð•\Ž¦
+//#define WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME	// å‡¦ç†é€Ÿåº¦ã‚’è¡¨ç¤º
 #endif
 
 #ifdef WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME
@@ -60,13 +60,13 @@ static OSTick	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_Tick;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ static OSTick	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_Tick;
 
 
 //-------------------------------------
-///	’n–Êƒ[ƒN
+///	åœ°é¢ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_MAP{
 	BOOL		on;
@@ -84,7 +84,7 @@ typedef struct _WFLBY_3DMAPOBJ_MAP{
 }WFLBY_3DMAPOBJ_MAP;
 
 //-------------------------------------
-///	’n–ÊƒŠƒ\[ƒX
+///	åœ°é¢ãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 typedef struct {
 	D3DOBJ_MDL	mdl[ WFLBY_3DMAPOBJ_MAPOBJ_NUM ];
@@ -94,12 +94,12 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒtƒ[ƒgƒ[ƒN
+///	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_FLOAT{
 	u8			on;	
-	u8			col;	// F
-	u8			mdlno;	// ƒ‚ƒfƒ‹ƒiƒ“ƒo[
+	u8			col;	// è‰²
+	u8			mdlno;	// ãƒ¢ãƒ‡ãƒ«ãƒŠãƒ³ãƒãƒ¼
 	u8			pad;
 	D3DOBJ		obj;
 	u32			anm_on[ WFLBY_3DMAPOBJ_FLOAT_ANM_NUM ];
@@ -109,7 +109,7 @@ typedef struct _WFLBY_3DMAPOBJ_FLOAT{
 }WFLBY_3DMAPOBJ_FLOAT;
 
 //-------------------------------------
-///	ƒtƒ[ƒgƒŠƒ\[ƒX
+///	ãƒ•ãƒ­ãƒ¼ãƒˆãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 typedef struct {
 	D3DOBJ_MDL	mdl[ WFLBY_3DMAPOBJ_FLOAT_NUM ];
@@ -118,8 +118,8 @@ typedef struct {
 } WFLBY_3DMAPOBJ_FLOATRES;
 
 //-------------------------------------
-///	‚»‚Ì‘¼‚Ì•¨ƒ[ƒN
-//	(•\Ž¦”ñ•\Ž¦‚­‚ç‚¢‚µ‚©o—ˆ‚È‚¢)
+///	ãã®ä»–ã®ç‰©ãƒ¯ãƒ¼ã‚¯
+//	(è¡¨ç¤ºéžè¡¨ç¤ºãã‚‰ã„ã—ã‹å‡ºæ¥ãªã„)
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_WK{
 	u16			on;
@@ -131,18 +131,18 @@ typedef struct _WFLBY_3DMAPOBJ_WK{
 	u8			play[ WFLBY_3DMAPOBJ_ALL_ANM_MAX ];
 	u8			play_pad;
 	fx32		anm_frame[ WFLBY_3DMAPOBJ_ALL_ANM_MAX ];
-	u8			wait_def;							// ƒ‰ƒ“ƒ_ƒ€ƒEƒGƒCƒg’è”	
-	u8			wait[ WFLBY_3DMAPOBJ_ALL_ANM_MAX ];	// ƒEƒGƒCƒg”
+	u8			wait_def;							// ãƒ©ãƒ³ãƒ€ãƒ ã‚¦ã‚¨ã‚¤ãƒˆå®šæ•°	
+	u8			wait[ WFLBY_3DMAPOBJ_ALL_ANM_MAX ];	// ã‚¦ã‚¨ã‚¤ãƒˆæ•°
 	pWFLBY_3DMAPOBJ_WK_AnmCallBack	p_anmcallback[ WFLBY_3DMAPOBJ_ALL_ANM_MAX ];
-	fx32		speed;		// ƒAƒjƒƒXƒs[ƒh
-	u8			alpha_flag;	// ƒAƒ‹ƒtƒ@’lÝ’èƒtƒ‰ƒO
-	u8			alpha;		// ƒAƒ‹ƒtƒ@’l
-	u8			def_alpha;	// Šî–{ƒAƒ‹ƒtƒ@’l
-	u8			pad;	// Šî–{ƒAƒ‹ƒtƒ@’l
+	fx32		speed;		// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+	u8			alpha_flag;	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤è¨­å®šãƒ•ãƒ©ã‚°
+	u8			alpha;		// ã‚¢ãƒ«ãƒ•ã‚¡å€¤
+	u8			def_alpha;	// åŸºæœ¬ã‚¢ãƒ«ãƒ•ã‚¡å€¤
+	u8			pad;	// åŸºæœ¬ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 }WFLBY_3DMAPOBJ_WK;
 
 //-------------------------------------
-///	‚»‚Ì‘¼‚Ì”z’uƒIƒuƒWƒFƒŠƒ\[ƒX
+///	ãã®ä»–ã®é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 typedef struct {
 	D3DOBJ_MDL	mdl[ WFLBY_3DMAPOBJ_WK_NUM ];
@@ -150,54 +150,54 @@ typedef struct {
 } WFLBY_3DMAPOBJ_WKRES;
 
 //-------------------------------------
-///	ƒ}ƒbƒv•\Ž¦•¨ŠÇ—ƒVƒXƒeƒ€
+///	ãƒžãƒƒãƒ—è¡¨ç¤ºç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ{
-	WFLBY_3DMAPOBJ_MAP		map;		// ƒ}ƒbƒvƒ[ƒN	
-	WFLBY_3DMAPOBJ_FLOAT*	p_float;	// ƒtƒ[ƒg
-	WFLBY_3DMAPOBJ_WK*		p_obj;		// ”z’uƒIƒuƒWƒF
-	u8						floatnum;	// ƒtƒ[ƒg”
-	u8						objnum;		// ”z’uƒIƒuƒWƒF”
-	u8						room;		// •”‰®ƒ^ƒCƒv
-	u8						season;		// ƒV[ƒYƒ“ƒ^ƒCƒv
+	WFLBY_3DMAPOBJ_MAP		map;		// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯	
+	WFLBY_3DMAPOBJ_FLOAT*	p_float;	// ãƒ•ãƒ­ãƒ¼ãƒˆ
+	WFLBY_3DMAPOBJ_WK*		p_obj;		// é…ç½®ã‚ªãƒ–ã‚¸ã‚§
+	u8						floatnum;	// ãƒ•ãƒ­ãƒ¼ãƒˆæ•°
+	u8						objnum;		// é…ç½®ã‚ªãƒ–ã‚¸ã‚§æ•°
+	u8						room;		// éƒ¨å±‹ã‚¿ã‚¤ãƒ—
+	u8						season;		// ã‚·ãƒ¼ã‚ºãƒ³ã‚¿ã‚¤ãƒ—
 
-	BOOL						res_load;								// ƒŠƒ\[ƒX‚ð“Ç‚Ýž‚ñ‚¾‚©
-	WFLBY_3DMAPOBJ_MAPRES		mapres;									// ƒ}ƒbƒvƒ[ƒN	
-	WFLBY_3DMAPOBJ_FLOATRES		floatres;								// ƒtƒ[ƒg
-	WFLBY_3DMAPOBJ_WKRES		objres;									// ”z’uƒIƒuƒWƒF
-	NNSFndAllocator				allocator;								// ƒAƒƒP[ƒ^
+	BOOL						res_load;								// ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã ã‹
+	WFLBY_3DMAPOBJ_MAPRES		mapres;									// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯	
+	WFLBY_3DMAPOBJ_FLOATRES		floatres;								// ãƒ•ãƒ­ãƒ¼ãƒˆ
+	WFLBY_3DMAPOBJ_WKRES		objres;									// é…ç½®ã‚ªãƒ–ã‚¸ã‚§
+	NNSFndAllocator				allocator;								// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 }WFLBY_3DMAPOBJ;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *				”z’uƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *				é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒV[ƒYƒ“‚Ì•”‰®‚Ì“Ç‚Ýž‚Ýƒf[ƒ^ì¬
+// ã‚·ãƒ¼ã‚ºãƒ³ã®éƒ¨å±‹ã®èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 static WFLBY_3DMAPOBJ_MDL_DATA* WFLBY_3DMAPOBJ_MDLRES_DATA_Init( WFLBY_ROOM_TYPE room, WFLBY_SEASON_TYPE season, u32 heapID );
 static void WFLBY_3DMAPOBJ_MDLRES_DATA_Exit( WFLBY_3DMAPOBJ_MDL_DATA* p_data );
 
 
-// Lê—pƒ‚ƒfƒ‹“Ç‚Ýž‚ÝƒVƒXƒeƒ€
+// åºƒå ´ç”¨ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿ã‚·ã‚¹ãƒ†ãƒ 
 static void WFLBY_3DMAPOBJ_MDL_Load( D3DOBJ_MDL* p_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 gheapID );
 static void WFLBY_3DMAPOBJ_MDL_Delete( D3DOBJ_MDL* p_mdl );
 
-// ƒAƒjƒƒtƒŒ[ƒ€ŠÇ—
+// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ç®¡ç†
 static void WFLBY_3DMAPOBJ_ANM_Loop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed );
 static BOOL WFLBY_3DMAPOBJ_ANM_NoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed );
 static void WFLBY_3DMAPOBJ_ANM_BackLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed );
 static BOOL WFLBY_3DMAPOBJ_ANM_BackNoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed );
 
-// ƒ}ƒbƒvƒ[ƒN
+// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
 static void WFLBY_3DMAPOBJ_MAP_Load( WFLBY_3DMAPOBJ_MAPRES* p_wk, ARCHANDLE* p_handle, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID, NNSFndAllocator* p_allocator );
 static void WFLBY_3DMAPOBJ_MAP_Release( WFLBY_3DMAPOBJ_MAPRES* p_wk, NNSFndAllocator* p_allocator );
 static void WFLBY_3DMAPOBJ_MAP_Add( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res );
@@ -205,14 +205,14 @@ static void WFLBY_3DMAPOBJ_MAP_Delete( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_
 static void WFLBY_3DMAPOBJ_MAP_Main( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res );
 static void WFLBY_3DMAPOBJ_MAP_Draw( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res );
 
-// ƒtƒ[ƒgƒ[ƒN
+// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
 static WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_GetCleanWk( WFLBY_3DMAPOBJ* p_sys );
 static void WFLBY_3DMAPOBJ_FLOAT_Load( WFLBY_3DMAPOBJ_FLOATRES* p_wk, ARCHANDLE* p_handle, NNSFndAllocator* p_allocator, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID );
 static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndAllocator* p_allocator );
 static void WFLBY_3DMAPOBJ_FLOAT_Main( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOBJ_FLOATRES* p_res );
 static void WFLBY_3DMAPOBJ_FLOAT_Draw( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOBJ_FLOATRES* p_res );
 
-// ”z’uƒIƒuƒWƒFƒNƒgƒ[ƒN
+// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 static WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_GetCleanWk( WFLBY_3DMAPOBJ* p_sys );
 static void WFLBY_3DMAPOBJ_WK_Load( WFLBY_3DMAPOBJ_WKRES* p_wk, ARCHANDLE* p_handle, NNSFndAllocator* p_allocator, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID );
 static void WFLBY_3DMAPOBJ_WK_Release( WFLBY_3DMAPOBJ_WKRES* p_wk, NNSFndAllocator* p_allocator );
@@ -221,17 +221,17 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 
 
 
-// ƒVƒXƒeƒ€ŠÇ—
+// ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒFƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	float_num		ƒtƒ[ƒg”
- *	@param	objwk_num		‚»‚Ì‚½‚Ì•\Ž¦•¨”
- *	@param	heapID			ƒq[ƒvID
- *	@param	gheapID			ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	float_num		ãƒ•ãƒ­ãƒ¼ãƒˆæ•°
+ *	@param	objwk_num		ãã®ãŸã®è¡¨ç¤ºç‰©æ•°
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
+ *	@param	gheapID			ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ* WFLBY_3DMAPOBJ_Init( u32 float_num, u32 objwk_num, u32 heapID, u32 gheapID )
@@ -241,7 +241,7 @@ WFLBY_3DMAPOBJ* WFLBY_3DMAPOBJ_Init( u32 float_num, u32 objwk_num, u32 heapID, u
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_3DMAPOBJ) );
 	memset( p_sys,  0, sizeof(WFLBY_3DMAPOBJ) );
 
-	// Šeƒ[ƒN‚ðì¬
+	// å„ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 	p_sys->p_float	= sys_AllocMemory( heapID, sizeof(WFLBY_3DMAPOBJ_FLOAT)*float_num );
 	p_sys->p_obj	= sys_AllocMemory( heapID, sizeof(WFLBY_3DMAPOBJ_WK)*objwk_num );
 	memset( p_sys->p_float, 0, sizeof(WFLBY_3DMAPOBJ_FLOAT)*float_num );
@@ -255,19 +255,19 @@ WFLBY_3DMAPOBJ* WFLBY_3DMAPOBJ_Init( u32 float_num, u32 objwk_num, u32 heapID, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒFƒVƒXƒeƒ€	”jŠü
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_sys		ƒ[ƒN
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_Exit( WFLBY_3DMAPOBJ* p_sys )
 {
-	// ƒf[ƒ^‚ð“Ç‚Ýž‚ÝÏ‚Ý‚È‚ç”jŠü‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿æ¸ˆã¿ãªã‚‰ç ´æ£„ã™ã‚‹
 	if( p_sys->res_load ){
 		WFLBY_3DMAPOBJ_ResRelease( p_sys );
 	}
 
-	// ‘Sƒƒ‚ƒŠ‚ð”jŠü
+	// å…¨ãƒ¡ãƒ¢ãƒªã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_float );
 	sys_FreeMemoryEz( p_sys->p_obj );
 	sys_FreeMemoryEz( p_sys );
@@ -275,19 +275,19 @@ void WFLBY_3DMAPOBJ_Exit( WFLBY_3DMAPOBJ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒFƒVƒXƒeƒ€	ƒƒCƒ“ˆ—
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_sys		ƒ[ƒN
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_Main( WFLBY_3DMAPOBJ* p_sys )
 {
-	// ƒAƒjƒƒƒCƒ“
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 	
-	//  ƒ}ƒbƒvƒƒCƒ“
+	//  ãƒžãƒƒãƒ—ãƒ¡ã‚¤ãƒ³
 	WFLBY_3DMAPOBJ_MAP_Main( &p_sys->map, &p_sys->mapres );
 	
-	// ƒtƒ[ƒgƒƒCƒ“
+	// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¡ã‚¤ãƒ³
 	{
 		int i;
 
@@ -297,7 +297,7 @@ void WFLBY_3DMAPOBJ_Main( WFLBY_3DMAPOBJ* p_sys )
 		}
 	}
 
-	// ”z’uƒIƒuƒWƒFƒƒCƒ“
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒ¡ã‚¤ãƒ³
 	{
 		int i;
 
@@ -309,9 +309,9 @@ void WFLBY_3DMAPOBJ_Main( WFLBY_3DMAPOBJ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒFƒVƒXƒeƒ€	•`‰æˆ—
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 	æç”»å‡¦ç†
  *
- *	@param	p_sys		ƒ[ƒN
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_Draw( WFLBY_3DMAPOBJ* p_sys )
@@ -323,17 +323,17 @@ void WFLBY_3DMAPOBJ_Draw( WFLBY_3DMAPOBJ* p_sys )
 
 //	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_INIT;
 	
-	// ƒ}ƒbƒv•`‰æ
+	// ãƒžãƒƒãƒ—æç”»
 	WFLBY_3DMAPOBJ_MAP_Draw( &p_sys->map, &p_sys->mapres );
 //	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_PRINT( __LINE__ );
 	
-	// ”z’uƒIƒuƒWƒFƒNƒg•`‰æ
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»
 	for( i=0; i<p_sys->objnum; i++ ){
 		WFLBY_3DMAPOBJ_WK_Draw( &p_sys->objres, &p_sys->p_obj[i] );
 	}
 //	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_PRINT( __LINE__ );
 	
-	// ƒtƒ[ƒg•`‰æ
+	// ãƒ•ãƒ­ãƒ¼ãƒˆæç”»
 	for( i=0; i<p_sys->floatnum; i++ ){
 //		OS_TPrintf( "float idx=%d ",  i );
 		WFLBY_3DMAPOBJ_FLOAT_Draw( &p_sys->p_float[i], &p_sys->floatres );
@@ -343,26 +343,26 @@ void WFLBY_3DMAPOBJ_Draw( WFLBY_3DMAPOBJ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒFƒVƒXƒeƒ€	VBLANKˆ—
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 	VBLANKå‡¦ç†
  *
- *	@param	p_sys		ƒ[ƒN
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_VBlank( WFLBY_3DMAPOBJ* p_sys )
 {
-	// VBlankŠÖ”
+	// VBlanké–¢æ•°
 }
 
-// •”‰®‚ÌƒŠƒ\[ƒX
+// éƒ¨å±‹ã®ãƒªã‚½ãƒ¼ã‚¹
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ÌƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+ *	@brief	éƒ¨å±‹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	room		•”‰®ƒ^ƒCƒv
- *	@param	season		ƒV[ƒYƒ“ƒ^ƒCƒv
- *	@param	heapID		ƒq[ƒvID
- *	@param	gheapID		ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	room		éƒ¨å±‹ã‚¿ã‚¤ãƒ—
+ *	@param	season		ã‚·ãƒ¼ã‚ºãƒ³ã‚¿ã‚¤ãƒ—
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	gheapID		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_ResLoad( WFLBY_3DMAPOBJ* p_sys, WFLBY_ROOM_TYPE room, WFLBY_SEASON_TYPE season, u32 heapID, u32 gheapID )
@@ -370,35 +370,35 @@ void WFLBY_3DMAPOBJ_ResLoad( WFLBY_3DMAPOBJ* p_sys, WFLBY_ROOM_TYPE room, WFLBY_
 	ARCHANDLE* p_handle;
 	WFLBY_3DMAPOBJ_MDL_DATA* p_data;
 
-	// ƒV[ƒYƒ“‚Æ•”‰®‚ð•Û‘¶
+	// ã‚·ãƒ¼ã‚ºãƒ³ã¨éƒ¨å±‹ã‚’ä¿å­˜
 	p_sys->season	= season;
 	p_sys->room		= room;
 
-	// ƒ‚ƒfƒ‹“Ç‚Ýž‚Ýƒf[ƒ^‚ðŽæ“¾‚·‚é
+	// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	p_data = WFLBY_3DMAPOBJ_MDLRES_DATA_Init( room, season, heapID );
 	
-	// ƒV[ƒYƒ“‚ÌŠeƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
-	p_handle = ArchiveDataHandleOpen( ARC_WFLBY_GRA, heapID );	// ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ã‚·ãƒ¼ã‚ºãƒ³ã®å„ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
+	p_handle = ArchiveDataHandleOpen( ARC_WFLBY_GRA, heapID );	// ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 
-	// ƒAƒƒP[ƒ^‚ðì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’ä½œæˆ
 	sys_InitAllocator( &p_sys->allocator, gheapID, 4 );
 	
-	// ƒ}ƒbƒv
+	// ãƒžãƒƒãƒ—
 	WFLBY_3DMAPOBJ_MAP_Load( &p_sys->mapres, p_handle, p_data, gheapID, &p_sys->allocator );
 
-	// ”z’uƒIƒuƒWƒFƒNƒg
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	WFLBY_3DMAPOBJ_WK_Load( &p_sys->objres, p_handle, &p_sys->allocator, p_data, gheapID );
 
 
-	// ƒtƒ[ƒgƒIƒuƒWƒFƒNƒg
+	// ãƒ•ãƒ­ãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	WFLBY_3DMAPOBJ_FLOAT_Load( &p_sys->floatres, p_handle, &p_sys->allocator, p_data, gheapID );
 
 	ArchiveDataHandleClose( p_handle );
 	
-	// ”jŠü
+	// ç ´æ£„
 	WFLBY_3DMAPOBJ_MDLRES_DATA_Exit( p_data );	
 
-	// ƒ}ƒbƒv‚Í‚·‚Å‚É“o˜^‚·‚é
+	// ãƒžãƒƒãƒ—ã¯ã™ã§ã«ç™»éŒ²ã™ã‚‹
 	WFLBY_3DMAPOBJ_MAP_Add( &p_sys->map, &p_sys->mapres );
 
 	p_sys->res_load = TRUE;
@@ -406,35 +406,35 @@ void WFLBY_3DMAPOBJ_ResLoad( WFLBY_3DMAPOBJ* p_sys, WFLBY_ROOM_TYPE room, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒŠƒ\[ƒX‚ð”jŠü‚·‚é
+ *	@brief	éƒ¨å±‹ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_ResRelease( WFLBY_3DMAPOBJ* p_sys )
 {
-	// ƒ}ƒbƒv‚ð”jŠü‚·‚é
+	// ãƒžãƒƒãƒ—ã‚’ç ´æ£„ã™ã‚‹
 	WFLBY_3DMAPOBJ_MAP_Delete( &p_sys->map, &p_sys->mapres );
 	
-	// ƒ}ƒbƒvƒ[ƒN
+	// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
 	WFLBY_3DMAPOBJ_MAP_Release( &p_sys->mapres, &p_sys->allocator );
 	
-	// ”z’uƒIƒuƒWƒFƒ[ƒN
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
 	WFLBY_3DMAPOBJ_WK_Release( &p_sys->objres, &p_sys->allocator );
 	
-	// ƒtƒ[ƒgƒ[ƒN
+	// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
 	WFLBY_3DMAPOBJ_FLOAT_Release( &p_sys->floatres, &p_sys->allocator );
 
 	p_sys->res_load = FALSE;
 }
 
 
-// ƒ}ƒbƒvƒ[ƒN‘€ì
+// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯æ“ä½œ
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv‚Ìƒ|[ƒ‹‚ð•\Ž¦
+ *	@brief	ãƒžãƒƒãƒ—ã®ãƒãƒ¼ãƒ«ã‚’è¡¨ç¤º
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_MAP_OnPoll( WFLBY_3DMAPOBJ* p_sys )
@@ -449,9 +449,9 @@ void WFLBY_3DMAPOBJ_MAP_OnPoll( WFLBY_3DMAPOBJ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv‚Ìƒ|[ƒ‹‚ð•\Ž¦‚µ‚È‚­‚·‚é
+ *	@brief	ãƒžãƒƒãƒ—ã®ãƒãƒ¼ãƒ«ã‚’è¡¨ç¤ºã—ãªãã™ã‚‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_MAP_OffPoll( WFLBY_3DMAPOBJ* p_sys )
@@ -465,17 +465,17 @@ void WFLBY_3DMAPOBJ_MAP_OffPoll( WFLBY_3DMAPOBJ* p_sys )
 }
 
 
-// ƒtƒ[ƒgƒ[ƒN‘€ì
+// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯æ“ä½œ
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒ[ƒN“Ç‚Ýž‚Ý
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯èª­ã¿è¾¼ã¿
  *	
- *	@param	p_sys		ƒ[ƒN
- *	@param	floattype	ƒtƒ[ƒgƒiƒ“ƒo[
- *	@param	floatcol	ƒtƒ[ƒgƒJƒ‰[
- *	@param	cp_mat		À•W
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	floattype	ãƒ•ãƒ­ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	floatcol	ãƒ•ãƒ­ãƒ¼ãƒˆã‚«ãƒ©ãƒ¼
+ *	@param	cp_mat		åº§æ¨™
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_FLOAT_TYPE floattype, WFLBY_3DMAPOBJ_FLOAT_COL floatcol, const VecFx32* cp_mat )
@@ -485,31 +485,31 @@ WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DM
 	GF_ASSERT( floattype <= WFLBY_3DMAPOBJ_FLOAT_NUM );
 	GF_ASSERT( floatcol <= WFLBY_3DMAPOBJ_FLOAT_COL_NUM );
 	
-	// ‹ó‚¢‚Ä‚¢‚éƒtƒ[ƒgƒ[ƒN‚ðŽæ“¾‚·‚é	
+	// ç©ºã„ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹	
 	p_wk = WFLBY_3DMAPOBJ_FLOAT_GetCleanWk( p_sys );
 
 
-	// ŠG‚ð‚­‚Á‚Â‚¯‚Ä‚ ‚°‚é
+	// çµµã‚’ãã£ã¤ã‘ã¦ã‚ã’ã‚‹
 	D3DOBJ_Init( &p_wk->obj, &p_sys->floatres.mdl[ floattype ] );
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	D3DOBJ_SetDraw( &p_wk->obj, TRUE );
 
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_3DMAPOBJ_FLOAT_SetPos( p_wk, cp_mat );
 	{
 		VecFx32 mat = {0,0,0};
 		WFLBY_3DMAPOBJ_FLOAT_SetOfsPos( p_wk, &mat );
 	}
 
-	// ƒ‚ƒfƒ‹ƒiƒ“ƒo[‚ÆƒJƒ‰[ƒiƒ“ƒo[‚ð•Û‘¶
+	// ãƒ¢ãƒ‡ãƒ«ãƒŠãƒ³ãƒãƒ¼ã¨ã‚«ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’ä¿å­˜
 	p_wk->col	= floatcol;
 	p_wk->mdlno	= floattype;
 
 	p_wk->on = TRUE;
 
 
-	// í‚ÉƒAƒjƒ‚·‚é‚à‚Ì‚ðƒAƒjƒ‚³‚¹‚Ä‚¨‚­
+	// å¸¸ã«ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ã‚‚ã®ã‚’ã‚¢ãƒ‹ãƒ¡ã•ã›ã¦ãŠã
 	{
 		p_wk->anm_on[WFLBY_3DMAPOBJ_FLOAT_ANM_00] = TRUE;
 		p_wk->anm_on[WFLBY_3DMAPOBJ_FLOAT_ANM_02] = TRUE;
@@ -520,14 +520,14 @@ WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg”jŠü
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_Del( WFLBY_3DMAPOBJ_FLOAT* p_wk )
 {
-	//  •`‰æƒtƒ‰ƒO‚ð—Ž‚Æ‚µ‚ÄAƒNƒŠƒA‚·‚é
+	//  æç”»ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã—ã¦ã€ã‚¯ãƒªã‚¢ã™ã‚‹
 	D3DOBJ_SetDraw( &p_wk->obj, FALSE );
 	
 	p_wk->on = FALSE;
@@ -535,10 +535,10 @@ void WFLBY_3DMAPOBJ_FLOAT_Del( WFLBY_3DMAPOBJ_FLOAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgÀ•W‚ðÝ’è
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆåº§æ¨™ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	pos			À•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos			åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_SetPos( WFLBY_3DMAPOBJ_FLOAT* p_wk, const VecFx32* cp_mat )
@@ -549,10 +549,10 @@ void WFLBY_3DMAPOBJ_FLOAT_SetPos( WFLBY_3DMAPOBJ_FLOAT* p_wk, const VecFx32* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒtƒZƒbƒg’l‚ðÝ’è‚·‚é
+ *	@brief	æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_mat		À•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mat		åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_SetOfsPos( WFLBY_3DMAPOBJ_FLOAT* p_wk, const VecFx32* cp_mat )
@@ -563,10 +563,10 @@ void WFLBY_3DMAPOBJ_FLOAT_SetOfsPos( WFLBY_3DMAPOBJ_FLOAT* p_wk, const VecFx32* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgÀ•W‚ðŽæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆåº§æ¨™ã‚’å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_mat	ƒ}ƒgƒŠƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mat	ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_GetPos( const WFLBY_3DMAPOBJ_FLOAT* cp_wk, VecFx32* p_mat )
@@ -576,10 +576,10 @@ void WFLBY_3DMAPOBJ_FLOAT_GetPos( const WFLBY_3DMAPOBJ_FLOAT* cp_wk, VecFx32* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg•\Ž¦‚Ì‚n‚m‚n‚e‚e
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆè¡¨ç¤ºã®ï¼¯ï¼®ï¼¯ï¼¦ï¼¦
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_SetDraw( WFLBY_3DMAPOBJ_FLOAT* p_wk, BOOL flag )
@@ -589,12 +589,12 @@ void WFLBY_3DMAPOBJ_FLOAT_SetDraw( WFLBY_3DMAPOBJ_FLOAT* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg•`‰æƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆæç”»ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ’†
- *	@retval	FALSE	•`‰æ‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	æç”»ä¸­
+ *	@retval	FALSE	æç”»ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_FLOAT_GetDraw( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
@@ -604,12 +604,12 @@ BOOL WFLBY_3DMAPOBJ_FLOAT_GetDraw( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SoundƒAƒjƒ
+ *	@brief	Soundã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Ä¶‚µ‚½
- *	@retval	FALSE	Ä¶’†‚È‚Ì‚ÅÄ¶‚µ‚È‚¢
+ *	@retval	TRUE	å†ç”Ÿã—ãŸ
+ *	@retval	FALSE	å†ç”Ÿä¸­ãªã®ã§å†ç”Ÿã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_FLOAT_SetAnmSound( WFLBY_3DMAPOBJ_FLOAT* p_wk )
@@ -623,12 +623,12 @@ BOOL WFLBY_3DMAPOBJ_FLOAT_SetAnmSound( WFLBY_3DMAPOBJ_FLOAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	bodyƒAƒjƒ
+ *	@brief	bodyã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Ä¶‚µ‚½
- *	@retval	FALSE	Ä¶’†‚È‚Ì‚ÅÄ¶‚µ‚È‚¢
+ *	@retval	TRUE	å†ç”Ÿã—ãŸ
+ *	@retval	FALSE	å†ç”Ÿä¸­ãªã®ã§å†ç”Ÿã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_FLOAT_SetAnmBody( WFLBY_3DMAPOBJ_FLOAT* p_wk )
@@ -642,10 +642,10 @@ BOOL WFLBY_3DMAPOBJ_FLOAT_SetAnmBody( WFLBY_3DMAPOBJ_FLOAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šp“x‚ðÝ’è‚·‚é
+ *	@brief	å›žè»¢è§’åº¦ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	x			‚˜Šp“x
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜è§’åº¦
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_FLOAT_SetRotaX( WFLBY_3DMAPOBJ_FLOAT* p_wk, u16 x )
@@ -655,12 +655,12 @@ void WFLBY_3DMAPOBJ_FLOAT_SetRotaX( WFLBY_3DMAPOBJ_FLOAT* p_wk, u16 x )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‰¹«ƒAƒjƒÄ¶ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆéŸ³æ€§ã‚¢ãƒ‹ãƒ¡å†ç”Ÿãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰¹ºƒAƒjƒ	Ä¶’†
- *	@retval	FALSE	‰¹ºƒAƒjƒ	Ä¶‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	éŸ³å£°ã‚¢ãƒ‹ãƒ¡	å†ç”Ÿä¸­
+ *	@retval	FALSE	éŸ³å£°ã‚¢ãƒ‹ãƒ¡	å†ç”Ÿã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
@@ -670,12 +670,12 @@ BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg“·‘ÌƒAƒjƒ	Ä¶’†
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆèƒ´ä½“ã‚¢ãƒ‹ãƒ¡	å†ç”Ÿä¸­
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“·‘ÌƒAƒjƒ	Ä¶’†
- *	@retval	FALSE	“·‘ÌƒAƒjƒ	’âŽ~’†
+ *	@retval	TRUE	èƒ´ä½“ã‚¢ãƒ‹ãƒ¡	å†ç”Ÿä¸­
+ *	@retval	FALSE	èƒ´ä½“ã‚¢ãƒ‹ãƒ¡	åœæ­¢ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
@@ -685,17 +685,17 @@ BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_FLOAT* cp_wk )
 
 
 
-// ”z’uƒIƒuƒWƒF‘€ì
+// é…ç½®ã‚ªãƒ–ã‚¸ã‚§æ“ä½œ
 //----------------------------------------------------------------------------
 /**
- *	@brief	”z’uƒIƒuƒWƒFì¬
+ *	@brief	é…ç½®ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	objtype		ƒIƒuƒWƒFƒNƒgNO
- *	@param	gridx		ƒOƒŠƒbƒhX
- *	@param	gridy		ƒOƒŠƒbƒhY
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	objtype		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆNO
+ *	@param	gridx		ã‚°ãƒªãƒƒãƒ‰X
+ *	@param	gridy		ã‚°ãƒªãƒƒãƒ‰Y
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK_TYPE objtype, u32 gridx, u32 gridy )
@@ -703,26 +703,26 @@ WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_
 	WFLBY_3DMAPOBJ_WK* p_wk;
 	int i;
 	
-	// ‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	p_wk = WFLBY_3DMAPOBJ_WK_GetCleanWk( p_sys );
 
 
-	// ‘I‘ð‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ðÝ’è
+	// é¸æŠžã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è¨­å®š
 	D3DOBJ_Init( &p_wk->obj, &p_sys->objres.mdl[objtype] );
 
-	// ƒAƒjƒƒIƒuƒWƒF‚Ì‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã®åˆæœŸåŒ–
 	for( i=0; i<WFLBY_3DMAPOBJ_ALL_ANM_MAX; i++ ){
 		if( p_sys->objres.p_anm[objtype][i] != NULL ){
-			// ƒAƒjƒƒVƒ‡ƒ“ƒIƒuƒWƒF‚Ì‰Šú‰»
+			// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã®åˆæœŸåŒ–
 			D3DOBJ_AnmLoad_Data( &p_wk->anm[i], &p_sys->objres.mdl[objtype],
 					p_sys->objres.p_anm[objtype][i], &p_sys->allocator );
 		}
 	}
 	
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	D3DOBJ_SetDraw( &p_wk->obj, TRUE );
 
-	// ƒOƒŠƒbƒhÀ•W‚ðÝ’è
+	// ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’è¨­å®š
 	{
 		WF2DMAP_POS	pos;
 		pos.x	= WF2DMAP_GRID2POS(gridx);
@@ -733,13 +733,13 @@ WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_
 	p_wk->on	= TRUE;
 	p_wk->mdlid	= objtype;
 
-	// ƒAƒjƒÝ’è
+	// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	p_wk->wait_def = WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT_WAITDEF;
 
-	// ƒXƒs[ƒh
+	// ã‚¹ãƒ”ãƒ¼ãƒ‰
 	p_wk->speed = FX32_ONE;
 
-	// ƒAƒ‹ƒtƒ@Ý’è
+	// ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 	p_wk->alpha_flag	= FALSE;
 	p_wk->alpha			= 31;
 	p_wk->def_alpha		= 31;
@@ -749,24 +749,24 @@ WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”z’uƒIƒuƒWƒF”jŠü
+ *	@brief	é…ç½®ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_Del( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
 {
 	int i;
 	
-	//  •`‰æƒtƒ‰ƒO‚ð—Ž‚Æ‚µ‚ÄAƒNƒŠƒA‚·‚é
+	//  æç”»ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã—ã¦ã€ã‚¯ãƒªã‚¢ã™ã‚‹
 	D3DOBJ_SetDraw( &p_wk->obj, FALSE );
 
 
-	// ƒAƒjƒƒIƒuƒWƒF‚Ì”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã®ç ´æ£„
 	for( i=0; i<WFLBY_3DMAPOBJ_ALL_ANM_MAX; i++ ){
 		if( p_sys->objres.p_anm[p_wk->mdlid][i] != NULL ){
-			// ƒAƒjƒƒVƒ‡ƒ“ƒIƒuƒWƒF‚Ì‰Šú‰»
+			// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã®åˆæœŸåŒ–
 			D3DOBJ_AnmLoad_Data( &p_wk->anm[i], &p_sys->objres.mdl[p_wk->mdlid],
 					p_sys->objres.p_anm[p_wk->mdlid][i], &p_sys->allocator );
 		}
@@ -778,11 +778,11 @@ void WFLBY_3DMAPOBJ_WK_Del( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒ^ƒCƒv‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒIƒuƒWƒFƒ^ƒCƒv
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ_WK_TYPE WFLBY_3DMAPOBJ_WK_GetType( const WFLBY_3DMAPOBJ_WK* cp_wk )
@@ -792,10 +792,10 @@ WFLBY_3DMAPOBJ_WK_TYPE WFLBY_3DMAPOBJ_WK_GetType( const WFLBY_3DMAPOBJ_WK* cp_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WÝ’è
+ *	@brief	åº§æ¨™è¨­å®š
  *	
- *	@param	p_wk	ƒ[ƒN
- *	@param	pos		À•W
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos		åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetPos( WFLBY_3DMAPOBJ_WK* p_wk, WF2DMAP_POS pos )
@@ -808,11 +808,11 @@ void WFLBY_3DMAPOBJ_WK_SetPos( WFLBY_3DMAPOBJ_WK* p_wk, WF2DMAP_POS pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ðŽæ“¾‚·‚é
+ *	@brief	åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	À•W
+ *	@return	åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WFLBY_3DMAPOBJ_WK_GetPos( const WFLBY_3DMAPOBJ_WK* cp_wk )
@@ -828,12 +828,12 @@ WF2DMAP_POS WFLBY_3DMAPOBJ_WK_GetPos( const WFLBY_3DMAPOBJ_WK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ“o˜^
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  *
- *	@param	p_sys		ƒIƒuƒWƒFƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒ
- *	@param	play		ƒvƒŒƒC•ûŽ®
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡
+ *	@param	play		ãƒ—ãƒ¬ã‚¤æ–¹å¼
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_AddAnm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm, WFLBY_3DMAPOBJ_WK_ANM_PLAY play )
@@ -843,19 +843,19 @@ void WFLBY_3DMAPOBJ_WK_AddAnm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒÄ¶	I—¹ƒR[ƒ‹ƒoƒbƒN‚Â‚«
+ *	@brief	ã‚¢ãƒ‹ãƒ¡å†ç”Ÿ	çµ‚äº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¤ã
  *
- *	@param	p_sys		ƒIƒuƒWƒFƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒ
- *	@param	play		ƒvƒŒƒC•ûŽ®
- *	@param	p_callback	ƒAƒjƒI—¹ƒR[ƒ‹ƒoƒbƒN
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡
+ *	@param	play		ãƒ—ãƒ¬ã‚¤æ–¹å¼
+ *	@param	p_callback	ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm, WFLBY_3DMAPOBJ_WK_ANM_PLAY play, pWFLBY_3DMAPOBJ_WK_AnmCallBack p_callback )
 {
 	
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( play < WFLBY_3DMAPOBJ_WK_ANM_PLAYNUM );
 	GF_ASSERT( p_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
@@ -863,7 +863,7 @@ void WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_
 	if( (p_sys->objres.p_anm[p_wk->mdlid][anm] != NULL) ){
 		
 		if( p_wk->anm_on[ anm ] == FALSE ){
-			//  ƒAƒjƒÝ’è
+			//  ã‚¢ãƒ‹ãƒ¡è¨­å®š
 			D3DOBJ_AddAnm( &p_wk->obj, &p_wk->anm[anm] );
 		}
 
@@ -901,21 +901,21 @@ void WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ”jŠü
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ç ´æ£„
  *
- *	@param	p_sys		ƒIƒuƒWƒFƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒ
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_DelAnm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( p_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 
 	if( (p_sys->objres.p_anm[p_wk->mdlid][anm] != NULL) && (p_wk->anm_on[anm] == TRUE) ){
-		//  ƒAƒjƒ‚ð‚Í‚ª‚·
+		//  ã‚¢ãƒ‹ãƒ¡ã‚’ã¯ãŒã™
 		D3DOBJ_DelAnm( &p_wk->obj, &p_wk->anm[ anm ] );
 		
 		p_wk->anm_on[ anm ]		= FALSE;
@@ -928,10 +928,10 @@ void WFLBY_3DMAPOBJ_WK_DelAnm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘SƒAƒjƒ‚ðOFF‚·‚é
+ *	@brief	å…¨ã‚¢ãƒ‹ãƒ¡ã‚’OFFã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		”z’uƒIƒuƒWƒFƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_DelAnmAll( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -947,19 +947,19 @@ void WFLBY_3DMAPOBJ_WK_DelAnmAll( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒÄ¶’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ãƒ‹ãƒ¡å†ç”Ÿä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	cp_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒ
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡
  *
- *	@retval	TRUE	Ä¶’†
- *	@retval	FALSE	Ä¶‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	å†ç”Ÿä¸­
+ *	@retval	FALSE	å†ç”Ÿã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_WK_CheckAnm( const WFLBY_3DMAPOBJ* cp_sys, const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( cp_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 	
@@ -971,25 +971,25 @@ BOOL WFLBY_3DMAPOBJ_WK_CheckAnm( const WFLBY_3DMAPOBJ* cp_sys, const WFLBY_3DMAP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒƒ^ƒCƒv
- *	@param	frame		ƒtƒŒ[ƒ€”
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ *	@param	frame		ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv‚ªWFLBY_3DMAPOBJ_WK_ANM_NOAUTO‚Ì‚Æ‚«ê—p
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—ãŒWFLBY_3DMAPOBJ_WK_ANM_NOAUTOã®ã¨ãå°‚ç”¨
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetAnmFrame( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm, fx32 frame )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( p_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 	GF_ASSERT( p_sys->objres.p_anm[p_wk->mdlid][anm] != NULL );
 	
 	if( p_wk->play[ anm ] != WFLBY_3DMAPOBJ_WK_ANM_NOAUTO ){
-		return ; 	// ƒI[ƒgƒAƒjƒ’†‚È‚Ì‚Å‘€ì‚µ‚È‚¢
+		return ; 	// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ä¸­ãªã®ã§æ“ä½œã—ãªã„
 	}
 	p_wk->anm_frame[ anm ]	= frame;
 	D3DOBJ_AnmSet( &p_wk->anm[anm], p_wk->anm_frame[anm] );
@@ -997,18 +997,18 @@ void WFLBY_3DMAPOBJ_WK_SetAnmFrame( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒÝ’è‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ãƒ‹ãƒ¡è¨­å®šã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒƒ^ƒCƒv
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	ƒAƒjƒ’†
- *	@retval	FALSE	ƒAƒjƒ‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡ä¸­
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_WK_GetAnmFlag( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( cp_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 	return cp_wk->anm_on[ anm ];
@@ -1016,17 +1016,17 @@ BOOL WFLBY_3DMAPOBJ_WK_GetAnmFlag( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	anm			ƒAƒjƒƒ^ƒCƒv
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm			ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒtƒŒ[ƒ€”
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //-----------------------------------------------------------------------------
 fx32 WFLBY_3DMAPOBJ_WK_GetAnmFrame( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( anm < WFLBY_3DMAPOBJ_ALL_ANM_MAX );
 	GF_ASSERT( cp_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 	return cp_wk->anm_frame[ anm ];
@@ -1034,11 +1034,11 @@ fx32 WFLBY_3DMAPOBJ_WK_GetAnmFrame( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒ“ƒ_ƒ€ƒEƒGƒCƒgÄ¶—p	ƒEƒGƒCƒgŽžŠÔÝ’è
+ *	@brief	ãƒ©ãƒ³ãƒ€ãƒ ã‚¦ã‚¨ã‚¤ãƒˆå†ç”Ÿç”¨	ã‚¦ã‚¨ã‚¤ãƒˆæ™‚é–“è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	wait		ƒEƒGƒCƒg’è”
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	wait		ã‚¦ã‚¨ã‚¤ãƒˆå®šæ•°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetRandWait( WFLBY_3DMAPOBJ_WK* p_wk, u32 wait )
@@ -1048,10 +1048,10 @@ void WFLBY_3DMAPOBJ_WK_SetRandWait( WFLBY_3DMAPOBJ_WK* p_wk, u32 wait )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	•`‰æƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	æç”»ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetDraw( WFLBY_3DMAPOBJ_WK* p_wk, BOOL flag )
@@ -1061,30 +1061,30 @@ void WFLBY_3DMAPOBJ_WK_SetDraw( WFLBY_3DMAPOBJ_WK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒCƒgƒtƒ‰ƒO‚ðÝ’è‚·‚é
- *			y‚»‚Ìƒ‚ƒfƒ‹‚Æ“¯‚¶Œ`‚Ìƒ‚ƒfƒ‹‚Í‚·‚×‚Ä‚±‚Ìƒ‰ƒCƒgÝ’è‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å
- *			’ˆÓ‚ª•K—v‚Å‚·Bz
+ *	@brief	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+ *			ã€ãã®ãƒ¢ãƒ‡ãƒ«ã¨åŒã˜å½¢ã®ãƒ¢ãƒ‡ãƒ«ã¯ã™ã¹ã¦ã“ã®ãƒ©ã‚¤ãƒˆè¨­å®šã«ãªã£ã¦ã—ã¾ã†ã®ã§
+ *			æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚ã€‘
  *
- *	@param	p_sys			ƒVƒXƒeƒ€
- *	@param	p_wk			ƒ[ƒN
- *	@param	light_flag		ƒ‰ƒCƒgƒtƒ‰ƒO
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	light_flag		ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetLightFlag( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, u32 light_flag )
 {
-	// ‚»‚ÌƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_wk->mdlid < WFLBY_3DMAPOBJ_WK_NUM );
 
-	// ƒtƒB[ƒ‹ƒh‚ÌÝ’è‚É•ÏX
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®è¨­å®šã«å¤‰æ›´
 	NNS_G3dMdlSetMdlLightEnableFlagAll( p_sys->objres.mdl[ p_wk->mdlid ].pModel, light_flag );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒXƒs[ƒhÝ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	speed	ƒXƒs[ƒh
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	speed	ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetAnmSpeed( WFLBY_3DMAPOBJ_WK* p_wk, fx32 speed )
@@ -1094,11 +1094,11 @@ void WFLBY_3DMAPOBJ_WK_SetAnmSpeed( WFLBY_3DMAPOBJ_WK* p_wk, fx32 speed )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒXƒs[ƒh‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒXƒs[ƒh
+ *	@return	ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 fx32 WFLBY_3DMAPOBJ_WK_GetAnmSpeed( const WFLBY_3DMAPOBJ_WK* cp_wk )
@@ -1108,10 +1108,10 @@ fx32 WFLBY_3DMAPOBJ_WK_GetAnmSpeed( const WFLBY_3DMAPOBJ_WK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ‹ƒtƒ@’lÝ’è
+ *	@brief	ã‚¢ãƒ«ãƒ•ã‚¡å€¤è¨­å®š
  *	
- *	@param	p_wk	ƒ[ƒN
- *	@param	alpha	ƒAƒ‹ƒtƒ@
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	alpha	ã‚¢ãƒ«ãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetAlpha( WFLBY_3DMAPOBJ_WK* p_wk, u8 alpha, u8 def_alpha )
@@ -1123,9 +1123,9 @@ void WFLBY_3DMAPOBJ_WK_SetAlpha( WFLBY_3DMAPOBJ_WK* p_wk, u8 alpha, u8 def_alpha
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ‹ƒtƒ@’l‚ÌƒŠƒZƒbƒg
+ *	@brief	ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã®ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_ResetAlpha( WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1135,12 +1135,12 @@ void WFLBY_3DMAPOBJ_WK_ResetAlpha( WFLBY_3DMAPOBJ_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šg‘å’l‚ðÝ’è
+ *	@brief	æ‹¡å¤§å€¤ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x		‚˜•ûŒü
- *	@param	y		‚™•ûŒü
- *	@param	z		‚š•ûŒü
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜æ–¹å‘
+ *	@param	y		ï½™æ–¹å‘
+ *	@param	z		ï½šæ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_WK_SetScale( WFLBY_3DMAPOBJ_WK* p_wk, fx32 x, fx32 y, fx32 z )
@@ -1153,18 +1153,18 @@ void WFLBY_3DMAPOBJ_WK_SetScale( WFLBY_3DMAPOBJ_WK* p_wk, fx32 x, fx32 y, fx32 z
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒiƒ“ƒo[Season‚©‚ç“Ç‚Ýž‚Ýƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ãƒŠãƒ³ãƒãƒ¼Seasonã‹ã‚‰èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	room		•”‰®ƒiƒ“ƒo[
- *	@param	season		Seasonƒiƒ“ƒo[
- *	@param	heapID		ƒq[ƒvID
+ *	@param	room		éƒ¨å±‹ãƒŠãƒ³ãƒãƒ¼
+ *	@param	season		SeasonãƒŠãƒ³ãƒãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	“Ç‚Ýž‚ÝƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+ *	@return	èª­ã¿è¾¼ã¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  */	
 //-----------------------------------------------------------------------------
 static WFLBY_3DMAPOBJ_MDL_DATA* WFLBY_3DMAPOBJ_MDLRES_DATA_Init( WFLBY_ROOM_TYPE room, WFLBY_SEASON_TYPE season, u32 heapID )
@@ -1172,7 +1172,7 @@ static WFLBY_3DMAPOBJ_MDL_DATA* WFLBY_3DMAPOBJ_MDLRES_DATA_Init( WFLBY_ROOM_TYPE
 	void* p_data;
 	u32 idx;
 
-	// •”‰®ƒCƒ“ƒfƒbƒNƒX
+	// éƒ¨å±‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	idx = (season * WFLBY_ROOM_NUM) + room;
 
 	GF_ASSERT( idx < (WFLBY_SEASON_NUM*WFLBY_ROOM_NUM) );
@@ -1186,9 +1186,9 @@ static WFLBY_3DMAPOBJ_MDL_DATA* WFLBY_3DMAPOBJ_MDLRES_DATA_Init( WFLBY_ROOM_TYPE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Ç‚Ýž‚ÝƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^Žæ“¾
+ *	@brief	èª­ã¿è¾¼ã¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MDLRES_DATA_Exit( WFLBY_3DMAPOBJ_MDL_DATA* p_data )
@@ -1199,27 +1199,27 @@ static void WFLBY_3DMAPOBJ_MDLRES_DATA_Exit( WFLBY_3DMAPOBJ_MDL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Lê—pƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+ *	@brief	åºƒå ´ç”¨ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	data_idx	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MDL_Load( D3DOBJ_MDL* p_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 gheapID )
 {
-	// ƒeƒNƒXƒ`ƒƒŽÀ•”•ª‚ð”jŠü‚µ‚½ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿéƒ¨åˆ†ã‚’ç ´æ£„ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	WFLBY_3DMAPOBJ_TEX_LoatCutTex( &p_mdl->pResMdl, p_handle, data_idx, gheapID );
 	
-	// –{ƒf[ƒ^‚ÌŠeƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+	// æœ¬ãƒ‡ãƒ¼ã‚¿ã®å„ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 	{
 		p_mdl->pModelSet	= NNS_G3dGetMdlSet( p_mdl->pResMdl );
 		p_mdl->pModel		= NNS_G3dGetMdlByIdx( p_mdl->pModelSet, 0 );
 		p_mdl->pMdlTex		= NNS_G3dGetTex( p_mdl->pResMdl );
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒL[‚ðÝ’è‚µ‚ÄAƒ‚ƒfƒ‹‚ÉƒoƒCƒ“ƒh‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’è¨­å®šã—ã¦ã€ãƒ¢ãƒ‡ãƒ«ã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
 	{
 		BindTexture( p_mdl->pResMdl, p_mdl->pMdlTex );
 	}
@@ -1227,9 +1227,9 @@ static void WFLBY_3DMAPOBJ_MDL_Load( D3DOBJ_MDL* p_mdl, ARCHANDLE* p_handle, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Lê—pƒ‚ƒfƒ‹”jŠü
+ *	@brief	åºƒå ´ç”¨ãƒ¢ãƒ‡ãƒ«ç ´æ£„
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MDL_Delete( D3DOBJ_MDL* p_mdl )
@@ -1239,10 +1239,10 @@ static void WFLBY_3DMAPOBJ_MDL_Delete( D3DOBJ_MDL* p_mdl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒŒ[ƒ€ŠÇ—
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ ç®¡ç†
  *
- *	@param	p_frame		ƒtƒŒ[ƒ€ƒ|ƒCƒ“ƒ^
- *	@param	cp_anm		‘ÎÛƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
+ *	@param	p_frame		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒã‚¤ãƒ³ã‚¿
+ *	@param	cp_anm		å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_ANM_Loop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed )
@@ -1251,7 +1251,7 @@ static void WFLBY_3DMAPOBJ_ANM_Loop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx
 
 	end_frame = D3DOBJ_AnmGetFrameNum( cp_anm );
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( ((*p_frame) + speed) < end_frame ){
 		(*p_frame) += speed;
 	}else{
@@ -1261,13 +1261,13 @@ static void WFLBY_3DMAPOBJ_ANM_Loop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒŒ[ƒ€ŠÇ—
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ ç®¡ç†
  *
- *	@param	p_frame		ƒtƒŒ[ƒ€ƒ|ƒCƒ“ƒ^
- *	@param	cp_anm		‘ÎÛƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
+ *	@param	p_frame		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒã‚¤ãƒ³ã‚¿
+ *	@param	cp_anm		å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@retval	TRUE	ƒAƒjƒI—¹
- *	@retval	FALSE	ƒAƒjƒ“r’†
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DMAPOBJ_ANM_NoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed )
@@ -1277,7 +1277,7 @@ static BOOL WFLBY_3DMAPOBJ_ANM_NoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, 
 
 	end_frame = D3DOBJ_AnmGetFrameNum( cp_anm );
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( ((*p_frame) + speed) < end_frame ){
 		(*p_frame) += speed;
 		ret = FALSE;
@@ -1291,10 +1291,10 @@ static BOOL WFLBY_3DMAPOBJ_ANM_NoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹tÄ¶ƒAƒjƒ
+ *	@brief	é€†å†ç”Ÿã‚¢ãƒ‹ãƒ¡
  *	
- *	@param	p_frame		ƒtƒŒ[ƒ€
- *	@param	cp_anm		ƒAƒjƒƒIƒuƒWƒF
+ *	@param	p_frame		ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cp_anm		ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_ANM_BackLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed )
@@ -1303,7 +1303,7 @@ static void WFLBY_3DMAPOBJ_ANM_BackLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm
 
 	end_frame = D3DOBJ_AnmGetFrameNum( cp_anm );
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( ((*p_frame) - speed) >= 0 ){
 		(*p_frame) -= speed;
 	}else{
@@ -1313,20 +1313,20 @@ static void WFLBY_3DMAPOBJ_ANM_BackLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹tÄ¶ƒ‹[ƒv‚È‚µƒAƒjƒ
+ *	@brief	é€†å†ç”Ÿãƒ«ãƒ¼ãƒ—ãªã—ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_frame		ƒtƒŒ[ƒ€
- *	@param	cp_anm		ƒAƒjƒ
+ *	@param	p_frame		ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cp_anm		ã‚¢ãƒ‹ãƒ¡
  *
- *	@retval	TRUE	ƒAƒjƒI—¹
- *	@retval	FALSE	ƒAƒjƒ“r’†
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DMAPOBJ_ANM_BackNoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_anm, fx32 speed )
 {
 	BOOL ret;
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( ((*p_frame) - speed) > 0 ){
 		(*p_frame) -= speed;
 		ret = FALSE;
@@ -1340,36 +1340,36 @@ static BOOL WFLBY_3DMAPOBJ_ANM_BackNoLoop( fx32* p_frame, const D3DOBJ_ANM* cp_a
 
 
 
-// ƒ}ƒbƒvƒ[ƒN
+// ãƒžãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv“Ç‚Ýž‚Ý
+ *	@brief	ãƒžãƒƒãƒ—èª­ã¿è¾¼ã¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	cp_data		ƒf[ƒ^
- *	@param	gheapID		ƒq[ƒvID
- *	@param	p_allocator	ƒAƒƒP[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Load( WFLBY_3DMAPOBJ_MAPRES* p_wk, ARCHANDLE* p_handle, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID, NNSFndAllocator* p_allocator )
 {
 	int i, j;
-	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	for( i=0; i<WFLBY_3DMAPOBJ_MAPOBJ_NUM; i++ ){
 //		OS_TPrintf( "map load mdl idx = %d\n",  cp_data->map_idx[i] );
 		WFLBY_3DMAPOBJ_MDL_Load( &p_wk->mdl[ i ],
 				p_handle, cp_data->map_idx[ i ], gheapID );
 
 
-		// ƒ‰ƒCƒgÝ’è
-		WFLBY_LIGHT_SetUpMdl( p_wk->mdl[ i ].pResMdl );	// ƒ‰ƒCƒg”½‰f
+		// ãƒ©ã‚¤ãƒˆè¨­å®š
+		WFLBY_LIGHT_SetUpMdl( p_wk->mdl[ i ].pResMdl );	// ãƒ©ã‚¤ãƒˆåæ˜ 
 	}
 
-	// ƒAƒjƒƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	for( i=0; i<WFLBY_3DMAPOBJ_MAP_ANM_NUM; i++ ){
 
-		// ƒAƒjƒIDX‚ªƒ‚ƒfƒ‹IDX‚Æˆá‚Á‚½‚ç“Ç‚Ýž‚Þ
+		// ã‚¢ãƒ‹ãƒ¡IDXãŒãƒ¢ãƒ‡ãƒ«IDXã¨é•ã£ãŸã‚‰èª­ã¿è¾¼ã‚€
 		if( cp_data->map_anmidx[i] == cp_data->map_idx[WFLBY_3DMAPOBJ_MAPOBJ_MAP] ){
 			p_wk->anm_load[i] = FALSE;
 		}else{
@@ -1391,7 +1391,7 @@ static void WFLBY_3DMAPOBJ_MAP_Load( WFLBY_3DMAPOBJ_MAPRES* p_wk, ARCHANDLE* p_h
 			}
 
 #if 0
-			// “®ì‚³‚¹‚éNODEIDX‚ðŽw’è
+			// å‹•ä½œã•ã›ã‚‹NODEIDXã‚’æŒ‡å®š
 			for( j=0; j<cp_data->map_nodenum; j++ ){
 				if( cp_data->map_anmnodeidx[i] != j ){
 					NNS_G3dAnmObjDisableID( p_wk->anm[i].pAnmObj, j );
@@ -1404,17 +1404,17 @@ static void WFLBY_3DMAPOBJ_MAP_Load( WFLBY_3DMAPOBJ_MAPRES* p_wk, ARCHANDLE* p_h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_allocator	ƒAƒƒP[ƒ^
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Release( WFLBY_3DMAPOBJ_MAPRES* p_wk, NNSFndAllocator* p_allocator )
 {
 	int i;
 
-	// ƒAƒjƒ”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ç ´æ£„
 	for( i=0; i<WFLBY_3DMAPOBJ_MAP_ANM_NUM; i++ ){
 		if( p_wk->anm_load[i] ){
 			D3DOBJ_AnmDelete( &p_wk->anm[i], p_allocator );
@@ -1422,7 +1422,7 @@ static void WFLBY_3DMAPOBJ_MAP_Release( WFLBY_3DMAPOBJ_MAPRES* p_wk, NNSFndAlloc
 		}
 	}
 
-	//  ƒ‚ƒfƒ‹”jŠü
+	//  ãƒ¢ãƒ‡ãƒ«ç ´æ£„
 	for( i=0; i<WFLBY_3DMAPOBJ_MAPOBJ_NUM; i++ ){
 		WFLBY_3DMAPOBJ_MDL_Delete( &p_wk->mdl[i] );	
 	}
@@ -1430,10 +1430,10 @@ static void WFLBY_3DMAPOBJ_MAP_Release( WFLBY_3DMAPOBJ_MAPRES* p_wk, NNSFndAlloc
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n–ÊƒIƒuƒWƒF‚Ìì¬
+ *	@brief	åœ°é¢ã‚ªãƒ–ã‚¸ã‚§ã®ä½œæˆ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_res		ƒŠƒ\[ƒX 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res		ãƒªã‚½ãƒ¼ã‚¹ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Add( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res )
@@ -1444,20 +1444,20 @@ static void WFLBY_3DMAPOBJ_MAP_Add( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAP
 	
 	for( i=0; i<WFLBY_3DMAPOBJ_MAPOBJ_NUM; i++ ){
 		D3DOBJ_Init( &p_wk->obj[i],  &p_res->mdl[i] );
-		// •`‰æŠJŽn
+		// æç”»é–‹å§‹
 		D3DOBJ_SetDraw( &p_wk->obj[i], TRUE );
 
-		// ”¼ƒOƒŠƒbƒh‚¸‚ç‚·	
+		// åŠã‚°ãƒªãƒƒãƒ‰ãšã‚‰ã™	
 //		D3DOBJ_SetMatrix( &p_wk->obj[i], -WFLBY_3DMATRIX_GRID_GRIDSIZ_HALF, 0, 0 );	
 	}
 
-	// POLLˆÈŠO‚ÌƒAƒjƒ‚ðŠJŽn
+	// POLLä»¥å¤–ã®ã‚¢ãƒ‹ãƒ¡ã‚’é–‹å§‹
 	for( i=0; i<WFLBY_3DMAPOBJ_MAP_ANM_NUM-1; i++ ){
 
 		if( p_res->anm_load[i] == TRUE ){
 			p_wk->anm_on[i] = TRUE;
 
-			// ƒV[ƒg—pƒ}ƒbƒgƒAƒjƒˆÈŠO‚ÍMAP‚ÉƒAƒjƒ’Ç‰Á
+			// ã‚·ãƒ¼ãƒˆç”¨ãƒžãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ä»¥å¤–ã¯MAPã«ã‚¢ãƒ‹ãƒ¡è¿½åŠ 
 			if( i != WFLBY_3DMAPOBJ_MAP_ANM_MAT ){
 
 				D3DOBJ_AddAnm( &p_wk->obj[WFLBY_3DMAPOBJ_MAPOBJ_MAP], 
@@ -1473,23 +1473,23 @@ static void WFLBY_3DMAPOBJ_MAP_Add( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒIƒuƒWƒF	”jŠü
+ *	@brief	ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§	ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_res	ƒŠƒ\[ƒXƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res	ãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Delete( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res )
 {
 	int i;
 
-	// ‘SƒAƒjƒ‚ð‚Í‚ª‚·
+	// å…¨ã‚¢ãƒ‹ãƒ¡ã‚’ã¯ãŒã™
 	for( i=0; i<WFLBY_3DMAPOBJ_MAP_ANM_NUM-1; i++ ){
 
 		if( p_wk->anm_on[i] == TRUE ){
 			p_wk->anm_on[i] = FALSE;
 
-			// ƒV[ƒg—pƒ}ƒbƒgƒAƒjƒˆÈŠO‚ÍMAP‚ÉƒAƒjƒ’Ç‰Á
+			// ã‚·ãƒ¼ãƒˆç”¨ãƒžãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ä»¥å¤–ã¯MAPã«ã‚¢ãƒ‹ãƒ¡è¿½åŠ 
 			if( i != WFLBY_3DMAPOBJ_MAP_ANM_MAT ){
 
 				D3DOBJ_DelAnm( &p_wk->obj[WFLBY_3DMAPOBJ_MAPOBJ_MAP], 
@@ -1508,21 +1508,21 @@ static void WFLBY_3DMAPOBJ_MAP_Delete( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒƒCƒ“ˆ—
+ *	@brief	ãƒžãƒƒãƒ—ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_res	ƒŠƒ\[ƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res	ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Main( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res )
 {
 	int i;
 
-	// ƒAƒjƒ‚ªŠJŽn‚µ‚Ä‚¢‚½‚çƒtƒŒ[ƒ€‚ðÝ’è‚·‚é
+	// ã‚¢ãƒ‹ãƒ¡ãŒé–‹å§‹ã—ã¦ã„ãŸã‚‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹
 	for( i=0; i<WFLBY_3DMAPOBJ_MAP_ANM_NUM; i++ ){
 		if( p_wk->anm_on[i] ){
 			WFLBY_3DMAPOBJ_ANM_Loop( &p_wk->anm_frame[i], &p_res->anm[i], FX32_ONE );
-			// ƒtƒŒ[ƒ€‚ð‚ ‚í‚¹‚é
+			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚ã‚ã›ã‚‹
 			D3DOBJ_AnmSet( &p_res->anm[i], p_wk->anm_frame[i] );
 		}
 	}
@@ -1530,10 +1530,10 @@ static void WFLBY_3DMAPOBJ_MAP_Main( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv•`‰æ
+ *	@brief	ãƒžãƒƒãƒ—æç”»
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_res	ƒŠƒ\[ƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res	ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_MAP_Draw( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MAPRES* p_res )
@@ -1549,14 +1549,14 @@ static void WFLBY_3DMAPOBJ_MAP_Draw( WFLBY_3DMAPOBJ_MAP* p_wk, WFLBY_3DMAPOBJ_MA
 }
 
 
-// ƒtƒ[ƒgƒ[ƒN
+// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys		ƒ[ƒN
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‹ó‚¢‚Ä‚¢‚éƒ[ƒN
+ *	@return	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_GetCleanWk( WFLBY_3DMAPOBJ* p_sys )
@@ -1575,20 +1575,20 @@ static WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_GetCleanWk( WFLBY_3DMAPOBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚Ì“Ç‚Ýž‚Ý
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã®èª­ã¿è¾¼ã¿
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	p_allocator	ƒAƒƒP[ƒ^
- *	@param	cp_data		ƒf[ƒ^
- *	@param	gheapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_FLOAT_Load( WFLBY_3DMAPOBJ_FLOATRES* p_wk, ARCHANDLE* p_handle, NNSFndAllocator* p_allocator, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID )
 {
 	int i, j, k;
 
-	// ƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	{
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 			for( j=0; j<WFLBY_3DMAPOBJ_FLOAT_COL_NUM; j++ ){
@@ -1598,37 +1598,37 @@ static void WFLBY_3DMAPOBJ_FLOAT_Load( WFLBY_3DMAPOBJ_FLOATRES* p_wk, ARCHANDLE*
 		}
 	}
 
-	// ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 	{
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 
-			// ƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Ý
+			// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã¿
 			p_wk->mdl[i].pResMdl	= ArcUtil_HDL_Load( p_handle, 
 						cp_data->float_idx[i], FALSE, gheapID, ALLOC_TOP );
 			p_wk->mdl[i].pModelSet	= NNS_G3dGetMdlSet( p_wk->mdl[i].pResMdl );
 			p_wk->mdl[i].pModel		= NNS_G3dGetMdlByIdx( p_wk->mdl[i].pModelSet, 0 );
 
-			// ƒeƒNƒXƒ`ƒƒ‚ÍŒã‚ÅƒoƒCƒ“ƒh‚·‚é
-			// ‚Æ‚è‚ ‚¦‚¸¡‚ÍƒAƒjƒ‰Šú—p‚É‚O‚Ì‚à‚Ì‚ð“ü‚ê‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯å¾Œã§ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
+			// ã¨ã‚Šã‚ãˆãšä»Šã¯ã‚¢ãƒ‹ãƒ¡åˆæœŸç”¨ã«ï¼ã®ã‚‚ã®ã‚’å…¥ã‚Œã‚‹
 			p_wk->mdl[i].pMdlTex = NNS_G3dGetTex( p_wk->p_texres[i][0] );
 		}
 	}
 
-	// ƒAƒjƒ‚Ì“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ã®èª­ã¿è¾¼ã¿
 	{
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 			for( j=0; j<WFLBY_3DMAPOBJ_FLOAT_ANM_NUM; j++ ){
 	
-				// ƒ‚ƒfƒ‹IDX‚ÆƒAƒjƒIDX‚ªˆê’v‚µ‚½‚ç“Ç‚Ýž‚Ü‚È‚¢
+				// ãƒ¢ãƒ‡ãƒ«IDXã¨ã‚¢ãƒ‹ãƒ¡IDXãŒä¸€è‡´ã—ãŸã‚‰èª­ã¿è¾¼ã¾ãªã„
 				if( cp_data->float_idx[0] != cp_data->float_anmidx[i][j] ){
 
 					D3DOBJ_AnmLoadH( &p_wk->anm[i][j], &p_wk->mdl[i], p_handle, 
 							cp_data->float_anmidx[i][j], gheapID, p_allocator );
 
-					// “ª‚ÆK”öi‚©—ƒj‚ÌƒAƒjƒ‚È‚ç”½‰fæƒm[ƒhID‚ðÝ’è
+					// é ­ã¨å°»å°¾ï¼ˆã‹ç¿¼ï¼‰ã®ã‚¢ãƒ‹ãƒ¡ãªã‚‰åæ˜ å…ˆãƒŽãƒ¼ãƒ‰IDã‚’è¨­å®š
 					if( j >= WFLBY_3DMAPOBJ_FLOAT_ANM_01 ){
 
-						// ƒ‚ƒfƒ‹ƒm[ƒh”•ªƒAƒjƒÝ’è‚ðOFF
+						// ãƒ¢ãƒ‡ãƒ«ãƒŽãƒ¼ãƒ‰æ•°åˆ†ã‚¢ãƒ‹ãƒ¡è¨­å®šã‚’OFF
 						for( k=0; k<cp_data->float_nodenum[i]; k++ ){
 							if( cp_data->float_anm_node[i][j-WFLBY_3DMAPOBJ_FLOAT_ANM_01] != k ){
 								NNS_G3dAnmObjDisableID( p_wk->anm[i][j].pAnmObj, k );
@@ -1643,17 +1643,17 @@ static void WFLBY_3DMAPOBJ_FLOAT_Load( WFLBY_3DMAPOBJ_FLOATRES* p_wk, ARCHANDLE*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_allocator	ƒAƒƒP[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndAllocator* p_allocator )
 {
 	int i, j;
 
-	// ƒAƒjƒ‚Ì”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ã®ç ´æ£„
 	{
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 			for( j=0; j<WFLBY_3DMAPOBJ_FLOAT_ANM_NUM; j++ ){
@@ -1662,14 +1662,14 @@ static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndA
 		}
 	}
 
-	// ƒ‚ƒfƒ‹”jŠü
+	// ãƒ¢ãƒ‡ãƒ«ç ´æ£„
 	{
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 			sys_FreeMemoryEz( p_wk->mdl[i].pResMdl );
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ”jŠü
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç ´æ£„
 	{
 		NNSG3dTexKey texKey;
 		NNSG3dTexKey tex4x4Key;
@@ -1680,7 +1680,7 @@ static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndA
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_NUM; i++ ){
 			for( j=0; j<WFLBY_3DMAPOBJ_FLOAT_COL_NUM; j++ ){
 				p_tex = NNS_G3dGetTex( p_wk->p_texres[i][j] );
-				//VramKey”jŠü
+				//VramKeyç ´æ£„
 				NNS_G3dTexReleaseTexKey( p_tex, &texKey, &tex4x4Key );
 				NNS_GfdFreeTexVram( texKey );	
 				NNS_GfdFreeTexVram( tex4x4Key );	
@@ -1688,7 +1688,7 @@ static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndA
 				plttKey = NNS_G3dPlttReleasePlttKey( p_tex );
 				NNS_GfdFreePlttVram( plttKey );
 
-				// ƒƒ‚ƒŠ”jŠü
+				// ãƒ¡ãƒ¢ãƒªç ´æ£„
 				sys_FreeMemoryEz( p_wk->p_texres[i][j] );
 			}
 		}
@@ -1697,35 +1697,35 @@ static void WFLBY_3DMAPOBJ_FLOAT_Release( WFLBY_3DMAPOBJ_FLOATRES* p_wk, NNSFndA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg@ƒƒCƒ“ˆ—
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_res		ƒŠƒ\[ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res		ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_FLOAT_Main( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOBJ_FLOATRES* p_res )
 {
 	int i;
 
-	// ƒAƒjƒ‚³‚¹‚é
+	// ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 	{
 		fx32 end_frame;
 		for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_ANM_NUM; i++ ){
 			if( p_wk->anm_on[i] ){
 				switch(i){
 				case WFLBY_3DMAPOBJ_FLOAT_ANM_00:
-				case WFLBY_3DMAPOBJ_FLOAT_ANM_02:		// “ª
+				case WFLBY_3DMAPOBJ_FLOAT_ANM_02:		// é ­
 //					OS_TPrintf( "anm roop %d=%d  ",  i, p_wk->anm_frame[i] );
 					WFLBY_3DMAPOBJ_ANM_Loop( &p_wk->anm_frame[i], &p_res->anm[ p_wk->mdlno ][ i ], FX32_ONE );
 					break;
-				case WFLBY_3DMAPOBJ_FLOAT_ANM_01:		// ‹ƒ‚«º—p
-				case WFLBY_3DMAPOBJ_FLOAT_ANM_03:		// K”ö
+				case WFLBY_3DMAPOBJ_FLOAT_ANM_01:		// æ³£ãå£°ç”¨
+				case WFLBY_3DMAPOBJ_FLOAT_ANM_03:		// å°»å°¾
 					{
 						BOOL result;
 //						OS_TPrintf( "anm noroop %d=%d  ",  i, p_wk->anm_frame[i] );
 						result = WFLBY_3DMAPOBJ_ANM_NoLoop( &p_wk->anm_frame[i], &p_res->anm[ p_wk->mdlno ][ i ], FX32_ONE );
 						if( result == TRUE ){
-							// ƒAƒjƒ’âŽ~
+							// ã‚¢ãƒ‹ãƒ¡åœæ­¢
 							p_wk->anm_on[i] = FALSE;
 							p_wk->anm_frame[i] = 0;
 						}
@@ -1743,10 +1743,10 @@ static void WFLBY_3DMAPOBJ_FLOAT_Main( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚Ì•`‰æˆ—
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã®æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_res	ƒŠƒ\[ƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res	ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_FLOAT_Draw( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOBJ_FLOATRES* p_res )
@@ -1758,7 +1758,7 @@ static void WFLBY_3DMAPOBJ_FLOAT_Draw( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOB
 		return ;
 	}
 
-	// FLOAT•`‰æƒ`ƒFƒbƒN
+	// FLOATæç”»ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_3DMAPOBJ_MDL_BOXCheck( &p_res->mdl[ p_wk->mdlno ], &p_wk->obj ) == FALSE ){
 		return ;
 	}
@@ -1767,41 +1767,41 @@ static void WFLBY_3DMAPOBJ_FLOAT_Draw( WFLBY_3DMAPOBJ_FLOAT* p_wk, WFLBY_3DMAPOB
 	GF_ASSERT( p_wk->mdlno < WFLBY_3DMAPOBJ_FLOAT_NUM );
 
 
-	// ƒJƒ‰[‚ÌƒeƒNƒXƒ`ƒƒ‚ðƒoƒCƒ“ƒh
+	// ã‚«ãƒ©ãƒ¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒã‚¤ãƒ³ãƒ‰
 	p_res->mdl[ p_wk->mdlno ].pMdlTex = NNS_G3dGetTex( p_res->p_texres[ p_wk->mdlno ][ p_wk->col ] );
 	result = NNS_G3dBindMdlSet(p_res->mdl[ p_wk->mdlno ].pModelSet, p_res->mdl[ p_wk->mdlno ].pMdlTex );
 	GF_ASSERT( result );
 
-	// ƒAƒjƒ‚Ì“K—p
+	// ã‚¢ãƒ‹ãƒ¡ã®é©ç”¨
 	for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_ANM_NUM; i++ ){
 		if( p_wk->anm_on[i] ){
 			D3DOBJ_AddAnm( &p_wk->obj, &p_res->anm[ p_wk->mdlno ][ i ] );
-			// ƒtƒŒ[ƒ€‚ð‚ ‚í‚¹‚é
+			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚ã‚ã›ã‚‹
 			D3DOBJ_AnmSet( &p_res->anm[ p_wk->mdlno ][ i ], p_wk->anm_frame[i] );
 		}
 	}
 
 	D3DOBJ_Draw( &p_wk->obj );
 
-	// ƒAƒjƒ‚ð”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ã‚’ç ´æ£„
 	for( i=0; i<WFLBY_3DMAPOBJ_FLOAT_ANM_NUM; i++ ){
 		if( p_wk->anm_on[i] ){
 			D3DOBJ_DelAnm( &p_wk->obj, &p_res->anm[ p_wk->mdlno ][ i ] );
 		}
 	}
 
-	// ƒoƒCƒ“ƒh‰ðœ
+	// ãƒã‚¤ãƒ³ãƒ‰è§£é™¤
 	NNS_G3dReleaseMdlSet(p_res->mdl[ p_wk->mdlno ].pModelSet );
 }
 
-// ”z’uƒIƒuƒWƒFƒNƒgƒ[ƒN
+// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	‹ó‚¢‚Ä‚¢‚éƒ[ƒN
+ *	@return	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_GetCleanWk( WFLBY_3DMAPOBJ* p_sys )
@@ -1820,13 +1820,13 @@ static WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_GetCleanWk( WFLBY_3DMAPOBJ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”z’uƒIƒuƒWƒFƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	p_allocator	ƒAƒƒP[ƒ^
- *	@param	cp_data		ƒf[ƒ^
- *	@param	gheapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_WK_Load( WFLBY_3DMAPOBJ_WKRES* p_wk, ARCHANDLE* p_handle, NNSFndAllocator* p_allocator, const WFLBY_3DMAPOBJ_MDL_DATA* cp_data, u32 gheapID )
@@ -1837,16 +1837,16 @@ static void WFLBY_3DMAPOBJ_WK_Load( WFLBY_3DMAPOBJ_WKRES* p_wk, ARCHANDLE* p_han
 //		OS_TPrintf( "wk load mdl idx = %d\n",  cp_data->obj_idx[i] );
 		WFLBY_3DMAPOBJ_MDL_Load( &p_wk->mdl[i], p_handle, cp_data->obj_idx[i], gheapID );
 
-		// ƒ‰ƒCƒgÝ’è
+		// ãƒ©ã‚¤ãƒˆè¨­å®š
 		if( (i != WFLBY_3DMAPOBJ_LAMP00) && 
 			(i != WFLBY_3DMAPOBJ_LAMP01) ){
-			WFLBY_LIGHT_SetUpMdl( p_wk->mdl[ i ].pResMdl );	// ƒ‰ƒCƒg”½‰f
+			WFLBY_LIGHT_SetUpMdl( p_wk->mdl[ i ].pResMdl );	// ãƒ©ã‚¤ãƒˆåæ˜ 
 		}
 
-		// ƒ‚ƒfƒ‹•ª‚ÌƒAƒjƒ‚ð“Ç‚Ýž‚Þ
+		// ãƒ¢ãƒ‡ãƒ«åˆ†ã®ã‚¢ãƒ‹ãƒ¡ã‚’èª­ã¿è¾¼ã‚€
 		for( j=0; j<WFLBY_3DMAPOBJ_ALL_ANM_MAX; j++ ){
 			
-			// ƒIƒuƒWƒF‚ÌID‚Æ“¯‚¶‚È‚ç“Ç‚Ýž‚Ü‚È‚¢
+			// ã‚ªãƒ–ã‚¸ã‚§ã®IDã¨åŒã˜ãªã‚‰èª­ã¿è¾¼ã¾ãªã„
 			if( cp_data->obj_anm[i][j] != cp_data->obj_idx[i] ){
 				p_wk->p_anm[i][j] = ArcUtil_HDL_Load( p_handle, cp_data->obj_anm[i][j], FALSE, gheapID, ALLOC_TOP );
 //				OS_TPrintf( "wk load anm idx = %d\n",  cp_data->obj_anm[i][j] );
@@ -1862,9 +1862,9 @@ static void WFLBY_3DMAPOBJ_WK_Load( WFLBY_3DMAPOBJ_WKRES* p_wk, ARCHANDLE* p_han
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”z’uƒIƒuƒWƒFƒŠƒ\[ƒX”jŠü
+ *	@brief	é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_WK_Release( WFLBY_3DMAPOBJ_WKRES* p_wk, NNSFndAllocator* p_allocator )
@@ -1873,7 +1873,7 @@ static void WFLBY_3DMAPOBJ_WK_Release( WFLBY_3DMAPOBJ_WKRES* p_wk, NNSFndAllocat
 
 	for( i=0; i<WFLBY_3DMAPOBJ_WK_NUM; i++ ){
 
-		// ƒAƒjƒƒŠƒ\[ƒX‚ð”jŠü
+		// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
 		for( j=0; j<WFLBY_3DMAPOBJ_ALL_ANM_MAX; j++ ){
 /*			if( p_wk->anm[i][j].pResAnm != NULL ){
 				D3DOBJ_AnmDelete( &p_wk->anm[i][j], p_allocator );
@@ -1893,10 +1893,10 @@ static void WFLBY_3DMAPOBJ_WK_Release( WFLBY_3DMAPOBJ_WKRES* p_wk, NNSFndAllocat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•`‰æ
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»
  *
- *	@param	p_res	ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_res	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_WK_Draw( WFLBY_3DMAPOBJ_WKRES* p_res, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1909,7 +1909,7 @@ static void WFLBY_3DMAPOBJ_WK_Draw( WFLBY_3DMAPOBJ_WKRES* p_res, WFLBY_3DMAPOBJ_
 
 	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_INIT;
 	
-	// •`‰æƒ`ƒFƒbƒN
+	// æç”»ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_3DMAPOBJ_MDL_BOXCheck( &p_res->mdl[ p_wk->mdlid ], &p_wk->obj ) == FALSE ){
 		return ;
 	}
@@ -1917,18 +1917,18 @@ static void WFLBY_3DMAPOBJ_WK_Draw( WFLBY_3DMAPOBJ_WKRES* p_res, WFLBY_3DMAPOBJ_
 
 
 	/*
-	// ƒAƒjƒi‚ÌƒtƒŒ[ƒ€Ý’è
+	// ã‚¢ãƒ‹ãƒ¡iã®ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	for( i=0; i<WFLBY_3DMAPOBJ_ALL_ANM_MAX; i++ ){
-		// ƒAƒjƒ‚ªON‚É‚È‚Á‚Ä‚¢‚ÄRANDWAIT‚Ìwait‚ªI‚í‚Á‚Ä‚½‚çƒAƒjƒƒtƒŒ[ƒ€Ý’è
+		// ã‚¢ãƒ‹ãƒ¡ãŒONã«ãªã£ã¦ã„ã¦RANDWAITã®waitãŒçµ‚ã‚ã£ã¦ãŸã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 		if( p_wk->anm_on[i] && (p_wk->wait[i] == 0) ){
-			// ƒtƒŒ[ƒ€‚ð‚ ‚í‚¹‚é
+			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚ã‚ã›ã‚‹
 			D3DOBJ_AnmSet( &p_wk->anm[i], p_wk->anm_frame[i] );
 		}
 	}
 	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_PRINT( __LINE__ );
 	//*/
 
-	// ƒAƒ‹ƒtƒ@’l‚Ì“K—p
+	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã®é©ç”¨
 	if( p_wk->alpha_flag == TRUE ){
 		NNS_G3dMdlSetMdlAlphaAll( p_res->mdl[p_wk->mdlid].pModel, p_wk->alpha );
 	}
@@ -1936,7 +1936,7 @@ static void WFLBY_3DMAPOBJ_WK_Draw( WFLBY_3DMAPOBJ_WKRES* p_res, WFLBY_3DMAPOBJ_
 	D3DOBJ_Draw( &p_wk->obj );
 	WFLBY_DEBUG_3DMAPOBJ_PRINT_TIME_TICK_PRINT( __LINE__ );
 
-	// ƒAƒ‹ƒtƒ@’l‚ð–ß‚·
+	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’æˆ»ã™
 	if( p_wk->alpha_flag == TRUE ){
 		NNS_G3dMdlSetMdlAlphaAll( p_res->mdl[p_wk->mdlid].pModel, p_wk->def_alpha );
 	}
@@ -1946,10 +1946,10 @@ static void WFLBY_3DMAPOBJ_WK_Draw( WFLBY_3DMAPOBJ_WKRES* p_res, WFLBY_3DMAPOBJ_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹N“®’†‚ÌƒAƒjƒ‚ðƒ‹[ƒvÄ¶
+ *	@brief	èµ·å‹•ä¸­ã®ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1961,25 +1961,25 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 	for( i=0; i<WFLBY_3DMAPOBJ_ALL_ANM_MAX; i++ ){
 		if( p_wk->anm_on[i] ){
 			switch( p_wk->play[i] ){
-			// ƒ‹[ƒv
+			// ãƒ«ãƒ¼ãƒ—
 			case WFLBY_3DMAPOBJ_WK_ANM_LOOP:
 				WFLBY_3DMAPOBJ_ANM_Loop( &p_wk->anm_frame[i], &p_wk->anm[i], p_wk->speed );
 				D3DOBJ_AnmSet( &p_wk->anm[i], p_wk->anm_frame[i] );
 				break;
 
-			// ƒ‹[ƒv‚È‚µ
+			// ãƒ«ãƒ¼ãƒ—ãªã—
 			case WFLBY_3DMAPOBJ_WK_ANM_NOLOOP:
 				result = WFLBY_3DMAPOBJ_ANM_NoLoop( &p_wk->anm_frame[i], &p_wk->anm[i], p_wk->speed );
 				D3DOBJ_AnmSet( &p_wk->anm[i], p_wk->anm_frame[i] );
 				if( result == TRUE ){
 					
-					// •Û‘¶
+					// ä¿å­˜
 					p_callback = p_wk->p_anmcallback[i];
 
-					//  ƒAƒjƒ‚ð”jŠü
+					//  ã‚¢ãƒ‹ãƒ¡ã‚’ç ´æ£„
 					WFLBY_3DMAPOBJ_WK_DelAnm( p_sys, p_wk, i );
 
-					// ƒR[ƒ‹ƒoƒbƒN‚ª‚ ‚Á‚½‚çŒÄ‚Ô
+					// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒã‚ã£ãŸã‚‰å‘¼ã¶
 					if( p_callback ){
 						p_callback( p_sys, p_wk );
 					}
@@ -1987,24 +1987,24 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 				}
 				break;
 
-			// ‹tÄ¶ƒ‹[ƒv
+			// é€†å†ç”Ÿãƒ«ãƒ¼ãƒ—
 			case WFLBY_3DMAPOBJ_WK_ANM_BACKLOOP:
 				WFLBY_3DMAPOBJ_ANM_BackLoop( &p_wk->anm_frame[i], &p_wk->anm[i], p_wk->speed );
 				D3DOBJ_AnmSet( &p_wk->anm[i], p_wk->anm_frame[i] );
 				break;
 
-			// ‹tÄ¶ƒ‹[ƒv‚È‚µ
+			// é€†å†ç”Ÿãƒ«ãƒ¼ãƒ—ãªã—
 			case WFLBY_3DMAPOBJ_WK_ANM_BACKNOLOOP:
 				result = WFLBY_3DMAPOBJ_ANM_BackNoLoop( &p_wk->anm_frame[i], &p_wk->anm[i], p_wk->speed );
 				D3DOBJ_AnmSet( &p_wk->anm[i], p_wk->anm_frame[i] );
 				if( result == TRUE ){
-					// •Û‘¶
+					// ä¿å­˜
 					p_callback = p_wk->p_anmcallback[i];
 
-					//  ƒAƒjƒ‚ð”jŠü
+					//  ã‚¢ãƒ‹ãƒ¡ã‚’ç ´æ£„
 					WFLBY_3DMAPOBJ_WK_DelAnm( p_sys, p_wk, i );
 
-					// ƒR[ƒ‹ƒoƒbƒN‚ª‚ ‚Á‚½‚çŒÄ‚Ô
+					// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒã‚ã£ãŸã‚‰å‘¼ã¶
 					if( p_callback ){
 						p_callback( p_sys, p_wk );
 					}
@@ -2012,15 +2012,15 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 				}
 				break;
 
-			// ƒ‰ƒ“ƒ_ƒ€ƒEƒGƒCƒgÄ¶	ƒ‹[ƒv
+			// ãƒ©ãƒ³ãƒ€ãƒ ã‚¦ã‚¨ã‚¤ãƒˆå†ç”Ÿ	ãƒ«ãƒ¼ãƒ—
 			case WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT:
-				// ƒEƒGƒCƒg‚µ‚Ä‚©‚çÄ¶
+				// ã‚¦ã‚¨ã‚¤ãƒˆã—ã¦ã‹ã‚‰å†ç”Ÿ
 				if( p_wk->wait[i] > 0 ){
 					p_wk->wait[i]--;
 				}else{
 					result = WFLBY_3DMAPOBJ_ANM_NoLoop( &p_wk->anm_frame[i], &p_wk->anm[i], p_wk->speed );
 					if( result == TRUE ){
-						// ƒ‹[ƒvÄ¶
+						// ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
 						p_wk->wait[i] = gf_mtRand() % p_wk->wait_def;
 						p_wk->anm_frame[i] = 0;
 					}
@@ -2028,9 +2028,9 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 				}
 				break;
 
-			// ƒ‰ƒ“ƒ_ƒ€ƒXƒ^[ƒgÄ¶	ƒ‹[ƒv
+			// ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆå†ç”Ÿ	ãƒ«ãƒ¼ãƒ—
 			case WFLBY_3DMAPOBJ_WK_ANM_RANDSTART:
-				// ƒEƒGƒCƒg‚µ‚Ä‚©‚çÄ¶
+				// ã‚¦ã‚¨ã‚¤ãƒˆã—ã¦ã‹ã‚‰å†ç”Ÿ
 				if( p_wk->wait[i] > 0 ){
 					p_wk->wait[i]--;
 				}else{
@@ -2039,7 +2039,7 @@ static void WFLBY_3DMAPOBJ_WK_Anm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_w
 				}
 				break;
 
-			// ‚È‚É‚à‚µ‚È‚¢
+			// ãªã«ã‚‚ã—ãªã„
 			case WFLBY_3DMAPOBJ_WK_ANM_NOAUTO:
 			default:
 				break;

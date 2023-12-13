@@ -2,16 +2,16 @@
 #define __TRCARD_CGX_DEF_H__
 
 #define TR_BG_BASE		(1)
-//トレーナー画像サイズ	(男女主人公のキャラは32x3だが、ユニオントレーナーサイズに合わせる)
+//繝医Ξ繝ｼ繝翫�ｼ逕ｻ蜒上し繧､繧ｺ	(逕ｷ螂ｳ荳ｻ莠ｺ蜈ｬ縺ｮ繧ｭ繝｣繝ｩ縺ｯ32x3縺縺後√Θ繝九が繝ｳ繝医Ξ繝ｼ繝翫�ｼ繧ｵ繧､繧ｺ縺ｫ蜷医ｏ縺帙ｋ)
 #define TR_BG_SIZE		(10*11/*32*3*/)	
 
-//サイン
+//繧ｵ繧､繝ｳ
 #define SIGN_CGX	(TR_BG_BASE)
 #define SIGN_PX	(4)
 #define SIGN_PY	(14)
 #define SIGN_SX	(24)
 #define SIGN_SY	(8)
 #define SIGN_BYTE_SIZE	(SIGN_SX*SIGN_SY*64)
-#define TR_SIGN_SIZE	(SIGN_SX*SIGN_SY)	//サインサイズ
+#define TR_SIGN_SIZE	(SIGN_SX*SIGN_SY)	//繧ｵ繧､繝ｳ繧ｵ繧､繧ｺ
 
 #endif	//__TRCARD_CGX_DEF_H__

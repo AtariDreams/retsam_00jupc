@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title>WFS_RequestClientRead</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
@@ -10,7 +10,7 @@
 <body>
 
 <h1>WFS_RequestClientRead</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,52 +22,52 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td style="width:13%"><em><strong>context</strong></em></td>
-      <td style="width:87%">WFSClientContext�\���̂̃|�C���^</td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>buffer</strong></em></td>
-      <td style="width:87%">�ǂݍ��ރf�[�^�̊i�[�惁����</td>
+      <td style="width:87%">読み込むデータの格納先メモリ</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>offset</strong></em></td>
-      <td style="width:87%">�ǂݍ��ރf�[�^�̃f�o�C�X���A�h���X</td>
+      <td style="width:87%">読み込むデータのデバイス内アドレス</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>length</strong></em></td>
-      <td style="width:87%">�ǂݍ��ރf�[�^�T�C�Y</td>
+      <td style="width:87%">読み込むデータサイズ</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>callback</strong></em></td>
-      <td style="width:87%"><a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>�`���̓ǂݍ��݊����R�[���o�b�N<br />
-      �s�v�Ȃ�NULL���w�肵�܂��B</td>
+      <td style="width:87%"><a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>形式の読み込み完了コールバック<br />
+      不要ならNULLを指定します。</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>arg</strong></em></td>
-      <td style="width:87%">�ǂݍ��݊����R�[���o�b�N�ɗ^����C�ӂ̈���</td>
+      <td style="width:87%">読み込み完了コールバックに与える任意の引数</td>
     </tr>
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
+<h2>返り値</h2>
+<p>なし</p>
 
-<h2>����</h2>
-<p>�e�@��ROM�C���[�W�ǂݍ��݃��N�G�X�g�𔭍s���܂��B���C�u���������ł́A����ȍ~��MP�ʐM�t�b�N�֐����o�R���Ď����I�Ƀu���b�N�]�������s����܂��B<br />
-���N�G�X�g���������邩���N�G�X�g��������<a href="WFS_EndClient.html">WFS_EndClient</a>�֐����Ăяo�����ƁA
-<a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>�`���Ŋ����R�[���o�b�N�Ƃ��Ēʒm����܂��B</p>
+<h2>説明</h2>
+<p>親機へROMイメージ読み込みリクエストを発行します。ライブラリ内部では、これ以降のMP通信フック関数を経由して自動的にブロック転送が実行されます。<br />
+リクエストが完了するかリクエスト処理中に<a href="WFS_EndClient.html">WFS_EndClient</a>関数が呼び出されると、
+<a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>形式で完了コールバックとして通知されます。</p>
 <p>
-���̊֐��́A�N���C�A���g�̏�������������<a href="../WFSEventType.html">WFS_EVENT_CLIENT_READY</a>�C�x���g�ʒm������������łȂ��Ǝg�p�ł��܂���B
-�܂��A�O��̃��N�G�X�g����������܂ł͍Ăт��̊֐����Ăяo�����Ƃ͂ł��܂���B
+この関数は、クライアントの準備が完了して<a href="../WFSEventType.html">WFS_EVENT_CLIENT_READY</a>イベント通知が発生した後でないと使用できません。
+また、前回のリクエストが完了するまでは再びこの関数を呼び出すことはできません。
 </p>
 <p>
-���N�G�X�g�̐i���󋵂��m�F����ɂ�<a href="WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a>�֐����g�p���܂��B
+リクエストの進捗状況を確認するには<a href="WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a>関数を使用します。
 </p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <a href="../WFSEventCallback.html">WFSEventCallback</a>
 <a href="../WFSEventType.html">WFSEventType</a>
@@ -75,10 +75,10 @@
 <a href="WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a>
 </p>
 
-<h2>����</h2>
+<h2>履歴</h2>
 <p>
-2007/06/11 �����ǉ�<br />
-2007/06/06 ����<br />
+2007/06/11 引数追加<br />
+2007/06/06 初版<br />
 </p>
 </body>
 </html>

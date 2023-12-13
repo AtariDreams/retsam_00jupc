@@ -15,7 +15,7 @@
   do-indent.
 
   Revision 1.1  2004/02/18 01:23:03  yada
-  pad•”•ª‚ğARM7/9‚É•ª‚¯‚½‚½‚ß‚ÉVİ
+  padéƒ¨åˆ†ã‚’ARM7/9ã«åˆ†ã‘ãŸãŸã‚ã«æ–°è¨­
 
 
   $NoKeywords: $

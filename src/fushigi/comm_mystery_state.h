@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_mystery_state.h
- * @brief	�ʐM��Ԃ��Ǘ�����T�[�r�X  �ʐM�̏�ʂɂ���
- *          	�X���b�h�̂ЂƂƂ��ē����A�����̒ʐM��Ԃ⑼�̋@���
- *          	�J�n��I�����Ǘ�����
- *		��comm_field_state.c�̐^�����q
+ * @brief	通信状態を管理するサービス  通信の上位にある
+ *          	スレッドのひとつとして働き、自分の通信状態や他の機器の
+ *          	開始や終了を管理する
+ *		※comm_field_state.cの真似っ子
  * @author	Satoshi Mitsuhara
  * @date    	2006.05.17
  */

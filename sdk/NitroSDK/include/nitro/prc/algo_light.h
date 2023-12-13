@@ -15,45 +15,45 @@
   do-indent
 
   Revision 1.5  2005/03/04 12:45:07  seiki_masashi
-  PRC_InitPrototypeDB ‹y‚С PRC_InitInputPattern ‚ЄЌмђ¬‚Мђ¬ЊчЃEЋё”s‚р•Ф‚·‚ж‚¤‚Й•ПЌX
+  PRC_InitPrototypeDB еЏЉгЃі PRC_InitInputPattern гЃЊдЅњж€ђгЃ®ж€ђеЉџгѓ»е¤±ж•—г‚’иї”гЃ™г‚€гЃ†гЃ«е¤‰ж›ґ
 
   Revision 1.4  2005/02/28 05:26:01  yosizaki
   do-indent.
 
   Revision 1.3  2004/11/04 07:59:53  seiki_masashi
-  regularize ‚р normalize ‚ЙЏCђі
+  regularize г‚’ normalize гЃ«дї®ж­Ј
 
   Revision 1.2  2004/07/19 06:52:06  seiki_masashi
-  ЋЇ•КЋq–ј‚Мђ®—ќ
+  и­е€Ґе­ђеђЌгЃ®ж•ґзђ†
 
   Revision 1.1  2004/06/30 08:49:45  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  ђV‚µ‚ў algo_standard ‚М’З‰Б
+  ж–°гЃ—гЃ„ algo_standard гЃ®иїЅеЉ 
 
   Revision 1.3  2004/06/28 13:18:22  seiki_masashi
-  PRC_GetInputPatternStrokes ‚М’З‰Б
+  PRC_GetInputPatternStrokes гЃ®иїЅеЉ 
 
   Revision 1.2  2004/06/25 03:03:39  seiki_masashi
-  ЉeЉЦђ”‚©‚з bufferSize ‚МЋw’и‚рЌнЏњ
-  GetRecognitionBufferSize* ‚М’З‰Б
-  ‘ј‚МЉЦђ”ЊД‚СЏo‚µ‚µ‚©‚µ‚Д‚ў‚И‚ўЉЦђ”‚М inline ‰»
+  еђ„й–ўж•°гЃ‹г‚‰ bufferSize гЃ®жЊ‡е®љг‚’е‰Љй™¤
+  GetRecognitionBufferSize* гЃ®иїЅеЉ 
+  д»–гЃ®й–ўж•°е‘јгЃіе‡єгЃ—гЃ—гЃ‹гЃ—гЃ¦гЃ„гЃЄгЃ„й–ўж•°гЃ® inline еЊ–
 
   Revision 1.1  2004/06/24 07:03:10  seiki_masashi
-  ѓwѓbѓ_ѓtѓ@ѓCѓ‹‚р•ЄЉ„ЃEђ®—ќ‚µ‚Ь‚µ‚Ѕ
+  гѓгѓѓгѓЂгѓ•г‚Ўг‚¤гѓ«г‚’е€†е‰Ігѓ»ж•ґзђ†гЃ—гЃѕгЃ—гЃџ
 
   Revision 1.1  2004/06/23 12:00:29  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.3  2004/06/22 11:19:00  seiki_masashi
-  “®Ќм‰В”\ѓoЃ[ѓWѓ‡ѓ“(light‚М‚Э)
+  е‹•дЅњеЏЇиѓЅгѓђгѓјг‚ёгѓ§гѓі(lightгЃ®гЃї)
 
   Revision 1.2  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.1  2004/06/17 02:30:29  seiki_masashi
-  ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚МЌ·‚µ‘Ц‚¦‚р—e€Х‚Й‚·‚й‚Ѕ‚Я‚Й prc_algo_* ‚Й•ЄЉ„‚µ‚Ь‚µ‚Ѕ
+  иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃ®е·®гЃ—ж›їгЃ€г‚’е®№ж“гЃ«гЃ™г‚‹гЃџг‚ЃгЃ« prc_algo_* гЃ«е€†е‰ІгЃ—гЃѕгЃ—гЃџ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -62,13 +62,13 @@
   rename ptrcg to prc.
 
   Revision 1.3  2004/06/15 08:10:55  seiki_masashi
-  ѓ_ѓ~Ѓ[‚Мѓ‰ѓCѓuѓ‰ѓЉ‚ЕѓTѓ“ѓvѓ‹ѓvѓЌѓOѓ‰ѓЂ‚Є“®Ќм‰В”\‚Й
+  гѓЂгѓџгѓјгЃ®гѓ©г‚¤гѓ–гѓ©гѓЄгЃ§г‚µгѓігѓ—гѓ«гѓ—гѓ­г‚°гѓ©гѓ гЃЊе‹•дЅњеЏЇиѓЅгЃ«
 
   Revision 1.2  2004/06/15 05:55:09  seiki_masashi
-  ѓCѓ“ѓ^Ѓ[ѓtѓFѓCѓX‚М‰ь‘P
+  г‚¤гѓіг‚їгѓјгѓ•г‚§г‚¤г‚№гЃ®ж”№е–„
 
   Revision 1.1  2004/06/15 00:54:42  seiki_masashi
-  ѓCѓ“ѓ^Ѓ[ѓtѓFѓCѓX‚МђЭЊv
+  г‚¤гѓіг‚їгѓјгѓ•г‚§г‚¤г‚№гЃ®иЁ­иЁ€
 
 
   $NoKeywords: $
@@ -96,31 +96,31 @@ extern "C" {
  *===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-  Њ©–{DB‚М“WЉJ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
-    normalizeSize       ђі‹K‰»ѓTѓCѓY.
-    resampleThreshold   ђі‹K‰»Њг‚ЙЌs‚н‚к‚йѓЉѓTѓ“ѓvѓ‹‚Ми‡’l.
+  и¦‹жњ¬DBгЃ®е±•й–‹гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
+    normalizeSize       ж­Ји¦ЏеЊ–г‚µг‚¤г‚є.
+    resampleThreshold   ж­Ји¦ЏеЊ–еѕЊгЃ«иЎЊг‚Џг‚Њг‚‹гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤.
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDBParam_Common PRCPrototypeDBParam_Light;
 
 /*---------------------------------------------------------------------------*
-  “ь—Нѓpѓ^Ѓ[ѓ“‚М‰рЋЯ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
-    normalizeSize       ђі‹K‰»ѓTѓCѓY.
-    resampleThreshold   ђі‹K‰»Њг‚ЙЌs‚н‚к‚йѓЉѓTѓ“ѓvѓ‹‚Ми‡’l.
+  е…ҐеЉ›гѓ‘г‚їгѓјгѓігЃ®и§Јй‡€гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
+    normalizeSize       ж­Ји¦ЏеЊ–г‚µг‚¤г‚є.
+    resampleThreshold   ж­Ји¦ЏеЊ–еѕЊгЃ«иЎЊг‚Џг‚Њг‚‹гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤.
  *---------------------------------------------------------------------------*/
 typedef PRCInputPatternParam_Common PRCInputPatternParam_Light;
 
 /*---------------------------------------------------------------------------*
-  “ь—Н—R—€‚М”FЋЇѓpѓ^Ѓ[ѓ“
+  е…ҐеЉ›з”±жќҐгЃ®иЄЌи­гѓ‘г‚їгѓјгѓі
  *---------------------------------------------------------------------------*/
 typedef PRCInputPattern_Common PRCInputPattern_Light;
 
 /*---------------------------------------------------------------------------*
-  ѓЃѓ‚ѓЉ‚Й“WЉJ‚і‚к‚ЅЊ©–{DB
+  гѓЎгѓўгѓЄгЃ«е±•й–‹гЃ•г‚ЊгЃџи¦‹жњ¬DB
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDB_Common PRCPrototypeDB_Light;
 
 /*---------------------------------------------------------------------------*
-  ”FЋЇЏ€—ќ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  иЄЌи­е‡¦зђ†гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
  *---------------------------------------------------------------------------*/
 typedef struct PRCRecognizeParam_Light
 {
@@ -133,7 +133,7 @@ PRCRecognizeParam_Light;
 /*---------------------------------------------------------------------------*
   Name:         PRC_Init_Light
 
-  Description:  ђ}Њ`”FЋЇ API ‚рЏ‰Љъ‰»‚µ‚Ь‚·.
+  Description:  е›іеЅўиЄЌи­ API г‚’е€ќжњџеЊ–гЃ—гЃѕгЃ™.
 
   Arguments:    None.
 
@@ -147,11 +147,11 @@ static inline void PRC_Init_Light(void)
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetPrototypeDBBufferSize_Light
 
-  Description:  Њ©–{DB‚р“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЏЃ[ѓN—М€ж‚М‘е‚«‚і‚рЊvЋZ‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBг‚’е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЇгѓјг‚Їй еџџгЃ®е¤§гЃЌгЃ•г‚’иЁ€з®—гЃ—гЃѕгЃ™.
 
-  Arguments:    prototypeList           Њ©–{ѓpѓ^Ѓ[ѓ“‚М€к——
+  Arguments:    prototypeList           и¦‹жњ¬гѓ‘г‚їгѓјгѓігЃ®дёЂи¦§
 
-  Returns:      Њ©–{DB‚р“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЃѓ‚ѓЉ—К.
+  Returns:      и¦‹жњ¬DBг‚’е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄй‡Џ.
  *---------------------------------------------------------------------------*/
 static inline u32 PRC_GetPrototypeDBBufferSize_Light(const PRCPrototypeList *prototypeList)
 {
@@ -161,15 +161,15 @@ static inline u32 PRC_GetPrototypeDBBufferSize_Light(const PRCPrototypeList *pro
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetPrototypeDBBufferSizeEx_Light
 
-  Description:  Њ©–{DB‚р“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЏЃ[ѓN—М€ж‚М‘е‚«‚і‚рЊvЋZ‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBг‚’е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЇгѓјг‚Їй еџџгЃ®е¤§гЃЌгЃ•г‚’иЁ€з®—гЃ—гЃѕгЃ™.
 
-  Arguments:    prototypeList           Њ©–{ѓpѓ^Ѓ[ѓ“‚М€к——
-                kindMask                Ћн—ЮЋw’и—pѓ}ѓXѓN
-                ignoreDisabledEntries   enabled ѓtѓ‰ѓO‚Є FALSE ‚МЊ©–{DBѓGѓ“ѓgѓЉ‚Н
-                                        ‚»‚а‚»‚а“WЉJ‚µ‚И‚ў‚©‚З‚¤‚©
-                param                   Њ©–{DB‚М“WЉJ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  Arguments:    prototypeList           и¦‹жњ¬гѓ‘г‚їгѓјгѓігЃ®дёЂи¦§
+                kindMask                зЁ®йЎћжЊ‡е®љз”Ёгѓћг‚№г‚Ї
+                ignoreDisabledEntries   enabled гѓ•гѓ©г‚°гЃЊ FALSE гЃ®и¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃЇ
+                                        гЃќг‚‚гЃќг‚‚е±•й–‹гЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹
+                param                   и¦‹жњ¬DBгЃ®е±•й–‹гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
 
-  Returns:      Њ©–{DB‚р“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЃѓ‚ѓЉ—К.
+  Returns:      и¦‹жњ¬DBг‚’е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄй‡Џ.
  *---------------------------------------------------------------------------*/
 static inline u32
 PRC_GetPrototypeDBBufferSizeEx_Light(const PRCPrototypeList *prototypeList,
@@ -184,16 +184,16 @@ PRC_GetPrototypeDBBufferSizeEx_Light(const PRCPrototypeList *prototypeList,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitPrototypeDB_Light
 
-  Description:  PRCPrototypeDB Ќ\‘ў‘М‚рЌмђ¬‚µ‚Ь‚·.
-                buffer ‚Й‚Н PRC_GetPrototypeDBBufferSize ‚Є•Ф‚·ѓTѓCѓY€ИЏг‚М
-                ѓoѓbѓtѓ@—М€ж‚ЄђЭ’и‚і‚к‚Д‚ў‚й•K—v‚Є‚ ‚и‚Ь‚·.
+  Description:  PRCPrototypeDB ж§‹йЂ дЅ“г‚’дЅњж€ђгЃ—гЃѕгЃ™.
+                buffer гЃ«гЃЇ PRC_GetPrototypeDBBufferSize гЃЊиї”гЃ™г‚µг‚¤г‚єд»ҐдёЉгЃ®
+                гѓђгѓѓгѓ•г‚Ўй еџџгЃЊиЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™.
 
-  Arguments:    protoDB         Џ‰Љъ‰»‚·‚йЊ©–{DBЌ\‘ў‘М.
-                buffer          Њ©–{DB‚М“WЉJ‚ЙЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                (ѓЃѓ‚ѓЉ—М€жѓTѓCѓY>=PRC_GetPrototypeDBBufferSize ‚М•Ф‚и’l)
-                prototypeList   Њ©–{ѓpѓ^Ѓ[ѓ“‚М€к——
+  Arguments:    protoDB         е€ќжњџеЊ–гЃ™г‚‹и¦‹жњ¬DBж§‹йЂ дЅ“.
+                buffer          и¦‹жњ¬DBгЃ®е±•й–‹гЃ«дЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                (гѓЎгѓўгѓЄй еџџг‚µг‚¤г‚є>=PRC_GetPrototypeDBBufferSize гЃ®иї”г‚ЉеЂ¤)
+                prototypeList   и¦‹жњ¬гѓ‘г‚їгѓјгѓігЃ®дёЂи¦§
 
-  Returns:      Ќмђ¬‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      дЅњж€ђгЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitPrototypeDB_Light(PRCPrototypeDB_Light *protoDB,
@@ -205,21 +205,21 @@ PRC_InitPrototypeDB_Light(PRCPrototypeDB_Light *protoDB,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitPrototypeDBEx_Light
 
-  Description:  PRCPrototypeDB Ќ\‘ў‘М‚рЌмђ¬‚µ‚Ь‚·.
-                buffer ‚Й‚Н PRC_GetPrototypeDBBufferSize ‚Є•Ф‚·ѓTѓCѓY€ИЏг‚М
-                ѓoѓbѓtѓ@—М€ж‚ЄђЭ’и‚і‚к‚Д‚ў‚й•K—v‚Є‚ ‚и‚Ь‚·.
-                param ‚Й‚ж‚Б‚ДЃA“WЉJЋћ‚Мѓpѓ‰ѓЃЃ[ѓ^‚ЄЋw’и‚Е‚«‚Ь‚·.
+  Description:  PRCPrototypeDB ж§‹йЂ дЅ“г‚’дЅњж€ђгЃ—гЃѕгЃ™.
+                buffer гЃ«гЃЇ PRC_GetPrototypeDBBufferSize гЃЊиї”гЃ™г‚µг‚¤г‚єд»ҐдёЉгЃ®
+                гѓђгѓѓгѓ•г‚Ўй еџџгЃЊиЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™.
+                param гЃ«г‚€гЃЈгЃ¦гЂЃе±•й–‹ж™‚гЃ®гѓ‘гѓ©гѓЎгѓјг‚їгЃЊжЊ‡е®љгЃ§гЃЌгЃѕгЃ™.
 
-  Arguments:    protoDB         Џ‰Љъ‰»‚·‚йЊ©–{DBЌ\‘ў‘М.
-                buffer          Њ©–{DB‚М“WЉJ‚ЙЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                (ѓЃѓ‚ѓЉ—М€жѓTѓCѓY>=PRC_GetPrototypeDBBufferSize ‚М•Ф‚и’l)
-                prototypeList   Њ©–{ѓpѓ^Ѓ[ѓ“‚М€к——
-                kindMask        Ћн—ЮЋw’и—pѓ}ѓXѓN
-                ignoreDisabledEntries   enabled ѓtѓ‰ѓO‚Є FALSE ‚МЊ©–{DBѓGѓ“ѓgѓЉ‚Н
-                                        ‚»‚а‚»‚а“WЉJ‚µ‚И‚ў‚©‚З‚¤‚©
-                param           Њ©–{DB‚М“WЉJ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  Arguments:    protoDB         е€ќжњџеЊ–гЃ™г‚‹и¦‹жњ¬DBж§‹йЂ дЅ“.
+                buffer          и¦‹жњ¬DBгЃ®е±•й–‹гЃ«дЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                (гѓЎгѓўгѓЄй еџџг‚µг‚¤г‚є>=PRC_GetPrototypeDBBufferSize гЃ®иї”г‚ЉеЂ¤)
+                prototypeList   и¦‹жњ¬гѓ‘г‚їгѓјгѓігЃ®дёЂи¦§
+                kindMask        зЁ®йЎћжЊ‡е®љз”Ёгѓћг‚№г‚Ї
+                ignoreDisabledEntries   enabled гѓ•гѓ©г‚°гЃЊ FALSE гЃ®и¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃЇ
+                                        гЃќг‚‚гЃќг‚‚е±•й–‹гЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹
+                param           и¦‹жњ¬DBгЃ®е±•й–‹гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
 
-  Returns:      Ќмђ¬‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      дЅњж€ђгЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitPrototypeDBEx_Light(PRCPrototypeDB_Light *protoDB,
@@ -235,13 +235,13 @@ PRC_InitPrototypeDBEx_Light(PRCPrototypeDB_Light *protoDB,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternBufferSize_Light
 
-  Description:  ѓpѓ^Ѓ[ѓ“ѓfЃ[ѓ^‚р”дЉr—p‚Й“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЏЃ[ѓN—М€ж‚М‘е‚«‚і‚р
-                ЊvЋZ‚µ‚Ь‚·.
+  Description:  гѓ‘г‚їгѓјгѓігѓ‡гѓјг‚їг‚’жЇ”ијѓз”ЁгЃ«е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЇгѓјг‚Їй еџџгЃ®е¤§гЃЌгЃ•г‚’
+                иЁ€з®—гЃ—гЃѕгЃ™.
 
-  Arguments:    maxPointCount   “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount  ‰жђ”‚МЏгЊА
+  Arguments:    maxPointCount   е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount  з”»ж•°гЃ®дёЉй™ђ
 
-  Returns:      ѓpѓ^Ѓ[ѓ“‚р“WЉJ‚·‚й‚М‚Й•K—v‚ИѓЃѓ‚ѓЉ—К.
+  Returns:      гѓ‘г‚їгѓјгѓіг‚’е±•й–‹гЃ™г‚‹гЃ®гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄй‡Џ.
  *---------------------------------------------------------------------------*/
 static inline u32 PRC_GetInputPatternBufferSize_Light(int maxPointCount, int maxStrokeCount)
 {
@@ -251,16 +251,16 @@ static inline u32 PRC_GetInputPatternBufferSize_Light(int maxPointCount, int max
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitInputPattern_Light
 
-  Description:  PRCInputPattern Ќ\‘ў‘М‚рЌмђ¬‚µ‚Ь‚·.
+  Description:  PRCInputPattern ж§‹йЂ дЅ“г‚’дЅњж€ђгЃ—гЃѕгЃ™.
 
-  Arguments:    pattern             Џ‰Љъ‰»‚·‚йѓpѓ^Ѓ[ѓ“Ќ\‘ў‘М.
-                buffer              ѓpѓ^Ѓ[ѓ“‚М“WЉJ‚ЙЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                    (—М€жѓTѓCѓY>=PRC_GetInputPatternBufferSize ‚М•Ф‚и’l)
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
+  Arguments:    pattern             е€ќжњџеЊ–гЃ™г‚‹гѓ‘г‚їгѓјгѓіж§‹йЂ дЅ“.
+                buffer              гѓ‘г‚їгѓјгѓігЃ®е±•й–‹гЃ«дЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                    (й еџџг‚µг‚¤г‚є>=PRC_GetInputPatternBufferSize гЃ®иї”г‚ЉеЂ¤)
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
 
-  Returns:      Ќмђ¬‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      дЅњж€ђгЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitInputPattern_Light(PRCInputPattern_Light *pattern,
@@ -273,16 +273,16 @@ PRC_InitInputPattern_Light(PRCInputPattern_Light *pattern,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitInputPatternEx_Light
 
-  Description:  PRCInputPattern Ќ\‘ў‘М‚рЌмђ¬‚µ‚Ь‚·.
-                param ‚Й‚ж‚Б‚ДЃA“ь—Нѓpѓ^Ѓ[ѓ“‚М‰рЋЯ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^‚рЋw’и‚Е‚«‚Ь‚·.
+  Description:  PRCInputPattern ж§‹йЂ дЅ“г‚’дЅњж€ђгЃ—гЃѕгЃ™.
+                param гЃ«г‚€гЃЈгЃ¦гЂЃе…ҐеЉ›гѓ‘г‚їгѓјгѓігЃ®и§Јй‡€гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚їг‚’жЊ‡е®љгЃ§гЃЌгЃѕгЃ™.
 
-  Arguments:    pattern             Џ‰Љъ‰»‚·‚йѓpѓ^Ѓ[ѓ“Ќ\‘ў‘М.
-                buffer              ѓpѓ^Ѓ[ѓ“‚М“WЉJ‚ЙЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                    (—М€жѓTѓCѓY>=PRC_GetInputPatternBufferSize ‚М•Ф‚и’l)
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                param               “ь—Нѓpѓ^Ѓ[ѓ“‚М‰рЋЯ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  Arguments:    pattern             е€ќжњџеЊ–гЃ™г‚‹гѓ‘г‚їгѓјгѓіж§‹йЂ дЅ“.
+                buffer              гѓ‘г‚їгѓјгѓігЃ®е±•й–‹гЃ«дЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                    (й еџџг‚µг‚¤г‚є>=PRC_GetInputPatternBufferSize гЃ®иї”г‚ЉеЂ¤)
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                param               е…ҐеЉ›гѓ‘г‚їгѓјгѓігЃ®и§Јй‡€гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
 
-  Returns:      Ќмђ¬‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      дЅњж€ђгЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitInputPatternEx_Light(PRCInputPattern_Light *pattern,
@@ -298,15 +298,15 @@ PRC_InitInputPatternEx_Light(PRCInputPattern_Light *pattern,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSizeEx_Light
 
-  Description:  ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚Є•K—v‚Ж‚·‚йѓЏЃ[ѓN—М€ж‚М‘е‚«‚і‚р
-                ЊvЋZ‚µ‚Ь‚·.
+  Description:  иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊеї…и¦ЃгЃЁгЃ™г‚‹гѓЇгѓјг‚Їй еџџгЃ®е¤§гЃЌгЃ•г‚’
+                иЁ€з®—гЃ—гЃѕгЃ™.
 
-  Arguments:    maxPointCount   “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount  ‰жђ”‚МЏгЊА
-                protoDB         Њ©–{DB.
-                param           ”FЋЇЏ€—ќ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^.
+  Arguments:    maxPointCount   е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount  з”»ж•°гЃ®дёЉй™ђ
+                protoDB         и¦‹жњ¬DB.
+                param           иЄЌи­е‡¦зђ†гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї.
 
-  Returns:      ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚Є•K—v‚Ж‚·‚йѓЃѓ‚ѓЉ—К.
+  Returns:      иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊеї…и¦ЃгЃЁгЃ™г‚‹гѓЎгѓўгѓЄй‡Џ.
  *---------------------------------------------------------------------------*/
 u32
  
@@ -319,14 +319,14 @@ PRC_GetRecognitionBufferSizeEx_Light(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSize_Light
 
-  Description:  ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚Є•K—v‚Ж‚·‚йѓЏЃ[ѓN—М€ж‚М‘е‚«‚і‚р
-                ЊvЋZ‚µ‚Ь‚·.
+  Description:  иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊеї…и¦ЃгЃЁгЃ™г‚‹гѓЇгѓјг‚Їй еџџгЃ®е¤§гЃЌгЃ•г‚’
+                иЁ€з®—гЃ—гЃѕгЃ™.
 
-  Arguments:    maxPointCount   “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount  ‰жђ”‚МЏгЊА
-                protoDB         Њ©–{DB.
+  Arguments:    maxPointCount   е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount  з”»ж•°гЃ®дёЉй™ђ
+                protoDB         и¦‹жњ¬DB.
 
-  Returns:      ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚Є•K—v‚Ж‚·‚йѓЃѓ‚ѓЉ—К.
+  Returns:      иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊеї…и¦ЃгЃЁгЃ™г‚‹гѓЎгѓўгѓЄй‡Џ.
  *---------------------------------------------------------------------------*/
 static inline u32
 PRC_GetRecognitionBufferSize_Light(int maxPointCount,
@@ -338,23 +338,23 @@ PRC_GetRecognitionBufferSize_Light(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntriesEx_Light
 
-  Description:  Њ©–{DB‚М“Б’и‚М kind ‚МѓGѓ“ѓgѓЉ‚Ж“ь—Нѓpѓ^Ѓ[ѓ“‚р”дЉr‚µ‚Д”FЋЇ‚µ,
-                Њ‹‰К‚МЏг€К numRanking €К‚р•Ф‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBгЃ®з‰№е®љгЃ® kind гЃ®г‚Ёгѓігѓ€гѓЄгЃЁе…ҐеЉ›гѓ‘г‚їгѓјгѓіг‚’жЇ”ијѓгЃ—гЃ¦иЄЌи­гЃ—,
+                зµђжћњгЃ®дёЉдЅЌ numRanking дЅЌг‚’иї”гЃ—гЃѕгЃ™.
 
-  Arguments:    resultEntries   ”FЋЇЊ‹‰К‚Ц‚Мѓ|ѓCѓ“ѓ^‚р“ь‚к‚й”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                ‹Ѓ‚Я‚йЊВђ”€И‰є‚µ‚©”FЋЇ‚Е‚«‚И‚©‚Б‚ЅЏкЌ‡ЃA
-                                Ћc‚и‚Н NULL ‚Е–„‚Я‚з‚к‚Ь‚·.
-                resultScores    ”FЋЇЊ‹‰К‚МѓXѓRѓA‚М”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                numRanking      result* ‚Й•Ф‚·ЊВђ”
-                buffer          ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚ЄЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                (—М€жѓTѓCѓY>=PRC_GetRecognitionBufferSize ‚М•Ф‚и’l)
-                input           “ь—Нѓpѓ^Ѓ[ѓ“.
-                protoDB         Њ©–{DB.
-                kindMask        ЉeЊ©–{DBѓGѓ“ѓgѓЉ‚М kind ’l‚Ж‚М_—ќђП‚р‚Ж‚и,
-                                ”сѓ[ѓЌ‚Е‚ ‚к‚О—LЊш‚Ж‚Э‚И‚µ‚Ь‚·.
-                param           ”FЋЇЏ€—ќ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^.
+  Arguments:    resultEntries   иЄЌи­зµђжћњгЃёгЃ®гѓќг‚¤гѓіг‚їг‚’е…Ґг‚Њг‚‹й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                ж±‚г‚Ѓг‚‹еЂ‹ж•°д»Ґдё‹гЃ—гЃ‹иЄЌи­гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџе ґеђ€гЂЃ
+                                ж®‹г‚ЉгЃЇ NULL гЃ§еџ‹г‚Ѓг‚‰г‚ЊгЃѕгЃ™.
+                resultScores    иЄЌи­зµђжћњгЃ®г‚№г‚іг‚ўгЃ®й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                numRanking      result* гЃ«иї”гЃ™еЂ‹ж•°
+                buffer          иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊдЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                (й еџџг‚µг‚¤г‚є>=PRC_GetRecognitionBufferSize гЃ®иї”г‚ЉеЂ¤)
+                input           е…ҐеЉ›гѓ‘г‚їгѓјгѓі.
+                protoDB         и¦‹жњ¬DB.
+                kindMask        еђ„и¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃ® kind еЂ¤гЃЁгЃ®и«–зђ†з©Ќг‚’гЃЁг‚Љ,
+                                йќћг‚јгѓ­гЃ§гЃ‚г‚ЊгЃ°жњ‰еЉ№гЃЁгЃїгЃЄгЃ—гЃѕгЃ™.
+                param           иЄЌи­е‡¦зђ†гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї.
 
-  Returns:      ”дЉr‚і‚к‚ЅЊ©–{DBЏг‚Мѓpѓ^Ѓ[ѓ“ђ”.
+  Returns:      жЇ”ијѓгЃ•г‚ЊгЃџи¦‹жњ¬DBдёЉгЃ®гѓ‘г‚їгѓјгѓіж•°.
  *---------------------------------------------------------------------------*/
 int
  
@@ -370,20 +370,20 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntries_Light
 
-  Description:  Њ©–{DB‚Ж“ь—Нѓpѓ^Ѓ[ѓ“‚р”дЉr‚µ‚Д”FЋЇ‚µ,
-                Њ‹‰К‚МЏг€К numRanking €К‚р•Ф‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBгЃЁе…ҐеЉ›гѓ‘г‚їгѓјгѓіг‚’жЇ”ијѓгЃ—гЃ¦иЄЌи­гЃ—,
+                зµђжћњгЃ®дёЉдЅЌ numRanking дЅЌг‚’иї”гЃ—гЃѕгЃ™.
 
-  Arguments:    resultEntries   ”FЋЇЊ‹‰К‚Ц‚Мѓ|ѓCѓ“ѓ^‚р“ь‚к‚й”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                ‹Ѓ‚Я‚йЊВђ”€И‰є‚µ‚©”FЋЇ‚Е‚«‚И‚©‚Б‚ЅЏкЌ‡ЃA
-                                Ћc‚и‚Н NULL ‚Е–„‚Я‚з‚к‚Ь‚·.
-                resultScores    ”FЋЇЊ‹‰К‚МѓXѓRѓA‚М”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                numRanking      result* ‚Й•Ф‚µ‚Д‚Щ‚µ‚ўЊВђ”
-                buffer          ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚ЄЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                                (—М€жѓTѓCѓY>=PRC_GetRecognitionBufferSize ‚М•Ф‚и’l)
-                input           “ь—Нѓpѓ^Ѓ[ѓ“.
-                protoDB         Њ©–{DB.
+  Arguments:    resultEntries   иЄЌи­зµђжћњгЃёгЃ®гѓќг‚¤гѓіг‚їг‚’е…Ґг‚Њг‚‹й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                ж±‚г‚Ѓг‚‹еЂ‹ж•°д»Ґдё‹гЃ—гЃ‹иЄЌи­гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџе ґеђ€гЂЃ
+                                ж®‹г‚ЉгЃЇ NULL гЃ§еџ‹г‚Ѓг‚‰г‚ЊгЃѕгЃ™.
+                resultScores    иЄЌи­зµђжћњгЃ®г‚№г‚іг‚ўгЃ®й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                numRanking      result* гЃ«иї”гЃ—гЃ¦гЃ»гЃ—гЃ„еЂ‹ж•°
+                buffer          иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊдЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                                (й еџџг‚µг‚¤г‚є>=PRC_GetRecognitionBufferSize гЃ®иї”г‚ЉеЂ¤)
+                input           е…ҐеЉ›гѓ‘г‚їгѓјгѓі.
+                protoDB         и¦‹жњ¬DB.
 
-  Returns:      ”дЉr‚і‚к‚ЅЊ©–{DBЏг‚Мѓpѓ^Ѓ[ѓ“ђ”.
+  Returns:      жЇ”ијѓгЃ•г‚ЊгЃџи¦‹жњ¬DBдёЉгЃ®гѓ‘г‚їгѓјгѓіж•°.
  *---------------------------------------------------------------------------*/
 static inline int
 PRC_GetRecognizedEntries_Light(PRCPrototypeEntry **resultEntries,
@@ -400,19 +400,19 @@ PRC_GetRecognizedEntries_Light(PRCPrototypeEntry **resultEntries,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntryEx_Light
 
-  Description:  Њ©–{DB‚М“Б’и‚М kind ‚МѓGѓ“ѓgѓЉ‚Ж“ь—Нѓpѓ^Ѓ[ѓ“‚р”дЉr‚µ‚Д”FЋЇ‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBгЃ®з‰№е®љгЃ® kind гЃ®г‚Ёгѓігѓ€гѓЄгЃЁе…ҐеЉ›гѓ‘г‚їгѓјгѓіг‚’жЇ”ијѓгЃ—гЃ¦иЄЌи­гЃ—гЃѕгЃ™.
 
-  Arguments:    resultEntry ”FЋЇ‚і‚к‚ЅЊ©–{DBѓGѓ“ѓgѓЉ‚Ц‚Мѓ|ѓCѓ“ѓ^‚рЋу‚ЇЋж‚йѓ|ѓCѓ“ѓ^.
-                            ”FЋЇ‚Е‚«‚И‚©‚Б‚ЅЏкЌ‡ЃANULL ‚Є“ь‚и‚Ь‚·.
-                buffer      ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚ЄЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                            (—М€жѓTѓCѓY>=PRC_GetRecognitionBufferSize ‚М•Ф‚и’l)
-                input       “ь—Нѓpѓ^Ѓ[ѓ“.
-                protoDB     Њ©–{DB.
-                kindMask    ЉeЊ©–{DBѓGѓ“ѓgѓЉ‚М kind ’l‚Ж‚М_—ќђП‚р‚Ж‚и,
-                            ”сѓ[ѓЌ‚Е‚ ‚к‚О—LЊш‚Ж‚Э‚И‚µ‚Ь‚·.
-                param       ”FЋЇЏ€—ќ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^.
+  Arguments:    resultEntry иЄЌи­гЃ•г‚ЊгЃџи¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃёгЃ®гѓќг‚¤гѓіг‚їг‚’еЏ—гЃ‘еЏ–г‚‹гѓќг‚¤гѓіг‚ї.
+                            иЄЌи­гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџе ґеђ€гЂЃNULL гЃЊе…Ґг‚ЉгЃѕгЃ™.
+                buffer      иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊдЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                            (й еџџг‚µг‚¤г‚є>=PRC_GetRecognitionBufferSize гЃ®иї”г‚ЉеЂ¤)
+                input       е…ҐеЉ›гѓ‘г‚їгѓјгѓі.
+                protoDB     и¦‹жњ¬DB.
+                kindMask    еђ„и¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃ® kind еЂ¤гЃЁгЃ®и«–зђ†з©Ќг‚’гЃЁг‚Љ,
+                            йќћг‚јгѓ­гЃ§гЃ‚г‚ЊгЃ°жњ‰еЉ№гЃЁгЃїгЃЄгЃ—гЃѕгЃ™.
+                param       иЄЌи­е‡¦зђ†гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї.
 
-  Returns:      ѓXѓRѓA’l.
+  Returns:      г‚№г‚іг‚ўеЂ¤.
  *---------------------------------------------------------------------------*/
 static inline fx32
 PRC_GetRecognizedEntryEx_Light(PRCPrototypeEntry **resultEntry,
@@ -430,16 +430,16 @@ PRC_GetRecognizedEntryEx_Light(PRCPrototypeEntry **resultEntry,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntry_Light
 
-  Description:  Њ©–{DB‚Ж“ь—Нѓpѓ^Ѓ[ѓ“‚р”дЉr‚µ‚Д”FЋЇ‚µ‚Ь‚·.
+  Description:  и¦‹жњ¬DBгЃЁе…ҐеЉ›гѓ‘г‚їгѓјгѓіг‚’жЇ”ијѓгЃ—гЃ¦иЄЌи­гЃ—гЃѕгЃ™.
 
-  Arguments:    resultEntry ”FЋЇ‚і‚к‚ЅЊ©–{DBѓGѓ“ѓgѓЉ‚Ц‚Мѓ|ѓCѓ“ѓ^‚рЋу‚ЇЋж‚йѓ|ѓCѓ“ѓ^.
-                            ”FЋЇ‚Е‚«‚И‚©‚Б‚ЅЏкЌ‡ЃANULL ‚Є“ь‚и‚Ь‚·.
-                buffer      ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ‚ЄЋg—p‚·‚йѓЃѓ‚ѓЉ—М€ж‚Ц‚Мѓ|ѓCѓ“ѓ^.
-                            (—М€жѓTѓCѓY>=PRC_GetRecognitionBufferSize ‚М•Ф‚и’l)
-                input       “ь—Нѓpѓ^Ѓ[ѓ“.
-                protoDB     Њ©–{DB.
+  Arguments:    resultEntry иЄЌи­гЃ•г‚ЊгЃџи¦‹жњ¬DBг‚Ёгѓігѓ€гѓЄгЃёгЃ®гѓќг‚¤гѓіг‚їг‚’еЏ—гЃ‘еЏ–г‚‹гѓќг‚¤гѓіг‚ї.
+                            иЄЌи­гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџе ґеђ€гЂЃNULL гЃЊе…Ґг‚ЉгЃѕгЃ™.
+                buffer      иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ гЃЊдЅїз”ЁгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃёгЃ®гѓќг‚¤гѓіг‚ї.
+                            (й еџџг‚µг‚¤г‚є>=PRC_GetRecognitionBufferSize гЃ®иї”г‚ЉеЂ¤)
+                input       е…ҐеЉ›гѓ‘г‚їгѓјгѓі.
+                protoDB     и¦‹жњ¬DB.
 
-  Returns:      ѓXѓRѓA’l.
+  Returns:      г‚№г‚іг‚ўеЂ¤.
  *---------------------------------------------------------------------------*/
 static inline fx32
 PRC_GetRecognizedEntry_Light(PRCPrototypeEntry **resultEntry,
@@ -453,11 +453,11 @@ PRC_GetRecognizedEntry_Light(PRCPrototypeEntry **resultEntry,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternStrokes_Light
 
-  Description:  PRCInputPattern Ќ\‘ў‘М‚©‚з“_—сѓfЃ[ѓ^‚р“ѕ‚Ь‚·.
+  Description:  PRCInputPattern ж§‹йЂ дЅ“гЃ‹г‚‰з‚№е€—гѓ‡гѓјг‚їг‚’еѕ—гЃѕгЃ™.
 
-  Arguments:    strokes         “ѕ‚з‚к‚Ѕ“_—сѓfЃ[ѓ^.
-                                Џ‘‚«Љ·‚¦‚Д‚Н‚ў‚Ї‚Ь‚№‚с.
-                input           “ь—Нѓpѓ^Ѓ[ѓ“.
+  Arguments:    strokes         еѕ—г‚‰г‚ЊгЃџз‚№е€—гѓ‡гѓјг‚ї.
+                                ж›ёгЃЌжЏ›гЃ€гЃ¦гЃЇгЃ„гЃ‘гЃѕгЃ›г‚“.
+                input           е…ҐеЉ›гѓ‘г‚їгѓјгѓі.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -476,39 +476,39 @@ PRC_GetInputPatternStrokes_Light(PRCStrokes *strokes, const PRCInputPattern_Ligh
 
 
 /*===========================================================================*
-  ђ}Њ`”FЋЇ API ‚М•WЏЂЉЦђ”‚Ж‚µ‚ДђЭ’и
+  е›іеЅўиЄЌи­ API гЃ®жЁ™жє–й–ўж•°гЃЁгЃ—гЃ¦иЁ­е®љ
  *===========================================================================*/
 #ifndef PRC_DEFAULT_ALGORITHM
 #define PRC_DEFAULT_ALGORITHM "Light"
 
 /*---------------------------------------------------------------------------*
-  Њ©–{DB‚М“WЉJ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  и¦‹жњ¬DBгЃ®е±•й–‹гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDBParam_Light PRCPrototypeDBParam;
 
 /*---------------------------------------------------------------------------*
-  “ь—Нѓpѓ^Ѓ[ѓ“‚М‰рЋЯ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  е…ҐеЉ›гѓ‘г‚їгѓјгѓігЃ®и§Јй‡€гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
  *---------------------------------------------------------------------------*/
 typedef PRCInputPatternParam_Light PRCInputPatternParam;
 
 /*---------------------------------------------------------------------------*
-  “ь—Н—R—€‚М”FЋЇѓpѓ^Ѓ[ѓ“
+  е…ҐеЉ›з”±жќҐгЃ®иЄЌи­гѓ‘г‚їгѓјгѓі
  *---------------------------------------------------------------------------*/
 typedef PRCInputPattern_Light PRCInputPattern;
 
 /*---------------------------------------------------------------------------*
-  ѓЃѓ‚ѓЉ‚Й“WЉJ‚і‚к‚ЅЊ©–{DB
+  гѓЎгѓўгѓЄгЃ«е±•й–‹гЃ•г‚ЊгЃџи¦‹жњ¬DB
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDB_Light PRCPrototypeDB;
 
 /*---------------------------------------------------------------------------*
-  ”FЋЇЏ€—ќ‚ЙЉЦ‚·‚йѓpѓ‰ѓЃЃ[ѓ^
+  иЄЌи­е‡¦зђ†гЃ«й–ўгЃ™г‚‹гѓ‘гѓ©гѓЎгѓјг‚ї
  *---------------------------------------------------------------------------*/
 typedef PRCRecognizeParam_Light PRCRecognizeParam;
 
 
 /*---------------------------------------------------------------------------*
-  ЉЦђ”
+  й–ўж•°
  *---------------------------------------------------------------------------*/
 static inline void PRC_Init(void)
 {

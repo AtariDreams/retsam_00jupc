@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_192.s
- *@brief	�퓬�V�[�P���X
- *			������HP�񕜃V�[�P���X
+ *@brief	戦闘シーケンス
+ *			特性でHP回復シーケンス
  *@author	HisashiSogabe
  *@data		2006.02.23
  *
@@ -18,8 +18,8 @@ SUB_192:
 	MESSAGE			TokuseiHPKaifukuMineMsg,TAG_NICK_TOKU,SIDE_WORK,SIDE_CLIENT_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
-	//HP�v�Z�T�u���[�`����
+	//HP計算サブルーチンへ
 	GOSUB			SUB_SEQ_HP_CALC
 	SEQ_END

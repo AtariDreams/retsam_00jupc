@@ -2,7 +2,7 @@
 /**
  *
  *	@file		fontoam.h
- *	@brief		OAM���g�p����������`��V�X�e��
+ *	@brief		OAMを使用した文字列描画システム
  *	@author		tomoya takahashi
  *	@data		2005.10.20
  *
@@ -23,25 +23,25 @@
 //-----------------------------------------------------------------------------
 /**
  *
- * OAM�t�H���g�V�X�e������
+ * OAMフォントシステム説明
  *
- * ��{�I�Ȏg�p���@
+ * 基本的な使用方法
  *
- * �P�F�V�X�e�����[�N�i��{�j�쐬
+ * １：システムワーク（大本）作成
  *		FONTOAM_SYS_PTR FONTOAM_SysInit( int workNum, int heap );
  *
- * �Q�F�\��t����r�b�g�}�b�v�f�[�^�쐬
+ * ２：貼り付けるビットマップデータ作成
  *
- * �R�FOAM�t�H���g�쐬
+ * ３：OAMフォント作成
  *		FOTNOAM_OBJ_PTR	FONTOAM_Init( const FONTOAM_INIT* fontoam_init );
  *
- * �S�FOAM�t�H���g�𓮂���
- *		FONTOAM_SetMat();�ȂǃZ���A�N�^�[�ɂ��鑀��֐��̉�]�A�g��k���ȊO�͗p�ӂ���Ă��܂��B
+ * ４：OAMフォントを動かす
+ *		FONTOAM_SetMat();などセルアクターにある操作関数の回転、拡大縮小以外は用意されています。
  *
- * �T�FOAM�t�H���g�̔j��
+ * ５：OAMフォントの破棄
  *		FONTOAM_Delete( FONTOAM_OBJ_PTR fontoam );
  *
- * �U�FOAM�t�H���g�V�X�e�����[�N�̔j��
+ * ６：OAMフォントシステムワークの破棄
  *		FONTOAM_SysDelete( FONTOAM_SYS_PTR fntoam_sys );
  *
  *
@@ -50,18 +50,18 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	1OAM�t�H���g�f�[�^
+//	1OAMフォントデータ
 //	
 //=====================================
 typedef struct _FONTOAM_OBJ*		FONTOAM_OBJ_PTR;
@@ -69,7 +69,7 @@ typedef const struct _FONTOAM_OBJ*	CONST_FONTOAM_OBJ_PTR;
 
 //-------------------------------------
 //	
-//	�V�X�e���f�[�^
+//	システムデータ
 //	
 //=====================================
 typedef struct _FONTOAM_SYSTEM*			FONTOAM_SYS_PTR;
@@ -78,42 +78,42 @@ typedef const struct _FONTOAM_SYSTEM*	CONST_FONTOAM_SYS_PTR;
 
 //-------------------------------------
 //	
-//	�t�H���g�f�[�^�o�^�\����
+//	フォントデータ登録構造体
 //	
 //=====================================
 typedef struct {
-	CONST_FONTOAM_SYS_PTR	fontoam_sys;// �t�H���g�V�X�e���f�[�^
-	const GF_BGL_BMPWIN* bmp;			// �\��t����r�b�g�}�b�v�f�[�^
-	CLACT_SET_PTR		clact_set;		// �Z���A�N�^�[�Z�b�g
-	const NNSG2dImagePaletteProxy* pltt;// �Z���Q�Ɛ�p���b�g�v���N�V
-	CONST_CLACT_WORK_PTR	parent;		// �e�̃A�N�^�[		����Ȃ��Ƃ�NULL	�i�{�^���Ȃǁj
-	int					char_ofs;		// �L�����N�^�f�[�^�]���I�t�Z�b�g
-	int					x;				// �o�^�����W		�e�A�N�^�[������Ƃ��͐e����̃I�t�Z�b�g�����W	(dot�P��)
-	int					y;				// �o�^�����W		�e�A�N�^�[������Ƃ��͐e����̃I�t�Z�b�g�����W	(dot�P��)
-	int					bg_pri;			// bg�D�揇��
-	int					soft_pri;		// �\�t�g�D�揇��
-	int					draw_area;		// �\����
+	CONST_FONTOAM_SYS_PTR	fontoam_sys;// フォントシステムデータ
+	const GF_BGL_BMPWIN* bmp;			// 貼り付けるビットマップデータ
+	CLACT_SET_PTR		clact_set;		// セルアクターセット
+	const NNSG2dImagePaletteProxy* pltt;// セル参照先パレットプロクシ
+	CONST_CLACT_WORK_PTR	parent;		// 親のアクター		いらないときNULL	（ボタンなど）
+	int					char_ofs;		// キャラクタデータ転送オフセット
+	int					x;				// 登録ｘ座標		親アクターがあるときは親からのオフセットｙ座標	(dot単位)
+	int					y;				// 登録ｙ座標		親アクターがあるときは親からのオフセットｙ座標	(dot単位)
+	int					bg_pri;			// bg優先順位
+	int					soft_pri;		// ソフト優先順位
+	int					draw_area;		// 表示先
 	/*
-		NNS_G2D_VRAM_TYPE_2DMAIN    �Q�c�O���t�B�b�N�X�G���W���`�p
-		NNS_G2D_VRAM_TYPE_2DSUB     �Q�c�O���t�B�b�N�X�G���W���a�p*/
-	int					heap;			// �g�p����q�[�v	
+		NNS_G2D_VRAM_TYPE_2DMAIN    ２ＤグラフィックスエンジンＡ用
+		NNS_G2D_VRAM_TYPE_2DSUB     ２ＤグラフィックスエンジンＢ用*/
+	int					heap;			// 使用するヒープ	
 } FONTOAM_INIT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�V�X�e���̍쐬
+ *	@brief	OAMフォントシステムの作成
  *
- *	@param	workNum		�Ǘ����镶����
- *	@param	heap		�g�p����q�[�v
+ *	@param	workNum		管理する文字列数
+ *	@param	heap		使用するヒープ
  *
- *	@return	FONTOAM_SYS_PTR		�쐬����OAM�t�H���g�V�X�e���f�[�^
+ *	@return	FONTOAM_SYS_PTR		作成したOAMフォントシステムデータ
  *
  *
  */
@@ -123,9 +123,9 @@ GLOBAL FONTOAM_SYS_PTR FONTOAM_SysInit( int workNum, int heap );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�V�X�e���̔j��
+ *	@brief	OAMフォントシステムの破棄
  *
- *	@param	fntoam_sys	OAM�t�H���g�V�X�e���f�[�^
+ *	@param	fntoam_sys	OAMフォントシステムデータ
  *
  *	@return	none
  *
@@ -137,11 +137,11 @@ GLOBAL void FONTOAM_SysDelete( FONTOAM_SYS_PTR fntoam_sys );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�쐬
+ *	@brief	OAMフォント作成
  *
- *	@param	fontoam_init	OAM�t�H���g�쐬�f�[�^
+ *	@param	fontoam_init	OAMフォント作成データ
  *
- *	@return	FONTOAM_OBJ_PTR	OAM�t�H���g�f�[�^
+ *	@return	FONTOAM_OBJ_PTR	OAMフォントデータ
  *
  *
  */
@@ -151,7 +151,7 @@ GLOBAL FONTOAM_OBJ_PTR FONTOAM_Init( const FONTOAM_INIT* fontoam_init );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�j��
+ *	@brief	OAMフォント破棄
  *
  *	@param	fontoam 
  *
@@ -165,20 +165,20 @@ GLOBAL void FONTOAM_Delete( FONTOAM_OBJ_PTR fontoam );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r�b�g�}�b�v�E�B���h�E��OAM�t�H���g�V�X�e���ŕ\�����邽�߂ɕK�v�ȃL�����N�^�f�[�^�T�C�Y���擾
+ *	@brief	ビットマップウィンドウをOAMフォントシステムで表示するために必要なキャラクタデータサイズを取得
  *
- *	@param	bmp		�r�b�g�}�b�v�f�[�^
- *	@param	draw_area	�`��G���A
- *	@param	heap	�g�p����q�[�v
+ *	@param	bmp		ビットマップデータ
+ *	@param	draw_area	描画エリア
+ *	@param	heap	使用するヒープ
  *
- *	@return	�\�����邽�߂ɕK�v�ȃL�����N�^�T�C�Y
+ *	@return	表示するために必要なキャラクタサイズ
 	
 	draw_area
-		NNS_G2D_VRAM_TYPE_2DMAIN    �Q�c�O���t�B�b�N�X�G���W���`�p
-		NNS_G2D_VRAM_TYPE_2DSUB     �Q�c�O���t�B�b�N�X�G���W���a�p
+		NNS_G2D_VRAM_TYPE_2DMAIN    ２ＤグラフィックスエンジンＡ用
+		NNS_G2D_VRAM_TYPE_2DSUB     ２ＤグラフィックスエンジンＢ用
  *	
- *	char_manager���g�p���Ă���Ƃ��́A���̃T�C�Y��
- *	���Vram�̈���m�ۂ��Ă����K�v�����邽�ߍ쐬
+ *	char_managerを使用しているときは、このサイズ分
+ *	先にVram領域を確保しておく必要があるため作成
  *
  */
 //-----------------------------------------------------------------------------
@@ -187,11 +187,11 @@ GLOBAL int FONTOAM_NeedCharSize( const GF_BGL_BMPWIN* bmp, int draw_area,  int h
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g���W��ݒ�
+ *	@brief	OAMフォント座標を設定
  *
- *	@param	fontoam		OAM�t�H���g
- *	@param	x			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
- *	@param	y			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
+ *	@param	fontoam		OAMフォント
+ *	@param	x			ｘ座標		親アクターがいるときはオフセット座標
+ *	@param	y			ｙ座標		親アクターがいるときはオフセット座標
  *
  *	@return	none
  *
@@ -202,16 +202,16 @@ GLOBAL void FONTOAM_SetMat( FONTOAM_OBJ_PTR fontoam, int x, int y );
 
 //----------------------------------------------------------------------------
 /**
- * ���e�Z���A�N�^�[��ݒ肵�Ă��Ȃ��ꍇ�͎g�p���Ă��Ӗ�������܂���B
+ * ●親セルアクターを設定していない場合は使用しても意味がありません。
  *	
- *	@brief	�e�A�N�^�[�̍��W�ʒu�Ɉʒu�����킹��
+ *	@brief	親アクターの座標位置に位置を合わせる
  *
  *	@param	fontoam 
  *
  *	@return
  *
- * ���e�Z���A�N�^�[�̈ʒu��ύX�����Ƃ��ɌĂ�ł��������B
- *	�@�e�ɍ��킹�ĕ����������܂�
+ * ■親セルアクターの位置を変更したときに呼んでください。
+ *	　親に合わせて文字も動きます
  *
  */
 //-----------------------------------------------------------------------------
@@ -220,11 +220,11 @@ GLOBAL void FONTOAM_ReflectParentMat( FONTOAM_OBJ_PTR fontoam );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g���W���擾
+ *	@brief	OAMフォント座標を取得
  *
- *	@param	fontoam		OAM�t�H���g
- *	@param	x			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
- *	@param	y			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
+ *	@param	fontoam		OAMフォント
+ *	@param	x			ｘ座標		親アクターがいるときはオフセット座標
+ *	@param	y			ｙ座標		親アクターがいるときはオフセット座標
  *
  *	@return
  *
@@ -236,16 +236,16 @@ GLOBAL void FONTOAM_GetMat( CONST_FONTOAM_OBJ_PTR fontoam, int* x, int* y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�\��/��\���ݒ�
+ *	@brief	表示/非表示設定
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	flag		�\��/��\���t���O
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	flag		表示/非表示フラグ
  *
  *	@return	none
  *
  * flag
- *	TRUE	�\��
- *	FALSE	��\��
+ *	TRUE	表示
+ *	FALSE	非表示
  *
  */
 //-----------------------------------------------------------------------------
@@ -254,12 +254,12 @@ GLOBAL void FONTOAM_SetDrawFlag( FONTOAM_OBJ_PTR fontoam, BOOL flag );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�\��/��\�����擾
+ *	@brief	表示/非表示を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@retval	TRUE	�\����
- *	@retval	FALSE	��\����
+ *	@retval	TRUE	表示中
+ *	@retval	FALSE	非表示中
  *
  *
  */
@@ -269,10 +269,10 @@ GLOBAL BOOL FONTOAM_GetDrawFlag( CONST_FONTOAM_OBJ_PTR fontoam );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG�ʂƂ̗D�揇�ʂ�ݒ�
+ *	@brief	BG面との優先順位を設定
  *
- *	@param	fontoam	OAM�t�H���g�f�[�^
- *	@param	pri		BG�Ƃ̗D�揇��
+ *	@param	fontoam	OAMフォントデータ
+ *	@param	pri		BGとの優先順位
  *
  *	@return	none
  *
@@ -284,11 +284,11 @@ GLOBAL void FONTOAM_SetBGPriority( FONTOAM_OBJ_PTR fontoam, u8 pri );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG�ʂƂ̕`��D�揇�ʂ��擾
+ *	@brief	BG面との描画優先順位を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	BG�ʂƂ̗D�揇��
+ *	@return	BG面との優先順位
  *
  *
  */
@@ -297,10 +297,10 @@ GLOBAL int FONTOAM_GetBGPriority( CONST_FONTOAM_OBJ_PTR fontoam );
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	�`��D�揇�ʂ�ݒ�
+ *	@brief	描画優先順位を設定
  *
- *	@param	fontoam		OAM�t�H���g�f�[�^
- *	@param	pri			�\���D�揇��
+ *	@param	fontoam		OAMフォントデータ
+ *	@param	pri			表示優先順位
  *				
  * 
  *	@return	none
@@ -311,11 +311,11 @@ GLOBAL void FONTOAM_SetDrawPriority( FONTOAM_OBJ_PTR fontoam, u32 pri );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�`��D�揇�ʂ��擾
+ *	@brief	描画優先順位を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	u32			�`��D�揇��
+ *	@return	u32			描画優先順位
  *
  *
  */
@@ -324,18 +324,18 @@ GLOBAL u32 FONTOAM_GetDrawPriority( CONST_FONTOAM_OBJ_PTR fontoam );
 
 //-----------------------------------------------------------------------------
 /**
- * ��OAM�����̃p���b�g�i���o�[������悤�ɂȂ�܂��B
+ * ●OAMがこのパレットナンバーを見るようになります。
  *
- *	@brief				�p���b�g�i���o�[��ύX
+ *	@brief				パレットナンバーを変更
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	pltt_no		�ݒ�p���b�g�i���o�[
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	pltt_no		設定パレットナンバー
  * 
  *	@return	none
  *
- * ���p���b�g�i���o�[�ݒ�ƃp���b�g�I�t�Z�b�g�ݒ�͓������܂���B
- *�@�@���p���b�g�i���o�[��ݒ肷��ƃI�t�Z�b�g�̒l�͔��f����Ȃ��Ȃ�܂��B
- *	�@���I�t�Z�b�g�l��ݒ肵���Ƃ��̓p���b�g�i���o�[�����f����Ȃ��Ȃ�܂��B
+ * ■パレットナンバー設定とパレットオフセット設定は同居しません。
+ *　　●パレットナンバーを設定するとオフセットの値は反映されなくなります。
+ *	　●オフセット値を設定したときはパレットナンバーが反映されなくなります。
  * 
  */
  //----------------------------------------------------------------------------
@@ -345,11 +345,11 @@ GLOBAL void FONTOAM_SetPaletteNoAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32 plt
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�i���o�[�擾
+ *	@brief	パレットナンバー取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	u32			���̃p���b�g�i���o�[
+ *	@return	u32			今のパレットナンバー
  *
  *
  */
@@ -358,20 +358,20 @@ GLOBAL u32 FONTOAM_GetPaletteNo( CONST_FONTOAM_OBJ_PTR fontoam );
 
 //-----------------------------------------------------------------------------
 /**
- * ��OAM�A�g���r���[�g�ɐݒ肳��Ă���p���b�g�i���o�[�ɉ��Z����܂��B
- *	 �����AOAM�A�g���r���[�g�̃J���[�p���b�gNo���Q�ŃI�t�Z�b�g�ɂQ��
- *	 �ݒ肷��ƁA�S�̃J���[�p���b�g���Q�Ƃ���悤�ɂȂ�܂�
+ * ●OAMアトリビュートに設定されているパレットナンバーに加算されます。
+ *	 もし、OAMアトリビュートのカラーパレットNoが２でオフセットに２を
+ *	 設定すると、４のカラーパレットを参照するようになります
  * 
- *	@brief	�p���b�g�I�t�Z�b�g��ݒ�
+ *	@brief	パレットオフセットを設定
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	pltt_ofs	�p���b�g�I�t�Z�b�g
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	pltt_ofs	パレットオフセット
  * 
  *	@return	none
  *
- * ���p���b�g�i���o�[�ݒ�ƃp���b�g�I�t�Z�b�g�ݒ�͓������܂���B
- *�@�@���p���b�g�i���o�[��ݒ肷��ƃI�t�Z�b�g�̒l�͔��f����Ȃ��Ȃ�܂��B
- *	�@���I�t�Z�b�g�l��ݒ肵���Ƃ��̓p���b�g�i���o�[�����f����Ȃ��Ȃ�܂��B
+ * ■パレットナンバー設定とパレットオフセット設定は同居しません。
+ *　　●パレットナンバーを設定するとオフセットの値は反映されなくなります。
+ *	　●オフセット値を設定したときはパレットナンバーが反映されなくなります。
  * 
  */
  //----------------------------------------------------------------------------
@@ -381,11 +381,11 @@ GLOBAL void FONTOAM_SetPaletteOffsetAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�I�t�Z�b�g�l�擾
+ *	@brief	パレットオフセット値取得
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
+ *	@param	fontoam	OAMフォントオブジェ
  *
- *	@return	u32		���̃p���b�g�I�t�Z�b�g�l
+ *	@return	u32		今のパレットオフセット値
  *
  */
 //-----------------------------------------------------------------------------
@@ -394,15 +394,15 @@ GLOBAL u32 FONTOAM_GetPaletteOffset( CONST_FONTOAM_OBJ_PTR fontoam );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���U�C�N�ݒ�
+ *	@brief	モザイク設定
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
- *	@param	flag	�t���O	TRUE�����U�C�NON	FALSE�����U�C�NOFF
+ *	@param	fontoam	OAMフォントオブジェ
+ *	@param	flag	フラグ	TRUE＝モザイクON	FALSE＝モザイクOFF
  *
  *	@return	none
  *
- * ���U�C�NOFF�̎��ł��A�j�g���L�����N�^�Ń��U�C�NON�ɂ���OAM��
- * ���U�C�N���������ĕ`�悳��܂��B
+ * モザイクOFFの時でも、ニトロキャラクタでモザイクONにしたOAMは
+ * モザイクがかかって描画されます。
  *
  */
 //-----------------------------------------------------------------------------
@@ -411,12 +411,12 @@ GLOBAL void FONTOAM_SetMosaic( FONTOAM_OBJ_PTR fontoam, BOOL flag );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���U�C�N�ݒ��Ԃ��擾
+ *	@brief	モザイク設定状態を取得
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
+ *	@param	fontoam	OAMフォントオブジェ
  *
- *	@retval	TRUE	���U�C�N��ON
- *	@retval	FALSE	���U�C�N��OFF	�i�j�g���L�����N�^�Őݒ肵�Ă�Ƃ��͔��f�����j
+ *	@retval	TRUE	モザイク＝ON
+ *	@retval	FALSE	モザイク＝OFF	（ニトロキャラクタで設定してるときは反映される）
  *
  *
  */
@@ -425,32 +425,32 @@ GLOBAL BOOL FONTOAM_GetMosaic( CONST_FONTOAM_OBJ_PTR fontoam );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�h�̐ݒ�
+ *	@brief	オブジェクトモードの設定
  *
- *	@param	fontoam		�t�H���gOAM
- *	@param	objmode		�I�u�W�F���[�h
+ *	@param	fontoam		フォントOAM
+ *	@param	objmode		オブジェモード
  *
  *	@return	none
  *
-	GX_OAM_MODE_NORMAL		�m�[�}��OBJ 
-	GX_OAM_MODE_XLU			������OBJ 
-	GX_OAM_MODE_OBJWND		OBJ�E�B���h�E 
-	GX_OAM_MODE_BITMAPOBJ	�r�b�g�}�b�vOBJ 
+	GX_OAM_MODE_NORMAL		ノーマルOBJ 
+	GX_OAM_MODE_XLU			半透明OBJ 
+	GX_OAM_MODE_OBJWND		OBJウィンドウ 
+	GX_OAM_MODE_BITMAPOBJ	ビットマップOBJ 
  */
 //-----------------------------------------------------------------------------
 GLOBAL void FONTOAM_ObjModeSet( FONTOAM_OBJ_PTR fontoam, GXOamMode objmode );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F���[�h�̎擾
+ *	@brief	オブジェモードの取得
  *
  *	@param	fontoam		FONTOAM
- *	@param	objmode		�I�u�W�F���[�h
+ *	@param	objmode		オブジェモード
  *
- *	@retval	GX_OAM_MODE_NORMAL		�m�[�}��OBJ 
- *	@retval	GX_OAM_MODE_XLU			������OBJ 
- *	@retval	GX_OAM_MODE_OBJWND		OBJ�E�B���h�E 
- *	@retval	GX_OAM_MODE_BITMAPOBJ	�r�b�g�}�b�vOBJ 
+ *	@retval	GX_OAM_MODE_NORMAL		ノーマルOBJ 
+ *	@retval	GX_OAM_MODE_XLU			半透明OBJ 
+ *	@retval	GX_OAM_MODE_OBJWND		OBJウィンドウ 
+ *	@retval	GX_OAM_MODE_BITMAPOBJ	ビットマップOBJ 
  */
 //-----------------------------------------------------------------------------
 GXOamMode FONTOAM_ObjModeGet( CONST_FONTOAM_OBJ_PTR fontoam, GXOamMode objmode );
@@ -460,7 +460,7 @@ GXOamMode FONTOAM_ObjModeGet( CONST_FONTOAM_OBJ_PTR fontoam, GXOamMode objmode )
 
 //-----------------------------------------------------------------------------
 /**
- *		FONTOAM	�ׂ���������o�[�W����
+ *		FONTOAM	細か処理分岐バージョン
  */
 //-----------------------------------------------------------------------------
 typedef struct _FONTOAM_OAM_DATA_SET* FONTOAM_OAM_DATA_PTR;
@@ -468,20 +468,20 @@ typedef const struct _FONTOAM_OAM_DATA_SET* CONST_FONTOAM_OAM_DATA_PTR;
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^�쐬
+ *	@brief	フォントOAM分割データ作成
  *
- *	@param	bmp		�f�[�^�쐬���r�b�g�}�b�v
- *	@param	heap	�q�[�v
+ *	@param	bmp		データ作成元ビットマップ
+ *	@param	heap	ヒープ
  *
- *	@return	�����f�[�^
+ *	@return	分割データ
  */
 //-----------------------------------------------------------------------------
 GLOBAL FONTOAM_OAM_DATA_PTR FONTOAM_OAMDATA_Make( const GF_BGL_BMPWIN* bmp, int heap );
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^�̔j��
+ *	@brief	フォントOAM分割データの破棄
  *
- *	@param	oamdata	�t�H���gOAM�����f�[�^
+ *	@param	oamdata	フォントOAM分割データ
  *
  *	@return	none
  */
@@ -489,30 +489,30 @@ GLOBAL FONTOAM_OAM_DATA_PTR FONTOAM_OAMDATA_Make( const GF_BGL_BMPWIN* bmp, int 
 GLOBAL void FONTOAM_OAMDATA_Free( FONTOAM_OAM_DATA_PTR oamdata );
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^����]���ɕK�v���L�����N�^�T�C�Y���擾
+ *	@brief	フォントOAM分割データから転送に必要がキャラクタサイズを取得
  *
- *	@param	oamdata		�t�H���gOAM�����f�[�^
- *	@param	draw_area	�`��G���A
+ *	@param	oamdata		フォントOAM分割データ
+ *	@param	draw_area	描画エリア
  *
- *	@return	�K�v���L�����N�^�T�C�Y
+ *	@return	必要がキャラクタサイズ
  */
 //-----------------------------------------------------------------------------
 GLOBAL int FONTOAM_OAMDATA_NeedCharSize( CONST_FONTOAM_OAM_DATA_PTR oamdata, int draw_area );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^���g�p���ăt�H���gOAM�̍쐬
+ *	@brief	フォントOAM分割データを使用してフォントOAMの作成
  *
- *	@param	fontoam_init		�ӂ����OAM �쐬�f�[�^
- *	@param	oamdata				OAM�����f�[�^
+ *	@param	fontoam_init		ふぉんとOAM 作成データ
+ *	@param	oamdata				OAM分割データ
  *
- *	@return	�쐬���ꂽ�t�H���gOAM
+ *	@return	作成されたフォントOAM
  */
 //-----------------------------------------------------------------------------
 GLOBAL FONTOAM_OBJ_PTR FONTOAM_OAMDATA_Init( const FONTOAM_INIT* fontoam_init, CONST_FONTOAM_OAM_DATA_PTR oamdata );
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM�t�H���g�j��
+ *	@brief	OAMフォント破棄
  *
  *	@param	fontoam 
  *
@@ -523,17 +523,17 @@ GLOBAL void FONTOAM_OAMDATA_Delete( FONTOAM_OBJ_PTR fontoam );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�̃r�b�g�}�b�v�f�[�^��ύX����
+ *	@brief	フォントOAMのビットマップデータを変更する
  *
- *	@param	fontoam		�ύX����FONTOAM
- *	@param	oamdata		OAM�����f�[�^
- *	@param	bmp			�r�b�g�}�b�v 
- *	@param	heap		�q�[�v
+ *	@param	fontoam		変更するFONTOAM
+ *	@param	oamdata		OAM分割データ
+ *	@param	bmp			ビットマップ 
+ *	@param	heap		ヒープ
  *
  *	@return	none
  *
- *	�����ӓ_
- *		�r�b�g�}�b�v�̑傫�����������K�v������܂��B
+ *	＊注意点
+ *		ビットマップの大きさが等しい必要があります。
  */
 //-----------------------------------------------------------------------------
 GLOBAL void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_PTR oamdata, const GF_BGL_BMPWIN* bmp, int heap );
@@ -541,20 +541,20 @@ GLOBAL void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM
 
 //-----------------------------------------------------------------------------
 /**
- *		FONTOAM�Ƃ͖��֌W�ł����A�ėp�I�Ɏg�p�ł���֐�
+ *		FONTOAMとは無関係ですが、汎用的に使用できる関数
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BMP�̃L�����N�^�f�[�^��OAM�̃T�C�Y�Ő؂���
+ *	@brief	BMPのキャラクタデータをOAMのサイズで切り取る
  *
- *	@param	bmp				�r�b�g�}�b�v�f�[�^
- *	@param	oam_csx			OAM�̉��T�C�Y	�i�L�����N�^�P�ʁj
- *	@param	oam_csy			OAM�̏c�T�C�Y	�i�L�����N�^�P�ʁj
- *	@param	bmp_cmx			�r�b�g�}�b�v�؂��荶�゘���W	�i�L�����N�^�P�ʁj
- *	@param	bmp_cmy			�r�b�g�}�b�v�؂��荶�゙���W	�i�L�����N�^�P�ʁj
- *	@param	char_buff		�o�͐�L�����N�^�o�b�t�@ (oam_csx * oam_csy)*32byte�@�T�C�Y�ȏ�̗̈�
+ *	@param	bmp				ビットマップデータ
+ *	@param	oam_csx			OAMの横サイズ	（キャラクタ単位）
+ *	@param	oam_csy			OAMの縦サイズ	（キャラクタ単位）
+ *	@param	bmp_cmx			ビットマップ切り取り左上ｘ座標	（キャラクタ単位）
+ *	@param	bmp_cmy			ビットマップ切り取り左上ｙ座標	（キャラクタ単位）
+ *	@param	char_buff		出力先キャラクタバッファ (oam_csx * oam_csy)*32byte　サイズ以上の領域
  *
  *	@return	none
  *
@@ -566,7 +566,7 @@ GLOBAL void FONTOAM_BmpCutOamSize( const GF_BGL_BMPWIN* cp_bmp, int oam_csx, int
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�Đݒ�
+ * @brief	親再設定
  *
  * @param	fontoam	
  * @param	parent	

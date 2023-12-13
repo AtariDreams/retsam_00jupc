@@ -46,27 +46,27 @@
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	‚P”Ô‘g‚Å•ú‘—‰Â”\‚ÈƒgƒsƒbƒNí—Ş‚ÌÅ‘å’l
+ * @brief	ï¼‘ç•ªçµ„ã§æ”¾é€å¯èƒ½ãªãƒˆãƒ”ãƒƒã‚¯ç¨®é¡ã®æœ€å¤§å€¤
  */
 //--------------------------------------------------------------------
 //#define	PROG_TOPIC_MAX		8
-//#define	PROG_TOPIC_MAX		9			//š
-#define	PROG_TOPIC_MAX		11			//š
+//#define	PROG_TOPIC_MAX		9			//â˜…
+#define	PROG_TOPIC_MAX		11			//â˜…
 
-#define	TOPIC_ARRAY_MAX		16			//”z—ñ
+#define	TOPIC_ARRAY_MAX		16			//é…åˆ—
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g“à—eƒf[ƒ^‚Ì’·‚³
+ * @brief	ç•ªçµ„å†…å®¹ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
  *
- * topic_type‚ª‚PƒoƒCƒgAtopic_id‚PƒoƒCƒg‚ªPROG_TOPIC_MAXŒÂ‚Ì‡Œv9ƒoƒCƒg‚Å\¬‚³‚ê‚Ä‚¢‚Ü‚·B
- * 9ƒoƒCƒg‚˜8”Ô‘g72ƒoƒCƒg‚ÌƒoƒCƒiƒŠƒf[ƒ^‚©‚çæ“¾‚µ‚Ä‚¢‚Ü‚·B
+ * topic_typeãŒï¼‘ãƒã‚¤ãƒˆã€topic_idï¼‘ãƒã‚¤ãƒˆãŒPROG_TOPIC_MAXå€‹ã®åˆè¨ˆ9ãƒã‚¤ãƒˆã§æ§‹æˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+ * 9ãƒã‚¤ãƒˆï½˜8ç•ªçµ„ï¼72ãƒã‚¤ãƒˆã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã—ã¦ã„ã¾ã™ã€‚
  *
- * topic_type‚ª‚PƒoƒCƒgAtopic_id‚PƒoƒCƒg‚ªPROG_TOPIC_MAXŒÂ‚Ì‡Œv10ƒoƒCƒg‚Å\¬‚³‚ê‚Ä‚¢‚Ü‚·B
- * 10ƒoƒCƒg‚˜9”Ô‘g90ƒoƒCƒg‚ÌƒoƒCƒiƒŠƒf[ƒ^‚©‚çæ“¾‚µ‚Ä‚¢‚Ü‚·Bš
+ * topic_typeãŒï¼‘ãƒã‚¤ãƒˆã€topic_idï¼‘ãƒã‚¤ãƒˆãŒPROG_TOPIC_MAXå€‹ã®åˆè¨ˆ10ãƒã‚¤ãƒˆã§æ§‹æˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+ * 10ãƒã‚¤ãƒˆï½˜9ç•ªçµ„ï¼90ãƒã‚¤ãƒˆã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã—ã¦ã„ã¾ã™ã€‚â˜…
  *
- * topic_type‚ª‚PƒoƒCƒgAtopic_id‚PƒoƒCƒg‚ªPROG_TOPIC_MAXŒÂ‚Ì‡Œv12ƒoƒCƒg‚Å\¬‚³‚ê‚Ä‚¢‚Ü‚·B
- * 12ƒoƒCƒg‚˜9”Ô‘g108ƒoƒCƒg‚ÌƒoƒCƒiƒŠƒf[ƒ^‚©‚çæ“¾‚µ‚Ä‚¢‚Ü‚·Bš
+ * topic_typeãŒï¼‘ãƒã‚¤ãƒˆã€topic_idï¼‘ãƒã‚¤ãƒˆãŒPROG_TOPIC_MAXå€‹ã®åˆè¨ˆ12ãƒã‚¤ãƒˆã§æ§‹æˆã•ã‚Œã¦ã„ã¾ã™ã€‚
+ * 12ãƒã‚¤ãƒˆï½˜9ç•ªçµ„ï¼108ãƒã‚¤ãƒˆã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã—ã¦ã„ã¾ã™ã€‚â˜…
  */
 //--------------------------------------------------------------------
 #define	CONTENTS_DATA_LEN	(1 + PROG_TOPIC_MAX)
@@ -91,7 +91,7 @@ typedef struct {
 //	tv_program.gmm
 //--------------------------------------------------------------------
 static const TVPROG_MSG TVProgramMsg[] = {
-	{	//01	‚½‚½‚©‚¤@ƒgƒŒ[ƒi[
+	{	//01	ãŸãŸã‹ã†ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 		msg_tv_00_01_01,
 		msg_tv_00_01_02,
 		msg_tv_00_01_03,
@@ -100,7 +100,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_01_06,
 		msg_tv_00_01_07,
 	},
-	{	//02	ƒgƒŒ[ƒi[ƒŠƒT[ƒ`
+	{	//02	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒªã‚µãƒ¼ãƒ
 		msg_tv_00_02_01,
 		msg_tv_00_02_02,
 		msg_tv_00_02_03,
@@ -109,7 +109,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_02_06,
 		msg_tv_00_02_07,
 	},
-	{	//03	ƒoƒgƒ‹ƒEƒHƒbƒ`
+	{	//03	ãƒãƒˆãƒ«ã‚¦ã‚©ãƒƒãƒ
 		msg_tv_00_03_01,
 		msg_tv_00_03_02,
 		msg_tv_00_03_03,
@@ -118,7 +118,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_03_06,
 		msg_tv_00_03_07,
 	},
-	{	//04	ƒgƒŒ[ƒi[‚Ì@‚É‚¿‚¶‚å‚¤
+	{	//04	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã€€ã«ã¡ã˜ã‚‡ã†
 		msg_tv_00_04_01,
 		msg_tv_00_04_02,
 		msg_tv_00_04_03,
@@ -127,7 +127,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_04_06,
 		msg_tv_00_04_07,
 	},
-	{	//05	ƒVƒ“ƒIƒE@ƒjƒ…[ƒX@ƒlƒbƒg
+	{	//05	ã‚·ãƒ³ã‚ªã‚¦ã€€ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€€ãƒãƒƒãƒˆ
 		msg_tv_00_05_01,
 		msg_tv_00_05_02,
 		msg_tv_00_05_03,
@@ -136,7 +136,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_05_06,
 		msg_tv_00_05_07,
 	},
-	{	//06	‚«‚ë‚­‚ÅƒSƒ“I
+	{	//06	ãã‚ãã§ã‚´ãƒ³ï¼
 		msg_tv_00_06_01,
 		msg_tv_00_06_02,
 		msg_tv_00_06_03,
@@ -145,7 +145,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_06_06,
 		msg_tv_00_06_07,
 	},
-	{	//07	ƒVƒ“ƒIƒEEƒiƒEI
+	{	//07	ã‚·ãƒ³ã‚ªã‚¦ãƒ»ãƒŠã‚¦ï¼
 		msg_tv_00_07_01,
 		msg_tv_00_07_02,
 		msg_tv_00_07_03,
@@ -154,7 +154,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_07_06,
 		msg_tv_00_07_07,
 	},
-	{	//08	ƒgƒŒƒ“ƒh‚Î‚ñ‚®‚İ
+	{	//08	ãƒˆãƒ¬ãƒ³ãƒ‰ã°ã‚“ãã¿
 		msg_tv_00_08_01,
 		msg_tv_00_08_02,
 		msg_tv_00_08_03,
@@ -163,7 +163,7 @@ static const TVPROG_MSG TVProgramMsg[] = {
 		msg_tv_00_08_06,
 		msg_tv_00_08_07,
 	},
-	{	//09	ƒoƒ‰ƒGƒeƒBƒAƒ[š
+	{	//09	ãƒãƒ©ã‚¨ãƒ†ã‚£ã‚¢ãƒ¯ãƒ¼â˜…
 		msg_tv_00_09_01,
 		msg_tv_00_09_02,
 		msg_tv_00_09_03,
@@ -178,10 +178,10 @@ static const TVPROG_MSG TVProgramMsg[] = {
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g‚ğI—¹ó‘Ô‚É‚·‚é
+ * @brief	ç•ªçµ„ã‚’çµ‚äº†çŠ¶æ…‹ã«ã™ã‚‹
  * @param	fsys
  *
- * ¦ƒXƒNƒŠƒvƒg‚©‚çŒÄ‚Î‚ê‚é
+ * â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å‘¼ã°ã‚Œã‚‹
  */
 //--------------------------------------------------------------------
 void TV_SetEndFlag(FIELDSYS_WORK * fsys)
@@ -192,7 +192,7 @@ void TV_SetEndFlag(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g‚Ìó‘Ô‚ğæ“¾‚·‚é
+ * @brief	ç•ªçµ„ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  * @param	fsys
  * @retval	TV_STATUS_PROGRAM_END
  * @retval	TV_STATUS_TOPIC_END
@@ -200,7 +200,7 @@ void TV_SetEndFlag(FIELDSYS_WORK * fsys)
  * @retval	TV_STATUS_ONAIR
  * @retval	TV_STATUS_NO_TOPIC
  *
- * ¦ƒXƒNƒŠƒvƒg‚©‚çŒÄ‚Î‚ê‚é
+ * â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å‘¼ã°ã‚Œã‚‹
  */
 //--------------------------------------------------------------------
 int TV_GetBroadcastStatus(FIELDSYS_WORK * fsys)
@@ -212,16 +212,16 @@ int TV_GetBroadcastStatus(FIELDSYS_WORK * fsys)
 	TVWORK_DEBUG_Info(tvwk);
 #endif
 	if (TVWORK_IsProgramEnd(tvwk) == TRUE) {
-		return	TV_STATUS_PROGRAM_END;	//”Ô‘gI—¹ó‘Ô
+		return	TV_STATUS_PROGRAM_END;	//ç•ªçµ„çµ‚äº†çŠ¶æ…‹
 	}
 	num = TVWORK_GetUsedTopicNumber(tvwk);
 	if (num == 0) {
-		return TV_STATUS_START;			//”Ô‘gŠJn’¼Œã
+		return TV_STATUS_START;			//ç•ªçµ„é–‹å§‹ç›´å¾Œ
 	}
 	if (num == 4) {
-		return TV_STATUS_TOPIC_END;		//‚S‚ÂƒgƒsƒbƒN‚ğ•ú‘—‚µ‚½
+		return TV_STATUS_TOPIC_END;		//ï¼”ã¤ãƒˆãƒ”ãƒƒã‚¯ã‚’æ”¾é€ã—ãŸ
 	}
-	return TV_STATUS_ONAIR;			//”Ô‘g•ú‘—’†i2‚Â–ÚˆÈ~j
+	return TV_STATUS_ONAIR;			//ç•ªçµ„æ”¾é€ä¸­ï¼ˆ2ã¤ç›®ä»¥é™ï¼‰
 }
 
 
@@ -241,11 +241,11 @@ static void DebugPutList(const char * name, const u8 * list, int max)
 
 //--------------------------------------------------------------------
 /**
- * @brief	Œ»İ‚Ì”Ô‘gID‚ğæ“¾
+ * @brief	ç¾åœ¨ã®ç•ªçµ„IDã‚’å–å¾—
  * @param	fsys
- * @return	int		”Ô‘gID
+ * @return	int		ç•ªçµ„ID
  *
- * NARC_tv_list_bin‚ªƒvƒ‰ƒ`ƒi—p‚Å•ÏX‚³‚ê‚½š
+ * NARC_tv_list_binãŒãƒ—ãƒ©ãƒãƒŠç”¨ã§å¤‰æ›´ã•ã‚ŒãŸâ˜…
  */
 //--------------------------------------------------------------------
 static TV_PROGRAM_ID GetNowProgramID(FIELDSYS_WORK * fsys)
@@ -254,12 +254,12 @@ static TV_PROGRAM_ID GetNowProgramID(FIELDSYS_WORK * fsys)
 	u8 plist[7];
 	int week, hour, min;
 	int ofs;
-	week = (EVTIME_GetWeek(fsys) + 6) % 7;		//”Ô‘g•\ƒf[ƒ^‚ªŒ—j‚©‚ç‚Ì•À‚Ñ‚Ì‚½‚ß
+	week = (EVTIME_GetWeek(fsys) + 6) % 7;		//ç•ªçµ„è¡¨ãƒ‡ãƒ¼ã‚¿ãŒæœˆæ›œã‹ã‚‰ã®ä¸¦ã³ã®ãŸã‚
 	hour = EVTIME_GetHour(fsys);
 	min = EVTIME_GetMinute(fsys);
 
-	//19=”Ô‘g•\ƒf[ƒ^‚ª5‚©‚ç‚Ì•À‚Ñ‚Ì‚½‚ß
-	//15=”Ô‘gƒf[ƒ^‚ª15•ª‚İ‚È‚Ì‚Å
+	//19=ç•ªçµ„è¡¨ãƒ‡ãƒ¼ã‚¿ãŒ5æ™‚ã‹ã‚‰ã®ä¸¦ã³ã®ãŸã‚
+	//15=ç•ªçµ„ãƒ‡ãƒ¼ã‚¿ãŒ15åˆ†åˆ»ã¿ãªã®ã§
 	ofs = (((19 + hour) % 24) * 4 + (min / 15)) * 7;
 
 	ArchiveDataLoadOfs(plist, ARC_TV, NARC_tv_list_bin, ofs, sizeof(u8) * 7);
@@ -286,20 +286,20 @@ static TV_PROGRAM_ID GetNowProgramID(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		”Ô‘g“à—eƒf[ƒ^‚Ìæ“¾
+//		ç•ªçµ„å†…å®¹ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 //
 //
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒNí•Ê‚Ìæ“¾(¿–âAŠÄ‹AƒMƒlƒX‚È‚Ç)
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç¨®åˆ¥ã®å–å¾—(è³ªå•ã€ç›£è¦–ã€ã‚®ãƒã‚¹ãªã©)
  * @param	prog_id
  * @return	TVTOPICTYPE
  *
- * NARC_tv_contents_bin‚ªƒvƒ‰ƒ`ƒi—p‚Å•ÏX‚³‚ê‚½š
+ * NARC_tv_contents_binãŒãƒ—ãƒ©ãƒãƒŠç”¨ã§å¤‰æ›´ã•ã‚ŒãŸâ˜…
  *
- * ƒRƒ“ƒo[ƒgŒ³ƒf[ƒ^‚ÌŠÜ‚Ü‚ê‚éƒgƒsƒbƒNID‚ÌÅŒã‚É0‚ğ“ü‚ê‚È‚¢‚Æ‚¢‚¯‚È‚¢I
- * «ˆ—‚ªƒgƒsƒbƒNID‚ª0‚ª‚­‚é‚Ü‚Å‚Æ‚µ‚Ä‚¢‚é‚Ì‚ÅB
+ * ã‚³ãƒ³ãƒãƒ¼ãƒˆå…ƒãƒ‡ãƒ¼ã‚¿ã®å«ã¾ã‚Œã‚‹ãƒˆãƒ”ãƒƒã‚¯IDã®æœ€å¾Œã«0ã‚’å…¥ã‚Œãªã„ã¨ã„ã‘ãªã„ï¼
+ * â†“å‡¦ç†ãŒãƒˆãƒ”ãƒƒã‚¯IDãŒ0ãŒãã‚‹ã¾ã§ã¨ã—ã¦ã„ã‚‹ã®ã§ã€‚
  * SelectExistTopicData(...)
  */
 //--------------------------------------------------------------------
@@ -314,11 +314,11 @@ static TVTOPICTYPE GetTopicType(TV_PROGRAM_ID prog_id)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g“àƒgƒsƒbƒNID‚Ìæ“¾
+ * @brief	ç•ªçµ„å†…ãƒˆãƒ”ãƒƒã‚¯IDã®å–å¾—
  * @param	prog_id
- * @param	list	ƒgƒsƒbƒNID‚ğƒRƒs[‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	list	ãƒˆãƒ”ãƒƒã‚¯IDã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * NARC_tv_contents_bin‚ªƒvƒ‰ƒ`ƒi—p‚Å•ÏX‚³‚ê‚½š
+ * NARC_tv_contents_binãŒãƒ—ãƒ©ãƒãƒŠç”¨ã§å¤‰æ›´ã•ã‚ŒãŸâ˜…
  */
 //--------------------------------------------------------------------
 static void GetTopicList(TV_PROGRAM_ID prog_id, u8 * list)
@@ -336,7 +336,7 @@ static void GetTopicList(TV_PROGRAM_ID prog_id, u8 * list)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—ğŒ”»’è
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€æ¡ä»¶åˆ¤å®š
  * @param	fsys
  * @param	prog_id
  * @param	topic_id
@@ -351,7 +351,7 @@ static BOOL IsEnableBroadcast(FIELDSYS_WORK * fsys, TV_PROGRAM_ID prog_id, int t
 
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‘—§ŒÀ‚Ì‚È‚¢ƒgƒsƒbƒN‚ÌƒŠƒXƒg‚ğì¬
+ * @brief	æ”¾é€åˆ¶é™ã®ãªã„ãƒˆãƒ”ãƒƒã‚¯ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
  */
 //--------------------------------------------------------------------
 static void MakeTopicTypeList(TV_PROGRAM_ID prog_id, FIELDSYS_WORK * fsys, u8 * type_array)
@@ -363,7 +363,7 @@ static void MakeTopicTypeList(TV_PROGRAM_ID prog_id, FIELDSYS_WORK * fsys, u8 * 
 
 	MI_CpuClear8(type_array, sizeof(u8) * PROG_TOPIC_MAX);
 
-	//•ú‘—§ŒÀ‚Ì‚©‚©‚Á‚Ä‚¢‚È‚¢ƒgƒsƒbƒN‚ğ’Šo
+	//æ”¾é€åˆ¶é™ã®ã‹ã‹ã£ã¦ã„ãªã„ãƒˆãƒ”ãƒƒã‚¯ã‚’æŠ½å‡º
 	for (i = 0, n = 0; i < PROG_TOPIC_MAX; i++) {
 		if (tlist[i] == 0) {
 			break;
@@ -377,7 +377,7 @@ static void MakeTopicTypeList(TV_PROGRAM_ID prog_id, FIELDSYS_WORK * fsys, u8 * 
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒ_ƒ€‚ÅƒCƒ“ƒfƒbƒNƒX‚ğ‘I‘ğ‚·‚é
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’é¸æŠã™ã‚‹
  */
 //--------------------------------------------------------------------
 static int SelectRandomTopicData(FIELDSYS_WORK * fsys, const u8 * t_array)
@@ -401,24 +401,24 @@ static int SelectRandomTopicData(FIELDSYS_WORK * fsys, const u8 * t_array)
 
 //--------------------------------------------------------------------
 /**
- * @brief	w’èƒgƒsƒbƒN‚Ì’Šo
- * @param	tvwk	ƒeƒŒƒrƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	topic_type	ƒgƒsƒbƒN‚Ìí—Ş
- * @param	topic_id	ƒgƒsƒbƒNID
- * @param	mine	©•ªƒf[ƒ^‚©‚Ç‚¤‚©
- * @param	see		Œ©‚½‚©‚Ç‚¤‚©
- * @param	array	ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒXŠi”[‚Ì‚½‚ß‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æŒ‡å®šãƒˆãƒ”ãƒƒã‚¯ã®æŠ½å‡º
+ * @param	tvwk	ãƒ†ãƒ¬ãƒ“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	topic_type	ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡
+ * @param	topic_id	ãƒˆãƒ”ãƒƒã‚¯ID
+ * @param	mine	è‡ªåˆ†ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹
+ * @param	see		è¦‹ãŸã‹ã©ã†ã‹
+ * @param	array	ãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ã®ãŸã‚ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 static int SelectExistTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type,
 		int topic_id, BOOL mine, BOOL see, u8 * array)
 {
-	//šƒoƒ‰ƒGƒeƒBŒ^‚ğ’Ç‰Á
+	//â˜…ãƒãƒ©ã‚¨ãƒ†ã‚£å‹ã‚’è¿½åŠ 
 	//if (topic_type != TVTOPICTYPE_EVENT) {
 	if( (topic_type != TVTOPICTYPE_EVENT) && (topic_type != TVTOPICTYPE_VARIETY) ){
 		return TVWORK_SearchTopics(tvwk, topic_type, topic_id, mine, see, array);
 	}
-	if (see) {	//Œ©‚½‚©‚Ç‚¤‚©‚ğŠo‚¦‚Ä‚¨‚¯‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸
+	if (see) {	//è¦‹ãŸã‹ã©ã†ã‹ã‚’è¦šãˆã¦ãŠã‘ãªã„ã®ã§ã¨ã‚Šã‚ãˆãš
 		return 0;
 	}
 	if (!mine) {
@@ -435,11 +435,11 @@ static int SelectExistTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type,
 //--------------------------------------------------------------------
 /**
  * @brief	
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œä‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	mine	©•ªƒf[ƒ^‚©‚Ç‚¤‚©
- * @param	see		Œ©‚½‚©‚Ç‚¤‚©
- * @param	type_array	ƒgƒsƒbƒNID‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	topic_array	ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒXŠi”[‚Ì‚½‚ß‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mine	è‡ªåˆ†ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹
+ * @param	see		è¦‹ãŸã‹ã©ã†ã‹
+ * @param	type_array	ãƒˆãƒ”ãƒƒã‚¯IDã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	topic_array	ãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ã®ãŸã‚ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 static int SelectExistTopicData(TVTOPICTYPE topic_type,
@@ -465,10 +465,10 @@ static int SelectExistTopicData(TVTOPICTYPE topic_type,
 
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‰f‚Å‚«‚È‚¢ƒgƒsƒbƒN‚ğíœ
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œä‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	topic_type	ƒgƒsƒbƒN‚Ìí—Ş
- * @param	topic_array	ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒXŠi”[‚Ì‚½‚ß‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ”¾æ˜ ã§ããªã„ãƒˆãƒ”ãƒƒã‚¯ã‚’å‰Šé™¤
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	topic_type	ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡
+ * @param	topic_array	ãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ã®ãŸã‚ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 static void SelectEnableTopicData(FIELDSYS_WORK * fsys, TVTOPICTYPE topic_type, u8 * topic_array)
@@ -477,10 +477,10 @@ static void SelectEnableTopicData(FIELDSYS_WORK * fsys, TVTOPICTYPE topic_type, 
 	TVBCD * bcd;
 	for (i = 0; *topic_array != 0 && i < TOPIC_ARRAY_MAX; topic_array ++, i++) {
 
-		//ƒeƒŒƒr•ú‘——pƒf[ƒ^¶¬ˆ—
+		//ãƒ†ãƒ¬ãƒ“æ”¾é€ç”¨ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆå‡¦ç†
 		bcd = TVBCD_Create(fsys, topic_type, *topic_array);
 
-		//ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒN
+		//ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯
 		if (!TVTOPIC_CheckLimit(topic_type, fsys, bcd)) {
 			*topic_array = 0;
 		}
@@ -490,9 +490,9 @@ static void SelectEnableTopicData(FIELDSYS_WORK * fsys, TVTOPICTYPE topic_type, 
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g“à‚Å•ú‘—‚µ‚½ƒgƒsƒbƒN‚ğíœ
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œä‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	topic_array	ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒXŠi”[‚Ì‚½‚ß‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç•ªçµ„å†…ã§æ”¾é€ã—ãŸãƒˆãƒ”ãƒƒã‚¯ã‚’å‰Šé™¤
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	topic_array	ãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ã®ãŸã‚ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 static void DeleteUsedTopicData(FIELDSYS_WORK * fsys, u8 * topic_array)
@@ -508,11 +508,11 @@ static void DeleteUsedTopicData(FIELDSYS_WORK * fsys, u8 * topic_array)
 
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‘—‚·‚éƒgƒsƒbƒN‚ğ’Šo‚·‚é
+ * @brief	æ”¾é€ã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã‚’æŠ½å‡ºã™ã‚‹
  * @param	fsys
  * @param	mine
  * @param	see
- * @return	int		0‚Ì‚Æ‚«Aƒf[ƒ^‚È‚µ
+ * @return	int		0ã®ã¨ãã€ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //--------------------------------------------------------------------
 int TV_ChooseBroadcastTopic(FIELDSYS_WORK * fsys, BOOL mine, BOOL see)
@@ -524,58 +524,58 @@ int TV_ChooseBroadcastTopic(FIELDSYS_WORK * fsys, BOOL mine, BOOL see)
 	int topic_type;
 	
 #if 0
-	//”Ô‘gID‚ğæ“¾‚µ‚ÄA
-	//‚»‚Ì”Ô‘g‚ÌƒgƒsƒbƒNí—Ş‚ğæ“¾‚µ‚ÄA
-	//ƒgƒsƒbƒNID‚ğtype_array‚ÉŠi”[
+	//ç•ªçµ„IDã‚’å–å¾—ã—ã¦ã€
+	//ãã®ç•ªçµ„ã®ãƒˆãƒ”ãƒƒã‚¯ç¨®é¡ã‚’å–å¾—ã—ã¦ã€
+	//ãƒˆãƒ”ãƒƒã‚¯IDã‚’type_arrayã«æ ¼ç´
 	//
-	//šV‹K‚Å’Ç‰Á‚³‚ê‚½ƒgƒsƒbƒNID‚Í”Ô‘g‚É‚Í‘‚©‚ê‚Ä‚¢‚È‚¢‚½‚ßADP‚Å‚Í‚Í‚¶‚©‚ê‚é‚Ì‚Å‘åä•v
+	//â˜…æ–°è¦ã§è¿½åŠ ã•ã‚ŒãŸãƒˆãƒ”ãƒƒã‚¯IDã¯ç•ªçµ„ã«ã¯æ›¸ã‹ã‚Œã¦ã„ãªã„ãŸã‚ã€DPã§ã¯ã¯ã˜ã‹ã‚Œã‚‹ã®ã§å¤§ä¸ˆå¤«
 	//
-	//DP‚ÅƒgƒsƒbƒNID‚Í‘¶İ‚·‚é‚ªƒf[ƒ^‚ªì‚ç‚ê‚È‚¢APL‚Å‚Í•œŠˆ‚µ‚½ƒgƒsƒbƒNID‚ÍH
+	//DPã§ãƒˆãƒ”ãƒƒã‚¯IDã¯å­˜åœ¨ã™ã‚‹ãŒãƒ‡ãƒ¼ã‚¿ãŒä½œã‚‰ã‚Œãªã„ã€PLã§ã¯å¾©æ´»ã—ãŸãƒˆãƒ”ãƒƒã‚¯IDã¯ï¼Ÿ
 	//
 	//BOOL TVTOPIC_CheckLimit(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, TVBCD * bcd)
-	//‚±‚Ì’†‚ÅA¶¬ŠÖ”‚ª‚È‚¢ê‡‚ÍA–³ğŒ‚Å•ú‘—‚µ‚È‚¢
+	//ã“ã®ä¸­ã§ã€ç”Ÿæˆé–¢æ•°ãŒãªã„å ´åˆã¯ã€ç„¡æ¡ä»¶ã§æ”¾é€ã—ãªã„
 	//
-	//š¶¬ŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚à‚Ì‚ÍA‚Í‚¶‚©‚ê‚é‚Ì‚Å‘åä•v
+	//â˜…ç”Ÿæˆé–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‚‚ã®ã¯ã€ã¯ã˜ã‹ã‚Œã‚‹ã®ã§å¤§ä¸ˆå¤«
 	//
-	//‚È‚Ì‚ÅA¬‚º‚Ä‚à•½‹C‚È‚Í‚¸B
+	//ãªã®ã§ã€æ··ãœã¦ã‚‚å¹³æ°—ãªã¯ãšã€‚
 #endif
 
-	//Œ»İ‚Ì”Ô‘gID‚ğæ“¾
+	//ç¾åœ¨ã®ç•ªçµ„IDã‚’å–å¾—
 	prog_id = GetNowProgramID(fsys);
 
-	//ƒgƒsƒbƒNí•Ê‚Ìæ“¾(¿–âAŠÄ‹AƒMƒlƒX‚È‚Ç)
+	//ãƒˆãƒ”ãƒƒã‚¯ç¨®åˆ¥ã®å–å¾—(è³ªå•ã€ç›£è¦–ã€ã‚®ãƒã‚¹ãªã©)
 	topic_type = GetTopicType(prog_id);
 
 	MI_CpuClear8(type_array, PROG_TOPIC_MAX);
 	MI_CpuClear8(topic_array, TOPIC_ARRAY_MAX);
 
-	//•ú‘—§ŒÀ‚Ì‚È‚¢ƒgƒsƒbƒN‚ÌƒŠƒXƒg¶¬
+	//æ”¾é€åˆ¶é™ã®ãªã„ãƒˆãƒ”ãƒƒã‚¯ã®ãƒªã‚¹ãƒˆç”Ÿæˆ
 	MakeTopicTypeList(prog_id, fsys, type_array);
 #ifdef	TV_BROADCAST_DEBUG
 	DebugPutList("TOPIC_ID:", type_array, PROG_TOPIC_MAX);
 #endif
 
-	//ƒf[ƒ^‘¶İƒ`ƒFƒbƒN‚Å‘I‘ğ
+	//ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã§é¸æŠ
 	result = SelectExistTopicData(topic_type, fsys, mine, see, type_array, topic_array);
 #ifdef	TV_BROADCAST_DEBUG
 	DebugPutList("EXIST  INDEX:",topic_array, TOPIC_ARRAY_MAX);
 #endif
 	if (result == 0) {
-		return 0;			//ƒf[ƒ^‚ª‚È‚©‚Á‚½
+		return 0;			//ãƒ‡ãƒ¼ã‚¿ãŒãªã‹ã£ãŸ
 	}
-	// •ú‘—‚Å‚«‚È‚¢ƒgƒsƒbƒN‚ğíœ
+	// æ”¾é€ã§ããªã„ãƒˆãƒ”ãƒƒã‚¯ã‚’å‰Šé™¤
 	SelectEnableTopicData(fsys, topic_type, topic_array);
 #ifdef	TV_BROADCAST_DEBUG
 	DebugPutList("ENABLE INDEX:",topic_array, TOPIC_ARRAY_MAX);
 #endif
 
-	//•ú‘—Ï‚İƒgƒsƒbƒN‚ğ”rœ
+	//æ”¾é€æ¸ˆã¿ãƒˆãƒ”ãƒƒã‚¯ã‚’æ’é™¤
 	DeleteUsedTopicData(fsys, topic_array);
 #ifdef	TV_BROADCAST_DEBUG
 	DebugPutList("NOTUSE INDEX:",topic_array, TOPIC_ARRAY_MAX);
 #endif
 
-	//c‚Á‚½‚à‚Ì‚©‚ç—”‚Å‘I‘ğ
+	//æ®‹ã£ãŸã‚‚ã®ã‹ã‚‰ä¹±æ•°ã§é¸æŠ
 	result = SelectRandomTopicData(fsys, topic_array);
 
 	return result;
@@ -583,7 +583,7 @@ int TV_ChooseBroadcastTopic(FIELDSYS_WORK * fsys, BOOL mine, BOOL see)
 
 //--------------------------------------------------------------------
 /**
- *	scr_tv.c‚©‚çŒÄ‚Î‚ê‚é
+ *	scr_tv.cã‹ã‚‰å‘¼ã°ã‚Œã‚‹
  */
 //--------------------------------------------------------------------
 int TV_ChooseBroadcastTopicTotal(FIELDSYS_WORK * fsys)
@@ -610,7 +610,7 @@ int TV_ChooseBroadcastTopicTotal(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g‚É‚ ‚í‚¹‚ÄƒƒbƒZ[ƒW\‘¢‘Ì‚ğæ“¾
+ * @brief	ç•ªçµ„ã«ã‚ã‚ã›ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“ã‚’å–å¾—
  */
 //--------------------------------------------------------------------
 static const TVPROG_MSG * GetNowProgramMsgData(FIELDSYS_WORK * fsys)
@@ -622,12 +622,12 @@ static const TVPROG_MSG * GetNowProgramMsgData(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘g‚²‚Æ‚ÉŒˆ‚Ü‚Á‚Ä‚¢‚éƒƒbƒZ[ƒWID‚ğæ“¾i7í—ŞA‘OƒtƒŠ‚âI—¹‚È‚Çj
+ * @brief	ç•ªçµ„ã”ã¨ã«æ±ºã¾ã£ã¦ã„ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ï¼ˆ7ç¨®é¡ã€å‰ãƒ•ãƒªã‚„çµ‚äº†ãªã©ï¼‰
  * @param	fsys
- * @param	prog_msg_id		TV_PRO_MSG_`iscr_tv.hQÆj
- * @return	int				ƒƒbƒZ[ƒWIDiNARC_msg_tv_program_dat“àj
+ * @param	prog_msg_id		TV_PRO_MSG_ã€œï¼ˆscr_tv.hå‚ç…§ï¼‰
+ * @return	int				ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼ˆNARC_msg_tv_program_datå†…ï¼‰
  *
- * ¦ƒXƒNƒŠƒvƒg‚©‚çŒÄ‚Î‚ê‚é
+ * â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å‘¼ã°ã‚Œã‚‹
  */
 //--------------------------------------------------------------------
 int TV_GetProgramMsg(FIELDSYS_WORK * fsys, int prog_msg_id)
@@ -665,12 +665,12 @@ int TV_GetProgramMsg(FIELDSYS_WORK * fsys, int prog_msg_id)
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	”Ô‘gƒgƒsƒbƒN¶¬ˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œä‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ws			WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	idx			ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒXw’è
- * @param	arc_id		ƒA[ƒJƒCƒuw’è‚ğó‚¯æ‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWw’è‚ğó‚¯æ‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç•ªçµ„ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆå‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ws			WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	idx			ãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æŒ‡å®š
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æŒ‡å®šã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æŒ‡å®šã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 BOOL TV_GetProgramID(FIELDSYS_WORK * fsys, WORDSET * ws, int idx, u16 * arc_id, u16 * msg_id)

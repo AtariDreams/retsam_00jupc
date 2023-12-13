@@ -2,9 +2,9 @@
 #define __POKETCH_ACT_H__
 
 typedef enum {
-	PACT_AFFINE_NONE,		// �g�k�i�V
-	PACT_AFFINE_NORMAL,		// �g�k����i���ʁj
-	PACT_AFFINE_DOUBLE,		// �g�k����i�{�p�j
+	PACT_AFFINE_NONE,		// 拡縮ナシ
+	PACT_AFFINE_NORMAL,		// 拡縮あり（普通）
+	PACT_AFFINE_DOUBLE,		// 拡縮あり（倍角）
 }PactAffType;
 
 typedef enum {
@@ -16,16 +16,16 @@ typedef enum {
 
 //------------------------------------------------------------------
 /**
- * �A�N�^�[�ǉ��p�̃p�����[�^�\����
+ * アクター追加用のパラメータ構造体
  */
 //------------------------------------------------------------------
 typedef struct {
-	NNSG2dFVec2  pos;			// �����ʒu
-	u16          anmseq;		// �����A�j���V�[�P���X
-	u8           flip;			// �t���b�v�w��(PACT_FLIP)
-	u8   bgpri;					// BG�v���C�I���e�B
-	u8   oampri;				// OAM�v���C�I���e�B
-	u8   affine_flag;			// ��]�E�g�k�t���O
+	NNSG2dFVec2  pos;			// 初期位置
+	u16          anmseq;		// 初期アニメシーケンス
+	u8           flip;			// フリップ指定(PACT_FLIP)
+	u8   bgpri;					// BGプライオリティ
+	u8   oampri;				// OAMプライオリティ
+	u8   affine_flag;			// 回転・拡縮フラグ
 }PACT_ADD_PARAM;
 
 
@@ -39,12 +39,12 @@ typedef enum {
 }PACT_FLIP;
 
 
-/*	�Q�l�܂ł�
+/*	参考までに
 
 typedef struct NNSG2dFVec2
 {
-    fx32     x;		// fx32�� 1:19:12 �̌Œ菬�� 32bit�^
-    fx32     y;		// SDK <nitro/fx/fx.h> �ɕ֗��ȃ}�N�����F�X�ł�
+    fx32     x;		// fx32は 1:19:12 の固定小数 32bit型
+    fx32     y;		// SDK <nitro/fx/fx.h> に便利なマクロが色々です
 
 }NNSG2dFVec2;
 
@@ -52,7 +52,7 @@ typedef struct NNSG2dFVec2
 
 //------------------------------------------------------------------
 /**
- * �Z�����A�j���f�[�^�ǂݍ��݂̂��߂̍\����
+ * セル＆アニメデータ読み込みのための構造体
  */
 //------------------------------------------------------------------
 typedef struct {
@@ -66,7 +66,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * �V�X�e�����A�N�^�[�P�̂̍\���̐錾
+ * システム＆アクター単体の構造体宣言
  */
 //------------------------------------------------------------------
 typedef struct _PACTSYS  PACTSYS;
@@ -75,7 +75,7 @@ typedef struct _PACT     PACT;
 
 //------------------------------------------------------------------
 /**
- * �֐��v���g�^�C�v
+ * 関数プロトタイプ
  */
 //------------------------------------------------------------------
 extern PACTSYS* PACT_SysCreate( NNSG2dOamManagerInstance* oamm, u32 heap);

@@ -1,14 +1,14 @@
 //============================================================================================
 /**
  * @file	record.c
- * @brief	ƒQ[ƒ€“àƒJƒEƒ“ƒgˆ—ŠÖ˜A
+ * @brief	ã‚²ãƒ¼ãƒ å†…ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†é–¢é€£
  * @author	tamada
  * @date	2006.03.28
  */
 //============================================================================================
 
 #include "common.h"
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "savedata/savedata.h"
 
@@ -21,7 +21,7 @@
 //============================================================================================
 typedef struct{
 	u16 crc16ccitt_hash;	///<CRC
-	u16 coded_number;		///<ˆÃ†‰»ƒL[
+	u16 coded_number;		///<æš—å·åŒ–ã‚­ãƒ¼
 }RECORD_CRC;
 
 struct RECORD{
@@ -29,16 +29,16 @@ struct RECORD{
 	u16 small_rec[SMALL_REC_NUM];
 	u16 padding;
 	
-	//‚±‚ê‚Í•K‚¸ÅŒã
-	RECORD_CRC crc;		//CRC & ˆÃ†‰»ƒL[
+	//ã“ã‚Œã¯å¿…ãšæœ€å¾Œ
+	RECORD_CRC crc;		//CRC & æš—å·åŒ–ã‚­ãƒ¼
 };
 #ifdef _NITRO
-// \‘¢‘Ì‚ª‘z’è‚ÌƒTƒCƒY‚Æ‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-SDK_COMPILER_ASSERT(sizeof(RECORD) == 332+108+4);	//+=ƒvƒ‰ƒ`ƒi’Ç‰Á•ª
+// æ§‹é€ ä½“ãŒæƒ³å®šã®ã‚µã‚¤ã‚ºã¨ãªã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+SDK_COMPILER_ASSERT(sizeof(RECORD) == 332+108+4);	//+=ãƒ—ãƒ©ãƒãƒŠè¿½åŠ åˆ†
 #endif
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Record_Coded(RECORD *rec, int id);
 static void Record_Decoded(RECORD *rec, int id);
@@ -46,13 +46,13 @@ static void Record_Decoded(RECORD *rec, int id);
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int RECORD_GetWorkSize(void)
@@ -62,8 +62,8 @@ int RECORD_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‰Šú‰»
- * @param	rec		ƒŒƒR[ƒhƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰åˆæœŸåŒ–
+ * @param	rec		ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void RECORD_Init(RECORD * rec)
@@ -82,7 +82,7 @@ void RECORD_Init(RECORD * rec)
 /**
  * @brief
  * @param	sv
- * @return	RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 RECORD * SaveData_GetRecord(SAVEDATA * sv)
@@ -96,24 +96,24 @@ RECORD * SaveData_GetRecord(SAVEDATA * sv)
 //============================================================================================
 //
 //
-//			“à•”ŠÖ”
+//			å†…éƒ¨é–¢æ•°
 //
 //
 //============================================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒR[ƒhˆÃ†‰»
+ * @brief   ãƒ¬ã‚³ãƒ¼ãƒ‰æš—å·åŒ–
  * @param   rec		
  */
 //--------------------------------------------------------------
 static void Record_Coded(RECORD *rec, int id)
 {
 	if(id == RECID_WALK_COUNT){
-		return;		//•à”ƒJƒEƒ“ƒ^‚ÍˆÃ†‰»‚µ‚È‚¢
+		return;		//æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿ã¯æš—å·åŒ–ã—ãªã„
 	}
 	
-	//ƒ`ƒFƒbƒNƒTƒ€ì¬(CRC‚É‚µ‚½‚©‚Á‚½‚¯‚ÇƒZ[ƒuƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ª‚È‚¢‚Ì‚Å)
-	rec->crc.crc16ccitt_hash //-sizeof(u32)‚Í•à”ƒJƒEƒ“ƒ^•ª
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ä½œæˆ(CRCã«ã—ãŸã‹ã£ãŸã‘ã©ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ãŒãªã„ã®ã§)
+	rec->crc.crc16ccitt_hash //-sizeof(u32)ã¯æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿åˆ†
 		= CalcTool_calc_check_sum(&rec->large_rec[1], 
 		sizeof(RECORD) - sizeof(RECORD_CRC) - sizeof(u32)) & 0xffff;
 
@@ -123,27 +123,27 @@ static void Record_Coded(RECORD *rec, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒR[ƒh•œ†‰»
+ * @brief   ãƒ¬ã‚³ãƒ¼ãƒ‰å¾©å·åŒ–
  * @param   rec		
  */
 //--------------------------------------------------------------
 static void Record_Decoded(RECORD *rec, int id)
 {
 	if(id == RECID_WALK_COUNT){
-		return;		//•à”ƒJƒEƒ“ƒ^‚ÍˆÃ†‰»‚µ‚È‚¢
+		return;		//æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿ã¯æš—å·åŒ–ã—ãªã„
 	}
 	
-	//-sizeof(u32)‚Í•à”ƒJƒEƒ“ƒ^•ª
+	//-sizeof(u32)ã¯æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿åˆ†
 	CalcTool_Decoded(&rec->large_rec[1], sizeof(RECORD) - sizeof(RECORD_CRC) - sizeof(u32), 
 		rec->crc.crc16ccitt_hash + (rec->crc.coded_number << 16));
 }
 
 //----------------------------------------------------------
 /**
- * @brief	’l‚Ìæ“¾
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ƒŒƒR[ƒh€–Úw’èID
- * @return	u32		Œ»İ‚Ì’l
+ * @brief	å€¤ã®å–å¾—
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		ãƒ¬ã‚³ãƒ¼ãƒ‰é …ç›®æŒ‡å®šID
+ * @return	u32		ç¾åœ¨ã®å€¤
  */
 //----------------------------------------------------------
 static u32 get_value(const RECORD * rec, int id)
@@ -159,11 +159,11 @@ static u32 get_value(const RECORD * rec, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	’l‚ğƒZƒbƒg‚·‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ƒŒƒR[ƒh€–Úw’èID
- * @param	value	ƒZƒbƒg‚·‚é’l
- * @return	u32		Œ»İ‚Ì’l
+ * @brief	å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		ãƒ¬ã‚³ãƒ¼ãƒ‰é …ç›®æŒ‡å®šID
+ * @param	value	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return	u32		ç¾åœ¨ã®å€¤
  */
 //----------------------------------------------------------
 static u32 set_value(RECORD * rec, int id, u32 value)
@@ -180,9 +180,9 @@ static u32 set_value(RECORD * rec, int id, u32 value)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh€–Ú‚²‚Æ‚ÌãŒÀ‚ğæ“¾‚·‚é
- * @param	id		ƒŒƒR[ƒh€–Úw’èID
- * @return	u32		ãŒÀ‚Ì’l
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰é …ç›®ã”ã¨ã®ä¸Šé™ã‚’å–å¾—ã™ã‚‹
+ * @param	id		ãƒ¬ã‚³ãƒ¼ãƒ‰é …ç›®æŒ‡å®šID
+ * @return	u32		ä¸Šé™ã®å€¤
  */
 //----------------------------------------------------------
 static u32 get_limit(int id)
@@ -194,14 +194,14 @@ static u32 get_limit(int id)
 		1,0,1,1,1,1,1,0,0,0,1,1,1,1,1,	//1-16
 		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,	//17-32
 		1,1,1,1,1,1,1,1,0,0,0,	//33-43
-		0,0,0,0,0,0,0,0,0,0,0,0,0,	//44-56 RECID_GTS_PUT`
-		1,1,1,1,1,1,1,1,1,1,1,1,1,0,	//57-70 RECID_LEADERHOUSE_BATTLE`
+		0,0,0,0,0,0,0,0,0,0,0,0,0,	//44-56 RECID_GTS_PUTã€œ
+		1,1,1,1,1,1,1,1,1,1,1,1,1,0,	//57-70 RECID_LEADERHOUSE_BATTLEã€œ
 		
 		//2byte
 		1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,	//44-59
 		0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,	//60-75
 		0,0,0,0,0,0,0,0,0,1,	//76-85
-		0,0,0,0,0,0,0,			//RECID_GTS_SUCCESS`RECID_GURUGURU_COUNT
+		0,0,0,0,0,0,0,			//RECID_GTS_SUCCESSã€œRECID_GURUGURU_COUNT
 	};
 
 	if (id < LARGE_REC_MAX) {
@@ -226,59 +226,59 @@ static u32 get_limit(int id)
 static int get_score_number(int score_id)
 {
 	static const u16 num[SCOREID_MAX] = { 
-		1,		//SCORE_ID_GET_NUTS					ƒXƒRƒAF‚«‚Ì‚İ‚ğæ‚Á‚½
-		1,		//SCORE_ID_HONEY_TREE				ƒXƒRƒAF–Ø‚É–¨‚ğ“h‚Á‚½
-		1,		//SCORE_ID_WRITE_MAIL				ƒXƒRƒAFƒ[ƒ‹‚ğ‘‚¢‚½
-		1,		//SCORE_ID_INTERVIEW				ƒXƒRƒAFƒeƒŒƒrƒCƒ“ƒ^ƒrƒ…[‚É“š‚¦‚½
-		1,		//SCORE_ID_WRITE_SIGN				ƒXƒRƒAFƒTƒCƒ“‘‚¢‚½
-		1,		//SCORE_ID_PLAY_SLOT				ƒXƒRƒAFƒXƒƒbƒgn‚ß‚½
-		2,		//SCORE_ID_CUSTOM_CAPSULE			ƒXƒRƒAFƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹ì‚Á‚½
-		2,		//SCORE_ID_MAKE_CLIP				ƒXƒRƒAFƒNƒŠƒbƒvì‚Á‚½
-		2,		//SCORE_ID_WILD_BATTLE_WIN			ƒXƒRƒAF–ì¶ƒGƒ“ƒJƒEƒ“ƒgŸ—˜
-		2,		//SCORE_ID_POKE_GET_SINOU			ƒXƒRƒAFƒ|ƒPƒ‚ƒ“ƒQƒbƒgiƒVƒ“ƒIƒE‚¸‚©‚ñj
-		3,		//SCORE_ID_POKE_GET_WORLD			ƒXƒRƒAFƒ|ƒPƒ‚ƒ“ƒQƒbƒgiƒVƒ“ƒIƒE‚¸‚©‚ñŠOj
-		3,		//SCORE_ID_TRAINER_BATTLE_WIN		ƒXƒRƒAFƒgƒŒ[ƒi[íŸ—˜
-		3,		//SCORE_ID_MINIGAME_NUTS			ƒXƒRƒAF–Ø‚ÌÀ—¿—(1l)
-		7,		//SCORE_ID_CONTEST_GRANDPRIX		ƒXƒRƒAFƒRƒ“ƒeƒXƒg—DŸ
-		7,		//SCORE_ID_BTOWER_7WIN				ƒXƒRƒAFƒoƒgƒ‹ƒ^ƒ[7lŸ‚¿”²‚«
-		7,		//SCORE_ID_EGG_HATCHING				ƒXƒRƒAFƒ^ƒ}ƒS‚ª›z‚Á‚½
-		10,		//SCORE_ID_COMM_TRADE_POKE			ƒXƒRƒAF’ÊMŒğŠ·(Wifi/ƒ_ƒCƒŒƒNƒg)
-		10,		//SCORE_ID_CLEAR_POKEPARK			ƒXƒRƒAFƒ|ƒPƒp[ƒNƒNƒŠƒA
-		11,		//SCORE_ID_COMM_MINIGAME_NUTS		ƒXƒRƒAF–Ø‚ÌÀ—¿—i’ÊMj
-		11,		//SCORE_ID_COMM_CONTEST_GRANDPRIX	ƒXƒRƒAFƒRƒ“ƒeƒXƒg—DŸi’ÊMj
-		11,		//SCORE_ID_COMM_RECORD_CORNER		ƒXƒRƒAFƒŒƒR[ƒhƒR[ƒi[
-		11,		//SCORE_ID_COMM_BATTLE_COUNT		ƒXƒRƒAF’ÊM‘Îí(Wifi/ƒ_ƒCƒŒƒNƒg/ƒ†ƒjƒIƒ“)
-		20,		//SCORE_ID_ZUKAN_ENTRY				ƒXƒRƒAF‚¸‚©‚ñ“o˜^
-		30,		//SCORE_ID_GYM_LEADER_WIN			ƒXƒRƒAFƒWƒ€ƒŠ[ƒ_[‚ÉŸ‚Á‚½
-		35,		//SCORE_ID_DENDOU					ƒXƒRƒAF“a“°“ü‚è‚µ‚½
-		40,		//SCORE_ID_WORLD_TRADE				ƒXƒRƒAF¢ŠE’ÊMŒğŠ·‚ğ‚µ‚½
-		500,	//SCORE_ID_COMMENDATION_A			ƒXƒRƒAF•\²óA‚ğ‚à‚ç‚Á‚½
-		10000,	//SCORE_ID_COMMENDATION_B			ƒXƒRƒAF•\²óB‚ğ‚à‚ç‚Á‚½
+		1,		//SCORE_ID_GET_NUTS					ã‚¹ã‚³ã‚¢ï¼šãã®ã¿ã‚’å–ã£ãŸ
+		1,		//SCORE_ID_HONEY_TREE				ã‚¹ã‚³ã‚¢ï¼šæœ¨ã«èœœã‚’å¡—ã£ãŸ
+		1,		//SCORE_ID_WRITE_MAIL				ã‚¹ã‚³ã‚¢ï¼šãƒ¡ãƒ¼ãƒ«ã‚’æ›¸ã„ãŸ
+		1,		//SCORE_ID_INTERVIEW				ã‚¹ã‚³ã‚¢ï¼šãƒ†ãƒ¬ãƒ“ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã«ç­”ãˆãŸ
+		1,		//SCORE_ID_WRITE_SIGN				ã‚¹ã‚³ã‚¢ï¼šã‚µã‚¤ãƒ³æ›¸ã„ãŸ
+		1,		//SCORE_ID_PLAY_SLOT				ã‚¹ã‚³ã‚¢ï¼šã‚¹ãƒ­ãƒƒãƒˆå§‹ã‚ãŸ
+		2,		//SCORE_ID_CUSTOM_CAPSULE			ã‚¹ã‚³ã‚¢ï¼šã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ä½œã£ãŸ
+		2,		//SCORE_ID_MAKE_CLIP				ã‚¹ã‚³ã‚¢ï¼šã‚¯ãƒªãƒƒãƒ—ä½œã£ãŸ
+		2,		//SCORE_ID_WILD_BATTLE_WIN			ã‚¹ã‚³ã‚¢ï¼šé‡ç”Ÿã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‹åˆ©
+		2,		//SCORE_ID_POKE_GET_SINOU			ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆï¼ˆã‚·ãƒ³ã‚ªã‚¦ãšã‹ã‚“ï¼‰
+		3,		//SCORE_ID_POKE_GET_WORLD			ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆï¼ˆã‚·ãƒ³ã‚ªã‚¦ãšã‹ã‚“å¤–ï¼‰
+		3,		//SCORE_ID_TRAINER_BATTLE_WIN		ã‚¹ã‚³ã‚¢ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦å‹åˆ©
+		3,		//SCORE_ID_MINIGAME_NUTS			ã‚¹ã‚³ã‚¢ï¼šæœ¨ã®å®Ÿæ–™ç†(1äºº)
+		7,		//SCORE_ID_CONTEST_GRANDPRIX		ã‚¹ã‚³ã‚¢ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹
+		7,		//SCORE_ID_BTOWER_7WIN				ã‚¹ã‚³ã‚¢ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼7äººå‹ã¡æŠœã
+		7,		//SCORE_ID_EGG_HATCHING				ã‚¹ã‚³ã‚¢ï¼šã‚¿ãƒã‚´ãŒå­µã£ãŸ
+		10,		//SCORE_ID_COMM_TRADE_POKE			ã‚¹ã‚³ã‚¢ï¼šé€šä¿¡äº¤æ›(Wifi/ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ)
+		10,		//SCORE_ID_CLEAR_POKEPARK			ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
+		11,		//SCORE_ID_COMM_MINIGAME_NUTS		ã‚¹ã‚³ã‚¢ï¼šæœ¨ã®å®Ÿæ–™ç†ï¼ˆé€šä¿¡ï¼‰
+		11,		//SCORE_ID_COMM_CONTEST_GRANDPRIX	ã‚¹ã‚³ã‚¢ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹ï¼ˆé€šä¿¡ï¼‰
+		11,		//SCORE_ID_COMM_RECORD_CORNER		ã‚¹ã‚³ã‚¢ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+		11,		//SCORE_ID_COMM_BATTLE_COUNT		ã‚¹ã‚³ã‚¢ï¼šé€šä¿¡å¯¾æˆ¦(Wifi/ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ/ãƒ¦ãƒ‹ã‚ªãƒ³)
+		20,		//SCORE_ID_ZUKAN_ENTRY				ã‚¹ã‚³ã‚¢ï¼šãšã‹ã‚“ç™»éŒ²
+		30,		//SCORE_ID_GYM_LEADER_WIN			ã‚¹ã‚³ã‚¢ï¼šã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹ã£ãŸ
+		35,		//SCORE_ID_DENDOU					ã‚¹ã‚³ã‚¢ï¼šæ®¿å ‚å…¥ã‚Šã—ãŸ
+		40,		//SCORE_ID_WORLD_TRADE				ã‚¹ã‚³ã‚¢ï¼šä¸–ç•Œé€šä¿¡äº¤æ›ã‚’ã—ãŸ
+		500,	//SCORE_ID_COMMENDATION_A			ã‚¹ã‚³ã‚¢ï¼šè¡¨å½°çŠ¶Aã‚’ã‚‚ã‚‰ã£ãŸ
+		10000,	//SCORE_ID_COMMENDATION_B			ã‚¹ã‚³ã‚¢ï¼šè¡¨å½°çŠ¶Bã‚’ã‚‚ã‚‰ã£ãŸ
 
-		30,		//SCORE_ID_NEW_FLAG_TAKE_OUT		ƒXƒRƒAF’Yz V‚µ‚¢Šø‚¿‹A‚è
-		30,		//SCORE_ID_FLAG_TAKE_OUT			ƒXƒRƒAF’Yz Šø‚¿‹A‚è
-		2,		//SCORE_ID_GET_FOSSIL				ƒXƒRƒAF’Yz ‰»Î”­Œ@
-		5,		//SCORE_ID_ITEM_DEPOSIT				ƒXƒRƒAF’Yz ‘Šè‚É“¹‹ï—a‚¯‚é
-		1,		//SCORE_ID_HELLO					ƒXƒRƒAF’Yz ‚ ‚¢‚³‚Â‚·‚é
-		1,		//SCORE_ID_QUESTION					ƒXƒRƒAF’Yz ¿–â‚·‚é
-		5,		//SCORE_ID_RESCUE					ƒXƒRƒAF’Yz ã©‚©‚ç•‚¯‚½
-		3,		//SCORE_ID_MAKE_BASE				ƒXƒRƒAF’Yz Šî’nì‚é
-		1,		//SCORE_ID_MINE_IN					ƒXƒRƒAF’Yz ’n‰º‚É—ˆ‚é
-		1,		//SCORE_ID_WLAK_100					ƒXƒRƒAF’Yz 100•à‚ ‚é‚­
+		30,		//SCORE_ID_NEW_FLAG_TAKE_OUT		ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± æ–°ã—ã„æ——æŒã¡å¸°ã‚Š
+		30,		//SCORE_ID_FLAG_TAKE_OUT			ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± æ——æŒã¡å¸°ã‚Š
+		2,		//SCORE_ID_GET_FOSSIL				ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åŒ–çŸ³ç™ºæ˜
+		5,		//SCORE_ID_ITEM_DEPOSIT				ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ç›¸æ‰‹ã«é“å…·é ã‘ã‚‹
+		1,		//SCORE_ID_HELLO					ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ã‚ã„ã•ã¤ã™ã‚‹
+		1,		//SCORE_ID_QUESTION					ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± è³ªå•ã™ã‚‹
+		5,		//SCORE_ID_RESCUE					ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ç½ ã‹ã‚‰åŠ©ã‘ãŸ
+		3,		//SCORE_ID_MAKE_BASE				ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åŸºåœ°ä½œã‚‹
+		1,		//SCORE_ID_MINE_IN					ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åœ°ä¸‹ã«æ¥ã‚‹
+		1,		//SCORE_ID_WLAK_100					ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± 100æ­©ã‚ã‚‹ã
 
-		7,		//SCORE_ID_FACTORY_ROUND			ƒXƒRƒAFƒtƒ@ƒNƒgƒŠ[ˆêüŸ‚¿”²‚«
-		7,		//SCORE_ID_CASTLE_ROUND				ƒXƒRƒAFƒLƒƒƒbƒXƒ‹ˆêüŸ‚¿”²‚«
-		7,		//SCORE_ID_STAGE_ROUND				ƒXƒRƒAFƒXƒe[ƒWˆêüŸ‚¿”²‚«
-		7,		//SCORE_ID_ROULETTE_ROUND			ƒXƒRƒAFƒ‹[ƒŒƒbƒgˆêüŸ‚¿”²‚«
-		1000,	//SCORE_ID_FRONTIER_CONQUER			ƒXƒRƒAFƒtƒƒ“ƒeƒBƒA§”e
-		11,		//SCORE_ID_FRONTIER_COMM			ƒXƒRƒAFƒtƒƒ“ƒeƒBƒA’ÊM‚Å—V‚ñ‚¾
-		20,		//SCORE_ID_LOBBY_LOGIN				ƒXƒRƒAFWIFILê‚ÉQ‰Á
-		10,		//SCORE_ID_GURUGURU					ƒXƒRƒAF‚®‚é‚®‚éŒğŠ·
-		15,		//SCORE_ID_GDS_VIDEO_UPLOAD			ƒXƒRƒAFGDSƒrƒfƒI‚ğƒAƒbƒvƒ[ƒh
-		11,		//SCORE_ID_GDS_DRESS_UPLOAD			ƒXƒRƒAFGDSƒhƒŒƒX‚ğƒAƒbƒvƒ[ƒh
-		11,		//SCORE_ID_GDS_BOX_UPLOAD			ƒXƒRƒAFGDSƒ{ƒbƒNƒX‚ğƒAƒbƒvƒ[ƒh
-		10,		//SCORE_ID_VACATION_HOUSE_COMPLETE	ƒXƒRƒAF•Ê‘‘ƒRƒ“ƒvƒŠ[ƒg
-		10,		//SCORE_ID_CLUB_MINIGAME			ƒXƒRƒAFWIFIƒNƒ‰ƒu‚Åƒ~ƒjƒQ[ƒ€‚ğ—V‚ñ‚¾
+		7,		//SCORE_ID_FACTORY_ROUND			ã‚¹ã‚³ã‚¢ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ä¸€å‘¨å‹ã¡æŠœã
+		7,		//SCORE_ID_CASTLE_ROUND				ã‚¹ã‚³ã‚¢ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«ä¸€å‘¨å‹ã¡æŠœã
+		7,		//SCORE_ID_STAGE_ROUND				ã‚¹ã‚³ã‚¢ï¼šã‚¹ãƒ†ãƒ¼ã‚¸ä¸€å‘¨å‹ã¡æŠœã
+		7,		//SCORE_ID_ROULETTE_ROUND			ã‚¹ã‚³ã‚¢ï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆä¸€å‘¨å‹ã¡æŠœã
+		1000,	//SCORE_ID_FRONTIER_CONQUER			ã‚¹ã‚³ã‚¢ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ¶è¦‡
+		11,		//SCORE_ID_FRONTIER_COMM			ã‚¹ã‚³ã‚¢ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é€šä¿¡ã§éŠã‚“ã 
+		20,		//SCORE_ID_LOBBY_LOGIN				ã‚¹ã‚³ã‚¢ï¼šWIFIåºƒå ´ã«å‚åŠ 
+		10,		//SCORE_ID_GURUGURU					ã‚¹ã‚³ã‚¢ï¼šãã‚‹ãã‚‹äº¤æ›
+		15,		//SCORE_ID_GDS_VIDEO_UPLOAD			ã‚¹ã‚³ã‚¢ï¼šGDSãƒ“ãƒ‡ã‚ªã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+		11,		//SCORE_ID_GDS_DRESS_UPLOAD			ã‚¹ã‚³ã‚¢ï¼šGDSãƒ‰ãƒ¬ã‚¹ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+		11,		//SCORE_ID_GDS_BOX_UPLOAD			ã‚¹ã‚³ã‚¢ï¼šGDSãƒœãƒƒã‚¯ã‚¹ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+		10,		//SCORE_ID_VACATION_HOUSE_COMPLETE	ã‚¹ã‚³ã‚¢ï¼šåˆ¥è˜ã‚³ãƒ³ãƒ—ãƒªãƒ¼ãƒˆ
+		10,		//SCORE_ID_CLUB_MINIGAME			ã‚¹ã‚³ã‚¢ï¼šWIFIã‚¯ãƒ©ãƒ–ã§ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’éŠã‚“ã 
 	};
 	return num[score_id];
 }
@@ -286,17 +286,17 @@ static int get_score_number(int score_id)
 //============================================================================================
 //
 //
-//				‘€ìŠÖ”
+//				æ“ä½œé–¢æ•°
 //
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‚ğƒZƒbƒg‚·‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		€–Ú‚ğw’è‚·‚éID
- * @param	value	ƒZƒbƒg‚·‚é’l
- * @return	u32		‚»‚Ì€–Ú‚Ì’l
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		é …ç›®ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	value	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return	u32		ãã®é …ç›®ã®å€¤
  */
 //----------------------------------------------------------
 u32 RECORD_Set(RECORD * rec, int id, u32 value)
@@ -321,11 +321,11 @@ u32 RECORD_Set(RECORD * rec, int id, u32 value)
 
 //----------------------------------------------------------
 /**
- * @brief	‘å‚«‚¯‚ê‚ÎƒŒƒR[ƒh‚ğXV‚·‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		€–Ú‚ğw’è‚·‚éID
- * @param	value	ƒZƒbƒg‚·‚é’l
- * @return	u32		‚»‚Ì€–Ú‚Ì’l
+ * @brief	å¤§ãã‘ã‚Œã°ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’æ›´æ–°ã™ã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		é …ç›®ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	value	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return	u32		ãã®é …ç›®ã®å€¤
  */
 //----------------------------------------------------------
 u32 RECORD_SetIfLarge(RECORD * rec, int id, u32 value)
@@ -340,7 +340,7 @@ u32 RECORD_SetIfLarge(RECORD * rec, int id, u32 value)
 	ret = now;
 	
 	if(value > limit){
-		value = limit;	//ãŒÀƒ`ƒFƒbƒN
+		value = limit;	//ä¸Šé™ãƒã‚§ãƒƒã‚¯
 	}
 	if (now < value) {
 		ret = set_value(rec, id, value);
@@ -359,11 +359,11 @@ u32 RECORD_SetIfLarge(RECORD * rec, int id, u32 value)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		€–Ú‚ğw’è‚·‚éID
- * @param	value	ƒZƒbƒg‚·‚é’l
- * @return	u32		‚»‚Ì€–Ú‚Ì’l
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		é …ç›®ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	value	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return	u32		ãã®é …ç›®ã®å€¤
  */
 //----------------------------------------------------------
 u32 RECORD_Inc(RECORD * rec, int id)
@@ -390,11 +390,11 @@ u32 RECORD_Inc(RECORD * rec, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‚É’l‚ğ‰Á‚¦‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		€–Ú‚ğw’è‚·‚éID
- * @param	value	‰Á‚¦‚é’l
- * @return	u32		‚»‚Ì€–Ú‚Ì’l
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã«å€¤ã‚’åŠ ãˆã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		é …ç›®ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	value	åŠ ãˆã‚‹å€¤
+ * @return	u32		ãã®é …ç›®ã®å€¤
  */
 //----------------------------------------------------------
 u32 RECORD_Add(RECORD * rec, int id, u32 add_value)
@@ -421,10 +421,10 @@ u32 RECORD_Add(RECORD * rec, int id, u32 add_value)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‚ğæ“¾‚·‚é
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		€–Ú‚ğw’è‚·‚éID
- * @return	u32		‚»‚Ì€–Ú‚Ì’l
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		é …ç›®ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	u32		ãã®é …ç›®ã®å€¤
  */
 //----------------------------------------------------------
 u32 RECORD_Get(RECORD * rec, int id)
@@ -447,9 +447,9 @@ u32 RECORD_Get(RECORD * rec, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒXƒRƒA‚Ì‰ÁZ
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ƒXƒRƒAw’è‚ÌID
+ * @brief	ã‚¹ã‚³ã‚¢ã®åŠ ç®—
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		ã‚¹ã‚³ã‚¢æŒ‡å®šã®ID
  */
 //----------------------------------------------------------
 void RECORD_Score_Add(RECORD * rec, int id)
@@ -458,7 +458,7 @@ void RECORD_Score_Add(RECORD * rec, int id)
 	
 	GF_ASSERT(id < SCOREID_MAX);
 
-	//ƒJƒ“ƒXƒgƒ`ƒFƒbƒN‚·‚é
+	//ã‚«ãƒ³ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	score = RECORD_Get(rec, RECID_SCORE);
 	if ( score+get_score_number(id) > SCORE_MAX ){
 		RECORD_Set(rec, RECID_SCORE, SCORE_MAX);
@@ -474,9 +474,9 @@ void RECORD_Score_Add(RECORD * rec, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒXƒRƒA‚Ìæ“¾
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u32		Œ»İ‚ÌƒXƒRƒA
+ * @brief	ã‚¹ã‚³ã‚¢ã®å–å¾—
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u32		ç¾åœ¨ã®ã‚¹ã‚³ã‚¢
  */
 //----------------------------------------------------------
 u32 RECORD_Score_Get(RECORD * rec)
@@ -486,10 +486,10 @@ u32 RECORD_Score_Get(RECORD * rec)
 
 //----------------------------------------------------------
 /**
- * @brief	}ŠÓƒXƒRƒA‚Ì‰ÁZ
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @brief	å›³é‘‘ã‚¹ã‚³ã‚¢ã®åŠ ç®—
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //----------------------------------------------------------
 void RECORD_Score_AddZukanScore(RECORD * rec, const ZUKAN_WORK * zw, u16 const inMonsno)
@@ -505,9 +505,9 @@ void RECORD_Score_AddZukanScore(RECORD * rec, const ZUKAN_WORK * zw, u16 const i
 #ifdef PM_DEBUG
 //----------------------------------------------------------
 /**
- * @brief	ƒXƒRƒA‚ÌƒZƒbƒg
- * @param	rec		RECORD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inScore	ƒZƒbƒg‚·‚éƒXƒRƒA
+ * @brief	ã‚¹ã‚³ã‚¢ã®ã‚»ãƒƒãƒˆ
+ * @param	rec		RECORDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inScore	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¹ã‚³ã‚¢
  */
 //----------------------------------------------------------
 void RECORD_Score_DebugSet(RECORD * rec, const u32 inScore)
@@ -516,7 +516,7 @@ void RECORD_Score_DebugSet(RECORD * rec, const u32 inScore)
 
 	score = inScore;
 	
-	//ƒJƒ“ƒXƒgƒ`ƒFƒbƒN‚·‚é
+	//ã‚«ãƒ³ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if ( score > SCORE_MAX ){
 		score = SCORE_MAX;
 	}

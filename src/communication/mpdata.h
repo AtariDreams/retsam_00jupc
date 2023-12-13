@@ -4,7 +4,7 @@
  * @version "$Id: mpdata.h,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file mpdata.h
- * @brief –³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ “à•”ƒf[ƒ^QÆŠÖ”
+ * @brief ç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨ãƒ‡ãƒ¼ã‚¿å‚ç…§é–¢æ•°
  * 
  */
 #ifdef __cplusplus
@@ -14,7 +14,7 @@ extern "C" {
 #include "mpconnect.h"
 
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠ“à‚Å•Û‚³‚ê‚éWMParentParam‚ğ•Ô‚·
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ä¿æŒã•ã‚Œã‚‹WMParentParamã‚’è¿”ã™
  *
  * @return WMParentParam
  */
@@ -24,7 +24,7 @@ extern u32 MpGetConnectChildMax(void);
 extern void MpSetConnectChildMax(u32 num);
   
 /**
- * “à•”‚Åg—p‚·‚éƒf[ƒ^‚ğ•Ô‚·
+ * å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
  * @return TWL_InternalData
  */
@@ -32,7 +32,7 @@ extern MpInternalData *MpGetInternalData(void);
   
 
 /**
- * “à•”ƒXƒe[ƒ^ƒX‚ğ•Ô‚·
+ * å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿”ã™
  *
  * @return MP_STATUS
  */
@@ -40,7 +40,7 @@ extern MP_STATUS MpGetStatus(void);
 
 
 /**
- * “à•”ƒXƒe[ƒ^ƒX‚ğİ’è‚·‚é
+ * å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
  * @param status MP_STATUS 
  */
@@ -48,7 +48,7 @@ extern void MpSetStatus(MP_STATUS status);
   
 
 /**
- * —v‹ƒXƒe[ƒ^ƒX‚ğ•Ô‚·
+ * è¦æ±‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿”ã™
  *
  * @return MP_STATUS
  */
@@ -56,7 +56,7 @@ extern MP_STATUS MpGetRequestStatus(void);
 
   
 /**
- * —v‹ƒXƒe[ƒ^ƒX‚ğİ’è‚·‚é
+ * è¦æ±‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
  * @param status TWL_STATUS 
  */
@@ -64,7 +64,7 @@ extern void MpSetRequestStatus(MP_STATUS status);
 
   
 /**
- * ’ÊMƒ‚[ƒh‚ğ•Ô‚·
+ * é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
  * @return MP_MODE
  */
@@ -72,7 +72,7 @@ extern MP_MODE MpGetMode(void);
 
 
 /**
- * ’ÊMƒ‚[ƒh‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *
  * @param status MP_MODE
  */
@@ -80,7 +80,7 @@ extern void MpSetMode(MP_MODE mode);
 
 
 /**
- * ’ÊMƒ|[ƒg‚ğ•Ô‚·
+ * é€šä¿¡ãƒãƒ¼ãƒˆã‚’è¿”ã™
  *
  * @param port 
  */
@@ -88,7 +88,7 @@ extern u32 MpGetPort(void);
 
 
 /**
- * ’ÊMƒ|[ƒg‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹
  *
  * @param port 
  */
@@ -96,7 +96,7 @@ extern void MpSetPort(u32 port);
   
 
 /**
- * ’ÊMƒ`ƒƒƒ“ƒlƒ‹‚ğ•Ô‚·
+ * é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¿”ã™
  *
  * @return channel 
  */
@@ -104,7 +104,7 @@ extern u32 MpGetChannel(void);
 
 
 /**
- * ’ÊMƒ`ƒƒƒ“ƒlƒ‹‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¨­å®šã™ã‚‹
  *
  * @param channel 
  */
@@ -112,7 +112,7 @@ extern void MpSetChannel(u32 channel);
 
   
 /**
- * WMScanParam‚ğæ“¾‚·‚é
+ * WMScanParamã‚’å–å¾—ã™ã‚‹
  *
  * @return WMScanParam
  */
@@ -120,47 +120,47 @@ extern WMScanParam *MpGetScanParameter(void);
   
 
 /**
- * ‘—Mƒoƒbƒtƒ@ƒTƒCƒY‚ğ•Ô‚·
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@ƒTƒCƒY
+ * @return ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  */
 extern u32 MpGetSendBuffSize(void);
 
 
 /**
- * óMƒoƒbƒtƒ@ƒTƒCƒY‚ğ•Ô‚·
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@ƒTƒCƒY
+ * @return ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  */
 extern u32 MpGetRecvBuffSize(void);
 
 
 /**
- * ‘—Mƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX
+ * @return ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern void *MpGetSendBuff(void);
 
 
 /**
- * óMƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX
+ * @return ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern void *MpGetRecvBuff(void);
 
 
 /**
- * WMBssDesc‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * WMBssDescã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒAƒhƒŒƒX
+ * @return ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern WMBssDesc *MpGetBssDesc(void);
 
 
 /**
- * AID‚ğ‹L˜^
+ * AIDã‚’è¨˜éŒ²
  *
  * @param aid AID
  */
@@ -168,7 +168,7 @@ extern void MpSetAid(u16 aid);
 
 
 /**
- * AID‚ğ•Ô‚·
+ * AIDã‚’è¿”ã™
  *
  * @return AID
  */
@@ -186,49 +186,49 @@ extern void MpSetIsEnd(BOOL flag);
 
   
 /**
- * ƒ‚[ƒh•Êƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 extern MpModeData *MpGetModeData(void);
 
 
 /**
- * q‹@ó‘Ô—pƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * å­æ©ŸçŠ¶æ…‹ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 extern MpDataChildMP *MpGetDataChildMP(void);
 
 
 /**
- * e‹@ó‘Ô—pƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * è¦ªæ©ŸçŠ¶æ…‹ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 extern MpDataParentMP *MpGetDataParentMP(void);
   
 
 /**
- * MpDataChildMP‚ğ‰Šú‰»
+ * MpDataChildMPã‚’åˆæœŸåŒ–
  */
 extern void MpInitDataChildMP(void);
 
   
 /**
- * MpDataParentMP‚ğ‰Šú‰»
+ * MpDataParentMPã‚’åˆæœŸåŒ–
  */
 extern void MpInitDataParentMP(void);
   
 
 /**
- * MpTransData‚ğ•Ô‚·
+ * MpTransDataã‚’è¿”ã™
  */
 extern MpTransData *MpGetTransData(void);
 
 
 /**
- * MpTransData‚ğ‰Šú‰»
+ * MpTransDataã‚’åˆæœŸåŒ–
  */
 extern void MpInitTransData(void);
   
 
 /**
- * GGID‚ğ•Ô‚·
+ * GGIDã‚’è¿”ã™
  */
 extern u32 MpGetGameID(void);
 
@@ -240,128 +240,128 @@ extern u16 MpGetFramePeriod(void);
 
 
 /**
- * ƒvƒƒgƒRƒ‹ID‚ğ•Ô‚·
+ * ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDã‚’è¿”ã™
  */
 extern u32 MpGetProtocolID(void);
 
   
 /**
- * ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“‚ğ•Ô‚·
+ * ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
  */
 extern u32 MpGetProtocolVersion(void);
 
        
 /**
- * Ú‘±ID‚ğ•Ô‚·
+ * æ¥ç¶šIDã‚’è¿”ã™
  */
 extern u32 MpGetConnectID(void);
 
 
 /**
- * UserGameInfo‚ÌƒTƒCƒY‚ğ•Ô‚·
+ * UserGameInfoã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return UserGameInfo‚ÌƒTƒCƒY
+ * @return UserGameInfoã®ã‚µã‚¤ã‚º
  */
 extern u32 MpGetUserGameInfoSize(void);
 
   
 /**
- * MpUserGameInfo‚ğ•Ô‚·
+ * MpUserGameInfoã‚’è¿”ã™
  *
- * @return MpUserGameInfo‚ÌƒAƒhƒŒƒX
+ * @return MpUserGameInfoã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern MpUserGameInfo *MpGetUserGameInfo(void);
 
 
 /**
- * MpSsidData‚ğ•Ô‚·
+ * MpSsidDataã‚’è¿”ã™
  *
- * @return MpSsidData‚ÌƒAƒhƒŒƒX
+ * @return MpSsidDataã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern MpSsidData *MpGetSsidData(void);
   
 
 /**
- * MACƒAƒhƒŒƒX‚ğŠi”[‚µ‚½”z—ñ‚©‚çMpMACAddData‚ğ¶¬
+ * MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã—ãŸé…åˆ—ã‹ã‚‰MpMACAddDataã‚’ç”Ÿæˆ
  *
- * @param mac_arry MACƒAƒhƒŒƒX”z—ñ
- * @return@MpMACAddData
+ * @param mac_arry MACã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—
+ * @returnã€€MpMACAddData
  */
 extern MpMACAddData MpMACAddArrayToMACAddData(u8 *mac_arry);
 
 
 /**
- * MACƒAƒhƒŒƒX‚ğŠi”[‚µ‚½”z—ñ‚©‚çMpMACVendorData‚ğ¶¬
+ * MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã—ãŸé…åˆ—ã‹ã‚‰MpMACVendorDataã‚’ç”Ÿæˆ
  *
- * @param mac_arry MACƒAƒhƒŒƒX”z—ñ
- * @return@MpMACVendorData
+ * @param mac_arry MACã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—
+ * @returnã€€MpMACVendorData
  */
 extern MpMACVendorData MpMACAddArrayToMACVendorData(u8 *mac_arry);
   
 
 /**
- * u32‚ÌMACƒAƒhƒŒƒX‚©‚çÚ‘±ID‚ğ¶¬
+ * u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰æ¥ç¶šIDã‚’ç”Ÿæˆ
  *
- * @param mac_addr MACƒAƒhƒŒƒX
- * @param high_code ƒ†[ƒU[ƒR[ƒhãˆÊ‚ªŠi”[‚³‚ê‚é
- * @param low_code ƒ†[ƒU[ƒR[ƒh‰ºˆÊ‚ªŠi”[‚³‚ê‚é
+ * @param mac_addr MACã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param high_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸Šä½ãŒæ ¼ç´ã•ã‚Œã‚‹
+ * @param low_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸‹ä½ãŒæ ¼ç´ã•ã‚Œã‚‹
  */
 extern void MpMACAddressToConnectCode(u32 mac_addr, u32 *high_code, u32* low_code);
 
 
 /**
- * u32‚ÌMACƒAƒhƒŒƒX‚©‚çÚ‘±ID‚ğ•¶š—ñ‚Æ‚µ‚Ä¶¬
+ * u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰æ¥ç¶šIDã‚’æ–‡å­—åˆ—ã¨ã—ã¦ç”Ÿæˆ
  *
- * @param mac_addr MACƒAƒhƒŒƒX
- * @return •¶š—ñƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @param mac_addr MACã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @return æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 extern const u16* MpConnectCodeToString(u32 mac_addr);
   
   
 #if 0       
 /**
- * ãˆÊ‰ºˆÊ‚»‚ê‚¼‚ê‚Ìƒ†[ƒU[ƒR[ƒh‚©‚çu32‚ÌMACƒAƒhƒŒƒX‚ğ¶¬
+ * ä¸Šä½ä¸‹ä½ãã‚Œãã‚Œã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç”Ÿæˆ
  *
- * @param high_code ƒ†[ƒU[ƒR[ƒhãˆÊ
- * @param low_code ƒ†[ƒU[ƒR[ƒh‰ºˆÊ
- * @return MACƒAƒhƒŒƒX
+ * @param high_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸Šä½
+ * @param low_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸‹ä½
+ * @return MACã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 extern u32 MpUserCodeToMACAddress(u32 high_code, u32 low_code);
 #endif
   
 
 /**
- * ‘—Mƒf[ƒ^‚Ìƒwƒbƒ_ƒTƒCƒY‚ğæ“¾ iŒ»İŒÅ’èj
+ * é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’å–å¾— ï¼ˆç¾åœ¨å›ºå®šï¼‰
  *
- * @return ƒoƒCƒg”
+ * @return ãƒã‚¤ãƒˆæ•°
  */
 extern u32 MpGetSendHeaderSize(void);
 
        
 /**
- * ‘—M—pƒf[ƒ^‚ğ¶¬‚·‚é
+ * é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param buff ƒf[ƒ^‚ğ¶¬‚·‚éƒAƒhƒŒƒX
- * @param data ‘—M—pƒf[ƒ^
- * @param data_size ‘—M—pƒf[ƒ^‚ÌƒTƒCƒY
- * @param control_code ’ÊM§ŒäƒR[ƒh
- * @param seq_num ’ÊM”Ô†
+ * @param buff ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param data é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
+ * @param data_size é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param control_code é€šä¿¡åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
+ * @param seq_num é€šä¿¡ç•ªå·
  */
 extern void MpSetupSendData(void *buff, void *data, u32 data_size, MP_CONTROL_CODE control_code, u32 seq_num);
 
 
 /**
- * óM‚µ‚½ƒf[ƒ^‚ğ•œ†‚·‚é
+ * å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å¾©å·ã™ã‚‹
  *
- * @param buff óM‚µ‚½ƒf[ƒ^
+ * @param buff å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 extern void MpDecodeRecvData(void *buff);
 
 
 /**
- * óM‚µ‚½ƒf[ƒ^‚ÌCRC‚ğƒ`ƒFƒbƒN‚·‚é
+ * å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®CRCã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @return buff óM‚µ‚½ƒf[ƒ^
+ * @return buff å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 extern BOOL MpCheckRecvData(void *buff);
 

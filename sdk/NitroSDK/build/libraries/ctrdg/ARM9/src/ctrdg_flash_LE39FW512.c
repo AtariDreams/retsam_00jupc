@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -27,13 +27,13 @@
 #include <nitro.h>
 
 //#define   __LE_DEBUG
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __LE_DEBUG
 //#include "mylib.h"
 //#endif
 
 // definition data------------------------------
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
 #define CTRDG_BACKUP_COM_ADR1   (CTRDG_AGB_FLASH_ADR+0x00005555)
 #define CTRDG_BACKUP_COM_ADR2   (CTRDG_AGB_FLASH_ADR+0x00002aaa)
@@ -49,7 +49,7 @@
 // extern data----------------------------------
 extern const CTRDGFlashType *AgbFlash;
 extern u16 CTRDGi_PollingSR512kCOMMON(u16 phase, u8 *adr, u16 lastData);
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 extern u16 ctrdgi_flash_lock_id;
 extern BOOL ctrdgi_backup_irq;
 
@@ -86,7 +86,7 @@ const CTRDGiFlashTypePlus defaultFlash512 = {
     CTRDGi_PollingSR512kCOMMON,
     leMaxTime,
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
         0x00010000,                       // ROM size
         {0x00001000, 12, 16, 0},          // sectorSize,Shift,Count
@@ -110,7 +110,7 @@ const CTRDGiFlashTypePlus LE39FW512 = {
     CTRDGi_PollingSR512kCOMMON,
     leMaxTime,
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
         0x00010000,                       // ROM size
         {0x00001000, 12, 16, 0},          // sector size,shift,count,top
@@ -127,7 +127,7 @@ const CTRDGiFlashTypePlus LE39FW512 = {
 // program description**************************
 u32 CTRDGi_EraseFlashChipCoreLE(CTRDGTaskInfo * arg)
 {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  u32 i;
 //#endif
@@ -135,9 +135,9 @@ u32 CTRDGi_EraseFlashChipCoreLE(CTRDGTaskInfo * arg)
     u32     result;
     (void)arg;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
     //*(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|AgbFlash->agbWait[0]; // read 3cycles wait
@@ -149,7 +149,7 @@ u32 CTRDGi_EraseFlashChipCoreLE(CTRDGTaskInfo * arg)
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
     *(vu8 *)CTRDG_BACKUP_COM_ADR2 = 0x55;
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0x10;
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  adr=(u8 *)CTRDG_AGB_FLASH_ADR;
 //  for(i=0;i<AgbFlash->romSize;i++)
@@ -159,9 +159,9 @@ u32 CTRDGi_EraseFlashChipCoreLE(CTRDGTaskInfo * arg)
 
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_CHIP_ERASE, (u8 *)CTRDG_AGB_FLASH_ADR, 0xff);
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
     return result;
 }
@@ -178,9 +178,9 @@ u32 CTRDGi_EraseFlashSectorCoreLE(CTRDGTaskInfo * arg)
     if (secNo >= FLASH_LOG_SECTOR_COUNT)
         return CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_PARAMETER_CHECK;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
     //*(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|AgbFlash->agbWait[0]; // read 3cycles wait
@@ -195,7 +195,7 @@ u32 CTRDGi_EraseFlashSectorCoreLE(CTRDGTaskInfo * arg)
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
     *(vu8 *)CTRDG_BACKUP_COM_ADR2 = 0x55;
     *(vu8 *)adr = 0x30;
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  for(i=0;i<AgbFlash->sector.size;i++)
 //      *adr++=0xff;
@@ -205,9 +205,9 @@ u32 CTRDGi_EraseFlashSectorCoreLE(CTRDGTaskInfo * arg)
 
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_SECTOR_ERASE, adr, 0xff);
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -236,7 +236,7 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
     u16     secNo = p.sec_num;
     u8     *src = p.data;
 
-    /*ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN */
+    /*ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ */
     if (secNo >= FLASH_LOG_SECTOR_COUNT)
         return CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_PARAMETER_CHECK;
 
@@ -249,7 +249,7 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
 //      *func_dst++=*func_src++;
     retry = 0;
     // Erase
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
     //++++++++++++++++++++
 //#ifdef    __LE_DEBUG
 //  if(secNo<8)
@@ -270,7 +270,7 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
         }
         if (retry++ == ERASE_RETRY_MAX)
             return result;
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
         //++++++++++++++++++++
 //#ifdef    __LE_DEBUG
 //      DrawHexOnBgx(0,pos,BG_PLTT_YELLOW,&retry,2);
@@ -284,7 +284,7 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
         add_erase = 6;
     for (j = 1; j <= add_erase; j++)
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
         //++++++++++++++++++++
 //#ifdef    __LE_DEBUG
 //      DrawHexOnBgx(0,pos+3,BG_PLTT_GREEN,&j,1);
@@ -293,9 +293,9 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
         (void)CTRDGi_EraseFlashSectorLE(secNo);
     }
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
     //*(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|AgbFlash->agbWait[0]; // read 3cycles wait
@@ -315,9 +315,9 @@ u32 CTRDGi_WriteFlashSectorCoreLE(CTRDGTaskInfo * arg)
     }
     (void)OS_RestoreIrq(ctrdgi_backup_irq);
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -341,9 +341,9 @@ u32 CTRDGi_VerifyFlashErase(u8 *tgt, u32 (*func_p) (u8 *))
     u32     result;
     MICartridgeRamCycle ram_cycle;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
@@ -353,9 +353,9 @@ u32 CTRDGi_VerifyFlashErase(u8 *tgt, u32 (*func_p) (u8 *))
         result = (CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_VERIFY_ERASE);
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;

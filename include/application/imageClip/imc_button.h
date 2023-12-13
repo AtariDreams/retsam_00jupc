@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_button.h
- *	@brief		‰æ–Ê‰º‚Ìƒ{ƒ^ƒ“§ŒäƒVƒXƒeƒ€
+ *	@brief		ç”»é¢ä¸‹ã®ãƒœã‚¿ãƒ³åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.10.08
  *
@@ -28,67 +28,67 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	¡‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô
-//	“®ìŠÖ”‚ð“®‚©‚·ƒ^ƒCƒ~ƒ“ƒO
+//	ä»Šã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹
+//	å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 //	
 //=====================================
 enum{
-	IMC_BTTN_PUSH_F		= BMN_EVENT_TOUCH,		// ‰Ÿ‚³‚ê‚½uŠÔ
-	IMC_BTTN_POP		= BMN_EVENT_RELEASE,	// —£‚³‚ê‚½
-	IMC_BTTN_PUSH		= BMN_EVENT_HOLD,		// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-	IMC_BTTN_AREA_OVER	= BMN_EVENT_SLIDEOUT,	// ƒ{ƒ^ƒ“ƒGƒŠƒAŠO
+	IMC_BTTN_PUSH_F		= BMN_EVENT_TOUCH,		// æŠ¼ã•ã‚ŒãŸçž¬é–“
+	IMC_BTTN_POP		= BMN_EVENT_RELEASE,	// é›¢ã•ã‚ŒãŸ
+	IMC_BTTN_PUSH		= BMN_EVENT_HOLD,		// æŠ¼ã•ã‚Œã¦ã„ã‚‹
+	IMC_BTTN_AREA_OVER	= BMN_EVENT_SLIDEOUT,	// ãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢å¤–
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ{ƒ^ƒ“\‘¢‘Ì	
+//	ãƒœã‚¿ãƒ³æ§‹é€ ä½“	
 //	
 //=====================================
 typedef struct _IMC_BUTTON{
-	// •`‰æ•”
-	CLACT_WORK_PTR clact_w;	// ƒAƒNƒ^[ƒ[ƒN
+	// æç”»éƒ¨
+	CLACT_WORK_PTR clact_w;	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	
-	// “®ì•”
-	int start_flg;		// “®ìŠÖ”‚ð“®‚©‚·ƒ^ƒCƒ~ƒ“ƒO
-	void*	work;		// “®ìŠÖ”‚É“n‚·ƒ[ƒN
-	// “®ìŠÖ”	ƒ{ƒ^ƒ“‚Ì“®ì‚ÅŽ©“®‚É”­“®‚³‚ê‚é‚à‚Ì
+	// å‹•ä½œéƒ¨
+	int start_flg;		// å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	void*	work;		// å‹•ä½œé–¢æ•°ã«æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
+	// å‹•ä½œé–¢æ•°	ãƒœã‚¿ãƒ³ã®å‹•ä½œã§è‡ªå‹•ã«ç™ºå‹•ã•ã‚Œã‚‹ã‚‚ã®
 	void (*func)(struct _IMC_BUTTON* button, void* work);
 } IMC_BUTTON;
 
-// “®ì\‘¢‘Ì
+// å‹•ä½œæ§‹é€ ä½“
 typedef void (*IMCBUTTON_FUNC)( IMC_BUTTON* button, void* work );
 
 //-------------------------------------
 //	
-//	ƒ{ƒ^ƒ“ì¬\‘¢‘Ì
+//	ãƒœã‚¿ãƒ³ä½œæˆæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	CLACT_ADD*		clact;			// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^
+	CLACT_ADD*		clact;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 
-	IMCBUTTON_FUNC	buttonFunc;		// “®ìŠÖ”
-	void*			work;			// “®ì‚É“n‚·ƒ[ƒN
-	int				start_flg;		// ‚Ç‚Ìƒ^ƒCƒ~ƒ“ƒO‚É“®ìŠÖ”‚ðŽÀs‚·‚é‚©
-/*						IMC_BTTN_NOPUSH,		// ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
-						IMC_BTTN_PUSH,			// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-						IMC_BTTN_PUSH_F,		// ‰Ÿ‚³‚ê‚½uŠÔ
-						IMC_BTTN_POP,			// —£‚³‚ê‚½	
-						IMC_BTTN_AREA_OVER,		// ƒ{ƒ^ƒ“ƒGƒŠƒAŠO */
+	IMCBUTTON_FUNC	buttonFunc;		// å‹•ä½œé–¢æ•°
+	void*			work;			// å‹•ä½œã«æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
+	int				start_flg;		// ã©ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«å‹•ä½œé–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹ã‹
+/*						IMC_BTTN_NOPUSH,		// æŠ¼ã•ã‚Œã¦ã„ãªã„
+						IMC_BTTN_PUSH,			// æŠ¼ã•ã‚Œã¦ã„ã‚‹
+						IMC_BTTN_PUSH_F,		// æŠ¼ã•ã‚ŒãŸçž¬é–“
+						IMC_BTTN_POP,			// é›¢ã•ã‚ŒãŸ	
+						IMC_BTTN_AREA_OVER,		// ãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢å¤– */
 } IMC_BUTTON_INIT;
 
 //-------------------------------------
 //	
-//	ƒtƒHƒ“ƒg•t‚«ƒ{ƒ^ƒ“
+//	ãƒ•ã‚©ãƒ³ãƒˆä»˜ããƒœã‚¿ãƒ³
 //	
 //=====================================
 typedef struct {
@@ -99,27 +99,27 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	ƒ{ƒ^ƒ“ì¬\‘¢‘Ì
+//	ãƒœã‚¿ãƒ³ä½œæˆæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	IMC_BUTTON_INIT bttn_init;		// ƒ{ƒ^ƒ“‰Šú‰»ƒf[ƒ^
-	const GF_BGL_BMPWIN* bmp;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	CONST_FONTOAM_SYS_PTR fntoam_sys;	// OAMƒtƒHƒ“ƒgƒVƒXƒeƒ€ƒf[ƒ^
-	const NNSG2dImagePaletteProxy* pltt;// ƒpƒŒƒbƒgƒvƒƒNƒV
-	int				fnt_x;			// ƒIƒtƒZƒbƒgˆÊ’u
-	int				fnt_y;			// ƒIƒtƒZƒbƒgˆÊ’u
-	int				char_ofs;		// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+	IMC_BUTTON_INIT bttn_init;		// ãƒœã‚¿ãƒ³åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+	const GF_BGL_BMPWIN* bmp;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	CONST_FONTOAM_SYS_PTR fntoam_sys;	// OAMãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	const NNSG2dImagePaletteProxy* pltt;// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
+	int				fnt_x;			// ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+	int				fnt_y;			// ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+	int				char_ofs;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 } IMC_FONT_BUTTON_INIT;
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒCƒ[ƒWƒNƒŠƒbƒv—p
+*		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒCƒ[ƒWƒNƒŠƒbƒv—pƒ{ƒ^ƒ“\‘¢‘Ì	
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ãƒœã‚¿ãƒ³æ§‹é€ ä½“	
 //	
 //=====================================
 typedef struct {
@@ -128,7 +128,7 @@ typedef struct {
 	BOOL bttn_end_do;
 	FONTOAM_SYS_PTR fntoam_sys;
 
-	// “–‚½‚è”»’è—pƒe[ƒuƒ‹
+	// å½“ãŸã‚Šåˆ¤å®šç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 	BUTTON_MAN* bttn_man;
 	TP_HIT_TBL hit[ IMC_BTTN_MAX ];
 } IMC_BUTTON_DATA;
@@ -137,7 +137,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
@@ -145,8 +145,8 @@ typedef struct {
  *
  *	@brief
  *
- *	@param	button		ƒ{ƒ^ƒ“ƒIƒuƒWƒF‚Ìƒ|ƒCƒ“ƒ^ 
- *	@param	init		‰Šú‰»ƒf[ƒ^\‘¢‘Ì		 
+ *	@param	button		ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã®ãƒã‚¤ãƒ³ã‚¿ 
+ *	@param	init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“		 
  *
  *	@return	none
  *
@@ -159,9 +159,9 @@ GLOBAL void IMC_BTTN_FontBttnInit( IMC_FONT_BUTTON* button, IMC_FONT_BUTTON_INIT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“‚Ì”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ã®ç ´æ£„
  *
- *	@param	button	ƒ{ƒ^ƒ“ƒIƒuƒWƒFƒNƒg
+ *	@param	button	ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *	@return	none
  *
@@ -174,10 +174,10 @@ GLOBAL void IMC_BTTN_FontBttnDelete( IMC_FONT_BUTTON* button );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“ƒVƒXƒeƒ€“®ìŠÖ”ŽÀs
+ *	@brief	ãƒœã‚¿ãƒ³ã‚·ã‚¹ãƒ†ãƒ å‹•ä½œé–¢æ•°å®Ÿè¡Œ
  *
- *	@param	button	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	state	¡‚Ìƒ{ƒ^ƒ“ó‘Ô
+ *	@param	button	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	state	ä»Šã®ãƒœã‚¿ãƒ³çŠ¶æ…‹
  *
  *	@return	none
  *
@@ -189,20 +189,20 @@ GLOBAL void IMC_BTTN_DoFunc( IMC_BUTTON* button, int state );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“®ìŠÖ”‚ðƒ{ƒ^ƒ“‚ÉÝ’è
+ *	@brief	å‹•ä½œé–¢æ•°ã‚’ãƒœã‚¿ãƒ³ã«è¨­å®š
  *
- *	@param	button		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	func		“®ìŠÖ”
- *	@param	work		ƒ[ƒN
- *	@param	start_flg	“®ìŠÖ”ŽÀsƒ^ƒCƒ~ƒ“ƒO
+ *	@param	button		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	func		å‹•ä½œé–¢æ•°
+ *	@param	work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	start_flg	å‹•ä½œé–¢æ•°å®Ÿè¡Œã‚¿ã‚¤ãƒŸãƒ³ã‚°
  *
  *	@return	none
  *
  *	start_flg
-		IMC_BTTN_PUSH,			// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-		IMC_BTTN_PUSH_F,		// ‰Ÿ‚³‚ê‚½uŠÔ
-		IMC_BTTN_POP,			// —£‚³‚ê‚½uŠÔ
-		IMC_BTTN_AREA_OVER		// ƒ{ƒ^ƒ“ƒGƒŠƒAŠO
+		IMC_BTTN_PUSH,			// æŠ¼ã•ã‚Œã¦ã„ã‚‹
+		IMC_BTTN_PUSH_F,		// æŠ¼ã•ã‚ŒãŸçž¬é–“
+		IMC_BTTN_POP,			// é›¢ã•ã‚ŒãŸçž¬é–“
+		IMC_BTTN_AREA_OVER		// ãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢å¤–
  *
  */
 //-----------------------------------------------------------------------------
@@ -211,9 +211,9 @@ GLOBAL void IMC_BTTN_FuncSet( IMC_BUTTON* button, IMCBUTTON_FUNC func, void* wor
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌŠG‚É‚·‚é
+ *	@brief	æŠ¼ã•ã‚ŒãŸã¨ãã®çµµã«ã™ã‚‹
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -225,9 +225,9 @@ GLOBAL void IMC_BTTN_PushGra( IMC_BUTTON* bttn );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	—£‚³‚ê‚½‚Æ‚«‚ÌŠG‚É‚·‚é
+ *	@brief	é›¢ã•ã‚ŒãŸã¨ãã®çµµã«ã™ã‚‹
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -239,9 +239,9 @@ GLOBAL void IMC_BTTN_PopGra( IMC_BUTTON* bttn );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	’†ŠÔ‚Ì‚Æ‚«‚ÌŠG‚É‚·‚é
+ *	@brief	ä¸­é–“ã®ã¨ãã®çµµã«ã™ã‚‹
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -253,16 +253,16 @@ GLOBAL void IMC_BTTN_HalfGra( IMC_BUTTON* bttn );
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒCƒ[ƒWƒNƒŠƒbƒv—p
+*	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *	
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv—pƒ{ƒ^ƒ“‚Ìì¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ãƒœã‚¿ãƒ³ã®ä½œæˆ
  *
- *	@param	button		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	button		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -274,10 +274,10 @@ GLOBAL void IMC_IMCBTTN_Init( IMC_BUTTON_DATA* button, IMC_DRAW_DATA* drawData )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv—pƒ{ƒ^ƒ“‚Ì”jŠü
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ãƒœã‚¿ãƒ³ã®ç ´æ£„
  *
- *	@param	button		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	button		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -289,9 +289,9 @@ GLOBAL void IMC_IMCBTTN_Delete( IMC_BUTTON_DATA* button, IMC_DRAW_DATA* drawData
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒ{ƒ^ƒ“ƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒœã‚¿ãƒ³ãƒ¡ã‚¤ãƒ³
  *
- *	@param	button	ƒ{ƒ^ƒ“î•ñ
+ *	@param	button	ãƒœã‚¿ãƒ³æƒ…å ±
  *
  *	@return	none
  *
@@ -303,9 +303,9 @@ GLOBAL void IMC_IMCBTTN_Main( IMC_BUTTON_DATA* button );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹
+ *	@brief	å¼·åˆ¶çµ‚äº†
  *
- *	@param	button	ƒ{ƒ^ƒ“
+ *	@param	button	ãƒœã‚¿ãƒ³
  */
 //-----------------------------------------------------------------------------
 GLOBAL void IMC_IMCBTTN_EndEx( IMC_BUTTON_DATA* button );
@@ -313,7 +313,7 @@ GLOBAL void IMC_IMCBTTN_EndEx( IMC_BUTTON_DATA* button );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒAƒjƒó‘ÔƒŠƒZƒbƒg
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çŠ¶æ…‹ãƒªã‚»ãƒƒãƒˆ
  *
  *	@param	button 
  *
@@ -325,11 +325,11 @@ GLOBAL void IMC_IMCBTTN_Reset( IMC_BUTTON_DATA* button );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘Sƒ{ƒ^ƒ“‚ð‘«‚µŽZˆÚ“®‚³‚¹‚é
+ *	@brief	å…¨ãƒœã‚¿ãƒ³ã‚’è¶³ã—ç®—ç§»å‹•ã•ã›ã‚‹
  *
- *	@param	button		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	x			‘«‚·‚˜’l
- *	@param	y			‘«‚·‚™’l
+ *	@param	button		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	x			è¶³ã™ï½˜å€¤
+ *	@param	y			è¶³ã™ï½™å€¤
  *
  *	@return	none
  *
@@ -341,17 +341,17 @@ GLOBAL void IMC_IMCBTTN_Move( IMC_BUTTON_DATA* button, int x, int y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ@BG@•ÏXƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½ó‘Ô‚É‚·‚é
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã€€BGã€€å¤‰æ›´ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸçŠ¶æ…‹ã«ã™ã‚‹
  *
- *	@param	button			ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	button_no		ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event			ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	button			ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	button_no		ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event			ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
  * button_no
-	IMC_BTTN_ACE,		// ƒAƒNƒZƒTƒŠ•ÏX‚ÉˆÚ‚é
-	IMC_BTTN_BG,		// BG•ÏX‚ÉˆÚ‚é
+	IMC_BTTN_ACE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ã«ç§»ã‚‹
+	IMC_BTTN_BG,		// BGå¤‰æ›´ã«ç§»ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
@@ -360,22 +360,22 @@ GLOBAL void IMC_IMCBTTN_OnAB( IMC_BUTTON_DATA* button, int button_no, int event 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“®ìŠÖ”‚ðÝ’è
+ *	@brief	å‹•ä½œé–¢æ•°ã‚’è¨­å®š
  *
- *	@param	button		ƒ{ƒ^ƒ“ƒf[ƒ^
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	func		“®ìŠÖ”
- *	@param	work		ƒ[ƒN
- *	@param	start_flg	ŠÖ”‚ðŽÀs‚·‚éƒ^ƒCƒ~ƒ“ƒO
+ *	@param	button		ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	func		å‹•ä½œé–¢æ•°
+ *	@param	work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	start_flg	é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  *
  *	@return	none
  *
  *	start_flg
-		IMC_BTTN_NOPUSH,		// ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
-		IMC_BTTN_PUSH,			// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-		IMC_BTTN_PUSH_F,		// ‰Ÿ‚³‚ê‚½uŠÔ
-		IMC_BTTN_POP,			// —£‚³‚ê‚½uŠÔ
-		IMC_BTTN_AREA_OVER		// ƒ{ƒ^ƒ“ƒGƒŠƒAŠO
+		IMC_BTTN_NOPUSH,		// æŠ¼ã•ã‚Œã¦ã„ãªã„
+		IMC_BTTN_PUSH,			// æŠ¼ã•ã‚Œã¦ã„ã‚‹
+		IMC_BTTN_PUSH_F,		// æŠ¼ã•ã‚ŒãŸçž¬é–“
+		IMC_BTTN_POP,			// é›¢ã•ã‚ŒãŸçž¬é–“
+		IMC_BTTN_AREA_OVER		// ãƒœã‚¿ãƒ³ã‚¨ãƒªã‚¢å¤–
  *
  */
 //-----------------------------------------------------------------------------
@@ -383,11 +383,11 @@ GLOBAL void IMC_IMCBTTN_FuncSet( IMC_BUTTON_DATA* button, int button_no, IMCBUTT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚Ì•\Ž¦”ñ•\Ž¦Ý’è
+ *	@brief	ãƒœã‚¿ãƒ³ã®è¡¨ç¤ºéžè¡¨ç¤ºè¨­å®š
  *
- *	@param	button		ƒ{ƒ^ƒ“ƒ[ƒN
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	button		ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */

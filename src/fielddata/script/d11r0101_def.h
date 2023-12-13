@@ -1,7 +1,7 @@
 #ifndef _D11R0101_DEF_H_
 #define _D11R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D11R0101_FLAG_CHANGE		(1)
 #define	SCRID_POS_D11R0101_INFO_01		(2)
 #define	SCRID_POS_D11R0101_INFO_02		(3)
@@ -47,6 +47,6 @@
 #define	SCRID_POS_D11R0101_WARP26		(43)
 #define	SCRID_POS_D11R0101_WARP27		(44)
 #define	SCRID_POS_D11R0101_WARP_CLEAR		(45)
-#define	SCRID_D11R0101_DATA_MAX		(45)		//最大数
+#define	SCRID_D11R0101_DATA_MAX		(45)		//譛螟ｧ謨ｰ
 
 #endif //_D11R0101_DEF_H_

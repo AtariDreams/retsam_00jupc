@@ -1,7 +1,7 @@
 //===================================================================
 /**
  * @file	agbpokemon.c	
- * @bfief	AGBƒ|ƒPƒ‚ƒ“ƒJƒZƒbƒg¨DPŠÔ‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^ˆÚ“®
+ * @bfief	AGBãƒã‚±ãƒ¢ãƒ³ã‚«ã‚»ãƒƒãƒˆâ†’DPé–“ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ç§»å‹•
  * @author	Satoshi Mitsuhara
  * @date	06.05.30
  *
@@ -9,10 +9,10 @@
  */
 //===================================================================
 
-// BG0	ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-// BG1	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•\Ž¦ƒEƒBƒ“ƒhƒE
-// BG2	”wŒi
-// BG3	–¢Žg—p
+// BG0	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+// BG1	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+// BG2	èƒŒæ™¯
+// BG3	æœªä½¿ç”¨
 
 #include "common.h"
 #include "system/main.h"
@@ -62,28 +62,28 @@
 
 
 //--------------------------------------------------------------
-//	ƒoƒOC³ 2008.05.21(…) matsuda
+//	ãƒã‚°ä¿®æ­£ 2008.05.21(æ°´) matsuda
 //--------------------------------------------------------------
-///1‚ÅC³—LŒø
+///1ã§ä¿®æ­£æœ‰åŠ¹
 #define BUGFIX_STRBUF		(1)
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #define SetSeq(x)		*seq = (x)
 
-// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ªŽn‚Ü‚éVRAMã‚Å‚ÌƒIƒtƒZƒbƒg
+// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãŒå§‹ã¾ã‚‹VRAMä¸Šã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define POKEICON_VRAM_OFFSET ( 0x64 )
 #define POKEICON_TRANS_CHARA	(4*4)
 #define POKEICON_TRANS_SIZE		(POKEICON_TRANS_CHARA*0x20)
-// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ð“]‘—‚·‚éƒIƒtƒZƒbƒg
+// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€ã™ã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define POKEICON_PAL_OFFSET				(  8 )
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define RECORD_CHAR_CONT_NUM				(20)
 #define RECORD_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define RECORD_CHAR_VRAMTRANS_SUB_SIZE		(2048)
 #define RECORD_PLTT_CONT_NUM				(20)
-// ƒ|ƒPƒ‚ƒ“‚Ì•\Ž¦Ý’è
+// ãƒã‚±ãƒ¢ãƒ³ã®è¡¨ç¤ºè¨­å®š
 #define POKEMON_WIDTH			40
 #define POKEMON_HEIGHT			24
 #define POKEMON_BASEX			28
@@ -152,16 +152,16 @@ typedef struct {
 
 
 typedef struct {
-  int vadrs;				// VRAMƒAƒhƒŒƒX
-  int palno;				// ƒpƒŒƒbƒg”Ô†
+  int vadrs;				// VRAMã‚¢ãƒ‰ãƒ¬ã‚¹
+  int palno;				// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
   CLACT_WORK_PTR icon;			// CLACT
-  u8 chbuf[POKEICON_TRANS_SIZE];	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
+  u8 chbuf[POKEICON_TRANS_SIZE];	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
 } POKEBUF;
 
 
 
 typedef struct {
-  int cartridge_type;				// VERSION_xxxx (pm_version.hŽQÆ)
+  int cartridge_type;				// VERSION_xxxx (pm_version.hå‚ç…§)
   int agberror;
   int msg_flag;
   int jiffy;
@@ -175,36 +175,36 @@ typedef struct {
 
   int next_seq;
 
-  // ƒZƒ‹ƒAƒNƒ^[ŠÖ˜A
-  CLACT_SET_PTR	clactSet;				// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg 
-  CLACT_U_EASYRENDER_DATA renddata;			// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-  CLACT_U_RES_MANAGER_PTR resMan[CLACT_U_RES_MAX];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-  CLACT_U_RES_OBJ_PTR resObjTbl[CLACT_U_RES_MAX];	// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
+  CLACT_SET_PTR	clactSet;				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ 
+  CLACT_U_EASYRENDER_DATA renddata;			// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+  CLACT_U_RES_MANAGER_PTR resMan[CLACT_U_RES_MAX];	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+  CLACT_U_RES_OBJ_PTR resObjTbl[CLACT_U_RES_MAX];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
   CLACT_HEADER clActHeaderMain;
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ 30‘Ì•ª
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ 30ä½“åˆ†
   POKEMON_ICON icon[POKEMON_ICON_MAX];
   RECT_HIT_TBL iconrect[POKEMON_TOUCH_ICONMAX];
 
-  // ‚Æ‚¶‚é
-  CLACT_WORK_PTR cancel[4];	// ‚SŽí—Þ
-  // ‰E¨
-  CLACT_WORK_PTR arrowr[4];	// ‚SŽí—Þ
-  // ¶©
-  CLACT_WORK_PTR arrowl[4];	// ‚SŽí—Þ
-  // Œˆ’èƒ}[ƒN
-  MARK_ICON mark[POKEMON_SELECT_MAX];	// ‚U‚Â•ª(‘I‘ð‚Å‚«‚éƒ|ƒPƒ‚ƒ“‚Ì”)
+  // ã¨ã˜ã‚‹
+  CLACT_WORK_PTR cancel[4];	// ï¼”ç¨®é¡ž
+  // å³â†’
+  CLACT_WORK_PTR arrowr[4];	// ï¼”ç¨®é¡ž
+  // å·¦â†
+  CLACT_WORK_PTR arrowl[4];	// ï¼”ç¨®é¡ž
+  // æ±ºå®šãƒžãƒ¼ã‚¯
+  MARK_ICON mark[POKEMON_SELECT_MAX];	// ï¼–ã¤åˆ†(é¸æŠžã§ãã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°)
   int selected;
   
-  // Œˆ’è‰æ–Ê‚Ìƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[
+  // æ±ºå®šç”»é¢ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼
   CLACT_WORK_PTR check_poke[POKEMON_SELECT_MAX];
   REGWIN cwin;
 
-  // ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEŠÖ˜A
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–¢é€£
   GF_BGL_BMPWIN	TitleWin;
   GF_BGL_BMPWIN	BoxNameWin;
   GF_BGL_BMPWIN	CheckWin;
   
-  // AGBƒJ[ƒgƒŠƒbƒWƒAƒNƒZƒXŠÖŒW
+  // AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‚¢ã‚¯ã‚»ã‚¹é–¢ä¿‚
   int cartridge_status;
   int load_status;
   u32 buffer[AGBPOKE_BUFFERSIZE/sizeof(u32)];
@@ -213,12 +213,12 @@ typedef struct {
 
   int wait_seq;
 
-  // ‰º‰æ–ÊƒEƒCƒ“ƒhƒEƒVƒXƒeƒ€
+  // ä¸‹ç”»é¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
   TOUCH_SW_SYS *TouchSubWindowSys;
 
   SAVEWORK save_work;
 
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì‚‘¬•\Ž¦—p
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®é«˜é€Ÿè¡¨ç¤ºç”¨
   POKEBUF pokebuf[POKEMON_ICON_MAX];
   void (*DrawFunc)(void);
 
@@ -232,10 +232,10 @@ POKEBUF *_PokeBufPtr;
 
 enum {
 
-  AGBCARTRIDGE_SEQ_INIT_CARTRIDGE,	/* AGBƒJ[ƒgƒŠƒbƒW‰Šú‰» */
-  AGBCARTRIDGE_SEQ_PREINIT_SCREEN,	/* ƒXƒNƒŠ[ƒ“‰Šú‰» */
+  AGBCARTRIDGE_SEQ_INIT_CARTRIDGE,	/* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸åˆæœŸåŒ– */
+  AGBCARTRIDGE_SEQ_PREINIT_SCREEN,	/* ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ– */
   
-  AGBCARTRIDGE_SEQ_CHECK_USER,		/* ƒJ[ƒgƒŠƒbƒW‚Ìƒ†[ƒU[Šm”F */
+  AGBCARTRIDGE_SEQ_CHECK_USER,		/* ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ç¢ºèª */
   AGBCARTRIDGE_SEQ_CHECK_USER_YESNO,
 
   AGBCARTRIDGE_SEQ_CHECK_FINAL,
@@ -246,58 +246,58 @@ enum {
   AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN,
   AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN2,
   AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN3,
-  AGBCARTRIDGE_SEQ_ERROR_SCREEN,	/* ƒ^ƒCƒgƒ‹‚Ö–ß‚éƒGƒ‰[•\Ž¦ */
+  AGBCARTRIDGE_SEQ_ERROR_SCREEN,	/* ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹ã‚¨ãƒ©ãƒ¼è¡¨ç¤º */
 
-  AGBCARTRIDGE_SEQ_INIT_SCREEN,		/* ƒXƒNƒŠ[ƒ“‰Šú‰» ‚»‚Ì‚Q */
-  AGBCARTRIDGE_SEQ_MAIN,		/* ƒƒCƒ“ˆ— */
-  AGBCARTRIDGE_SEQ_SELECT_WARNING,	/* ‘I‘ð‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚¾ */
+  AGBCARTRIDGE_SEQ_INIT_SCREEN,		/* ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ– ãã®ï¼’ */
+  AGBCARTRIDGE_SEQ_MAIN,		/* ãƒ¡ã‚¤ãƒ³å‡¦ç† */
+  AGBCARTRIDGE_SEQ_SELECT_WARNING,	/* é¸æŠžã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã  */
 
-  AGBCARTRIDGE_SEQ_WAIT_CHECK_SCREEN,	/* Šm”F‰æ–Ê‚Ös‚­ŠÔ‚Ì‚¿‚å‚Á‚Æ‚ÌuŠÔv */
-  AGBCARTRIDGE_SEQ_CREATE_CHECK_SCREEN,	/* Šm”F‰æ–Êì¬ */
-  AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH1,	/* u‚Â‚ê‚Ä‚¢‚«‚Ü‚·v‚Ìƒ^ƒbƒv‘Ò‚¿ */
-  AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH,	/* uƒzƒ“ƒg‚É‚¢‚¢‚ÌHv‚Ìƒ^ƒbƒv‘Ò‚¿ */
-  AGBCARTRIDGE_SEQ_CREATE_CHECK_MAIN,	/* Šm”F‰æ–Êˆ— */
-  AGBCARTRIDGE_SEQ_RETURN_SELECT,	/* ‘I‘ð‰æ–Ê‚É–ß‚é‚½‚ß‚Ì‰Šú‰» */
+  AGBCARTRIDGE_SEQ_WAIT_CHECK_SCREEN,	/* ç¢ºèªç”»é¢ã¸è¡Œãé–“ã®ã¡ã‚‡ã£ã¨ã®ã€Œé–“ã€ */
+  AGBCARTRIDGE_SEQ_CREATE_CHECK_SCREEN,	/* ç¢ºèªç”»é¢ä½œæˆ */
+  AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH1,	/* ã€Œã¤ã‚Œã¦ã„ãã¾ã™ã€ã®ã‚¿ãƒƒãƒ—å¾…ã¡ */
+  AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH,	/* ã€Œãƒ›ãƒ³ãƒˆã«ã„ã„ã®ï¼Ÿã€ã®ã‚¿ãƒƒãƒ—å¾…ã¡ */
+  AGBCARTRIDGE_SEQ_CREATE_CHECK_MAIN,	/* ç¢ºèªç”»é¢å‡¦ç† */
+  AGBCARTRIDGE_SEQ_RETURN_SELECT,	/* é¸æŠžç”»é¢ã«æˆ»ã‚‹ãŸã‚ã®åˆæœŸåŒ– */
 
-  AGBCARTRIDGE_SEQ_SAVE,		/* ƒZ[ƒuˆ— */
-  AGBCARTRIDGE_SEQ_SAVE_END,		/* ƒ^ƒbƒv‘Ò‚¿ */
+  AGBCARTRIDGE_SEQ_SAVE,		/* ã‚»ãƒ¼ãƒ–å‡¦ç† */
+  AGBCARTRIDGE_SEQ_SAVE_END,		/* ã‚¿ãƒƒãƒ—å¾…ã¡ */
   
-  AGBCARTRIDGE_SEQ_WAIT_FADE,		/* ƒtƒF[ƒh‚ð‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö */
-  AGBCARTRIDGE_SEQ_FINISH,		/* ‚±‚Ì‰æ–Ê‚ÌŒãŽn––{ÅŒã */
+  AGBCARTRIDGE_SEQ_WAIT_FADE,		/* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸ */
+  AGBCARTRIDGE_SEQ_FINISH,		/* ã“ã®ç”»é¢ã®å¾Œå§‹æœ«ï¼‹æœ€å¾Œ */
   AGBCARTRIDGE_SEQ_MAX
 };
 
 
 enum {
-  SAVE_SEQ_INIT,			/* ƒZ[ƒuˆ—‰Šú‰» */
+  SAVE_SEQ_INIT,			/* ã‚»ãƒ¼ãƒ–å‡¦ç†åˆæœŸåŒ– */
 
-  SAVE_SEQ_WAIT_INIT_TIMING1,		/* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‰Šú‰»‚»‚Ì‚P */
-  SAVE_SEQ_WAIT_TIMING1,		/* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‚»‚Ì‚P */
+  SAVE_SEQ_WAIT_INIT_TIMING1,		/* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“åˆæœŸåŒ–ãã®ï¼‘ */
+  SAVE_SEQ_WAIT_TIMING1,		/* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“ãã®ï¼‘ */
   
-  SAVE_SEQ_DSSAVE_INIT,			/* DS‘¤‚ÌƒZ[ƒu‰Šú‰» */
-  SAVE_SEQ_DSSAVE_MAIN,			/* DS‘¤‚ÌƒZ[ƒuƒƒCƒ“ */
+  SAVE_SEQ_DSSAVE_INIT,			/* DSå´ã®ã‚»ãƒ¼ãƒ–åˆæœŸåŒ– */
+  SAVE_SEQ_DSSAVE_MAIN,			/* DSå´ã®ã‚»ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³ */
 
-  SAVE_SEQ_AGBSAVE_CHECK,		/* AGB‘¤‚ÌƒZ[ƒuƒeƒXƒg(ƒKƒCƒhƒ‰ƒCƒ“‚ÉŠî‚Ã‚­ˆ—) */
-  SAVE_SEQ_AGBSAVE_INIT,		/* AGB‘¤‚ÌƒZ[ƒu‰Šú‰» */
-  SAVE_SEQ_AGBSAVE_MAIN,		/* AGB‘¤‚ÌƒZ[ƒuƒƒCƒ“ */
+  SAVE_SEQ_AGBSAVE_CHECK,		/* AGBå´ã®ã‚»ãƒ¼ãƒ–ãƒ†ã‚¹ãƒˆ(ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³ã«åŸºã¥ãå‡¦ç†) */
+  SAVE_SEQ_AGBSAVE_INIT,		/* AGBå´ã®ã‚»ãƒ¼ãƒ–åˆæœŸåŒ– */
+  SAVE_SEQ_AGBSAVE_MAIN,		/* AGBå´ã®ã‚»ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³ */
 #if 0
-  SAVE_SEQ_WAIT_INIT_TIMING2,		/* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‰Šú‰»‚»‚Ì‚Q */
-  SAVE_SEQ_WAIT_TIMING2,		/* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‚»‚Ì‚Q */
+  SAVE_SEQ_WAIT_INIT_TIMING2,		/* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“åˆæœŸåŒ–ãã®ï¼’ */
+  SAVE_SEQ_WAIT_TIMING2,		/* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“ãã®ï¼’ */
 #endif
-  SAVE_SEQ_SAVE_LAST,			/* ÅŒã‚ÌƒZƒNƒ^‚ðƒZ[ƒu */
-  SAVE_SEQ_SAVE_FINAL,			/* ÅŒã‚ð‘Ò‚Â */
+  SAVE_SEQ_SAVE_LAST,			/* æœ€å¾Œã®ã‚»ã‚¯ã‚¿ã‚’ã‚»ãƒ¼ãƒ– */
+  SAVE_SEQ_SAVE_FINAL,			/* æœ€å¾Œã‚’å¾…ã¤ */
 
-  /* «ŠÖ”‚Ì–ß‚è’l‚Æ‚µ‚ÄŽg—p« */
-  SAVE_STATUS_WRITING,			/* ‘‚«ž‚Ýˆ—’† */
-  SAVE_STATUS_WRITE_SUCCESS,		/* ‘‚«ž‚Ý‚É¬Œ÷‚µ‚½ */
-  SAVE_STATUS_WRITE_ERROR,		/* ‘‚«ž‚Ý‚ÉŽ¸”s‚µ‚½ */
+  /* â†“é–¢æ•°ã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨â†“ */
+  SAVE_STATUS_WRITING,			/* æ›¸ãè¾¼ã¿å‡¦ç†ä¸­ */
+  SAVE_STATUS_WRITE_SUCCESS,		/* æ›¸ãè¾¼ã¿ã«æˆåŠŸã—ãŸ */
+  SAVE_STATUS_WRITE_ERROR,		/* æ›¸ãè¾¼ã¿ã«å¤±æ•—ã—ãŸ */
   
   SAVE_SEQ_MAX
 };
 
 
-// ƒEƒBƒ“ƒhƒEŠÖ˜A
-#define	FONT_PALNO_NORMAL	15	/* ƒm[ƒ}ƒ‹ƒpƒŒƒbƒg */
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–¢é€£
+#define	FONT_PALNO_NORMAL	15	/* ãƒŽãƒ¼ãƒžãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆ */
 
 #define	AGBPOKEMON_BLACK	(GF_PRINTCOLOR_MAKE( 1, 2, 0))
 #define	AGBPOKEMON_WHITE	(GF_PRINTCOLOR_MAKE(15, 2, 0))
@@ -317,65 +317,65 @@ enum {
 #define AGBPOKEMON_NOWIN	(8*2+30*4+1)
 
 
-// ˜A‚ê‚Äs‚¯‚È‚¢u‚Ð‚Å‚ñ‚í‚´v‚ÌƒŠƒXƒg
+// é€£ã‚Œã¦è¡Œã‘ãªã„ã€Œã²ã§ã‚“ã‚ã–ã€ã®ãƒªã‚¹ãƒˆ
 static int WazaHidenTable[] = {
-  WAZANO_IAIGIRI,			// ‚¢‚ ‚¢‚¬‚è
-  WAZANO_SORAWOTOBU,			// ‚»‚ç‚ð‚Æ‚Ô
-  WAZANO_NAMINORI,			// ‚È‚Ý‚Ì‚è
-  WAZANO_KAIRIKI,			// ‚©‚¢‚è‚«
-  WAZANO_HURASSYU,			// ƒtƒ‰ƒbƒVƒ…
-  WAZANO_IWAKUDAKI,			// ‚¢‚í‚­‚¾‚«
-  WAZANO_TAKINOBORI,			// ‚½‚«‚Ì‚Ú‚è
-  WAZANO_DAIBINGU,			// ƒ_ƒCƒrƒ“ƒO
+  WAZANO_IAIGIRI,			// ã„ã‚ã„ãŽã‚Š
+  WAZANO_SORAWOTOBU,			// ãã‚‰ã‚’ã¨ã¶
+  WAZANO_NAMINORI,			// ãªã¿ã®ã‚Š
+  WAZANO_KAIRIKI,			// ã‹ã„ã‚Šã
+  WAZANO_HURASSYU,			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+  WAZANO_IWAKUDAKI,			// ã„ã‚ãã ã
+  WAZANO_TAKINOBORI,			// ãŸãã®ã¼ã‚Š
+  WAZANO_DAIBINGU,			// ãƒ€ã‚¤ãƒ“ãƒ³ã‚°
 };
 
-// ƒ†[ƒU[Šm”F—p‚ÌƒƒbƒZ[ƒWƒe[ƒuƒ‹
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç¢ºèªç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«
 static int UsrCheckMsgTable[] = {
   NULL,		// unknown
-  msg_pokepark_02,			// ƒo[ƒWƒ‡ƒ“FAGBƒTƒtƒ@ƒCƒA
-  msg_pokepark_01,			// ƒo[ƒWƒ‡ƒ“FAGBƒ‹ƒr[
-  msg_pokepark_03,			// ƒo[ƒWƒ‡ƒ“FAGBƒGƒƒ‰ƒ‹ƒh
-  msg_pokepark_04,			// ƒo[ƒWƒ‡ƒ“FAGBƒtƒ@ƒCƒA[ƒŒƒbƒh
-  msg_pokepark_05,			// ƒo[ƒWƒ‡ƒ“FAGBƒŠ[ƒtƒOƒŠ[ƒ“
+  msg_pokepark_02,			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBã‚µãƒ•ã‚¡ã‚¤ã‚¢
+  msg_pokepark_01,			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒ«ãƒ“ãƒ¼
+  msg_pokepark_03,			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
+  msg_pokepark_04,			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¬ãƒƒãƒ‰
+  msg_pokepark_05,			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³
 };
 
-// ƒZ[ƒu’†‚ÌƒƒbƒZ[ƒW
+// ã‚»ãƒ¼ãƒ–ä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static int SaveMsgTable[] = {
   NULL,		// unknown
 #if (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM)
-  msg_pokepark_22,			// "ƒTƒtƒ@ƒCƒA@‚Æ@ƒ_ƒCƒ„ƒ‚ƒ“ƒh@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_20,			// "ƒ‹ƒr[@‚Æ@ƒ_ƒCƒ„ƒ‚ƒ“ƒh@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_24,			// "ƒGƒƒ‰ƒ‹ƒh@‚Æ@ƒ_ƒCƒ„ƒ‚ƒ“ƒh@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_26,			// "ƒtƒ@ƒCƒAƒŒƒbƒh@‚Æ@ƒ_ƒCƒ„ƒ‚ƒ“ƒh@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_28,			// "ƒŠ[ƒtƒOƒŠ[ƒ“@‚Æ@ƒ_ƒCƒ„ƒ‚ƒ“ƒh@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
+  msg_pokepark_22,			// "ã‚µãƒ•ã‚¡ã‚¤ã‚¢ã€€ã¨ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_20,			// "ãƒ«ãƒ“ãƒ¼ã€€ã¨ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_24,			// "ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã€€ã¨ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_26,			// "ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ã€€ã¨ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_28,			// "ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ã€€ã¨ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
 #elif (PM_VERSION == VERSION_PEARL)
-  msg_pokepark_23,			// "ƒTƒtƒ@ƒCƒA@‚Æ@ƒp[ƒ‹@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_21,			// "ƒ‹ƒr[@‚Æ@ƒp[ƒ‹@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_25,			// "ƒGƒƒ‰ƒ‹ƒh@‚Æ@ƒp[ƒ‹@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_27,			// "ƒtƒ@ƒCƒAƒŒƒbƒh@‚Æ@ƒp[ƒ‹@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
-  msg_pokepark_29,			// "ƒŠ[ƒtƒOƒŠ[ƒ“@‚Æ@ƒp[ƒ‹@‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·"
+  msg_pokepark_23,			// "ã‚µãƒ•ã‚¡ã‚¤ã‚¢ã€€ã¨ã€€ãƒ‘ãƒ¼ãƒ«ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_21,			// "ãƒ«ãƒ“ãƒ¼ã€€ã¨ã€€ãƒ‘ãƒ¼ãƒ«ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_25,			// "ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã€€ã¨ã€€ãƒ‘ãƒ¼ãƒ«ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_27,			// "ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ã€€ã¨ã€€ãƒ‘ãƒ¼ãƒ«ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
+  msg_pokepark_29,			// "ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ã€€ã¨ã€€ãƒ‘ãƒ¼ãƒ«ã€€ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™"
 #endif
 };
 
 static u8 BgPalTable[] = {
   0,		// NULL
-  2,		// ƒTƒtƒ@ƒCƒ„
-  1,		// ƒ‹ƒr[
-  3,		// ƒGƒƒ‰ƒ‹ƒh
-  4,		// ƒtƒ@ƒCƒAƒŒƒbƒh
-  5,		// ƒŠ[ƒtƒOƒŠ[ƒ“
+  2,		// ã‚µãƒ•ã‚¡ã‚¤ãƒ¤
+  1,		// ãƒ«ãƒ“ãƒ¼
+  3,		// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
+  4,		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰
+  5,		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³
 };
 
 
 static int ErrorMsgTable[] = {
   NULL,
-  msg_pokepark_39,			// AGB‚ÌƒZ[ƒuƒf[ƒ^‚ª“Ç‚ß‚È‚©‚Á‚½‚æ
-  msg_pokepark_33,			// ‚Q‚S‚¶‚©‚ñ‚½‚½‚È‚¢‚Æc
-  msg_pokepark_34,			// ‚Ù‚ñ‚½‚¢‚ª‚©‚í‚Á‚½‚©‚Æ‚¯‚¢‚ª‚¤‚²‚¢‚½‚æ
-  msg_pokepark_34,			// ‚Ù‚ñ‚½‚¢‚ª‚©‚í‚Á‚½‚©‚Æ‚¯‚¢‚ª‚¤‚²‚¢‚½‚æ
-  msg_pokepark_07,			// ƒ{ƒbƒNƒX‚É‚U‚½‚¢‚¢‚Ü‚¹‚ñ
-  msg_pokepark_09,			// ‚·‚Å‚É‚ ‚¸‚©‚Á‚Ä‚Ü‚·c
-  msg_pokepark_35,			// ‚¢‚Ü‚©‚ç‚Q‚S‚¶‚©‚ñ‚Â‚ê‚Ä‚±‚ê‚Ü‚¹‚ñ
+  msg_pokepark_39,			// AGBã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒèª­ã‚ãªã‹ã£ãŸã‚ˆ
+  msg_pokepark_33,			// ï¼’ï¼”ã˜ã‹ã‚“ãŸãŸãªã„ã¨â€¦
+  msg_pokepark_34,			// ã»ã‚“ãŸã„ãŒã‹ã‚ã£ãŸã‹ã¨ã‘ã„ãŒã†ã”ã„ãŸã‚ˆ
+  msg_pokepark_34,			// ã»ã‚“ãŸã„ãŒã‹ã‚ã£ãŸã‹ã¨ã‘ã„ãŒã†ã”ã„ãŸã‚ˆ
+  msg_pokepark_07,			// ãƒœãƒƒã‚¯ã‚¹ã«ï¼–ãŸã„ã„ã¾ã›ã‚“
+  msg_pokepark_09,			// ã™ã§ã«ã‚ãšã‹ã£ã¦ã¾ã™â€¦
+  msg_pokepark_35,			// ã„ã¾ã‹ã‚‰ï¼’ï¼”ã˜ã‹ã‚“ã¤ã‚Œã¦ã“ã‚Œã¾ã›ã‚“
 };
 
 #if (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM)
@@ -388,7 +388,7 @@ static int ErrorMsgTable[] = {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void DrawBoxTitle(AGBCARTRIDGE_WORK *wk, int boxnumber);
 static void CheckSelectPokemonIcon(AGBCARTRIDGE_WORK *wk);
@@ -400,7 +400,7 @@ void STRBUF_SetStringCodeOrderLength( STRBUF* strbuf, const STRCODE* str, u32 le
 extern void STRBUF_SetStringCode( STRBUF* strbuf, const STRCODE* sz );
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 extern void AGBPPPtoDSPPP(PokemonPasoParam *agb_ppp,POKEMON_PASO_PARAM *ds_ppp);
@@ -408,9 +408,9 @@ extern void AGBPPPtoDSPPP(PokemonPasoParam *agb_ppp,POKEMON_PASO_PARAM *ds_ppp);
 
 //------------------------------------------------------------------
 /**
- * @brief	AGB‚Å‚Í‚ ‚è‚¦‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ì”»’è
+ * @brief	AGBã§ã¯ã‚ã‚Šãˆãªã„ãƒã‚±ãƒ¢ãƒ³ã®åˆ¤å®š
  * @param	NONE
- * @return	TRUE: OK  FALSE: •s³ƒ|ƒPƒ‚ƒ“
+ * @return	TRUE: OK  FALSE: ä¸æ­£ãƒã‚±ãƒ¢ãƒ³
  */
 //------------------------------------------------------------------
 #define MONSNO_AGB_END	413
@@ -419,7 +419,7 @@ extern void AGBPPPtoDSPPP(PokemonPasoParam *agb_ppp,POKEMON_PASO_PARAM *ds_ppp);
 #define	MONSNO_AGB_TIRIIN	411
 static BOOL CheckInJusticePokemon(int agb_monsno)
 {
-#if 0	//ƒ[ƒJƒ‰ƒCƒY”Ç‚©‚çƒŠƒNƒGƒXƒg‚Ì‚ ‚Á‚½C³‚ð”½‰f 2007.01.31(…) matsuda
+#if 0	//ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç­ã‹ã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚ã£ãŸä¿®æ­£ã‚’åæ˜  2007.01.31(æ°´) matsuda
   if(agb_monsno <= 0 || agb_monsno >= MONSNO_AGB_END)
     return TRUE;
   return FALSE;
@@ -435,7 +435,7 @@ static BOOL CheckInJusticePokemon(int agb_monsno)
 
 //------------------------------------------------------------------
 /**
- * @brief	wk->cartridge_type ‚Ö’l‚ðÝ’è
+ * @brief	wk->cartridge_type ã¸å€¤ã‚’è¨­å®š
  * @param	NONE
  * @return	NONE
  */
@@ -455,17 +455,17 @@ static void AgbCartridge_SetCartridgeType(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒV[ƒPƒ“ƒX
+ * @brief	ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	NONE
  * @return	NONE
  *
- * Åˆ«‚Èó‘Ô‚Å‚ ‚Á‚Ä‚à‘B‚Í‚·‚é‚¯‚ê‚ÇŒ‡—Ž‚Í‚µ‚È‚¢‚æ‚¤‚É‚·‚é
- * ˆ—‚Ì‡”Ô‚Æ‚µ‚Ä‚ÍˆÈ‰º‚Ì’Ê‚è
- * ‚PA‚c‚r‚Ìƒ‰ƒXƒg‚PƒZƒNƒ^ˆÈŠO‚ð‘S‚ÄƒZ[ƒu
- * ‚QA‚`‚f‚a‚Ìƒ‰ƒXƒg‚PƒZƒNƒ^ˆÈŠO‚ð‘S‚ÄƒZ[ƒu
- * ‚RAƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µ(ƒ^ƒCƒ~ƒ“ƒO‚ðŒv‚Á‚Ä‘B‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß)
- * ‚SA‚c‚r‚Æ‚`‚f‚a‚Ìƒ‰ƒXƒgƒZƒNƒ^‚ðˆê‹C‚ÉƒZ[ƒu
- * ‚TAI—¹
+ * æœ€æ‚ªãªçŠ¶æ…‹ã§ã‚ã£ã¦ã‚‚å¢—æ®–ã¯ã™ã‚‹ã‘ã‚Œã©æ¬ è½ã¯ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
+ * å‡¦ç†ã®é †ç•ªã¨ã—ã¦ã¯ä»¥ä¸‹ã®é€šã‚Š
+ * ï¼‘ã€ï¼¤ï¼³ã®ãƒ©ã‚¹ãƒˆï¼‘ã‚»ã‚¯ã‚¿ä»¥å¤–ã‚’å…¨ã¦ã‚»ãƒ¼ãƒ–
+ * ï¼’ã€ï¼¡ï¼§ï¼¢ã®ãƒ©ã‚¹ãƒˆï¼‘ã‚»ã‚¯ã‚¿ä»¥å¤–ã‚’å…¨ã¦ã‚»ãƒ¼ãƒ–
+ * ï¼“ã€ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—(ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’è¨ˆã£ã¦å¢—æ®–ã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚)
+ * ï¼”ã€ï¼¤ï¼³ã¨ï¼¡ï¼§ï¼¢ã®ãƒ©ã‚¹ãƒˆã‚»ã‚¯ã‚¿ã‚’ä¸€æ°—ã«ã‚»ãƒ¼ãƒ–
+ * ï¼•ã€çµ‚äº†
 */
 //------------------------------------------------------------------
 static int SaveSequence(AGBCARTRIDGE_WORK *wk)
@@ -480,53 +480,53 @@ static int SaveSequence(AGBCARTRIDGE_WORK *wk)
 //  OS_TPrintf("  save_seq = %d\n", sw->save_seq);
 #endif
 #if 0
-  // ƒZ[ƒuŽ¸”sƒeƒXƒg
+  // ã‚»ãƒ¼ãƒ–å¤±æ•—ãƒ†ã‚¹ãƒˆ
   return SAVE_STATUS_WRITE_SUCCESS;
 #endif
   
   switch(sw->save_seq){
   case SAVE_SEQ_INIT:
-    // ‰Šú‰»ˆ—
+    // åˆæœŸåŒ–å‡¦ç†
     AgbCartridgeDataUpdate(wk);
     ppark = SaveData_GetPokeParkData(wk->sv);
-    // ƒZ[ƒuŠÇ——pƒf[ƒ^‚ðƒZƒbƒg
+    // ã‚»ãƒ¼ãƒ–ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
     POKEPARKDATA_SetMasterData(ppark, agbpoke_GetTrainerID());
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_WAIT_INIT_TIMING1:
-    /* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‰Šú‰»‚»‚Ì‚P */
+    /* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“åˆæœŸåŒ–ãã®ï¼‘ */
     sw->wait_frame = 1 + OS_GetTick() % 120;
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_WAIT_TIMING1:
-    /* ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‚»‚Ì‚P */
+    /* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“ãã®ï¼‘ */
     if(--sw->wait_frame == 0)
       sw->save_seq++;
     break;
 
   case SAVE_SEQ_DSSAVE_INIT:
-    // DS‘¤‚ÌƒZ[ƒuA‰ŠúÝ’è
+    // DSå´ã®ã‚»ãƒ¼ãƒ–ã€åˆæœŸè¨­å®š
     SaveData_DivSave_Init(wk->sv, SVBLK_ID_MAX);
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_DSSAVE_MAIN:
-    // DS‘¤‚ÌƒZ[ƒuƒƒCƒ“
+    // DSå´ã®ã‚»ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³
     result = SaveData_DivSave_Main(wk->sv);
     if(result == SAVE_RESULT_NG)	return SAVE_STATUS_WRITE_ERROR;
     if(result == SAVE_RESULT_LAST)	sw->save_seq++;
     break;
 
   case SAVE_SEQ_AGBSAVE_CHECK:
-    // AGB‘¤‚ÌƒZ[ƒuƒeƒXƒg(ƒKƒCƒhƒ‰ƒCƒ“‚ÉŠî‚Ã‚­ˆ—)
+    // AGBå´ã®ã‚»ãƒ¼ãƒ–ãƒ†ã‚¹ãƒˆ(ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³ã«åŸºã¥ãå‡¦ç†)
     CTRDG_ReadAgbFlash(0, 0, backupbuf, sizeof(backupbuf));
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_AGBSAVE_INIT:
-    // AGB‘¤‚ÌƒZ[ƒu‰Šú‰»
+    // AGBå´ã®ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–
     ret = agbpoke_saveEdit_Async();
     if(ret == FALSE){
       sys_SleepOK(SLEEPTYPE_SAVELOAD);
@@ -536,15 +536,15 @@ static int SaveSequence(AGBCARTRIDGE_WORK *wk)
     break;
 
   case SAVE_SEQ_AGBSAVE_MAIN:
-    // AGB‘¤‚ÌƒZ[ƒuƒƒCƒ“
+    // AGBå´ã®ã‚»ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³
     if(agbpoke_check_status() == AGBPOKE_ERROR_WRITING)
-      // ‘‚¢‚Ä‚¢‚éÅ’†‚¾‚Á‚½‚ç‚PƒtƒŒ[ƒ€ˆ—‚ð‘Ò‚Â
+      // æ›¸ã„ã¦ã„ã‚‹æœ€ä¸­ã ã£ãŸã‚‰ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†ã‚’å¾…ã¤
       break;
     if(agbpoke_check_status() == AGBPOKE_ERROR_LAST){
-      // ÅŒã‚Ì‚PƒZƒNƒ^ˆÈŠO‚Í‘‚«ž‚ß‚½
+      // æœ€å¾Œã®ï¼‘ã‚»ã‚¯ã‚¿ä»¥å¤–ã¯æ›¸ãè¾¼ã‚ãŸ
       sw->save_seq++;
     } else {
-      // ‚³‚ç‚É‚Ç‚ñ‚Ç‚ñ‘‚¢‚Ä‚¢‚­
+      // ã•ã‚‰ã«ã©ã‚“ã©ã‚“æ›¸ã„ã¦ã„ã
       ret = agbpoke_saveEdit_check();
       if(ret == AGBPOKE_ERROR_WRITE){
 	sys_SleepOK(SLEEPTYPE_SAVELOAD);
@@ -554,40 +554,40 @@ static int SaveSequence(AGBCARTRIDGE_WORK *wk)
     break;
 #if 0
   case SAVE_SEQ_WAIT_INIT_TIMING2:
-    // ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ‰Šú‰»
+    // ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“åˆæœŸåŒ–
     sw->wait_frame = 10 + (wk->jiffy % 60);
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_WAIT_TIMING2:
-    // ƒ^ƒCƒ~ƒ“ƒO‚¸‚ç‚µŠúŠÔ
+    // ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãšã‚‰ã—æœŸé–“
     if(--sw->wait_frame == 0)
       sw->save_seq++;
     break;
 #endif
   case SAVE_SEQ_SAVE_LAST:
-    // ÅŒã‚ÌƒZƒNƒ^‚ðƒZ[ƒu
-    // ‚Ü‚¸‚ÍDS‘¤‚ðƒZ[ƒu
+    // æœ€å¾Œã®ã‚»ã‚¯ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
+    // ã¾ãšã¯DSå´ã‚’ã‚»ãƒ¼ãƒ–
     do {
       result = SaveData_DivSave_Main(wk->sv);
       //      OS_TPrintf("----- DS : %d\n", result);
       if(result == SAVE_RESULT_NG)	return SAVE_STATUS_WRITE_ERROR;
     } while(result != SAVE_RESULT_OK);
-    // ŽŸ‚ÉAGB‘¤‚ðƒZ[ƒu(“à•”‚Å‚ÍAsync‚ªŒÄ‚Î‚ê‚Ä‚¢‚é‚Ì‚Åˆê’Umain‚Öˆ—‚ð–ß‚·)
+    // æ¬¡ã«AGBå´ã‚’ã‚»ãƒ¼ãƒ–(å†…éƒ¨ã§ã¯AsyncãŒå‘¼ã°ã‚Œã¦ã„ã‚‹ã®ã§ä¸€æ—¦mainã¸å‡¦ç†ã‚’æˆ»ã™)
     agbpoke_saveEdit_check();
-    sys_SleepNG(SLEEPTYPE_SAVELOAD); // DS‘¤‚ÅSleepON‚É‚³‚ê‚Ä‚¢‚é‚Ì‚ÅÄ“xOFF
+    sys_SleepNG(SLEEPTYPE_SAVELOAD); // DSå´ã§SleepONã«ã•ã‚Œã¦ã„ã‚‹ã®ã§å†åº¦OFF
     sw->save_seq++;
     break;
 
   case SAVE_SEQ_SAVE_FINAL:
-    // AGB‘¤‚ÌI—¹‚ð‘Ò‚Â
+    // AGBå´ã®çµ‚äº†ã‚’å¾…ã¤
     ret = agbpoke_saveEdit_check();
     if(ret == AGBPOKE_ERROR_WRITE){
       sys_SleepOK(SLEEPTYPE_SAVELOAD);
       return SAVE_STATUS_WRITE_ERROR;
     }
     if(ret == AGBPOKE_ERROR_OK){
-      //      OS_TPrintf("¡¡¡ƒZ[ƒuI—¹‚Å‚·¡¡¡\n");
+      //      OS_TPrintf("â– â– â– ã‚»ãƒ¼ãƒ–çµ‚äº†ã§ã™â– â– â– \n");
       sys_SleepOK(SLEEPTYPE_SAVELOAD);
       return SAVE_STATUS_WRITE_SUCCESS;
     }
@@ -600,7 +600,7 @@ static int SaveSequence(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚c‚rƒJ[ƒh‚Ö‚ÌƒZ[ƒuˆ—
+ * @brief	ï¼¤ï¼³ã‚«ãƒ¼ãƒ‰ã¸ã®ã‚»ãƒ¼ãƒ–å‡¦ç†
  * @param	wk
  * @return	NONE
  */
@@ -611,9 +611,9 @@ static void SaveDsCard(AGBCARTRIDGE_WORK *wk)
   SAVE_RESULT result;
 
   ppark = SaveData_GetPokeParkData(wk->sv);
-  // ƒZ[ƒuŠÇ——pƒf[ƒ^‚ðƒZƒbƒg
+  // ã‚»ãƒ¼ãƒ–ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
   POKEPARKDATA_SetMasterData(ppark, agbpoke_GetTrainerID());
-  // ŽÀÛ‚ÌƒZ[ƒuˆ—
+  // å®Ÿéš›ã®ã‚»ãƒ¼ãƒ–å‡¦ç†
   sys_SoftResetNG(SOFTRESET_TYPE_SAVELOAD);
   result = SaveData_Save(wk->sv);
   sys_SoftResetOK(SOFTRESET_TYPE_SAVELOAD);
@@ -623,8 +623,8 @@ static void SaveDsCard(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚q‚`‚lã‚Ì‚`‚f‚aƒJƒZƒbƒgƒf[ƒ^‚ðXV
- * @brief	‚q‚`‚lã‚Ì‚c‚rƒJ[ƒhƒf[ƒ^‚ðXV
+ * @brief	ï¼²ï¼¡ï¼­ä¸Šã®ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
+ * @brief	ï¼²ï¼¡ï¼­ä¸Šã®ï¼¤ï¼³ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
  * @param	NONE
  * @return	NONE
  */
@@ -639,36 +639,36 @@ static void AgbCartridgeDataUpdate(AGBCARTRIDGE_WORK *wk)
   POKEMON_PARAM ds_ppp;
   POKEPARK_DATA *ppark;
 
-  // DS‘¤‚Ìƒf[ƒ^‚ðXV
+  // DSå´ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
   
   ppark = SaveData_GetPokeParkData(wk->sv);
   ds_ppp_ptr = PPPPointerGet(&ds_ppp);
-  // ‘I‘ð‚µ‚½‚U•C‚ðƒ|ƒPƒ‚ƒ“ƒp[ƒN‚Ìƒ[ƒN‚ÖƒZƒbƒg
+  // é¸æŠžã—ãŸï¼–åŒ¹ã‚’ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚¯ã®ãƒ¯ãƒ¼ã‚¯ã¸ã‚»ãƒƒãƒˆ
   for(i = 0; i < POKEMON_SELECT_MAX; i++){
     index = wk->mark[i].pokeno;
     boxno = wk->mark[i].boxno;
     ppp = &wk->boxdata->PPPBox[boxno][index];
-    // AGB‚ÌPPP‚ðDS‚ÌPPP‚Ö•ÏŠ·‚µ‚È‚ª‚ç‘‚«ž‚Þ
+    // AGBã®PPPã‚’DSã®PPPã¸å¤‰æ›ã—ãªãŒã‚‰æ›¸ãè¾¼ã‚€
     AGBPPPtoDSPPP(ppp, ds_ppp_ptr);
     POKEPARKDATA_SetData(ppark, ds_ppp_ptr, i);
   }
 
 
-  // ‚`‚f‚a‘¤‚Ìƒf[ƒ^‚ðXV
+  // ï¼¡ï¼§ï¼¢å´ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
   
-  // ‘I‘ð‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ðƒ{ƒbƒNƒX‚©‚çÁ‚·
+  // é¸æŠžã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã‚’ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰æ¶ˆã™
   monsno = 0;
   for(i = 0; i < POKEMON_SELECT_MAX; i++){
     index = wk->mark[i].pokeno;
     boxno = wk->mark[i].boxno;
-    // ‚ ‚è“¾‚È‚¢Ž–‚¾‚¯‚Ç”O‚Ì‚½‚ß‚Éƒ`ƒFƒbƒN‚ð“ü‚ê‚é
+    // ã‚ã‚Šå¾—ãªã„äº‹ã ã‘ã©å¿µã®ãŸã‚ã«ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã‚‹
     if(index != POKEMON_NOSELECT && boxno != BOX_NUM){
       AgbPokePasoParaPut(&(wk->boxdata->PPPBox[boxno][index]),ID_AGB_monsno, (u8 *)&monsno);
     }
   }
 
 #if 0
-  // Žå‚ÉƒfƒoƒbƒO—p‚É’Ç‰Á‚µ‚Ä‚¨‚«‚Ü‚·(poke_exist_flag‚ª0‚È‚ç‚Îmonsno‚à0‚É‚µ‚Ä‚¨‚­)
+  // ä¸»ã«ãƒ‡ãƒãƒƒã‚°ç”¨ã«è¿½åŠ ã—ã¦ãŠãã¾ã™(poke_exist_flagãŒ0ãªã‚‰ã°monsnoã‚‚0ã«ã—ã¦ãŠã)
   for(boxno = 0; boxno < BOX_NUM; boxno++){
     for(i = 0; i < POKEMON_ICON_MAX; i++){
       if(AgbPokePasoParaGet(&(wk->boxdata->PPPBox[boxno][i]),ID_AGB_poke_exist_flag, NULL) == 0)
@@ -678,7 +678,7 @@ static void AgbCartridgeDataUpdate(AGBCARTRIDGE_WORK *wk)
 #endif
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  // ƒ|ƒPƒ‚ƒ“–³ŒÀ‘Bˆ—(‚®‚Ó‚Ó)
+  // ãƒã‚±ãƒ¢ãƒ³ç„¡é™å¢—æ®–å‡¦ç†(ããµãµ)
   if(sys.cont & PAD_BUTTON_B){
     MATHRandContext16 context;
     u8 name[MONS_NAME_SIZE+1] = { JP_AGB_A__, JP_AGB_B__, JP_AGB_C__, JP_AGB_D__, JP_AGB_E__,
@@ -692,7 +692,7 @@ static void AgbCartridgeDataUpdate(AGBCARTRIDGE_WORK *wk)
       for(i = 0; i < POKEMON_ICON_MAX; i++){
 	monsno = MATH_Rand16(&context, 386);
 	AgbPokePasoParaPut(&ppp, ID_AGB_monsno, (u8 *)&monsno);
-#if 0	// ŠCŠO”ÅƒJƒZƒbƒgƒeƒXƒg
+#if 0	// æµ·å¤–ç‰ˆã‚«ã‚»ãƒƒãƒˆãƒ†ã‚¹ãƒˆ
 	monsno = LANG_ENGLISH;
 	AgbPokePasoParaPut(&ppp, ID_AGB_country_code, (u8 *)&monsno);
 	AgbPokePasoParaPut(&ppp, ID_AGB_nickname, name);
@@ -708,7 +708,7 @@ static void AgbCartridgeDataUpdate(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒWƒZƒ“ƒ^ƒŠƒ“ƒO
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°
  * @param	NONE
  * @return	NONE
  */
@@ -727,7 +727,7 @@ static int GetMessageStartPos(REGWIN *rwin, STRBUF *str, int flag)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -743,19 +743,19 @@ static void CreateMsgWindow(AGBCARTRIDGE_WORK *wk, REGWIN *rwin, int flag)
   if(rwin->msgwait == 0)	msgwait = MSG_NO_PUT;
   else				msgwait = rwin->msgwait;
 
-  // ƒEƒBƒ“ƒhƒE‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î“o˜^
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ç™»éŒ²
   if(rwin->win->ini == NULL){
     GF_BGL_BmpWinAdd(wk->bgl, rwin->win, rwin->screen,
 		     rwin->sx, rwin->sy, rwin->width, rwin->height,
 		     FONT_PALNO_NORMAL, rwin->base);
   }
-  // ƒEƒBƒ“ƒhƒE“à‚ðÁ‹Ž
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã‚’æ¶ˆåŽ»
   if(!(flag & MSG_FLAG_NOCLEAR))
     GF_BGL_BmpWinDataFill(rwin->win, rwin->clrcolor);
 
-  // ƒƒbƒZ[ƒW‚ª‚ ‚ê‚Î•\Ž¦
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚Œã°è¡¨ç¤º
   if(rwin->msgid != -1){
-    // ƒA[ƒJƒCƒu‚©‚ç“WŠJ‚µ‚Ä•\Ž¦
+    // ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰å±•é–‹ã—ã¦è¡¨ç¤º
     msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_pokemonpark_dat, HEAPID_AGBCARTRIDGE);
     if(rwin->word)	word = rwin->word;
     else		word = WORDSET_Create(HEAPID_AGBCARTRIDGE);
@@ -779,7 +779,7 @@ static void CreateMsgWindow(AGBCARTRIDGE_WORK *wk, REGWIN *rwin, int flag)
     rwin->msgid = -1;
   }
   if(rwin->msgp){
-    // •¶Žš—ñ‚ð’¼Ú•\Ž¦
+    // æ–‡å­—åˆ—ã‚’ç›´æŽ¥è¡¨ç¤º
 #if BUGFIX_STRBUF
 	msg = wk->msgbuf1;
 #else
@@ -794,15 +794,15 @@ static void CreateMsgWindow(AGBCARTRIDGE_WORK *wk, REGWIN *rwin, int flag)
     rwin->msgp = NULL;
   }
   if(rwin->msg){
-    // STRBUFŒ`‚ð•\Ž¦
+    // STRBUFå½¢ã‚’è¡¨ç¤º
     x = GetMessageStartPos(rwin, rwin->msg, flag);
     rwin->m_id = GF_STR_PrintColor(rwin->win, rwin->font, rwin->msg, x, rwin->dy, msgwait, rwin->color, NULL);
     rwin->msg = NULL;
   }
-  // ƒtƒ‰ƒO‚É‚æ‚Á‚Ä•`‰æ
+  // ãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦æç”»
   if(!(flag & MSG_FLAG_NOREDRAW))
     GF_BGL_BmpWinOn(rwin->win);
-  // ˜g‚ð‚Â‚¯‚éê‡‚à‚ ‚è‚Ü‚·
+  // æž ã‚’ã¤ã‘ã‚‹å ´åˆã‚‚ã‚ã‚Šã¾ã™
   if(flag & MSG_FLAG_FRAME){
     if(flag & MSG_FLAG_TALKWIN){
       BmpTalkWinWrite(rwin->win, WINDOW_TRANS_ON, AGBPOKEMON_TFRAMECHR, AGBPOKEMON_TFRAMECOL);
@@ -814,14 +814,14 @@ static void CreateMsgWindow(AGBCARTRIDGE_WORK *wk, REGWIN *rwin, int flag)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒNƒ^AƒpƒŒƒbƒg‚Ìƒ}ƒl[ƒWƒƒ[‹N“®
+ * @brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼èµ·å‹•
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void CharPlttManagerInit(void)
 {
-  // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+  // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
   {
     CHAR_MANAGER_MAKE cm = {
       RECORD_CHAR_CONT_NUM,
@@ -831,10 +831,10 @@ static void CharPlttManagerInit(void)
     };
     InitCharManager(&cm);
   }
-  // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+  // ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
   InitPlttManager(RECORD_PLTT_CONT_NUM, HEAPID_AGBCARTRIDGE);
       
-  // “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+  // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
   CharLoadStartAll();
   PlttLoadStartAll();
 }
@@ -842,7 +842,7 @@ static void CharPlttManagerInit(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚Ì‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -850,56 +850,56 @@ static void CharPlttManagerInit(void)
 static void InitCellActor(AGBCARTRIDGE_WORK *wk)
 {
   int i;
-  // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+  // OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
   NNS_G2dInitOamManagerModule();
-  // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-  // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-  // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+  // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+  // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+  // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
   REND_OAMInit( 
-	       0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-	       0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-	       0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-	       0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+	       0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+	       0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+	       0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+	       0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 	       HEAPID_AGBCARTRIDGE);
 	
-  // ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
   wk->clactSet = CLACT_U_SetEasyInit( 80, &wk->renddata, HEAPID_AGBCARTRIDGE);
   CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, (256*FX32_ONE)/*NAMEIN_SUB_ACTOR_DISTANCE*/ );
 
-  //ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-  for(i=0;i<CLACT_U_RES_MAX;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+  //ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+  for(i=0;i<CLACT_U_RES_MAX;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
     wk->resMan[i] = CLACT_U_ResManagerInit(3, i, HEAPID_AGBCARTRIDGE);
   }
 
-  //---------ã‰æ–Ê—p-------------------
-  //chara“Ç‚Ýž‚Ý
+  //---------ä¸Šç”»é¢ç”¨-------------------
+  //charaèª­ã¿è¾¼ã¿
   wk->resObjTbl[CLACT_U_CHAR_RES] =
     CLACT_U_ResManagerResAddArcChar(wk->resMan[CLACT_U_CHAR_RES], 
 				    ARC_MYSTERY_GRA, NARC_mystery_gba_box_oam_lz_cngr,
 				    1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_AGBCARTRIDGE);
       
-  //pal“Ç‚Ýž‚Ý
+  //palèª­ã¿è¾¼ã¿
   wk->resObjTbl[CLACT_U_PLTT_RES] =
     CLACT_U_ResManagerResAddArcPltt(wk->resMan[CLACT_U_PLTT_RES],
 				    ARC_MYSTERY_GRA, NARC_mystery_gba_box_oam_nclr,
 				    0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAPID_AGBCARTRIDGE);
 
-  //cell“Ç‚Ýž‚Ý
+  //cellèª­ã¿è¾¼ã¿
   wk->resObjTbl[CLACT_U_CELL_RES] =
     CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELL_RES],
 					ARC_MYSTERY_GRA, NARC_mystery_gba_box_oam_lz_ccer,
 					1, 0, CLACT_U_CELL_RES,HEAPID_AGBCARTRIDGE);
 
-  //“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+  //åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
   wk->resObjTbl[CLACT_U_CELLANM_RES] =
     CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELLANM_RES],
 					ARC_MYSTERY_GRA, NARC_mystery_gba_box_oam_lz_canr,
 					1, 0, CLACT_U_CELLANM_RES,HEAPID_AGBCARTRIDGE);
-  // Chara“]‘—
+  // Charaè»¢é€
   CLACT_U_CharManagerSet( wk->resObjTbl[CLACT_U_CHAR_RES] );
-  // ƒpƒŒƒbƒg“]‘—
+  // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   CLACT_U_PlttManagerSet( wk->resObjTbl[CLACT_U_PLTT_RES] );
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“—pƒpƒŒƒbƒg‚ðˆê‹C‚É“Ç‚Ýž‚ñ‚ÅVRAM“]‘—‚·‚é
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä¸€æ°—ã«èª­ã¿è¾¼ã‚“ã§VRAMè»¢é€ã™ã‚‹
   ArcUtil_PalSet( ARC_POKEICON, PokeIconPalArcIndexGet(), PALTYPE_MAIN_OBJ, POKEICON_PAL_OFFSET*0x20,
 		  0, HEAPID_AGBCARTRIDGE);
 }
@@ -907,14 +907,14 @@ static void InitCellActor(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_‚Ìì¬
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ã®ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void SetCellActor(AGBCARTRIDGE_WORK *wk)
 {
-  // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
   CLACT_U_MakeHeader(&wk->clActHeaderMain, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 		     0, 0,
 		     wk->resMan[CLACT_U_CHAR_RES],
@@ -922,14 +922,14 @@ static void SetCellActor(AGBCARTRIDGE_WORK *wk)
 		     wk->resMan[CLACT_U_CELL_RES],
 		     wk->resMan[CLACT_U_CELLANM_RES],
 		     NULL,NULL);
-  //‚Ü‚¾‰½‚à“]‘—‚µ‚Ä‚¢‚È‚¢‚©‚ç
-  GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
+  //ã¾ã ä½•ã‚‚è»¢é€ã—ã¦ã„ãªã„ã‹ã‚‰
+  GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	CLACT_ADD‚Ì—Œ`‚ðì¬
+ * @brief	CLACT_ADDã®é››å½¢ã‚’ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -951,66 +951,66 @@ static void AgbPokemon_MakeCLACT(CLACT_ADD *add, AGBCARTRIDGE_WORK *wk, CLACT_HE
 
 //------------------------------------------------------------------
 /**
- * @brief	Žw’è”Ô†‚Ìƒ{ƒbƒNƒX‚©‚çindex”Ô–Ú‚Ìƒ|ƒPƒ‚ƒ“‚ð•Ô‚·
+ * @brief	æŒ‡å®šç•ªå·ã®ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰indexç•ªç›®ã®ãƒã‚±ãƒ¢ãƒ³ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static int GetPokeBoxIndex(AGBCARTRIDGE_WORK *wk, int box, int index)
 {
-  // AGB‚Ì\‘¢‘Ìê—pŠÖ”‚ð—pˆÓ‚µ‚Ä‚¢‚Ü‚·
-  // DP‚Ì\‘¢‘Ì‚Æ¬‚´‚ç‚È‚¢‚æ‚¤A‚©‚È‚è’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢‚Ü‚¹
+  // AGBã®æ§‹é€ ä½“å°‚ç”¨é–¢æ•°ã‚’ç”¨æ„ã—ã¦ã„ã¾ã™
+  // DPã®æ§‹é€ ä½“ã¨æ··ã–ã‚‰ãªã„ã‚ˆã†ã€ã‹ãªã‚Šæ³¨æ„ã—ã¦ãã ã•ã„ã¾ã›
   return AgbPokePasoParaGet(&(wk->boxdata->PPPBox[box][index]), ID_AGB_monsno, NULL);
 }
 
-//Add by soga@‚±‚±‚©‚ç
-//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦‚Å•K—v‚Èƒpƒ‰ƒ[ƒ^‚ð’Ç‰Á‚µ‚Ü‚µ‚½
+//Add by sogaã€€ã“ã“ã‹ã‚‰
+//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã§å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ ã—ã¾ã—ãŸ
 //------------------------------------------------------------------
 /**
- * @brief	Žw’è”Ô†‚Ìƒ{ƒbƒNƒX‚©‚çindex”Ô–Ú‚Ìƒ^ƒ}ƒSƒtƒ‰ƒO‚ð•Ô‚·
+ * @brief	æŒ‡å®šç•ªå·ã®ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰indexç•ªç›®ã®ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static int GetEggFlagBoxIndex(AGBCARTRIDGE_WORK *wk, int box, int index)
 {
-  // AGB‚Ì\‘¢‘Ìê—pŠÖ”‚ð—pˆÓ‚µ‚Ä‚¢‚Ü‚·
-  // DP‚Ì\‘¢‘Ì‚Æ¬‚´‚ç‚È‚¢‚æ‚¤A‚©‚È‚è’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢‚Ü‚¹
+  // AGBã®æ§‹é€ ä½“å°‚ç”¨é–¢æ•°ã‚’ç”¨æ„ã—ã¦ã„ã¾ã™
+  // DPã®æ§‹é€ ä½“ã¨æ··ã–ã‚‰ãªã„ã‚ˆã†ã€ã‹ãªã‚Šæ³¨æ„ã—ã¦ãã ã•ã„ã¾ã›
   return AgbPokePasoParaGet(&(wk->boxdata->PPPBox[box][index]), ID_AGB_tamago_flag, NULL);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	Žw’è”Ô†‚Ìƒ{ƒbƒNƒX‚©‚çindex”Ô–Ú‚ÌŒÂ«—”‚ð•Ô‚·
+ * @brief	æŒ‡å®šç•ªå·ã®ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰indexç•ªç›®ã®å€‹æ€§ä¹±æ•°ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static int GetPersonalRndBoxIndex(AGBCARTRIDGE_WORK *wk, int box, int index)
 {
-  // AGB‚Ì\‘¢‘Ìê—pŠÖ”‚ð—pˆÓ‚µ‚Ä‚¢‚Ü‚·
-  // DP‚Ì\‘¢‘Ì‚Æ¬‚´‚ç‚È‚¢‚æ‚¤A‚©‚È‚è’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢‚Ü‚¹
+  // AGBã®æ§‹é€ ä½“å°‚ç”¨é–¢æ•°ã‚’ç”¨æ„ã—ã¦ã„ã¾ã™
+  // DPã®æ§‹é€ ä½“ã¨æ··ã–ã‚‰ãªã„ã‚ˆã†ã€ã‹ãªã‚Šæ³¨æ„ã—ã¦ãã ã•ã„ã¾ã›
   return AgbPokePasoParaGet(&(wk->boxdata->PPPBox[box][index]), ID_AGB_personal_rnd, NULL);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	Žw’è”Ô†‚Ìƒ{ƒbƒNƒX‚©‚çindex”Ô–Ú‚ÌƒQƒbƒgƒo[ƒWƒ‡ƒ“‚ð•Ô‚·
+ * @brief	æŒ‡å®šç•ªå·ã®ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰indexç•ªç›®ã®ã‚²ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static int GetCassetteVersionBoxIndex(AGBCARTRIDGE_WORK *wk, int box, int index)
 {
-  // AGB‚Ì\‘¢‘Ìê—pŠÖ”‚ð—pˆÓ‚µ‚Ä‚¢‚Ü‚·
-  // DP‚Ì\‘¢‘Ì‚Æ¬‚´‚ç‚È‚¢‚æ‚¤A‚©‚È‚è’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢‚Ü‚¹
+  // AGBã®æ§‹é€ ä½“å°‚ç”¨é–¢æ•°ã‚’ç”¨æ„ã—ã¦ã„ã¾ã™
+  // DPã®æ§‹é€ ä½“ã¨æ··ã–ã‚‰ãªã„ã‚ˆã†ã€ã‹ãªã‚Šæ³¨æ„ã—ã¦ãã ã•ã„ã¾ã›
   return AgbPokePasoParaGet(&(wk->boxdata->PPPBox[box][index]), ID_AGB_get_cassette, NULL);
 }
-//Add by soga@‚±‚±‚Ü‚Å
+//Add by sogaã€€ã“ã“ã¾ã§
 
 //------------------------------------------------------------------
 /**
- * @brief	RECT_HIT_TBL‚ð“o˜^
+ * @brief	RECT_HIT_TBLã‚’ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -1024,17 +1024,17 @@ static void SetRectHitTable(RECT_HIT_TBL *rect, int x, int y, int sizx, int sizy
 }
 
 //------------------------------------------------------------------
-/// @brief	ƒq[ƒvƒTƒCƒY‚ðŒÅ’è‚É‚µ‚½”Å‚ÌArcUtrl_CahrDataGet
+/// @brief	ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚ºã‚’å›ºå®šã«ã—ãŸç‰ˆã®ArcUtrl_CahrDataGet
 //------------------------------------------------------------------
 static void *ArcUtil_CharDataGet2(u32 fileIdx, u32 dataIdx, NNSG2dCharacterData** charData, u32 heapID)
 {
   void* arcData;
 
-  arcData = sys_AllocMemoryLo(heapID, 4096);	/* ƒq[ƒvƒTƒCƒYŒÅ’è */
+  arcData = sys_AllocMemoryLo(heapID, 4096);	/* ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚ºå›ºå®š */
   if(arcData != NULL){
     ArchiveDataLoad(arcData, fileIdx, dataIdx);
     if( NNS_G2dGetUnpackedBGCharacterData( arcData, charData ) == FALSE){
-      // Ž¸”s‚µ‚½‚çNULL
+      // å¤±æ•—ã—ãŸã‚‰NULL
       sys_FreeMemoryEz( arcData );
       return NULL;
     }
@@ -1049,12 +1049,12 @@ static void ArcUtil_CharDataGet3(u32 dataIdx, NNSG2dCharacterData** charData, vo
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ðŽæ“¾
- * @param	pokeno			Žæ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param	personal_rnd	Žæ“¾‚·‚é‚½‚ß‚É•K—v‚ÈŒÂ«—”
- * @param	get_cassette	Žæ“¾‚·‚é‚½‚ß‚É•K—v‚ÈƒQƒbƒgƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
+ * @param	pokeno			å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param	personal_rnd	å–å¾—ã™ã‚‹ãŸã‚ã«å¿…è¦ãªå€‹æ€§ä¹±æ•°
+ * @param	get_cassette	å–å¾—ã™ã‚‹ãŸã‚ã«å¿…è¦ãªã‚²ãƒƒãƒˆã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- * @return	Žæ“¾‚µ‚½ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ * @return	å–å¾—ã—ãŸãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 static	u8	GetPokeFormNo(int pokeno,u32 personal_rnd,int get_cassette)
@@ -1069,7 +1069,7 @@ static	u8	GetPokeFormNo(int pokeno,u32 personal_rnd,int get_cassette)
 #endif
 
 	switch(pokeno){
-	//ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€‚ðŽæ“¾
+	//ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’å–å¾—
 	case MONSNO_ANNOON:
 		form_no=(((personal_rnd&0x03000000)>>18)|
 				 ((personal_rnd&0x00030000)>>12)|
@@ -1081,19 +1081,19 @@ static	u8	GetPokeFormNo(int pokeno,u32 personal_rnd,int get_cassette)
 		default:
 		case VERSION_RUBY:
 		case VERSION_SAPPHIRE:
-			//ƒ‹ƒr[EƒTƒtƒ@ƒCƒAE–¢’m‚Ìƒo[ƒWƒ‡ƒ“‚Íƒm[ƒ}ƒ‹
+			//ãƒ«ãƒ“ãƒ¼ãƒ»ã‚µãƒ•ã‚¡ã‚¤ã‚¢ãƒ»æœªçŸ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¯ãƒŽãƒ¼ãƒžãƒ«
 			form_no=FORMNO_DEOKISISU_NORMAL;
 			break;
 		case VERSION_RED:
-			//ƒtƒ@ƒCƒAƒŒƒbƒh‚ÍƒAƒ^ƒbƒN
+			//ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ã¯ã‚¢ã‚¿ãƒƒã‚¯
 			form_no=FORMNO_DEOKISISU_ATTACK;
 			break;
 		case VERSION_GREEN:
-			//ƒŠ[ƒtƒOƒŠ[ƒ“‚ÍƒfƒBƒtƒFƒ“ƒX
+			//ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ã¯ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ã‚¹
 			form_no=FORMNO_DEOKISISU_DEFENCE;
 			break;
 		case VERSION_EMERALD:
-			//ƒGƒƒ‰ƒ‹ƒh‚ÍƒXƒs[ƒh
+			//ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã¯ã‚¹ãƒ”ãƒ¼ãƒ‰
 			form_no=FORMNO_DEOKISISU_SPEED;
 			break;
 		}
@@ -1105,7 +1105,7 @@ static	u8	GetPokeFormNo(int pokeno,u32 personal_rnd,int get_cassette)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“‚ð‚u‚q‚`‚l‚Ö“o˜^
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -1116,19 +1116,19 @@ static void TransPokeIconCharaPal( int pokeno, int tamago_flag, u32 personal_rnd
   u8 form_no;
   NNSG2dCharacterData *chara;
 
-  // AGBƒ|ƒPƒ‚ƒ“¨DPƒ|ƒPƒ‚ƒ“‚Ö•ÏŠ·
+  // AGBãƒã‚±ãƒ¢ãƒ³â†’DPãƒã‚±ãƒ¢ãƒ³ã¸å¤‰æ›
   pokeno = ChangeAGBPoke2DPPoke(pokeno);
 
-  // ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ðŽæ“¾(‚±‚ê‚ÍDS‚Ìmonsno‚Å”»’è)
+  // ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ã“ã‚Œã¯DSã®monsnoã§åˆ¤å®š)
   form_no = GetPokeFormNo(pokeno,personal_rnd,get_cassette);
 
   buf = ArcUtil_CharDataGet2( ARC_POKEICON, 
 			      PokeIconCgxArcIndexGetByMonsNumber( pokeno, tamago_flag, form_no ), &chara, HEAPID_AGBCARTRIDGE);
   DC_FlushRange(chara->pRawData, POKEICON_TRANS_SIZE);
 
-  // ƒLƒƒƒ‰ƒNƒ^[“]‘—
+  // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
   GX_LoadOBJ(chara->pRawData, (POKEICON_VRAM_OFFSET+no*POKEICON_TRANS_CHARA)*0x20, POKEICON_TRANS_SIZE);
-  // ƒpƒŒƒbƒgÝ’è
+  // ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
   CLACT_PaletteNoChg( icon,  PokeIconPalNumGet( pokeno, form_no, tamago_flag )+POKEICON_PAL_OFFSET );
 
   sys_FreeMemoryEz(buf);
@@ -1143,20 +1143,20 @@ static void TransPokeIconCharaPal2(int pokeno, int tamago_flag, int form_no,
 
   if(icon){
 #if 0
-    // AGBƒ|ƒPƒ‚ƒ“¨DPƒ|ƒPƒ‚ƒ“‚Ö•ÏŠ·
+    // AGBãƒã‚±ãƒ¢ãƒ³â†’DPãƒã‚±ãƒ¢ãƒ³ã¸å¤‰æ›
     pokeno = ChangeAGBPoke2DPPoke(pokeno);
 #else
 
     if(CheckInJusticePokemon(pokeno) == FALSE)
-      // AGBƒ|ƒPƒ‚ƒ“¨DPƒ|ƒPƒ‚ƒ“‚Ö•ÏŠ·
+      // AGBãƒã‚±ãƒ¢ãƒ³â†’DPãƒã‚±ãƒ¢ãƒ³ã¸å¤‰æ›
       pokeno = ChangeAGBPoke2DPPoke(pokeno);
     else
-      // •s³ƒ|ƒPƒ‚ƒ“
+      // ä¸æ­£ãƒã‚±ãƒ¢ãƒ³
       pokeno = 0;
 #endif
-    // ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX”Ô†‚ðŽæ“¾
+    // ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã‚’å–å¾—
     dataidx = PokeIconCgxArcIndexGetByMonsNumber( pokeno, tamago_flag, form_no );
-    // ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒNƒ^‚ðƒoƒbƒtƒ@‚É“]‘—
+    // ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
     ArcUtil_CharDataGet3(dataidx, &chara, buf, handle);
     MI_CpuCopyFast(chara->pRawData, pbuf->chbuf, POKEICON_TRANS_SIZE);
     pbuf->vadrs = (POKEICON_VRAM_OFFSET+no*POKEICON_TRANS_CHARA)*0x20;
@@ -1173,10 +1173,10 @@ static void TransPokeIconFinish(void)
   POKEBUF *pbuf = _PokeBufPtr;
   for(i = 0; i < POKEMON_ICON_MAX; i++, pbuf++){
     if(pbuf->icon){
-      // ƒLƒƒƒ‰ƒNƒ^[“]‘—
+      // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
       DC_FlushRange(pbuf->chbuf, POKEICON_TRANS_SIZE);
       GX_LoadOBJ(pbuf->chbuf, pbuf->vadrs, POKEICON_TRANS_SIZE);
-      // ƒpƒŒƒbƒgÝ’è
+      // ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
       CLACT_PaletteNoChg(pbuf->icon, pbuf->palno);
     }
   }
@@ -1186,7 +1186,7 @@ static void TransPokeIconFinish(void)
      
 //------------------------------------------------------------------
 /**
- * @brief	Žw’èƒ{ƒbƒNƒX‚Ìƒ|ƒPƒ‚ƒ“‚ð‰æ–Ê‚É•\Ž¦
+ * @brief	æŒ‡å®šãƒœãƒƒã‚¯ã‚¹ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ç”»é¢ã«è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1201,11 +1201,11 @@ static void RedrawPokemonBox(AGBCARTRIDGE_WORK *wk)
   handle = ArchiveDataHandleOpen( ARC_POKEICON, HEAPID_AGBCARTRIDGE);
   buf = sys_AllocMemoryLo(HEAPID_AGBCARTRIDGE, 4096);
 
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì•\Ž¦
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤º
   for(i = 0; i < POKEMON_ICON_MAX; i++){
     if(AgbPokePasoParaGet(&(wk->boxdata->PPPBox[wk->CurrentBox][i]), ID_AGB_poke_exist_flag, NULL)){
       monsno = GetPokeBoxIndex(wk, wk->CurrentBox, i);
-      //add by soga@‚±‚±‚©‚ç
+      //add by sogaã€€ã“ã“ã‹ã‚‰
       tamago_flag = GetEggFlagBoxIndex(wk, wk->CurrentBox, i);
       personal_rnd = GetPersonalRndBoxIndex(wk, wk->CurrentBox, i);
 #if 0
@@ -1213,13 +1213,13 @@ static void RedrawPokemonBox(AGBCARTRIDGE_WORK *wk)
 #else
       get_cassette = sys.AgbCasetteVersion;
 #endif
-      //add by soga@‚±‚±‚Ü‚Å
+      //add by sogaã€€ã“ã“ã¾ã§
 
-      // ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ðŽæ“¾(‚±‚ê‚ÍDS‚Ìmonsno‚Å”»’è)
+      // ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ã“ã‚Œã¯DSã®monsnoã§åˆ¤å®š)
       form_no = GetPokeFormNo(ChangeAGBPoke2DPPoke(monsno), personal_rnd, get_cassette);
       TransPokeIconCharaPal2(monsno, tamago_flag, form_no, i, wk->icon[i].clact, buf, handle);
       CLACT_SetDrawFlag( wk->icon[i].clact, 1 );
-      // ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚Ì“o˜^
+      // ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ç™»éŒ²
       if(AgbPokePasoParaGet(&(wk->boxdata->PPPBox[wk->CurrentBox][i]), ID_AGB_item, NULL))
 	CLACT_SetDrawFlag( wk->icon[i].item, 1 );
       else
@@ -1234,19 +1234,19 @@ static void RedrawPokemonBox(AGBCARTRIDGE_WORK *wk)
   ArchiveDataHandleClose( handle );
 
   
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì“]‘—ŠÖ”‚ð’è‹`
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è»¢é€é–¢æ•°ã‚’å®šç¾©
   wk->DrawFunc = TransPokeIconFinish;
   
-  // ƒ{ƒbƒNƒX‚Ìƒ^ƒCƒgƒ‹•\Ž¦
+  // ãƒœãƒƒã‚¯ã‚¹ã®ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
   DrawBoxTitle(wk, wk->CurrentBox);
-  // ‘I‘ðƒAƒCƒRƒ“‚ð”½‰f
+  // é¸æŠžã‚¢ã‚¤ã‚³ãƒ³ã‚’åæ˜ 
   CheckSelectPokemonIcon(wk);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	‰æ–Ê‚Éƒ|ƒPƒ‚ƒ“‚ð‚R‚OŒÂ•À‚×‚é
+ * @brief	ç”»é¢ã«ãƒã‚±ãƒ¢ãƒ³ã‚’ï¼“ï¼å€‹ä¸¦ã¹ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1268,7 +1268,7 @@ static void SetPokemonIcon(AGBCARTRIDGE_WORK *wk)
 		      28, 28);
       add.mat.x = FX32_ONE * (x * POKEMON_WIDTH  + POKEMON_BASEX);
       add.mat.y = FX32_ONE * (y * POKEMON_HEIGHT + POKEMON_BASEY);
-      // ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ““o˜^
+      // ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ç™»éŒ²
       if(wk->icon[index].clact == NULL)
 	wk->icon[index].clact = CLACT_Add(&add);
       CLACT_SetAnmFlag(wk->icon[index].clact, 1);
@@ -1276,7 +1276,7 @@ static void SetPokemonIcon(AGBCARTRIDGE_WORK *wk)
       CLACT_BGPriorityChg( wk->icon[index].clact, 1 );
       CLACT_SetDrawFlag( wk->icon[index].clact, 1 );
       CLACT_DrawPriorityChg( wk->icon[index].clact, 100+index);
-      // ƒAƒCƒeƒ€‚ÌƒAƒCƒRƒ““o˜^
+      // ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¢ã‚¤ã‚³ãƒ³ç™»éŒ²
       add.mat.x += FX32_ONE * 6;
       add.mat.y += FX32_ONE * 12;
       if(wk->icon[index].item == NULL)
@@ -1296,7 +1296,7 @@ static void SetPokemonIcon(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ˆÈŠO‚ÌƒAƒCƒRƒ“‚ð“o˜^
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ä»¥å¤–ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -1322,17 +1322,17 @@ static void SetMiscIcon(AGBCARTRIDGE_WORK *wk)
   int i;
 
   SetRectHitTable(&wk->iconrect[ICON_CANCEL], 228, 176, 50, 32);
-  wk->cancel[0] = SetOamIcon(wk, 228, 176, 6, 1);	// ‚â‚ß‚é
+  wk->cancel[0] = SetOamIcon(wk, 228, 176, 6, 1);	// ã‚„ã‚ã‚‹
 
   SetRectHitTable(&wk->iconrect[ICON_ARROWR], 176, 176, 32, 32);
-  wk->arrowr[0] = SetOamIcon(wk, 176, 176, 3, 1);	// ‰E¨
+  wk->arrowr[0] = SetOamIcon(wk, 176, 176, 3, 1);	// å³â†’
 
   SetRectHitTable(&wk->iconrect[ICON_ARROWL],  24, 176, 32, 32);
-  wk->arrowl[0] = SetOamIcon(wk,  24, 176, 0, 1);	// ¶©
+  wk->arrowl[0] = SetOamIcon(wk,  24, 176, 0, 1);	// å·¦â†
 
   wk->iconrect[ICON_TERMINATE].rect.top = RECT_HIT_END;
 
-  // Œˆ’èƒAƒCƒRƒ“‚Ì“o˜^
+  // æ±ºå®šã‚¢ã‚¤ã‚³ãƒ³ã®ç™»éŒ²
   for(i = 0; i < POKEMON_SELECT_MAX; i++){
     wk->mark[i].icon = SetOamIcon(wk, 36*i, 64, 9, 0);
     wk->mark[i].pokeno = POKEMON_NOSELECT;
@@ -1344,9 +1344,9 @@ static void SetMiscIcon(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒ}ƒSƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯
  * @param	NONE
- * @return	TRUE: ‚½‚Ü‚²‚Å‚µ‚½@FALSE: ‚½‚Ü‚²‚¶‚á‚È‚¢
+ * @return	TRUE: ãŸã¾ã”ã§ã—ãŸã€€FALSE: ãŸã¾ã”ã˜ã‚ƒãªã„
  */
 //------------------------------------------------------------------
 static BOOL CheckPokemonEgg(AGBCARTRIDGE_WORK *wk, int num)
@@ -1361,9 +1361,9 @@ static BOOL CheckPokemonEgg(AGBCARTRIDGE_WORK *wk, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚Ð‚Å‚ñ‚í‚´‚ðŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * @brief	ã²ã§ã‚“ã‚ã–ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	NONE
- * @return	TRUE: Ž‚Á‚Ä‚½@FALSE: Ž‚Á‚Ä‚È‚¢
+ * @return	TRUE: æŒã£ã¦ãŸã€€FALSE: æŒã£ã¦ãªã„
  */
 //------------------------------------------------------------------
 static BOOL CheckPokemonHidenWaza(AGBCARTRIDGE_WORK *wk, int num)
@@ -1385,9 +1385,9 @@ static BOOL CheckPokemonHidenWaza(AGBCARTRIDGE_WORK *wk, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	Ž‚Á‚Ä‚¢‚¯‚È‚¢ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+ * @brief	æŒã£ã¦ã„ã‘ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
  * @param	NONE
- * @return	TRUE: Ž‚Á‚Ä‚½@FALSE: Ž‚Á‚Ä‚È‚¢
+ * @return	TRUE: æŒã£ã¦ãŸã€€FALSE: æŒã£ã¦ãªã„
  */
 //------------------------------------------------------------------
 #include "agbitemexist.h"
@@ -1407,7 +1407,7 @@ static BOOL CheckPokemonExistItem(AGBCARTRIDGE_WORK *wk, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	•s³‚Èƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+ * @brief	ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
  * @param	NONE
  * @return	NONE
  */
@@ -1422,77 +1422,77 @@ static BOOL CheckPokemonFusei(AGBCARTRIDGE_WORK *wk, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	Žw’è‚µ‚½ƒAƒCƒRƒ“‚Ì‰¡‚ÉŒˆ’èƒAƒCƒRƒ“‚ð§Œä
+ * @brief	æŒ‡å®šã—ãŸã‚¢ã‚¤ã‚³ãƒ³ã®æ¨ªã«æ±ºå®šã‚¢ã‚¤ã‚³ãƒ³ã‚’åˆ¶å¾¡
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
-#define SELECT_POKEMON_FULL	0		// ‚·‚Å‚É‚¢‚Á‚Ï‚¢
-#define SELECT_POKEMON_SELECT	1		// ‘I‘ð‚µ‚½
-#define SELECT_POKEMON_CANCEL	2		// ‰ðœ‚µ‚½
-#define SELECT_POKEMON_NOMONS	3		// ‚»‚à‚»‚à‚»‚±‚É‚¢‚È‚¢
-#define SELECT_POKEMON_EGG	4		// ŽÀ‚Í‚½‚Ü‚²‚¾‚Á‚½
-#define SELECT_POKEMON_WAZA	5		// ‚Ð‚Å‚ñ‚í‚´‚ðŽ‚Á‚Ä‚¢‚½
-#define SELECT_POKEMON_ITEM	6		// Ž‚Á‚Ä‚¢‚¯‚È‚¢ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚½
-#define SELECT_POKEMON_FUSEI	7		// •s³‚Èƒ|ƒPƒ‚ƒ“”Ô†‚¾‚Á‚½
+#define SELECT_POKEMON_FULL	0		// ã™ã§ã«ã„ã£ã±ã„
+#define SELECT_POKEMON_SELECT	1		// é¸æŠžã—ãŸ
+#define SELECT_POKEMON_CANCEL	2		// è§£é™¤ã—ãŸ
+#define SELECT_POKEMON_NOMONS	3		// ãã‚‚ãã‚‚ãã“ã«ã„ãªã„
+#define SELECT_POKEMON_EGG	4		// å®Ÿã¯ãŸã¾ã”ã ã£ãŸ
+#define SELECT_POKEMON_WAZA	5		// ã²ã§ã‚“ã‚ã–ã‚’æŒã£ã¦ã„ãŸ
+#define SELECT_POKEMON_ITEM	6		// æŒã£ã¦ã„ã‘ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ãŸ
+#define SELECT_POKEMON_FUSEI	7		// ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ç•ªå·ã ã£ãŸ
 
 static int SelectPokemon(AGBCARTRIDGE_WORK *wk, int num)
 {
   int i, sel;
 
-  // ‹ó”’‚Ìƒ`ƒFƒbƒN
+  // ç©ºç™½ã®ãƒã‚§ãƒƒã‚¯
   if(wk->icon[num].clact && CLACT_GetDrawFlag(wk->icon[num].clact) == FALSE)
     return SELECT_POKEMON_NOMONS;
   
-  // ‚·‚Å‚É‘I‘ðÏ‚Ý‚È‚Ì‚©‚ð’²‚×‚é
+  // ã™ã§ã«é¸æŠžæ¸ˆã¿ãªã®ã‹ã‚’èª¿ã¹ã‚‹
   for(sel = -1, i = 0; sel == -1 && i < POKEMON_SELECT_MAX; i++){
     if(wk->mark[i].boxno == wk->CurrentBox &&
        wk->mark[i].pokeno == num)
       sel = i;
   }
-#if 0	// the ŽÀŒ±ŒN
+#if 0	// the å®Ÿé¨“å›
   return SELECT_POKEMON_ITEM;
 #endif
   
-  // ‚½‚Ü‚²ƒ`ƒFƒbƒN
+  // ãŸã¾ã”ãƒã‚§ãƒƒã‚¯
   if(CheckPokemonEgg(wk, num) == TRUE)
     return SELECT_POKEMON_EGG;
 
-  // ‚Ð‚Å‚ñ‚í‚´‚ðŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+  // ã²ã§ã‚“ã‚ã–ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
   if(CheckPokemonHidenWaza(wk, num) == TRUE)
     return SELECT_POKEMON_WAZA;
 
-  // Ž‚Á‚Ä‚¢‚¯‚È‚¢ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+  // æŒã£ã¦ã„ã‘ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
   if(CheckPokemonExistItem(wk, num) == TRUE)
     return SELECT_POKEMON_ITEM;
 
-  // •s³‚Èƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+  // ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
   if(CheckPokemonFusei(wk, num) == TRUE)
     return SELECT_POKEMON_FUSEI;
   
   if(sel == -1){
-    // ‘I‘ð‚³‚ê‚Ä‚¢‚È‚©‚Á‚½ê‡
+    // é¸æŠžã•ã‚Œã¦ã„ãªã‹ã£ãŸå ´åˆ
     const VecFx32 *vec;
     VecFx32 nvec;
 
-    // ‚·‚Å‚É‚U•C‚ª‘I‘ð‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+    // ã™ã§ã«ï¼–åŒ¹ãŒé¸æŠžã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
     if(wk->selected == POKEMON_SELECT_MAX)
       return SELECT_POKEMON_FULL;
 
     for(i = 0; i < POKEMON_SELECT_MAX; i++)
       if(wk->mark[i].pokeno == POKEMON_NOSELECT){
-	// Œ³‚Ìƒ|ƒPƒ‚ƒ“‚©‚çÀ•Wî•ñ‚ð“¾‚Ä(ƒ|ƒCƒ“ƒ^‚ð“¾‚é‚¾‚¯)
+	// å…ƒã®ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰åº§æ¨™æƒ…å ±ã‚’å¾—ã¦(ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹ã ã‘)
 	vec = CLACT_GetMatrix(wk->icon[num].clact);
-	// ‚»‚Ìî•ñ‚ðƒAƒCƒRƒ“‚ÖƒRƒs[‚·‚é
+	// ãã®æƒ…å ±ã‚’ã‚¢ã‚¤ã‚³ãƒ³ã¸ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	CLACT_SetMatrix(wk->mark[i].icon, vec);
-	// ‚»‚ÌƒRƒs[‚µ‚½î•ñ‚Ìƒ|ƒCƒ“ƒ^‚ð“¾‚Äc
+	// ãã®ã‚³ãƒ”ãƒ¼ã—ãŸæƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã¦â€¦
 	vec = CLACT_GetMatrix(wk->mark[i].icon);
-	// À•W‚ðƒ|ƒPƒ‚ƒ“‚Ì¶ã‚ÉƒIƒtƒZƒbƒgˆÚ“®
+	// åº§æ¨™ã‚’ãƒã‚±ãƒ¢ãƒ³ã®å·¦ä¸Šã«ã‚ªãƒ•ã‚»ãƒƒãƒˆç§»å‹•
 	nvec = *vec;
 	nvec.x -= FX32_ONE * 8;
 	nvec.y -= FX32_ONE * 4;
 	CLACT_SetMatrix(wk->mark[i].icon, &nvec);
-	// ƒAƒCƒRƒ“‚Ì•\Ž¦ƒtƒ‰ƒO‚ðON
+	// ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’ON
   	CLACT_SetDrawFlag(wk->mark[i].icon, 1);
 	wk->mark[i].pokeno = num;
 	wk->mark[i].boxno = wk->CurrentBox;
@@ -1501,7 +1501,7 @@ static int SelectPokemon(AGBCARTRIDGE_WORK *wk, int num)
       }
 
   } else {
-    // ‘I‘ð‚³‚ê‚Ä‚¢‚½ê‡
+    // é¸æŠžã•ã‚Œã¦ã„ãŸå ´åˆ
     CLACT_SetDrawFlag(wk->mark[sel].icon, 0);
     wk->mark[sel].pokeno = POKEMON_NOSELECT;
     wk->selected--;
@@ -1513,7 +1513,7 @@ static int SelectPokemon(AGBCARTRIDGE_WORK *wk, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	“¯‚¶ƒ{ƒbƒNƒX‚È‚ç‚ÎƒAƒCƒRƒ“•\Ž¦
+ * @brief	åŒã˜ãƒœãƒƒã‚¯ã‚¹ãªã‚‰ã°ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1534,7 +1534,7 @@ static void CheckSelectPokemonIcon(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒXƒ^ƒCƒgƒ‹‚Ì•\Ž¦
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1565,7 +1565,7 @@ static void DrawBoxTitle(AGBCARTRIDGE_WORK *wk, int boxnumber)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒ}[ƒNî•ñ‚ð•\Ž¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒžãƒ¼ã‚¯æƒ…å ±ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1590,7 +1590,7 @@ static void DrawStatusPokeMark(AGBCARTRIDGE_WORK *wk, PokemonPasoParam *ppp)
 
 //------------------------------------------------------------------
 /**
- * @brief	î•ñƒEƒBƒ“ƒhƒE‚ð•\Ž¦
+ * @brief	æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1618,32 +1618,32 @@ static void DrawStatusWindow(AGBCARTRIDGE_WORK *wk, PokemonPasoParam *ppp)
   rwin.color = AGBPOKEMON_WHITE;
   rwin.msgp = NULL;
 
-  // u‚à‚¿‚à‚Ìv
+  // ã€Œã‚‚ã¡ã‚‚ã®ã€
   SetRWin(msg_pokepark__status_02, 18*8, 0);
   CreateMsgWindow(wk, &rwin, MSG_FLAG_NOREDRAW);
-  // uLv.v
+  // ã€ŒLv.ã€
   SetRWin(msg_pokepark__status_01, 10*8, 8);
   CreateMsgWindow(wk, &rwin, MSG_FLAG_NOREDRAW|MSG_FLAG_NOCLEAR);
-  // ƒ}[ƒN
+  // ãƒžãƒ¼ã‚¯
   DrawStatusPokeMark(wk, ppp);
 
-  // PPP‚ÌŽw’è‚ª‚È‚¯‚ê‚Î‚±‚êˆÈ~‚Íˆ—‚µ‚È‚¢
+  // PPPã®æŒ‡å®šãŒãªã‘ã‚Œã°ã“ã‚Œä»¥é™ã¯å‡¦ç†ã—ãªã„
   if(ppp == NULL){
     GF_BGL_BmpWinOn(rwin.win);
     return;
   }
 
-  // ƒjƒbƒNƒl[ƒ€(‘¼Œ¾Œê‚Ìƒ|ƒPƒ‚ƒ“‚ª“ü‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é)
+  // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ (ä»–è¨€èªžã®ãƒã‚±ãƒ¢ãƒ³ãŒå…¥ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹)
   AgbPokePasoParaGet(ppp, ID_AGB_nickname, agb_name);
   AGBSTR_to_DSSTR(agb_name, ds_name, MONS_NAME_SIZE+AGB_EOM_SIZE, AgbPokePasoParaGet(ppp, ID_AGB_country_code, NULL));
   rwin.msgp = ds_name;
   SetRWin(-1, 1*8, 0);
   CreateMsgWindow(wk, &rwin, MSG_FLAG_NOREDRAW|MSG_FLAG_NOCLEAR);
 
-  // ƒ|ƒPƒ‚ƒ“–¼
+  // ãƒã‚±ãƒ¢ãƒ³å
   msg = STRBUF_Create(64, HEAPID_AGBCARTRIDGE);
   man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_monsname_dat, HEAPID_AGBCARTRIDGE);
-  // [[[‚±‚±‚Åƒ|ƒPƒ‚ƒ“‚Ì«•Ê“™‚ðƒ`ƒFƒbƒN‚Å‚«‚é]]]
+  // [[[ã“ã“ã§ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ç­‰ã‚’ãƒã‚§ãƒƒã‚¯ã§ãã‚‹]]]
   monsno = ChangeAGBPoke2DPPoke(AgbPokePasoParaGet(ppp, ID_AGB_monsno, NULL));
   MSGMAN_GetString(man, monsno, msg);
   rwin.msg = msg;
@@ -1652,7 +1652,7 @@ static void DrawStatusWindow(AGBCARTRIDGE_WORK *wk, PokemonPasoParam *ppp)
   MSGMAN_Delete(man);
   STRBUF_Delete(msg);
 
-  // Ž‚Á‚Ä‚¢‚éƒAƒCƒeƒ€–¼
+  // æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ å
   agb_item = AgbPokePasoParaGet(ppp, ID_AGB_item, NULL);
   if(agb_item){
     dp_item = ITEM_AgbItemCnv(agb_item);
@@ -1664,7 +1664,7 @@ static void DrawStatusWindow(AGBCARTRIDGE_WORK *wk, PokemonPasoParam *ppp)
     STRBUF_Delete(msg);
   }
   
-  // ƒŒƒxƒ‹
+  // ãƒ¬ãƒ™ãƒ«
   level = AgbPokePasoLevelCalc(ppp);
   msg = STRBUF_Create(10, HEAPID_AGBCARTRIDGE);
   STRBUF_SetNumber(msg, level,  3, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
@@ -1673,13 +1673,13 @@ static void DrawStatusWindow(AGBCARTRIDGE_WORK *wk, PokemonPasoParam *ppp)
   CreateMsgWindow(wk, &rwin, MSG_FLAG_NOCLEAR);
   STRBUF_Delete(msg);
 
-  // ƒ|ƒPƒ‚ƒ“ƒ{ƒCƒX‚ð–Â‚ç‚·
-  Snd_PMVoicePlay(monsno, 0);	//AGB‚ÉƒVƒFƒCƒ~‚Í‚¢‚È‚¢‚Ì‚ÅƒtƒHƒ‹ƒ€”Ô†0ŒÅ’è
+  // ãƒã‚±ãƒ¢ãƒ³ãƒœã‚¤ã‚¹ã‚’é³´ã‚‰ã™
+  Snd_PMVoicePlay(monsno, 0);	//AGBã«ã‚·ã‚§ã‚¤ãƒŸã¯ã„ãªã„ã®ã§ãƒ•ã‚©ãƒ«ãƒ ç•ªå·0å›ºå®š
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒF[ƒhˆ—
+ * @brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
  * @param	none
  * @return	none
@@ -1703,7 +1703,7 @@ static void RequestFadeW(AGBCARTRIDGE_WORK *wk, int type, int next_seq, int *seq
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	BG‰Šú‰»
+ * @brief	BGåˆæœŸåŒ–
  * @param	none
  * @return	none
  */
@@ -1765,7 +1765,7 @@ static void BgInit(GF_BGL_INI * ini)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠ[ƒ“ì¬
+ * @brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -1773,49 +1773,49 @@ static void BgInit(GF_BGL_INI * ini)
 static void CreateAgbCartridgeScreen(AGBCARTRIDGE_WORK *wk)
 {
   GF_BGL_DISPVRAM tbl = {
-    GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+    GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-    GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+    GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-    GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+    GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-    GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+    GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-    GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-    GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+    GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+    GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
   };
   GF_Disp_SetBank( &tbl );
 
   BgInit(wk->bgl);
 
-  // ã‰º‰æ–Ê‚ð‚Ð‚Á‚­‚è•Ô‚·
+  // ä¸Šä¸‹ç”»é¢ã‚’ã²ã£ãã‚Šè¿”ã™
   sys.disp3DSW = DISP_3D_TO_SUB;
   GF_Disp_DispSelect();
   
   MSG_PrintInit();
 
-  /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ðÝ’è */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_NORMAL * 32, HEAPID_AGBCARTRIDGE);
 
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_gba_box_bg_nclr, PALTYPE_MAIN_BG, 0, 32*6, HEAPID_AGBCARTRIDGE);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_gba_box_main_lz_cngr, wk->bgl,
 		    GF_BGL_FRAME2_M, 0, 10*16*0x20, 1, HEAPID_AGBCARTRIDGE);
 
-  // ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚Ì“Ç‚Ýž‚Ý
+  // ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã®èª­ã¿è¾¼ã¿
   FontProc_LoadFont(FONT_BUTTON, HEAPID_AGBCARTRIDGE);
 }
 static void CreateAgbCartridgeScreen2(AGBCARTRIDGE_WORK *wk)
 {
-  // ƒƒCƒ“‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_gba_box_main1_lz_cscr, wk->bgl,
 		  GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_AGBCARTRIDGE);
-  // Žh‚³‚Á‚Ä‚¢‚é‚`‚f‚aƒJƒZƒbƒg‚É‚æ‚Á‚Ä‚a‚f‚ÌƒpƒŒƒbƒg‚ð•Ï‚¦‚é
+  // åˆºã•ã£ã¦ã„ã‚‹ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã«ã‚ˆã£ã¦ï¼¢ï¼§ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰ãˆã‚‹
   GF_BGL_ScrPalChange(wk->bgl, GF_BGL_FRAME2_M, 0, 0, 32, 24, BgPalTable[wk->cartridge_type]);
   GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME2_M);
 }
@@ -1823,14 +1823,14 @@ static void CreateAgbCartridgeScreen2(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ãƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ * @brief	ä¸Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void InitUpMessageWindow(AGBCARTRIDGE_WORK *wk)
 {
-  // ƒEƒBƒ“ƒhƒE˜g‚ÆƒpƒŒƒbƒg‚ð‚u‚q‚`‚l‚Öƒ[ƒh
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ãƒ­ãƒ¼ãƒ‰
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, AGBPOKEMON_FRAMECOL * 32, HEAPID_AGBCARTRIDGE);
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, AGBPOKEMON_FRAMECHR, AGBPOKEMON_FRAMECOL, 0, HEAPID_AGBCARTRIDGE);
   TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, AGBPOKEMON_TFRAMECHR, AGBPOKEMON_TFRAMECOL, wk->win_type, HEAPID_AGBCARTRIDGE);
@@ -1852,7 +1852,7 @@ static void InitUpMessageWindow(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	Šm”F‰æ–Ê‚ÌƒXƒNƒŠ[ƒ“‚ðì¬
+ * @brief	ç¢ºèªç”»é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -1863,7 +1863,7 @@ static void CreateCheckScreen(AGBCARTRIDGE_WORK *wk)
   u32 personal_rnd;
   CLACT_ADD add;
 
-  // ‰æ–Ê’†‚ÌƒIƒuƒWƒFƒNƒg‚Í–•Á(‚½‚¾‚µ“o˜^‚ÍŽc‚µ‚Ä‚¨‚­)
+  // ç”»é¢ä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æŠ¹æ¶ˆ(ãŸã ã—ç™»éŒ²ã¯æ®‹ã—ã¦ãŠã)
   for(i = 0; i < POKEMON_ICON_MAX; i++){
     CLACT_SetDrawFlag( wk->icon[i].clact, 0 );
     CLACT_SetDrawFlag( wk->icon[i].item, 0 );
@@ -1874,7 +1874,7 @@ static void CreateCheckScreen(AGBCARTRIDGE_WORK *wk)
   CLACT_SetDrawFlag(wk->arrowl[0], 0);
   CLACT_SetDrawFlag(wk->arrowr[0], 0);
   
-  // V‚½‚É‚U‘Ì•ª‚ÌƒAƒNƒ^[‚ð“o˜^
+  // æ–°ãŸã«ï¼–ä½“åˆ†ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç™»éŒ²
   AgbPokemon_MakeCLACT(&add, wk, &wk->clActHeaderMain, NNS_G2D_VRAM_TYPE_2DMAIN );
   for(i = 0; i < POKEMON_SELECT_MAX; i++){
     add.mat.x = FX32_ONE * (i * POKEMON_WIDTH  + POKEMON_BASEX);
@@ -1886,7 +1886,7 @@ static void CreateCheckScreen(AGBCARTRIDGE_WORK *wk)
     CLACT_BGPriorityChg( wk->check_poke[i], 1 );
     CLACT_SetDrawFlag( wk->check_poke[i], 1 );
     monsno = GetPokeBoxIndex(wk, wk->mark[i].boxno, wk->mark[i].pokeno);
-	//add by soga@‚±‚±‚©‚ç
+	//add by sogaã€€ã“ã“ã‹ã‚‰
     tamago_flag = GetEggFlagBoxIndex(wk, wk->mark[i].boxno, wk->mark[i].pokeno);
     personal_rnd = GetPersonalRndBoxIndex(wk, wk->mark[i].boxno, wk->mark[i].pokeno);
 #if 0
@@ -1894,34 +1894,34 @@ static void CreateCheckScreen(AGBCARTRIDGE_WORK *wk)
 #else
     get_cassette = sys.AgbCasetteVersion;
 #endif
-	//add by soga@‚±‚±‚Ü‚Å
+	//add by sogaã€€ã“ã“ã¾ã§
     TransPokeIconCharaPal(monsno, tamago_flag, personal_rnd, get_cassette, i, wk->check_poke[i]);
   }
   
-  // ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—(ƒLƒƒƒ‰ƒNƒ^‚Í“¯ˆê‚Ì‚à‚Ì‚ðŽg‚¤)
+  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¯åŒä¸€ã®ã‚‚ã®ã‚’ä½¿ã†)
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_gba_box_main2_lz_cscr, wk->bgl,
 		  GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_AGBCARTRIDGE);
-  // Žh‚³‚Á‚Ä‚¢‚é‚`‚f‚aƒJƒZƒbƒg‚É‚æ‚Á‚Ä‚a‚f‚ÌƒpƒŒƒbƒg‚ð•Ï‚¦‚é
+  // åˆºã•ã£ã¦ã„ã‚‹ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã«ã‚ˆã£ã¦ï¼¢ï¼§ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰ãˆã‚‹
   GF_BGL_ScrPalChange(wk->bgl, GF_BGL_FRAME2_M, 0, 0, 32, 24, BgPalTable[wk->cartridge_type]);
   GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME2_M);
-  // ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•\Ž¦‚a‚f‚ÍÁ‚µ‚Ä‚µ‚Ü‚¤
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºï¼¢ï¼§ã¯æ¶ˆã—ã¦ã—ã¾ã†
   GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 
-  // ƒEƒBƒ“ƒhƒE˜g‚ÆƒpƒŒƒbƒg‚ð‚u‚q‚`‚l‚Öƒ[ƒh
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ãƒ­ãƒ¼ãƒ‰
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, AGBPOKEMON_FRAMECOL * 32, HEAPID_AGBCARTRIDGE);
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, AGBPOKEMON_FRAMECHR, AGBPOKEMON_FRAMECOL, 0, HEAPID_AGBCARTRIDGE);
   TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, AGBPOKEMON_TFRAMECHR, AGBPOKEMON_TFRAMECOL, wk->win_type, HEAPID_AGBCARTRIDGE);
   
-  // ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ðì¬
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆ
   InitUpMessageWindow(wk);
-  wk->cwin.msgid = msg_pokepark_12;	// ‚¦‚ç‚ñ‚¾@‚U‚Ð‚«‚Ì@ƒ|ƒPƒ‚ƒ“‚ð\n‚Â‚ê‚Ä@‚¢‚«‚Ü‚·
+  wk->cwin.msgid = msg_pokepark_12;	// ãˆã‚‰ã‚“ã ã€€ï¼–ã²ãã®ã€€ãƒã‚±ãƒ¢ãƒ³ã‚’\nã¤ã‚Œã¦ã€€ã„ãã¾ã™
   CreateMsgWindow(wk, &wk->cwin, MSG_FLAG_FRAME|MSG_FLAG_TALKWIN);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚ðÁ‚·
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
  * @param	NONE
  * @return	NONE
  */
@@ -1938,7 +1938,7 @@ static void DeleteWindow(GF_BGL_BMPWIN *win)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ð‰æ–Ê‚ð•œŠˆ‚³‚¹‚é
+ * @brief	é¸æŠžç”»é¢ã‚’å¾©æ´»ã•ã›ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1946,19 +1946,19 @@ static void DeleteWindow(GF_BGL_BMPWIN *win)
 static void ReviveSelectScreen(AGBCARTRIDGE_WORK *wk)
 {
   int i;
-  // ‘I‘ð‰æ–Ê‚É–ß‚éˆ—
+  // é¸æŠžç”»é¢ã«æˆ»ã‚‹å‡¦ç†
 
 
-  // •\Ž¦‚µ‚Ä‚¢‚½ƒAƒNƒ^[‚ð–•Á
+  // è¡¨ç¤ºã—ã¦ã„ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã‚’æŠ¹æ¶ˆ
   for(i = 0; i < POKEMON_SELECT_MAX; i++)
     CLACT_Delete(wk->check_poke[i]);
     
-  // ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•\Ž¦‚a‚f‚ð•œŠˆ
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºï¼¢ï¼§ã‚’å¾©æ´»
   GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 
-  /* ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ðÁ‚· */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ */
   DeleteWindow(&wk->CheckWin);
-  // ‚»‚Ì‘¼ƒAƒCƒRƒ“‚ð•œŠˆ‚³‚¹‚é
+  // ãã®ä»–ã‚¢ã‚¤ã‚³ãƒ³ã‚’å¾©æ´»ã•ã›ã‚‹
   CLACT_SetDrawFlag(wk->cancel[0], 1);
   CLACT_SetDrawFlag(wk->arrowl[0], 1);
   CLACT_SetDrawFlag(wk->arrowr[0], 1);
@@ -1972,7 +1972,7 @@ static void ReviveSelectScreen(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚·‚×‚Ä‚ÌƒŠƒ\[ƒX‚ðŠJ•ú‚µ‚Äˆ—‚ðI—¹‚³‚¹‚é
+ * @brief	ã™ã¹ã¦ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’é–‹æ”¾ã—ã¦å‡¦ç†ã‚’çµ‚äº†ã•ã›ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1983,50 +1983,50 @@ static void FinishScreen(AGBCARTRIDGE_WORK *wk)
 
   sys_VBlankFuncChange( NULL, NULL );
 
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
   for(i = 0; i < POKEMON_ICON_MAX; i++){
     if(wk->icon[i].clact)
       CLACT_Delete(wk->icon[i].clact);
     if(wk->icon[i].item)
       CLACT_Delete(wk->icon[i].item);
   }
-  // ‘I‘ðƒ}[ƒN
+  // é¸æŠžãƒžãƒ¼ã‚¯
   for(i = 0; i < POKEMON_SELECT_MAX; i++){
     if(wk->mark[i].icon)
       CLACT_Delete(wk->mark[i].icon);
   }
-  // ‚â‚¶‚é‚µ‚Æ‚©u‚â‚ß‚év‚Æ‚©
+  // ã‚„ã˜ã‚‹ã—ã¨ã‹ã€Œã‚„ã‚ã‚‹ã€ã¨ã‹
   if(wk->cancel[0])	CLACT_Delete(wk->cancel[0]);
   if(wk->arrowl[0])	CLACT_Delete(wk->arrowl[0]);
   if(wk->arrowr[0])	CLACT_Delete(wk->arrowr[0]);
-  // ƒEƒBƒ“ƒhƒE‚ðíœ
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
   DeleteWindow(&wk->TitleWin);
   DeleteWindow(&wk->BoxNameWin);
   DeleteWindow(&wk->CheckWin);
   
-  //ƒtƒHƒ“ƒgíœ
+  //ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
   FontProc_UnloadFont(FONT_BUTTON);
 
-  // ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+  // ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
   CLACT_U_CharManagerDelete(wk->resObjTbl[CLACT_U_CHAR_RES]);
-  // ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+  // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
   CLACT_U_PlttManagerDelete(wk->resObjTbl[CLACT_U_PLTT_RES]);
-  // ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+  // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
   for(i=0;i<CLACT_U_RES_MAX;i++)
     CLACT_U_ResManagerDelete(wk->resMan[i]);
 
-  // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
   CLACT_DestSet(wk->clactSet);
   wk->clactSet = NULL;
-  //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+  //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
   REND_OAM_Delete();
-  // ƒŠƒ\[ƒX‰ð•ú
+  // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
   DeleteCharManager();
   DeletePlttManager();
-  // ƒ^ƒbƒ`ƒVƒXƒeƒ€‚ÌŠJ•ú
+  // ã‚¿ãƒƒãƒã‚·ã‚¹ãƒ†ãƒ ã®é–‹æ”¾
   TOUCH_SW_FreeWork(wk->TouchSubWindowSys);
   
-  // ã‰º‰æ–Ê‚ðŒ³‚É–ß‚µ‚Ä‚¨‚­
+  // ä¸Šä¸‹ç”»é¢ã‚’å…ƒã«æˆ»ã—ã¦ãŠã
   sys.disp3DSW = DISP_3D_TO_MAIN;
   GF_Disp_DispSelect();
 
@@ -2039,14 +2039,14 @@ static void FinishScreen(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚Í‚¢^‚¢‚¢‚¦ƒAƒCƒRƒ“‚ð“o˜^
+ * @brief	ã¯ã„ï¼ã„ã„ãˆã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void AgbCartridge_ReqYesNoIcon(AGBCARTRIDGE_WORK *wk)
 {
-  // ‚Í‚¢^‚¢‚¢‚¦‘I‘ð
+  // ã¯ã„ï¼ã„ã„ãˆé¸æŠž
   TOUCH_SW_PARAM param;
   param.p_bgl		= wk->bgl;
   param.bg_frame	= GF_BGL_FRAME0_M;
@@ -2060,7 +2060,7 @@ static void AgbCartridge_ReqYesNoIcon(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒgƒŠƒbƒW‚Ìƒ†[ƒU[Šm”F
+ * @brief	ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ç¢ºèª
  * @param	NONE
  * @return	NONE
  */
@@ -2078,7 +2078,7 @@ static void AgbCartridge_CreateCheckUser(AGBCARTRIDGE_WORK *wk)
   STRBUF_SetStringCode(strbuf, dsname);
   WORDSET_RegisterWord(word, 1, strbuf, PM_MALE, TRUE, PM_LANG);
 
-  // [ƒgƒŒ[ƒi[–¼]‚Ì@[ƒJƒZƒbƒg–¼] ‚©‚ç\nƒ|ƒPƒ‚ƒ“‚ð@‚Â‚ê‚Ä‚«‚Ü‚·‚©H
+  // [ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å]ã®ã€€[ã‚«ã‚»ãƒƒãƒˆå] ã‹ã‚‰\nãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ã¤ã‚Œã¦ãã¾ã™ã‹ï¼Ÿ
   InitUpMessageWindow(wk);
   wk->cwin.msgid = UsrCheckMsgTable[wk->cartridge_type];
   wk->cwin.word = word;
@@ -2097,9 +2097,9 @@ static void VBlankFunc( void * work )
     wk->DrawFunc = NULL;
   }
   
-  // ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
   DoVramTransferManager();
-  // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+  // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
   REND_OAMTrans();	
   GF_BGL_VBlankFunc(wk->bgl);
   OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -2108,24 +2108,24 @@ static void VBlankFunc( void * work )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[ƒ`ƒFƒbƒN‚ð‚µ‚Ü‚­‚éŠÖ”
+ * @brief	ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¾ãã‚‹é–¢æ•°
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 enum {
-  AGBPOKEMON_ERROR_NONE,		// ƒGƒ‰[‚È‚µ
-  AGBPOKEMON_ERROR_LOAD_FAILD,		// ƒZ[ƒuƒf[ƒ^‚Ìƒ[ƒh‚ÉŽ¸”s‚µ‚½
-  AGBPOKEMON_ERROR_FEW_24HOUR,		// ‚Ü‚¾‚Q‚SŽžŠÔ—§‚Á‚Ä‚¢‚È‚¢
-  AGBPOKEMON_ERROR_MACADDRESS,		// DS–{‘Ì‚ÌMacAddress‚ª•Ï‚í‚Á‚Ä‚é
-  AGBPOKEMON_ERROR_MOVE_TIME,		// DS–{‘Ì‚ÌŽžŒv‚ª“®‚©‚³‚ê‚½
-  AGBPOKEMON_ERROR_PCBOX_NOPOKE,	// ƒ{ƒbƒNƒX‚É‚U•C‘¶Ý‚µ‚È‚¢
-  AGBPOKEMON_ERROR_POKEPARK_FULL,	// ƒ|ƒPƒp[ƒN‚É‘¶Ý‚µ‚Ä‚¢‚é
-  AGBPOKEMON_ERROR_IMAKARA_24HOUR,	// ¡‚©‚ç‚Q‚SŽžŠÔ˜A‚ê‚Ä‚±‚ê‚È‚¢
+  AGBPOKEMON_ERROR_NONE,		// ã‚¨ãƒ©ãƒ¼ãªã—
+  AGBPOKEMON_ERROR_LOAD_FAILD,		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ãŸ
+  AGBPOKEMON_ERROR_FEW_24HOUR,		// ã¾ã ï¼’ï¼”æ™‚é–“ç«‹ã£ã¦ã„ãªã„
+  AGBPOKEMON_ERROR_MACADDRESS,		// DSæœ¬ä½“ã®MacAddressãŒå¤‰ã‚ã£ã¦ã‚‹
+  AGBPOKEMON_ERROR_MOVE_TIME,		// DSæœ¬ä½“ã®æ™‚è¨ˆãŒå‹•ã‹ã•ã‚ŒãŸ
+  AGBPOKEMON_ERROR_PCBOX_NOPOKE,	// ãƒœãƒƒã‚¯ã‚¹ã«ï¼–åŒ¹å­˜åœ¨ã—ãªã„
+  AGBPOKEMON_ERROR_POKEPARK_FULL,	// ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã«å­˜åœ¨ã—ã¦ã„ã‚‹
+  AGBPOKEMON_ERROR_IMAKARA_24HOUR,	// ä»Šã‹ã‚‰ï¼’ï¼”æ™‚é–“é€£ã‚Œã¦ã“ã‚Œãªã„
   AGBPOKEMON_ERROR_MAX
 };
 
-#define AGBPOKEMON_24HOUR		(60*60*24)	// 60•b~60•ª~24ŽžŠÔ
+#define AGBPOKEMON_24HOUR		(60*60*24)	// 60ç§’Ã—60åˆ†Ã—24æ™‚é–“
 
 static int AgbCartridge_CheckAgbError(AGBCARTRIDGE_WORK *wk)
 {
@@ -2134,7 +2134,7 @@ static int AgbCartridge_CheckAgbError(AGBCARTRIDGE_WORK *wk)
   POKEPARK_DATA *ppark;
 
 #if 0
-  return AGBPOKEMON_ERROR_MOVE_TIME;		// DS–{‘Ì‚ÌŽžŒv‚ª“®‚©‚³‚ê‚½
+  return AGBPOKEMON_ERROR_MOVE_TIME;		// DSæœ¬ä½“ã®æ™‚è¨ˆãŒå‹•ã‹ã•ã‚ŒãŸ
 #endif
 
 
@@ -2143,31 +2143,31 @@ static int AgbCartridge_CheckAgbError(AGBCARTRIDGE_WORK *wk)
 #endif
   
   ppark = SaveData_GetPokeParkData(wk->sv);
-  // V‹KƒZ[ƒu‚È‚ç‚Î‚¢‚­‚Â‚©‚ÌƒGƒ‰[ƒ`ƒFƒbƒN‚Í‚·‚Á”ò‚Î‚·
+  // æ–°è¦ã‚»ãƒ¼ãƒ–ãªã‚‰ã°ã„ãã¤ã‹ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã¯ã™ã£é£›ã°ã™
   if(POKEPARKDATA_isNewSave(ppark) == FALSE){
 
-    // MACƒAƒhƒŒƒXƒ`ƒFƒbƒN
+    // MACã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
     if(POKEPARKDATA_CheckMacAddress(ppark) == FALSE)
-      return AGBPOKEMON_ERROR_MACADDRESS;	// MACƒAƒhƒŒƒX•sˆê’v
+      return AGBPOKEMON_ERROR_MACADDRESS;	// MACã‚¢ãƒ‰ãƒ¬ã‚¹ä¸ä¸€è‡´
 
-    // ŽžŒv•s³•ÏXƒ`ƒFƒbƒN
+    // æ™‚è¨ˆä¸æ­£å¤‰æ›´ãƒã‚§ãƒƒã‚¯
     if(POKEPARKDATA_CheckRTCOffset(ppark) == FALSE)
-      return AGBPOKEMON_ERROR_MOVE_TIME;	// ŽžŒv‚¸‚ç‚µ‚½
+      return AGBPOKEMON_ERROR_MOVE_TIME;	// æ™‚è¨ˆãšã‚‰ã—ãŸ
 
-    // AGBƒJƒZƒbƒg‚ÌƒgƒŒ[ƒi[ID‚ð“¾‚é
+    // AGBã‚«ã‚»ãƒƒãƒˆã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¾—ã‚‹
     AgbTrainerID = agbpoke_GetTrainerID();
     time = POKEPARKDATA_CheckHistoryID(ppark, AgbTrainerID);
-    // ‚Ü‚¾‚P“x‚à˜A‚ê‚Ä‚«‚Ä‚¢‚È‚¯‚ê‚Î˜A‚ê‚Ä‚¢‚¯‚é
+    // ã¾ã ï¼‘åº¦ã‚‚é€£ã‚Œã¦ãã¦ã„ãªã‘ã‚Œã°é€£ã‚Œã¦ã„ã‘ã‚‹
     if(time == 0)	time = AGBPOKEMON_24HOUR * 2;
 #ifdef DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("‘O‰ñ˜A‚ê‚Ä‚«‚Ä‚©‚ç‚ÌŒo‰ßŽžŠÔ: %2d•ª %2d•b\n", time / 60, time % 60);
+    OS_TPrintf("å‰å›žé€£ã‚Œã¦ãã¦ã‹ã‚‰ã®çµŒéŽæ™‚é–“: %2dåˆ† %2dç§’\n", time / 60, time % 60);
     //    time = AGBPOKEMON_24HOUR * 2;
 #endif
     if(time < AGBPOKEMON_24HOUR)
-      return AGBPOKEMON_ERROR_FEW_24HOUR;	// ‚Ü‚¾24ŽžŠÔŒo‚Á‚Ä‚È‚¢
+      return AGBPOKEMON_ERROR_FEW_24HOUR;	// ã¾ã 24æ™‚é–“çµŒã£ã¦ãªã„
 
   }
-  // ƒ{ƒbƒNƒX‚Ìƒ|ƒPƒ‚ƒ“”ƒ`ƒFƒbƒN
+  // ãƒœãƒƒã‚¯ã‚¹ã®ãƒã‚±ãƒ¢ãƒ³æ•°ãƒã‚§ãƒƒã‚¯
   {
     PokemonPasoParam *ppp;
     int i, box, max = 0;
@@ -2179,13 +2179,13 @@ static int AgbCartridge_CheckAgbError(AGBCARTRIDGE_WORK *wk)
       }
     }
 #ifdef DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("PCBOX‚É‚¢‚éƒ|ƒPƒ‚ƒ“‚Ì”: %d\n", max);
+    OS_TPrintf("PCBOXã«ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°: %d\n", max);
 #endif    
     if(max < POKEPARK_MONS_MAX)	// include/savedata/pokepark_data.h
-      return AGBPOKEMON_ERROR_PCBOX_NOPOKE; // ƒ{ƒbƒNƒX‚É‚U•C‚¢‚È‚©‚Á‚½
+      return AGBPOKEMON_ERROR_PCBOX_NOPOKE; // ãƒœãƒƒã‚¯ã‚¹ã«ï¼–åŒ¹ã„ãªã‹ã£ãŸ
   }
   
-  // ƒ|ƒPƒp[ƒN—pƒ{ƒbƒNƒX‚ª‹ó‚¢‚Ä‚¢‚é‚©’²‚×‚é
+  // ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ãƒœãƒƒã‚¯ã‚¹ãŒç©ºã„ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
   if(POKEPARKDATA_CountPokemon(ppark))
     return AGBPOKEMON_ERROR_POKEPARK_FULL;
   return AGBPOKEMON_ERROR_NONE;
@@ -2194,7 +2194,7 @@ static int AgbCartridge_CheckAgbError(AGBCARTRIDGE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	•œ‹A•s‰Â”\‚ÈƒGƒ‰[‚ð•\Ž¦‚·‚é
+ * @brief	å¾©å¸°ä¸å¯èƒ½ãªã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -2220,7 +2220,7 @@ static BOOL AgbCartridge_DisplayError(AGBCARTRIDGE_WORK *wk, int errno)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ð‚ª•K—v‚ÈƒGƒ‰[•\Ž¦
+ * @brief	é¸æŠžãŒå¿…è¦ãªã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -2247,7 +2247,7 @@ static BOOL AgbCartridge_DispYesNoError(AGBCARTRIDGE_WORK *wk, int errno)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒ[ƒ‹‚ª•K—v‚ÈƒƒbƒZ[ƒW‚Ì•\Ž¦
+ * @brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒå¿…è¦ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -2282,11 +2282,11 @@ static BOOL AgbCartridge_DisplayMessage(AGBCARTRIDGE_WORK *wk, int frame)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJƒZƒbƒg‚©‚ç‚à‚Á‚Ä‚­‚éF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã‹ã‚‰ã‚‚ã£ã¦ãã‚‹ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT AgbCartridgeProc_Init(PROC * proc, int * seq)
@@ -2296,37 +2296,37 @@ static PROC_RESULT AgbCartridgeProc_Init(PROC * proc, int * seq)
   sys_CreateHeap( HEAPID_BASE_APP, HEAPID_AGBCARTRIDGE, 0x38000);
   sys_PrintHeapFreeSize(HEAPID_AGBCARTRIDGE);
   wk = PROC_AllocWork(proc, sizeof(AGBCARTRIDGE_WORK), HEAPID_AGBCARTRIDGE);
-  /* ‰Šú‰»•s—Ç‚ª•|‚¢‚Ì‚Åƒ[ƒN‚Íƒ[ƒƒNƒŠƒA */
+  /* åˆæœŸåŒ–ä¸è‰¯ãŒæ€–ã„ã®ã§ãƒ¯ãƒ¼ã‚¯ã¯ã‚¼ãƒ­ã‚¯ãƒªã‚¢ */
   memset(wk, 0, sizeof(AGBCARTRIDGE_WORK));
 
-  /* ŠeŽí•Ï”‚Ì‰Šú‰» */
+  /* å„ç¨®å¤‰æ•°ã®åˆæœŸåŒ– */
   wk->bgl = GF_BGL_BglIniAlloc(HEAPID_AGBCARTRIDGE);
 
-  /* ‰º‰æ–ÊƒEƒCƒ“ƒhƒEƒVƒXƒeƒ€‰Šú‰» */
+  /* ä¸‹ç”»é¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ– */
   wk->TouchSubWindowSys = TOUCH_SW_AllocWork(HEAPID_AGBCARTRIDGE);
 
-  /* ‰æ–Ê‚Ì‰ŠúÝ’è */
+  /* ç”»é¢ã®åˆæœŸè¨­å®š */
   WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
   WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-  /* •Ï”‰Šú‰» */
+  /* å¤‰æ•°åˆæœŸåŒ– */
   wk->sv = ((MAINWORK *)PROC_GetParentWork(proc))->savedata;
   wk->mst = SaveData_GetMyStatus(wk->sv);
   wk->cfg = SaveData_GetConfig(wk->sv);
   wk->win_type = CONFIG_GetWindowType(wk->cfg);
 
-  //ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@Šm•Û
+  //ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡ç¢ºä¿
   wk->msgbuf0 = STRBUF_Create(256, HEAPID_AGBCARTRIDGE);
   wk->msgbuf1 = STRBUF_Create(256, HEAPID_AGBCARTRIDGE);
   
-  /* ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh */
+  /* ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ */
   Snd_DataSetByScene( SND_SCENE_AGB, SEQ_PRESENT, 1 );
 
-  /* “¯ŠúƒZ[ƒu—p‚ÌTick‰Šú‰» */
+  /* åŒæœŸã‚»ãƒ¼ãƒ–ç”¨ã®TickåˆæœŸåŒ– */
   if(OS_IsTickAvailable() == FALSE)
     OS_InitTick();
   
-  /* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoON */
+  /* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºON */
   MysteryLib_SetAgbCartridgeIntr2();
 
   _PokeBufPtr = wk->pokebuf;
@@ -2341,11 +2341,11 @@ extern int AGBCartridge_TriggerFlag;
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJƒZƒbƒg‚©‚ç‚à‚Á‚Ä‚­‚éFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã‹ã‚‰ã‚‚ã£ã¦ãã‚‹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
@@ -2353,12 +2353,12 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     int selno, seltype, ret;
     AGBCARTRIDGE_WORK *wk = PROC_GetWork(proc);
 
-  // AGBƒJ[ƒgƒŠƒbƒW‚ª”²‚¯‚½ê‡‚Íˆ—’âŽ~
+  // AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒæŠœã‘ãŸå ´åˆã¯å‡¦ç†åœæ­¢
     CTRDG_IsExisting();
     if(CTRDG_IsPulledOut() == TRUE || AGBCartridge_TriggerFlag){
         SAVEWORK *sw = &wk->save_work;
         if((sw->save_seq==SAVE_SEQ_DSSAVE_INIT) ||  (sw->save_seq==SAVE_SEQ_DSSAVE_MAIN)){
-            SaveData_DivSave_Cancel(wk->sv);  //ƒZ[ƒuƒLƒƒƒ“ƒZƒ‹ˆ— 
+            SaveData_DivSave_Cancel(wk->sv);  //ã‚»ãƒ¼ãƒ–ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† 
         }
 #if !AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
         CTRDG_TerminateForPulledOut();
@@ -2371,9 +2371,9 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
   switch(*seq){
 
   case AGBCARTRIDGE_SEQ_INIT_CARTRIDGE:
-    // ƒJ[ƒgƒŠƒbƒW‚Ì‰Šú‰»
+    // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®åˆæœŸåŒ–
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_Printf("ƒ|ƒPƒ‚ƒ“ƒJƒZƒbƒg‚ÌƒZ[ƒuƒf[ƒ^‚Ì‘å‚«‚³ = %d\n", AGBPOKE_BUFFERSIZE);
+    OS_Printf("ãƒã‚±ãƒ¢ãƒ³ã‚«ã‚»ãƒƒãƒˆã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã• = %d\n", AGBPOKE_BUFFERSIZE);
 #endif
     agbpoke_preinit();
     wk->cartridge_status = agbpoke_init(wk->buffer);
@@ -2383,24 +2383,24 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
 	wk->boxdata = agbpoke_getPCdata();
 	wk->CurrentBox = wk->boxdata->CurrentBoxNo;
       } else {
-	// —á‚¦‚Îƒ{ƒbƒNƒX‚É‚P•C‚à‚¢‚È‚¢‚Æ‚©A
-	// ‚¸‚©‚ñ‚ð‚à‚ç‚Á‚Ä‚¢‚È‚¢‚Æ‚©
+	// ä¾‹ãˆã°ãƒœãƒƒã‚¯ã‚¹ã«ï¼‘åŒ¹ã‚‚ã„ãªã„ã¨ã‹ã€
+	// ãšã‹ã‚“ã‚’ã‚‚ã‚‰ã£ã¦ã„ãªã„ã¨ã‹
 #if 0//def DEBUG_ONLY_FOR_mituhara
-	OS_Printf("AGBƒJƒZƒbƒgƒf[ƒ^‚Ìƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½: %d\n", wk->load_status);
+	OS_Printf("AGBã‚«ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ: %d\n", wk->load_status);
 #endif
 	wk->agberror = AGBPOKEMON_ERROR_LOAD_FAILD;
       }
     } else {
-      // AGBƒJƒZƒbƒg‚ª”²‚©‚ê‚½ê‡‚É‚ÍA‚»‚à‚»‚àˆ—‚ª’âŽ~‚·‚é‚½‚ßA
-      // ‚±‚±‚Ü‚Åˆ—‚ª—ˆ‚È‚¢‚Í‚¸‚Å‚·B
+      // AGBã‚«ã‚»ãƒƒãƒˆãŒæŠœã‹ã‚ŒãŸå ´åˆã«ã¯ã€ãã‚‚ãã‚‚å‡¦ç†ãŒåœæ­¢ã™ã‚‹ãŸã‚ã€
+      // ã“ã“ã¾ã§å‡¦ç†ãŒæ¥ãªã„ã¯ãšã§ã™ã€‚
     }
-    // ƒJƒZƒbƒg‚Ìƒ^ƒCƒv‚ðÝ’è
+    // ã‚«ã‚»ãƒƒãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
     AgbCartridge_SetCartridgeType(wk);
     SetSeq(AGBCARTRIDGE_SEQ_PREINIT_SCREEN);
     break;
 
   case AGBCARTRIDGE_SEQ_PREINIT_SCREEN:
-    // ‰æ–Êì¬
+    // ç”»é¢ä½œæˆ
     CreateAgbCartridgeScreen(wk);
 
     CharPlttManagerInit();
@@ -2408,7 +2408,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     SetCellActor(wk);
     SetMiscIcon(wk);
     sys_VBlankFuncChange( VBlankFunc, wk );
-    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_OFF );	//ƒƒCƒ“‰æ–ÊOBJ–ÊOFF
+    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_OFF );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢OFF
 
     if(wk->agberror == AGBPOKEMON_ERROR_LOAD_FAILD)
       RequestFade(wk, WIPE_TYPE_FADEIN, AGBCARTRIDGE_SEQ_ERROR_SCREEN, seq);
@@ -2417,21 +2417,21 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_CHECK_USER:
-    // ƒJ[ƒgƒŠƒbƒW‚Ìƒ†[ƒU[Šm”F
+    // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ç¢ºèª
     AgbCartridge_CreateCheckUser(wk);
     RequestFade(wk, WIPE_TYPE_FADEIN, AGBCARTRIDGE_SEQ_CHECK_USER_YESNO, seq);
     break;
 
   case AGBCARTRIDGE_SEQ_CHECK_USER_YESNO:
-    // Šm”F‰æ–Êˆ—
+    // ç¢ºèªç”»é¢å‡¦ç†
     selno = TOUCH_SW_Main( wk->TouchSubWindowSys );
     switch(selno){
-    case TOUCH_SW_RET_YES:		// ‚Í‚¢
+    case TOUCH_SW_RET_YES:		// ã¯ã„
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       wk->msg_flag = CHECK_FINAL_MSG;
       SetSeq(AGBCARTRIDGE_SEQ_CHECK_FINAL);
       break;
-    case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+    case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       RequestFadeW(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_FINISH, seq);
       break;
@@ -2439,23 +2439,23 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_CHECK_FINAL:
-    // ÅIŠm”F
-    // "‚Â‚ê‚Ä‚«‚½@ƒ|ƒPƒ‚ƒ“‚Í@‚f‚a‚`‚É‚Í\n‚à‚Ç‚·‚±‚Æ‚ª@‚Å‚«‚Ü‚¹‚ñ¥
-    // ƒ|ƒPƒ‚ƒ“‚ð@ƒ_ƒCƒ„ƒ‚ƒ“ƒh‚É\n‚Â‚ê‚Ä‚«‚Ü‚·‚©H"
+    // æœ€çµ‚ç¢ºèª
+    // "ã¤ã‚Œã¦ããŸã€€ãƒã‚±ãƒ¢ãƒ³ã¯ã€€ï¼§ï¼¢ï¼¡ã«ã¯\nã‚‚ã©ã™ã“ã¨ãŒã€€ã§ãã¾ã›ã‚“â–¼
+    // ãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ã«\nã¤ã‚Œã¦ãã¾ã™ã‹ï¼Ÿ"
     if(AgbCartridge_DisplayMessage(wk, 1)){
-      // ‚Í‚¢^‚¢‚¢‚¦‘I‘ð‚Ì“o˜^
+      // ã¯ã„ï¼ã„ã„ãˆé¸æŠžã®ç™»éŒ²
       AgbCartridge_ReqYesNoIcon(wk);
       SetSeq(AGBCARTRIDGE_SEQ_CHECK_FINAL_YESNO);
     }
     break;
 
   case AGBCARTRIDGE_SEQ_CHECK_FINAL_YESNO:
-    // Šm”F‰æ–Êˆ—
+    // ç¢ºèªç”»é¢å‡¦ç†
     selno = TOUCH_SW_Main( wk->TouchSubWindowSys );
     switch(selno){
-    case TOUCH_SW_RET_YES:		// ‚Í‚¢
+    case TOUCH_SW_RET_YES:		// ã¯ã„
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
-      // ƒGƒ‰[ƒ`ƒFƒbƒN‚µ‚Ü‚­‚è‚Ì‚·‚¯
+      // ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã—ã¾ãã‚Šã®ã™ã‘
       wk->agberror = AgbCartridge_CheckAgbError(wk);
       if(wk->agberror){
 	if(wk->agberror == AGBPOKEMON_ERROR_MACADDRESS || wk->agberror == AGBPOKEMON_ERROR_MOVE_TIME)
@@ -2468,7 +2468,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
       //	RequestFade(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_INIT_SCREEN, seq);
       }
       break;
-    case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+    case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       RequestFadeW(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_FINISH, seq);
       break;
@@ -2476,23 +2476,23 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_DISP_MESSAGE:
-    // "‚Â‚ê‚Ä‚¢‚­@ƒ|ƒPƒ‚ƒ“‚ð\n‚U‚Ð‚«@‚¦‚ç‚ñ‚Å@‚­‚¾‚³‚¢"
+    // "ã¤ã‚Œã¦ã„ãã€€ãƒã‚±ãƒ¢ãƒ³ã‚’\nï¼–ã²ãã€€ãˆã‚‰ã‚“ã§ã€€ãã ã•ã„"
     if(AgbCartridge_DisplayMessage(wk, 1)){
-      // ‚Í‚¢^‚¢‚¢‚¦‘I‘ð‚Ì“o˜^
+      // ã¯ã„ï¼ã„ã„ãˆé¸æŠžã®ç™»éŒ²
       //      AgbCartridge_ReqYesNoIcon(wk);
       SetSeq(AGBCARTRIDGE_SEQ_DISP_MESSAGE_YESNO);
     }
     break;
 
   case AGBCARTRIDGE_SEQ_DISP_MESSAGE_YESNO:
-    // Šm”F‚Ìƒ^ƒbƒv‚Ü‚½‚ÍƒL[“ü—Í‚ð‘Ò‚Â
+    // ç¢ºèªã®ã‚¿ãƒƒãƒ—ã¾ãŸã¯ã‚­ãƒ¼å…¥åŠ›ã‚’å¾…ã¤
     if(sys.tp_trg || sys.trg)
       RequestFade(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_INIT_SCREEN, seq);
     break;
     
   case AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN:
-    // ‘I‘ð‚ª•K—v‚ÈƒGƒ‰[•\Ž¦[‚¢‚¢‚¦] ¨ AGBCARTRIDGE_SEQ_ERROR_SCREEN
-    // MACƒAƒhƒŒƒX‚©ŽžŠÔ‚ð‚¸‚ç‚µ‚½ê‡‚ÌƒZ[ƒuˆ—
+    // é¸æŠžãŒå¿…è¦ãªã‚¨ãƒ©ãƒ¼è¡¨ç¤º[ã„ã„ãˆ] â†’ AGBCARTRIDGE_SEQ_ERROR_SCREEN
+    // MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‹æ™‚é–“ã‚’ãšã‚‰ã—ãŸå ´åˆã®ã‚»ãƒ¼ãƒ–å‡¦ç†
     if(AgbCartridge_DispYesNoError(wk, wk->agberror))
       SetSeq(AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN2);
     break;
@@ -2500,18 +2500,18 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
   case AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN2:
     selno = TOUCH_SW_Main( wk->TouchSubWindowSys );
     switch(selno){
-    case TOUCH_SW_RET_YES:		// ‚Í‚¢
+    case TOUCH_SW_RET_YES:		// ã¯ã„
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
 
       wk->cwin.msgwait = 0;
-      wk->cwin.msgid = msg_pokepark_42;	// ‚Ö‚ñ‚±‚¤‚¿‚ã‚¤@‚Å‚·\n‚Å‚ñ‚°‚ñ‚ð@‚«‚ç‚È‚¢‚Å@‚­‚¾‚³‚¢
+      wk->cwin.msgid = msg_pokepark_42;	// ã¸ã‚“ã“ã†ã¡ã‚…ã†ã€€ã§ã™\nã§ã‚“ã’ã‚“ã‚’ã€€ãã‚‰ãªã„ã§ã€€ãã ã•ã„
       CreateMsgWindow(wk, &wk->cwin, 0);
 
 
       wk->save_work.time_icon = TimeWaitIconAdd(&wk->CheckWin, AGBPOKEMON_TFRAMECHR);
       SetSeq(AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN3);
       break;
-    case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+    case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       RequestFadeW(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_FINISH, seq);
       break;
@@ -2519,7 +2519,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_ERROR_YESNO_SCREEN3:
-    // ‚±‚±‚Å‚ÍƒZ[ƒu‚ªI‚í‚é‚Ü‚Å–ß‚Á‚Ä‚±‚È‚¢
+    // ã“ã“ã§ã¯ã‚»ãƒ¼ãƒ–ãŒçµ‚ã‚ã‚‹ã¾ã§æˆ»ã£ã¦ã“ãªã„
     SaveDsCard(wk);
     TimeWaitIconDel(wk->save_work.time_icon);
     wk->agberror = AGBPOKEMON_ERROR_IMAKARA_24HOUR;
@@ -2527,23 +2527,23 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_ERROR_SCREEN:
-    // ƒGƒ‰[•\Ž¦¨ƒ^ƒCƒgƒ‹‚Ö–ß‚é
+    // ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºâ†’ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
     if(AgbCartridge_DisplayError(wk, wk->agberror))
       SetSeq(AGBCARTRIDGE_SEQ_SAVE_END);
     break;
 
     
   case AGBCARTRIDGE_SEQ_INIT_SCREEN:
-    // ‰æ–Êì¬@‚»‚Ì‚Q
+    // ç”»é¢ä½œæˆã€€ãã®ï¼’
     DeleteWindow(&wk->CheckWin);
     CreateAgbCartridgeScreen2(wk);
     SetPokemonIcon(wk);
     RedrawPokemonBox(wk);
 
-    // VBlankŠÖ”ƒZƒbƒg
+    // VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
     sys_VBlankFuncChange( VBlankFunc, wk );
-    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–ÊON
-    // uLvv‚Æu‚à‚¿‚à‚Ìv‚¾‚¯•\Ž¦‚³‚¹‚é
+    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ON
+    // ã€ŒLvã€ã¨ã€Œã‚‚ã¡ã‚‚ã®ã€ã ã‘è¡¨ç¤ºã•ã›ã‚‹
     DrawStatusWindow(wk, NULL);
     RequestFade(wk, WIPE_TYPE_FADEIN, AGBCARTRIDGE_SEQ_MAIN, seq);
 
@@ -2552,36 +2552,36 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_MAIN:
-    // ‘I‘ðƒƒCƒ“
+    // é¸æŠžãƒ¡ã‚¤ãƒ³
     selno = GF_TP_RectHitTrg((const RECT_HIT_TBL *)wk->iconrect);
     if(selno != RECT_HIT_NONE){
       if(selno < POKEMON_ICON_MAX){
 	seltype = SelectPokemon(wk, selno);
 	if(seltype == SELECT_POKEMON_SELECT){
-	  // ƒ|ƒPƒ‚ƒ“‚ð‘I‘ð‚µ‚Ü‚µ‚½
+	  // ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠžã—ã¾ã—ãŸ
 	  DrawStatusWindow(wk, &(wk->boxdata->PPPBox[wk->CurrentBox][selno]));
-	  // ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ªMAX‚É’B‚µ‚Ä‚¢‚½‚çŠm”F‰æ–Ê‚Ö
+	  // é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒMAXã«é”ã—ã¦ã„ãŸã‚‰ç¢ºèªç”»é¢ã¸
 	  if(wk->selected == POKEMON_SELECT_MAX){
-	    wk->wait_seq = 45;	// 45 * 2‚Å90frame‚Ì‘Ò‚¿ŽžŠÔ
+	    wk->wait_seq = 45;	// 45 * 2ã§90frameã®å¾…ã¡æ™‚é–“
 	    SetSeq(AGBCARTRIDGE_SEQ_WAIT_CHECK_SCREEN);
 	  }
 	} else if(seltype == SELECT_POKEMON_CANCEL){
-	  // ‘I‘ð‚ð‰ðœ‚µ‚Ü‚µ‚½
-	  DrawStatusWindow(wk, NULL);		// î•ñƒEƒBƒ“ƒhƒE‚Ìuî•ñv‚ðÁ‚·
+	  // é¸æŠžã‚’è§£é™¤ã—ã¾ã—ãŸ
+	  DrawStatusWindow(wk, NULL);		// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã€Œæƒ…å ±ã€ã‚’æ¶ˆã™
 	} else if(seltype == SELECT_POKEMON_EGG){
-	  // ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ª‚½‚Ü‚²‚Å‚µ‚½
+	  // é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒãŸã¾ã”ã§ã—ãŸ
 	  wk->msg_flag = msg_pokepark_10;
 	  SetSeq(AGBCARTRIDGE_SEQ_SELECT_WARNING);
 	} else if(seltype == SELECT_POKEMON_WAZA){
-	  // ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ª‚Ð‚Å‚ñ‚í‚´‚ðŽ‚Á‚Ä‚¢‚½
+	  // é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒã²ã§ã‚“ã‚ã–ã‚’æŒã£ã¦ã„ãŸ
 	  wk->msg_flag = msg_pokepark_11;
 	  SetSeq(AGBCARTRIDGE_SEQ_SELECT_WARNING);
 	} else if(seltype == SELECT_POKEMON_ITEM){
-	  // ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ªŽ‚Á‚Ä‚¢‚¯‚È‚¢ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚½
+	  // é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‘ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãŸ
 	  wk->msg_flag = msg_pokepark_40;
 	  SetSeq(AGBCARTRIDGE_SEQ_SELECT_WARNING);
 	} else if(seltype == SELECT_POKEMON_FUSEI){
-	  // •s³‚È”Ô†‚Ìƒ|ƒPƒ‚ƒ“‚¾‚Á‚½
+	  // ä¸æ­£ãªç•ªå·ã®ãƒã‚±ãƒ¢ãƒ³ã ã£ãŸ
 	  wk->msg_flag = msg_pokepark_40;
 	  SetSeq(AGBCARTRIDGE_SEQ_SELECT_WARNING);
 	}
@@ -2611,7 +2611,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_SELECT_WARNING:
-    // Œx•\Ž¦
+    // è­¦å‘Šè¡¨ç¤º
     if(AgbCartridge_DisplayMessage(wk, 0)){
       DeleteWindow(&wk->CheckWin);
       SetSeq(AGBCARTRIDGE_SEQ_MAIN);
@@ -2620,29 +2620,29 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
 
 
   case AGBCARTRIDGE_SEQ_WAIT_CHECK_SCREEN:
-    // Šm”F‰æ–Ê‚Ös‚­‘O‚Ìˆêu‚ÌŠÔ‚ðì‚é
+    // ç¢ºèªç”»é¢ã¸è¡Œãå‰ã®ä¸€çž¬ã®é–“ã‚’ä½œã‚‹
     if(--wk->wait_seq == 0){
       RequestFade(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_CREATE_CHECK_SCREEN, seq);
     }
     break;
     
   case AGBCARTRIDGE_SEQ_CREATE_CHECK_SCREEN:
-    // Šm”F‰æ–Ê‚Ìì¬
+    // ç¢ºèªç”»é¢ã®ä½œæˆ
     CreateCheckScreen(wk);
     RequestFade(wk, WIPE_TYPE_FADEIN, AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH1, seq);
-    // ‚Í‚¢^‚¢‚¢‚¦‘I‘ð
+    // ã¯ã„ï¼ã„ã„ãˆé¸æŠž
     AgbCartridge_ReqYesNoIcon(wk);
     break;
 
   case AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH1:
-    // u‚¦‚ç‚ñ‚¾‚U‚Ð‚«‚Ì@‚Û‚¯‚à‚ñ‚ð@‚Â‚ê‚Ä‚¢‚«‚Ü‚·vŠm”F‰æ–Êˆ—
+    // ã€Œãˆã‚‰ã‚“ã ï¼–ã²ãã®ã€€ã½ã‘ã‚‚ã‚“ã‚’ã€€ã¤ã‚Œã¦ã„ãã¾ã™ã€ç¢ºèªç”»é¢å‡¦ç†
     selno = TOUCH_SW_Main( wk->TouchSubWindowSys );
     switch(selno){
-    case TOUCH_SW_RET_YES:		// ‚Í‚¢
+    case TOUCH_SW_RET_YES:		// ã¯ã„
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       SetSeq(AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH);
       break;
-    case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+    case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       RequestFade(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_RETURN_SELECT, seq);
       break;
@@ -2650,14 +2650,14 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
     
   case AGBCARTRIDGE_SEQ_CREATE_CHECK_TOUCH:
-    // Šm”Fƒ^ƒbƒv‘Ò‚¿
+    // ç¢ºèªã‚¿ãƒƒãƒ—å¾…ã¡
     //    if(sys.tp_trg)
     {
       REGWIN rwin;
-      // ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚Ì“à—e‚ð•ÏX‚·‚é
-      wk->cwin.msgid = msg_pokepark_13;	// ƒ‹ƒr[@‚É@‚à‚Ç‚·‚±‚Æ‚Í\n‚Å‚«‚Ü‚¹‚ñ‚ª@‚æ‚ë‚µ‚¢@‚Å‚·‚©H
+      // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å®¹ã‚’å¤‰æ›´ã™ã‚‹
+      wk->cwin.msgid = msg_pokepark_13;	// ãƒ«ãƒ“ãƒ¼ã€€ã«ã€€ã‚‚ã©ã™ã“ã¨ã¯\nã§ãã¾ã›ã‚“ãŒã€€ã‚ˆã‚ã—ã„ã€€ã§ã™ã‹ï¼Ÿ
       CreateMsgWindow(wk, &wk->cwin, 0);
-      // ‚Í‚¢^‚¢‚¢‚¦‘I‘ð
+      // ã¯ã„ï¼ã„ã„ãˆé¸æŠž
       AgbCartridge_ReqYesNoIcon(wk);
       Snd_SePlay(SEQ_SE_DP_SELECT);
       SetSeq(AGBCARTRIDGE_SEQ_CREATE_CHECK_MAIN);
@@ -2665,11 +2665,11 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_CREATE_CHECK_MAIN:
-    // Šm”F‰æ–Êˆ—
+    // ç¢ºèªç”»é¢å‡¦ç†
     selno = TOUCH_SW_Main( wk->TouchSubWindowSys );
     switch(selno){
-    case TOUCH_SW_RET_YES:		// ‚Í‚¢
-      // ~~@‚Æ@››‚Ì\nƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚¢‚Ä‚¢‚Ü‚·
+    case TOUCH_SW_RET_YES:		// ã¯ã„
+      // Ã—Ã—ã€€ã¨ã€€â—‹â—‹ã®\nãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™
       wk->cwin.msgid = SaveMsgTable[wk->cartridge_type];
       CreateMsgWindow(wk, &wk->cwin, 0);
       //      wk->wait_seq = 60;
@@ -2680,7 +2680,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
       SetSeq(AGBCARTRIDGE_SEQ_SAVE);
       sys_SoftResetNG(SOFTRESET_TYPE_SAVELOAD);
       break;
-    case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+    case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
       TOUCH_SW_Reset( wk->TouchSubWindowSys );
       RequestFade(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_RETURN_SELECT, seq);
       break;
@@ -2688,13 +2688,13 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
     
   case AGBCARTRIDGE_SEQ_RETURN_SELECT:
-    // ‘I‘ð‰æ–Ê‚ð•œŠˆ‚³‚¹‚é
+    // é¸æŠžç”»é¢ã‚’å¾©æ´»ã•ã›ã‚‹
     ReviveSelectScreen(wk);
     SetSeq(AGBCARTRIDGE_SEQ_INIT_SCREEN);
     break;
 
   case AGBCARTRIDGE_SEQ_SAVE:
-    // ”ñ“¯ŠúƒZ[ƒuˆ—
+    // éžåŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†
     ret = SaveSequence(wk);
 
     if(ret != SAVE_STATUS_WRITING){
@@ -2704,12 +2704,12 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
       Snd_SePlay(SEQ_SE_DP_SAVE);
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_TPrintf("ƒZ[ƒuŒ‹‰Ê: %d\n", ret);
+      OS_TPrintf("ã‚»ãƒ¼ãƒ–çµæžœ: %d\n", ret);
 #endif
       if(ret == SAVE_STATUS_WRITE_SUCCESS)
-	wk->cwin.msgid = SAVE_SUCCESS_MSG;	// ‚U‚Ð‚«‚ð@‚Ô‚¶@[››]@‚É\n‚Â‚ê‚Ä‚¢‚­@‚±‚Æ‚ª@‚Å‚«‚Ü‚µ‚½
+	wk->cwin.msgid = SAVE_SUCCESS_MSG;	// ï¼–ã²ãã‚’ã€€ã¶ã˜ã€€[â—‹â—‹]ã€€ã«\nã¤ã‚Œã¦ã„ãã€€ã“ã¨ãŒã€€ã§ãã¾ã—ãŸ
       else
-	wk->cwin.msgid = msg_pokepark_38;	// ƒ|ƒPƒ‚ƒ“ƒŒƒ|[ƒg‚ð@‚©‚­‚Ì‚É@‚µ‚Á‚Ï‚¢@‚µ‚Ü‚µ‚½
+	wk->cwin.msgid = msg_pokepark_38;	// ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ãã®ã«ã€€ã—ã£ã±ã„ã€€ã—ã¾ã—ãŸ
 
       CreateMsgWindow(wk, &wk->cwin, 0);
       SetSeq(AGBCARTRIDGE_SEQ_SAVE_END);
@@ -2718,7 +2718,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
 
   case AGBCARTRIDGE_SEQ_SAVE_END:
-    // Šm”Fƒ^ƒbƒv‘Ò‚¿
+    // ç¢ºèªã‚¿ãƒƒãƒ—å¾…ã¡
     if(sys.tp_trg || sys.trg){
       RequestFadeW(wk, WIPE_TYPE_FADEOUT, AGBCARTRIDGE_SEQ_FINISH, seq);
       Snd_SePlay(SEQ_SE_DP_SELECT);
@@ -2727,7 +2727,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     
     
   case AGBCARTRIDGE_SEQ_WAIT_FADE:
-    // ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     if(WIPE_SYS_EndCheck()){
       *seq = wk->next_seq;
     }
@@ -2739,7 +2739,7 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
     break;
   }
 
-  // ƒAƒCƒRƒ“‚ð•\Ž¦‚·‚é‚½‚ß‚É•K—v‚È‹ì“®ˆ—
+  // ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦ãªé§†å‹•å‡¦ç†
   if(wk->clactSet!=NULL)
     CLACT_Draw( wk->clactSet );
 
@@ -2749,11 +2749,11 @@ static PROC_RESULT AgbCartridgeProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJƒZƒbƒg‚©‚ç‚à‚Á‚Ä‚­‚éFI—¹
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã‹ã‚‰ã‚‚ã£ã¦ãã‚‹ï¼šçµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT AgbCartridgeProc_End(PROC * proc, int * seq)
@@ -2770,7 +2770,7 @@ static PROC_RESULT AgbCartridgeProc_End(PROC * proc, int * seq)
   Main_SetNextProc( FS_OVERLAY_ID(title), &TitleProcData);
   PROC_FreeWork(proc);
   sys_DeleteHeap(HEAPID_AGBCARTRIDGE);
-  /* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoOFF */
+  /* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºOFF */
   MysteryLib_SetAgbCartridgeIntr(FALSE);
 
   return PROC_RES_FINISH;

@@ -11,10 +11,10 @@
 #define TRC_SCREEN_WIDTH	(32)
 #define TR_CARD_WIN_MAX	(11)
 
-#define TR_CARD_BADGE_LV_MAX	(4)		//ƒoƒbƒW‚ÌÅ‘åƒŒƒxƒ‹
+#define TR_CARD_BADGE_LV_MAX	(4)		//ãƒãƒƒã‚¸ã®æœ€å¤§ãƒ¬ãƒ™ãƒ«
 #define TR_BADGE_NUM_MAX	(8)
 
-//ƒpƒŒƒbƒgg—pƒŠƒXƒg
+//ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨ãƒªã‚¹ãƒˆ
 enum{
 	TR_FONT_PAL = 15,
 };
@@ -30,13 +30,13 @@ typedef struct TR_SCRUCH_SND_tag
 
 typedef struct TR_CARD_WORK_tag
 {
-	GF_BGL_INI * bgl;						// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;						// BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN	win[TR_CARD_WIN_MAX];			// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Êíj
+	GF_BGL_BMPWIN	win[TR_CARD_WIN_MAX];			// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆé€šå¸¸ï¼‰
 	TR_CARD_DATA *TrCardData;
-	u8 TrSignData[SIGN_SIZE_X*SIGN_SIZE_Y*64];	//“]‘—‚·‚é‚Ì‚Å‚SƒoƒCƒg‹«ŠE‚ÌˆÊ’u‚É’u‚­‚±‚Æ
-	void *TrArcData;							//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒuƒf[ƒ^
-	NNSG2dCharacterData* TrCharData;			//ƒgƒŒ[ƒi[ƒLƒƒƒ‰ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	u8 TrSignData[SIGN_SIZE_X*SIGN_SIZE_Y*64];	//è»¢é€ã™ã‚‹ã®ã§ï¼”ãƒã‚¤ãƒˆå¢ƒç•Œã®ä½ç½®ã«ç½®ãã“ã¨
+	void *TrArcData;							//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+	NNSG2dCharacterData* TrCharData;			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 	BOOL is_back;
 	BOOL brushOK;
 	
@@ -57,8 +57,8 @@ typedef struct TR_CARD_WORK_tag
 	NNSG2dScreenData* ScrnData;
 	TR_SCRUCH_SND ScruchSnd;
 	
-	STRBUF	*PlayTimeBuf;		//ƒvƒŒƒCŠÔ—p•¶š—ñƒoƒbƒtƒ@
-	STRBUF	*SecBuf;			//ƒvƒŒƒCŠÔƒRƒƒ“—p•¶š—ñƒoƒbƒtƒ@
+	STRBUF	*PlayTimeBuf;		//ãƒ—ãƒ¬ã‚¤æ™‚é–“ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	STRBUF	*SecBuf;			//ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚³ãƒ­ãƒ³ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
 
 	u8 ScruchCounter[TR_BADGE_NUM_MAX];
 	
@@ -68,7 +68,7 @@ typedef struct TR_CARD_WORK_tag
 	u8 ButtonAnmCount;
 	u8 AnmNum;
 	u8 AnimeType;
-	u8 SecCount;				//•b•\¦‚Ì‚½‚ß‚ÌƒJƒEƒ“ƒ^
+	u8 SecCount;				//ç§’è¡¨ç¤ºã®ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿
 	u8 Dummy;
 	
 }TR_CARD_WORK;

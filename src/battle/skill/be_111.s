@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_111.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			111�@���̃^�[���̓G�̍U����h�䂷��B�A���ŏo���Ɛ��������������Ă���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			111　そのターンの敵の攻撃を防御する。連続で出すと成功率が下がっていく
  *
  *@author	HisashiSogabe
  *@data		2006.01.25

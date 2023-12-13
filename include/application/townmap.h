@@ -1,6 +1,6 @@
 /**
  *	@file	worldmap.h
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹@ƒƒCƒ“ƒwƒbƒ_
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã€€ãƒ¡ã‚¤ãƒ³ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	05.09.07
  */
@@ -12,24 +12,24 @@
 #include "field/field_common.h"
 #include "field/sysflag.h"
 
-//ãˆÊƒ‚ƒWƒ…[ƒ‹ƒf[ƒ^IO
+//ä¸Šä½ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿IO
 typedef struct _TMAP_IO_DAT{
-	u8	mode;	///<“®ìƒ‚[ƒh•Û‘¶	
+	u8	mode;	///<å‹•ä½œãƒ¢ãƒ¼ãƒ‰ä¿å­˜	
 	int	retval;	///<Return value
 }TMAP_IO_DAT;
 
-///ŠO•”ŒöŠJ\‘¢‘ÌŒ^
-///ƒ^ƒEƒ“ƒ}ƒbƒvŒÄ‚Ño‚µƒ‚[ƒhID
+///å¤–éƒ¨å…¬é–‹æ§‹é€ ä½“å‹
+///ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰ID
 typedef enum{
-	TMAP_MNORMAL = 0,	///<ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚[ƒh
-	TMAP_MJUMP,			///<‹ó‚ğ”ò‚Ô
-	TMAP_MBG,			///<BG˜b‚µ‚©‚¯ƒ‚[ƒh
-	TMAP_NTENKI,		///<‚¨“V‹Cƒjƒ…[ƒX
-	TMAP_MNEWS,			///<‘å—Ê”­¶
-	TMAP_MODE_MAX = 3,		///<ƒ‚[ƒh”
+	TMAP_MNORMAL = 0,	///<ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰
+	TMAP_MJUMP,			///<ç©ºã‚’é£›ã¶
+	TMAP_MBG,			///<BGè©±ã—ã‹ã‘ãƒ¢ãƒ¼ãƒ‰
+	TMAP_NTENKI,		///<ãŠå¤©æ°—ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	TMAP_MNEWS,			///<å¤§é‡ç™ºç”Ÿ
+	TMAP_MODE_MAX = 3,		///<ãƒ¢ãƒ¼ãƒ‰æ•°
 }TMAP_MODE;
 
-///‘«Õƒf[ƒ^\‘¢‘Ì
+///è¶³è·¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct _TMAP_FOOT{
 	int	x;
 	int	z;
@@ -38,7 +38,7 @@ typedef struct _TMAP_FOOT{
 }TMAP_FOOT;
 #define TMAP_FVIEW_MAX	(5)
 
-///ƒZ[ƒuƒtƒ‰ƒOˆøŒp‚¬ƒf[ƒ^\‘¢‘Ì
+///ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°å¼•ç¶™ããƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef union{
 	struct{
 		u8	ex01_f:2;
@@ -50,85 +50,85 @@ typedef union{
 }TMAP_FLAGS;
 #define TMAP_BLOCK_MAX	(200)
 /**
- *	@brief	“’…ƒtƒ‰ƒOindexæ“¾
+ *	@brief	åˆ°ç€ãƒ•ãƒ©ã‚°indexå–å¾—
  */
 #define TMAP_ARRIVEDATA_MAX	(20)
 
-///ƒ^ƒEƒ“ƒ}ƒbƒvƒpƒ‰ƒ[ƒ^ˆøŒp‚¬\‘¢‘Ì
+///ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ãæ§‹é€ ä½“
 typedef struct {
-	int player_x;	///<ƒvƒŒƒCƒ„[ƒ[ƒ‹ƒhƒOƒŠƒbƒhÀ•W
-	int player_z;	///<ƒvƒŒƒCƒ„[ƒ[ƒ‹ƒhƒOƒŠƒbƒhÀ•W
-	int zone_id;	///<Œ»İ‚Ìƒ][ƒ“ID
-	int	player_sex;	///<ƒvƒŒƒCƒ„[‚Ì«•Ê
-	int	retval;	///<–ß‚è’l
+	int player_x;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+	int player_z;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+	int zone_id;	///<ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³ID
+	int	player_sex;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥
+	int	retval;	///<æˆ»ã‚Šå€¤
 	int	ret_x;
 	int ret_z;
 	int ret_zone;
 	
 	TMAP_FOOT	foot[TMAP_FVIEW_MAX];
 	TMAP_FLAGS	flags[TMAP_BLOCK_MAX];
-	u8			arrive[TMAP_ARRIVEDATA_MAX+1];	///<“’…ƒtƒ‰ƒO
+	u8			arrive[TMAP_ARRIVEDATA_MAX+1];	///<åˆ°ç€ãƒ•ãƒ©ã‚°
 	
-	u8	mode;		///<“®ìƒ‚[ƒh•Û‘¶	
-	u8	flag_num;	///<ƒtƒ‰ƒO”
-	u16	view_f;	///<Viewƒtƒ‰ƒO
+	u8	mode;		///<å‹•ä½œãƒ¢ãƒ¼ãƒ‰ä¿å­˜	
+	u8	flag_num;	///<ãƒ•ãƒ©ã‚°æ•°
+	u16	view_f;	///<Viewãƒ•ãƒ©ã‚°
 
 #ifdef PM_DEBUG
-	int	debug_f;	///<ƒfƒoƒbƒOmake‚Ì‚İ—LŒø‚Èƒtƒ‰ƒO
+	int	debug_f;	///<ãƒ‡ãƒãƒƒã‚°makeæ™‚ã®ã¿æœ‰åŠ¹ãªãƒ•ãƒ©ã‚°
 #endif	//PM_DEBUG
 }TOWNMAP_PARAM;
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ[ƒ‹ƒhƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	mode	u8:ŒÄ‚Ño‚µƒ‚[ƒh(enum WMAP_MODE)
- *	@param	work	void*:ƒ[ƒN‚ÌˆøŒp‚¬
+ *	@param	mode	u8:å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰(enum WMAP_MODE)
+ *	@param	work	void*:ãƒ¯ãƒ¼ã‚¯ã®å¼•ç¶™ã
  *
- *	@retval	0:¬Œ÷
- *	@retval else	¸”s
+ *	@retval	0:æˆåŠŸ
+ *	@retval else	å¤±æ•—
  */
 extern void FieldTMap_SetProc(FIELDSYS_WORK *fsys, TOWNMAP_PARAM * tp);
 
 /**
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹‚Öˆø‚«Œp‚®ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸å¼•ãç¶™ããƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys	FIELDSYS_WORKŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	mode	u8:ƒ‚ƒWƒ…[ƒ‹‚Ì“®ìƒ‚[ƒh(townmap.h‚Å’è‹`)
+ *	@param	fsys	FIELDSYS_WORKå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	mode	u8:ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰(townmap.hã§å®šç¾©)
  *
- *	@return	Šm•Û‚µ‚½TOWNMAP_PARAMŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@return	ç¢ºä¿ã—ãŸTOWNMAP_PARAMå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@li	‚±‚ÌŠÖ”“à‚ÅŠm•Û‚³‚ê‚½ƒƒ‚ƒŠ—Ìˆæ‚ÍAŒÄ‚Ño‚µ‘¤ƒ‚ƒWƒ…[ƒ‹‚Å
- *		‰ğ•ú‚·‚é‚±‚ÆI
+ *	@li	ã“ã®é–¢æ•°å†…ã§ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã¯ã€å‘¼ã³å‡ºã—å´ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§
+ *		è§£æ”¾ã™ã‚‹ã“ã¨ï¼
  */
 extern TOWNMAP_PARAM* FieldTMap_SetParam(FIELDSYS_WORK *fsys,u8 mode);
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹ƒf[ƒ^ƒZƒbƒg
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	tp	TOWNMAP_PARAM*:ƒf[ƒ^‚ğŠi”[‚·‚é\‘¢‘ÌŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	mode	u8:ŒÄ‚Ño‚µƒ‚[ƒh(enum TMAP_MODE)
+ *	@param	tp	TOWNMAP_PARAM*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“å‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	mode	u8:å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰(enum TMAP_MODE)
  */
 extern void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode);
 
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹
 extern PROC_RESULT TMapProc_Init( PROC *proc,int *seq);
 extern PROC_RESULT TMapProc_Main( PROC *proc,int *seq);
 extern PROC_RESULT TMapProc_End( PROC *proc,int *seq);
 
 
 /**
-	1,ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹‚Ì‰Šú‰»
-	2,ƒTƒuƒ‚ƒWƒ…[ƒ‹‚Ì‰Šú‰»
+	1,ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆæœŸåŒ–
+	2,ã‚µãƒ–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆæœŸåŒ–
 
-	,ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹§Œä
-	,ƒTƒuƒ‚ƒWƒ…[ƒ‹§Œä
-	,ƒƒCƒ“‰æ‘œ•`‰æ
-	,ƒTƒu‰æ‘œ•`‰æ
+	,ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¶å¾¡
+	,ã‚µãƒ–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¶å¾¡
+	,ãƒ¡ã‚¤ãƒ³ç”»åƒæç”»
+	,ã‚µãƒ–ç”»åƒæç”»
 	
-	2,ƒTƒuƒ‚ƒWƒ…[ƒ‹I—¹
-	,ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹I—¹
+	2,ã‚µãƒ–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«çµ‚äº†
+	,ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«çµ‚äº†
 	
 */
 #endif	//_TOWN_MAP_H_

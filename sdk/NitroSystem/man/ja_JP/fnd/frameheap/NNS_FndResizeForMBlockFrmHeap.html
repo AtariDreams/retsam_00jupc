@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_FndResizeForMBlockFrmHeap</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_FndResizeForMBlockFrmHeap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,41 +21,41 @@
         void*               memBlock,
         u32                 size);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
-    <td width="87%">�t���[���q�[�v�̃n���h��</td>
+    <td width="87%">フレームヒープのハンドル</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">memBlock</font></strong></em></td>
-    <td width="87%">�T�C�Y��ύX���郁�����u���b�N�ւ̃|�C���^</td>
+    <td width="87%">サイズを変更するメモリブロックへのポインタ</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
     
-  <td width="87%">�ύX���郁�����u���b�N�̃T�C�Y(�o�C�g)�B4�����̒l���w�肳�ꂽ�ꍇ�́A4���w�肳�ꂽ���̂Ƃ��ď������܂��B</td>
+  <td width="87%">変更するメモリブロックのサイズ(バイト)。4未満の値を指定された場合は、4が指定されたものとして処理します。</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p> �֐������������ꍇ�A�ύX���ꂽ�������u���b�N�̃T�C�Y(�o�C�g)��Ԃ��܂��B �֐������s�����ꍇ�A0 ��Ԃ��܂��B</p>
-<H2>����</H2>
-<p>�t���[���q�[�v����m�ۂ��ꂽ�������u���b�N�̃T�C�Y��ύX���܂��B�������A�T�C�Y��ύX�ł��郁�����u���b�N�ɂ͏���������A���Ɏ��������𖞂����K�v������܂��B</p>
+<h2>返り値</h2>
+<p> 関数が成功した場合、変更されたメモリブロックのサイズ(バイト)を返します。 関数が失敗した場合、0 を返します。</p>
+<H2>説明</H2>
+<p>フレームヒープから確保されたメモリブロックのサイズを変更します。ただし、サイズを変更できるメモリブロックには条件があり、次に示す条件を満たす必要があります。</p>
 <ul>
- <li>�q�[�v�̋󂫗̈�̑O������m�ۂ��ꂽ�������u���b�N�̒��ŁA�Ō�Ɋm�ۂ��ꂽ�������u���b�N</li>
+ <li>ヒープの空き領域の前方から確保されたメモリブロックの中で、最後に確保されたメモリブロック</li>
 </ul>
-<p>�q�[�v�̋󂫗̈�̑O�����烁�����u���b�N���m�ۂ���ɂ́A�֐�NNS_FndAllocFromFrmHeap()���g�p���邩�A�֐�NNS_FndAllocFromFrmHeapEx()���g�p����Ƃ��ɃA���C�����g�l�ɐ��̒l���w�肵�܂��B</p>
-<p>�������u���b�N�����̑傫�������傫������Ƃ��A�������u���b�N�̌���ɃT�C�Y���g������̂ɏ\���ȋ󂫗̈悪���݂���K�v������܂��B �\���ȋ󂫗̈悪���݂��Ȃ��ꍇ�́A�֐��͎��s�� 
- 0��Ԃ��܂��B�������u���b�N�̃T�C�Y��傫���ł����ꍇ�A�������u���b�N�̑傫�����v�������T�C�Y�����傫���ꍇ������܂��B</p>
-<p>�������u���b�N�����̑傫����菬��������Ƃ��A����������T�C�Y�����o�C�g���x�Ə��Ȃ��ꍇ�͏k���ł��Ȃ��ꍇ������܂��B ���̂Ƃ��́A���݂̃������u���b�N�̃T�C�Y��Ԃ��܂��B</p>
-<P>���̊֐��ł́AmemBlock�Ŏw�肳�ꂽ�l���A���̊֐��̏����𖞂����������u���b�N�ւ̃|�C���^���w���Ă���̂��ǂ����̃`�F�b�N�͍s���Ă��܂���B�����𖞂����Ȃ��l���w�肵���ꍇ�̋����͕s��ł��B</p>
+<p>ヒープの空き領域の前方からメモリブロックを確保するには、関数NNS_FndAllocFromFrmHeap()を使用するか、関数NNS_FndAllocFromFrmHeapEx()を使用するときにアライメント値に正の値を指定します。</p>
+<p>メモリブロックを今の大きさよりも大きくするとき、メモリブロックの後方にサイズを拡張するのに十分な空き領域が存在する必要があります。 十分な空き領域が存在しない場合は、関数は失敗し 
+ 0を返します。メモリブロックのサイズを大きくできた場合、メモリブロックの大きさが要求したサイズよりも大きい場合があります。</p>
+<p>メモリブロックを今の大きさより小さくするとき、小さくするサイズが数バイト程度と少ない場合は縮小できない場合があります。 そのときは、現在のメモリブロックのサイズを返します。</p>
+<P>この関数では、memBlockで指定された値が、この関数の条件を満たすメモリブロックへのポインタを指しているのかどうかのチェックは行っていません。条件を満たさない値を指定した場合の挙動は不定です。</p>
 <p></p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="NNS_FndAllocFromFrmHeap.html">NNS_FndAllocFromFrmHeap</A>, 
 <A href="NNS_FndAllocFromFrmHeapEx.html">NNS_FndAllocFromFrmHeapEx</A>, 
 <A href="NNS_FndCreateFrmHeap.html">NNS_FndCreateFrmHeap</A>, 
-<A href="NNS_FndCreateFrmHeapEx.html">NNS_FndCreateFrmHeapEx</A></CODE></p><H2>����</H2>
-<P>2004/08/02 ����</P>
+<A href="NNS_FndCreateFrmHeapEx.html">NNS_FndCreateFrmHeapEx</A></CODE></p><H2>履歴</H2>
+<P>2004/08/02 初版</P>
 </body>
 </html>

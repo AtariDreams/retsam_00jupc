@@ -1,42 +1,42 @@
 /**
  *	@file	comm_command_nutmixer.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@’ÊMƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
- *	@data	06.05.23	tomoya •ÏX
+ *	@data	06.05.23	tomoya å¤‰æ›´
  */
 
 #ifndef __H_COMM_COMMAND_NUTMIXER_H__
 #define __H_COMM_COMMAND_NUTMIXER_H__
 
-/// ƒiƒbƒcƒ~ƒLƒT[ê—p’ÊMƒRƒ}ƒ“ƒh‚Ì’è‹`B
+/// ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼å°‚ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®å®šç¾©ã€‚
 enum CommCommandTradeList_e {
 
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	// “¯Šú—p	
-	CNM_MIXER_GAME_SYS_START = CS_COMMAND_MAX,	///< ƒ~ƒLƒT[ƒQ[ƒ€ŠJn		e[„q
-	CNM_MIXER_GAME_END,							///< ƒQ[ƒ€I—¹				e[„q
+	// åŒæœŸç”¨	
+	CNM_MIXER_GAME_SYS_START = CS_COMMAND_MAX,	///< ãƒŸã‚­ã‚µãƒ¼ã‚²ãƒ¼ãƒ é–‹å§‹		è¦ªãƒ¼ï¼å­
+	CNM_MIXER_GAME_END,							///< ã‚²ãƒ¼ãƒ çµ‚äº†				è¦ªãƒ¼ï¼å­
 	
-	// ƒf[ƒ^óM—p
-	CNM_MIXER_GAME_BEFOREDATA_KO,	///< ƒQ[ƒ€ŠJn‘Oƒf[ƒ^	e[„q	ƒQ[ƒ€ŠJn“¯Šú‚É‚à‚È‚Á‚Ä‚¢‚é
-	CNM_MIXER_GAME_BEFOREDATA,		///< ƒQ[ƒ€ŠJn‘Oƒf[ƒ^	q[„e
-	CNM_MIXER_GAMEDATA,				///< ƒQ[ƒ€ƒf[ƒ^		eƒ[„q
-	CNM_MIXER_GAME_RESULTDATA,		///< Œ‹‰Êƒf[ƒ^			e[„q	Œ‹‰Ê•\¦“¯Šú‚É‚à‚È‚Á‚Ä‚¢‚é
-	CNM_MIXER_PORUTO_DATA,			///< ƒ|ƒ‹ƒgƒf[ƒ^“]‘—@e[„q
-	CNM_MIXER_GAME_NEXT_KO,			///< ƒQ[ƒ€‚ğ‚Â‚Ã‚¯‚é‚©‚Ç‚¤‚© e[„q
-	CNM_MIXER_GAME_NEXT,			///< ƒQ[ƒ€‚ğ‚Ã‚Â‚¯‚é‚©‚Ç‚¤‚© q[„e
-	CNM_MIXER_GAME_OYA,				///< eƒQ[ƒ€ƒf[ƒ^óM
-	CNM_MIXER_GAME_KO,				///< qƒQ[ƒ€ƒf[ƒ^óM
+	// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
+	CNM_MIXER_GAME_BEFOREDATA_KO,	///< ã‚²ãƒ¼ãƒ é–‹å§‹å‰ãƒ‡ãƒ¼ã‚¿	è¦ªãƒ¼ï¼å­	ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸã«ã‚‚ãªã£ã¦ã„ã‚‹
+	CNM_MIXER_GAME_BEFOREDATA,		///< ã‚²ãƒ¼ãƒ é–‹å§‹å‰ãƒ‡ãƒ¼ã‚¿	å­ãƒ¼ï¼è¦ª
+	CNM_MIXER_GAMEDATA,				///< ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿		è¦ªï¼œãƒ¼ï¼å­
+	CNM_MIXER_GAME_RESULTDATA,		///< çµæœãƒ‡ãƒ¼ã‚¿			è¦ªãƒ¼ï¼å­	çµæœè¡¨ç¤ºåŒæœŸã«ã‚‚ãªã£ã¦ã„ã‚‹
+	CNM_MIXER_PORUTO_DATA,			///< ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã€€è¦ªãƒ¼ï¼å­
+	CNM_MIXER_GAME_NEXT_KO,			///< ã‚²ãƒ¼ãƒ ã‚’ã¤ã¥ã‘ã‚‹ã‹ã©ã†ã‹ è¦ªãƒ¼ï¼å­
+	CNM_MIXER_GAME_NEXT,			///< ã‚²ãƒ¼ãƒ ã‚’ã¥ã¤ã‘ã‚‹ã‹ã©ã†ã‹ å­ãƒ¼ï¼è¦ª
+	CNM_MIXER_GAME_OYA,				///< è¦ªã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å—ä¿¡
+	CNM_MIXER_GAME_KO,				///< å­ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 
 
 	//-------------------------------------
 	//	
 	//=====================================
 	
-	//------------------------------------------------‚±‚±‚Ü‚Å
-	CNM_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+	//------------------------------------------------ã“ã“ã¾ã§
+	CNM_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 extern const CommPacketTbl* NutMixer_CommCommandTclGet( void );

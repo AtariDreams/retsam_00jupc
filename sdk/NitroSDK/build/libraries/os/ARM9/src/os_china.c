@@ -33,19 +33,19 @@
   add OS_ShowAttentionChina.
 
   Revision 1.5  2005/05/14 01:10:29  terui
-  ’†‘”Åê—p‚ÌŒ’Nã‚Ì’ˆÓAƒƒS‚ð‰æ–Ê•\Ž¦‚·‚é‹@”\‚ð’Ç‰Á
+  ä¸­å›½ç‰ˆå°‚ç”¨ã®å¥åº·ä¸Šã®æ³¨æ„ã€ãƒ­ã‚´ã‚’ç”»é¢è¡¨ç¤ºã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ 
 
   Revision 1.4  2005/04/26 01:11:29  terui
-  ’è”’è‹`–¼‚ð•ÏX
+  å®šæ•°å®šç¾©åã‚’å¤‰æ›´
 
   Revision 1.3  2005/04/25 09:40:11  terui
-  OS_InitChina“à‚ÅOS_Init‚ðŒÄ‚Ño‚·‚æ‚¤‚ÉC³B
+  OS_InitChinaå†…ã§OS_Initã‚’å‘¼ã³å‡ºã™ã‚ˆã†ã«ä¿®æ­£ã€‚
 
   Revision 1.2  2005/04/25 08:26:38  terui
-  versionƒZƒNƒVƒ‡ƒ““à‚ÉŒÅ’è•¶Žš—ñ‚ð–„‚ßž‚ÝA”ñŒöŠJŠÖ”‚©‚çŒöŠJŠÖ”‚É•ÏX
+  versionã‚»ã‚¯ã‚·ãƒ§ãƒ³å†…ã«å›ºå®šæ–‡å­—åˆ—ã‚’åŸ‹ã‚è¾¼ã¿ã€éžå…¬é–‹é–¢æ•°ã‹ã‚‰å…¬é–‹é–¢æ•°ã«å¤‰æ›´
 
   Revision 1.1  2005/04/18 12:23:22  terui
-  ’†‘”Åê—p‚ÌOSi_InitChinaŠÖ”‚ð’Ç‰Á
+  ä¸­å›½ç‰ˆå°‚ç”¨ã®OSi_InitChinaé–¢æ•°ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -64,11 +64,11 @@ static char checkString[] = OS_BURY_STRING_FORCHINA;
 /*****************************************************************************/
 /* constant */
 
-/* •\Ž¦‚ÌƒtƒF[ƒh‚¨‚æ‚Ñ’âŽ~ƒtƒŒ[ƒ€” */
+/* è¡¨ç¤ºã®ãƒ•ã‚§ãƒ¼ãƒ‰ãŠã‚ˆã³åœæ­¢ãƒ•ãƒ¬ãƒ¼ãƒ æ•° */
 #define     OSi_FORCHINA_FADE_SPAN          32
 #define     OSi_FORCHINA_DISP_SPAN          64
 
-/* ƒe[ƒuƒ‹‚ÅŠÇ—‚·‚éŠeŽíƒf[ƒ^ƒCƒ[ƒW‚ÌƒCƒ“ƒfƒbƒNƒX */
+/* ãƒ†ãƒ¼ãƒ–ãƒ«ã§ç®¡ç†ã™ã‚‹å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ */
 typedef enum
 {
     IMAGE_NOTES_CHR,
@@ -82,14 +82,14 @@ typedef enum
 }
 ImageIndex;
 
-/* ONLY_FORCHINA Ý’è */
+/* ONLY_FORCHINA è¨­å®š */
 #define     OSi_ONLY_FORCHINA_CHAR_WIDTH    15
 #define     OSi_ONLY_FORCHINA_CHAR_HEIGHT   2
 #define     OSi_ONLY_FORCHINA_DOT_WIDTH     117
 #define     OSi_ONLY_FORCHINA_DOT_HEIGHT    16
 #define     OSi_ONLY_FORCHINA_CHAR_SIZE     240
 
-/* ‹N“®§ŒÀ‰æ–Ê—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^( 4 ƒrƒbƒg’† 3 ƒrƒbƒg‚ð 0 ŒÅ’èƒpƒbƒN ) */
+/* èµ·å‹•åˆ¶é™ç”»é¢ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿( 4 ãƒ“ãƒƒãƒˆä¸­ 3 ãƒ“ãƒƒãƒˆã‚’ 0 å›ºå®šãƒ‘ãƒƒã‚¯ ) */
 static u8 only_forChina_charData[OSi_ONLY_FORCHINA_CHAR_SIZE] ATTRIBUTE_ALIGN(4) =
 {
 0x00, 0x7c, 0xfe, 0xc6, 0xc6, 0xc6, 0xc6, 0xc6, 0x00, 0x8c, 0x8c, 0x9c, 0x9c, 0xbc, 0xbc, 0xec,
@@ -130,16 +130,16 @@ static void DispLogoAndNotes(const char **isbn);
 /*---------------------------------------------------------------------------*
   Name:         LoadImage
 
-  Description:  [•ª‚ÈƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ðŠm•Û‚µ‚ÄŽw’è‚µ‚½ƒtƒ@ƒCƒ‹‚ðƒ[ƒh.
+  Description:  å……åˆ†ãªã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰.
 
-  Arguments:    index   -   ƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX.
-                p_size  -   ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ðŠi”[‚·‚é u32 ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                            •s—v‚È‚ç NULL ‚ðŽw’è‚µ‚Ä–³Ž‹‚³‚¹‚é‚±‚Æ‚ª‚Å‚«‚é.
+  Arguments:    index   -   ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
+                p_size  -   ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’æ ¼ç´ã™ã‚‹ u32 ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                            ä¸è¦ãªã‚‰ NULL ã‚’æŒ‡å®šã—ã¦ç„¡è¦–ã•ã›ã‚‹ã“ã¨ãŒã§ãã‚‹.
 
-  Returns:      ŒÄ‚Ño‚µ‚Ì“à•”‚ÅŠm•Û‚³‚ê, ƒtƒ@ƒCƒ‹‚ªƒ[ƒh‚³‚ê‚½ƒƒ‚ƒŠ.
-                OS_ShowAttentionChina() ‚ÌI—¹Žž‚É‚Í
-                OS_ClearAlloc() ‚Åƒq[ƒv‚²‚Æ”jŠü‚·‚é‚½‚ß,
-                ‚±‚±‚Å•Ô‚³‚ê‚éƒƒ‚ƒŠ‚Ì‰ð•úˆ—‚Í–¾Ž¦“I‚És‚í‚È‚­‚Ä‚à—Ç‚¢.
+  Returns:      å‘¼ã³å‡ºã—ã®å†…éƒ¨ã§ç¢ºä¿ã•ã‚Œ, ãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒª.
+                OS_ShowAttentionChina() ã®çµ‚äº†æ™‚ã«ã¯
+                OS_ClearAlloc() ã§ãƒ’ãƒ¼ãƒ—ã”ã¨ç ´æ£„ã™ã‚‹ãŸã‚,
+                ã“ã“ã§è¿”ã•ã‚Œã‚‹ãƒ¡ãƒ¢ãƒªã®è§£æ”¾å‡¦ç†ã¯æ˜Žç¤ºçš„ã«è¡Œã‚ãªãã¦ã‚‚è‰¯ã„.
  *---------------------------------------------------------------------------*/
 static u8 *LoadImage(ImageIndex index, u32 *p_size)
 {
@@ -237,7 +237,7 @@ static u8 *LoadImage(ImageIndex index, u32 *p_size)
 /*---------------------------------------------------------------------------*
   Name:         WaitForNextFrame
 
-  Description:  –{‘ÌŠJ•ÂŽž‚Ìˆ—‚ÆVƒuƒ‰ƒ“ƒN‘Ò‹@, ‚¨‚æ‚ÑƒTƒEƒ“ƒhXVˆ—B
+  Description:  æœ¬ä½“é–‹é–‰æ™‚ã®å‡¦ç†ã¨Vãƒ–ãƒ©ãƒ³ã‚¯å¾…æ©Ÿ, ãŠã‚ˆã³ã‚µã‚¦ãƒ³ãƒ‰æ›´æ–°å‡¦ç†ã€‚
 
   Arguments:    None.
 
@@ -245,7 +245,7 @@ static u8 *LoadImage(ImageIndex index, u32 *p_size)
  *---------------------------------------------------------------------------*/
 static void WaitForNextFrame(void)
 {
-    /* ƒtƒ^•Â‚¶Šm”F */
+    /* ãƒ•ã‚¿é–‰ã˜ç¢ºèª */
     if (PAD_DetectFold())
     {
         PM_GoSleepMode(PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD, 0, 0);
@@ -256,7 +256,7 @@ static void WaitForNextFrame(void)
 /*---------------------------------------------------------------------------*
   Name:         VBlankIntr
 
-  Description:  ”r‘¼‹N“®§Œä‰æ–Ê‚É‚¨‚¯‚é V ƒuƒ‰ƒ“ƒNŠ„‚èž‚ÝƒxƒNƒgƒ‹B
+  Description:  æŽ’ä»–èµ·å‹•åˆ¶å¾¡ç”»é¢ã«ãŠã‘ã‚‹ V ãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ãƒ™ã‚¯ãƒˆãƒ«ã€‚
 
   Arguments:    None.
 
@@ -270,9 +270,9 @@ static void VBlankIntr(void)
 /*---------------------------------------------------------------------------*
   Name:         SetISBNString
 
-  Description:  ISBN ”Ô†“™‚ð ƒXƒNƒŠ[ƒ“ƒf[ƒ^“à‚ÌŠ’è‚ÌˆÊ’u‚É”½‰f‚³‚¹‚éB
+  Description:  ISBN ç•ªå·ç­‰ã‚’ ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿å†…ã®æ‰€å®šã®ä½ç½®ã«åæ˜ ã•ã›ã‚‹ã€‚
 
-  Arguments:    isbn    -   ISBN ”Ô†“™‚ÉŠÖ‚·‚é•¶Žš—ñ”z—ñB
+  Arguments:    isbn    -   ISBN ç•ªå·ç­‰ã«é–¢ã™ã‚‹æ–‡å­—åˆ—é…åˆ—ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -281,8 +281,8 @@ static void SetISBNString(const char **isbn)
     s32     i, j;
     struct
     {
-        u8      x, y;                  /* •\Ž¦æ“ªƒIƒtƒZƒbƒg */
-        u8      length;                /* •\Ž¦•¶Žš” */
+        u8      x, y;                  /* è¡¨ç¤ºå…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+        u8      length;                /* è¡¨ç¤ºæ–‡å­—æ•° */
     }
     pos[] =
     {
@@ -291,17 +291,17 @@ static void SetISBNString(const char **isbn)
         ,                              /* ISBN */
         {
         120, 158, 12}
-        ,                              /* ‡“¯“o‹L† */
+        ,                              /* åˆåŒç™»è¨˜å· */
         {
         103, 175, 4}
-        ,                              /* Vo‰¹ŠÇ(¶) */
+        ,                              /* æ–°å‡ºéŸ³ç®¡(å·¦) */
         {
         144, 175, 4}
-        ,                              /* Vo‰¹ŠÇ(‰E) */
+        ,                              /* æ–°å‡ºéŸ³ç®¡(å³) */
     }
     ;
-    const int count = sizeof(pos) / sizeof(*pos);       /* ‘s” */
-    const int digit_id = 0;            /* Œ…•\Ž¦ƒLƒƒƒ‰ƒNƒ^æ“ª ID ("0123456789- ") */
+    const int count = sizeof(pos) / sizeof(*pos);       /* ç·è¡Œæ•° */
+    const int digit_id = 0;            /* æ¡è¡¨ç¤ºã‚­ãƒ£ãƒ©ã‚¯ã‚¿å…ˆé ­ ID ("0123456789- ") */
 
     GXOamAttr *dst = (GXOamAttr *)HW_DB_OAM;
     for (i = 0; i < count; i++)
@@ -329,16 +329,16 @@ static void SetISBNString(const char **isbn)
 /*---------------------------------------------------------------------------*
   Name:         OS_InitChina
 
-  Description:  SDK ‚Ì OS ƒ‰ƒCƒuƒ‰ƒŠ‚ð‰Šú‰»‚·‚éB
-                ŽwŒü’n‚ª’†‘‚Å‚ ‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ê—pB
-                OS_Init ŠÖ”‚Ì‘ã‚í‚è‚É“–ŠÖ”‚ðŽg—p‚·‚éB
+  Description:  SDK ã® OS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+                æŒ‡å‘åœ°ãŒä¸­å›½ã§ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å°‚ç”¨ã€‚
+                OS_Init é–¢æ•°ã®ä»£ã‚ã‚Šã«å½“é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
 
-  Arguments:    isbn    -   ISBN ”Ô†“™‚ÉŠÖ‚·‚é•¶Žš—ñ”z—ñ‚ðŽw’è‚·‚éB
+  Arguments:    isbn    -   ISBN ç•ªå·ç­‰ã«é–¢ã™ã‚‹æ–‡å­—åˆ—é…åˆ—ã‚’æŒ‡å®šã™ã‚‹ã€‚
                             {
                                 char    ISBN[ 13 ] ,
-                                char    ‡“¯“o‹L†[ 12 ] ,
-                                char    Vo‰¹ŠÇ(¶)[ 4 ] ,
-                                char    Vo‰¹ŠÇ(‰E)[ 4 ]
+                                char    åˆåŒç™»è¨˜å·[ 12 ] ,
+                                char    æ–°å‡ºéŸ³ç®¡(å·¦)[ 4 ] ,
+                                char    æ–°å‡ºéŸ³ç®¡(å³)[ 4 ]
                             }
 
   Returns:      None
@@ -359,7 +359,7 @@ void OS_InitChina(const char **isbn)
 /*---------------------------------------------------------------------------*
   Name:         CheckLanguageCode
 
-  Description:  Œ¾ŒêƒR[ƒh‚É‚æ‚é”r‘¼‹N“®§Œä‚ðs‚¤‚©‚Ç‚¤‚©Šm”F‚·‚éB
+  Description:  è¨€èªžã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹æŽ’ä»–èµ·å‹•åˆ¶å¾¡ã‚’è¡Œã†ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -370,7 +370,7 @@ static void CheckLanguageCode(void)
     NVRAMConfig *src;
 
     src = (NVRAMConfig *)(OS_GetSystemWork()->nvramUserInfo);
-    // ARM7‚É‚æ‚Á‚ÄAƒu[ƒg‚·‚×‚«‚Å‚È‚¢Œ¾ŒêƒR[ƒh‚Æ”»’f‚³‚ê‚Ä‚¢‚é‚©Šm”F
+    // ARM7ã«ã‚ˆã£ã¦ã€ãƒ–ãƒ¼ãƒˆã™ã¹ãã§ãªã„è¨€èªžã‚³ãƒ¼ãƒ‰ã¨åˆ¤æ–­ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
     if ((src->ncd.version == 0xff) && (src->ncd.option.language == 7))
     {
         DispExclusiveMessage();
@@ -381,7 +381,7 @@ static void CheckLanguageCode(void)
 /*---------------------------------------------------------------------------*
   Name:         DispExclusiveMessage
 
-  Description:  Œ¾ŒêƒR[ƒh‚É‚æ‚é”r‘¼‹N“®§Œä‚ðs‚Á‚½Ž|‚ð•\Ž¦‚·‚éB
+  Description:  è¨€èªžã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹æŽ’ä»–èµ·å‹•åˆ¶å¾¡ã‚’è¡Œã£ãŸæ—¨ã‚’è¡¨ç¤ºã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -389,23 +389,23 @@ static void CheckLanguageCode(void)
  *---------------------------------------------------------------------------*/
 static void DispExclusiveMessage(void)
 {
-    // •\Ž¦’âŽ~
+    // è¡¨ç¤ºåœæ­¢
     reg_GX_DISPCNT = 0;
     reg_GXS_DB_DISPCNT = 0;
 
-    // ƒpƒ[ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+    // ãƒ‘ãƒ¯ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
     if (!(reg_GX_POWCNT & REG_GX_POWCNT_LCD_MASK))
     {
-        // LCD ƒCƒl[ƒuƒ‹‚ð OFF -> ON ‚É•ÏX‚·‚éê‡‚Í 100ms ‘Ò‚Â
+        // LCD ã‚¤ãƒãƒ¼ãƒ–ãƒ«ã‚’ OFF -> ON ã«å¤‰æ›´ã™ã‚‹å ´åˆã¯ 100ms å¾…ã¤
         SVC_WaitByLoop(HW_CPU_CLOCK_ARM9 / 40);
     }
     reg_GX_POWCNT = (u16)(REG_GX_POWCNT_DSEL_MASK | REG_GX_POWCNT_E2DG_MASK |
                           REG_GX_POWCNT_E2DGB_MASK | REG_GX_POWCNT_LCD_MASK);
-    // ƒ}ƒXƒ^[‹P“x‰Šú‰»
+    // ãƒžã‚¹ã‚¿ãƒ¼è¼åº¦åˆæœŸåŒ–
     reg_GX_MASTER_BRIGHT = 0;
     reg_GXS_DB_MASTER_BRIGHT = 0;
 
-    // ƒƒCƒ“ LCD Ý’è
+    // ãƒ¡ã‚¤ãƒ³ LCD è¨­å®š
     {
         reg_GX_VRAMCNT_A =
             (u8)((1 << REG_GX_VRAMCNT_A_MST_SHIFT) | (1 << REG_GX_VRAMCNT_A_E_SHIFT));
@@ -420,13 +420,13 @@ static void DispExclusiveMessage(void)
         reg_G2_BG0VOFS = (u16)(-(192 - OSi_ONLY_FORCHINA_DOT_HEIGHT) / 2 + 2);
         reg_GX_DISPCNT |= ((GX_BGMODE_0 << REG_GX_DISPCNT_BGMODE_SHIFT) |
                            (GX_PLANEMASK_BG0 << REG_GX_DISPCNT_DISPLAY_SHIFT));
-        // ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ð VRAM ‚Éƒ[ƒh
+        // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ VRAM ã«ãƒ­ãƒ¼ãƒ‰
         {
             MIUnpackBitsParam param = { OSi_ONLY_FORCHINA_CHAR_SIZE, 1, 4, 0, 0 };
 
             SVC_UnpackBits(only_forChina_charData, (u32 *)(HW_BG_VRAM + 0x20), &param);
         }
-        // ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ð VRAM ‚ÉÝ’è
+        // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ VRAM ã«è¨­å®š
         {
             s32     i;
             s32     j;
@@ -444,7 +444,7 @@ static void DispExclusiveMessage(void)
         }
     }
 
-    // ƒTƒu LCD Ý’è
+    // ã‚µãƒ– LCD è¨­å®š
     {
         reg_GX_VRAMCNT_C =
             (u8)((4 << REG_GX_VRAMCNT_C_MST_SHIFT) | (1 << REG_GX_VRAMCNT_C_E_SHIFT));
@@ -462,13 +462,13 @@ static void DispExclusiveMessage(void)
                                (GX_PLANEMASK_BG0 << REG_GXS_DB_DISPCNT_DISPLAY_SHIFT));
     }
 
-    // V ƒuƒ‰ƒ“ƒNŠ„‚èž‚ÝÝ’è
+    // V ãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿è¨­å®š
     (void)OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
     (void)OS_EnableIrqMask(OS_IE_V_BLANK);
     (void)OS_EnableIrq();
     reg_GX_DISPSTAT |= REG_GX_DISPSTAT_VBI_MASK;
 
-    // •\Ž¦ŠJŽn
+    // è¡¨ç¤ºé–‹å§‹
     reg_GX_DISPCNT |= (u32)(GX_DISPMODE_GRAPHICS << REG_GX_DISPCNT_MODE_SHIFT);
     reg_GXS_DB_DISPCNT |= (u32)(REG_GXS_DB_DISPCNT_MODE_MASK);
 
@@ -477,15 +477,15 @@ static void DispExclusiveMessage(void)
         u16     target = 0x0001 << 5;
         s32     i;
 
-        // ƒpƒŒƒbƒgF‚ðÔ‚Æ‰©F‚ÌŠÔ‚Å‰•œ‚³‚¹‚Â‚Â‰i‹v‚Éƒ‹[ƒv
+        // ãƒ‘ãƒ¬ãƒƒãƒˆè‰²ã‚’èµ¤ã¨é»„è‰²ã®é–“ã§å¾€å¾©ã•ã›ã¤ã¤æ°¸ä¹…ã«ãƒ«ãƒ¼ãƒ—
         while (TRUE)
         {
             for (i = 0; i < 31; i++)
             {
-                // ƒtƒ^•Â‚¶Šm”F
+                // ãƒ•ã‚¿é–‰ã˜ç¢ºèª
                 if (TRUE == PAD_DetectFold())
                 {
-                    // “dŒ¹’f
+                    // é›»æºæ–­
                     (void)PM_ForceToPowerOff();
                 }
                 OS_WaitVBlankIntr();
@@ -500,15 +500,15 @@ static void DispExclusiveMessage(void)
 /*---------------------------------------------------------------------------*
   Name:         OS_ShowAttentionChina
 
-  Description:  ’†‘‘Î‰žƒƒSA‹y‚Ñ’ˆÓ‰æ–Ê‚ðŠ’èŽžŠÔ•\Ž¦‚·‚éB
+  Description:  ä¸­å›½å¯¾å¿œãƒ­ã‚´ã€åŠã³æ³¨æ„ç”»é¢ã‚’æ‰€å®šæ™‚é–“è¡¨ç¤ºã™ã‚‹ã€‚
 
-  Arguments:    isbn    -   ISBN ”Ô†“™‚ÉŠÖ‚·‚é•¶Žš—ñ”z—ñB
+  Arguments:    isbn    -   ISBN ç•ªå·ç­‰ã«é–¢ã™ã‚‹æ–‡å­—åˆ—é…åˆ—ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
 {
-    /* ƒŒƒWƒXƒ^‘Þ”ð—p\‘¢‘Ì */
+    /* ãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿ç”¨æ§‹é€ ä½“ */
     struct
     {
         u32     gx_dispcnt;
@@ -534,9 +534,9 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
     }
     shelter;
 
-    /* ‘Oˆ— */
+    /* å‰å‡¦ç† */
     {
-        /* ŠeƒŒƒWƒXƒ^‘Þ”ð */
+        /* å„ãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿ */
         shelter.gx_dispstat = reg_GX_DISPSTAT;
         shelter.gx_dispcnt = reg_GX_DISPCNT;
         shelter.gxs_dispcnt = reg_GXS_DB_DISPCNT;
@@ -551,24 +551,24 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
         shelter.gx_bg0ofs = reg_G2_BG0OFS;
         shelter.gxs_bg0ofs = reg_G2S_DB_BG0OFS;
 
-        /* •\Ž¦’âŽ~ */
+        /* è¡¨ç¤ºåœæ­¢ */
         reg_GX_DISPCNT = 0;
         reg_GXS_DB_DISPCNT = 0;
 
-        /* ƒpƒ[ƒRƒ“ƒgƒ[ƒ‹‰Šú‰» */
+        /* ãƒ‘ãƒ¯ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ– */
         if (!(shelter.gx_powcnt & REG_GX_POWCNT_LCD_MASK))
         {
-            /* LCD ƒCƒl[ƒuƒ‹‚ð OFF -> ON ‚É•ÏX‚·‚éê‡‚Í 100ms ‘Ò‚Â */
+            /* LCD ã‚¤ãƒãƒ¼ãƒ–ãƒ«ã‚’ OFF -> ON ã«å¤‰æ›´ã™ã‚‹å ´åˆã¯ 100ms å¾…ã¤ */
             SVC_WaitByLoop(HW_CPU_CLOCK_ARM9 / 40);
         }
         reg_GX_POWCNT = (u16)(REG_GX_POWCNT_DSEL_MASK | REG_GX_POWCNT_E2DG_MASK |
                               REG_GX_POWCNT_E2DGB_MASK | REG_GX_POWCNT_LCD_MASK);
 
-        /* ƒ}ƒXƒ^[‹P“x‰Šú‰» */
+        /* ãƒžã‚¹ã‚¿ãƒ¼è¼åº¦åˆæœŸåŒ– */
         reg_GX_MASTER_BRIGHT = (u16)((1 << REG_GX_MASTER_BRIGHT_E_MOD_SHIFT) | 16);
         reg_GXS_DB_MASTER_BRIGHT = reg_GX_MASTER_BRIGHT;
 
-        /* Logo ‰æ–Ê•\Ž¦€”õ */
+        /* Logo ç”»é¢è¡¨ç¤ºæº–å‚™ */
         {
             reg_GX_VRAMCNT_A =
                 (u8)((1 << REG_GX_VRAMCNT_A_MST_SHIFT) | (1 << REG_GX_VRAMCNT_A_E_SHIFT));
@@ -585,12 +585,12 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
             reg_GX_DISPCNT |= ((GX_BGMODE_0 << REG_GX_DISPCNT_BGMODE_SHIFT) |
                                (GX_PLANEMASK_BG0 << REG_GX_DISPCNT_DISPLAY_SHIFT));
 
-            /* ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðVRAM‚Éƒ[ƒh */
+            /* ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«ãƒ­ãƒ¼ãƒ‰ */
             {
                 void   *const src = LoadImage(IMAGE_LOGO_CHR, NULL);
                 MI_UncompressLZ16(src, (u32 *)HW_BG_VRAM);
             }
-            /* ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ðVRAM‚Éƒ[ƒh */
+            /* ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«ãƒ­ãƒ¼ãƒ‰ */
             {
                 u8     *const src = LoadImage(IMAGE_LOGO_SCR, NULL);
                 s32     i;
@@ -607,7 +607,7 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
                     }
                 }
             }
-            /* ƒpƒŒƒbƒgƒf[ƒ^‚ðVRAM‚Éƒ[ƒh */
+            /* ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«ãƒ­ãƒ¼ãƒ‰ */
             {
                 u32     size;
                 void   *const src = LoadImage(IMAGE_LOGO_PAL, &size);
@@ -615,7 +615,7 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
             }
         }
 
-        /* Notes ‰æ–Ê•\Ž¦€”õ */
+        /* Notes ç”»é¢è¡¨ç¤ºæº–å‚™ */
         {
             reg_GX_VRAMCNT_C =
                 (u8)((4 << REG_GX_VRAMCNT_C_MST_SHIFT) | (1 << REG_GX_VRAMCNT_C_E_SHIFT));
@@ -633,39 +633,39 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
                                    ((GX_PLANEMASK_BG0 | GX_PLANEMASK_OBJ) <<
                                     REG_GXS_DB_DISPCNT_DISPLAY_SHIFT));
 
-            /* ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðVRAM‚Éƒ[ƒh */
+            /* ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«ãƒ­ãƒ¼ãƒ‰ */
             {
                 u32     size;
                 void   *src;
                 MIUnpackBitsParam param = { 0, 1, 4, 0, 0 };
-                /* BG ƒeƒLƒXƒg */
+                /* BG ãƒ†ã‚­ã‚¹ãƒˆ */
                 src = LoadImage(IMAGE_NOTES_CHR, &size);
                 param.srcNum = (u16)size;
                 SVC_UnpackBits(src, (u32 *)(HW_DB_BG_VRAM), &param);
-                /* OBJ ƒeƒLƒXƒg */
+                /* OBJ ãƒ†ã‚­ã‚¹ãƒˆ */
                 src = LoadImage(IMAGE_NOTES_DIGIT, &size);
                 param.srcNum = (u16)size;
                 SVC_UnpackBits(src, (u32 *)(HW_DB_OBJ_VRAM), &param);
                 SVC_CpuClear(0xC0, (void *)HW_DB_OAM, HW_OAM_SIZE, 32);
             }
-            /* ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ðVRAM‚Éƒ[ƒh */
+            /* ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«ãƒ­ãƒ¼ãƒ‰ */
             {
                 void   *const src = LoadImage(IMAGE_NOTES_SCR, NULL);
                 MI_UncompressLZ16(src, (u32 *)(HW_DB_BG_VRAM + 0xf000));
             }
             SetISBNString(isbn);
-            /* ƒpƒŒƒbƒg•ÒW */
+            /* ãƒ‘ãƒ¬ãƒƒãƒˆç·¨é›† */
             *((u16 *)(HW_DB_BG_PLTT + 0)) = 0x0000;
             *((u16 *)(HW_DB_BG_PLTT + 2)) = 0x7fff;
             *((u16 *)(HW_DB_OBJ_PLTT + 0)) = 0x7fff;
             *((u16 *)(HW_DB_OBJ_PLTT + 2)) = 0x0000;
         }
 
-        /* •\Ž¦ŠJŽn */
+        /* è¡¨ç¤ºé–‹å§‹ */
         reg_GX_DISPCNT |= (u32)(GX_DISPMODE_GRAPHICS << REG_GX_DISPCNT_MODE_SHIFT);
         reg_GXS_DB_DISPCNT |= (u32)(REG_GXS_DB_DISPCNT_MODE_MASK);
 
-        /* Š„‚èž‚ÝŠÖ˜A Ý’è */
+        /* å‰²ã‚Šè¾¼ã¿é–¢é€£ è¨­å®š */
         reg_GX_DISPSTAT |= REG_GX_DISPSTAT_VBI_MASK;
         shelter.irqFunction = OS_GetIrqFunction(OS_IE_V_BLANK);
         OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
@@ -675,13 +675,13 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
 
     }
 
-    /* Žåˆ— */
+    /* ä¸»å‡¦ç† */
     {
         s32     i;
         u16     pad_old;
         u16     pad;
 
-        /* ƒtƒF[ƒhƒCƒ“ */
+        /* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ */
         for (i = 0; i < OSi_FORCHINA_FADE_SPAN; i++)
         {
             reg_GX_MASTER_BRIGHT = (u16)((1 << REG_GX_MASTER_BRIGHT_E_MOD_SHIFT) |
@@ -690,21 +690,21 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
             WaitForNextFrame();
         }
 
-        /* ƒ{ƒ^ƒ““ü—Í‚É‚æ‚èƒXƒLƒbƒv */
+        /* ãƒœã‚¿ãƒ³å…¥åŠ›ã«ã‚ˆã‚Šã‚¹ã‚­ãƒƒãƒ— */
         pad_old = PAD_Read();
         for (i = 0; i < OSi_FORCHINA_DISP_SPAN; i++)
         {
             pad = PAD_Read();
             if (~pad_old & pad)
             {
-                /* ”CˆÓ‚Ìƒ{ƒ^ƒ“‰Ÿ‚µƒgƒŠƒK‚ðŒŸo‚µ‚½ê‡AƒXƒLƒbƒv */
+                /* ä»»æ„ã®ãƒœã‚¿ãƒ³æŠ¼ã—ãƒˆãƒªã‚¬ã‚’æ¤œå‡ºã—ãŸå ´åˆã€ã‚¹ã‚­ãƒƒãƒ— */
                 break;
             }
             pad_old = pad;
             WaitForNextFrame();
         }
 
-        /* ƒtƒF[ƒhƒAƒEƒg */
+        /* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ */
         for (i = 0; i < OSi_FORCHINA_FADE_SPAN; i++)
         {
             reg_GX_MASTER_BRIGHT = (u16)((1 << REG_GX_MASTER_BRIGHT_E_MOD_SHIFT) |
@@ -714,27 +714,27 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
         }
     }
 
-    /* Œãˆ— */
+    /* å¾Œå‡¦ç† */
     {
-        /* •\Ž¦’âŽ~ */
+        /* è¡¨ç¤ºåœæ­¢ */
         reg_GX_DISPCNT &= ~(GX_DISPMODE_GRAPHICS << REG_GX_DISPCNT_MODE_SHIFT);
         reg_GXS_DB_DISPCNT &= ~REG_GXS_DB_DISPCNT_MODE_MASK;
 
-        /* Š„‚èž‚ÝŠÖ˜A •œ‹A */
+        /* å‰²ã‚Šè¾¼ã¿é–¢é€£ å¾©å¸° */
         (void)OS_RestoreInterrupts(shelter.interrupts);
         (void)OS_RestoreIrq(shelter.irq);
         (void)OS_SetIrqMask(shelter.irqMask);
         OS_SetIrqFunction(OS_IE_V_BLANK, shelter.irqFunction);
         reg_GX_DISPSTAT &= ~REG_GX_DISPSTAT_VBI_MASK;
 
-        /* Žg—p‚µ‚½ VRAM ‚ðƒNƒŠƒA ( ƒTƒCƒY‚ª‘å‚«‚¢‚Ì‚Å‰Šú’l‚Ì•œ‹A‚Í‚Å‚«‚È‚¢ ) */
+        /* ä½¿ç”¨ã—ãŸ VRAM ã‚’ã‚¯ãƒªã‚¢ ( ã‚µã‚¤ã‚ºãŒå¤§ãã„ã®ã§åˆæœŸå€¤ã®å¾©å¸°ã¯ã§ããªã„ ) */
         SVC_CpuClearFast(0, (u32 *)HW_BG_VRAM, 0x10000);
         SVC_CpuClearFast(0, (u32 *)HW_BG_PLTT, 0x200);
         SVC_CpuClearFast(0, (u32 *)HW_DB_BG_VRAM, 0x10000);
         SVC_CpuClearFast(0, (u32 *)HW_DB_BG_PLTT, 0x04);
         SVC_CpuClearFast(0, (u32 *)HW_DB_OAM, HW_OAM_SIZE);
 
-        /* ŠeƒŒƒWƒXƒ^•œ‹A */
+        /* å„ãƒ¬ã‚¸ã‚¹ã‚¿å¾©å¸° */
         reg_G2S_DB_BG0OFS = shelter.gxs_bg0ofs;
         reg_G2_BG0OFS = shelter.gx_bg0ofs;
         reg_G2S_DB_BG0CNT = shelter.gxs_bg0cnt;
@@ -745,7 +745,7 @@ SDK_WEAK_SYMBOL void OS_ShowAttentionChina(const char **isbn)
         reg_GX_POWCNT = shelter.gx_powcnt;
         if (!(shelter.gx_powcnt & REG_GX_POWCNT_LCD_MASK))
         {
-            /* LCD ƒCƒl[ƒuƒ‹‚ð ON -> OFF ‚É•ÏX‚µ‚½ê‡‚Í 100ms ‘Ò‚Â */
+            /* LCD ã‚¤ãƒãƒ¼ãƒ–ãƒ«ã‚’ ON -> OFF ã«å¤‰æ›´ã—ãŸå ´åˆã¯ 100ms å¾…ã¤ */
             SVC_WaitByLoop(HW_CPU_CLOCK_ARM9 / 40);
         }
         reg_GXS_DB_MASTER_BRIGHT = shelter.gxs_bright;

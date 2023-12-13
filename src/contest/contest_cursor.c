@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	contest_cursor.c
- * @brief	�R���e�X�g����ʗp�J�[�\��
+ * @brief	コンテスト下画面用カーソル
  * @author	matsuda
- * @date	2006.03.27(��)
+ * @date	2006.03.27(月)
  *
- * battle_cursor.c�̖��̈Ⴂ�B�I�[�o�[���C�̊֌W�Ŏg���Ȃ������̂ŕʖ��ɂ��ėp�ӂ���
+ * battle_cursor.cの名称違い。オーバーレイの関係で使えなかったので別名にして用意した
  */
 //==============================================================================
 #include "common.h"
@@ -21,54 +21,54 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�퓬�J�[�\���̃A�N�^�[�|�C���^�z��ԍ�
+///戦闘カーソルのアクターポインタ配列番号
 enum{
-	CCURSOR_ACT_LU,		///<����J�[�\��
-	CCURSOR_ACT_RU,		///<�E��J�[�\��
-	CCURSOR_ACT_LD,		///<�����J�[�\��
-	CCURSOR_ACT_RD,		///<�E���J�[�\��
+	CCURSOR_ACT_LU,		///<左上カーソル
+	CCURSOR_ACT_RU,		///<右上カーソル
+	CCURSOR_ACT_LD,		///<左下カーソル
+	CCURSOR_ACT_RD,		///<右下カーソル
 	
-	CCURSOR_ACT_EX,		///<���ʃJ�[�\��
+	CCURSOR_ACT_EX,		///<特別カーソル
 	
-	CCURSOR_ACT_NUM,	///<�퓬�J�[�\���̃A�N�^�[�g�p��
+	CCURSOR_ACT_NUM,	///<戦闘カーソルのアクター使用数
 };
 
-///�J�[�\��OBJUpdate��TCB�v���C�I���e�B
+///カーソルOBJUpdateのTCBプライオリティ
 #define TCBPRI_CCURSOR					(40000)
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///�퓬�J�[�\�����[�N
+///戦闘カーソルワーク
 typedef struct _CCURSOR_WORK{
 	CATS_ACT_PTR cap[CCURSOR_ACT_NUM];
 	TCB_PTR update_tcb;
 }CCURSOR_WORK;
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
-///AA�p�Q�[�W�A�N�^�[�w�b�_
+///AA用ゲージアクターヘッダ
 static const TCATS_OBJECT_ADD_PARAM_S BCursorObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 0, 0,		//�A�j���ԍ��A�D�揇�ʁA�p���b�g�ԍ�
-	NNS_G2D_VRAM_TYPE_2DSUB,		//�`��G���A
-	{	//�g�p���\�[�XID�e�[�u��
-		0,	//�L����
-		0,	//�p���b�g
-		0,	//�Z��
-		0,	//�Z���A�j��
-		CLACT_U_HEADER_DATA_NONE,		//�}���`�Z��
-		CLACT_U_HEADER_DATA_NONE,		//�}���`�Z���A�j��
+	0, 0, 0,		//アニメ番号、優先順位、パレット番号
+	NNS_G2D_VRAM_TYPE_2DSUB,		//描画エリア
+	{	//使用リソースIDテーブル
+		0,	//キャラ
+		0,	//パレット
+		0,	//セル
+		0,	//セルアニメ
+		CLACT_U_HEADER_DATA_NONE,		//マルチセル
+		CLACT_U_HEADER_DATA_NONE,		//マルチセルアニメ
 	},
-	0,			//BG�v���C�I���e�B
-	0,			//Vram�]���t���O
+	0,			//BGプライオリティ
+	0,			//Vram転送フラグ
 };
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void CCURSOR_ObjectUpdate(TCB_PTR tcb, void *work);
 void CCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pfd, 
@@ -85,15 +85,15 @@ void CCURSOR_OFF(CCURSOR_PTR cursor);
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̃��\�[�X�����[�h����
+ * @brief   戦闘カーソルのリソースをロードする
  *
  * @param   csp			
  * @param   crp			
  * @param   pfd			
- * @param   char_id		�L����ID
- * @param   pal_id		�p���b�gID
- * @param   cell_id		�Z��ID
- * @param   anm_id		�A�j��ID
+ * @param   char_id		キャラID
+ * @param   pal_id		パレットID
+ * @param   cell_id		セルID
+ * @param   anm_id		アニメID
  */
 //--------------------------------------------------------------
 void CCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pfd, 
@@ -112,13 +112,13 @@ void CCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR p
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̃��\�[�X���������
+ * @brief   戦闘カーソルのリソースを解放する
  *
  * @param   crp			
- * @param   char_id		�L����ID
- * @param   pal_id		�p���b�gID
- * @param   cell_id		�Z��ID
- * @param   anm_id		�A�j��ID
+ * @param   char_id		キャラID
+ * @param   pal_id		パレットID
+ * @param   cell_id		セルID
+ * @param   anm_id		アニメID
  */
 //--------------------------------------------------------------
 void CCURSOR_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id, u32 anm_id)
@@ -131,22 +131,22 @@ void CCURSOR_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̃A�N�^�[�𐶐����܂�
+ * @brief   戦闘カーソルのアクターを生成します
  *
  * @param   csp		
  * @param   crp		
- * @param   heap_id		�q�[�vID
- * @param   char_id		�L����ID
- * @param   pal_id		�p���b�gID
- * @param   cell_id		�Z��ID
- * @param   anm_id		�A�j��ID
- * @param   soft_pri	�\�t�g�v���C�I���e�B
- * @param   bg_pri		BG�v���C�I���e�B
+ * @param   heap_id		ヒープID
+ * @param   char_id		キャラID
+ * @param   pal_id		パレットID
+ * @param   cell_id		セルID
+ * @param   anm_id		アニメID
+ * @param   soft_pri	ソフトプライオリティ
+ * @param   bg_pri		BGプライオリティ
  *
- * @retval  �������ꂽ�퓬�J�[�\�����[�N�̃|�C���^
+ * @retval  生成された戦闘カーソルワークのポインタ
  *
- * �퓬�J�[�\�����[�N�̐�����Update�pTCB�̐����������ɍs���܂�
- * �������͕\��OFF�ɂȂ��Ă��܂��B
+ * 戦闘カーソルワークの生成とUpdate用TCBの生成も同時に行います
+ * 生成時は表示OFFになっています。
  */
 //--------------------------------------------------------------
 CCURSOR_PTR CCURSOR_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
@@ -178,11 +178,11 @@ CCURSOR_PTR CCURSOR_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���A�N�^�[���폜���܂�
+ * @brief   戦闘カーソルアクターを削除します
  *
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
+ * @param   cursor		戦闘カーソルワークへのポインタ
  *
- * �퓬�J�[�\�����[�N�̉���ƁAUpdate�pTCB�̍폜���s���܂�
+ * 戦闘カーソルワークの解放と、Update用TCBの削除も行います
  */
 //--------------------------------------------------------------
 void CCURSOR_ActorDelete(CCURSOR_PTR cursor)
@@ -199,13 +199,13 @@ void CCURSOR_ActorDelete(CCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�(�S�ČʂɎw��)
+ * @brief   戦闘カーソルの座標セットと表示のONを行います(全て個別に指定)
  *
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   left		�����W
- * @param   right		�E���W
- * @param   top			����W
- * @param   bottom		�����W
+ * @param   cursor		戦闘カーソルワークへのポインタ
+ * @param   left		左座標
+ * @param   right		右座標
+ * @param   top			上座標
+ * @param   bottom		下座標
  */
 //--------------------------------------------------------------
 void CCURSOR_IndividualPosSetON_Surface(CCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x, int ru_y,
@@ -230,13 +230,13 @@ void CCURSOR_IndividualPosSetON_Surface(CCURSOR_PTR cursor, int lu_x, int lu_y, 
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�(�S�ČʂɎw��)
+ * @brief   戦闘カーソルの座標セットと表示のONを行います(全て個別に指定)
  *
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   left		�����W
- * @param   right		�E���W
- * @param   top			����W
- * @param   bottom		�����W
+ * @param   cursor		戦闘カーソルワークへのポインタ
+ * @param   left		左座標
+ * @param   right		右座標
+ * @param   top			上座標
+ * @param   bottom		下座標
  */
 //--------------------------------------------------------------
 void CCURSOR_IndividualPosSetON(CCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x, int ru_y,
@@ -248,13 +248,13 @@ void CCURSOR_IndividualPosSetON(CCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�(��`�Ŏw��)
+ * @brief   戦闘カーソルの座標セットと表示のONを行います(矩形で指定)
  *
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   left		�����W
- * @param   right		�E���W
- * @param   top			����W
- * @param   bottom		�����W
+ * @param   cursor		戦闘カーソルワークへのポインタ
+ * @param   left		左座標
+ * @param   right		右座標
+ * @param   top			上座標
+ * @param   bottom		下座標
  */
 //--------------------------------------------------------------
 void CCURSOR_PosSetON(CCURSOR_PTR cursor, int left, int right, int top, int bottom)
@@ -264,13 +264,13 @@ void CCURSOR_PosSetON(CCURSOR_PTR cursor, int left, int right, int top, int bott
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�(��`�Ŏw��)
+ * @brief   戦闘カーソルの座標セットと表示のONを行います(矩形で指定)
  *
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   left		�����W
- * @param   right		�E���W
- * @param   top			����W
- * @param   bottom		�����W
+ * @param   cursor		戦闘カーソルワークへのポインタ
+ * @param   left		左座標
+ * @param   right		右座標
+ * @param   top			上座標
+ * @param   bottom		下座標
  */
 //--------------------------------------------------------------
 void CCURSOR_PosSetON_Surface(CCURSOR_PTR cursor, int left, int right, int top, int bottom,
@@ -282,12 +282,12 @@ void CCURSOR_PosSetON_Surface(CCURSOR_PTR cursor, int left, int right, int top, 
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̓��ʃJ�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�
+ * @brief   戦闘カーソルの特別カーソルの座標セットと表示のONを行います
  *
- * @param   cursor			�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   x				���WX
- * @param   y				���WY
- * @param   anm_type		�A�j���^�C�v(CCURSOR_ANMTYPE_???)
+ * @param   cursor			戦闘カーソルワークへのポインタ
+ * @param   x				座標X
+ * @param   y				座標Y
+ * @param   anm_type		アニメタイプ(CCURSOR_ANMTYPE_???)
  */
 //--------------------------------------------------------------
 void CCURSOR_ExPosSetON_Surface(CCURSOR_PTR cursor, int x, int y, CCURSOR_ANMTYPE anm_type,
@@ -300,12 +300,12 @@ void CCURSOR_ExPosSetON_Surface(CCURSOR_PTR cursor, int x, int y, CCURSOR_ANMTYP
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̓��ʃJ�[�\���̍��W�Z�b�g�ƕ\����ON���s���܂�
+ * @brief   戦闘カーソルの特別カーソルの座標セットと表示のONを行います
  *
- * @param   cursor			�퓬�J�[�\�����[�N�ւ̃|�C���^
- * @param   x				���WX
- * @param   y				���WY
- * @param   anm_type		�A�j���^�C�v(CCURSOR_ANMTYPE_???)
+ * @param   cursor			戦闘カーソルワークへのポインタ
+ * @param   x				座標X
+ * @param   y				座標Y
+ * @param   anm_type		アニメタイプ(CCURSOR_ANMTYPE_???)
  */
 //--------------------------------------------------------------
 void CCURSOR_ExPosSetON(CCURSOR_PTR cursor, int x, int y, CCURSOR_ANMTYPE anm_type)
@@ -315,8 +315,8 @@ void CCURSOR_ExPosSetON(CCURSOR_PTR cursor, int x, int y, CCURSOR_ANMTYPE anm_ty
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\����S�ĕ\��OFF����
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
+ * @brief   戦闘カーソルを全て表示OFFする
+ * @param   cursor		戦闘カーソルワークへのポインタ
  */
 //--------------------------------------------------------------
 void CCURSOR_OFF(CCURSOR_PTR cursor)
@@ -330,8 +330,8 @@ void CCURSOR_OFF(CCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�J�[�\���̓��ʃJ�[�\���̂ݕ\��OFF����
- * @param   cursor		�퓬�J�[�\�����[�N�ւ̃|�C���^
+ * @brief   戦闘カーソルの特別カーソルのみ表示OFFする
+ * @param   cursor		戦闘カーソルワークへのポインタ
  */
 //--------------------------------------------------------------
 void CCURSOR_ExOFF(CCURSOR_PTR cursor)
@@ -341,9 +341,9 @@ void CCURSOR_ExOFF(CCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   �J�[�\���A�j��Update����
- * @param   tcb			TCB�ւ̃|�C���^
- * @param   work		�J�[�\�����[�N�ւ̃|�C���^
+ * @brief   カーソルアニメUpdate処理
+ * @param   tcb			TCBへのポインタ
+ * @param   work		カーソルワークへのポインタ
  */
 //--------------------------------------------------------------
 static void CCURSOR_ObjectUpdate(TCB_PTR tcb, void *work)

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MATH_SHA1Init</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MATH_SHA1Init</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,28 +21,28 @@
 static inline void MATH_SHA1Init( <A href="MATHSHA1Context.html">MATHSHA1Context</A> *context );
 </CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
     <TR>
       <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
-      <TD width="670">���������� SHA-1 �����p�̃R���e�L�X�g�\���̂ւ̃|�C���^�B</TD>
+      <TD width="670">初期化する SHA-1 生成用のコンテキスト構造体へのポインタ。</TD>
     </TR>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>���̊֐��́ASHA-1 ���v�Z����ۂɎg�p���� <A href="MATHSHA1Context.html">MATHSHA1Context</A> �^�̃R���e�L�X�g�\���̂����������܂��B
-<A href="MATH_SHA1Update.html">MATH_SHA1Update</A> �֐��E<A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A> �֐����g�p����O�ɕK���Ăяo���悤�ɂ��Ă��������B<BR>
-�܂��A�������ς݂̃R���e�L�X�g�\���̂ɂ��̊֐����ēK�p���Ă��\���܂���B���̏ꍇ�́A�R���e�L�X�g�\���̂͏�����Ԃɖ߂�܂��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、SHA-1 を計算する際に使用する <A href="MATHSHA1Context.html">MATHSHA1Context</A> 型のコンテキスト構造体を初期化します。
+<A href="MATH_SHA1Update.html">MATH_SHA1Update</A> 関数・<A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A> 関数を使用する前に必ず呼び出すようにしてください。<BR>
+また、初期化済みのコンテキスト構造体にこの関数を再適用しても構いません。その場合は、コンテキスト構造体は初期状態に戻ります。<BR>
 <BR>
-SHA-1 �̓��b�Z�[�W�_�C�W�F�X�g�l�����߂邽�߂̃A���S���Y���ł��B�ڍׂ� IETF (The Internet Engineering Task Force) �����s���Ă��� RFC (Request For Comments) 3174 ���Q�Ƃ��Ă��������B<BR>
+SHA-1 はメッセージダイジェスト値を求めるためのアルゴリズムです。詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 3174 を参照してください。<BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="MATH_SHA1Update.html">MATH_SHA1Update</A>, <A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/04/01 ����<BR>
+2005/04/01 初版<BR>
 </P>
 </body>
 </html>

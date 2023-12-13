@@ -25,19 +25,19 @@ extern "C" {
 #endif
 
 //
-// �R�[���o�b�N�`�F�b�N
+// コールバックチェック
 //
 #ifndef NNS_G3D_SBC_CALLBACK_TIMING_A_DISABLE
 NNS_G3D_INLINE BOOL
 NNSi_G3dCallBackCheck_A(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming)
 {
-    // �ŏ��ɌĂяo�����R�[���o�b�N�Ȃ̂�*pTiming��ݒ肷��
+    // 最初に呼び出されるコールバックなので*pTimingを設定する
     *pTiming = NNSi_CheckPossibilityOfCallBack(rs, cmd);
     if (*pTiming == NNS_G3D_SBC_CALLBACK_TIMING_A)
     {
         rs->flag &= ~NNS_G3D_RSFLAG_SKIP;
         (*rs->cbVecFunc[cmd])(rs);
-        // �R�[���o�b�N�����Őݒ肪�ύX����Ă���ꍇ������̂ōă`�F�b�N
+        // コールバック内部で設定が変更されている場合があるので再チェック
         *pTiming = NNSi_CheckPossibilityOfCallBack(rs, cmd);
         return (BOOL)(rs->flag & NNS_G3D_RSFLAG_SKIP);
     }
@@ -50,7 +50,7 @@ NNSi_G3dCallBackCheck_A(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming)
 NNS_G3D_INLINE BOOL
 NNSi_G3dCallBackCheck_A(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming)
 {
-    // �ŏ��ɌĂяo�����R�[���o�b�N�Ȃ̂�*pTiming��ݒ肷��
+    // 最初に呼び出されるコールバックなので*pTimingを設定する
     *pTiming = NNSi_CheckPossibilityOfCallBack(rs, cmd);
     return FALSE;
 }
@@ -65,7 +65,7 @@ NNSi_G3dCallBackCheck_B(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming)
     {
         rs->flag &= ~NNS_G3D_RSFLAG_SKIP;
         (*rs->cbVecFunc[cmd])(rs);
-        // �R�[���o�b�N�����Őݒ肪�ύX����Ă���ꍇ������̂ōă`�F�b�N
+        // コールバック内部で設定が変更されている場合があるので再チェック
         *pTiming = NNSi_CheckPossibilityOfCallBack(rs, cmd);
         return (BOOL)(rs->flag & NNS_G3D_RSFLAG_SKIP);
     }
@@ -88,7 +88,7 @@ NNSi_G3dCallBackCheck_C(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming timing)
     {
         rs->flag &= ~NNS_G3D_RSFLAG_SKIP;
         (*rs->cbVecFunc[cmd])(rs);
-        // �Ō�̃R�[���o�b�N�Ȃ̂ōă`�F�b�N�̕K�v�͂Ȃ�
+        // 最後のコールバックなので再チェックの必要はない
         return (BOOL)(rs->flag & NNS_G3D_RSFLAG_SKIP);
     }
     else
@@ -121,8 +121,8 @@ NNSi_CheckPossibilityOfCallBack(NNSG3dRS* rs, u8 cmd)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSSetCallBack
 
-    NNSG3dRS�\���̂�SBC�R�}���hcmd�p�ɐݒ�ł���R�[���o�b�N�֐���ݒ肷��B
-    NNS_G3dRenderObjSetInitFunc�Őݒ�ł���C�j�V�����C�Y�֐����Ŏg�p�����̂����ʁB
+    NNSG3dRS構造体でSBCコマンドcmd用に設定できるコールバック関数を設定する。
+    NNS_G3dRenderObjSetInitFuncで設定できるイニシャライズ関数内で使用されるのが普通。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRSSetCallBack(NNSG3dRS* rs,
@@ -142,7 +142,7 @@ NNS_G3dRSSetCallBack(NNSG3dRS* rs,
 /*---------------------------------------------------------------------------*
     NNS_G3dRSResetCallBack
 
-    NNSG3dRS�\���̂�cmd�p�R�[���o�b�N�֐�����������B
+    NNSG3dRS構造体のcmd用コールバック関数を解除する。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRSResetCallBack(NNSG3dRS* rs, u8 cmd)
@@ -158,7 +158,7 @@ NNS_G3dRSResetCallBack(NNSG3dRS* rs, u8 cmd)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetRenderObj
 
-    NNSG3dRS�\���̂��ێ�����NNSG3dRenderObj�\���̂ւ̃|�C���^��Ԃ�
+    NNSG3dRS構造体が保持するNNSG3dRenderObj構造体へのポインタを返す
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE NNSG3dRenderObj*
 NNS_G3dRSGetRenderObj(NNSG3dRS* rs)
@@ -171,7 +171,7 @@ NNS_G3dRSGetRenderObj(NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetMatAnmResult
 
-    NNSG3dRS�\���̂��ێ�����NNSG3dMatAnmResult�\���̂ւ̃|�C���^��Ԃ�
+    NNSG3dRS構造体が保持するNNSG3dMatAnmResult構造体へのポインタを返す
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE NNSG3dMatAnmResult*
 NNS_G3dRSGetMatAnmResult(NNSG3dRS* rs)
@@ -184,7 +184,7 @@ NNS_G3dRSGetMatAnmResult(NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetJntAnmResult
 
-    NNSG3dRS�\���̂��ێ�����NNSG3dJntAnmResult�\���̂ւ̃|�C���^��Ԃ�
+    NNSG3dRS構造体が保持するNNSG3dJntAnmResult構造体へのポインタを返す
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE NNSG3dJntAnmResult*
 NNS_G3dRSGetJntAnmResult(NNSG3dRS* rs)
@@ -197,7 +197,7 @@ NNS_G3dRSGetJntAnmResult(NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetJntAnmResult
 
-    NNSG3dRS�\���̂��ێ�����NNSG3dJntAnmResult�\���̂ւ̃|�C���^��Ԃ�
+    NNSG3dRS構造体が保持するNNSG3dJntAnmResult構造体へのポインタを返す
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE NNSG3dVisAnmResult*
 NNS_G3dRSGetVisAnmResult(NNSG3dRS* rs)
@@ -210,7 +210,7 @@ NNS_G3dRSGetVisAnmResult(NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetSbcPtr
 
-    NNSG3dRS�\���̂��ێ����錻�ݎ��s����SBC���߂ւ̃|�C���^��Ԃ��܂��B
+    NNSG3dRS構造体が保持する現在実行中のSBC命令へのポインタを返します。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE u8*
 NNS_G3dRSGetSbcPtr(NNSG3dRS* rs)
@@ -223,7 +223,7 @@ NNS_G3dRSGetSbcPtr(NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSSetFlag
 
-    NNSG3dRS�\���̂��ێ�����t���O���Z�b�g���܂��B
+    NNSG3dRS構造体が保持するフラグをセットします。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRSSetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag)
@@ -236,7 +236,7 @@ NNS_G3dRSSetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSResetFlag
 
-    NNSG3dRS�\���̂��ێ�����t���O�����Z�b�g���܂��B
+    NNSG3dRS構造体が保持するフラグをリセットします。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRSResetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag)
@@ -249,11 +249,11 @@ NNS_G3dRSResetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetCurrentMatID
 
-    ����NNSG3dRS�\���̂ɐݒ肳��Ă���}�e���A��ID���擾���܂��B
-    �}�e���A��ID���ݒ肳��Ă��Ȃ��ꍇ��-1��Ԃ��܂��B
+    現在NNSG3dRS構造体に設定されているマテリアルIDを取得します。
+    マテリアルIDが設定されていない場合は-1を返します。
 
-    �}�e���A��ID��SBC��MAT�R�}���h�Őݒ肳��A����MAT�R�}���h���I�[�o�[���C�h����
-    ���A�R�[���o�b�N�֐��ɂ���ĕύX�����܂Œl��ێ����Â��܂��B
+    マテリアルIDはSBCのMATコマンドで設定され、次のMATコマンドがオーバーライドする
+    か、コールバック関数によって変更されるまで値を保持しつづけます。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE int
 NNS_G3dRSGetCurrentMatID(const NNSG3dRS* rs)
@@ -273,11 +273,11 @@ NNS_G3dRSGetCurrentMatID(const NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetCurrentNodeID
 
-    ����NNSG3dRS�\���̂ɐݒ肳��Ă���m�[�hID���擾���܂��B
-    �m�[�hID���ݒ肳��Ă��Ȃ��ꍇ��-1��Ԃ��܂��B
+    現在NNSG3dRS構造体に設定されているノードIDを取得します。
+    ノードIDが設定されていない場合は-1を返します。
 
-    �m�[�hID��SBC��NODE�R�}���h�Őݒ肳��A����NODE�R�}���h���I�[�o�[���C�h���邩�A
-    �R�[���o�b�N�֐��ɂ���ĕύX�����܂Œl��ێ����Â��܂��B
+    ノードIDはSBCのNODEコマンドで設定され、次のNODEコマンドがオーバーライドするか、
+    コールバック関数によって変更されるまで値を保持しつづけます。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE int
 NNS_G3dRSGetCurrentNodeID(const NNSG3dRS* rs)
@@ -297,12 +297,12 @@ NNS_G3dRSGetCurrentNodeID(const NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetCurrentNodeDescID
 
-    ����NNSG3dRS�\���̂ɐݒ肳��Ă���NodeDescID���擾���܂��B
-    NodeDescID���ݒ肳��Ă��Ȃ��ꍇ��-1��Ԃ��܂��B
+    現在NNSG3dRS構造体に設定されているNodeDescIDを取得します。
+    NodeDescIDが設定されていない場合は-1を返します。
 
-    NodeDescID��SBC��NODEDESC�R�}���h�Őݒ肳��A����NODEDESC�R�}���h��
-    �I�[�o�[���C�h���邩�A�R�[���o�b�N�֐��ɂ���ĕύX�����܂Œl��ێ�
-    ���Â��܂��B
+    NodeDescIDはSBCのNODEDESCコマンドで設定され、次のNODEDESCコマンドが
+    オーバーライドするか、コールバック関数によって変更されるまで値を保持
+    しつづけます。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE int
 NNS_G3dRSGetCurrentNodeDescID(const NNSG3dRS* rs)
@@ -322,8 +322,8 @@ NNS_G3dRSGetCurrentNodeDescID(const NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetPosScale
 
-    NNSG3dRS�\���̂ɃL���b�V������Ă���A���_���W�ɑ΂��ď悴���X�P�[���l��
-    �擾���܂��B
+    NNSG3dRS構造体にキャッシュされている、頂点座標に対して乗ざれるスケール値を
+    取得します。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE fx32
 NNS_G3dRSGetPosScale(const NNSG3dRS* rs)
@@ -336,8 +336,8 @@ NNS_G3dRSGetPosScale(const NNSG3dRS* rs)
 /*---------------------------------------------------------------------------*
     NNS_G3dRSGetInvPosScale
 
-    NNSG3dRS�\���̂ɃL���b�V������Ă���A���_���W�ɑ΂��ď悴���X�P�[���l��
-    �t�����擾���܂��B
+    NNSG3dRS構造体にキャッシュされている、頂点座標に対して乗ざれるスケール値の
+    逆数を取得します。
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE fx32
 NNS_G3dRSGetInvPosScale(const NNSG3dRS* rs)

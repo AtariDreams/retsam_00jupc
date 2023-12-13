@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_surver_cont.h
- *	@brief		ƒT[ƒo[@ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ã‚µãƒ¼ãƒãƒ¼ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.04.19
  *
@@ -22,38 +22,38 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒT[ƒo[ƒIƒuƒWƒFƒNƒgŠÇ—
+///	ã‚µãƒ¼ãƒãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†
 //=====================================
 typedef struct _WBR_SURVERCONT WBR_SURVERCONT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€‘€ì
+// ã‚·ã‚¹ãƒ†ãƒ æ“ä½œ
 GLOBAL WBR_SURVERCONT* WBR_SurverContInit( u32 objnum, u32 heapID );
 GLOBAL void WBR_SurverContExit( WBR_SURVERCONT* p_sys );
 GLOBAL BOOL WBR_SurverContMain( WBR_SURVERCONT* p_sys );
 
-// ƒRƒ}ƒ“ƒhİ’è
+// ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 GLOBAL void WBR_SurverContNowStatusActCmdSet( WBR_SURVERCONT* p_sys );
 GLOBAL void WBR_SurverContReqCmdSet( WBR_SURVERCONT* p_sys, const WF2DMAP_REQCMD* cp_req );
 GLOBAL void WBR_SurverContTalkDataSet( WBR_SURVERCONT* p_sys, u32 aid, const WBR_TALK_DATA* cp_data );
 GLOBAL void WBR_SurverContTalkReqDataSet( WBR_SURVERCONT* p_sys, const WBR_TALK_REQ* cp_data );
 
-// ’ÊMƒf[ƒ^æ“¾
+// é€šä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—
 GLOBAL BOOL WBR_SurverContSendDataPop( WBR_SURVERCONT* p_sys, WBR_OBJ_DATA* p_buff );
 
 

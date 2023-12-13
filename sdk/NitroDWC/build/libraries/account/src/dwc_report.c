@@ -9,13 +9,13 @@
 
 #ifndef SDK_FINALROM
 /** --------------------------------------------------------------------
-  �����ϐ�
+  内部変数
   ----------------------------------------------------------------------*/
 static u32          sReportLevel;
 
 #ifdef GSI_COMMON_DEBUG
 /** --------------------------------------------------------------------
-  GameSpy�̃f�o�b�O�\���R�[���o�b�N�֐�
+  GameSpyのデバッグ表示コールバック関数
   ----------------------------------------------------------------------*/
 static void
 DWCs_GsDebugCallback( GSIDebugCategory theCat, GSIDebugType theType,
@@ -25,10 +25,10 @@ DWCs_GsDebugCallback( GSIDebugCategory theCat, GSIDebugType theType,
 #pragma unused(theLevel)
 
     DWC_Printf( DWC_REPORTFLAG_GAMESPY,
-#if 1  // ���Ԃ��\��
+#if 1  // 時間も表示
                 "%d [%s][%s] ",
                 (u32)OS_TicksToMilliSeconds(OS_GetTick()),
-#else  // �J�e�S���ƃ^�C�v�̂ݕ\��
+#else  // カテゴリとタイプのみ表示
                 "[%s][%s] ",
 #endif
                 gGSIDebugCatStrings[theCat], 
@@ -39,7 +39,7 @@ DWCs_GsDebugCallback( GSIDebugCategory theCat, GSIDebugType theType,
 #endif
 
 /** --------------------------------------------------------------------
-  dwc�̃f�o�b�O���|�[�g���x���𒲐�����֐�
+  dwcのデバッグレポートレベルを調整する関数
   ----------------------------------------------------------------------*/
 void
 DWC_SetReportLevel( u32 level )
@@ -47,7 +47,7 @@ DWC_SetReportLevel( u32 level )
     sReportLevel = level;
 
 #ifdef GSI_COMMON_DEBUG
-    // GameSpy�̃f�o�b�O�\�����s���ꍇ�́AGameSpy�p�̃f�o�b�O�o�͐ݒ���s��
+    // GameSpyのデバッグ表示も行う場合は、GameSpy用のデバッグ出力設定を行う
     if (level & DWC_REPORTFLAG_GAMESPY){
         gsSetDebugCallback(DWCs_GsDebugCallback);
         //gsSetDebugLevel(GSIDebugCat_NatNeg, GSIDebugType_All, GSIDebugLevel_Verbose);
@@ -58,7 +58,7 @@ DWC_SetReportLevel( u32 level )
 }
 
 /** --------------------------------------------------------------------
-  dwc�̃f�o�b�O�p���|�[�g�֐�
+  dwcのデバッグ用レポート関数
   ----------------------------------------------------------------------*/
 void
 DWC_Printf( u32 level, const char* fmt, ... )

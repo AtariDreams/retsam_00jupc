@@ -21,31 +21,31 @@
   do-indent.
 
   Revision 1.5  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.4  2004/06/29 23:34:54  seiki_masashi
   PRC_IsEmpty
 
   Revision 1.3  2004/06/29 07:26:31  seiki_masashi
-  PRC_IsPenUpMarker ‚Ì‚‘¬‰»
+  PRC_IsPenUpMarker ã®é«˜é€ŸåŒ–
 
   Revision 1.2  2004/06/25 13:32:01  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ 'Standard' ‚Ì’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  'Standard' ã®è¿½åŠ 
 
   Revision 1.1  2004/06/24 07:03:10  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 12:00:29  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.5  2004/06/22 11:19:00  seiki_masashi
-  “®ì‰Â”\ƒo[ƒWƒ‡ƒ“(simple‚Ì‚İ)
+  å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³(simpleã®ã¿)
 
   Revision 1.4  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.3  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -54,13 +54,13 @@
   rename ptrcg to prc.
 
   Revision 1.3  2004/06/15 08:10:55  seiki_masashi
-  ƒ_ƒ~[‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ÅƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚ª“®ì‰Â”\‚É
+  ãƒ€ãƒŸãƒ¼ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒå‹•ä½œå¯èƒ½ã«
 
   Revision 1.2  2004/06/15 05:55:09  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ì‰ü‘P
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®æ”¹å–„
 
   Revision 1.1  2004/06/15 00:54:42  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚ÌİŒv
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®è¨­è¨ˆ
 
 
   $NoKeywords: $
@@ -96,8 +96,8 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         PRCi_Init
 
-  Description:  }Œ`”F¯ API ‚ğ‰Šú‰»‚µ‚Ü‚·.
-                ŠeƒAƒ‹ƒSƒŠƒYƒ€‚Ì‰Šú‰»ƒ‹[ƒ`ƒ“‚©‚çÅ‰‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·.
+  Description:  å›³å½¢èªè­˜ API ã‚’åˆæœŸåŒ–ã—ã¾ã™.
+                å„ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³ã‹ã‚‰æœ€åˆã«å‘¼ã³å‡ºã•ã‚Œã¾ã™.
 
   Arguments:    None.
 
@@ -108,12 +108,12 @@ void    PRCi_Init(void);
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetEntryStrokes
 
-  Description:  Œ©–{DB‚ÆŒ©–{DBƒGƒ“ƒgƒŠ‚©‚çA“_—ñƒf[ƒ^‚ğ“¾‚Ü‚·.
+  Description:  è¦‹æœ¬DBã¨è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã‹ã‚‰ã€ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã¾ã™.
 
-  Arguments:    strokes         “¾‚ç‚ê‚½“_—ñƒf[ƒ^.
-                                ‘‚«Š·‚¦‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ.
-                prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——.
-                entry           Œ©–{DBƒGƒ“ƒgƒŠ.
+  Arguments:    strokes         å¾—ã‚‰ã‚ŒãŸç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿.
+                                æ›¸ãæ›ãˆã¦ã¯ã„ã‘ã¾ã›ã‚“.
+                prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§.
+                entry           è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒª.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -125,12 +125,12 @@ void
 /*---------------------------------------------------------------------------*
   Name:         PRC_CopyStrokes
 
-  Description:  “_—ñƒf[ƒ^‚ğƒfƒB[ƒvƒRƒs[‚µ‚Ü‚·.
+  Description:  ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ã‚£ãƒ¼ãƒ—ã‚³ãƒ”ãƒ¼ã—ã¾ã™.
 
-  Arguments:    srcStrokes      ƒRƒs[Œ³‚Ì PRC_Strokes \‘¢‘Ì.
-                dstStrokes      ƒRƒs[æ‚Ì PRC_Strokes \‘¢‘Ì.
+  Arguments:    srcStrokes      ã‚³ãƒ”ãƒ¼å…ƒã® PRC_Strokes æ§‹é€ ä½“.
+                dstStrokes      ã‚³ãƒ”ãƒ¼å…ˆã® PRC_Strokes æ§‹é€ ä½“.
 
-  Returns:      ƒRƒs[‚Å‚«‚½‚ç TRUE.
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    PRC_CopyStrokes(const PRCStrokes *srcStrokes, PRCStrokes *dstStrokes);
 
@@ -141,11 +141,11 @@ BOOL    PRC_CopyStrokes(const PRCStrokes *srcStrokes, PRCStrokes *dstStrokes);
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetEntryCode
 
-  Description:  Œ©–{DBƒGƒ“ƒgƒŠ‚É‘Î‰‚·‚éƒR[ƒh”Ô†‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã«å¯¾å¿œã™ã‚‹ã‚³ãƒ¼ãƒ‰ç•ªå·ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    entry       Œ©–{DBƒGƒ“ƒgƒŠ.
+  Arguments:    entry       è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒª.
 
-  Returns:      ƒR[ƒh”Ô†.
+  Returns:      ã‚³ãƒ¼ãƒ‰ç•ªå·.
  *---------------------------------------------------------------------------*/
 static inline int PRC_GetEntryCode(const PRCPrototypeEntry *entry)
 {
@@ -155,11 +155,11 @@ static inline int PRC_GetEntryCode(const PRCPrototypeEntry *entry)
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetEntryData
 
-  Description:  Œ©–{DBƒGƒ“ƒgƒŠ‚É•R•t‚¯‚³‚ê‚½ƒ†[ƒUƒf[ƒ^‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã«ç´ä»˜ã‘ã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    entry       Œ©–{DBƒGƒ“ƒgƒŠ.
+  Arguments:    entry       è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒª.
 
-  Returns:      ƒ†[ƒUƒf[ƒ^.
+  Returns:      ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿.
  *---------------------------------------------------------------------------*/
 static inline void *PRC_GetEntryData(const PRCPrototypeEntry *entry)
 {
@@ -169,11 +169,11 @@ static inline void *PRC_GetEntryData(const PRCPrototypeEntry *entry)
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitStrokes
 
-  Description:  PRCStrokes \‘¢‘Ì‚ğ‰Šú‰»‚µ‚Ü‚·.
+  Description:  PRCStrokes æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™.
 
-  Arguments:    strokes     ‰Šú‰»‘ÎÛ.
-                points      Àƒƒ‚ƒŠ—Ìˆæ‚Æ‚È‚é PRCPoint ‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                size        ”z—ñ‚ÌŒÂ”.
+  Arguments:    strokes     åˆæœŸåŒ–å¯¾è±¡.
+                points      å®Ÿãƒ¡ãƒ¢ãƒªé ˜åŸŸã¨ãªã‚‹ PRCPoint ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                size        é…åˆ—ã®å€‹æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -188,10 +188,10 @@ static inline void PRC_InitStrokes(PRCStrokes *strokes, PRCPoint *points, u32 si
 /*---------------------------------------------------------------------------*
   Name:         PRC_AppendPoint
 
-  Description:  PRCStrokes ‚É“_‚ğ’Ç‰Á‚·‚é.
+  Description:  PRCStrokes ã«ç‚¹ã‚’è¿½åŠ ã™ã‚‹.
 
-  Arguments:    strokes     ‘ÎÛ.
-                x, y        ‰Á‚¦‚é“_.
+  Arguments:    strokes     å¯¾è±¡.
+                x, y        åŠ ãˆã‚‹ç‚¹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -207,9 +207,9 @@ static inline void PRC_AppendPoint(PRCStrokes *strokes, int x, int y)
 /*---------------------------------------------------------------------------*
   Name:         PRC_AppendPenUpMarker
 
-  Description:  PRCStrokes ‚É pen up ‚ğˆÓ–¡‚·‚éƒ}[ƒJ[‚ğ’Ç‰Á‚µ‚Ü‚·.
+  Description:  PRCStrokes ã« pen up ã‚’æ„å‘³ã™ã‚‹ãƒãƒ¼ã‚«ãƒ¼ã‚’è¿½åŠ ã—ã¾ã™.
 
-  Arguments:    strokes     ‘ÎÛ.
+  Arguments:    strokes     å¯¾è±¡.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -221,9 +221,9 @@ static inline void PRC_AppendPenUpMarker(PRCStrokes *strokes)
 /*---------------------------------------------------------------------------*
   Name:         PRC_Clear
 
-  Description:  PRCStrokes ‚ğ‹ó‚É‚µ‚Ü‚·.
+  Description:  PRCStrokes ã‚’ç©ºã«ã—ã¾ã™.
 
-  Arguments:    strokes     ‘ÎÛ.
+  Arguments:    strokes     å¯¾è±¡.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -236,11 +236,11 @@ static inline void PRC_Clear(PRCStrokes *strokes)
 /*---------------------------------------------------------------------------*
   Name:         PRC_IsFull
 
-  Description:  PRCStrokes ‚ªˆê”t‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ü‚·.
+  Description:  PRCStrokes ãŒä¸€æ¯ã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ã¾ã™.
 
-  Arguments:    strokes     ‘ÎÛ.
+  Arguments:    strokes     å¯¾è±¡.
 
-  Returns:      ˆê”t‚È‚ç TRUE.
+  Returns:      ä¸€æ¯ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL PRC_IsFull(const PRCStrokes *strokes)
 {
@@ -251,11 +251,11 @@ static inline BOOL PRC_IsFull(const PRCStrokes *strokes)
 /*---------------------------------------------------------------------------*
   Name:         PRC_IsEmpty
 
-  Description:  PRCStrokes ‚ª‹ó‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ü‚·.
+  Description:  PRCStrokes ãŒç©ºã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ã¾ã™.
 
-  Arguments:    strokes     ‘ÎÛ.
+  Arguments:    strokes     å¯¾è±¡.
 
-  Returns:      ‹ó‚È‚ç TRUE.
+  Returns:      ç©ºãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL PRC_IsEmpty(const PRCStrokes *strokes)
 {
@@ -266,16 +266,16 @@ static inline BOOL PRC_IsEmpty(const PRCStrokes *strokes)
 /*---------------------------------------------------------------------------*
   Name:         PRC_IsPenUpMarker
 
-  Description:  pen up ‚ğˆÓ–¡‚·‚éƒ}[ƒJ[‚©‚Ç‚¤‚©”»’f‚µ‚Ü‚·.
+  Description:  pen up ã‚’æ„å‘³ã™ã‚‹ãƒãƒ¼ã‚«ãƒ¼ã‹ã©ã†ã‹åˆ¤æ–­ã—ã¾ã™.
 
-  Arguments:    point       ’²‚×‚é‘ÎÛ.
+  Arguments:    point       èª¿ã¹ã‚‹å¯¾è±¡.
 
-  Returns:      pen up ‚Ìƒ}[ƒJ[‚¾‚Á‚½‚ç TRUE.
+  Returns:      pen up ã®ãƒãƒ¼ã‚«ãƒ¼ã ã£ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline int PRC_IsPenUpMarker(const PRCPoint *point)
 {
     SDK_ASSERT(point);
-    // point->x == PRC_PEN_UP_MARKER_X ‚È‚ç‚Î point->y==PRC_PEN_UP_MARKER_Y
+    // point->x == PRC_PEN_UP_MARKER_X ãªã‚‰ã° point->y==PRC_PEN_UP_MARKER_Y
     SDK_ASSERT((point->x != PRC_PEN_UP_MARKER_X) || (point->y == PRC_PEN_UP_MARKER_Y));
     return (point->x == PRC_PEN_UP_MARKER_X);
 }
@@ -283,11 +283,11 @@ static inline int PRC_IsPenUpMarker(const PRCPoint *point)
 /*---------------------------------------------------------------------------*
   Name:         PRCi_CalcDistance
 
-  Description:  ƒ†[ƒNƒŠƒbƒh‹——£‚ğZo‚µ‚Ü‚·.
+  Description:  ãƒ¦ãƒ¼ã‚¯ãƒªãƒƒãƒ‰è·é›¢ã‚’ç®—å‡ºã—ã¾ã™.
 
-  Arguments:    p1, p2      ’²‚×‚é‘ÎÛ.
+  Arguments:    p1, p2      èª¿ã¹ã‚‹å¯¾è±¡.
 
-  Returns:      ƒ†[ƒNƒŠƒbƒh‹——£(fx32).
+  Returns:      ãƒ¦ãƒ¼ã‚¯ãƒªãƒƒãƒ‰è·é›¢(fx32).
  *---------------------------------------------------------------------------*/
 static inline fx32 PRCi_CalcDistance(const PRCPoint *p1, const PRCPoint *p2)
 {
@@ -300,11 +300,11 @@ static inline fx32 PRCi_CalcDistance(const PRCPoint *p1, const PRCPoint *p2)
 /*---------------------------------------------------------------------------*
   Name:         PRCi_CalcAngle
 
-  Description:  Šp“x‚ğZo‚µ‚Ü‚·.
+  Description:  è§’åº¦ã‚’ç®—å‡ºã—ã¾ã™.
 
-  Arguments:    p1, p2      ’²‚×‚é‘ÎÛ.
+  Arguments:    p1, p2      èª¿ã¹ã‚‹å¯¾è±¡.
 
-  Returns:      (2pi/65536)ƒ‰ƒWƒAƒ“’PˆÊ‚ÌŠp“x(u16).
+  Returns:      (2pi/65536)ãƒ©ã‚¸ã‚¢ãƒ³å˜ä½ã®è§’åº¦(u16).
  *---------------------------------------------------------------------------*/
 static inline u16 PRCi_CalcAngle(const PRCPoint *from, const PRCPoint *to)
 {

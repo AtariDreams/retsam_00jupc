@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_227.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			227�@��U�̂Ƃ��G����Ō�Ɏ󂯂��_���[�W��1.5�{�ŕԂ��B���̃^�[���U�����󂯂Ă��Ȃ��Ǝ��s�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			227　後攻のとき敵から最後に受けたダメージを1.5倍で返す。そのターン攻撃を受けていないと失敗。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

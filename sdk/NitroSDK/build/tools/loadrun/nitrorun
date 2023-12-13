@@ -25,19 +25,19 @@
 #  $NoKeywords: $
 #---------------------------------------------------------------------------
 
-#---- SDK ƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ
+#---- SDK ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 SDKROOT=`cygpath -u "$NITROSDK_ROOT"`
 
-#---- ŽÀsƒRƒ}ƒ“ƒh
+#---- å®Ÿè¡Œã‚³ãƒžãƒ³ãƒ‰
 LOADRUN=$SDKROOT/tools/bin/loadrun.exe
 BURYARG=$SDKROOT/tools/bin/buryarg.exe
 COMMANDNAME=`basename $0`
 
-#---- ƒRƒ}ƒ“ƒhƒIƒvƒVƒ‡ƒ“
+#---- ã‚³ãƒžãƒ³ãƒ‰ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 BOPTION=""
 LOPTION=""
 
-#---- “®ìƒtƒ‰ƒO
+#---- å‹•ä½œãƒ•ãƒ©ã‚°
 gVerboseMode=0
 gHelpMode=0
 gIsError=0
@@ -45,21 +45,21 @@ gNoExecMode=0
 
 #----------------------------------------------------------------
 # showVersion
-#		ƒo[ƒWƒ‡ƒ“•\Ž¦
+#		ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤º
 #
 function showVersion()
 {
     echo "$COMMANDNAME  1.2  Copyright 2005 Nintendo. All right reserved."
     #
-    # 1.2 ˆø”‚ª""‚ÅˆÍ‚Ü‚ê‚Ä‹ó”’‚ðŠÜ‚ñ‚¾•¶Žš—ñ‚àŽó‚¯Žæ‚ê‚é‚æ‚¤‚É‚È‚Á‚½
-    # 1.1 ƒo[ƒWƒ‡ƒ“•\Ž¦‚ð“ü‚ê‚½
+    # 1.2 å¼•æ•°ãŒ""ã§å›²ã¾ã‚Œã¦ç©ºç™½ã‚’å«ã‚“ã æ–‡å­—åˆ—ã‚‚å—ã‘å–ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸ
+    # 1.1 ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤ºã‚’å…¥ã‚ŒãŸ
     # 1.0 first release
     #
 }
 
 #----------------------------------------------------------------
 # showUsage
-#		Žg‚¢•û•\Ž¦
+#		ä½¿ã„æ–¹è¡¨ç¤º
 #
 function showUsage()
 {
@@ -82,7 +82,7 @@ function showUsage()
 
 #----------------------------------------------------------------
 # checkError
-# 		‚±‚±‚Ü‚Å‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+# 		ã“ã“ã¾ã§ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 #
 function checkError
 {
@@ -112,11 +112,11 @@ function checkError
 
 #----------------------------------------------------------------
 # checkExistence
-#		ƒtƒ@ƒCƒ‹‚Ì‘¶ÝŠm”F
+#		ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
 #
 function checkExistence()
 {
-	#---- buryarg ƒRƒ}ƒ“ƒh‚ª‘¶Ý‚·‚é‚©
+	#---- buryarg ã‚³ãƒžãƒ³ãƒ‰ãŒå­˜åœ¨ã™ã‚‹ã‹
 	if [ ! -e $BURYARG ];
 	then
 		gIsError=1
@@ -124,7 +124,7 @@ function checkExistence()
 		return
 	fi;
 
-	#---- loadrun ƒRƒ}ƒ“ƒh‚ª‘¶Ý‚·‚é‚©
+	#---- loadrun ã‚³ãƒžãƒ³ãƒ‰ãŒå­˜åœ¨ã™ã‚‹ã‹
 	if [ ! -e $LOADRUN ];
 	then
 		gIsError=1
@@ -132,7 +132,7 @@ function checkExistence()
 		return
 	fi;
 
-	#---- srl ƒtƒ@ƒCƒ‹‚ª‘¶Ý‚·‚é‚©
+	#---- srl ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã‹
 	if [ ! -e $1 ];
 	then
 		gIsError=1
@@ -143,55 +143,55 @@ function checkExistence()
 
 #================================================================
 # main
-#		ƒƒCƒ“
+#		ãƒ¡ã‚¤ãƒ³
 #
 
-#---------------- ƒIƒvƒVƒ‡ƒ“‚Ìƒ`ƒFƒbƒN
+#---------------- ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ãƒã‚§ãƒƒã‚¯
 while [ 1 ];
 do
 	case $1 in
-		# ƒwƒ‹ƒv
+		# ãƒ˜ãƒ«ãƒ—
 		--help|-help|-h)
 			gHelpMode=1
 			shift 1
 			continue
 			;;
-		# ƒo[ƒWƒ‡ƒ“
+		# ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		--version|-version)
 			showVersion
 			exit 1
 			;;
-		# buryarg ‚É“n‚·ƒIƒvƒVƒ‡ƒ“
+		# buryarg ã«æ¸¡ã™ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		--bopt*|-bopt*)
 			BOPTION=$2
 			shift 2
 			continue
 			;;
-		# loadrun ‚É“n‚·ƒIƒvƒVƒ‡ƒ“
+		# loadrun ã«æ¸¡ã™ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		--lopt*|-lopt*)
 			LOPTION=$2
 			shift 2
 			continue
 			;;
-		# verbose ƒ‚[ƒh
+		# verbose ãƒ¢ãƒ¼ãƒ‰
 		--verbose|-v)
 			gVerboseMode=1
 			shift 1
 			continue
 			;;
-		# ŽÀs‚µ‚È‚¢
+		# å®Ÿè¡Œã—ãªã„
 		--noexec|-n)
 			gNoExecMode=1
 			shift 1
 			continue
 			;;
-		# ‘¼‚ÌƒIƒvƒVƒ‡ƒ“
+		# ä»–ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		-*)
 			gIsError=1
 			echo "*** Error: $COMMANDNAME: Illegal option"
 			break;
 			;;
-		# ƒIƒvƒVƒ‡ƒ“‚Å‚È‚¢‚à‚Ì
+		# ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ãªã„ã‚‚ã®
 		*)
 			break;
 			;;
@@ -199,7 +199,7 @@ do
 
 done
 
-#---------------- ƒtƒ@ƒCƒ‹‚Ì‘¶Ý‚È‚Ç‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+#---------------- ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãªã©ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 ARGC=$#
 
 if [ $gIsError -eq 0 ];
@@ -209,7 +209,7 @@ fi;
 
 checkError
 
-#---------------- ƒRƒ}ƒ“ƒhŽÀs
+#---------------- ã‚³ãƒžãƒ³ãƒ‰å®Ÿè¡Œ
 {
 	if [ $gVerboseMode -eq 1 ];
 	then
@@ -225,7 +225,7 @@ checkError
 
 	if [ $gNoExecMode -eq 0 ];
 	then
-		#---- ‚Q‚Â‚ÌƒRƒ}ƒ“ƒh‚ðƒpƒCƒv‚ÅŒq‚°ŽÀs
+		#---- ï¼’ã¤ã®ã‚³ãƒžãƒ³ãƒ‰ã‚’ãƒ‘ã‚¤ãƒ—ã§ç¹‹ã’å®Ÿè¡Œ
 		$BURYARG $BOPTION --stdout "$@"  | $LOADRUN --stdin $LOPTION
 	fi;
 }

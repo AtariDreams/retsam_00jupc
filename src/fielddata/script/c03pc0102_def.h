@@ -1,8 +1,8 @@
 #ifndef _C03PC0102_DEF_H_
 #define _C03PC0102_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C03PC0102		(1)
-#define	SCRID_C03PC0102_DATA_MAX		(1)		//最大数
+#define	SCRID_C03PC0102_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_C03PC0102_DEF_H_

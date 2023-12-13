@@ -56,24 +56,24 @@ G3dDrawInternal_(NNSG3dRS* pRS, NNSG3dRenderObj* pRenderObj)
     // Init
     //
     // NOTICE:
-    // isScaleCacheOne�̍ŏ��̃r�b�g�͗��ĂĂ�������
-    // �������Ȃ��ƁASi3d��classic scale off�̏ꍇ�ɂ��������Ȃ�
-    // (���m�[�h�̐e�̃X�P�[����1�Ƃ��Čv�Z�����邽�߂Ƀr�b�g�𗧂Ă�)
+    // isScaleCacheOneの最初のビットは立てておくこと
+    // そうしないと、Si3dのclassic scale offの場合におかしくなる
+    // (根ノードの親のスケールを1として計算させるためにビットを立てる)
     //
     MI_CpuClearFast(pRS, sizeof(*pRS));
-    pRS->isScaleCacheOne[0] = 1; // �G���f�B�A���ˑ�
+    pRS->isScaleCacheOne[0] = 1; // エンディアン依存
 
     //
-    // NNS_G3D_RSFLAG_NODE_VISIBLE�̓Z�b�g���Ă����̂�����
-    // ���[�U�[��`��SBC�ł����Ȃ�MAT�R�}���h�����s�����悤��
-    // �ꍇ�ɔ�����B
+    // NNS_G3D_RSFLAG_NODE_VISIBLEはセットしておくのが無難
+    // ユーザー定義のSBCでいきなりMATコマンドが実行されるような
+    // 場合に備える。
     //
     pRS->flag = NNS_G3D_RSFLAG_NODE_VISIBLE;
 
     //
-    // ���߂���SBC�̑I��
-    // pRenderObj->ptrUserSbc�Ƀ|�C���^��ݒ肷�邱�Ƃ�
-    // ���߂���SBC��ύX���邱�Ƃ��ł���B
+    // 解釈するSBCの選択
+    // pRenderObj->ptrUserSbcにポインタを設定することで
+    // 解釈するSBCを変更することができる。
     //
     if (pRenderObj->ptrUserSbc)
     {
@@ -85,12 +85,12 @@ G3dDrawInternal_(NNSG3dRS* pRS, NNSG3dRenderObj* pRenderObj)
     }
 
     //
-    // pRenderObj�̐ݒ�
+    // pRenderObjの設定
     //
     pRS->pRenderObj   = pRenderObj;
 
     //
-    // pRenderObj->resMdl�̒��ŌJ��Ԃ��g�������L���b�V�����Ă���
+    // pRenderObj->resMdlの中で繰り返し使う情報をキャッシュしておく
     //
     pRS->pResNodeInfo = NNS_G3dGetNodeInfo(pRenderObj->resMdl);
     pRS->pResMat      = NNS_G3dGetMat(pRenderObj->resMdl);
@@ -102,7 +102,7 @@ G3dDrawInternal_(NNSG3dRS* pRS, NNSG3dRenderObj* pRenderObj)
     pRS->invPosScale  = pRenderObj->resMdl->info.invPosScale;
 
     //
-    // �R�[���o�b�N�̐ݒ�
+    // コールバックの設定
     //
     if (pRenderObj->cbFunc && pRenderObj->cbCmd < NNS_G3D_SBC_COMMAND_NUM)
     {
@@ -139,14 +139,14 @@ G3dDrawInternal_(NNSG3dRS* pRS, NNSG3dRenderObj* pRenderObj)
     G3dDrawInternal_Loop_(pRS);
 
     //
-    // �N���[���A�b�v
+    // クリーンアップ
     //
     // Asserts for notifying 'DO NOT MODIFY THEM'
     NNS_G3D_ASSERT(pRS->pRenderObj == pRenderObj);
     NNS_G3D_ASSERT(pRS == NNS_G3dRS);
 
-    // �g���₷�����邽�߁A���R�[�h�����ꍇ�A�����I�Ƀ��R�[�h�t���O�����Z�b�g����B
-    // ���ɌĂԂƂ��͍Đ����[�h�ɂȂ��Ă���B
+    // 使いやすくするため、レコードした場合、自動的にレコードフラグをリセットする。
+    // 次に呼ぶときは再生モードになっている。
     pRenderObj->flag &= ~NNS_G3D_RENDEROBJ_FLAG_RECORD; 
 }
 
@@ -154,7 +154,7 @@ G3dDrawInternal_(NNSG3dRS* pRS, NNSG3dRenderObj* pRenderObj)
 /*---------------------------------------------------------------------------*
     updateHintVec_
 
-    pAnmObj�œo�^����Ă��郊�\�[�XID�ɑΉ�����r�b�g��ON�ɂ��Ă���
+    pAnmObjで登録されているリソースIDに対応するビットをONにしていく
  *---------------------------------------------------------------------------*/
 static void
 updateHintVec_(u32* pVec, const NNSG3dAnmObj* pAnmObj)
@@ -179,8 +179,8 @@ updateHintVec_(u32* pVec, const NNSG3dAnmObj* pAnmObj)
 /*---------------------------------------------------------------------------*
     NNS_G3dDraw
 
-    ���f����`�悷��B�A�j���[�V�������̐ݒ�͎��O��pRenderObj�𑀍삷�邱�Ƃ�
-    ����čs���B
+    モデルを描画する。アニメーション等の設定は事前にpRenderObjを操作することに
+    よって行う。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dDraw(NNSG3dRenderObj* pRenderObj)
@@ -198,7 +198,7 @@ NNS_G3dDraw(NNSG3dRenderObj* pRenderObj)
 
     if (NNS_G3dRenderObjTestFlag(pRenderObj, NNS_G3D_RENDEROBJ_FLAG_HINT_OBSOLETE))
     {
-        // hint�p�r�b�g�x�N�g�����������Ȃ��̂ŃA�b�v�f�[�g����
+        // hint用ビットベクトルが正しくないのでアップデートする
         MI_CpuClear32(&pRenderObj->hintMatAnmExist[0], sizeof(u32) * (NNS_G3D_SIZE_MAT_MAX / 32));
         MI_CpuClear32(&pRenderObj->hintJntAnmExist[0], sizeof(u32) * (NNS_G3D_SIZE_JNT_MAX / 32));
         MI_CpuClear32(&pRenderObj->hintVisAnmExist[0], sizeof(u32) * (NNS_G3D_SIZE_JNT_MAX / 32));
@@ -219,7 +219,7 @@ NNS_G3dDraw(NNSG3dRenderObj* pRenderObj)
     }
     else
     {
-        // SBC�����^�C���\���̗̈悪�m�ۂ���Ă��Ȃ��ꍇ�̓��[�J���X�^�b�N�ɂƂ�
+        // SBCランタイム構造体領域が確保されていない場合はローカルスタックにとる
         NNSG3dRS rs;
         NNS_G3dRS = &rs;
         G3dDrawInternal_(&rs, pRenderObj);
@@ -230,11 +230,11 @@ NNS_G3dDraw(NNSG3dRenderObj* pRenderObj)
 
 
 //
-// �R�[���o�b�N����R�[�h�̃R�[�f�B���O�ւ��钍�ӊ��N
+// コールバック判定コードのコーディング関する注意喚起
 // NOTICE:
-// �R�[���o�b�N�֐������ŃR�[���o�b�N���������[�U�[�ɂ���ď����������邱�Ƃ�
-// ���邱�Ƃɒ��ӂ��Ă��������B�܂�A�R�[���o�b�N�����邩�ǂ����̔����
-// auto�ϐ��Ɋi�[���āA���̃R�[���o�b�N����ɗ��p���Ă͂����܂���B
+// コールバック関数内部でコールバック条件がユーザーによって書き換えられることが
+// あることに注意してください。つまり、コールバックがあるかどうかの判定を
+// auto変数に格納して、次のコールバック判定に流用してはいけません。
 //
 
 /*---------------------------------------------------------------------------*
@@ -244,11 +244,11 @@ NNS_G3dDraw(NNSG3dRenderObj* pRenderObj)
     operands:   none
     callbacks:  A/B/C
 
-    �������
-    �������Ȃ��B
+    動作説明
+    何もしない。
 
-    �t�L
-    �R�[���o�b�N�͗L���ł��邪�A�^�C�~���O�̎w��͖��Ӗ��ł���B
+    付記
+    コールバックは有効であるが、タイミングの指定は無意味である。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_NOP(NNSG3dRS* rs, u32)
@@ -276,13 +276,13 @@ NNSi_G3dFuncSbc_NOP(NNSG3dRS* rs, u32)
     operands:   none
     callbacks:  A/B/C
 
-    �������
-    NNS_G3D_FUNCSBC_STATUS_RETURN��Ԃ��āASbc�̎��s���I����.
+    動作説明
+    NNS_G3D_FUNCSBC_STATUS_RETURNを返して、Sbcの実行を終える.
 
-    �t�L
-    SBC�̍Ō�ɂ���R�}���h�B
-    �R�[���o�b�N�͗L���ł��邪�A�^�C�~���O�̎w��͖��Ӗ��ł���B
-    �Ȃ��A���̖��߂�NNS_G3dRS->c���C���N�������g���Ȃ��B
+    付記
+    SBCの最後にあるコマンド。
+    コールバックは有効であるが、タイミングの指定は無意味である。
+    なお、この命令はNNS_G3dRS->cをインクリメントしない。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_RET(NNSG3dRS* rs, u32)
@@ -314,19 +314,19 @@ NNSi_G3dFuncSbc_RET(NNSG3dRS* rs, u32)
                 B: none
                 C: after
     
-    �������
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �r�W�r���e�B�A�j���[�V�����̎��s�O�`�F�b�N���s��
-       �r�W�r���e�B�A�j���[�V���������݂���ꍇ�F
-           �r�W�r���e�B�A�j���[�V�����u�����h�֐��̌���(�Ԃ�l�ł͂Ȃ�)�ɏ]����
-           NNS_G3D_RSFLAG_NODE_VISIBLE�r�b�g���Z�b�g
-       �Ȃ��ꍇ�F
-           flags���Q�Ƃ��āANNS_G3D_RSFLAG_NODE_VISIBLE�r�b�g���Z�b�g
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E rs->c�����Z
+    動作説明
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ ビジビリティアニメーションの実行前チェックを行う
+       ビジビリティアニメーションが存在する場合：
+           ビジビリティアニメーションブレンド関数の結果(返り値ではない)に従って
+           NNS_G3D_RSFLAG_NODE_VISIBLEビットをセット
+       ない場合：
+           flagsを参照して、NNS_G3D_RSFLAG_NODE_VISIBLEビットをセット
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ rs->cを加算
 
-    �t�L
-    NNS_G3D_RSFLAG_NODE_VISIBLE�r�b�g�́A���̊֐����ł̂ݕύX�����B
+    付記
+    NNS_G3D_RSFLAG_NODE_VISIBLEビットは、この関数内でのみ変更される。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_NODE(NNSG3dRS* rs, u32)
@@ -343,10 +343,10 @@ NNSi_G3dFuncSbc_NODE(NNSG3dRS* rs, u32)
         rs->flag |= NNS_G3D_RSFLAG_CURRENT_NODE_VALID;
         rs->pVisAnmResult = &rs->tmpVisAnmResult;
 
-        // �R�[���o�b�N�`
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // rs->pVisAnmResult�𑀍삷�邱�Ƃ�
-        // �r�W�r���e�B�v�Z�������邱�Ƃ��ł���
+        // コールバックＡ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // rs->pVisAnmResultを操作することで
+        // ビジビリティ計算を乗っ取ることができる
         cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_NODE, &cbTiming);
 
         if (!cbFlag)
@@ -357,22 +357,22 @@ NNSi_G3dFuncSbc_NODE(NNSG3dRS* rs, u32)
                 NNSi_G3dBitVecCheck(&rs->pRenderObj->hintVisAnmExist[0], curNode) &&
                 (*rs->pRenderObj->funcBlendVis)(rs->pVisAnmResult, rs->pRenderObj->anmVis, curNode))
             {
-                // AnmObj�̃��X�g���ݒ肳��Ă��āA
-                // �r�W�r���e�B�A�j���[�V�����Ɋւ���q���g�x�N�g���̃r�b�g��ON�ɂȂ��Ă���
-                // �r�W�r���e�B�A�j���[�V�����u�����_���Ŏ��ۂɊY������r�W�r���e�B�A�j���[�V�������������ꍇ
+                // AnmObjのリストが設定されていて、
+                // ビジビリティアニメーションに関するヒントベクトルのビットがONになっていて
+                // ビジビリティアニメーションブレンダ内で実際に該当するビジビリティアニメーションがあった場合
                 ;
             }
             else
             {
-                // �r�W�r���e�B�A�j���[�V�������Ȃ��ꍇ�A
-                // �I�y�����h�̃f�[�^���画�f����B
+                // ビジビリティアニメーションがない場合、
+                // オペランドのデータから判断する。
                 rs->pVisAnmResult->isVisible = *(rs->c + 2) & 1;
             }
         }
         
-        // �R�[���o�b�N�a
-        // �v�Z���ꂽ�r�W�r���e�B��rs->pVisAnmResult�𑀍삷�邱�Ƃ�
-        // ���ς��邱�Ƃ��ł���B
+        // コールバックＢ
+        // 計算されたビジビリティをrs->pVisAnmResultを操作することで
+        // 改変することができる。
         cbFlag = NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_NODE, &cbTiming);
 
         if (!cbFlag)
@@ -387,8 +387,8 @@ NNSi_G3dFuncSbc_NODE(NNSG3dRS* rs, u32)
             }
         }
 
-        // �R�[���o�b�N�b
-        // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
+        // コールバックＣ
+        // 次の命令の前に何らかの処理を挿入することができる。
         (void)NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_NODE, cbTiming);
     }
 
@@ -405,33 +405,33 @@ NNSi_G3dFuncSbc_NODE(NNSG3dRS* rs, u32)
                 B: none
                 C: after
 
-    �������
-    �E NNS_G3D_RSFLAG_NODE_VISIBLE��OFF�Ȃ�΂��̖��ߑS�̂��X�L�b�v
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �s��X�^�b�N����J�����g�s��Ƀ��[�h
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E rs->c�����Z
+    動作説明
+    ・ NNS_G3D_RSFLAG_NODE_VISIBLEがOFFならばこの命令全体をスキップ
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ 行列スタックからカレント行列にロード
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ rs->cを加算
 
-    �t�L
-    NNS_G3D_RSFLAG_NODE_VISIBLE��OFF�̏ꍇ�̓R�[���o�b�N���܂߂ăX�L�b�v�����B
-    �J�n�O�ɁAPOSITION_VECTOR���[�h�łȂ��Ă͂Ȃ�Ȃ��B
+    付記
+    NNS_G3D_RSFLAG_NODE_VISIBLEがOFFの場合はコールバックも含めてスキップされる。
+    開始前に、POSITION_VECTORモードでなくてはならない。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_MTX(NNSG3dRS* rs, u32)
 {
     NNS_G3D_NULL_ASSERT(rs);
 
-    // MTX�R�}���h��Draw�J�e�S���ɓ���
-    // MAT,SHP�̑O�ɐ��������R�}���h������
+    // MTXコマンドはDrawカテゴリに入る
+    // MAT,SHPの前に生成されるコマンドだから
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW) &&
         (rs->flag & NNS_G3D_RSFLAG_NODE_VISIBLE))
     {
         BOOL                    cbFlag;
         NNSG3dSbcCallBackTiming cbTiming;
 
-        // �R�[���o�b�N�`
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // �s��̃��X�g�A�����u�������邱�Ƃ��ł���B
+        // コールバックＡ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // 行列のリストア動作を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_MTX, &cbTiming);
 
         if (!cbFlag)
@@ -447,8 +447,8 @@ NNSi_G3dFuncSbc_MTX(NNSG3dRS* rs, u32)
             }
         }
 
-        // �R�[���o�b�N�b
-        // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
+        // コールバックＣ
+        // 次の命令の前に何らかの処理を挿入することができる。
         (void)NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_MTX, cbTiming);
     }
 
@@ -481,12 +481,12 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
 
     rs->currentMat = (u8)idxMat;
     rs->flag |= NNS_G3D_RSFLAG_CURRENT_MAT_VALID;
-    // �R�[���o�b�N���Ă΂��ꍇ�Ɏg�p�����̈���w�肵�Ă����Ȃ��Ă͂Ȃ�Ȃ� 
+    // コールバックが呼ばれる場合に使用される領域を指定しておかなくてはならない 
     rs->pMatAnmResult = &rs->tmpMatAnmResult;
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �}�e���A���ݒ�R�[�h��u�������邱�Ƃ��ł���B
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // マテリアル設定コードを置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_MAT, &cbTiming);
 
     if (!cbFlag)
@@ -494,32 +494,32 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
         NNSG3dMatAnmResult* pResult;
 
         //
-        // �v�Z���ʂ̃o�b�t�@���g�����ǂ��������肷��B
+        // 計算結果のバッファを使うかどうかを決定する。
         //
         if (rs->pRenderObj->recMatAnm &&
             !(rs->flag & NNS_G3D_RSFLAG_OPT_RECORD))
         {
-            // �o�b�t�@���g�p�ł���ꍇ
+            // バッファが使用できる場合
             pResult = (rs->pRenderObj->recMatAnm + idxMat);
         }
         else
         {
             //
-            // ����if�u���b�N�ł́A�}�e���A���f�[�^�̎擾��v�Z���s���A
-            // pResult�ɓK�؂ȃf�[�^��ݒ肷��B
+            // このifブロックでは、マテリアルデータの取得や計算を行い、
+            // pResultに適切なデータを設定する。
             //
             if ((opt == NNS_G3D_SBCFLG_001 || opt == NNS_G3D_SBCFLG_010) &&
                 NNSi_G3dBitVecCheck(&rs->isMatCached[0], idxMat))
             {
-                // MAT�L���b�V���ς݃t���O�������Ă���ꍇ
+                // MATキャッシュ済みフラグが立っている場合
                 if (rs->pRenderObj->recMatAnm)
                 {
-                    // �ȑO�̌v�Z���ʂ��o�b�t�@�ɋL�^����Ă���̂ł���������o��
+                    // 以前の計算結果がバッファに記録されているのでそこから取り出す
                     pResult = (rs->pRenderObj->recMatAnm + idxMat);
                 }
                 else
                 {
-                    // �ȑO�̌v�Z���ʂ��L���b�V���ɋL�^����Ă���̂ł���������o��
+                    // 以前の計算結果がキャッシュに記録されているのでそこから取り出す
                     pResult = &NNS_G3dRSOnGlb.matCache[idxMat];
                 }
             }
@@ -527,29 +527,29 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
             {
                 if (rs->pRenderObj->recMatAnm)
                 {
-                    // MAT�L���b�V���ς݃t���O�𗧂Ă�
+                    // MATキャッシュ済みフラグを立てる
                     NNSi_G3dBitVecSet(&rs->isMatCached[0], idxMat);
 
-                    // �o�b�t�@������ꍇ�͖��߃I�v�V�����Ɋւ�炸�o�b�t�@�ɋL�^
+                    // バッファがある場合は命令オプションに関わらずバッファに記録
                     pResult = (rs->pRenderObj->recMatAnm + idxMat);
                 }
                 else if (opt == NNS_G3D_SBCFLG_010)
                 {
-                    // MAT�L���b�V���ς݃t���O�𗧂Ă�
+                    // MATキャッシュ済みフラグを立てる
                     NNSi_G3dBitVecSet(&rs->isMatCached[0], idxMat);
 
-                    // �������ݐ��MAT�L���b�V���ɐݒ�
+                    // 書き込み先をMATキャッシュに設定
                     pResult = &NNS_G3dRSOnGlb.matCache[idxMat];
                 }
                 else
                 {
-                    // NNSG3dRS��̗̈���g�p
+                    // NNSG3dRS上の領域を使用
                     pResult = &rs->tmpMatAnmResult;
                 }
 
                 //
-                // ���f���f�[�^�̃}�e���A�������Z�b�g
-                // G3dGlb�̃f�t�H���g�ƍ�������
+                // モデルデータのマテリアル情報をセット
+                // G3dGlbのデフォルトと合成する
                 //
                 {
                     pResult->flag           = (NNSG3dMatAnmResultFlag) 0;
@@ -578,8 +578,8 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
                 pResult->prmTexImage = mat->texImageParam;
                 pResult->prmTexPltt  = mat->texPlttBase;
 
-                // ���f���Ƀe�N�X�`���s�񂪑��݂���ꍇ�́A
-                // �e�N�X�`���s������f������Z�b�g
+                // モデルにテクスチャ行列が存在する場合は、
+                // テクスチャ行列をモデルからセット
                 if (mat->flag & NNS_G3D_MATFLAG_TEXMTX_USE)
                 {
                     const u8* p = (const u8*)mat + sizeof(NNSG3dResMatData);
@@ -627,17 +627,17 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
 
                 NNS_G3D_NULL_ASSERT(rs->pRenderObj->funcBlendMat);
 
-                // �}�e���A���A�j���[�V�����̃`�F�b�N
+                // マテリアルアニメーションのチェック
                 if (rs->pRenderObj->anmMat &&
                     NNSi_G3dBitVecCheck(&rs->pRenderObj->hintMatAnmExist[0], idxMat))
                 {
-                    // �}�e���A���A�j���[�V�����̌v�Z�ɂ��ApResult��ύX���邩������Ȃ�
+                    // マテリアルアニメーションの計算により、pResultを変更するかもしれない
                     (void)(*rs->pRenderObj->funcBlendMat)(pResult, rs->pRenderObj->anmMat, idxMat);
                 }
 
                 //
-                // ���X�e�N�X�`���s�񂪂���ꍇ��A�j���[�V�����ŕt������Ă���ꍇ��
-                // �e�N�X�`���̕�����񓙂�ǉ�����B
+                // 元々テクスチャ行列がある場合やアニメーションで付加されている場合は
+                // テクスチャの幅高情報等を追加する。
                 //
                 if ( pResult->flag & (NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SET |
                                       NNS_G3D_MATANM_RESULTFLAG_TEXMTX_MULT))
@@ -652,9 +652,9 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
         rs->pMatAnmResult = pResult;
     }
 
-    // �R�[���o�b�N�a
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �}�e���A���̑��M�����u�������邱�Ƃ��ł���B
+    // コールバックＢ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // マテリアルの送信動作を置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_MAT, &cbTiming);
 
     if (!cbFlag)
@@ -664,24 +664,24 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
         NNS_G3D_NULL_ASSERT(rs->pMatAnmResult);
         pResult = rs->pMatAnmResult;
 
-        // �����}�e���A�����ۂ��̃`�F�b�N
+        // 透明マテリアルか否かのチェック
         if (pResult->prmPolygonAttr & REG_G3_POLYGON_ATTR_ALPHA_MASK)
         {
-            // �����łȂ������C���[�t���[���\���̏ꍇ�́A
-            // �W�I���g���R�}���h�̑��M
+            // 透明でないかワイヤーフレーム表示の場合は、
+            // ジオメトリコマンドの送信
             
             if (pResult->flag & NNS_G3D_MATANM_RESULTFLAG_WIREFRAME)
             {
-                // ���C���[�t���[���̏ꍇ�̓W�I���g���G���W���ɑ��郿��0�ɂȂ�
+                // ワイヤーフレームの場合はジオメトリエンジンに送るαは0になる
                 pResult->prmPolygonAttr &= ~REG_G3_POLYGON_ATTR_ALPHA_MASK;
             }
 
-            // �����t���O��OFF
+            // 透明フラグをOFF
             rs->flag &= ~NNS_G3D_RSFLAG_MAT_TRANSPARENT;
 
             if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD))
             {
-                // �X�^�b�N�Ƀv�b�V�����ē]��
+                // スタックにプッシュして転送
                 u32 cmd[7];
 
                 cmd[0] = GX_PACK_OP(G3OP_DIF_AMB, G3OP_SPE_EMI, G3OP_POLYGON_ATTR, G3OP_NOP);
@@ -698,7 +698,7 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
                                      NNS_G3D_MATANM_RESULTFLAG_TEXMTX_MULT))
                 {
 
-                    // �e�N�X�`���s��̑��M
+                    // テクスチャ行列の送信
                     NNS_G3D_NULL_ASSERT(rs->funcTexMtx);
                     (*rs->funcTexMtx)(pResult);
                 }
@@ -706,13 +706,13 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
         }
         else
         {
-            // �����t���O���n�m
+            // 透明フラグをＯＮ
             rs->flag |= NNS_G3D_RSFLAG_MAT_TRANSPARENT;
         }
     }
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
     (void) NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_MAT, cbTiming);
 }
 
@@ -726,27 +726,27 @@ NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
                 B: during
                 C: after
 
-    �������
-    �E NNS_G3D_RSFLAG_NODE_VISIBLE��OFF�Ȃ�΂��̖��ߑS�̂��X�L�b�v
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �}�e���A�����̎擾/�v�Z���s��
-       opt�ɂ����MAT�L���b�V���֘A�̓��삪�قȂ�
-       rs->isMatCached��idxMat�Ԗڂ̃r�b�g�������Ă���΁AMAT�L���b�V����
-       �}�e���A����񂪃L���b�V������Ă��āA���p�ł���B
+    動作説明
+    ・ NNS_G3D_RSFLAG_NODE_VISIBLEがOFFならばこの命令全体をスキップ
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ マテリアル情報の取得/計算を行う
+       optによってMATキャッシュ関連の動作が異なる
+       rs->isMatCachedのidxMat番目のビットが立っていれば、MATキャッシュに
+       マテリアル情報がキャッシュされていて、利用できる。
 
-       [000] MAT�L���b�V���͈�؎Q�Ƃ��Ȃ�
-       [001] MAT�L���b�V���ւ̓ǂݏ������s��
-       [010] MAT�L���b�V����ǂ�
+       [000] MATキャッシュは一切参照しない
+       [001] MATキャッシュへの読み書きを行う
+       [010] MATキャッシュを読む
 
-       NNS_G3D_RSFLAG_MAT_TRANSPARENT�̐ݒ���s��
-       �Z�b�g���ꂽ�Ȃ�Ars->c�̉��Z�܂ŏ������X�L�b�v����B
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E �}�e���A�������W�I���g���G���W���֑��M
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�����Z
+       NNS_G3D_RSFLAG_MAT_TRANSPARENTの設定を行う
+       セットされたなら、rs->cの加算まで処理をスキップする。
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ マテリアル情報をジオメトリエンジンへ送信
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cを加算
 
-    �t�L
-    [000],[001],[010]���ǂ��g�������邩�̓R���o�[�g���Ɍ��肳���B
+    付記
+    [000],[001],[010]をどう使い分けるかはコンバート時に決定される。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_MAT(NNSG3dRS* rs, u32 opt)
@@ -758,7 +758,7 @@ NNSi_G3dFuncSbc_MAT(NNSG3dRS* rs, u32 opt)
         u32 idxMat;
         idxMat = *(rs->c + 1);
 
-        // VISIBLE�łȂ��ꍇ�����݊��ɓ���MatID��Ԃł���ꍇ�͖��߂��X�L�b�v
+        // VISIBLEでない場合か現在既に同じMatID状態である場合は命令をスキップ
         if ((rs->flag & NNS_G3D_RSFLAG_NODE_VISIBLE) ||
             !((rs->flag & NNS_G3D_RSFLAG_CURRENT_MAT_VALID) &&
             (idxMat == rs->currentMat)))
@@ -785,9 +785,9 @@ NNSi_G3dFuncSbc_SHP_InternalDefault(NNSG3dRS* rs,
     NNS_G3D_NULL_ASSERT(rs);
     NNS_G3D_NULL_ASSERT(shp);
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �f�B�X�v���C���X�g�̑��M�����u�������邱�Ƃ��ł���
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ディスプレイリストの送信動作を置き換えることができる
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_SHP, &cbTiming);
 
     if (!cbFlag)
@@ -798,14 +798,14 @@ NNSi_G3dFuncSbc_SHP_InternalDefault(NNSG3dRS* rs,
         }
     }
 
-    // �R�[���o�b�N�a
+    // コールバックＢ
     (void) NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_SHP, &cbTiming);
 
-    // �X�e�[�g�̕��A
-    // �����I�ɏ�ԏ������̏��������邩������Ȃ�
+    // ステートの復帰
+    // 将来的に状態処理等の処理を入れるかもしれない
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
     (void) NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_SHP, cbTiming);
 }
 
@@ -819,17 +819,17 @@ NNSi_G3dFuncSbc_SHP_InternalDefault(NNSG3dRS* rs,
                 B: during
                 C: after
 
-    �������
-    �E NNS_G3D_RSFLAG_NODE_VISIBLE��OFF�A����NNS_G3D_RSFLAG_MAT_TRANSPARENT��ON
-       �Ȃ�΂��̖��ߑS�̂��X�L�b�v
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �f�B�X�v���C���X�g���R�[��
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E �f�B�X�v���C���X�g���ύX�����X�e�[�g�𕜋A����
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�̉��Z
+    動作説明
+    ・ NNS_G3D_RSFLAG_NODE_VISIBLEがOFF、又はNNS_G3D_RSFLAG_MAT_TRANSPARENTがON
+       ならばこの命令全体をスキップ
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ ディスプレイリストをコール
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ ディスプレイリストが変更したステートを復帰する
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cの加算
 
-    �t�L
+    付記
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_SHP(NNSG3dRS* rs, u32 opt)
@@ -868,17 +868,17 @@ NNSi_G3dFuncSbc_SHP(NNSG3dRS* rs, u32 opt)
                 B: during
                 C: after
 
-    �������
-    �E [010], [011]�Ȃ�΁AidxMtxSrc���J�����g�s��Ƀ��X�g�A����
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �J�����g�s��ɑ΂��A���f��/�W���C���g�A�j���[�V�����̍s�����Z����
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E [001], [011]�Ȃ�΁AidxMtxDest�ɃJ�����g�s����X�g�A����
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�̉��Z
+    動作説明
+    ・ [010], [011]ならば、idxMtxSrcをカレント行列にリストアする
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ カレント行列に対し、モデル/ジョイントアニメーションの行列を乗算する
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ [001], [011]ならば、idxMtxDestにカレント行列をストアする
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cの加算
 
-    �t�L
-    NNS_G3dFuncSbc_NODE�̂悤��NODE��Ԃ�ύX�����邱�Ƃ͂Ȃ�
+    付記
+    NNS_G3dFuncSbc_NODEのようにNODE状態を変更させることはない
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
@@ -920,8 +920,8 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
         {
             ++cmdLen;
 #if 1
-            // ��ɂ��̂܂܍s����g���\��������̂ŁA
-            // �X�g�A��������X�g�A�Œu�������Ă����K�v������
+            // 後にそのまま行列を使う可能性があるので、
+            // ストア動作をリストアで置き換えておく必要がある
             if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD))
             {
                 u32 idxMtxDest = *(rs->c + 4);
@@ -963,12 +963,12 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
         }
     }
 
-    // �R�[���o�b�N���Ă΂��ꍇ�Ɏg�p�����̈���w�肵�Ă����Ȃ��Ă͂Ȃ�Ȃ� 
+    // コールバックが呼ばれる場合に使用される領域を指定しておかなくてはならない 
     rs->pJntAnmResult = &rs->tmpJntAnmResult;
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �W���C���gSRT�f�[�^�̎擾�����u�������邱�Ƃ��ł���B
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ジョイントSRTデータの取得動作を置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_NODEDESC, &cbTiming);
 
     if (!cbFlag)
@@ -979,33 +979,33 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
 //        u32 flags         = *(rs->c + 3);
 
         //
-        // �v�Z���ʂ̃o�b�t�@���g�����ǂ��������肷��B
+        // 計算結果のバッファを使うかどうかを決定する。
         //
         if (rs->pRenderObj->recJntAnm)
         {
-            // �O���o�b�t�@���|�C���g����
+            // 外部バッファをポイントする
             pAnmResult = (rs->pRenderObj->recJntAnm + idxNode);
             if (!(rs->flag & NNS_G3D_RSFLAG_OPT_RECORD))
             {
-                // �O���o�b�t�@�̃f�[�^���Đ�����B
+                // 外部バッファのデータを再生する。
                 isUseRecordData = TRUE;
             }
             else
             {
-                // �O���o�b�t�@�Ƀf�[�^���L�^����B
+                // 外部バッファにデータを記録する。
                 isUseRecordData = FALSE;
             }
         }
         else
         {
-            // �֐������̃o�b�t�@���e���|�����Ŏg�p
+            // 関数内部のバッファをテンポラリで使用
             isUseRecordData = FALSE;
             pAnmResult = &rs->tmpJntAnmResult;
         }
 
         if (!isUseRecordData)
         {
-            // �v�Z�̑O��NNSG3dJntAnmResult::flag�����͂��炩���߃N���A���Ă����K�v������B
+            // 計算の前にNNSG3dJntAnmResult::flagだけはあらかじめクリアしておく必要がある。
             pAnmResult->flag = (NNSG3dJntAnmResultFlag) 0;
 
             NNS_G3D_NULL_ASSERT(rs->pRenderObj->funcBlendJnt);
@@ -1013,14 +1013,14 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
                 (*rs->pRenderObj->funcBlendJnt)(pAnmResult, rs->pRenderObj->anmJnt, idxNode))
             {
                 //
-                // �W���C���g�A�j���[�V�����̃��\�[�X���g�p����anmResult�������Ă���B
+                // ジョイントアニメーションのリソースを使用してanmResultが得られている。
                 //
                 ;
             }
             else
             {
                 //
-                // �Î~���f���̃��\�[�X���g�p����anmResult�𓾂�
+                // 静止モデルのリソースを使用してanmResultを得る
                 //
                 const NNSG3dResNodeData* pNd =
                     NNS_G3dGetNodeDataByIdx(rs->pResNodeInfo, idxNode);
@@ -1055,14 +1055,14 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
                     if (pNd->flag & NNS_G3D_SRTFLAG_PIVOT_EXIST)
                     {
                         //
-                        // ���k����Ă���ꍇ(��Ɉꎲ��])��
-                        // ���k���ꂽ�s������ɖ߂�
+                        // 圧縮されている場合(主に一軸回転)は
+                        // 圧縮された行列を元に戻す
                         //
                         fx32 A = *(fx16*)(p + 0);
                         fx32 B = *(fx16*)(p + 2);
                         u32 idxPivot = (u32)( (pNd->flag & NNS_G3D_SRTFLAG_IDXPIVOT_MASK) >> 
                                                         NNS_G3D_SRTFLAG_IDXPIVOT_SHIFT );
-                        // anmResult.rot���N���A
+                        // anmResult.rotをクリア
                         MI_Zero36B(&pAnmResult->rot);
                         
                         pAnmResult->rot.a[idxPivot] =
@@ -1084,8 +1084,8 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
                     else
                     {
                         // NOTICE:
-                        // �������R�s�[API�ɒu�������Ȃ�����
-                        // fx16����fx32�ւ̈Öق̃L���X�g���s���Ă��邩��
+                        // メモリコピーAPIに置き換えないこと
+                        // fx16からfx32への暗黙のキャストを行っているから
 
                         const fx16* pp = (const fx16*)p;
                         pAnmResult->rot.a[0] = pNd->_00;
@@ -1108,9 +1108,9 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
 
                 //
                 // NOTICE:
-                // MayaSSC��Si3d��classic scale off�̏ꍇ�ɂ�
-                // NNS_G3D_SRTFLAG_SCALE_ONE�̂Ƃ��ɂ��t���O�𗧂Ă�ȊO��
-                // �v�Z������������B
+                // MayaSSCやSi3dのclassic scale offの場合には
+                // NNS_G3D_SRTFLAG_SCALE_ONEのときにもフラグを立てる以外の
+                // 計算が発生しうる。
                 //
                 NNS_G3D_NULL_ASSERT(rs->funcJntScale);
                 (*rs->funcJntScale)(pAnmResult, (fx32*)p, rs->c, pNd->flag);
@@ -1119,15 +1119,15 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
         rs->pJntAnmResult = pAnmResult;
     }
 
-    // �R�[���o�b�N�a
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �W�I���g���G���W���ւ̑��M�����u�������邱�Ƃ��ł���B
+    // コールバックＢ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ジオメトリエンジンへの送信動作を置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_NODEDESC, &cbTiming);
 
     if (!cbFlag)
     {
         //
-        // �W�I���g���G���W���ւ̑��M
+        // ジオメトリエンジンへの送信
         //
         if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD))
         {
@@ -1140,10 +1140,10 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
 
     rs->pJntAnmResult = NULL;
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
-    // �܂��ANNS_G3D_RSFLAG_SKIP���I���ɂ��邱�Ƃɂ����
-    // �J�����g�s��̃X�g�A�����u�������邱�Ƃ��ł���
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
+    // また、NNS_G3D_RSFLAG_SKIPをオンにすることによって
+    // カレント行列のストア動作を置き換えることができる
     cbFlag = NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_NODEDESC, cbTiming);
 
     if (opt == NNS_G3D_SBCFLG_001 ||
@@ -1182,24 +1182,24 @@ NNSi_G3dFuncSbc_NODEDESC(NNSG3dRS* rs, u32 opt)
                 B: during
                 C: after
 
-    �������
-    �E [010], [011]�Ȃ�΁AidxMtxSrc���J�����g�s��Ƀ��X�g�A����
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �ˉe�s����v�b�V�����A�P�ʍs����Z�b�g�B
-    �E �W�I���g���G���W�����~�܂�܂ő҂��A�J�����g�s������o���B
-    �E CPU�Ńr���{�[�h�s��ɂȂ�悤���H���A�J�����g�s��Ɋi�[
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E [001], [011]�Ȃ�΁AidxMtxDest�ɃJ�����g�s����X�g�A����
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�̉��Z
+    動作説明
+    ・ [010], [011]ならば、idxMtxSrcをカレント行列にリストアする
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ 射影行列をプッシュし、単位行列をセット。
+    ・ ジオメトリエンジンが止まるまで待ち、カレント行列を取り出す。
+    ・ CPUでビルボード行列になるよう加工し、カレント行列に格納
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ [001], [011]ならば、idxMtxDestにカレント行列をストアする
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cの加算
 
-    �t�L
+    付記
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
 {
     //
-    // �u�J�����̎ˉe���ʁv�ɕ��s�ȃr���{�[�h�̕\��
+    // 「カメラの射影平面」に平行なビルボードの表示
     //
     u32 cmdLen = 2;
 
@@ -1211,8 +1211,8 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
         FX32_ONE, 0, 0, 
         0, FX32_ONE, 0,
         0, 0, FX32_ONE,
-        0, 0, 0,   // �����͉�(Trans)
-        0, 0, 0    // �����͉�(Scale)
+        0, 0, 0,   // ここは可変(Trans)
+        0, 0, 0    // ここは可変(Scale)
     };
     
     VecFx32* trans = (VecFx32*)&bbcmd1[12];
@@ -1225,7 +1225,7 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
 
     if (rs->flag & NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW)
     {
-        // �r���{�[�h��Draw�J�e�S���ɓ���
+        // ビルボードはDrawカテゴリに入る
         if (opt == NNS_G3D_SBCFLG_010 ||
             opt == NNS_G3D_SBCFLG_011)
         {
@@ -1266,38 +1266,38 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
         }
     }
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �r���{�[�h�s��̐ݒ蓮���u�������邱�Ƃ��ł���B
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ビルボード行列の設定動作を置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_BB, &cbTiming);
 
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD) &&
         (!cbFlag))
     {
-        // �o�b�t�@�̃t���b�V��
+        // バッファのフラッシュ
         NNS_G3dGeFlushBuffer();
 
         //
-        // ���̃R�[���o�b�N�|�C���g�܂ŃC�~�f�B�G�C�g���M�\.
+        // 次のコールバックポイントまでイミディエイト送信可能.
         //
 
-        // �R�}���h�]��:
-        // PROJ���[�h�ɕύX
-        // �ˉe�s���ޔ�
-        // �P�ʍs����Z�b�g
+        // コマンド転送:
+        // PROJモードに変更
+        // 射影行列を退避
+        // 単位行列をセット
         reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MODE, G3OP_MTX_PUSH, G3OP_MTX_IDENTITY, G3OP_NOP);
         reg_G3X_GXFIFO = (u32)GX_MTXMODE_PROJECTION;
         reg_G3X_GXFIFO = 0; // 2004/08/26 geometry fifo glitch
 
-        // �X�ɃW�I���g���G���W���̒�~��҂�
-        // �J�����g�s��̎擾
+        // 更にジオメトリエンジンの停止を待つ
+        // カレント行列の取得
         while (G3X_GetClipMtx(&m))
             ;
 
         if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
         {
-            // Projection�s��ɃJ�����s�񂪂������Ă���ꍇ�́A
-            // ���߂�SRT�t�J�����s�����납�炩���Ȃ���΂Ȃ�Ȃ��B
+            // Projection行列にカメラ行列がかかっている場合は、
+            // 改めてSRT付カメラ行列を後ろからかけなければならない。
             const MtxFx43* cam = NNS_G3dGlbGetSrtCameraMtx();
             MtxFx44 tmp;
 
@@ -1313,7 +1313,7 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
             MTX_Concat44(&m, &tmp, &m);
         }
 
-        // �r���{�[�h�s��̌v�Z
+        // ビルボード行列の計算
         trans->x = m._30;
         trans->y = m._31;
         trans->z = m._32;
@@ -1324,9 +1324,9 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
 
         if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // SRT�t�J�����̋t�s����Z�b�g
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // SRT付カメラの逆行列をセット
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_POP, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[1],
                          &reg_G3X_GXFIFO,
@@ -1335,8 +1335,8 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
                          &reg_G3X_GXFIFO,
                          G3OP_MTX_LOAD_4x3_NPARAMS * sizeof(u32));
 
-            // �J�����g�s��ɂ�����
-            // �v�Z�����X�P�[����������
+            // カレント行列にかける
+            // 計算したスケールをかける
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MULT_4x3, G3OP_MTX_SCALE, G3OP_NOP, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[3],
                          &reg_G3X_GXFIFO,
@@ -1344,9 +1344,9 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
         }
         else if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_VP)
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // �J�����̋t�s����Z�b�g
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // カメラの逆行列をセット
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_POP, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[1],
                          &reg_G3X_GXFIFO,
@@ -1355,8 +1355,8 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
                          &reg_G3X_GXFIFO,
                          G3OP_MTX_LOAD_4x3_NPARAMS * sizeof(u32));
 
-            // �J�����g�s��ɂ�����
-            // �v�Z�����X�P�[����������
+            // カレント行列にかける
+            // 計算したスケールをかける
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MULT_4x3, G3OP_MTX_SCALE, G3OP_NOP, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[3],
                          &reg_G3X_GXFIFO,
@@ -1364,20 +1364,20 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
         }
         else
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // �J�����g�s��Ɋi�[
-            // �v�Z�����X�P�[����������
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // カレント行列に格納
+            // 計算したスケールをかける
             MI_CpuSend32(&bbcmd1[0],
                          &reg_G3X_GXFIFO,
                          18 * sizeof(u32));
         }
     }
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
-    // �܂��ANNS_G3D_RSFLAG_SKIP���I���ɂ��邱�Ƃɂ����
-    // �J�����g�s��̃X�g�A�����u�������邱�Ƃ��ł���
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
+    // また、NNS_G3D_RSFLAG_SKIPをオンにすることによって
+    // カレント行列のストア動作を置き換えることができる
     cbFlag = NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_BB, cbTiming);
 
     if (opt == NNS_G3D_SBCFLG_001 ||
@@ -1394,7 +1394,7 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
 
                 NNS_G3D_ASSERT(idxMtxDest < 31);
 
-                // �����ł̓C�~�f�B�G�C�g���M�\�ł͂Ȃ���������Ȃ�
+                // ここではイミディエイト送信可能ではないかもしれない
                 NNS_G3dGeBufferOP_N(G3OP_MTX_STORE,
                                     &idxMtxDest,
                                     G3OP_MTX_STORE_NPARAMS);
@@ -1419,18 +1419,18 @@ NNSi_G3dFuncSbc_BB(NNSG3dRS* rs, u32 opt)
                 B: during
                 C: after
 
-    �������
-    �E [010], [011]�Ȃ�΁AidxMtxSrc���J�����g�s��Ƀ��X�g�A����
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �ˉe�s����v�b�V�����A�P�ʍs����Z�b�g�B
-    �E �W�I���g���G���W�����~�܂�܂ő҂��A�J�����g�s������o���B
-    �E CPU��Y���r���{�[�h�s��ɂȂ�悤���H���A�J�����g�s��Ɋi�[
-    �E TIMING_B�̃R�[���o�b�N���Ă�
-    �E [001], [011]�Ȃ�΁AidxMtxDest�ɃJ�����g�s����X�g�A����
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�̉��Z
+    動作説明
+    ・ [010], [011]ならば、idxMtxSrcをカレント行列にリストアする
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ 射影行列をプッシュし、単位行列をセット。
+    ・ ジオメトリエンジンが止まるまで待ち、カレント行列を取り出す。
+    ・ CPUでY軸ビルボード行列になるよう加工し、カレント行列に格納
+    ・ TIMING_Bのコールバックを呼ぶ
+    ・ [001], [011]ならば、idxMtxDestにカレント行列をストアする
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cの加算
 
-    �t�L
+    付記
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
@@ -1443,11 +1443,11 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
         GX_PACK_OP(G3OP_MTX_POP, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3, G3OP_MTX_SCALE),
         1,
         GX_MTXMODE_POSITION_VECTOR,
-        FX32_ONE, 0, 0, // �����͉�(4x3Mtx)
+        FX32_ONE, 0, 0, // ここは可変(4x3Mtx)
         0, FX32_ONE, 0,
         0, 0, FX32_ONE,
         0, 0, 0,   
-        0, 0, 0    // �����͉�(Scale)
+        0, 0, 0    // ここは可変(Scale)
     };
     VecFx32* trans = (VecFx32*)&bbcmd1[12];
     VecFx32* scale = (VecFx32*)&bbcmd1[15];
@@ -1459,7 +1459,7 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
 
     if (rs->flag & NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW)
     {
-        // �r���{�[�h��Draw�J�e�S���ɓ���
+        // ビルボードはDrawカテゴリに入る
         if (opt == NNS_G3D_SBCFLG_010 ||
             opt == NNS_G3D_SBCFLG_011)
         {
@@ -1498,38 +1498,38 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
         }
     }
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �r���{�[�h�s��̐ݒ蓮���u�������邱�Ƃ��ł���
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ビルボード行列の設定動作を置き換えることができる
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_BBY, &cbTiming);
 
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD) &&
         (!cbFlag))
     {
-        // �o�b�t�@�̃t���b�V��
+        // バッファのフラッシュ
         NNS_G3dGeFlushBuffer();
 
         //
-        // ���̃R�[���o�b�N�|�C���g�܂ŃC�~�f�B�G�C�g���M�\.
+        // 次のコールバックポイントまでイミディエイト送信可能.
         //
 
-        // �R�}���h�]��:
-        // PROJ���[�h�ɕύX
-        // �ˉe�s���ޔ�
-        // �P�ʍs����Z�b�g
+        // コマンド転送:
+        // PROJモードに変更
+        // 射影行列を退避
+        // 単位行列をセット
         reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MODE, G3OP_MTX_PUSH, G3OP_MTX_IDENTITY, G3OP_NOP);
         reg_G3X_GXFIFO = (u32)GX_MTXMODE_PROJECTION;
         reg_G3X_GXFIFO = 0; // 2004/08/26 geometry fifo glitch
 
-        // �X�ɃW�I���g���G���W���̒�~��҂�
-        // �J�����g�s��(�N���b�v�s��)�̎擾
+        // 更にジオメトリエンジンの停止を待つ
+        // カレント行列(クリップ行列)の取得
         while (G3X_GetClipMtx(&m))
             ;
 
         if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
         {
-            // Projection�s��ɃJ�����s�񂪂������Ă���ꍇ�́A
-            // ���߂�SRT�t�J�����s�����납�炩���Ȃ���΂Ȃ�Ȃ��B
+            // Projection行列にカメラ行列がかかっている場合は、
+            // 改めてSRT付カメラ行列を後ろからかけなければならない。
             const MtxFx43* cam = NNS_G3dGlbGetSrtCameraMtx();
             MtxFx44 tmp;
 
@@ -1538,8 +1538,8 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
         }
         else if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_VP)
         {
-            // Projection�s��ɃJ�����s�񂪂������Ă���ꍇ�́A
-            // ���߂ăJ�����s�����납�炩���Ȃ���΂Ȃ�Ȃ��B
+            // Projection行列にカメラ行列がかかっている場合は、
+            // 改めてカメラ行列を後ろからかけなければならない。
             const MtxFx43* cam = NNS_G3dGlbGetCameraMtx();
             MtxFx44 tmp;
 
@@ -1547,20 +1547,20 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
             MTX_Concat44(&m, &tmp, &m);
         }
 
-        // �r���{�[�h�s��̌v�Z
+        // ビルボード行列の計算
 
-        // 1: translation�͗��p
+        // 1: translationは流用
         trans->x = m._30;
         trans->y = m._31;
         trans->z = m._32;
 
-        // 2: scale�͊e�s�̃x�N�g���̑傫���ŋߎ�
+        // 2: scaleは各行のベクトルの大きさで近似
         scale->x = VEC_Mag((VecFx32*)&m._00);
         scale->y = VEC_Mag((VecFx32*)&m._10);
         scale->z = VEC_Mag((VecFx32*)&m._20);
 
-        // 3: ��]�s��͌��ʂƂ���X���ɑ΂����]�s��ɂȂ�̂�
-        //    ����炵���l��ݒ肷��
+        // 3: 回転行列は結果としてX軸に対する回転行列になるので
+        //    それらしい値を設定する
         if (m._11 != 0 || m._12 != 0)
         {
             VEC_Normalize((VecFx32*)&m._10, (VecFx32*)&mtx->_10);
@@ -1578,9 +1578,9 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
 
         if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // SRT���J�����̋t�s����Z�b�g
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // SRTつきカメラの逆行列をセット
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_POP, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[1],
                          &reg_G3X_GXFIFO,
@@ -1589,8 +1589,8 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
                          &reg_G3X_GXFIFO,
                          G3OP_MTX_LOAD_4x3_NPARAMS * sizeof(u32));
             
-            // �J�����g�s��ɂ�����
-            // �v�Z�����X�P�[����������        
+            // カレント行列にかける
+            // 計算したスケールをかける        
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MULT_4x3, G3OP_MTX_SCALE, G3OP_NOP, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[3],
                          &reg_G3X_GXFIFO,
@@ -1598,9 +1598,9 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
         }
         else if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_VP)
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // �J�����̋t�s����Z�b�g
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // カメラの逆行列をセット
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_POP, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[1],
                          &reg_G3X_GXFIFO,
@@ -1609,8 +1609,8 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
                          &reg_G3X_GXFIFO,
                          G3OP_MTX_LOAD_4x3_NPARAMS * sizeof(u32));
             
-            // �J�����g�s��ɂ�����
-            // �v�Z�����X�P�[����������        
+            // カレント行列にかける
+            // 計算したスケールをかける        
             reg_G3X_GXFIFO = GX_PACK_OP(G3OP_MTX_MULT_4x3, G3OP_MTX_SCALE, G3OP_NOP, G3OP_NOP);
             MI_CpuSend32(&bbcmd1[3],
                          &reg_G3X_GXFIFO,
@@ -1618,18 +1618,18 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
         }
         else
         {
-            // �ˉe�s���POP
-            // POS_VEC�ɕ��A
-            // �J�����g�s��Ɋi�[
-            // �v�Z�����X�P�[����������
+            // 射影行列のPOP
+            // POS_VECに復帰
+            // カレント行列に格納
+            // 計算したスケールをかける
             MI_CpuSend32(&bbcmd1[0], &reg_G3X_GXFIFO, 18 * sizeof(u32));
         }
     }
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
-    // �܂��ANNS_G3D_RSFLAG_SKIP���I���ɂ��邱�Ƃɂ����
-    // �J�����g�s��̃X�g�A�����u�������邱�Ƃ��ł���
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
+    // また、NNS_G3D_RSFLAG_SKIPをオンにすることによって
+    // カレント行列のストア動作を置き換えることができる
     cbFlag = NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_BBY, cbTiming);
 
     if (opt == NNS_G3D_SBCFLG_001 ||
@@ -1645,7 +1645,7 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
                 idxMtxDest = *(rs->c + 2);
 
                 NNS_G3D_ASSERT(idxMtxDest < 31);
-                // �����ł̓C�~�f�B�G�C�g���M�\�ł͂Ȃ���������Ȃ�
+                // ここではイミディエイト送信可能ではないかもしれない
                 NNS_G3dGeBufferOP_N(G3OP_MTX_STORE,
                                     &idxMtxDest,
                                     G3OP_MTX_STORE_NPARAMS);
@@ -1665,16 +1665,16 @@ NNSi_G3dFuncSbc_BBY(NNSG3dRS* rs, u32 opt)
                                     idxStackN, idxMtxN, ratioN
     callbacks:  none
 
-    �������
-    �Esum(ratio * InvM(InvN) * AnmM)���v�Z���āA�s��X�^�b�N��idxMtxDest�Ɋi�[���܂��B
-      �܂�A���_���t�s��(InvM, InvN)�ɂ���Ċe�W���C���g�̃��[�J�����W�ɖ߂�
-      �A�j���[�V�����s���������Ƃ���������s���s����u�����h���Ă��܂��B
-    �E���f�����O�ϊ��s��̋t�s��(InvM, InvN)�̓��f�����\�[�X�Ɋi�[����Ă��܂��B
-      g3dcvtr�ɂ��R���o�[�g�̍ۂɌv�Z����Ă��܂��B
-    �E�s��̏�Z�̓W�I���g���G���W���𗘗p���čs���Ă��܂��B
-    �E�E�F�C�e�b�h�G���x���[�v���������Ă��钸�_�̓O���[�o�����W�Ŋi�[����Ă��܂��B
+    動作説明
+    ・sum(ratio * InvM(InvN) * AnmM)を計算して、行列スタックのidxMtxDestに格納します。
+      つまり、頂点を逆行列(InvM, InvN)によって各ジョイントのローカル座標に戻し
+      アニメーション行列をかけるという操作を行う行列をブレンドしています。
+    ・モデリング変換行列の逆行列(InvM, InvN)はモデルリソースに格納されています。
+      g3dcvtrによるコンバートの際に計算されています。
+    ・行列の乗算はジオメトリエンジンを利用して行っています。
+    ・ウェイテッドエンベロープがかかっている頂点はグローバル座標で格納されています。
 
-    �t�L
+    付記
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_NODEMIX(NNSG3dRS* rs, u32)
@@ -1784,7 +1784,7 @@ NNSi_G3dFuncSbc_NODEMIX(NNSG3dRS* rs, u32)
         sum.N.m[2][1] += (w * pY->m[2][1]) >> FX32_SHIFT;
         sum.N.m[2][2] += (w * pY->m[2][2]) >> FX32_SHIFT;
 
-        G3_LoadMtx43((const MtxFx43*)&sum.N); // �㏑�������̂ŃS�~�f�[�^���������Ă��悢
+        G3_LoadMtx43((const MtxFx43*)&sum.N); // 上書きされるのでゴミデータが混じってもよい
         G3_MtxMode(GX_MTXMODE_POSITION);
         G3_LoadMtx43(&sum.M);
         G3_MtxMode(GX_MTXMODE_PROJECTION);
@@ -1871,7 +1871,7 @@ NNSi_G3dFuncSbc_NODEMIX(NNSG3dRS* rs, u32)
         sum.N.m[2][1] += (w * Y.m[2][1]) >> FX32_SHIFT;
         sum.N.m[2][2] += (w * Y.m[2][2]) >> FX32_SHIFT;
 
-        G3_LoadMtx43((const MtxFx43*)&sum.N); // �㏑�������̂ŃS�~�f�[�^���������Ă��悢
+        G3_LoadMtx43((const MtxFx43*)&sum.N); // 上書きされるのでゴミデータが混じってもよい
         G3_MtxMode(GX_MTXMODE_POSITION);
         G3_LoadMtx43(&sum.M);
         G3_MtxMode(GX_MTXMODE_PROJECTION);
@@ -1892,16 +1892,16 @@ NNSi_G3dFuncSbc_NODEMIX(NNSG3dRS* rs, u32)
     callbacks:  A: before
                 B: none
                 C: after
-    �������
-    �E TIMING_A�̃R�[���o�b�N���Ă�
-    �E �f�B�X�v���C���X�g�̓]�����s��
-    �E TIMING_C�̃R�[���o�b�N���Ă�
-    �E rs->c�̉��Z
+    動作説明
+    ・ TIMING_Aのコールバックを呼ぶ
+    ・ ディスプレイリストの転送を行う
+    ・ TIMING_Cのコールバックを呼ぶ
+    ・ rs->cの加算
 
-    �t�L
-    �ŏ���NODEDESC�ň�ʂ�s���ݒ肵�āACALLDL���ĂԂ��ƂŒP���ȃ��f����������
-    �`�悷��悤�ȃR���o�[�g���@�����������ꍇ�ɁA���炭���̖��߂��K�v�ɂȂ�B
-    ���[�U�[�ɂ��n�b�N�̂��߂̎�i�̂P�ł�����B
+    付記
+    最初にNODEDESCで一通り行列を設定して、CALLDLを呼ぶことで単純なモデルを高速に
+    描画するようなコンバート方法を実装した場合に、恐らくこの命令が必要になる。
+    ユーザーによるハックのための手段の１つでもある。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_CALLDL(NNSG3dRS* rs, u32)
@@ -1911,9 +1911,9 @@ NNSi_G3dFuncSbc_CALLDL(NNSG3dRS* rs, u32)
 
     NNS_G3D_NULL_ASSERT(rs);
 
-    // �R�[���o�b�N�`
-    // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-    // �f�B�X�v���C���X�g�̑��M�����u�������邱�Ƃ��ł���B
+    // コールバックＡ
+    // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+    // ディスプレイリストの送信動作を置き換えることができる。
     cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_CALLDL, &cbTiming);
 
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_NOGECMD) &&
@@ -1934,8 +1934,8 @@ NNSi_G3dFuncSbc_CALLDL(NNSG3dRS* rs, u32)
         NNS_G3dGeSendDL(rs->c + rel_addr, size);
     }
 
-    // �R�[���o�b�N�b
-    // ���̖��߂̑O�ɉ��炩�̏�����}�����邱�Ƃ��ł���B
+    // コールバックＣ
+    // 次の命令の前に何らかの処理を挿入することができる。
     (void) NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_CALLDL, cbTiming);
 
     rs->c += 1 + sizeof(u32) + sizeof(u32);
@@ -1951,16 +1951,16 @@ NNSi_G3dFuncSbc_CALLDL(NNSG3dRS* rs, u32)
                 B: none
                 C: none
 
-    �������
-    �E �J�����g�s��ɃX�P�[�����O�s���������
-       [000] ���f���f�[�^����posScale��v�f�Ƃ���X�P�[�����O�s���������
-       [001] ���f���f�[�^����invPosScale��v�f�Ƃ���X�P�[�����O�s���������
-    �E rs->c�̉��Z
+    動作説明
+    ・ カレント行列にスケーリング行列をかける
+       [000] モデルデータ内のposScaleを要素とするスケーリング行列をかける
+       [001] モデルデータ内のinvPosScaleを要素とするスケーリング行列をかける
+    ・ rs->cの加算
 
-    �t�L
-    imd�t�@�C����pos_scale��0�łȂ��ꍇ�A���̃R�}���h���o�͂���Ă���B
-    �`��̒��O�ɔz�u�����K�v������B
-    ���[�U�[����ӎ��ł���K�v�͂Ȃ��Ǝv����̂ŃR�[���o�b�N��u���Ȃ��B
+    付記
+    imdファイルのpos_scaleが0でない場合、このコマンドが出力されている。
+    描画の直前に配置される必要がある。
+    ユーザーから意識できる必要はないと思われるのでコールバックを置かない。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_POSSCALE(NNSG3dRS* rs, u32 opt)
@@ -1995,34 +1995,34 @@ NNSi_G3dFuncSbc_POSSCALE(NNSG3dRS* rs, u32 opt)
     NNSi_G3dFuncSbc_ENVMAP
 
     mnemonic:   NNS_G3D_SBC_ENVMAP
-    operands:   idxMat, flags(�\��)
-    callbacks:  A: �@��->�e�N�X�`�����W�}�b�s���O�s��̃J�X�^�}�C�Y
-                B: effect_mtx�ݒ�̃J�X�^�}�C�Y
-                C: �@���ϊ��̃J�X�^�}�C�Y
+    operands:   idxMat, flags(予約分)
+    callbacks:  A: 法線->テクスチャ座標マッピング行列のカスタマイズ
+                B: effect_mtx設定のカスタマイズ
+                C: 法線変換のカスタマイズ
 
-    �������
-    nrm * (C: �@���̕ϊ��s��) * (B: .imd�ɐݒ肳�ꂽ�G�t�F�N�g�s��) * 
-          (A: �}�b�s���O�s��) * (material�Őݒ肳�ꂽ�e�N�X�`���s��)
-    �Ƃ����v�Z���s���܂��BA, B, C�̒l�́A�R�[���o�b�N��ݒ肷�邱�Ƃɂ��A
-    �J�X�^�}�C�Y���邱�Ƃ��ł��܂��B�f�t�H���g�̏�Ԃł́A�\�ʂƗ��ʂɂ��ꂼ��
-    �P�����̃e�N�X�`���C���[�W��\��t����悤�ȃ}�b�s���O���s���܂��B
+    動作説明
+    nrm * (C: 法線の変換行列) * (B: .imdに設定されたエフェクト行列) * 
+          (A: マッピング行列) * (materialで設定されたテクスチャ行列)
+    という計算を行います。A, B, Cの値は、コールバックを設定することにより、
+    カスタマイズすることができます。デフォルトの状態では、表面と裏面にそれぞれ
+    １枚分のテクスチャイメージを貼り付けるようなマッピングを行います。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
 {
     NNS_G3D_NULL_ASSERT(rs);
 
-    // VISIBLE�łȂ��ꍇ�͖��߂��X�L�b�v
-    // ����MatID��Ԃł��m�[�h���Ⴆ�Όv�Z���Ȃ����K�v������
+    // VISIBLEでない場合は命令をスキップ
+    // 同じMatID状態でもノードが違えば計算しなおす必要がある
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW) &&
         (rs->flag & NNS_G3D_RSFLAG_NODE_VISIBLE))
     {
         BOOL cbFlag;
         NNSG3dSbcCallBackTiming cbTiming;
 
-        // �e�N�X�`��SRT�A�j����t���Ă���ꍇ�A
-        // TEXGEN��GX_TEXGEN_TEXCOORD�ɂȂ��Ă��܂��̂ŁA
-        // GX_TEXGEN_NORMAL�ɐݒ肵�Ȃ����B
+        // テクスチャSRTアニメを付けている場合、
+        // TEXGENがGX_TEXGEN_TEXCOORDになってしまうので、
+        // GX_TEXGEN_NORMALに設定しなおす。
         if ((rs->pMatAnmResult->prmTexImage & REG_G3_TEXIMAGE_PARAM_TGEN_MASK) !=
                 (GX_TEXGEN_NORMAL << REG_G3_TEXIMAGE_PARAM_TGEN_SHIFT))
         {
@@ -2038,37 +2038,37 @@ NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
             NNS_G3dGeBufferData_N(&cmd[0], 2);
         }
 
-        // �e�N�X�`���s��𑀍�Ώۂɂ���B
+        // テクスチャ行列を操作対象にする。
         NNS_G3dGeMtxMode(GX_MTXMODE_TEXTURE);
 
-        // �R�[���o�b�N�`
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // qMtx�̐ݒ��u�������邱�Ƃ��ł���B
+        // コールバックＡ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // qMtxの設定を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_ENVMAP, &cbTiming);
         if (!cbFlag)
         {
-            // callback A�ŃJ�X�^�}�C�Y�ł��鏈��
+            // callback Aでカスタマイズできる処理
             s32 width, height;
             width = (s32)rs->pMatAnmResult->origWidth;
             height =(s32)rs->pMatAnmResult->origHeight;
 
             // NOTICE:
-            // �ϊ����S,T���W��q�Ŋ����Ȃ�����Paraboloid Mapping���������邱�Ƃ͂ł��Ȃ��B
+            // 変換後のS,T座標がqで割られないためParaboloid Mappingを実装することはできない。
             {
                 //     0.5   0   0   0
                 // m =  0  -0.5  0   0
                 //      0    0   1   0
                 //     0.5  0.5  0   1
 
-                // �\�ʂƗ��ʂɂP�����e�N�X�`�����͂�悤�ȃ}�b�s���O
+                // 表面と裏面に１枚ずつテクスチャをはるようなマッピング
                 NNS_G3dGeScale(width << (FX32_SHIFT + 3), -height << (FX32_SHIFT + 3), FX32_ONE << 4);
                 NNS_G3dGeTexCoord(width << (FX32_SHIFT - 1), height << (FX32_SHIFT - 1));
             }
         }
 
-        // �R�[���o�b�N�a
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // effect_mtx�̐ݒ��u�������邱�Ƃ��ł���B
+        // コールバックＢ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // effect_mtxの設定を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_ENVMAP, &cbTiming);
         if (!cbFlag)
         {
@@ -2076,11 +2076,11 @@ NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
             const NNSG3dResMatData* mat =
                 NNS_G3dGetMatDataByIdx(rs->pResMat, idxMat);
 
-            // NITRO���ԃt�@�C������effect_mtx�����݂��Ă���ꍇ�́A
-            // effect_mtx��������
+            // NITRO中間ファイル内にeffect_mtxが存在している場合は、
+            // effect_mtxをかける
             if (mat->flag & NNS_G3D_MATFLAG_EFFECTMTX)
             {
-                // NITRO���ԃt�@�C������effect_mtx�����݂��Ă���ꍇ
+                // NITRO中間ファイル内にeffect_mtxが存在している場合
                 const MtxFx44* effect_mtx;
                 const u8* p = (const u8*)mat + sizeof(NNSG3dResMatData);
 
@@ -2104,9 +2104,9 @@ NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
             }
         }
 
-        // �R�[���o�b�N�b
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // ���͖@���x�N�g���̕ϊ��s���u�������邱�Ƃ��ł���B
+        // コールバックＣ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // 入力法線ベクトルの変換行列を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_ENVMAP, cbTiming);
         if (!cbFlag)
         {
@@ -2116,33 +2116,33 @@ NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
             NNS_G3dGeMtxMode(GX_MTXMODE_TEXTURE);
 
             //
-            // ���͖@�������[���h���W�n�̕����ɕϊ�����B
-            // �Ȃ��A���͂����@���x�N�g���́A�W�I���g���R�}���h�̕����Ɠ���(�W���C���g���W�n)�B
+            // 入力法線をワールド座標系の方向に変換する。
+            // なお、入力される法線ベクトルは、ジオメトリコマンドの方向と同じ(ジョイント座標系)。
             //
             if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
             {
-                // NNS_G3dGlbFlushWVP�̂Ƃ��́A
-                // �W���C���g���W�n->���[�J�����W�n->�r���[���W�n
-                // �̕ϊ����s���B
-                NNS_G3dGeMultMtx33((const MtxFx33*)NNS_G3dGlbGetCameraMtx()); // ���[���h���W�n -> �r���[���W�n
-                NNS_G3dGeMultMtx33(NNS_G3dGlbGetBaseRot());                   // ���[�J�����W�n -> ���[���h���W�n
-                NNS_G3dGeMultMtx33(&n);                                       // �W���C���g���W�n -> ���[�J�����W�n
+                // NNS_G3dGlbFlushWVPのときは、
+                // ジョイント座標系->ローカル座標系->ビュー座標系
+                // の変換を行う。
+                NNS_G3dGeMultMtx33((const MtxFx33*)NNS_G3dGlbGetCameraMtx()); // ワールド座標系 -> ビュー座標系
+                NNS_G3dGeMultMtx33(NNS_G3dGlbGetBaseRot());                   // ローカル座標系 -> ワールド座標系
+                NNS_G3dGeMultMtx33(&n);                                       // ジョイント座標系 -> ローカル座標系
 
             }
             else if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_VP)
             {
-                // NNS_G3dGlbFlushVP�̂Ƃ���
-                // ���̂܂܂Ń��[���h���W�n�̕����x�N�g���ɂȂ�B
-                NNS_G3dGeMultMtx33((const MtxFx33*)NNS_G3dGlbGetCameraMtx()); // ���[���h���W�n -> �r���[���W�n
-                NNS_G3dGeMultMtx33(&n);                                       // �W���C���g���W�n -> ���[���h���W�n
+                // NNS_G3dGlbFlushVPのときは
+                // そのままでワールド座標系の方向ベクトルになる。
+                NNS_G3dGeMultMtx33((const MtxFx33*)NNS_G3dGlbGetCameraMtx()); // ワールド座標系 -> ビュー座標系
+                NNS_G3dGeMultMtx33(&n);                                       // ジョイント座標系 -> ワールド座標系
             }
             else
             {
-                NNS_G3dGeMultMtx33(&n);                            // �W���C���g���W�n -> �r���[���W�n
+                NNS_G3dGeMultMtx33(&n);                            // ジョイント座標系 -> ビュー座標系
             }
         }
 
-        // ����Ώۍs������ɖ߂�
+        // 操作対象行列を元に戻す
         NNS_G3dGeMtxMode(GX_MTXMODE_POSITION_VECTOR);
     }
     rs->c += 3;
@@ -2154,42 +2154,42 @@ NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS* rs, u32)
 
     mnemonic:   NNS_G3D_SBC_PRJMAP([000], [001], [010])
     operands:   idxMat
-    callbacks:  A: ���_���W->�e�N�X�`�����W�}�b�s���O�s��̃J�X�^�}�C�Y
-                B: effect_mtx�ݒ�̃J�X�^�}�C�Y
-                C: ���_���W�ϊ��̃J�X�^�}�C�Y
+    callbacks:  A: 頂点座標->テクスチャ座標マッピング行列のカスタマイズ
+                B: effect_mtx設定のカスタマイズ
+                C: 頂点座標変換のカスタマイズ
 
-    �������
-    �v�Z�����e�N�X�`���s�񂩂�l�����o���āATexCoord�ɐݒ肷��K�v������̂ŁA
-    ���o���̂��\�Ȉʒu���W�s���p���Čv�Z���s���܂��B
-    ���̌���o���āA�e�N�X�`���s���TexCoord�ɐݒ肵�܂��B
-    �Ȃ��AMAT�R�}���h�Őݒ肵���e�N�X�`���s��͏㏑�������̂Ŗ����ɂȂ�܂��B
+    動作説明
+    計算したテクスチャ行列から値を取り出して、TexCoordに設定する必要があるので、
+    取り出すのが可能な位置座標行列を用いて計算を行います。
+    その後取り出して、テクスチャ行列とTexCoordに設定します。
+    なお、MATコマンドで設定したテクスチャ行列は上書きされるので無効になります。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
 {
     //
-    // �e�N�X�`���s��̈ꕔ��TexCoord��ݒ肷��K�v������̂ŁA
-    // NNS_G3D_MTXSTACK_SYS���g�p���Čv�Z���Ă�����o���B
+    // テクスチャ行列の一部をTexCoordを設定する必要があるので、
+    // NNS_G3D_MTXSTACK_SYSを使用して計算してから取り出す。
     //
 
     NNS_G3D_NULL_ASSERT(rs);
 
-    // VISIBLE�łȂ��ꍇ�͖��߂��X�L�b�v
-    // ����MatID��Ԃł��m�[�h���Ⴆ�Όv�Z���Ȃ����K�v������
+    // VISIBLEでない場合は命令をスキップ
+    // 同じMatID状態でもノードが違えば計算しなおす必要がある
     if (!(rs->flag & NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW) &&
         (rs->flag & NNS_G3D_RSFLAG_NODE_VISIBLE))
     {
         BOOL cbFlag;
         NNSG3dSbcCallBackTiming cbTiming;
 
-        // ��Ŏg�p����J�����g�ʒu���W�s������o���B
+        // 後で使用するカレント位置座標行列を取り出す。
         MtxFx43 m;
         NNS_G3dGetCurrentMtx(&m, NULL);
         NNS_G3dGeStoreMtx(NNS_G3D_MTXSTACK_SYS);
 
-        // �e�N�X�`��SRT�A�j����t���Ă���ꍇ�A
-        // TEXGEN��GX_TEXGEN_TEXCOORD�ɂȂ��Ă��܂��̂ŁA
-        // GX_TEXGEN_VERTEX�ɐݒ肵�Ȃ����B
+        // テクスチャSRTアニメを付けている場合、
+        // TEXGENがGX_TEXGEN_TEXCOORDになってしまうので、
+        // GX_TEXGEN_VERTEXに設定しなおす。
         if ((rs->pMatAnmResult->prmTexImage & REG_G3_TEXIMAGE_PARAM_TGEN_MASK) !=
                 (GX_TEXGEN_VERTEX << REG_G3_TEXIMAGE_PARAM_TGEN_SHIFT))
         {
@@ -2205,13 +2205,13 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
             NNS_G3dGeBufferData_N(&cmd[0], 2);
         }
 
-        // �R�[���o�b�N�`
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // qMtx�̐ݒ��u�������邱�Ƃ��ł���B
+        // コールバックＡ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // qMtxの設定を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_A(rs, NNS_G3D_SBC_PRJMAP, &cbTiming);
         if (!cbFlag)
         {
-            // callback A�ŃJ�X�^�}�C�Y�ł��鏈��
+            // callback Aでカスタマイズできる処理
             s32 width, height;
             width = (s32)rs->pMatAnmResult->origWidth;
             height = (s32)rs->pMatAnmResult->origHeight;
@@ -2237,9 +2237,9 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
             }
         }
 
-        // �R�[���o�b�N�a
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // effect_mtx�̐ݒ��u�������邱�Ƃ��ł���B
+        // コールバックＢ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // effect_mtxの設定を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_B(rs, NNS_G3D_SBC_PRJMAP, &cbTiming);
         if (!cbFlag)
         {
@@ -2247,11 +2247,11 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
             const NNSG3dResMatData* mat =
                 NNS_G3dGetMatDataByIdx(rs->pResMat, idxMat);
 
-            // NITRO���ԃt�@�C������effect_mtx�����݂��Ă���ꍇ�́A
-            // effect_mtx��������
+            // NITRO中間ファイル内にeffect_mtxが存在している場合は、
+            // effect_mtxをかける
             if (mat->flag & NNS_G3D_MATFLAG_EFFECTMTX)
             {
-                // NITRO���ԃt�@�C������effect_mtx�����݂��Ă���ꍇ
+                // NITRO中間ファイル内にeffect_mtxが存在している場合
                 const MtxFx44* effect_mtx;
                 const u8* p = (const u8*)mat + sizeof(NNSG3dResMatData);
 
@@ -2275,45 +2275,45 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
             }
         }
 
-        // �R�[���o�b�N�b
-        // ������NNS_G3D_RSFLAG_SKIP���Z�b�g�����ꍇ�A
-        // ���͖@���x�N�g���̕ϊ��s���u�������邱�Ƃ��ł���B
+        // コールバックＣ
+        // 内部でNNS_G3D_RSFLAG_SKIPをセットした場合、
+        // 入力法線ベクトルの変換行列を置き換えることができる。
         cbFlag = NNSi_G3dCallBackCheck_C(rs, NNS_G3D_SBC_PRJMAP, cbTiming);
         if (!cbFlag)
         {
             MtxFx44 tex_mtx;
 
             //
-            // ���͍��W�����[���h���W�n�̍��W�ɕϊ�����B
-            // �Ȃ��A���͂����@���x�N�g���́A�W�I���g���R�}���h�̕����Ɠ���(�W���C���g���W�n)�B
+            // 入力座標をワールド座標系の座標に変換する。
+            // なお、入力される法線ベクトルは、ジオメトリコマンドの方向と同じ(ジョイント座標系)。
             //
             if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_WVP)
             {
-                // NNS_G3dGlbFlushWVP�̂Ƃ��́A
-                // �W���C���g���W�n->���[�J�����W�n->���[���h���W�n
-                // �̕ϊ����s���B
+                // NNS_G3dGlbFlushWVPのときは、
+                // ジョイント座標系->ローカル座標系->ワールド座標系
+                // の変換を行う。
                 NNS_G3dGeTranslateVec(NNS_G3dGlbGetBaseTrans());
-                NNS_G3dGeMultMtx33(NNS_G3dGlbGetBaseRot());  // ���[�J�����W�n -> ���[���h���W�n
-                NNS_G3dGeMultMtx43(&m);                      // �W���C���g���W�n -> ���[�J�����W�n
+                NNS_G3dGeMultMtx33(NNS_G3dGlbGetBaseRot());  // ローカル座標系 -> ワールド座標系
+                NNS_G3dGeMultMtx43(&m);                      // ジョイント座標系 -> ローカル座標系
 
             }
             else if (NNS_G3dGlb.flag & NNS_G3D_GLB_FLAG_FLUSH_VP)
             {
-                // NNS_G3dGlbFlushVP�̂Ƃ���
-                // ���̂܂܂Ń��[���h���W�n�̕����x�N�g���ɂȂ�B
-                NNS_G3dGeMultMtx43(&m);                      // �W���C���g���W�n -> ���[���h���W�n
+                // NNS_G3dGlbFlushVPのときは
+                // そのままでワールド座標系の方向ベクトルになる。
+                NNS_G3dGeMultMtx43(&m);                      // ジョイント座標系 -> ワールド座標系
             }
             else
             {
-                // NNS_G3dGlbFlushP�̂Ƃ��́A
-                // �W���C���g���W�n->�J�������W�n->���[���h���W�n
-                // �̕ϊ����s���B
-                NNS_G3dGeMultMtx43(NNS_G3dGlbGetInvV()); // �J�������W�n -> ���[���h���W�n
-                NNS_G3dGeMultMtx43(&m);                            // �W���C���g���W�n -> �J�������W�n
+                // NNS_G3dGlbFlushPのときは、
+                // ジョイント座標系->カメラ座標系->ワールド座標系
+                // の変換を行う。
+                NNS_G3dGeMultMtx43(NNS_G3dGlbGetInvV()); // カメラ座標系 -> ワールド座標系
+                NNS_G3dGeMultMtx43(&m);                            // ジョイント座標系 -> カメラ座標系
             }
 
             //
-            // �ʒu���W�s��X�^�b�N����v�Z�����e�N�X�`���s���ǂݖ߂�
+            // 位置座標行列スタックから計算したテクスチャ行列を読み戻す
             //
             {
                 NNS_G3dGeFlushBuffer();
@@ -2333,7 +2333,7 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
             NNS_G3dGeTexCoord(tex_mtx._30 >> 4, tex_mtx._31 >> 4);
         }
 
-        // ����Ώۍs������ɖ߂�
+        // 操作対象行列を元に戻す
         NNS_G3dGeMtxMode(GX_MTXMODE_POSITION_VECTOR);
         NNS_G3dGeRestoreMtx(NNS_G3D_MTXSTACK_SYS);
     }
@@ -2345,15 +2345,15 @@ NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS* rs, u32 )
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �O���[�o���ϐ�
+// グローバル変数
 //
 
 /*---------------------------------------------------------------------------*
     NNS_G3dRS
 
-    �����_�����O���Ƀv���O�������ێ�������(�X�e�[�g�}�V���̃X�e�[�g)��ێ�����
-    �\���̂ւ̃|�C���^�B�\���̗̂̈�́ANNS_G3dDraw�ɂ����ăX�^�b�N�̈�(DTCM)��
-    �m�ۂ����BNNS_G3dRS�́ANNS_G3dDraw�I������NULL�ɃN���[���A�b�v�����B
+    レンダリング中にプログラムが保持する状態(ステートマシンのステート)を保持する
+    構造体へのポインタ。構造体の領域は、NNS_G3dDrawにおいてスタック領域(DTCM)に
+    確保される。NNS_G3dRSは、NNS_G3dDraw終了時にNULLにクリーンアップされる。
  *---------------------------------------------------------------------------*/
 NNSG3dRS* NNS_G3dRS = NULL;
 
@@ -2361,8 +2361,8 @@ NNSG3dRS* NNS_G3dRS = NULL;
 /*---------------------------------------------------------------------------*
     NNS_G3dRSOnGlb
 
-    �����_�����O���Ƀv���O�������ێ�������(�X�e�[�g�}�V���̃X�e�[�g)�ŁA
-    �T�C�Y���傫�����߂ɃX�^�b�N�̈�ɒu���Ȃ����́B
+    レンダリング中にプログラムが保持する状態(ステートマシンのステート)で、
+    サイズが大きいためにスタック領域に置かないもの。
  *---------------------------------------------------------------------------*/
 NNSG3dRSOnGlb NNS_G3dRSOnGlb;
 
@@ -2370,8 +2370,8 @@ NNSG3dRSOnGlb NNS_G3dRSOnGlb;
 /*---------------------------------------------------------------------------*
     NNS_G3dFuncSbcTable
 
-    SBC�R�[�h�̃n���h�����o�^����Ă���B
-    const�ł͂Ȃ��̂̓��[�U�[�̏����������\�ɂ��邽�߂ł���B
+    SBCコードのハンドラが登録されている。
+    constではないのはユーザーの書き換えを可能にするためである。
  *---------------------------------------------------------------------------*/
 NNSG3dFuncSbc NNS_G3dFuncSbcTable[NNS_G3D_SBC_COMMAND_NUM] =
 {
@@ -2396,8 +2396,8 @@ NNSG3dFuncSbc NNS_G3dFuncSbcTable[NNS_G3D_SBC_COMMAND_NUM] =
 /*---------------------------------------------------------------------------*
     NNS_G3dFuncSbcShpTable
 
-    �X�̃V�F�C�v�f�[�^�̐擪�ɂ���^�O�͂��̃e�[�u���ւ̃C���f�b�N�X�ɂȂ��Ă���B
-    �e�[�u���ɃV�F�C�v�f�[�^�̎�ޕʂ̃n���h����o�^���Ă����B
+    個々のシェイプデータの先頭にあるタグはこのテーブルへのインデックスになっている。
+    テーブルにシェイプデータの種類別のハンドラを登録しておく。
  *---------------------------------------------------------------------------*/
 NNSG3dFuncSbc_ShpInternal NNS_G3dFuncSbcShpTable[NNS_G3D_SIZE_SHP_VTBL_NUM] =
 {
@@ -2408,8 +2408,8 @@ NNSG3dFuncSbc_ShpInternal NNS_G3dFuncSbcShpTable[NNS_G3D_SIZE_SHP_VTBL_NUM] =
 /*---------------------------------------------------------------------------*
     NNS_G3dFuncSbcMatTable
 
-    �X�̃}�e���A���f�[�^�̐擪�ɂ���^�O�͂��̃e�[�u���ւ̃C���f�b�N�X�ɂȂ��Ă���B
-    �e�[�u���Ƀ}�e���A���f�[�^�̎�ޕʂ̃n���h����o�^���Ă����B
+    個々のマテリアルデータの先頭にあるタグはこのテーブルへのインデックスになっている。
+    テーブルにマテリアルデータの種類別のハンドラを登録しておく。
  *---------------------------------------------------------------------------*/
 NNSG3dFuncSbc_MatInternal NNS_G3dFuncSbcMatTable[NNS_G3D_SIZE_MAT_VTBL_NUM] =
 {

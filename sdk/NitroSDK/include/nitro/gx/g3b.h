@@ -15,31 +15,31 @@
   do-indent
 
   Revision 1.59  2005/09/16 01:16:35  yasu
-  __cplusplus �}�N�����̊ԈႢ�C��
+  __cplusplus マクロ名の間違い修正
 
   Revision 1.58  2005/09/09 09:05:05  yasu
-  VC.net �� inline �\�L�ɂ��Ă̑Ή�
+  VC.net の inline 表記についての対応
 
   Revision 1.57  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.56  2005/09/08 11:18:01  yasu
-  SDK_WIN32 ���� SDK_FROM_TOOL �ւ̐؂�ւ�
+  SDK_WIN32 から SDK_FROM_TOOL への切り替え
 
   Revision 1.55  2005/09/08 10:20:16  yasu
-  �R�����g�ǉ�
+  コメント追加
 
   Revision 1.54  2005/09/08 10:06:01  yasu
-  SDK_WIN32 �ɂ����� VC .net �̉ϒ��}�N���ւ̑΍�
+  SDK_WIN32 における VC .net の可変長マクロへの対策
 
   Revision 1.53  2005/08/10 08:57:36  yasu
-  g3b.c g3c.c �� PC ��ŃR���p�C���ł���悤�ɏC��
+  g3b.c g3c.c を PC 上でコンパイルできるように修正
 
   Revision 1.52  2005/05/31 11:02:13  takano_makoto
-  G3B_UpdateGXDLInfo��ASSERT������ύX
+  G3B_UpdateGXDLInfoのASSERT条件を変更
 
   Revision 1.51  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.50  2005/02/28 05:26:13  yosizaki
   do-indent.

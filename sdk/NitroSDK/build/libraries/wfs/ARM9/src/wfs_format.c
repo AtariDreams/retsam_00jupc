@@ -22,15 +22,15 @@
 /*---------------------------------------------------------------------------*
   Name:         WFS_LoadTable
 
-  Description:  �f�o�C�X����NTR�o�C�i����FAT��ǂݍ���.
+  Description:  デバイスからNTRバイナリのFATを読み込み.
 
-  Arguments:    archive          ����������WFSTableFormat�\����.
-                allocator        �����Ń������m�ۂɎg�p����A���P�[�^.
-                device           FAT�̓ǂݍ��ݑΏۂ��i�[���ꂽ�f�o�C�X.
-                origin_a         ���ɂȂ�FAT��ǂݍ���ROM�̃f�o�C�X���I�t�Z�b�g.
-                origin_b         �I�[�o�[���C���}�[�W����ROM�̃f�o�C�X���I�t�Z�b�g.
+  Arguments:    archive          初期化するWFSTableFormat構造体.
+                allocator        内部でメモリ確保に使用するアロケータ.
+                device           FATの読み込み対象が格納されたデバイス.
+                origin_a         元になるFATを読み込むROMのデバイス内オフセット.
+                origin_b         オーバーレイをマージするROMのデバイス内オフセット.
 
-  Returns:      FAT�𐳂������[�h�ł����TRUE.
+  Returns:      FATを正しくロードできればTRUE.
  *---------------------------------------------------------------------------*/
 BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
                    MIDevice *device, u32 origin_a, u32 origin_b)
@@ -43,12 +43,12 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
     CARDRomRegion   mem_region[WFS_TABLE_REGION_MAX];
     int             i;
 
-    /* �\���̂������� */
+    /* 構造体を初期化 */
     archive->origin = origin_a;
     archive->buffer = NULL;
     archive->length = 0;
 
-    /* A�̃w�b�_��ǂݍ����fat/fnt�ɋL�^ */
+    /* Aのヘッダを読み込んでfat/fntに記録 */
     {
         u8                      buf[0x60];
         const CARDRomHeader    *header = (const CARDRomHeader *)buf;
@@ -58,7 +58,7 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
         archive->region[WFS_TABLE_REGION_FNT].offset = MI_LoadLE32(&header->fnt.offset);
         archive->region[WFS_TABLE_REGION_FNT].length = MI_LoadLE32(&header->fnt.length);
     }
-    /* B�̃w�b�_��ǂݍ����ov9/ov7�ɋL�^ */
+    /* Bのヘッダを読み込んでov9/ov7に記録 */
     {
         u8                      buf[0x60];
         const CARDRomHeader    *header = (const CARDRomHeader *)buf;
@@ -69,14 +69,14 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
         archive->region[WFS_TABLE_REGION_OV7].length = MI_LoadLE32(&header->sub_ovt.length);
         origin_b_fat = header->fat.offset + diff;
     }
-    /* mixed�Ȃ� fat += (ov9 + ov7) */
+    /* mixedなら fat += (ov9 + ov7) */
     if (mixed)
     {
         mixed_overlay_count = (archive->region[WFS_TABLE_REGION_OV9].length +
                                archive->region[WFS_TABLE_REGION_OV7].length)
                               / sizeof(WFSOVLFormat);
     }
-    /* length���v�Z */
+    /* lengthを計算 */
     {
         u32 offset = 0;
         offset += sizeof(u32);
@@ -93,13 +93,13 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
         }
         archive->length = offset;
     }
-    /* buffer���m�� */
+    /* bufferを確保 */
     if (allocator)
     {
         archive->buffer = MI_CallAlloc(allocator, archive->length, sizeof(u32));
         if (archive->buffer)
         {
-            /* A�܂���B��fat/fnt/ov9/ov7��ǂݍ��� ��origin�͒����ς� */
+            /* AまたはBのfat/fnt/ov9/ov7を読み込み ※originは調整済み */
             {
                 u8     *dst = archive->buffer;
                 MI_StoreLE32(dst, archive->origin);
@@ -116,7 +116,7 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
                     dst += padding;
                 }
             }
-            /* mixed�Ȃ� fat += (ov9 + ov7) */
+            /* mixedなら fat += (ov9 + ov7) */
             if (mixed)
             {
                 u32     count = archive->region[WFS_TABLE_REGION_FAT].length / sizeof(WFSFATFormat);
@@ -158,11 +158,11 @@ BOOL WFS_LoadTable(WFSTableFormat *archive, MIAllocator *allocator,
 /*---------------------------------------------------------------------------*
   Name:         WFS_ParseTable
 
-  Description:  NTR�o�C�i����FAT�C���[�W��ǂݍ��񂾃����������.
+  Description:  NTRバイナリのFATイメージを読み込んだメモリを解析.
 
-  Arguments:    archive          ����������WFSTableFormat�\����.
-                                 �����obuffer��length �ɂ͑O������
-                                 FAT�C���[�W���ݒ肳��Ă���K�v������.
+  Arguments:    archive          初期化するWFSTableFormat構造体.
+                                 メンバbufferとlength には前もって
+                                 FATイメージが設定されている必要がある.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -171,10 +171,10 @@ void WFS_ParseTable(WFSTableFormat *archive)
     const u8   *src = archive->buffer;
     u32         pos = 0;
     int         i;
-    /* �x�[�X�I�t�Z�b�g���擾 */
+    /* ベースオフセットを取得 */
     archive->origin = MI_LoadLE32(&src[pos]);
     pos += sizeof(u32);
-    /* �^����ꂽ�o�b�t�@����e�̈���𒊏o���� */
+    /* 与えられたバッファから各領域情報を抽出する */
     for (i = 0; i < WFS_TABLE_REGION_MAX; ++i)
     {
         u32     len = MI_LoadLE32(&src[pos]);

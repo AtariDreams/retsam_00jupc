@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_174.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			174�@���ɏo���d�C�̋Z�̈З͂��Q�{�ɂȂ�B����h��͂��P�i�K�グ��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			174　次に出す電気の技の威力が２倍になる。特殊防御力を１段階上げる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.07

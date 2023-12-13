@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	numfont.c
- * @brief	”šƒtƒHƒ“ƒgæ‚èˆµ‚¢
+ * @brief	æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆå–ã‚Šæ‰±ã„
  * @author	taya
  * @date	2005.09.30
  */
@@ -15,7 +15,7 @@
 
 #include  "system/numfont.h"
 
-// ƒtƒHƒ“ƒg‚Ìƒrƒbƒg—ñƒpƒ^[ƒ“
+// ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ“ãƒƒãƒˆåˆ—ãƒ‘ã‚¿ãƒ¼ãƒ³
 enum {
 	BIT_BACK = 0,
 	BIT_LETTER = 1,
@@ -32,20 +32,20 @@ enum {
 	BIT_SS = (BIT_SHADOW << 4) | BIT_SHADOW,
 };
 
-// ‚»‚Ì‚½’è”
+// ãã®ãŸå®šæ•°
 enum {
 	CHAR_MARK_START = 10 * 0x20,
-	STRBUF_SIZE = 16,		// 16Œ…‚ ‚ê‚Î[•ª
+	STRBUF_SIZE = 16,		// 16æ¡ã‚ã‚Œã°å……åˆ†
 };
 
 //--------------------------------------------------------------
 /**
- *	‹L†ƒLƒƒƒ‰ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^
+ *	è¨˜å·ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static const struct {
-	u16 offset;		///< æ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
-	u16 width;		///< •`‰æ•iƒhƒbƒgj
+	u16 offset;		///< å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u16 width;		///< æç”»å¹…ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 }MarkCharParam[] = {
 	{  CHAR_MARK_START+0x00,	NUMFONT_NUM_WIDTH },
 	{  CHAR_MARK_START+0x20,	NUMFONT_MARK_WIDTH },
@@ -58,7 +58,7 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- *	ƒVƒXƒeƒ€ƒ[ƒN’è‹`
+ *	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯å®šç¾©
  */
 //--------------------------------------------------------------
 struct _NUMFONT {
@@ -71,14 +71,14 @@ struct _NUMFONT {
 
 //------------------------------------------------------------------
 /**
- * ”šƒtƒHƒ“ƒgì¬
+ * æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ
  *
- * @param   colLetter	•¶šF”Ô†
- * @param   colShadow	‰eF”Ô†
- * @param   colBack		”wŒiF”Ô†
- * @param   heapID		ƒq[ƒv‚h‚c
+ * @param   colLetter	æ–‡å­—è‰²ç•ªå·
+ * @param   colShadow	å½±è‰²ç•ªå·
+ * @param   colBack		èƒŒæ™¯è‰²ç•ªå·
+ * @param   heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  NUMFONT*	”šƒtƒHƒ“ƒgÀ‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^i“à—e‚Í”ñŒöŠJj
+ * @retval  NUMFONT*	æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆå®Ÿä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆå†…å®¹ã¯éå…¬é–‹ï¼‰
  */
 //------------------------------------------------------------------
 NUMFONT*  NUMFONT_Create( u32 colLetter, u32 colShadow, u32 colBack, u32 heapID )
@@ -111,9 +111,9 @@ NUMFONT*  NUMFONT_Create( u32 colLetter, u32 colShadow, u32 colBack, u32 heapID 
 }
 //------------------------------------------------------------------
 /**
- * ”šƒtƒHƒ“ƒgƒ}ƒl[ƒWƒƒ”jŠü
+ * æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -130,13 +130,13 @@ void NUMFONT_Delete( NUMFONT* numfont )
 }
 //------------------------------------------------------------------
 /**
- * ‹L†•`‰æ
+ * è¨˜å·æç”»
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param   mark		‹L†ƒ^ƒCƒv
- * @param   win			•`‰ææƒEƒBƒ“ƒhƒE
- * @param   x			•`‰ææ‚wÀ•Wiƒhƒbƒgj
- * @param   y			•`‰ææ‚xÀ•Wiƒhƒbƒgj
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   mark		è¨˜å·ã‚¿ã‚¤ãƒ—
+ * @param   win			æç”»å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param   x			æç”»å…ˆï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ * @param   y			æç”»å…ˆï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 
  *
  */
@@ -152,15 +152,15 @@ void NUMFONT_WriteMark( NUMFONT* numfont, NUMFONT_MARK mark, GF_BGL_BMPWIN* win,
 }
 //------------------------------------------------------------------
 /**
- * ”’l•`‰æ
+ * æ•°å€¤æç”»
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param   num			”’l
- * @param   keta		Å‘åŒ…”
- * @param   mode		•`‰æ•û®
- * @param   win			•`‰ææƒEƒBƒ“ƒhƒE
- * @param   x			•`‰ææ‚wÀ•Wiƒhƒbƒgj
- * @param   y			•`‰ææ‚xÀ•Wiƒhƒbƒgj
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   num			æ•°å€¤
+ * @param   keta		æœ€å¤§æ¡æ•°
+ * @param   mode		æç”»æ–¹å¼
+ * @param   win			æç”»å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param   x			æç”»å…ˆï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ * @param   y			æç”»å…ˆï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -186,16 +186,16 @@ void NUMFONT_WriteNumber( NUMFONT* numfont, s32 num, u32 keta, NUMFONT_DRAW_MODE
 
 //------------------------------------------------------------------
 /**
- * ‹L†‚Æ”š‚ğƒZƒbƒg‚Å•`‰æ
+ * è¨˜å·ã¨æ•°å­—ã‚’ã‚»ãƒƒãƒˆã§æç”»
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param   mark		‹L†í—Ş
- * @param   num			”’l
- * @param   keta		Å‘åŒ…”
- * @param   mode		”’l•`‰æ•û®
- * @param   win			•`‰ææƒEƒBƒ“ƒhƒE
- * @param   x			•`‰ææ‚wÀ•Wiƒhƒbƒgj
- * @param   y			•`‰ææ‚xÀ•Wiƒhƒbƒgj
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   mark		è¨˜å·ç¨®é¡
+ * @param   num			æ•°å€¤
+ * @param   keta		æœ€å¤§æ¡æ•°
+ * @param   mode		æ•°å€¤æç”»æ–¹å¼
+ * @param   win			æç”»å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param   x			æç”»å…ˆï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ * @param   y			æç”»å…ˆï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -208,13 +208,13 @@ void NUMFONT_WriteSet( NUMFONT* numfont, NUMFONT_MARK mark, s32 num, u32 keta, N
 
 //------------------------------------------------------------------
 /**
- * ”’l•`‰æ(w’èƒoƒbƒtƒ@‚É‘Î‚µ‚ÄƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì‚İ‘‚«‚İ)
+ * æ•°å€¤æç”»(æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã¿æ›¸ãè¾¼ã¿)
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param   num			”’l
- * @param   keta		Å‘åŒ…”
- * @param   mode		•`‰æ•û®
- * @param   buf			•`‰ææƒoƒbƒtƒ@
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   num			æ•°å€¤
+ * @param   keta		æœ€å¤§æ¡æ•°
+ * @param   mode		æç”»æ–¹å¼
+ * @param   buf			æç”»å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -244,15 +244,15 @@ void NUMFONT_WriteNumberCGXOnly( NUMFONT* numfont, s32 num, u32 keta,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹L†•`‰æ(w’èƒoƒbƒtƒ@‚É‘Î‚µ‚ÄƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì‚İ‘‚«‚İ)
+ * @brief   è¨˜å·æç”»(æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã¿æ›¸ãè¾¼ã¿)
  *
- * @param   numfont		”šƒtƒHƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param   mark		‹L†ƒ^ƒCƒv
- * @param   buf			“WŠJƒoƒbƒtƒ@æ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   numfont		æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   mark		è¨˜å·ã‚¿ã‚¤ãƒ—
+ * @param   buf			å±•é–‹ãƒãƒƒãƒ•ã‚¡å…ˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  *
- * buf‚Í u(NUMFONT_MARK_WIDTH / 8) * (NUMFONT_HEIGHT / 8) * 32v ‚ÌƒTƒCƒY‚ª•K—v‚Å‚·B
+ * bufã¯ ã€Œ(NUMFONT_MARK_WIDTH / 8) * (NUMFONT_HEIGHT / 8) * 32ã€ ã®ã‚µã‚¤ã‚ºãŒå¿…è¦ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 void NUMFONT_WriteMarkCGXOnly( NUMFONT* numfont, NUMFONT_MARK mark, void *buf)

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b012_3.s
- * @brief	¶‰E‚ä‚ê
+ * @brief	å·¦å³ã‚†ã‚Œ
  * @author	
  * @date	
  *
@@ -18,40 +18,40 @@
 // =============================================================================
 //
 //
-//	”w–Ê	¶‰E‚ä‚êƒXƒ[
+//	èƒŒé¢	å·¦å³ã‚†ã‚Œã‚¹ãƒ­ãƒ¼
 //
 //
 // =============================================================================
 #define W_SIZE	(0x10)
 #define H_SIZE	(0x8)
-#define CALC_NUM	(16)	// 32€2
+#define CALC_NUM	(16)	// 32Ã·2
 
 PAST_ANIME_B012_3:
-	//‚wU•0x10@‚xU•0x8@ˆ—‰ñ”32 x 2
+	//ï¼¸æŒ¯å¹…0x10ã€€ï¼¹æŒ¯å¹…0x8ã€€å‡¦ç†å›žæ•°32 x 2
 
-	//¶
-	//16‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//å·¦
+	//16å›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,W_SIZE,0x4000,0,CALC_NUM
-	//16‰ñ‚Ìˆ—‚Å180‹ˆ—
+	//16å›žã®å‡¦ç†ã§180Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DY,H_SIZE,0x8000,0,CALC_NUM
 	HOLD_CMD
 
-	//16‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//16å›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,W_SIZE,0x4000,0x4000,CALC_NUM
-	//16‰ñ‚Ìˆ—‚Å180‹ˆ—
+	//16å›žã®å‡¦ç†ã§180Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DY,H_SIZE,0x8000,0,CALC_NUM
 	HOLD_CMD
 
-	//‰E
-	//16‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//å³
+	//16å›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DX,W_SIZE,0x4000,0,CALC_NUM
-	//16‰ñ‚Ìˆ—‚Å180‹ˆ—
+	//16å›žã®å‡¦ç†ã§180Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DY,H_SIZE,0x8000,0,CALC_NUM
 	HOLD_CMD
 
-	//16‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//16å›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DX,W_SIZE,0x4000,0x4000,CALC_NUM
-	//16‰ñ‚Ìˆ—‚Å180‹ˆ—
+	//16å›žã®å‡¦ç†ã§180Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_DY,H_SIZE,0x8000,0,CALC_NUM
 	HOLD_CMD
 

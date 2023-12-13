@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		minigame_commcomand.h
- *	@brief		ƒ~ƒjƒQ[ƒ€ƒc[ƒ‹’ÊMƒRƒ}ƒ“ƒh
+ *	@brief		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ„ãƒ¼ãƒ«é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2007.11.08
  *
@@ -17,21 +17,21 @@
 enum CommCommandMNGM {
 
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	CNM_MNGM_RETRY_YES = CS_COMMAND_MAX,	//< q[„e	RETRY YES
-	CNM_MNGM_RETRY_NO,						//<	q[„e	RETRY@NO
-	CNM_MNGM_RETRY_OK,						//< e[„q	RETRY
+	CNM_MNGM_RETRY_YES = CS_COMMAND_MAX,	//< å­ãƒ¼ï¼è¦ª	RETRY YES
+	CNM_MNGM_RETRY_NO,						//<	å­ãƒ¼ï¼è¦ª	RETRYã€€NO
+	CNM_MNGM_RETRY_OK,						//< è¦ªãƒ¼ï¼å­	RETRY
 	CNM_MNGM_RETRY_NG,						//< 
-	CNM_MNGM_ENTRY_RAREGAME,				//<	e[„q	RareƒQ[ƒ€ƒ^ƒCƒv
+	CNM_MNGM_ENTRY_RAREGAME,				//<	è¦ªãƒ¼ï¼å­	Rareã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
 	
 
 	//-------------------------------------
 	//	
 	//=====================================
 	
-	//------------------------------------------------‚±‚±‚Ü‚Å
-	CNM_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+	//------------------------------------------------ã“ã“ã¾ã§
+	CNM_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 extern const CommPacketTbl* MNGM_CommCommandTclGet( void );

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	plist_obj.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgOBJˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆOBJå‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.10.05
  */
@@ -32,20 +32,20 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	CLA_SUB_SURFACE_OFFSET	( 256 * FX32_ONE )	// ƒTƒu‰æ–Ê‚ÌƒT[ƒtƒF[ƒXƒIƒtƒZƒbƒg
+#define	CLA_SUB_SURFACE_OFFSET	( 256 * FX32_ONE )	// ã‚µãƒ–ç”»é¢ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void PokeListIconCellActMake( PLIST_WORK * wk );
 static u8 IconMonsCheck( PL_PANEL_DATA * dat );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 
@@ -53,9 +53,9 @@ static u8 IconMonsCheck( PL_PANEL_DATA * dat );
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -78,7 +78,7 @@ void PokeListCellActorInit( PLIST_WORK * wk )
 			0, 32,
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			PLIST_ACT_MAX+6,		// {ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+			PLIST_ACT_MAX+6,		// ï¼‹ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 			1024,
 			1024,
 			GX_OBJVRAMMODE_CHAR_1D_32K,
@@ -95,13 +95,13 @@ void PokeListCellActorInit( PLIST_WORK * wk )
 
 	{
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/plist_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/plist_pal.resdat",		// ƒpƒŒƒbƒg
-			"data/plist_cell.resdat",		// ƒZƒ‹
-			"data/plist_canm.resdat",		// ƒZƒ‹ƒAƒjƒ
-			NULL,							// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,							// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/plist_h.cldat"			// ƒwƒbƒ_[
+			"data/plist_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/plist_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/plist_cell.resdat",		// ã‚»ãƒ«
+			"data/plist_canm.resdat",		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,							// ãƒãƒ«ãƒã‚»ãƒ«
+			NULL,							// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/plist_h.cldat"			// ãƒ˜ãƒƒãƒ€ãƒ¼
 		};
 		CATS_ResourceLoadBinary( wk->csp, wk->crp, &list );
 	}
@@ -110,12 +110,12 @@ void PokeListCellActorInit( PLIST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	px		XÀ•W
- * @param	py		YÀ•W
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	px		Xåº§æ¨™
+ * @param	py		Yåº§æ¨™
  *
  * @return	none
  */
@@ -137,16 +137,16 @@ void PokeListIconAdd( PLIST_WORK * wk, u8 pos, u16 px, u16 py, ARCHANDLE* p_hand
 
 	egg = PokeParaGet( pp, ID_PARA_tamago_flag, NULL );
 
-	prm.no = PLA_CHAR_ID_ICON1+pos;		///< ƒŠƒ\[ƒX“àƒf[ƒ^‚Ì“o˜^”Ô†
+	prm.no = PLA_CHAR_ID_ICON1+pos;		///< ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²ç•ªå·
 
-	prm.x = px;				///< [ X ] À•W
-	prm.y = py;				///< [ Y ] À•W
-	prm.z = 0;				///< [ Z ] À•W
+	prm.x = px;				///< [ X ] åº§æ¨™
+	prm.y = py;				///< [ Y ] åº§æ¨™
+	prm.z = 0;				///< [ Z ] åº§æ¨™
 
-	prm.anm = 0;													///< ƒAƒjƒ”Ô†
-	prm.pri = 0;													///< —Dæ‡ˆÊ
-	prm.pal = PokeIconPalNumGet(wk->panel[pos].mons,wk->panel[pos].form,egg)+3;	///< ƒpƒŒƒbƒg”Ô†
-	prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;							///< •`‰æƒGƒŠƒA
+	prm.anm = 0;													///< ã‚¢ãƒ‹ãƒ¡ç•ªå·
+	prm.pri = 0;													///< å„ªå…ˆé †ä½
+	prm.pal = PokeIconPalNumGet(wk->panel[pos].mons,wk->panel[pos].form,egg)+3;	///< ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;							///< æç”»ã‚¨ãƒªã‚¢
 
 	prm.param1 = 0;
 	prm.param2 = 0;
@@ -158,12 +158,12 @@ void PokeListIconAdd( PLIST_WORK * wk, u8 pos, u16 px, u16 py, ARCHANDLE* p_hand
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ğŒ»İ‚Ìƒpƒ‰ƒ[ƒ^‚Å•ÏX
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç¾åœ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§å¤‰æ›´
  *
- * @param   wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param   pos		ˆÊ’u
+ * @param   wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param   pos		ä½ç½®
  *
- * ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW—p‚É—pˆÓ
+ * ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ç”¨ã«ç”¨æ„
  */
 //--------------------------------------------------------------
 void PokeListIconChange( PLIST_WORK *wk, u8 pos )
@@ -205,149 +205,149 @@ void PokeListIconChange( PLIST_WORK *wk, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
-// ƒZƒ‹ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 {
-	{	// ‘I‘ğƒJ[ƒ\ƒ‹
+	{	// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
 		PLA_CHAR_ID_CURSOR,
 		64, 24, 0,
 		1, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// “ü‚ê‘Ö‚¦ƒJ[ƒ\ƒ‹
+	{	// å…¥ã‚Œæ›¿ãˆã‚«ãƒ¼ã‚½ãƒ«
 		PLA_CHAR_ID_CURSOR,
 		64, 72, 0,
 		2, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ‚¯‚Á‚Ä‚¢
+	{	// ã‘ã£ã¦ã„
 		PLA_CHAR_ID_ENTER,
 		232, 168, 0,
 		2, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ‚à‚Ç‚é
+	{	// ã‚‚ã©ã‚‹
 		PLA_CHAR_ID_ENTER,
 		232, 184, 0,
 		2, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚P
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 		PLA_CHAR_ID_STATUS,
 		36, 44, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚Q
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼’
 		PLA_CHAR_ID_STATUS,
 		164, 52, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚R
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼“
 		PLA_CHAR_ID_STATUS,
 		36, 92, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚S
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼”
 		PLA_CHAR_ID_STATUS,
 		164, 100, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚T
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼•
 		PLA_CHAR_ID_STATUS,
 		36, 140, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“‚U
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ï¼–
 		PLA_CHAR_ID_STATUS,
 		164, 148, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚P
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚Q
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼’
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚R
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼“
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚S
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼”
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚T
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼•
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚U
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼–
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚P
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚Q
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼’
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚R
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼“
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚S
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼”
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚T
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼•
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“‚U
+	{	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ï¼–
 		PLA_CHAR_ID_ITEM,
 		164, 148, 0,
 		2, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
 
-	{	// ƒ{ƒ^ƒ“ƒGƒtƒFƒNƒg
+	{	// ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		PLA_CHAR_ID_BUTTON_EF,
 		164, 148, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB,
@@ -359,9 +359,9 @@ static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -391,12 +391,12 @@ void PokeListCellActSet( PLIST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ãƒœãƒ¼ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	px		XÀ•W
- * @param	py		YÀ•W
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	px		Xåº§æ¨™
+ * @param	py		Yåº§æ¨™
  *
  * @return	none
  */
@@ -405,16 +405,16 @@ void PokeListBallActSet( PLIST_WORK * wk, u8 pos, u16 px, u16 py )
 {
 	TCATS_OBJECT_ADD_PARAM	prm;
 
-	prm.no = PLA_CHAR_ID_BALL;		///< ƒŠƒ\[ƒX“àƒf[ƒ^‚Ì“o˜^”Ô†
+	prm.no = PLA_CHAR_ID_BALL;		///< ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²ç•ªå·
 
-	prm.x = px;				///< [ X ] À•W
-	prm.y = py;				///< [ Y ] À•W
-	prm.z = 0;				///< [ Z ] À•W
+	prm.x = px;				///< [ X ] åº§æ¨™
+	prm.y = py;				///< [ Y ] åº§æ¨™
+	prm.z = 0;				///< [ Z ] åº§æ¨™
 
-	prm.anm = 0;			///< ƒAƒjƒ”Ô†
-	prm.pri = 1;			///< —Dæ‡ˆÊ
-	prm.pal = 0;			///< ƒpƒŒƒbƒg”Ô†
-	prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;	///< •`‰æƒGƒŠƒA
+	prm.anm = 0;			///< ã‚¢ãƒ‹ãƒ¡ç•ªå·
+	prm.pri = 1;			///< å„ªå…ˆé †ä½
+	prm.pal = 0;			///< ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;	///< æç”»ã‚¨ãƒªã‚¢
 
 	prm.param1 = 0;
 	prm.param2 = 0;
@@ -427,9 +427,9 @@ void PokeListBallActSet( PLIST_WORK * wk, u8 pos, u16 px, u16 py )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰ğ•ú
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -444,11 +444,11 @@ void PokeListCellActRerease( PLIST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	st		ó‘Ô
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	st		çŠ¶æ…‹
  *
  * @return	none
  */
@@ -467,11 +467,11 @@ void PokeList_StatusIconChg( PLIST_WORK * wk, u8 pos, u8 st )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -494,10 +494,10 @@ void PokeList_ItemIconChg( PLIST_WORK * wk, u8 pos, u16 item )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒ‹ƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ãƒ¡ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -512,12 +512,12 @@ void PokeList_MailIconChg( PLIST_WORK * wk, u8 pos )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“ˆÊ’uƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	x		XÀ•W
- * @param	y		YÀ•W
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	x		Xåº§æ¨™
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -533,10 +533,10 @@ void PokeList_ItemIconPosSet( PLIST_WORK * wk, u8 pos, s16 x, s16 y )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“ƒZƒbƒg
+ * ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -549,10 +549,10 @@ void PokeList_CustomIconPosSet( PLIST_WORK * wk, u8 pos )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -575,10 +575,10 @@ void PokeList_CustomIconChg( PLIST_WORK * wk, u8 pos )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒØ‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -592,11 +592,11 @@ static void PokeIconAnmChg( CLACT_WORK_PTR awp, u8 anm )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒƒ`ƒFƒbƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒƒã‚¯
  *
- * @param	dat		ƒpƒlƒ‹ƒf[ƒ^
+ * @param	dat		ãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- * @return	ƒAƒjƒ”Ô†
+ * @return	ã‚¢ãƒ‹ãƒ¡ç•ªå·
  */
 //---------------------------------------------------------------------------------------------
 static u8 PokeIconAnmCheck( PL_PANEL_DATA * dat )
@@ -613,11 +613,11 @@ static u8 PokeIconAnmCheck( PL_PANEL_DATA * dat )
 	switch( GetHPGaugeDottoColor( dat->hp, dat->mhp, PL_HP_DOTTO_MAX ) ){
 	case HP_DOTTO_MAX:
 		return POKEICON_ANM_HPMAX;
-	case HP_DOTTO_GREEN:	// —Î
+	case HP_DOTTO_GREEN:	// ç·‘
 		return POKEICON_ANM_HPGREEN;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		return POKEICON_ANM_HPYERROW;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		return POKEICON_ANM_HPRED;
 	}
 
@@ -626,9 +626,9 @@ static u8 PokeIconAnmCheck( PL_PANEL_DATA * dat )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒ
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -667,17 +667,17 @@ void PokeIconAnime( PLIST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN
+ * ã‚¢ã‚¤ã‚³ãƒ³ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	dat		ƒpƒlƒ‹ƒf[ƒ^
+ * @param	dat		ãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ‚ ‚è"
- * @retval	"FALSE = ‚È‚µ"
+ * @retval	"TRUE = ã‚ã‚Š"
+ * @retval	"FALSE = ãªã—"
  */
 //---------------------------------------------------------------------------------------------
 static u8 IconMonsCheck( PL_PANEL_DATA * dat )
 {
-	// HƒAƒCƒRƒ“
+	// ï¼Ÿã‚¢ã‚¤ã‚³ãƒ³
 	if( dat->mons == 0 || dat->mons > MONSNO_END ){
 		return FALSE;
 	}
@@ -687,11 +687,11 @@ static u8 IconMonsCheck( PL_PANEL_DATA * dat )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹‚ğØ‚è‘Ö‚¦
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	pos		ˆÊ’u
- * @param	pal		ƒpƒŒƒbƒg
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
+ * @param	pal		ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -713,11 +713,11 @@ void PokeList_SelCursorChgDirect( PLIST_WORK * wk, u8 pos, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒuƒ{ƒ^ƒ“ƒGƒtƒFƒNƒg
+ * ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	x		XÀ•W
- * @param	y		YÀ•W
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	x		Xåº§æ¨™
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -741,9 +741,9 @@ void PokeListObj_SubButtonEffInit( PLIST_WORK * wk, s16 x, s16 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒuƒ{ƒ^ƒ“ƒGƒtƒFƒNƒgƒƒCƒ“
+ * ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

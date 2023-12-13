@@ -25,13 +25,13 @@
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUnpackedFont
 
-  Description:  NFTR ƒtƒ@ƒCƒ‹‚ğ NITROƒtƒHƒ“ƒg‚Ö‚Æ“WŠJ‚µ‚Ü‚·B
+  Description:  NFTR ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ NITROãƒ•ã‚©ãƒ³ãƒˆã¸ã¨å±•é–‹ã—ã¾ã™ã€‚
 
-  Arguments:    pNftrFile:  NFTR ƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                ppFont:     NITROƒtƒHƒ“ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ì
-                            ƒ|ƒCƒ“ƒ^B
+  Arguments:    pNftrFile:  NFTR ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                ppFont:     NITROãƒ•ã‚©ãƒ³ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®
+                            ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      “WŠJ‚É¬Œ÷‚µ‚½‚ç FALSE ˆÈŠO‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      å±•é–‹ã«æˆåŠŸã—ãŸã‚‰ FALSE ä»¥å¤–ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 BOOL NNSi_G2dGetUnpackedFont( void* pNftrFile, NNSG2dFontInformation** ppRes )
 {
@@ -90,13 +90,13 @@ BOOL NNSi_G2dGetUnpackedFont( void* pNftrFile, NNSG2dFontInformation** ppRes )
 /*---------------------------------------------------------------------------*
   Name:         ResolveOffset
 
-  Description:  NITROƒtƒHƒ“ƒg“à‚ÌƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^‚ğ‰ğŒˆ‚µ‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆå†…ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’è§£æ±ºã—ã¾ã™ã€‚
 
-  Arguments:    ppOffset:   ƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚Ö‚Ì
-                            ƒ|ƒCƒ“ƒ^B
-                pBase:      ƒIƒtƒZƒbƒg‚ÌŠî“_‚Æ‚È‚éƒAƒhƒŒƒXB
+  Arguments:    ppOffset:   ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®
+                            ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pBase:      ã‚ªãƒ•ã‚»ãƒƒãƒˆã®åŸºç‚¹ã¨ãªã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void NNS_G2D_INLINE ResolveOffset(void** ppOffset, void* pBase)
 {
@@ -108,13 +108,13 @@ static void NNS_G2D_INLINE ResolveOffset(void** ppOffset, void* pBase)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dUnpackNFT
 
-  Description:  NFTR ƒtƒ@ƒCƒ‹ƒf[ƒ^‚ğƒ‰ƒCƒuƒ‰ƒŠ‚Å—˜—p‚Å‚«‚éŒ`‚Ö‚Æ“WŠJ‚µ‚Ü‚·B
-                Šeƒtƒ@ƒCƒ‹ƒf[ƒ^‚É‘Î‚µ‚Äƒ‰ƒCƒuƒ‰ƒŠ‚Å‚Ìg—p‚Ì‘O‚É1‰ñ‚¾‚¯
-                Às‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:  NFTR ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§åˆ©ç”¨ã§ãã‚‹å½¢ã¸ã¨å±•é–‹ã—ã¾ã™ã€‚
+                å„ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã«å¯¾ã—ã¦ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã®ä½¿ç”¨ã®å‰ã«1å›ã ã‘
+                å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-  Arguments:    pHeader:    NFTR ƒtƒ@ƒCƒ‹‚ÌƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pHeader:    NFTR ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
 {
@@ -132,21 +132,21 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
             switch( pBlock->kind )
             {
             //--------------------------------------------------
-            // INFO ƒuƒƒbƒN
+            // INFO ãƒ–ãƒ­ãƒƒã‚¯
             case NNS_G2D_BINBLK_SIG_FINFDATA:
-                // INFOƒuƒƒbƒN‚Í1‚Â‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+                // INFOãƒ–ãƒ­ãƒƒã‚¯ã¯1ã¤ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„
                 NNS_G2D_ASSERT( pInfo == NULL );
                 {
                     pInfo = (NNSG2dFontInformation*)((u8*)pBlock + sizeof(*pBlock));
 
                     NNS_G2D_ASSERT( pInfo->fontType == NNS_G2D_FONTTYPE_GLYPH );
 
-                    // pGlyph ‚Í•K{
+                    // pGlyph ã¯å¿…é ˆ
                     NNS_G2D_NULL_ASSERT( pInfo->pGlyph );
                     ResolveOffset((void**)&(pInfo->pGlyph), pHeader);
                     NNS_G2D_POINTER_ASSERT( pInfo->pGlyph )
 
-                    // pWidth ‚Æ pMap ‚Í‚È‚­‚Ä‚à—Ç‚¢
+                    // pWidth ã¨ pMap ã¯ãªãã¦ã‚‚è‰¯ã„
                     if( pInfo->pWidth != NULL )
                     {
                         ResolveOffset((void**)&(pInfo->pWidth), pHeader);
@@ -161,9 +161,9 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
                 break;
 
             //--------------------------------------------------
-            // CGLP ƒuƒƒbƒN
+            // CGLP ãƒ–ãƒ­ãƒƒã‚¯
             case NNS_G2D_BINBLK_SIG_CGLPDATA:
-                // CGLP ƒuƒƒbƒN‚à1‚Â‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚ª•¡”‘¶İ‚µ‚Ä‚à’v–½“I‚Å‚Í‚È‚¢
+                // CGLP ãƒ–ãƒ­ãƒƒã‚¯ã‚‚1ã¤ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŒè¤‡æ•°å­˜åœ¨ã—ã¦ã‚‚è‡´å‘½çš„ã§ã¯ãªã„
                 {
                     NNSG2dFontGlyph* pGlyph = (NNSG2dFontGlyph*)((u8*)pBlock + sizeof(*pBlock));
                     NNS_G2D_MIN_ASSERT( pGlyph->cellWidth, 1 );
@@ -174,7 +174,7 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
                 break;
 
             //--------------------------------------------------
-            // CWDHƒuƒƒbƒN
+            // CWDHãƒ–ãƒ­ãƒƒã‚¯
             case NNS_G2D_BINBLK_SIG_CWDHDATA:
                 {
                     NNSG2dFontWidth* pWidth = (NNSG2dFontWidth*)((u8*)pBlock + sizeof(*pBlock));
@@ -190,7 +190,7 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
                 break;
 
             //--------------------------------------------------
-            // CMAPƒuƒƒbƒN
+            // CMAPãƒ–ãƒ­ãƒƒã‚¯
             case NNS_G2D_BINBLK_SIG_CMAPDATA:
                 {
                     NNSG2dFontCodeMap* pMap = (NNSG2dFontCodeMap*)((u8*)pBlock + sizeof(*pBlock));
@@ -235,11 +235,11 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontInformation
 
-  Description:  NITROƒtƒHƒ“ƒg‚ÌINFOƒuƒƒbƒN‚ÌƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆã®INFOãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pInfo:  INFOƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pInfo:  INFOãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontInformation(const NNSG2dFontInformation* pInfo)
 {
@@ -275,11 +275,11 @@ static void PrintFontInformation(const NNSG2dFontInformation* pInfo)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontGlyph
 
-  Description:  NITROƒtƒHƒ“ƒg‚ÌCGLPƒuƒƒbƒN‚ÌƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆã®CGLPãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pGlyph: CGLPƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pGlyph: CGLPãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontGlyph(const NNSG2dFontGlyph* pGlyph)
 {
@@ -312,11 +312,11 @@ static void PrintFontGlyph(const NNSG2dFontGlyph* pGlyph)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontWidth
 
-  Description:  NITROƒtƒHƒ“ƒg‚ÌCWDHƒuƒƒbƒN‚ÌƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆã®CWDHãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pGlyph: CWDHƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pGlyph: CWDHãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontWidth(const NNSG2dFontWidth* pWidth)
 {
@@ -332,14 +332,14 @@ static void PrintFontWidth(const NNSG2dFontWidth* pWidth)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontCMapTable
 
-  Description:  NNS_G2D_MAPMETHOD_TABLE ƒ^ƒCƒv‚Ìƒ}ƒbƒsƒ“ƒOƒe[ƒuƒ‹‚Ì
-                ƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NNS_G2D_MAPMETHOD_TABLE ã‚¿ã‚¤ãƒ—ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã®
+                ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    table:          ƒ}ƒbƒsƒ“ƒOƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                num:            ƒ}ƒbƒsƒ“ƒOƒe[ƒuƒ‹‚ÉŠÜ‚Ü‚ê‚éƒGƒ“ƒgƒŠ‚Ì”B
-                ccodeOffset:    •¶šƒR[ƒh‚ÌƒIƒtƒZƒbƒgB
+  Arguments:    table:          ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                num:            ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã«å«ã¾ã‚Œã‚‹ã‚¨ãƒ³ãƒˆãƒªã®æ•°ã€‚
+                ccodeOffset:    æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontCMapTable(const u16* table, int num, int ccodeOffset)
 {
@@ -359,12 +359,12 @@ static void PrintFontCMapTable(const u16* table, int num, int ccodeOffset)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontCMapScanList
 
-  Description:  NNS_G2D_MAPMETHOD_SCAN ƒ^ƒCƒv‚Ìƒ}ƒbƒsƒ“ƒOƒe[ƒuƒ‹‚Ì
-                ƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NNS_G2D_MAPMETHOD_SCAN ã‚¿ã‚¤ãƒ—ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã®
+                ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    scan:   ƒ}ƒbƒsƒ“ƒOî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    scan:   ãƒãƒƒãƒ”ãƒ³ã‚°æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontCMapScanList(const NNSG2dCMapInfoScan* scan)
 {
@@ -384,11 +384,11 @@ static void PrintFontCMapScanList(const NNSG2dCMapInfoScan* scan)
 /*---------------------------------------------------------------------------*
   Name:         PrintFontCMapTable
 
-  Description:  NITROƒtƒHƒ“ƒg‚ÌCMAPƒuƒƒbƒN‚ÌƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğs‚¢‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆã®CMAPãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pGlyph: CMAPƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pGlyph: CMAPãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void PrintFontCMap(const NNSG2dFontCodeMap* pCMap)
 {
@@ -411,7 +411,7 @@ static void PrintFontCMap(const NNSG2dFontCodeMap* pCMap)
     switch( pCMap->mappingMethod )
     {
     //---------------------------------------------------------
-    // ƒIƒtƒZƒbƒgŒvZ
+    // ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨ˆç®—
     case NNS_G2D_MAPMETHOD_DIRECT:
         {
             OS_Printf(" indexOffset        = 0x%04X\n", pCMap->mapInfo[0]);
@@ -419,7 +419,7 @@ static void PrintFontCMap(const NNSG2dFontCodeMap* pCMap)
         break;
 
     //---------------------------------------------------------
-    // ƒe[ƒuƒ‹ˆø‚«
+    // ãƒ†ãƒ¼ãƒ–ãƒ«å¼•ã
     case NNS_G2D_MAPMETHOD_TABLE:
         {
 #ifdef NNS_G2D_FONT_SHOW_CMAP_LIST
@@ -432,7 +432,7 @@ static void PrintFontCMap(const NNSG2dFontCodeMap* pCMap)
         break;
 
     //---------------------------------------------------------
-    // “ñ•ª’Tõ
+    // äºŒåˆ†æ¢ç´¢
     case NNS_G2D_MAPMETHOD_SCAN:
         {
             const NNSG2dCMapInfoScan* const ws = (NNSG2dCMapInfoScan*)(pCMap->mapInfo);
@@ -455,11 +455,11 @@ static void PrintFontCMap(const NNSG2dFontCodeMap* pCMap)
 /*---------------------------------------------------------------------------*
   Name:         PrintSpliter
 
-  Description:  ƒfƒoƒbƒOƒvƒŠƒ“ƒg‚Ì‹æØ‚èü‚ğo—Í‚µ‚Ü‚·B
+  Description:  ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã®åŒºåˆ‡ã‚Šç·šã‚’å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µB
+  Arguments:    ãªã—ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE void PrintSpliter(void)
 {
@@ -469,11 +469,11 @@ static NNS_G2D_INLINE void PrintSpliter(void)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dPrintFont
 
-  Description:  NITROƒtƒHƒ“ƒg‚Ìî•ñ‚ğƒfƒoƒbƒOo—Í‚Éo—Í‚µ‚Ü‚·B
+  Description:  NITROãƒ•ã‚©ãƒ³ãƒˆã®æƒ…å ±ã‚’ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã«å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    pFont:  NITROƒtƒHƒ“ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pFont:  NITROãƒ•ã‚©ãƒ³ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dPrintFont( const NNSG2dFont* pFont )
 {

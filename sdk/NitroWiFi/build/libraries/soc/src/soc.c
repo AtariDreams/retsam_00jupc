@@ -12,97 +12,97 @@
 
   $Log: soc.c,v $
   Revision 1.31  2006/07/18 02:37:09  okubata_ryoma
-  NitroSDK3.2PR�ȑO��STD_CopyLString�ƌ݊�����ۂ��߂̕ύX
+  NitroSDK3.2PR以前のSTD_CopyLStringと互換性を保つための変更
 
   Revision 1.30  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.29  2005/09/17 11:51:58  yasu
-  ConfigError ���̔���� Link �؂��ǉ�����
+  ConfigError 時の判定に Link 切れを追加した
 
   Revision 1.28  2005/09/17 09:05:27  yasu
-  �����N�؂�̃n���h�����O�ɂƂ��Ȃ� DHCP����̏C��
+  リンク切れのハンドリングにともなう DHCP周りの修正
 
   Revision 1.27  2005/09/15 12:50:48  yasu
-  Alloc/Free ����̏C��
+  Alloc/Free 周りの修正
 
   Revision 1.26  2005/09/08 05:35:34  yasu
-  �\�P�b�g�f�X�N���v�^���L���l�ł��邩�ǂ����̔���� SOCL ���ōs�Ȃ����Ƃɂ���
+  ソケットデスクリプタが有効値であるかどうかの判定を SOCL 側で行なうことにする
 
   Revision 1.25  2005/09/02 08:00:13  yasu
-  ���[�J���z�X�g�� IP �̃A�T�[�g���폜
+  ローカルホストの IP のアサートを削除
 
   Revision 1.24  2005/08/19 12:49:49  yada
-  SOC_GetHostByName() and SOC_GetHostByAddr() �Ńz�X�g����Ԃ��悤�ɂȂ���
+  SOC_GetHostByName() and SOC_GetHostByAddr() でホスト名を返すようになった
 
   Revision 1.23  2005/08/19 05:05:23  yasu
-  mtu/rwin �Ή�
+  mtu/rwin 対応
 
   Revision 1.22  2005/08/17 11:48:13  yasu
-  SOC_InetAtoN �C��
+  SOC_InetAtoN 修正
 
   Revision 1.21  2005/08/17 04:10:27  yasu
-  SOC_Poll �̋@�\�ǉ�
+  SOC_Poll の機能追加
 
   Revision 1.20  2005/08/12 14:20:58  yasu
-  SOC_InetNtoP�@�̕Ԃ�������A�h���X�̃t�H�[�}�b�g���̏C��
+  SOC_InetNtoP　の返す文字列アドレスのフォーマット誤りの修正
 
   Revision 1.19  2005/08/12 09:53:07  yasu
-  Recv/Send �ɂ���������̎w��� socket �\���̓��� block/noblock �ݒ�̒��a
+  Recv/Send における引数の指定と socket 構造体内の block/noblock 設定の調和
 
   Revision 1.18  2005/08/09 02:01:04  yasu
-  SOC_Poll �̃o�O�t�B�N�X
+  SOC_Poll のバグフィクス
 
   Revision 1.17  2005/08/04 04:15:37  yasu
-  SOC_MSG_PEEK ���Ή�
+  SOC_MSG_PEEK 仮対応
 
   Revision 1.16  2005/08/02 03:14:00  yasu
-  Free �����̃��b�p�[������ɓ��삵�Ă��Ȃ��̂��C��
+  Free 処理のラッパーが正常に動作していないのを修正
 
   Revision 1.15  2005/08/01 13:25:21  yasu
-  SOC_Listen/Accept �̓������� socket �炵������
+  SOC_Listen/Accept の動作をより socket らしくした
 
   Revision 1.14  2005/08/01 07:40:28  yasu
-  �R�����g�ǉ�
+  コメント追加
 
   Revision 1.13  2005/07/30 15:34:08  yasu
-  �R�}���h�p�C�v�����ɂƂ��Ȃ��C��
+  コマンドパイプ分離にともなう修正
 
   Revision 1.12  2005/07/28 14:14:22  seiki_masashi
-  SOC_InetNtoP, SOC_InetPtoN �̒ǉ�
+  SOC_InetNtoP, SOC_InetPtoN の追加
 
   Revision 1.11  2005/07/28 11:26:31  yasu
-  typo �o�O�C��
+  typo バグ修正
 
   Revision 1.10  2005/07/28 11:15:23  yasu
-  SOC_Poll �̎���
+  SOC_Poll の実装
 
   Revision 1.9  2005/07/27 13:18:01  yasu
-  SOC_GetHostByAddr�@�̒ǉ�
+  SOC_GetHostByAddr　の追加
 
   Revision 1.8  2005/07/27 12:21:44  yasu
-  IP_AtoN �n�̖��߂̍��
+  IP_AtoN 系の命令の作業
 
   Revision 1.7  2005/07/27 12:01:10  yasu
-  sendto �̒ǉ�
+  sendto の追加
 
   Revision 1.6  2005/07/25 14:22:24  yasu
-  SOC_Startup �� SOCL_Startup �̘A��
+  SOC_Startup と SOCL_Startup の連結
 
   Revision 1.5  2005/07/25 10:15:01  yasu
-  SOC ���C�u�����̒ǉ�
+  SOC ライブラリの追加
 
   Revision 1.4  2005/07/22 14:11:11  yasu
-  �o�O�C��
+  バグ修正
 
   Revision 1.3  2005/07/22 13:55:35  yasu
-  listen accept �̒ǉ�
+  listen accept の追加
 
   Revision 1.2  2005/07/22 12:44:56  yasu
-  �񓯊�����������
+  非同期処理仮実装
 
   Revision 1.1  2005/07/18 13:16:27  yasu
-  ���M��M�X���b�h���쐬����
+  送信受信スレッドを作成する
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -116,25 +116,25 @@ const u8    SOCAddrLimited[SOC_ALEN] = { 255,255,255,255};
 /*---------------------------------------------------------------------------*
   Name:         SOC_Socket
 
-  Description:  �\�P�b�g���쐬����
-                ���������p�p�����[�^�̓f�t�H���g�ݒ���g�p
+  Description:  ソケットを作成する
+                メモリ利用パラメータはデフォルト設定を使用
 
-  Arguments:    pf              �v���g�R���t�@�~���[
-                                ���݂� SOC_PF_INET ��ݒ肷�邱��
-                type            �\�P�b�g�̎��
-                                SOC_SOCK_STREAM : TCP �\�P�b�g
-                                SOC_SOCK_DGRAM  : UDP �\�P�b�g
-                protocol        �v���g�R���w��
-                                ���݂� 0 ��ݒ肷�邱��
+  Arguments:    pf              プロトコルファミリー
+                                現在は SOC_PF_INET を設定すること
+                type            ソケットの種類
+                                SOC_SOCK_STREAM : TCP ソケット
+                                SOC_SOCK_DGRAM  : UDP ソケット
+                protocol        プロトコル指定
+                                現在は 0 を設定すること
 
-  Returns:      ��or 0: �\�P�b�g�L�q�q
-                  ����ł� NDS �̃A�h���X��Ԃ� int �\���Ő��̒l�ł��邱�Ƃ�
-                  ���p���ă|�C���^�̒l�����̂܂ܕԂ��Ă���D
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
-                    - SOC_ENOMEM:  �������[�s��
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+  Returns:      正or 0: ソケット記述子
+                  現状では NDS のアドレス空間が int 表現で正の値であることを
+                  利用してポインタの値をそのまま返している．
+                負    : エラー
+                  現状サポートしているエラー値は以下
+                    - SOC_ENOMEM:  メモリー不足
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Socket(int pf, int type, int protocol)
 {
@@ -151,15 +151,15 @@ int SOC_Socket(int pf, int type, int protocol)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Bind
 
-  Description:  �\�P�b�g�̃��[�J���|�[�g���̐ݒ�(�o�C���h)���s�Ȃ�
-                CPS �֐��ł͐ڑ���̃|�[�g�ƃA�h���X�������ɐݒ肵��
-                �ڑ�����̂ł����ł̓\�P�b�g�\���̓����Ƀ��[�J���|�[�g��
-                �ݒ�l��ۑ�����̂݁D
+  Description:  ソケットのローカルポート側の設定(バインド)を行なう
+                CPS 関数では接続先のポートとアドレスも同時に設定して
+                接続するのでここではソケット構造体内部にローカルポートの
+                設定値を保存するのみ．
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                sockAddr        ���[�J���̃|�[�g�ԍ��E�A�h���X
-                    SOCSockAddr �^�� SOCSockAddrIn �^
-                    �ȉ��͐ݒ��
+  Arguments:    s               ソケット記述子
+                sockAddr        ローカルのポート番号・アドレス
+                    SOCSockAddr 型か SOCSockAddrIn 型
+                    以下は設定例
 
                     SOCSockAddrIn  a;
                     MI_CpuClear8(&a, sizeof(a));
@@ -169,12 +169,12 @@ int SOC_Socket(int pf, int type, int protocol)
                     a.addr   = SOC_HtoNl(SOC_INADDR_ANY);
                     SOC_Bind(socket, &a);
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Bind(int s, const void* sockAddr)
 {
@@ -189,15 +189,15 @@ int SOC_Bind(int s, const void* sockAddr)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Connect
 
-  Description:  �\�P�b�g�̃����[�g�|�[�g���̐ݒ�(�o�C���h)���s�Ȃ�
-                CPS �֐��ł͐ڑ���̃|�[�g�ƃA�h���X�������ɐݒ肵��
-                �ڑ�����̂ł����ł� SOC_Bind �Ń\�P�b�g�\���̓����ɕۑ�
-                ���ꂽ�ݒ�l���g�p����D
+  Description:  ソケットのリモートポート側の設定(バインド)を行なう
+                CPS 関数では接続先のポートとアドレスも同時に設定して
+                接続するのでここでは SOC_Bind でソケット構造体内部に保存
+                された設定値を使用する．
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                sockAddr        �����[�g�̃|�[�g�ԍ��E�A�h���X
-                    SOCSockAddr �^�� SOCSockAddrIn �^
-                    �ȉ��͐ݒ��
+  Arguments:    s               ソケット記述子
+                sockAddr        リモートのポート番号・アドレス
+                    SOCSockAddr 型か SOCSockAddrIn 型
+                    以下は設定例
 
                     SOCSockAddrIn  a;
                     MI_CpuClear8(&a, sizeof(a));
@@ -207,12 +207,12 @@ int SOC_Bind(int s, const void* sockAddr)
                     a.addr   = SOC_HtoNl(remote_IP_address);
                     SOC_Connect(socket, &a);
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Connect(int s, const void* sockAddr)
 {
@@ -227,21 +227,21 @@ int SOC_Connect(int s, const void* sockAddr)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Read/SOC_Recv/SOC_RecvFrom
 
-  Description:  �\�P�b�g����f�[�^��ǂݍ��ށD
+  Description:  ソケットからデータを読み込む．
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                buf             �ǂݍ��݃o�b�t�@
-                len             �ǂݍ��݃o�b�t�@�T�C�Y
-                flag            �ǂݍ��ݎ��̐ݒ�t���O
-                                ���݂� SOC_MSG_DONTWAIT �̂݃T�|�[�g
-                sockFrom        �ǂݍ��݃f�[�^�𑗂��Ă����z�X�g���
+  Arguments:    s               ソケット記述子
+                buf             読み込みバッファ
+                len             読み込みバッファサイズ
+                flag            読み込み時の設定フラグ
+                                現在は SOC_MSG_DONTWAIT のみサポート
+                sockFrom        読み込みデータを送ってきたホスト情報
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Read(int s, void* buf, int len)
 {
@@ -274,20 +274,20 @@ int SOC_RecvFrom(int s, void* buf, int len, int flags, void* sockFrom)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Write/SOC_Send
 
-  Description:  �\�P�b�g�փf�[�^���������ށD
+  Description:  ソケットへデータを書き込む．
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                buf             �������݃o�b�t�@
-                len             �������݃o�b�t�@�T�C�Y
-                flag            �ǂݍ��ݎ��̐ݒ�t���O
-                                ���݂� SOC_MSG_DONTWAIT �̂݃T�|�[�g
+  Arguments:    s               ソケット記述子
+                buf             書き込みバッファ
+                len             書き込みバッファサイズ
+                flag            読み込み時の設定フラグ
+                                現在は SOC_MSG_DONTWAIT のみサポート
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Write(int s, const void* buf, int len)
 {
@@ -323,21 +323,21 @@ int SOC_SendTo(int s, const void* buf, int len, int flags, const void* sockTo)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Shutdown
 
-  Description:  �\�P�b�g�� shutdown ����D
+  Description:  ソケットを shutdown する．
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                how             �V���b�g�_�E�������̎��
-                                SO_SHUT_RDWR ����M����
+  Arguments:    s               ソケット記述子
+                how             シャットダウン処理の種類
+                                SO_SHUT_RDWR 送受信処理
 
-                                ���݁ACPS �֐��̐����ɂ��
-                                SOC_SHUT_RDWR �݂̂̃T�|�[�g
+                                現在、CPS 関数の制限により
+                                SOC_SHUT_RDWR のみのサポート
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Shutdown(int s, int how)
 {
@@ -349,16 +349,16 @@ int SOC_Shutdown(int s, int how)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Close
 
-  Description:  �\�P�b�g���N���[�Y����D
+  Description:  ソケットをクローズする．
 
-  Arguments:    s               �\�P�b�g�L�q�q
+  Arguments:    s               ソケット記述子
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOC_Close(int s)
 {
@@ -368,12 +368,12 @@ int SOC_Close(int s)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetHostByName
 
-  Description:  �z�X�g������z�X�g�G���g�����擾����
-                CPS �̐�������擾�ł���̂� IP �A�h���X�݂̂ł���D
+  Description:  ホスト名からホストエントリを取得する
+                CPS の制限から取得できるのは IP アドレスのみである．
 
-  Arguments:    name      �z�X�g��
+  Arguments:    name      ホスト名
 
-  Returns:      hostent   �z�X�g�̃G���g�����\���̂ւ̃|�C���^
+  Returns:      hostent   ホストのエントリ情報構造体へのポインタ
  *---------------------------------------------------------------------------*/
 SOCHostEnt* SOC_GetHostByName(const char* name)
 {
@@ -389,9 +389,9 @@ SOCHostEnt* SOC_GetHostByName(const char* name)
         return NULL;
     }
     
-    // NitroSDK3.2PR�ȑO��STD_CopyLString�ƌ݊�����ۂ���
+    // NitroSDK3.2PR以前のSTD_CopyLStringと互換性を保つため
     MI_CpuClear8(entName, sizeof(entName));
-    //---- �z�X�g���R�s�[
+    //---- ホスト名コピー
     (void)STD_CopyLString(&entName[0], name, SOC_MAXDNAME + 1);
 
     hostent.name = &entName[0];
@@ -409,12 +409,12 @@ SOCHostEnt* SOC_GetHostByName(const char* name)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetHostByAddr
 
-  Description:  �A�h���X����z�X�g�G���g�����擾����
-                ���ۂ̓A�h���X���z�X�g�G���g���\���̓����Ɋi�[����݂̂ł���D
+  Description:  アドレスからホストエントリを取得する
+                実際はアドレスをホストエントリ構造体内部に格納するのみである．
 
-  Arguments:    s               �\�P�b�g�L�q�q
+  Arguments:    s               ソケット記述子
 
-  Returns:      hostent   �z�X�g�̃G���g�����\���̂ւ̃|�C���^
+  Returns:      hostent   ホストのエントリ情報構造体へのポインタ
  *---------------------------------------------------------------------------*/
 SOCHostEnt* SOC_GetHostByAddr(const void* addr, int len, int type)
 {
@@ -426,7 +426,7 @@ SOCHostEnt* SOC_GetHostByAddr(const void* addr, int len, int type)
     SDK_ASSERT(type == SOC_PF_INET);
     SDK_ASSERT(len == sizeof(SOCLInAddr));
 
-    //---- �A�h���X�𕶎��\�L�ɕϊ�
+    //---- アドレスを文字表記に変換
     (void)SOC_InetNtoP(SOC_AF_INET, addr, &entName[0], SOC_MAXDNAME + 1);
 
     hostent.name = &entName[0];
@@ -444,10 +444,10 @@ SOCHostEnt* SOC_GetHostByAddr(const void* addr, int len, int type)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetSockName
 
-  Description:  �\�P�b�g�̃o�C���h����Ă��郍�[�J���A�h���X/�|�[�g���擾����
+  Description:  ソケットのバインドされているローカルアドレス/ポートを取得する
 
-  Arguments:    s         �\�P�b�g
-                sockAddr  �\�P�b�g�̃o�C���h��
+  Arguments:    s         ソケット
+                sockAddr  ソケットのバインド先
 
                 SOCSockAddrIn  a;
                 a.len    = sizeof(SOCSockAddrIn);
@@ -455,8 +455,8 @@ SOCHostEnt* SOC_GetHostByAddr(const void* addr, int len, int type)
                 a.port   = SOC_HtoNs(local_port)
                 a.addr   = SOC_HtoNl(local_ip);
 
-  Returns:      ���� 0
-                ���s ���̒l
+  Returns:      成功 0
+                失敗 負の値
  *---------------------------------------------------------------------------*/
 int SOC_GetSockName(int s, void* sockAddr)
 {
@@ -488,11 +488,11 @@ int SOC_GetSockName(int s, void* sockAddr)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetHostID
 
-  Description:  �z�X�g�� IP �A�h���X���擾����D
+  Description:  ホストの IP アドレスを取得する．
 
-  Arguments:    �Ȃ�
+  Arguments:    なし
 
-  Returns:      �z�X�g�� IPv4 �� IP �A�h���X(NetworkByteOrder)
+  Returns:      ホストの IPv4 の IP アドレス(NetworkByteOrder)
  *---------------------------------------------------------------------------*/
 long SOC_GetHostID(void)
 {
@@ -504,9 +504,9 @@ long SOC_GetHostID(void)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetResolver/SOC_SetResolver
 
-  Description:  ���݂� DNS �T�[�o�� host ip �A�h���X���擾������ݒ肵���肷��
-                �܂��l�b�g���[�N�ڑ����ł��Ă��ȂȂ畉�̒l�� SOCL_ENETRESET
-                ��Ԃ��D
+  Description:  現在の DNS サーバの host ip アドレスを取得したり設定したりする
+                まだネットワーク接続ができていななら負の値の SOCL_ENETRESET
+                を返す．
  *---------------------------------------------------------------------------*/
 int SOC_SetResolver(const SOCInAddr* dns1, const SOCInAddr* dns2)
 {
@@ -531,10 +531,10 @@ int SOC_GetResolver(SOCInAddr* dns1, SOCInAddr* dns2)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Listen
 
-  Description:  �\�P�b�g����̐ڑ��҂����s�Ȃ�
-                CPS �̎d�l��茻�݂͉������Ȃ�
+  Description:  ソケットからの接続待ちを行なう
+                CPS の仕様より現在は何もしない
 
-  Arguments:    s               �\�P�b�g�L�q�q
+  Arguments:    s               ソケット記述子
 
   Returns:      0
  *---------------------------------------------------------------------------*/
@@ -546,14 +546,14 @@ int SOC_Listen(int s, int backlog)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Accept
 
-  Description:  �\�P�b�g����̐ڑ��҂����s�Ȃ�
-                ���� NOBLOCK ���[�h�ł͓��삵�Ȃ�
+  Description:  ソケットからの接続待ちを行なう
+                現在 NOBLOCK モードでは動作しない
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                sockAddr        �ڑ�����̃A�h���X
+  Arguments:    s               ソケット記述子
+                sockAddr        接続相手のアドレス
 
-  Returns:      ��or 0: ����(Accept �\�P�b�g�̋L�q�q)
-                ��    : �G���[
+  Returns:      正or 0: 成功(Accept ソケットの記述子)
+                負    : エラー
  *---------------------------------------------------------------------------*/
 int SOC_Accept(int s, void* sockAddr)
 {
@@ -576,15 +576,15 @@ int SOC_Accept(int s, void* sockAddr)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Fcntl
 
-  Description:  �\�P�b�g�̐ݒ��ύX����
-                ����ɂ����Ă� SOC_O_NONBLOCK �����ݒ�ł��Ȃ�
+  Description:  ソケットの設定を変更する
+                現状においては SOC_O_NONBLOCK しか設定できない
 
-  Arguments:    s               �\�P�b�g�L�q�q
-                cmd             �R�}���h
-                mode            �ݒ�/�ǎ悵�����l
+  Arguments:    s               ソケット記述子
+                cmd             コマンド
+                mode            設定/読取したい値
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
+  Returns:      正or 0: 成功
+                負    : エラー
  *---------------------------------------------------------------------------*/
 int SOC_Fcntl(int s, int cmd, int mode)
 {
@@ -623,12 +623,12 @@ int SOC_Fcntl(int s, int cmd, int mode)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Startup
 
-  Description:  �\�P�b�g�̃p�����[�^�̐ݒ���s�Ȃ�
+  Description:  ソケットのパラメータの設定を行なう
 
-  Arguments:    config          �ݒ�f�[�^�̍\����
+  Arguments:    config          設定データの構造体
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
+  Returns:      正or 0: 成功
+                負    : エラー
  *---------------------------------------------------------------------------*/
 static void*  (*AllocFunc_SOC) (u32 name, s32 size);
 static void* AllocFunc_SOCL(u32 size)
@@ -636,7 +636,7 @@ static void* AllocFunc_SOCL(u32 size)
     s32     msize = (s32) (size + sizeof(s32));
     s32*    m = AllocFunc_SOC(0U, msize);
 
-    // �Ăяo���ɕK�v�ȃp�����[�^��̈�̐擪�ɉB���Ă���
+    // 呼び出しに必要なパラメータを領域の先頭に隠しておく
     if (m)
     {
         m[0] = (s32) msize;
@@ -651,7 +651,7 @@ static void FreeFunc_SOCL(void* ptr)
 {
     s32*    m = (s32*)ptr;
 
-    // �Ăяo���ɕK�v�ȃp�����[�^��̈�̐擪������o��
+    // 呼び出しに必要なパラメータを領域の先頭から取り出す
     if (m)
     {
         m--;
@@ -683,12 +683,12 @@ int SOC_Startup(const SOCConfig* config)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Cleanup
 
-  Description:  �\�P�b�g�̃p�����[�^�̊J�����s�Ȃ�
+  Description:  ソケットのパラメータの開放を行なう
 
   Arguments:
 
-  Returns:      ��or 0: ����
-                ��    : �G���[
+  Returns:      正or 0: 成功
+                負    : エラー
  *---------------------------------------------------------------------------*/
 int SOC_Cleanup(void)
 {
@@ -698,11 +698,11 @@ int SOC_Cleanup(void)
 /*---------------------------------------------------------------------------*
   Name:         SOC_InetNtoA
 
-  Description:  IP �A�h���X�𕶎��\�L�֕ϊ�����
+  Description:  IP アドレスを文字表記へ変換する
 
-  Arguments:    in  �A�h���X
+  Arguments:    in  アドレス
 
-  Returns:      �����\�L
+  Returns:      文字表記
  *---------------------------------------------------------------------------*/
 char* SOC_InetNtoA(SOCInAddr in)
 {
@@ -716,12 +716,12 @@ char* SOC_InetNtoA(SOCInAddr in)
 /*---------------------------------------------------------------------------*
   Name:         SOC_InetAtoN
 
-  Description:  �����\�L���� IP �A�h���X�ɂ֕ϊ�����
+  Description:  文字表記から IP アドレスにへ変換する
 
-  Arguments:    cp  �����\�L
-                inp IP �A�h���X
+  Arguments:    cp  文字表記
+                inp IP アドレス
 
-  Returns:      TRUE ����   FALSE ���s
+  Returns:      TRUE 成功   FALSE 失敗
  *---------------------------------------------------------------------------*/
 int SOC_InetAtoN(const char* cp, SOCInAddr* inp)
 {
@@ -739,11 +739,11 @@ int SOC_InetAtoN(const char* cp, SOCInAddr* inp)
 /*---------------------------------------------------------------------------*
   Name:         SOC_InetNtoP
 
-  Description:  IP �A�h���X�𕶎��\�L�֕ϊ�����
+  Description:  IP アドレスを文字表記へ変換する
 
-  Arguments:    in  �A�h���X
+  Arguments:    in  アドレス
 
-  Returns:      �����\�L
+  Returns:      文字表記
  *---------------------------------------------------------------------------*/
 const char* SOC_InetNtoP(int af, const void* src, char* dst, unsigned len)
 {
@@ -771,13 +771,13 @@ const char* SOC_InetNtoP(int af, const void* src, char* dst, unsigned len)
 /*---------------------------------------------------------------------------*
   Name:         SOC_InetPtoN
 
-  Description:  �����\�L���� IP �A�h���X�ɂ֕ϊ�����
+  Description:  文字表記から IP アドレスにへ変換する
 
-  Arguments:    af  �A�h���X�t�@�~���[
-                src �n���ꂽ������ւ̃|�C���^
-                dst ���l�`���̃A�h���X��Ԃ��o�b�t�@�ւ̃|�C���^
+  Arguments:    af  アドレスファミリー
+                src 渡された文字列へのポインタ
+                dst 数値形式のアドレスを返すバッファへのポインタ
 
-  Returns:      0:���� 1:���s SOC_EAFNOSUPPORT:af��SOC_AF_INET�łȂ�
+  Returns:      0:成功 1:失敗 SOC_EAFNOSUPPORT:afがSOC_AF_INETでない
  *---------------------------------------------------------------------------*/
 int SOC_InetPtoN(int af, const char* src, void* dst)
 {
@@ -805,12 +805,12 @@ int SOC_InetPtoN(int af, const char* src, void* dst)
 /*---------------------------------------------------------------------------*
   Name:         SOC_U32to4U8
 
-  Description:  U32 �̒l�� u8 x 4 �̔z��ɑ������
+  Description:  U32 の値を u8 x 4 の配列に代入する
 
-  Arguments:    adr_u32         u32 �̒l
-                adr_4u8         �o�͐�
+  Arguments:    adr_u32         u32 の値
+                adr_4u8         出力先
 
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOC_U32to4U8(u32 adr_u32, u8* adr_4u8)
 {
@@ -823,20 +823,20 @@ void SOC_U32to4U8(u32 adr_u32, u8* adr_4u8)
 /*---------------------------------------------------------------------------*
   Name:         SOC_Poll
 
-  Description:  �w�肵���\�P�b�g�̂Ȃ��œǂݍ��݂⏑�����ݏ������\�ɂȂ���
-                ����L�q�q���Ȃ����ǂ������ׂ܂��D
+  Description:  指定したソケットのなかで読み込みや書き込み処理が可能になって
+                いる記述子がないかどうか調べます．
 
-  Arguments:    fds             SOCPollFD �̔z��
-                nfds            SOCPollFD �̐�
-                timeout         �^�C���A�E�g
-                                (0 �Ȃ炾�߂Ȃ瑦���I��/
-                                 ���̒l�Ȃ�^�C���A�E�g�Ȃ�)
+  Arguments:    fds             SOCPollFD の配列
+                nfds            SOCPollFD の数
+                timeout         タイムアウト
+                                (0 ならだめなら即時終了/
+                                 負の値ならタイムアウトなし)
 
-  Returns:      ���̒l: �����Ɉ�v�����\�P�b�g�̐�
-                     0: �^�C���A�E�g
-                ���̒l: �G���[
+  Returns:      正の値: 条件に一致したソケットの数
+                     0: タイムアウト
+                負の値: エラー
  *---------------------------------------------------------------------------*/
-#define SOC_POLLING_INTERVAL    1   // �P�� ms
+#define SOC_POLLING_INTERVAL    1   // 単位 ms
 int SOC_Poll(SOCPollFD* fds, unsigned int nfds, OSTick timeout)
 {
     SOCPollFD*  fp;
@@ -881,15 +881,15 @@ int SOC_Poll(SOCPollFD* fds, unsigned int nfds, OSTick timeout)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetLinkState
 
-  Description:  �����N���m�����Ă����� TRUE ��������
+  Description:  リンクが確立していたら TRUE をかえす
 
-  Arguments:    interface   �g�p���܂���
- *status     �����N���
-  Returns:      �Ȃ�
+  Arguments:    interface   使用しません
+ *status     リンク状態
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOC_GetLinkState(SOCInterface* interface, BOOL* status)
 {
-    if (WCM_GetPhase() == WCM_PHASE_DCF)            // �����N���m��������n�j
+    if (WCM_GetPhase() == WCM_PHASE_DCF)            // リンクが確立したらＯＫ
     {
         *status = TRUE;
     }
@@ -897,9 +897,9 @@ void SOC_GetLinkState(SOCInterface* interface, BOOL* status)
     {
         *status = FALSE;
 
-        if (OS_GetProcMode() != OS_PROCMODE_IRQ)    // ���荞�ݒ��łȂ��Ȃ�
+        if (OS_GetProcMode() != OS_PROCMODE_IRQ)    // 割り込み中でないなら
         {
-            OS_Sleep(1);    // 1ms �����𖾂��n��
+            OS_Sleep(1);    // 1ms 処理を明け渡す
         }
     }
     (void)interface;
@@ -908,11 +908,11 @@ void SOC_GetLinkState(SOCInterface* interface, BOOL* status)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetConfigError
 
-  Description:  Config �������ɃG���[�������������ǂ����𒲍�����
+  Description:  Config 処理中にエラーが発生したかどうかを調査する
 
-  Arguments:    interface       �g�p���܂���
+  Arguments:    interface       使用しません
 
-  Returns:      �G���[�v��: 0 �Ȃ�G���[�Ȃ�
+  Returns:      エラー要因: 0 ならエラーなし
  *---------------------------------------------------------------------------*/
 s32 SOC_GetConfigError(SOCInterface* interface)
 {
@@ -922,11 +922,11 @@ s32 SOC_GetConfigError(SOCInterface* interface)
     {
         if ((SOCLiDhcpState & SOCL_DHCP_ERROR) == SOCL_DHCP_ERROR)
         {
-            // ���݂� WCM �̎d�l�ł̓����N�؂�����o�ł���̂�
-            // ���ۂ̃����N���؂�Ă��牽�b���o���Ă���Ȃ̂�
-            // DHCP �擾�̃^�C���A�E�g�̕�����ɐ������Ă��܂��ꍇ������D
-            // ����� DHCP �Ɏ��s�����Ƃ��͕K�������N�؂ꂪ���������Ƃ݂Ȃ���
-            // �Đڑ����ɂ̓����N�m������͂��߂Ă��炤�������S�D
+            // 現在の WCM の仕様ではリンク切れを検出できるのが
+            // 実際のリンクが切れてから何秒か経ってからなので
+            // DHCP 取得のタイムアウトの方が先に成立してしまう場合がある．
+            // よって DHCP に失敗したときは必ずリンク切れが発生したとみなして
+            // 再接続時にはリンク確立からはじめてもらう方が安全．
             result = SOC_IP_ERR_DHCP_TIMEOUT;
         }
     }

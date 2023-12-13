@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	board.c
- * @brief	ŠÅ”Âˆ—
+ * @brief	çœ‹æ¿å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2005.10.25
  */
@@ -18,27 +18,27 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-/// ŠÅ”Âƒ[ƒN
+/// çœ‹æ¿ãƒ¯ãƒ¼ã‚¯
 struct _BOARD_WORK {
-	GF_BGL_BMPWIN	win;	// BMPƒEƒBƒ“ƒhƒE
-	u16	map;				// ƒ}ƒbƒvIDiƒOƒ‰ƒtƒBƒbƒNIDj
-	u8	type;				// ŠÅ”Âƒ^ƒCƒv
-	u8	req:7;				// ƒŠƒNƒGƒXƒg
-	u8	flg:1;				// ì¬ƒtƒ‰ƒO
+	GF_BGL_BMPWIN	win;	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	u16	map;				// ãƒãƒƒãƒ—IDï¼ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDï¼‰
+	u8	type;				// çœ‹æ¿ã‚¿ã‚¤ãƒ—
+	u8	req:7;				// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8	flg:1;				// ä½œæˆãƒ•ãƒ©ã‚°
 };
 
-#define	BOARD_INIT_SCROLL_Y	( -48 )		///< ì¬’¼Œã‚Ì‰ŠúYƒXƒNƒ[ƒ‹’l
-#define	BOARD_SCROLL_VAL	( 16 )		///< 1sync ‚ÌƒXƒNƒ[ƒ‹’l
-#define	BOARD_WIN_PX		( 0 )		///< ƒEƒBƒ“ƒhƒE•`‰æXÀ•W
-#define	BOARD_WIN_PY		( 18 )		///< ƒEƒBƒ“ƒhƒE•`‰æYÀ•W
-#define	BOARD_WIN_SX		( 32 )		///< ƒEƒBƒ“ƒhƒEXƒTƒCƒY
-#define	BOARD_WIN_SY		( 6 )		///< ƒEƒBƒ“ƒhƒEYƒTƒCƒY
+#define	BOARD_INIT_SCROLL_Y	( -48 )		///< ä½œæˆç›´å¾Œã®åˆæœŸYã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
+#define	BOARD_SCROLL_VAL	( 16 )		///< 1sync ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
+#define	BOARD_WIN_PX		( 0 )		///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»Xåº§æ¨™
+#define	BOARD_WIN_PY		( 18 )		///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»Yåº§æ¨™
+#define	BOARD_WIN_SX		( 32 )		///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	BOARD_WIN_SY		( 6 )		///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BoardMake( FIELDSYS_WORK * repw );
 static void BoardDelete( FIELDSYS_WORK * repw );
@@ -48,11 +48,11 @@ static BOOL BoarsScroll_Down( FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âƒ[ƒNŠm•Û
+ * çœ‹æ¿ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	Šm•Û‚µ‚½ƒ[ƒN
+ * @return	ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 void * BoardWorkAlloc( u32 heap )
@@ -64,9 +64,9 @@ void * BoardWorkAlloc( u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âƒ[ƒN‰ğ•ú
+ * çœ‹æ¿ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -81,11 +81,11 @@ void BoardWorkDelete( BOARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âƒf[ƒ^ƒZƒbƒg
+ * çœ‹æ¿ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	type	ŠÅ”Âƒ^ƒCƒv
- * @param	map		ƒ}ƒbƒvIDiƒOƒ‰ƒtƒBƒbƒNIDj
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	type	çœ‹æ¿ã‚¿ã‚¤ãƒ—
+ * @param	map		ãƒãƒƒãƒ—IDï¼ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDï¼‰
  *
  * @return	none
  */
@@ -98,10 +98,10 @@ void BoardDataSet( BOARD_WORK * wk, u16 type, u16 map )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒŠƒNƒGƒXƒg”­s
+ * çœ‹æ¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
  *
- * @param	wk		ƒ[ƒN
- * @param	req		ƒŠƒNƒGƒXƒg
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  * @return	none
  */
@@ -113,11 +113,11 @@ void BoardSetRequest( BOARD_WORK * wk, u8 req )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^æ“¾FBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+ * ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+ * @return	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_BMPWIN * BoardWinGet( BOARD_WORK * wk )
@@ -127,11 +127,11 @@ GF_BGL_BMPWIN * BoardWinGet( BOARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^æ“¾FŠÅ”Âƒ^ƒCƒv
+ * ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šçœ‹æ¿ã‚¿ã‚¤ãƒ—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŠÅ”Âƒ^ƒCƒv
+ * @return	çœ‹æ¿ã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------------------------------------
 u8 BoardTypeGet( BOARD_WORK * wk )
@@ -141,12 +141,12 @@ u8 BoardTypeGet( BOARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âˆ—I—¹ƒ`ƒFƒbƒN
+ * çœ‹æ¿å‡¦ç†çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = “®ì’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‹•ä½œä¸­"
  */
 //--------------------------------------------------------------------------------------------
 BOOL BoardReqEndCheck( BOARD_WORK * wk )
@@ -159,9 +159,9 @@ BOOL BoardReqEndCheck( BOARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒƒCƒ“ˆ—
+ * çœ‹æ¿ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -171,27 +171,27 @@ void BoardMain( FIELDSYS_WORK * repw )
 	BOARD_WORK * wk = repw->board;
 
 	switch( wk->req ){
-	case BOARD_REQ_WAIT:	// ‘Ò‹@
+	case BOARD_REQ_WAIT:	// å¾…æ©Ÿ
 		break;
 
-	case BOARD_REQ_ADD:		// ŠÅ”ÂƒEƒBƒ“ƒhƒEì¬
+	case BOARD_REQ_ADD:		// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		BoardMake( repw );
 		wk->req = BOARD_REQ_WAIT;
 		break;
 
-	case BOARD_REQ_DOWN:	// ŠÅ”ÂƒEƒBƒ“ƒhƒE‚ğ‰º‚°‚é
+	case BOARD_REQ_DOWN:	// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä¸‹ã’ã‚‹
 		if( BoarsScroll_Down( repw ) == 1 ){
 			wk->req = BOARD_REQ_WAIT;
 		}
 		break;
 
-	case BOARD_REQ_UP:		// ŠÅ”ÂƒEƒBƒ“ƒhƒE‚ğã‚°‚é
+	case BOARD_REQ_UP:		// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä¸Šã’ã‚‹
 		if( BoarsScroll_Up( repw ) == 1 ){
 			wk->req = BOARD_REQ_WAIT;
 		}
 		break;
 
-	case BOARD_REQ_DEL:		// ŠÅ”ÂƒEƒBƒ“ƒhƒE”jŠü
+	case BOARD_REQ_DEL:		// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		BoardDelete( repw );
 		wk->req = BOARD_REQ_WAIT;
 		break;
@@ -200,10 +200,10 @@ void BoardMain( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒNƒGƒXƒg‚ğ‘¦Às
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å³å®Ÿè¡Œ
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	req		ƒŠƒNƒGƒXƒg
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  * @return	none
  */
@@ -217,9 +217,9 @@ void BoardSetDirect( FIELDSYS_WORK * repw, u8 req )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âì¬
+ * çœ‹æ¿ä½œæˆ
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -228,7 +228,7 @@ static void BoardMake( FIELDSYS_WORK * repw )
 {
 	GF_BGL_ScrollSet( repw->bgl, FLD_MBGFRM_FONT, GF_BGL_SCROLL_Y_SET, BOARD_INIT_SCROLL_Y );
 
-	// ŠÅ”Â–¢ì¬
+	// çœ‹æ¿æœªä½œæˆ
 	if( repw->board->flg == 0 ){
 		FldBoardBmpAdd( repw->bgl, &repw->board->win, repw->board->type, FLD_MBGFRM_FONT );
 		repw->board->flg = 1;
@@ -238,16 +238,16 @@ static void BoardMake( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Âíœ
+ * çœ‹æ¿å‰Šé™¤
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void BoardDelete( FIELDSYS_WORK * repw )
 {
-	if( repw->board->flg == 0 ){ return; }	// ŠÅ”Â–¢ì¬
+	if( repw->board->flg == 0 ){ return; }	// çœ‹æ¿æœªä½œæˆ
 
 	GF_BGL_BmpWinDel( &repw->board->win );
 	GF_BGL_ScrFill(
@@ -261,12 +261,12 @@ static void BoardDelete( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒXƒNƒ[ƒ‹ƒCƒ“
+ * çœ‹æ¿ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"1 = I—¹"
- * @retval	"0 = ƒXƒNƒ[ƒ‹’†"
+ * @retval	"1 = çµ‚äº†"
+ * @retval	"0 = ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BoarsScroll_Up( FIELDSYS_WORK * repw )
@@ -287,12 +287,12 @@ static BOOL BoarsScroll_Up( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒXƒNƒ[ƒ‹ƒAƒEƒg
+ * çœ‹æ¿ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"1 = I—¹"
- * @retval	"0 = ƒXƒNƒ[ƒ‹’†"
+ * @retval	"1 = çµ‚äº†"
+ * @retval	"0 = ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BoarsScroll_Down( FIELDSYS_WORK * repw )

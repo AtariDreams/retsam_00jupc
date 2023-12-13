@@ -2,7 +2,7 @@
 /**
  *
  * @file	player_move.c
- * @brief	©‹@“®ì
+ * @brief	è‡ªæ©Ÿå‹•ä½œ
  * @author	kagaya
  * @data	05.08.05
  *
@@ -37,7 +37,7 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒOƒVƒ“ƒ{ƒ‹
+//	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
 //----
 #ifdef PLAYER_DEBUG
@@ -48,7 +48,7 @@
 //----
 
 //--------------------------------------------------------------
-///	•Çƒqƒbƒgê—pƒAƒjƒƒR[ƒh
+///	å£ãƒ’ãƒƒãƒˆå°‚ç”¨ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 #define JIKI_WALL_HIT_AC_STAY_WALK_U	(AC_STAY_WALK_U_16F)
 #define JIKI_WALL_HIT_AC_STAY_WALK_D	(AC_STAY_WALK_D_16F)
@@ -56,73 +56,73 @@
 #define JIKI_WALL_HIT_AC_STAY_WALK_R	(AC_STAY_WALK_R_16F)
 
 //--------------------------------------------------------------
-///	U‚èŒü‚«ê—pƒAƒjƒƒR[ƒh
+///	æŒ¯ã‚Šå‘ãå°‚ç”¨ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 //#define JIKI_TURN_AC_STAY_WALK_U		(AC_STAY_WALK_U_4F)
 #define JIKI_TURN_AC_STAY_WALK_U		(AC_STAY_WALK_U_2F)
 
 //--------------------------------------------------------------
-///	•àsê—pƒAƒjƒƒR[ƒh
+///	æ­©è¡Œå°‚ç”¨ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 #define JIKI_WALK_AC_WALK_U				(AC_WALK_U_8F)
 //#define JIKI_WALK_AC_WALK_U			(AC_WALK_U_7F)
 #define JIKI_WALK_AC_SWIM_U				(AC_WALK_U_4F)
 
 //--------------------------------------------------------------
-///	‘«Œ³ƒ`ƒFƒbƒNA‘€ìƒVƒ“ƒ{ƒ‹
+///	è¶³å…ƒãƒã‚§ãƒƒã‚¯ã€æ“ä½œã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
 enum
 {
-	UNDER_NOTHING = 0,							///<‰½‚à–³‚µ
-	UNDER_ICE,									///<•X
-	UNDER_SAND,									///<—¬»
-	UNDER_TAKEOFF_LEFT,							///<ƒWƒƒƒ“ƒv‘ä@¶
-	UNDER_TAKEOFF_RIGHT,						///<ƒWƒƒƒ“ƒv‘ä@‰E
-	UNDER_CYCLING_ROAD_DOWN_4,					///<ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‰º‚è
+	UNDER_NOTHING = 0,							///<ä½•ã‚‚ç„¡ã—
+	UNDER_ICE,									///<æ°·
+	UNDER_SAND,									///<æµç ‚
+	UNDER_TAKEOFF_LEFT,							///<ã‚¸ãƒ£ãƒ³ãƒ—å°ã€€å·¦
+	UNDER_TAKEOFF_RIGHT,						///<ã‚¸ãƒ£ãƒ³ãƒ—å°ã€€å³
+	UNDER_CYCLING_ROAD_DOWN_4,					///<ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ä¸‹ã‚Š
 	
-	UNDER_MAX,									///<‘«Œ³í—ŞÅ‘å
+	UNDER_MAX,									///<è¶³å…ƒç¨®é¡æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	‘«Œ³•X@ŒXÎ¯•Ê
+///	è¶³å…ƒæ°·ã€€å‚¾æ–œè­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
-	ICE_SLOPE_FLAT = 0,							///<•½‚ç
-	ICE_SLOPE_UP,								///<ã‚è
-	ICE_SLOPE_DOWN,								///<‰º‚è
+	ICE_SLOPE_FLAT = 0,							///<å¹³ã‚‰
+	ICE_SLOPE_UP,								///<ä¸Šã‚Š
+	ICE_SLOPE_DOWN,								///<ä¸‹ã‚Š
 };
 
 //--------------------------------------------------------------
-///	’ÊíˆÚ“®í—Ş
+///	é€šå¸¸ç§»å‹•ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
-	NORMAL_MOVE_STOP = 0,									///<’â~
-	NORMAL_MOVE_WALK,										///<ˆÚ“®
-	NORMAL_MOVE_TURN,										///<’â~
+	NORMAL_MOVE_STOP = 0,									///<åœæ­¢
+	NORMAL_MOVE_WALK,										///<ç§»å‹•
+	NORMAL_MOVE_TURN,										///<åœæ­¢
 };
 
 //--------------------------------------------------------------
-///	©“]ÔˆÚ“®í—Ş@‚R‘¬
+///	è‡ªè»¢è»Šç§»å‹•ç¨®é¡ã€€ï¼“é€Ÿ
 //--------------------------------------------------------------
 enum
 {
-	CYCLE3_MOVE_STOP = 0,									///<’â~
-	CYCLE3_MOVE_WALK,										///<ˆÚ“®
-	CYCLE3_MOVE_TURN,										///<’â~
-	CYCLE3_MOVE_BRAKE,										///<§“®
+	CYCLE3_MOVE_STOP = 0,									///<åœæ­¢
+	CYCLE3_MOVE_WALK,										///<ç§»å‹•
+	CYCLE3_MOVE_TURN,										///<åœæ­¢
+	CYCLE3_MOVE_BRAKE,										///<åˆ¶å‹•
 };
 
 //--------------------------------------------------------------
-///	©“]ÔˆÚ“®í—Ş@‚S‘¬
+///	è‡ªè»¢è»Šç§»å‹•ç¨®é¡ã€€ï¼”é€Ÿ
 //--------------------------------------------------------------
 enum
 {
-	CYCLE4_MOVE_STOP = 0,									///<’â~
-	CYCLE4_MOVE_WALK,										///<ˆÚ“®
-	CYCLE4_MOVE_TURN,										///<’â~
-	CYCLE4_MOVE_BRAKE,										///<§“®
+	CYCLE4_MOVE_STOP = 0,									///<åœæ­¢
+	CYCLE4_MOVE_WALK,										///<ç§»å‹•
+	CYCLE4_MOVE_TURN,										///<åœæ­¢
+	CYCLE4_MOVE_BRAKE,										///<åˆ¶å‹•
 };
 
 //==============================================================================
@@ -306,17 +306,17 @@ static int DEBUG_Jiki_Move( PLAYER_STATE_PTR jiki,
 #endif
 
 //==============================================================================
-//	©‹@“®ì
+//	è‡ªæ©Ÿå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìŠÖ”
+ * è‡ªæ©Ÿå‹•ä½œé–¢æ•°
  * @param	jiki		PLAYER_STATE_PTR
  * @param	dmc			DMC_PTR
- * @param	dir		ˆÚ“®‚µ‚Ä‚Ù‚µ‚¢•ûŒüBDIR_UP“™BDIR_NOT=key_trg,key_prs‚©‚ç©“®‚Å•ûŒüŠ„‚èo‚µ
- * @param	touch		ƒ|ƒPƒbƒ`ƒ^ƒbƒ` TRUE=G‚ê‚Ä‚¢‚é FALSE=G‚ê‚Ä‚¢‚È‚¢
- * @param	key_trg		ƒL[ƒgƒŠƒK
- * @param	key_prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•ã—ã¦ã»ã—ã„æ–¹å‘ã€‚DIR_UPç­‰ã€‚DIR_NOT=key_trg,key_prsã‹ã‚‰è‡ªå‹•ã§æ–¹å‘å‰²ã‚Šå‡ºã—
+ * @param	touch		ãƒã‚±ãƒƒãƒã‚¿ãƒƒãƒ TRUE=è§¦ã‚Œã¦ã„ã‚‹ FALSE=è§¦ã‚Œã¦ã„ãªã„
+ * @param	key_trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -347,7 +347,7 @@ void Player_MoveControl(
 	}
 #endif
 	
-	if( Player_FormGet(jiki) == HERO_FORM_NORMAL ){			//ƒ|ƒPƒbƒ`
+	if( Player_FormGet(jiki) == HERO_FORM_NORMAL ){			//ãƒã‚±ãƒƒãƒ
 		int ret = Jiki_MoveNormalSelectValueSet( jiki, dir );
 		
 		if( ret != NORMAL_MOVE_STOP ){
@@ -364,10 +364,10 @@ void Player_MoveControl(
 
 //--------------------------------------------------------------
 /**
- * ©‹@ˆÚ“®ŠJnƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿç§»å‹•é–‹å§‹ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 int Player_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
@@ -377,10 +377,10 @@ int Player_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ˆÚ“®ŠJnƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿç§»å‹•é–‹å§‹ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
@@ -391,7 +391,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	fldobj = Player_FieldOBJGet( jiki );
 	
 	if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){
-		return( TRUE );								//ƒRƒ}ƒ“ƒhƒZƒbƒg‰Â”\ 
+		return( TRUE );								//ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆå¯èƒ½ 
 	}
 	
 	if( dir == DIR_NOT ){
@@ -400,13 +400,13 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	
 	code = FieldOBJ_AcmdCodeGet( fldobj );
 	
-	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){ //•Çƒqƒbƒg‚ÍƒLƒƒƒ“ƒZƒ‹‰Â”\ 
+	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){ //å£ãƒ’ãƒƒãƒˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ 
 		u32 ret;
 		
 		if( Player_MoveBitCheck_TWorldSp(jiki) == TRUE ){
 			ret = Player_TwMoveHitCheck( jiki, fldobj, dir );
 			
-			if( (ret&(~JIKI_MOVE_HIT_BIT_JUMP_3G)) && //”ÍˆÍŠOƒ[ƒhƒ`ƒFƒbƒN
+			if( (ret&(~JIKI_MOVE_HIT_BIT_JUMP_3G)) && //ç¯„å›²å¤–ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 				Player_MoveBitCheck_TWorld(jiki) == HEROTWTYPE_GROUND ){
 				FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
 				int ngx,gx = FieldOBJ_NowPosGX_Get( fldobj );
@@ -427,7 +427,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 						FldTornWorld_SpMapDataPosExistLoad(
 							fsys, ngx, ngy, ngz );
 						ret = Player_TwMoveHitCheck( jiki, fldobj, dir );
-						FldTornWorld_SpMapDataPosExistLoad( //Œ³‚É–ß‚·
+						FldTornWorld_SpMapDataPosExistLoad( //å…ƒã«æˆ»ã™
 							fsys, gx, gy, gz );
 					}
 				}
@@ -442,7 +442,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 		
 		if( ret == JIKI_MOVE_HIT_BIT_WATER &&
 			Player_FormGet(jiki) == HERO_FORM_SWIM ){
-			return( TRUE );		//‘O…•”gæ‚èok
+			return( TRUE );		//å‰æ°´ï¼†æ³¢ä¹—ã‚Šok
 		}
 		
 		return( FALSE );
@@ -460,7 +460,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	fldobj = Player_FieldOBJGet( jiki );
 	
 	if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){
-		return( TRUE );											//ƒRƒ}ƒ“ƒhƒZƒbƒg‰Â”\ 
+		return( TRUE );											//ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆå¯èƒ½ 
 	}
 	
 	if( dir == DIR_NOT ){
@@ -469,7 +469,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	
 	code = FieldOBJ_AcmdCodeGet( fldobj );
 	
-	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){				//•Çƒqƒbƒg‚ÍƒLƒƒƒ“ƒZƒ‹‰Â”\ 
+	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){				//å£ãƒ’ãƒƒãƒˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ 
 #if 0
 		if( FieldOBJ_MoveHitCheckDir(fldobj,dir) != FLDOBJ_MOVE_HIT_BIT_NON ){
 			return( FALSE );
@@ -484,7 +484,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 		}
 		
 		if( ret == JIKI_MOVE_HIT_BIT_WATER && Player_FormGet(jiki) == HERO_FORM_SWIM ){
-			return( TRUE );		//‘O…•”gæ‚èok
+			return( TRUE );		//å‰æ°´ï¼†æ³¢ä¹—ã‚Šok
 		}
 			
 		return( FALSE );
@@ -497,17 +497,17 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠJn‚É–ˆ‰ñ‰Šú‰»‚·‚é‚à‚Ì
+ * å‹•ä½œé–‹å§‹æ™‚ã«æ¯å›åˆæœŸåŒ–ã™ã‚‹ã‚‚ã®
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ˆÚ“®‚·‚é•ûŒü DIR_UP“™
- * @param	key_trg	ƒL[ƒgƒŠƒK
- * @param	key_prs	ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘ DIR_UPç­‰
+ * @param	key_trg	ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	key_prs	ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void Jiki_MoveStartInit( PLAYER_STATE_PTR jiki, int dir, u16 key_trg, u16 key_prs )
 {
-	Player_InputKeyDirSet( jiki,			//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒZƒbƒg
+	Player_InputKeyDirSet( jiki,			//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 			Jiki_KeyDirXGet(key_prs), Jiki_KeyDirZGet(key_prs) );
 	
 	Player_MoveBitSet_StepOFF( jiki );
@@ -515,7 +515,7 @@ static void Jiki_MoveStartInit( PLAYER_STATE_PTR jiki, int dir, u16 key_trg, u16
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®‚É‚æ‚é‘«Œ³–³Œø‘€ì
+ * ç§»å‹•ã«ã‚ˆã‚‹è¶³å…ƒç„¡åŠ¹æ“ä½œ
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -536,7 +536,7 @@ static void Jiki_UnderOFFReset( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®‚É‚æ‚éSEÄ¶
+ * ç§»å‹•ã«ã‚ˆã‚‹SEå†ç”Ÿ
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -580,7 +580,7 @@ static void Jiki_WalkSEPlay( PLAYER_STATE_PTR jiki )
 			Snd_SePlay( SE_SHALLOW_MARSH_WALK );
 		}
 		
-#if 0	//Õ“Ë‰¹‚Æd‚È‚Á‚½ÛAÕ“Ë‰¹‚ª–Ú—§‚½‚È‚­‚È‚Á‚Ä‚µ‚Ü‚¤
+#if 0	//è¡çªéŸ³ã¨é‡ãªã£ãŸéš›ã€è¡çªéŸ³ãŒç›®ç«‹ãŸãªããªã£ã¦ã—ã¾ã†
 		if( MATR_IsLongGrass(now) == TRUE || MATR_IsLongGrass(next) == TRUE ){
 			Snd_SePlay( SE_LONG_GRASS_WALK );
 		}
@@ -630,12 +630,12 @@ static void Jiki_WalkSEPlay( PLAYER_STATE_PTR jiki )
 #endif
 
 //==============================================================================
-//	©‹@@ƒXƒe[ƒ^ƒX
+//	è‡ªæ©Ÿã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì“®ìó‹µ‚ğXVB
- * XV‚³‚ê‚½î•ñ‚ÍPlayer_MoveStateGet()‚Åæ“¾B
+ * è‡ªæ©Ÿã®å‹•ä½œçŠ¶æ³ã‚’æ›´æ–°ã€‚
+ * æ›´æ–°ã•ã‚ŒãŸæƒ…å ±ã¯Player_MoveStateGet()ã§å–å¾—ã€‚
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -651,7 +651,7 @@ void Player_MoveStateUpdate( PLAYER_STATE_PTR jiki )
 	
 	Player_MoveStateSet( jiki, OBJ_MOVE_STATE_OFF );
 	
-	{															//‹­§ˆÚ“®
+	{															//å¼·åˆ¶ç§»å‹•
 		u32 under = Jiki_UnderCheck( jiki, DIR_NOT );
 		if( under != UNDER_NOTHING && under != UNDER_CYCLING_ROAD_DOWN_4 ){
 			Player_MoveStateSet( jiki, OBJ_MOVE_STATE_ON );
@@ -659,7 +659,7 @@ void Player_MoveStateUpdate( PLAYER_STATE_PTR jiki )
 		}
 	}
 	
-	if( FieldOBJ_AcmdSetCheck(fldobj) == FALSE ){				//“®ì^‚Á·‚è
+	if( FieldOBJ_AcmdSetCheck(fldobj) == FALSE ){				//å‹•ä½œçœŸã£ç››ã‚Š
 		switch( val ){
 		case OBJ_MOVE_VALUE_STOP:
 			break;
@@ -684,7 +684,7 @@ void Player_MoveStateUpdate( PLAYER_STATE_PTR jiki )
 		return;
 	}
 	
-	if( FieldOBJ_AcmdEndCheck(fldobj) == TRUE ){				//“®ìI—¹
+	if( FieldOBJ_AcmdEndCheck(fldobj) == TRUE ){				//å‹•ä½œçµ‚äº†
 		switch( val ){
 		case OBJ_MOVE_VALUE_STOP:
 			break;
@@ -720,7 +720,7 @@ void Player_MoveStateUpdate( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì“®ìó‹µ‚ğƒNƒŠƒA
+ * è‡ªæ©Ÿã®å‹•ä½œçŠ¶æ³ã‚’ã‚¯ãƒªã‚¢
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -734,9 +734,9 @@ void Player_MoveStateClear( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì‹­§’â~‰Â”\ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œå¼·åˆ¶åœæ­¢å¯èƒ½ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=‰Â”\BFALSE=•s‰Â
+ * @retval	int		TRUE=å¯èƒ½ã€‚FALSE=ä¸å¯
  */
 //--------------------------------------------------------------
 int Player_MoveForceStopCheck( PLAYER_STATE_PTR jiki )
@@ -778,9 +778,9 @@ int Player_MoveForceStopCheck( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì‹­§’â~
+ * è‡ªæ©Ÿå‹•ä½œå¼·åˆ¶åœæ­¢
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		Œü‚©‚¹‚é•ûŒüBDIR_UP“™
+ * @param	dir		å‘ã‹ã›ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -818,14 +818,14 @@ void Player_MoveForceStop( PLAYER_STATE_PTR jiki, int dir )
 #endif
 
 //==============================================================================
-//	‘«Œ³§Œä
+//	è¶³å…ƒåˆ¶å¾¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‘«Œ³§Œä
+ * è‡ªæ©Ÿè¶³å…ƒåˆ¶å¾¡
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü DIR_UP“™
- * @retval	int		TRUE=‘«Œ³§Œä‚É‚æ‚éˆÚ“®
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=è¶³å…ƒåˆ¶å¾¡ã«ã‚ˆã‚‹ç§»å‹•
  */
 //--------------------------------------------------------------
 static int Jiki_UnderControl( PLAYER_STATE_PTR jiki, int dir )
@@ -850,13 +850,13 @@ static u32 Jiki_UnderControlDEBUG( PLAYER_STATE_PTR jiki, int dir, u16 key_prs )
 #endif
 
 //==============================================================================
-//	‘«Œ³ƒ`ƒFƒbƒN
+//	è¶³å…ƒãƒã‚§ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‘«Œ³ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿè¶³å…ƒãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		UNDER_NOTHING“™
+ * @retval	int		UNDER_NOTHINGç­‰
  */
 //--------------------------------------------------------------
 static u32 Jiki_UnderCheck( PLAYER_STATE_PTR jiki, int dir )
@@ -884,7 +884,7 @@ static u32 Jiki_UnderCheck( PLAYER_STATE_PTR jiki, int dir )
 }
 
 //--------------------------------------------------------------
-///	‘«Œ³ƒ`ƒFƒbƒNƒe[ƒuƒ‹@UNDER_MAX‚Ì•À‚Ñ‚Éˆê’v
+///	è¶³å…ƒãƒã‚§ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«ã€€UNDER_MAXã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const UNDER_ATTR_CHECK DATA_Jiki_UnderAttrCheckTbl[] =
 {
@@ -893,19 +893,19 @@ static const UNDER_ATTR_CHECK DATA_Jiki_UnderAttrCheckTbl[] =
 	{ MATR_IsTakeOffLeft,	UNDER_TAKEOFF_LEFT },
 	{ MATR_IsTakeOffRight,	UNDER_TAKEOFF_RIGHT },
 	
-	{ NULL, UNDER_MAX },	//I’[
+	{ NULL, UNDER_MAX },	//çµ‚ç«¯
 };
 
 //==============================================================================
-//	‘«Œ³ˆÚ“®
+//	è¶³å…ƒç§»å‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®
+ * è¶³å…ƒç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
- * @param	under	UNDER_NOTHING“™
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ
+ * @param	under	UNDER_NOTHINGç­‰
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Jiki_UnderMove( PLAYER_STATE_PTR jiki, u32 under, int key_dir )
@@ -919,10 +919,10 @@ static int Jiki_UnderMove( PLAYER_STATE_PTR jiki, u32 under, int key_dir )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@‰½‚à–³‚µ UNDER_NOTHING
+ * è¶³å…ƒç§»å‹•ã€€ä½•ã‚‚ç„¡ã— UNDER_NOTHING
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_Nothing( PLAYER_STATE_PTR jiki, int key_dir )
@@ -933,23 +933,23 @@ static int UnderMove_Nothing( PLAYER_STATE_PTR jiki, int key_dir )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@•X UNDER_ICE
+ * è¶³å…ƒç§»å‹•ã€€æ°· UNDER_ICE
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_Ice( PLAYER_STATE_PTR jiki, int key_dir )
 {
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
-//	int slope,dir = FieldOBJ_DirDispGet( fldobj );				//áŠQ•¨AU‚èŒü‚«‚Ö‚Ì‘Î‰‚©‚ç
+//	int slope,dir = FieldOBJ_DirDispGet( fldobj );				//éšœå®³ç‰©ã€æŒ¯ã‚Šå‘ãã¸ã®å¯¾å¿œã‹ã‚‰
 	int dir = FieldOBJ_DirMoveGet( fldobj );
 	int slope = UnderIce_SlopeCheck( jiki, dir );
 	u32 hit = Player_MoveHitCheck( jiki, fldobj, dir );
 	
 	Player_MoveBitSet_Force( jiki, TRUE );
 	
-	if( hit != JIKI_MOVE_HIT_BIT_NON ){							//áŠQ•¨
+	if( hit != JIKI_MOVE_HIT_BIT_NON ){							//éšœå®³ç‰©
 		UnderForceMoveClear( jiki );
 		
 		if( slope != ICE_SLOPE_UP ){
@@ -968,15 +968,15 @@ static int UnderMove_Ice( PLAYER_STATE_PTR jiki, int key_dir )
 		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR|FLDOBJ_STA_BIT_PAUSE_ANM );
 		Jiki_AcmdSet( jiki, fldobj,
 			FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_16F), HEROACTYPE_WALK_16F );
-		Player_MoveBitSet_UnderOFF( jiki, TRUE );				//‚¸‚è—‚¿ŒãA’â~
-		Player_MoveBitSet_Force( jiki, TRUE );					//Ä“xƒZƒbƒg
-		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+		Player_MoveBitSet_UnderOFF( jiki, TRUE );				//ãšã‚Šè½ã¡å¾Œã€åœæ­¢
+		Player_MoveBitSet_Force( jiki, TRUE );					//å†åº¦ã‚»ãƒƒãƒˆ
+		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 		
 		Player_MoveValueSet( jiki, OBJ_MOVE_VALUE_WALK );
 		return( TRUE );
 	}
 	
-	if( UnderIce_SlopeSpeedAdd(jiki,slope) == FALSE ){			//‘¬“x•s‘«‚Åâ‰z‚¦•s‰Â
+	if( UnderIce_SlopeSpeedAdd(jiki,slope) == FALSE ){			//é€Ÿåº¦ä¸è¶³ã§å‚è¶Šãˆä¸å¯
 		UnderForceMoveClear( jiki );
 		
 		dir = FieldOBJTool_DirFlip( dir );
@@ -989,9 +989,9 @@ static int UnderMove_Ice( PLAYER_STATE_PTR jiki, int key_dir )
 		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR|FLDOBJ_STA_BIT_PAUSE_ANM );
 		Jiki_AcmdSet( jiki, fldobj,
 				FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_16F), HEROACTYPE_WALK_16F );
-		Player_MoveBitSet_UnderOFF( jiki, TRUE );				//‚¸‚è—‚¿ŒãA’â~
-		Player_MoveBitSet_Force( jiki, TRUE );					//Ä“xƒZƒbƒg
-		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+		Player_MoveBitSet_UnderOFF( jiki, TRUE );				//ãšã‚Šè½ã¡å¾Œã€åœæ­¢
+		Player_MoveBitSet_Force( jiki, TRUE );					//å†åº¦ã‚»ãƒƒãƒˆ
+		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 	}else{
 		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR|FLDOBJ_STA_BIT_PAUSE_ANM );
 		UnderIce_AcmdSet( jiki, dir );
@@ -1004,10 +1004,10 @@ static int UnderMove_Ice( PLAYER_STATE_PTR jiki, int key_dir )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@—¬» UNDER_ICE
+ * è¶³å…ƒç§»å‹•ã€€æµç ‚ UNDER_ICE
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_Sand( PLAYER_STATE_PTR jiki, int key_dir )
@@ -1019,7 +1019,7 @@ static int UnderMove_Sand( PLAYER_STATE_PTR jiki, int key_dir )
 	Snd_SePlay( SE_DRIFT_SAND );
 	
 	if( dir == DIR_UP ){
-		if( Player_FormGet(jiki) == HERO_FORM_CYCLE &&			//ã‚ê‚é
+		if( Player_FormGet(jiki) == HERO_FORM_CYCLE &&			//ä¸Šã‚Œã‚‹
 			Player_MoveSpeedGet(jiki) >= JIKI_SPEED_3 ){
 			
 			if( key_dir == DIR_UP ){
@@ -1041,12 +1041,12 @@ static int UnderMove_Sand( PLAYER_STATE_PTR jiki, int key_dir )
 		Jiki_AcmdSet( jiki, fldobj,
 			FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_16F), HEROACTYPE_WALK_16F );
 		Player_MoveSpeedClear( jiki );
-		Player_MoveBitSet_Force( jiki, TRUE );					//Ä“xƒZƒbƒg
+		Player_MoveBitSet_Force( jiki, TRUE );					//å†åº¦ã‚»ãƒƒãƒˆ
 		Player_MoveValueSet( jiki, OBJ_MOVE_VALUE_WALK );
 		Player_MoveBitSet_SandFloatSet( jiki, TRUE );
-		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 		return( TRUE );
-	}else if( dir == DIR_DOWN ){								//‰º‚è
+	}else if( dir == DIR_DOWN ){								//ä¸‹ã‚Š
 		if( Player_MoveBitCheck_SandFloat(jiki) == FALSE ){
 			Jiki_AcmdSet( jiki, fldobj,
 				FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_D_2F), HEROACTYPE_WALK_2F );
@@ -1056,30 +1056,30 @@ static int UnderMove_Sand( PLAYER_STATE_PTR jiki, int key_dir )
 				Player_MoveSpeedSet( jiki, JIKI_SPEED_3 );
 			}
 			
-			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 			return( TRUE );
 		}else{
 			FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR|FLDOBJ_STA_BIT_PAUSE_ANM );
 			Jiki_AcmdSet( jiki, fldobj,
 				FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_16F), HEROACTYPE_WALK_16F );
-			Player_MoveBitSet_Force( jiki, TRUE );					//Ä“xƒZƒbƒg
+			Player_MoveBitSet_Force( jiki, TRUE );					//å†åº¦ã‚»ãƒƒãƒˆ
 			Player_MoveValueSet( jiki, OBJ_MOVE_VALUE_WALK );
 			Player_MoveBitSet_SandFloatSet( jiki, TRUE );
-			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 			return( TRUE );
 		}
 	}
 	
-	OS_Printf( "¶‰E•ûŒü‚Å‘«Œ³—¬»\n" );
+	OS_Printf( "å·¦å³æ–¹å‘ã§è¶³å…ƒæµç ‚\n" );
 	return( FALSE );
 }
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@ƒWƒƒƒ“ƒv‘ä@¶i“ü
+ * è¶³å…ƒç§»å‹•ã€€ã‚¸ãƒ£ãƒ³ãƒ—å°ã€€å·¦é€²å…¥
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_TakeOFFLeft( PLAYER_STATE_PTR jiki, int key_dir )
@@ -1101,10 +1101,10 @@ static int UnderMove_TakeOFFLeft( PLAYER_STATE_PTR jiki, int key_dir )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@ƒWƒƒƒ“ƒv‘ä@‰Ei“ü
+ * è¶³å…ƒç§»å‹•ã€€ã‚¸ãƒ£ãƒ³ãƒ—å°ã€€å³é€²å…¥
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_TakeOFFRight( PLAYER_STATE_PTR jiki, int key_dir )
@@ -1126,10 +1126,10 @@ static int UnderMove_TakeOFFRight( PLAYER_STATE_PTR jiki, int key_dir )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆÚ“®@ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‰º‚è
+ * è¶³å…ƒç§»å‹•ã€€ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ä¸‹ã‚Š
  * @param	jiki	PLAYER_STATE_PTR
- * @param	key_dir	ƒL[“ü—Í•ûŒü
- * @retval	int		TRUE=‘«Œ³ˆÚ“®ƒAƒŠ@FALSE=‘«Œ³ˆÚ“®–³‚µ
+ * @param	key_dir	ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=è¶³å…ƒç§»å‹•ã‚¢ãƒªã€€FALSE=è¶³å…ƒç§»å‹•ç„¡ã—
  */
 //--------------------------------------------------------------
 static int UnderMove_CyclingRoadDown4( PLAYER_STATE_PTR jiki, int key_dir )
@@ -1139,14 +1139,14 @@ static int UnderMove_CyclingRoadDown4( PLAYER_STATE_PTR jiki, int key_dir )
 	u32 ret = Player_MoveHitCheck( jiki, fldobj, dir );
 	
 	if( ret == JIKI_MOVE_HIT_BIT_NON ){
-#if 1	//³‹K
+#if 1	//æ­£è¦
 //		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_ANM );
 		Jiki_AcmdSet( jiki, fldobj,
 			FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_2F), HEROACTYPE_WALK_2F );
-//		Player_MoveBitSet_Force( jiki, TRUE ); //ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‹­§ˆÚ“®‚Í’ÊíˆÚ“®
+//		Player_MoveBitSet_Force( jiki, TRUE ); //ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰å¼·åˆ¶ç§»å‹•ã¯é€šå¸¸ç§»å‹•
 		Player_MoveValueSet( jiki, OBJ_MOVE_VALUE_WALK );
 		Player_MoveSpeedSet( jiki, JIKI_SPEED_CYCLE4_TOP );
-#else	//ƒTƒCƒNƒŠƒ“ƒO‰º‚èA‹­§ˆÚ“®‚É‚æ‚é•s‹ï‡”­¶
+#else	//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ä¸‹ã‚Šã€å¼·åˆ¶ç§»å‹•ã«ã‚ˆã‚‹ä¸å…·åˆç™ºç”Ÿ
 		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_ANM );
 		Jiki_AcmdSet( jiki, fldobj,
 			FieldOBJ_AcmdCodeDirChange(dir,AC_WALK_U_2F), HEROACTYPE_WALK_2F );
@@ -1167,7 +1167,7 @@ static int UnderMove_CyclingRoadDown4( PLAYER_STATE_PTR jiki, int key_dir )
 }
 
 //--------------------------------------------------------------
-///	‘«Œ³ˆÚ“®ƒe[ƒuƒ‹ UNDER_MAX‚Ì•À‚Ñ‚Éˆê’v
+///	è¶³å…ƒç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ« UNDER_MAXã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static int (* const DATA_Jiki_UnderMoveTbl[UNDER_MAX])( PLAYER_STATE_PTR jiki, int key_dir ) =
 {
@@ -1180,11 +1180,11 @@ static int (* const DATA_Jiki_UnderMoveTbl[UNDER_MAX])( PLAYER_STATE_PTR jiki, i
 };
 
 //==============================================================================
-//	‘«Œ³@‹­§@ƒp[ƒc
+//	è¶³å…ƒã€€å¼·åˆ¶ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‹­§ˆÚ“®ŒãÁ‹
+ * å¼·åˆ¶ç§»å‹•å¾Œæ¶ˆå»
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -1207,10 +1207,10 @@ static void UnderForceMoveClear( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * •X@ŒXÎƒ`ƒFƒbƒN
+ * æ°·ã€€å‚¾æ–œãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ˆÚ“®‚·‚é•ûŒü
- * @retval	int		ICE_SLOPE_FLAT“™
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘
+ * @retval	int		ICE_SLOPE_FLATç­‰
  */
 //--------------------------------------------------------------
 static int UnderIce_SlopeCheck( PLAYER_STATE_PTR jiki, int dir )
@@ -1223,7 +1223,7 @@ static int UnderIce_SlopeCheck( PLAYER_STATE_PTR jiki, int dir )
 	FieldOBJ_VecPosGet( fldobj, &now );
 	next = now;
 	
-	FieldOBJTool_VecPosDirAdd( dir, &next, GRID_HALF_FX32 / 2 );	//ˆÚ“®•ûŒü’†ŠÔ’n“_‚Ö
+	FieldOBJTool_VecPosDirAdd( dir, &next, GRID_HALF_FX32 / 2 );	//ç§»å‹•æ–¹å‘ä¸­é–“åœ°ç‚¹ã¸
 	ret = FieldOBJTool_GetHeight( fsys, &next );
 	
 	if( ret == FALSE || now.y == next.y ){
@@ -1239,23 +1239,23 @@ static int UnderIce_SlopeCheck( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ì‘¬“x‚ÆŒXÎ‚Ì‰e‹¿
+ * ç¾åœ¨ã®é€Ÿåº¦ã¨å‚¾æ–œã®å½±éŸ¿
  * @param	jiki	PLAYER_STATE_PTR
- * @param	slope	ICE_SLOPE_FLAT“™
- * @retval	int		TRUE=ˆÚ“®‰Â@FALSE=ˆÚ“®•s‰Â
+ * @param	slope	ICE_SLOPE_FLATç­‰
+ * @retval	int		TRUE=ç§»å‹•å¯ã€€FALSE=ç§»å‹•ä¸å¯
  */
 //--------------------------------------------------------------
 static int UnderIce_SlopeSpeedAdd( PLAYER_STATE_PTR jiki, int slope )
 {
 	int speed = Player_MoveSpeedGet( jiki );
 	
-	if( slope == ICE_SLOPE_UP ){								//ã‚è
+	if( slope == ICE_SLOPE_UP ){								//ä¸Šã‚Š
 		speed--;
 		
 		if( speed < JIKI_SPEED_0 ){
 			return( FALSE );
 		}
-	}else if( slope == ICE_SLOPE_DOWN ){						//‰º‚è
+	}else if( slope == ICE_SLOPE_DOWN ){						//ä¸‹ã‚Š
 		speed++;
 		
 		if( speed > JIKI_SPEED_3 ){
@@ -1269,9 +1269,9 @@ static int UnderIce_SlopeSpeedAdd( PLAYER_STATE_PTR jiki, int slope )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ì‘¬“x‚É‚ ‚í‚¹‚½ƒAƒjƒƒRƒ}ƒ“ƒhƒZƒbƒg
+ * ç¾åœ¨ã®é€Ÿåº¦ã«ã‚ã‚ã›ãŸã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1293,16 +1293,16 @@ static void UnderIce_AcmdSet( PLAYER_STATE_PTR jiki, int dir )
 }
 
 //==============================================================================
-//	©‹@“®ì
+//	è‡ªæ©Ÿå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì
+ * è‡ªæ©Ÿå‹•ä½œ
  * @param	jiki		PLAYER_STATE_PTR
  * @param	dmc			DMC_PTR
- * @param	dir			ˆÚ“®‚·‚é•ûŒüBDIR_UP“™
- * @param	key_trg		ƒL[ƒgƒŠƒK
- * @param	key_prs		ƒL[ƒvƒŒƒX
+ * @param	dir			ç§»å‹•ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @param	key_trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1321,23 +1321,23 @@ static void Jiki_MoveSet(
 		Jiki_MoveCycle( jiki, fldobj, dmc, dir, key_trg, key_prs );
 		break;
 	default:
-		GF_ASSERT( 0 && "Jiki_MoveSet() •s³‚ÈƒtƒH[ƒ€" );
+		GF_ASSERT( 0 && "Jiki_MoveSet() ä¸æ­£ãªãƒ•ã‚©ãƒ¼ãƒ " );
 		break;
 	}
 }
 
 //==============================================================================
-//	’ÊíˆÚ“®
+//	é€šå¸¸ç§»å‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®
+ * é€šå¸¸ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1369,10 +1369,10 @@ static void Jiki_MoveNormal( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®‘I‘ğ‚Æó‘ÔƒZƒbƒg
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•é¸æŠã¨çŠ¶æ…‹ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒüBDIR_UP“™
- * @retval	int		NORMAL_MOVE_STOP“™
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	int		NORMAL_MOVE_STOPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveNormalSelectValueSet( PLAYER_STATE_PTR jiki, int dir )
@@ -1386,9 +1386,9 @@ static int Jiki_MoveNormalSelectValueSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®‘I‘ğ->ó‘Ô‚Ö
- * @param	type	NORMAL_MOVE_STOP“™
- * @retval	int		OBJ_MOVE_VALUE_STOP“™
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•é¸æŠ->çŠ¶æ…‹ã¸
+ * @param	type	NORMAL_MOVE_STOPç­‰
+ * @retval	int		OBJ_MOVE_VALUE_STOPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveNormalSelectValue( int type )
@@ -1399,16 +1399,16 @@ static int Jiki_MoveNormalSelectValue( int type )
 	case NORMAL_MOVE_TURN:	return( OBJ_MOVE_VALUE_TURN );
 	}
 	
-	GF_ASSERT( 0 && "Jiki_MoveNormalSelectValue()ˆÙí‚È’l" );
+	GF_ASSERT( 0 && "Jiki_MoveNormalSelectValue()ç•°å¸¸ãªå€¤" );
 	return( OBJ_MOVE_VALUE_STOP );
 }
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh‘I‘ğ
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒg
- * @param	ac		–{—ˆÀs‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
- * @retval	int		ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+ * é€šå¸¸ç§»å‹•ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰é¸æŠ
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	ac		æœ¬æ¥å®Ÿè¡Œã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+ * @retval	int		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveNormalAttrAcmdWalkGet( FIELD_OBJ_PTR fldobj, MATR attr, int ac )
@@ -1434,10 +1434,10 @@ static int Jiki_MoveNormalAttrAcmdWalkGet( FIELD_OBJ_PTR fldobj, MATR attr, int 
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èˆÚ“®@ƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh‘I‘ğ
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒg
- * @param	ac		–{—ˆÀs‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
- * @retval	int		ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+ * æ³¢ä¹—ã‚Šç§»å‹•ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰é¸æŠ
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	ac		æœ¬æ¥å®Ÿè¡Œã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+ * @retval	int		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveNormalSwimAttrAcmdWalkGet( FIELD_OBJ_PTR fldobj, MATR attr, int ac )
@@ -1449,10 +1449,10 @@ static int Jiki_MoveNormalSwimAttrAcmdWalkGet( FIELD_OBJ_PTR fldobj, MATR attr, 
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®‘I‘ğ
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•é¸æŠ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒüBDIR_UP“™
- * @retval	int		NORMAL_MOVE_STOP“™
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	int		NORMAL_MOVE_STOPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveNormalSelect( PLAYER_STATE_PTR jiki, int dir )
@@ -1466,7 +1466,7 @@ static int Jiki_MoveNormalSelect( PLAYER_STATE_PTR jiki, int dir )
 	
 	m_dir = Player_DirGet( jiki );
 	
-	{	//”j‚ê‚½¢ŠEA•ÇˆÚ“®‚Å‚Í•\¦•ûŒü‚ÆˆÚ“®•ûŒü‚ªˆê’v‚µ‚È‚¢
+	{	//ç ´ã‚ŒãŸä¸–ç•Œã€å£ç§»å‹•ã§ã¯è¡¨ç¤ºæ–¹å‘ã¨ç§»å‹•æ–¹å‘ãŒä¸€è‡´ã—ãªã„
 		HEROTWTYPE tw = Player_MoveBitCheck_TWorld( jiki );
 		
 		if( tw != HEROTWTYPE_NON &&
@@ -1486,12 +1486,12 @@ static int Jiki_MoveNormalSelect( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@’â~
+ * é€šå¸¸ç§»å‹•ã€€åœæ­¢
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1506,12 +1506,12 @@ static void Jiki_MoveNormalStop(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®‘I‘ğ
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•é¸æŠ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1540,12 +1540,12 @@ static void Jiki_MoveNormalWalkSelect(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@’ÊíˆÚ“®
+ * é€šå¸¸ç§»å‹•ã€€é€šå¸¸ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1573,7 +1573,7 @@ static void Jiki_MoveNormalWalk(
 				Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			}
 			
-			FieldOBJ_DirMoveSet( fldobj, dir );		//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );		//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		}else{	
 			code = JIKI_WALK_AC_WALK_U;
 			type = HEROACTYPE_WALK_8F;
@@ -1610,7 +1610,7 @@ static void Jiki_MoveNormalWalk(
 				Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			}
 			
-			FieldOBJ_DirMoveSet( fldobj, dir );		//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );		//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		}
 	}
 	
@@ -1620,12 +1620,12 @@ static void Jiki_MoveNormalWalk(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®@”j‚ê‚½¢ŠE “Áê’nŒ`
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•ã€€ç ´ã‚ŒãŸä¸–ç•Œ ç‰¹æ®Šåœ°å½¢
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1638,16 +1638,16 @@ static void Jiki_MoveTWorldGround(
 	
 	ret = Player_TwMoveHitCheck( jiki, fldobj, dir );
 	
-	if( (ret&(~JIKI_MOVE_HIT_BIT_JUMP_3G)) ){//3GˆÈŠOáŠQ—L‚èB”ÍˆÍ“àƒ`ƒFƒbƒN
+	if( (ret&(~JIKI_MOVE_HIT_BIT_JUMP_3G)) ){//3Gä»¥å¤–éšœå®³æœ‰ã‚Šã€‚ç¯„å›²å†…ãƒã‚§ãƒƒã‚¯
 		FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
 		int gx = FieldOBJ_NowPosGX_Get( fldobj );
 		int gy = FieldOBJ_NowPosGY_Get( fldobj );
 		int gz = FieldOBJ_NowPosGZ_Get( fldobj );
-		gy = H_GRID_G_GRID( gy );	//H -> G ƒOƒŠƒbƒh•ÏŠ·
+		gy = H_GRID_G_GRID( gy );	//H -> G ã‚°ãƒªãƒƒãƒ‰å¤‰æ›
 		Player_TwThinkDirPosGet( jiki, dir, &gx, &gy, &gz );
 		
-		//”ÍˆÍŠO‚Ìê‡‚ÍA‚»‚ÌÀ•W‚Ì“Áê’nŒ`‚ğ’²‚×A
-		//‘¶İ‚·‚éê‡‚Íƒ[ƒh‚µ‚ÄÄ“xƒ`ƒFƒbƒN
+		//ç¯„å›²å¤–ã®å ´åˆã¯ã€ãã®åº§æ¨™ã®ç‰¹æ®Šåœ°å½¢ã‚’èª¿ã¹ã€
+		//å­˜åœ¨ã™ã‚‹å ´åˆã¯ãƒ­ãƒ¼ãƒ‰ã—ã¦å†åº¦ãƒã‚§ãƒƒã‚¯
 		if( FldTornWorld_SpMapDataInsideCheck(fsys,gx,gy,gz) == FALSE ){
 			if( FldTornWorld_SpMapDataExistCheck(fsys,gx,gy,gz) == TRUE ){
 				FldTornWorld_SpMapDataPosExistLoad( fsys, gx, gy, gz );
@@ -1656,18 +1656,18 @@ static void Jiki_MoveTWorldGround(
 		}
 	}
 	
-	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//’ÊíˆÚ“®
-		if( (ret & JIKI_MOVE_HIT_BIT_JUMP_3G) ){	//3GƒWƒƒƒ“ƒv
+	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//é€šå¸¸ç§»å‹•
+		if( (ret & JIKI_MOVE_HIT_BIT_JUMP_3G) ){	//3Gã‚¸ãƒ£ãƒ³ãƒ—
 			code = AC_JUMP_U_3G_24F;
 			type = HEROACTYPE_WALK_32F;
 			Jiki_WalkCount( jiki );
 			Player_MoveBitSet_StepON( jiki );
-		}else if( ret != JIKI_MOVE_HIT_BIT_NON ){	//•Çƒqƒbƒg
+		}else if( ret != JIKI_MOVE_HIT_BIT_NON ){	//å£ãƒ’ãƒƒãƒˆ
 			code = AC_STAY_WALK_U_16F;
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
-			FieldOBJ_DirMoveSet( fldobj, dir );		//•Çƒqƒbƒg‚Í‹­§
-		}else{										//’ÊíˆÚ“®
+			FieldOBJ_DirMoveSet( fldobj, dir );		//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
+		}else{										//é€šå¸¸ç§»å‹•
 			PLAYER_SAVE_DATA *save;
 			code = JIKI_WALK_AC_WALK_U;
 			type = HEROACTYPE_WALK_8F;
@@ -1683,18 +1683,18 @@ static void Jiki_MoveTWorldGround(
 			Jiki_WalkCount( jiki );
 			Player_MoveBitSet_StepON( jiki );
 		}
-	}else{											//”gæ‚è
-		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//’ÊíˆÚ“®
+	}else{											//æ³¢ä¹—ã‚Š
+		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//é€šå¸¸ç§»å‹•
 			ret == JIKI_MOVE_HIT_BIT_WATER ){
 			type = HEROACTYPE_WALK_4F;
 			code = JIKI_WALK_AC_SWIM_U;
 			Jiki_WalkCount( jiki );
 			Player_MoveBitSet_StepON( jiki );
-		}else{										//•Çƒqƒbƒg
+		}else{										//å£ãƒ’ãƒƒãƒˆ
 			code = JIKI_WALL_HIT_AC_STAY_WALK_U;
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
-			FieldOBJ_DirMoveSet( fldobj, dir );		//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );		//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		}
 	}
 	
@@ -1704,10 +1704,10 @@ static void Jiki_MoveTWorldGround(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®@”j‚ê‚½¢ŠE“Áê’nŒ`ˆÚ“®@ƒƒCƒ“
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•ã€€ç ´ã‚ŒãŸä¸–ç•Œç‰¹æ®Šåœ°å½¢ç§»å‹•ã€€ãƒ¡ã‚¤ãƒ³
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	ac_tbl				
  * @param	ac_tbl_dash
  * @param	ac_tbl_swim
@@ -1727,13 +1727,13 @@ static void Jiki_MoveTWorldSpWallMoveMain(
 	
 	ret = Player_TwMoveHitCheck( jiki, fldobj, dir );
 	
-	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//’ÊíˆÚ“®
-		if( ret != JIKI_MOVE_HIT_BIT_NON ){			//•Çƒqƒbƒg
+	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//é€šå¸¸ç§»å‹•
+		if( ret != JIKI_MOVE_HIT_BIT_NON ){			//å£ãƒ’ãƒƒãƒˆ
 			code = ac_tbl_wall[dir];
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
-			FieldOBJ_DirMoveSet( fldobj, dir_tbl[dir] ); //•Çƒqƒbƒg‹­§
-		}else{										//’ÊíˆÚ“®
+			FieldOBJ_DirMoveSet( fldobj, dir_tbl[dir] ); //å£ãƒ’ãƒƒãƒˆæ™‚å¼·åˆ¶
+		}else{										//é€šå¸¸ç§»å‹•
 			PLAYER_SAVE_DATA *save;
 			type = HEROACTYPE_WALK_8F;
 			code = ac_tbl_walk[dir];
@@ -1747,14 +1747,14 @@ static void Jiki_MoveTWorldSpWallMoveMain(
 			
 			Jiki_WalkCount( jiki );
 		}
-	}else{											//”gæ‚è
-		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//’ÊíˆÚ“®
+	}else{											//æ³¢ä¹—ã‚Š
+		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//é€šå¸¸ç§»å‹•
 			ret == JIKI_MOVE_HIT_BIT_WATER ){
-			type = HEROACTYPE_WALK_8F;				//–{—ˆ4F
+			type = HEROACTYPE_WALK_8F;				//æœ¬æ¥4F
 			code = ac_tbl_swim[dir];
 			Jiki_WalkCount( jiki );
 			Player_MoveBitSet_StepON( jiki );
-		}else{										//•Çƒqƒbƒg
+		}else{										//å£ãƒ’ãƒƒãƒˆ
 			code = ac_tbl_wall[dir];
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
@@ -1767,12 +1767,12 @@ static void Jiki_MoveTWorldSpWallMoveMain(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®@”j‚ê‚½¢ŠE ¶•Ç
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•ã€€ç ´ã‚ŒãŸä¸–ç•Œ å·¦å£
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1810,14 +1810,14 @@ static void Jiki_MoveTWorldWallLeftWalk(
 	
 	ret = Player_TwMoveHitCheck( jiki, fldobj, dir );
 	
-	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//’ÊíˆÚ“®
-		if( ret != JIKI_MOVE_HIT_BIT_NON ){			//•Çƒqƒbƒg
+	if( Player_FormGet(jiki) != HERO_FORM_SWIM ){	//é€šå¸¸ç§»å‹•
+		if( ret != JIKI_MOVE_HIT_BIT_NON ){			//å£ãƒ’ãƒƒãƒˆ
 			code = DATA_JikiTwWallLeft_AcStayWalkDirTbl[dir];
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			FieldOBJ_DirMoveSet( fldobj,
 				DATA_JikiTwWallLeft_AcStayWalkDirTbl[dir] );
-		}else{										//’ÊíˆÚ“®
+		}else{										//é€šå¸¸ç§»å‹•
 			PLAYER_SAVE_DATA *save;
 			type = HEROACTYPE_WALK_8F;
 			code = AC_WALKGL_U_8F;
@@ -1833,14 +1833,14 @@ static void Jiki_MoveTWorldWallLeftWalk(
 			Jiki_WalkCount( jiki );
 			code = FieldOBJ_AcmdCodeDirChange( dir, code );
 		}
-	}else{											//”gæ‚è
-		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//’ÊíˆÚ“®
+	}else{											//æ³¢ä¹—ã‚Š
+		if( ret == JIKI_MOVE_HIT_BIT_NON ||			//é€šå¸¸ç§»å‹•
 			ret == JIKI_MOVE_HIT_BIT_WATER ){
 			type = HEROACTYPE_WALK_8F;
 			code = FieldOBJ_AcmdCodeDirChange( dir, AC_WALKGL_U_8F );
 			Jiki_WalkCount( jiki );
 			Player_MoveBitSet_StepON( jiki );
-		}else{										//•Çƒqƒbƒg
+		}else{										//å£ãƒ’ãƒƒãƒˆ
 			code = DATA_JikiTwWallLeft_AcStayWalkDirTbl[dir];
 			type = HEROACTYPE_STOP;
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
@@ -1854,7 +1854,7 @@ static void Jiki_MoveTWorldWallLeftWalk(
 #endif
 
 #if 0	
-	if( ret == TRUE ){	//áŠQ•¨ƒqƒbƒg
+	if( ret == TRUE ){	//éšœå®³ç‰©ãƒ’ãƒƒãƒˆ
 		
 		int tbl[DIR_4_MAX] = {AC_STAY_WALK_L_16F, AC_STAY_WALK_R_16F,
 			AC_STAY_WALK_D_16F, AC_STAY_WALK_U_16F};
@@ -1880,12 +1880,12 @@ static void Jiki_MoveTWorldWallLeftWalk(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®@”j‚ê‚½¢ŠE ‰E•Ç
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•ã€€ç ´ã‚ŒãŸä¸–ç•Œ å³å£
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1921,7 +1921,7 @@ static void Jiki_MoveTWorldWallRightWalk(
 	
 	ret = Jiki_MoveHitCheck_TornWorld( jiki, fldobj, dir );
 	
-	if( ret == TRUE ){	//áŠQ•¨ƒqƒbƒg
+	if( ret == TRUE ){	//éšœå®³ç‰©ãƒ’ãƒƒãƒˆ
 		int tbl[DIR_4_MAX] = {AC_STAY_WALK_R_16F, AC_STAY_WALK_L_16F,
 			AC_STAY_WALK_U_16F, AC_STAY_WALK_D_16F};
 		code = tbl[dir];
@@ -1948,12 +1948,12 @@ static void Jiki_MoveTWorldWallRightWalk(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@ˆÚ“®@”j‚ê‚½¢ŠE “Vˆä
+ * é€šå¸¸ç§»å‹•ã€€ç§»å‹•ã€€ç ´ã‚ŒãŸä¸–ç•Œ å¤©äº•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1989,7 +1989,7 @@ static void Jiki_MoveTWorldRoofWalk(
 	
 	ret = Jiki_MoveHitCheck_TornWorld( jiki, fldobj, dir );
 	
-	if( ret == TRUE ){	//áŠQ•¨ƒqƒbƒg
+	if( ret == TRUE ){	//éšœå®³ç‰©ãƒ’ãƒƒãƒˆ
 		int tbl[DIR_4_MAX] = {AC_STAY_WALK_D_16F, AC_STAY_WALK_U_16F,
 			AC_STAY_WALK_R_16F, AC_STAY_WALK_L_16F};
 		code = tbl[dir];
@@ -2015,12 +2015,12 @@ static void Jiki_MoveTWorldRoofWalk(
 
 //--------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®@U‚èŒü‚«
+ * é€šå¸¸ç§»å‹•ã€€æŒ¯ã‚Šå‘ã
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2053,21 +2053,21 @@ static void Jiki_MoveNormalTurn(
 	
 	code = FieldOBJ_AcmdCodeDirChange( dir_disp, JIKI_TURN_AC_STAY_WALK_U );
 	Jiki_AcmdSet( jiki, fldobj, code, HEROACTYPE_STOP );
-	FieldOBJ_DirMoveSet( fldobj, dir );						//‹­§‚Å
+	FieldOBJ_DirMoveSet( fldobj, dir );						//å¼·åˆ¶ã§
 }
 
 //==============================================================================
-//	©“]ÔˆÚ“®
+//	è‡ªè»¢è»Šç§»å‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©“]ÔˆÚ“®
+ * è‡ªè»¢è»Šç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2091,9 +2091,9 @@ static void Jiki_MoveCycle( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * ‚R‘¬@‚S‘¬‚ÌØ‚è‘Ö‚¦
+ * ï¼“é€Ÿã€€ï¼”é€Ÿã®åˆ‡ã‚Šæ›¿ãˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	trg		ƒL[ƒgƒŠƒK
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2113,7 +2113,7 @@ static void Jiki_MoveCycleGearChange( PLAYER_STATE_PTR jiki, u16 trg )
 		{
 			int gear = GEAR_4;
 		
-			if( Player_SaveDataGetGearGet(jiki) == GEAR_4 ){ //Œ»İ‚S‘¬
+			if( Player_SaveDataGetGearGet(jiki) == GEAR_4 ){ //ç¾åœ¨ï¼”é€Ÿ
 				gear = GEAR_3;
 			
 			}
@@ -2139,11 +2139,11 @@ static void Jiki_MoveCycleGearChange( PLAYER_STATE_PTR jiki, u16 trg )
 	if( (trg & JIKI_GEAR_CHG_BUTTON) ){
 		int gear = GEAR_4;
 		
-		if( Player_SaveDataGetGearGet(jiki) == GEAR_4 ){ //Œ»İ‚S‘¬
+		if( Player_SaveDataGetGearGet(jiki) == GEAR_4 ){ //ç¾åœ¨ï¼”é€Ÿ
 			gear = GEAR_3;
 			
 			#if 0		
-			//ƒuƒŒ[ƒLŠJn‚©?
+			//ãƒ–ãƒ¬ãƒ¼ã‚­é–‹å§‹ã‹?
 			if( Player_MoveSpeedGet(jiki) >= JIKI_SPEED_BRAKE_ON ){	
 				Player_MoveBitSet_CycleBrake( jiki, TRUE );
 			}else{
@@ -2166,10 +2166,10 @@ static void Jiki_MoveCycleGearChange( PLAYER_STATE_PTR jiki, u16 trg )
 
 //--------------------------------------------------------------
 /**
- * ‘¬“x‚©‚çƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+ * é€Ÿåº¦ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		•ûŒü
- * @retval	int		AC_WALK_U_4F“™
+ * @param	dir		æ–¹å‘
+ * @retval	int		AC_WALK_U_4Fç­‰
  */
 //--------------------------------------------------------------
 int Jiki_MoveCycleAcmdCodeGet( PLAYER_STATE_PTR jiki, int dir )
@@ -2190,16 +2190,16 @@ int Jiki_MoveCycleAcmdCodeGet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‰Á‘¬
+ * åŠ é€Ÿ
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=Å‚‘¬
+ * @retval	int		TRUE=æœ€é«˜é€Ÿ
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycleSpeedUp( PLAYER_STATE_PTR jiki )
 {
 	int speed = Player_MoveSpeedAdd( jiki, JIKI_SPEED_VALUE_1, JIKI_SPEED_CYCLE4_TOP );
 	
-	if( Player_MoveBitCheck_CycleBrake(jiki) == FALSE ){	//ƒuƒŒ[ƒL–³‚µ
+	if( Player_MoveBitCheck_CycleBrake(jiki) == FALSE ){	//ãƒ–ãƒ¬ãƒ¼ã‚­ç„¡ã—
 		if( speed >= JIKI_SPEED_BRAKE_ON ){
 			Player_MoveBitSet_CycleBrake( jiki, TRUE );
 		}
@@ -2214,9 +2214,9 @@ static int Jiki_MoveCycleSpeedUp( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * Œ¸‘¬
+ * æ¸›é€Ÿ
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		‘¬“x‚ª‚ ‚é
+ * @retval	int		é€Ÿåº¦ãŒã‚ã‚‹
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycleSpeedDown( PLAYER_STATE_PTR jiki )
@@ -2243,17 +2243,17 @@ static int Jiki_MoveCycleSpeedDown( PLAYER_STATE_PTR jiki )
 }
 
 //==============================================================================
-//	©“]ÔˆÚ“®@‚R‘¬
+//	è‡ªè»¢è»Šç§»å‹•ã€€ï¼“é€Ÿ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©“]ÔˆÚ“®@‚R‘¬
+ * è‡ªè»¢è»Šç§»å‹•ã€€ï¼“é€Ÿ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2280,10 +2280,10 @@ static void Jiki_MoveCycle3( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚R‘¬ˆÚ“®@ˆÚ“®‘I‘ğ‚Æó‘ÔƒZƒbƒg
+ * è‡ªè»¢è»Šï¼“é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠã¨çŠ¶æ…‹ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle3SelectValueSet( PLAYER_STATE_PTR jiki, int dir )
@@ -2297,9 +2297,9 @@ static int Jiki_MoveCycle3SelectValueSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * O‘¬ˆÚ“®@ˆÚ“®‘I‘ğ->ó‘Ô‚Ö
- * @param	type	CYCLE3_MOVE_STOP“™
- * @retval	int		OBJ_MOVE_VALUE_STOP“™
+ * ä¸‰é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠ->çŠ¶æ…‹ã¸
+ * @param	type	CYCLE3_MOVE_STOPç­‰
+ * @retval	int		OBJ_MOVE_VALUE_STOPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle3SelectValue( int type )
@@ -2311,16 +2311,16 @@ static int Jiki_MoveCycle3SelectValue( int type )
 	case CYCLE3_MOVE_BRAKE:	return( OBJ_MOVE_VALUE_WALK );
 	}
 	
-	GF_ASSERT( 0 && "Jiki_MoveCycle3SelectValue()ˆÙí‚È’l" );
+	GF_ASSERT( 0 && "Jiki_MoveCycle3SelectValue()ç•°å¸¸ãªå€¤" );
 	return( OBJ_MOVE_VALUE_STOP );
 }
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚R‘¬ˆÚ“®@ˆÚ“®‘I‘ğ
+ * è‡ªè»¢è»Šï¼“é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle3Select( PLAYER_STATE_PTR jiki, int dir )
@@ -2351,12 +2351,12 @@ static int Jiki_MoveCycle3Select( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚RˆÚ“®@’â~
+ * è‡ªè»¢è»Šï¼“ç§»å‹•ã€€åœæ­¢
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2372,12 +2372,12 @@ static void Jiki_MoveCycle3Stop(
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚RˆÚ“®@ˆÚ“®
+ * è‡ªè»¢è»Šï¼“ç§»å‹•ã€€ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2405,16 +2405,16 @@ static void Jiki_MoveCycle3Walk(
 		type = HEROACTYPE_WALK_4F;
 		Jiki_WalkCount( jiki );
 		Player_MoveBitSet_StepON( jiki );
-		Player_MoveBitSet_Force( jiki, TRUE );				//Ÿ‰ñ‹­§ƒWƒƒƒ“ƒv‘ä
+		Player_MoveBitSet_Force( jiki, TRUE );				//æ¬¡å›å¼·åˆ¶ã‚¸ãƒ£ãƒ³ãƒ—å°
 	}else if( (ret & JIKI_MOVE_HIT_BIT_BRIDGEHV) ){
 		code = AC_DIR_U;
 		type = HEROACTYPE_STOP;
 		dir = FieldOBJ_DirMoveGet( fldobj );
-		FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+		FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		Player_MoveSpeedClear( jiki );
-		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 	}else if( ret != JIKI_MOVE_HIT_BIT_NON ){
-		if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == FALSE ){		//ˆê–{‹´‹Ö~•ûŒü
+		if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == FALSE ){		//ä¸€æœ¬æ©‹ç¦æ­¢æ–¹å‘
 			code = JIKI_WALL_HIT_AC_STAY_WALK_U;
 			type = HEROACTYPE_STOP;
 			
@@ -2422,15 +2422,15 @@ static void Jiki_MoveCycle3Walk(
 				Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			}
 			
-			FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 			Player_MoveSpeedClear( jiki );
 		}else{
 			code = AC_DIR_U;
 			type = HEROACTYPE_STOP;
 			dir = FieldOBJ_DirMoveGet( fldobj );
-			FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 			Player_MoveSpeedClear( jiki );
-			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 		}
 	}else{
 		code = AC_WALK_U_3F;
@@ -2446,12 +2446,12 @@ static void Jiki_MoveCycle3Walk(
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚RˆÚ“®@U‚èŒü‚«
+ * è‡ªè»¢è»Šï¼“ç§»å‹•ã€€æŒ¯ã‚Šå‘ã
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2460,24 +2460,24 @@ static void Jiki_MoveCycle3Turn(
 {
 	Player_MoveSpeedClear( jiki );
 	
-	if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == TRUE ){		//ˆê–{‹´‹Ö~•ûŒü
-		//‰½‚à‚µ‚È‚¢
+	if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == TRUE ){		//ä¸€æœ¬æ©‹ç¦æ­¢æ–¹å‘
+		//ä½•ã‚‚ã—ãªã„
 	}else{
 		int code = FieldOBJ_AcmdCodeDirChange( dir, JIKI_TURN_AC_STAY_WALK_U );
 		Jiki_AcmdSet( jiki, fldobj, code, HEROACTYPE_STOP );
-		FieldOBJ_DirMoveSet( fldobj, dir );							//‹­§‚Å
+		FieldOBJ_DirMoveSet( fldobj, dir );							//å¼·åˆ¶ã§
 		Player_MoveSpeedClear( jiki );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚RˆÚ“®@ƒuƒŒ[ƒL
+ * è‡ªè»¢è»Šï¼“ç§»å‹•ã€€ãƒ–ãƒ¬ãƒ¼ã‚­
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2509,11 +2509,11 @@ static void Jiki_MoveCycle3Brake(
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 		}
 		
-		FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+		FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		Player_MoveSpeedClear( jiki );
 	}else{
 		code = Jiki_MoveCycleAcmdCodeGet( jiki, dir );
-		type = HEROACTYPE_WALK_4F;	//–{—ˆ‘¬“x•Ê‚É‹‚ß‚é‚×‚«
+		type = HEROACTYPE_WALK_4F;	//æœ¬æ¥é€Ÿåº¦åˆ¥ã«æ±‚ã‚ã‚‹ã¹ã
 	}
 	
 	if( speed == FALSE ){
@@ -2524,17 +2524,17 @@ static void Jiki_MoveCycle3Brake(
 }
 
 //==============================================================================
-//	©“]ÔˆÚ“®@‚S‘¬
+//	è‡ªè»¢è»Šç§»å‹•ã€€ï¼”é€Ÿ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©“]ÔˆÚ“®@‚S‘¬
+ * è‡ªè»¢è»Šç§»å‹•ã€€ï¼”é€Ÿ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2561,10 +2561,10 @@ static void Jiki_MoveCycle4( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚S‘¬ˆÚ“®@ˆÚ“®‘I‘ğ‚Æó‘ÔƒZƒbƒg
+ * è‡ªè»¢è»Šï¼”é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠã¨çŠ¶æ…‹ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle4SelectValueSet( PLAYER_STATE_PTR jiki, int dir )
@@ -2578,9 +2578,9 @@ static int Jiki_MoveCycle4SelectValueSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‚S‘¬ˆÚ“®@ˆÚ“®‘I‘ğ->ó‘Ô‚Ö
- * @param	type	CYCLE3_MOVE_STOP“™
- * @retval	int		OBJ_MOVE_VALUE_STOP“™
+ * ï¼”é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠ->çŠ¶æ…‹ã¸
+ * @param	type	CYCLE3_MOVE_STOPç­‰
+ * @retval	int		OBJ_MOVE_VALUE_STOPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle4SelectValue( int type )
@@ -2592,16 +2592,16 @@ static int Jiki_MoveCycle4SelectValue( int type )
 	case CYCLE4_MOVE_BRAKE:	return( OBJ_MOVE_VALUE_WALK );
 	}
 	
-	GF_ASSERT( 0 && "Jiki_MoveCycle4SelectValue()ˆÙí‚È’l" );
+	GF_ASSERT( 0 && "Jiki_MoveCycle4SelectValue()ç•°å¸¸ãªå€¤" );
 	return( OBJ_MOVE_VALUE_STOP );
 }
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚S‘¬ˆÚ“®@ˆÚ“®‘I‘ğ
+ * è‡ªè»¢è»Šï¼”é€Ÿç§»å‹•ã€€ç§»å‹•é¸æŠ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü
- * @retval	int		FALSE=ˆÚ“®ŠJn•s‰Â
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+ * @retval	int		FALSE=ç§»å‹•é–‹å§‹ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveCycle4Select( PLAYER_STATE_PTR jiki, int dir )
@@ -2638,12 +2638,12 @@ static int Jiki_MoveCycle4Select( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚SˆÚ“®@’â~
+ * è‡ªè»¢è»Šï¼”ç§»å‹•ã€€åœæ­¢
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2659,12 +2659,12 @@ static void Jiki_MoveCycle4Stop(
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚SˆÚ“®@ˆÚ“®
+ * è‡ªè»¢è»Šï¼”ç§»å‹•ã€€ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2692,9 +2692,9 @@ static void Jiki_MoveCycle4Walk(
 	}else if( (ret & JIKI_MOVE_HIT_BIT_TAKE_OFF) ){
 		if( Player_MoveSpeedGet(jiki) >= JIKI_SPEED_3 ){
 			code = Jiki_MoveCycleAcmdCodeGet( jiki, dir );
-			type = HEROACTYPE_WALK_4F;	//–{—ˆ‘¬“x•Ê‚Å‹‚ß‚é‚×‚«
+			type = HEROACTYPE_WALK_4F;	//æœ¬æ¥é€Ÿåº¦åˆ¥ã§æ±‚ã‚ã‚‹ã¹ã
 			Player_MoveBitSet_StepON( jiki );
-			Player_MoveBitSet_Force( jiki, TRUE );		//Ÿ‰ñ‹­§ƒWƒƒƒ“ƒv‘ä
+			Player_MoveBitSet_Force( jiki, TRUE );		//æ¬¡å›å¼·åˆ¶ã‚¸ãƒ£ãƒ³ãƒ—å°
 		}else{
 			code = FieldOBJ_AcmdCodeDirChange( dir, JIKI_WALL_HIT_AC_STAY_WALK_U );
 			type = HEROACTYPE_STOP;
@@ -2703,18 +2703,18 @@ static void Jiki_MoveCycle4Walk(
 				Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			}
 		
-			FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 			Player_MoveSpeedClear( jiki );
 		}
 	}else if( (ret & JIKI_MOVE_HIT_BIT_BRIDGEHV) ){
 		dir = FieldOBJ_DirMoveGet( fldobj );
 		code = FieldOBJ_AcmdCodeDirChange( dir, AC_DIR_U );
 		type = HEROACTYPE_STOP;
-		FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+		FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		Player_MoveSpeedClear( jiki );
-		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+		Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 	}else if( ret != JIKI_MOVE_HIT_BIT_NON ){
-		if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == FALSE ){		//ˆê–{‹´‹Ö~•ûŒü
+		if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == FALSE ){		//ä¸€æœ¬æ©‹ç¦æ­¢æ–¹å‘
 			code = FieldOBJ_AcmdCodeDirChange( dir, JIKI_WALL_HIT_AC_STAY_WALK_U );
 			type = HEROACTYPE_STOP;
 			
@@ -2722,18 +2722,18 @@ static void Jiki_MoveCycle4Walk(
 				Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 			}
 			
-			FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 			Player_MoveSpeedClear( jiki );
 		}else{
 			type = HEROACTYPE_STOP;
 			dir = FieldOBJ_DirMoveGet( fldobj );
 			code = FieldOBJ_AcmdCodeDirChange( dir, AC_DIR_U );
-			FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+			FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 			Player_MoveSpeedClear( jiki );
-			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ˆÚ“®‚·‚éÛ‚Ì“ü—ÍƒL[‚ğƒNƒŠƒA
+			Player_InputKeyDirSet( jiki, DIR_NOT, DIR_NOT );	//ç§»å‹•ã™ã‚‹éš›ã®å…¥åŠ›ã‚­ãƒ¼ã‚’ã‚¯ãƒªã‚¢
 		}
 	}else{
-		type = HEROACTYPE_WALK_4F;	//–{—ˆ‘¬“x•Ê‚É‹‚ß‚é‚×‚«
+		type = HEROACTYPE_WALK_4F;	//æœ¬æ¥é€Ÿåº¦åˆ¥ã«æ±‚ã‚ã‚‹ã¹ã
 		code = Jiki_MoveCycleAcmdCodeGet( jiki, dir );
 		Jiki_MoveCycleSpeedUp( jiki );
 		Jiki_WalkCount( jiki );
@@ -2745,12 +2745,12 @@ static void Jiki_MoveCycle4Walk(
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚SˆÚ“®@U‚èŒü‚«
+ * è‡ªè»¢è»Šï¼”ç§»å‹•ã€€æŒ¯ã‚Šå‘ã
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2759,24 +2759,24 @@ static void Jiki_MoveCycle4Turn(
 {
 	Player_MoveSpeedClear( jiki );
 	
-	if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == TRUE ){		//ˆê–{‹´‹Ö~•ûŒü
-		//‰½‚à‚µ‚È‚¢
+	if( Jiki_UnderBridgeHVCheck(jiki,fldobj,dir) == TRUE ){		//ä¸€æœ¬æ©‹ç¦æ­¢æ–¹å‘
+		//ä½•ã‚‚ã—ãªã„
 	}else{
 		int code = FieldOBJ_AcmdCodeDirChange( dir, JIKI_TURN_AC_STAY_WALK_U );
 		Jiki_AcmdSet( jiki, fldobj, code, HEROACTYPE_STOP );
-		FieldOBJ_DirMoveSet( fldobj, dir );							//‹­§‚Å
+		FieldOBJ_DirMoveSet( fldobj, dir );							//å¼·åˆ¶ã§
 		Player_MoveSpeedClear( jiki );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ©“]Ô‚SˆÚ“®@ƒuƒŒ[ƒL
+ * è‡ªè»¢è»Šï¼”ç§»å‹•ã€€ãƒ–ãƒ¬ãƒ¼ã‚­
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2808,11 +2808,11 @@ static void Jiki_MoveCycle4Brake(
 			Snd_SePlay( SEQ_SE_DP_WALL_HIT );
 		}
 		
-		FieldOBJ_DirMoveSet( fldobj, dir );					//•Çƒqƒbƒg‚Í‹­§
+		FieldOBJ_DirMoveSet( fldobj, dir );					//å£ãƒ’ãƒƒãƒˆæ™‚ã¯å¼·åˆ¶
 		Player_MoveSpeedClear( jiki );
 	}else{	
 		code = Jiki_MoveCycleAcmdCodeGet( jiki, dir );
-		type = HEROACTYPE_WALK_4F;	//–{—ˆ‘¬“x•Ê‚É‹‚ß‚é‚×‚«
+		type = HEROACTYPE_WALK_4F;	//æœ¬æ¥é€Ÿåº¦åˆ¥ã«æ±‚ã‚ã‚‹ã¹ã
 	}
 	
 	if( speed == FALSE ){
@@ -2824,10 +2824,10 @@ static void Jiki_MoveCycle4Brake(
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	‘ÎÛFIELD_OBJ_PTR
- * @param	ac		ƒAƒjƒƒR[ƒhAC_DIR_U“™
+ * @param	fldobj	å¯¾è±¡FIELD_OBJ_PTR
+ * @param	ac		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2838,15 +2838,15 @@ static void Jiki_AcmdSet( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, u32 ac, H
 }
 
 //==============================================================================
-//	ˆÚ“®ƒ`ƒFƒbƒN
+//	ç§»å‹•ãƒã‚§ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@ˆÚ“®ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	u32		ƒqƒbƒgƒrƒbƒgBJIKI_MOVE_HIT_BIT_NON“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€‚JIKI_MOVE_HIT_BIT_NONç­‰
  */
 //--------------------------------------------------------------
 u32 Player_MoveHitCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -2906,11 +2906,11 @@ u32 Player_MoveHitCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ˆÚ“®ƒ`ƒFƒbƒN@ƒƒCƒ“
+ * è‡ªæ©Ÿç§»å‹•ãƒã‚§ãƒƒã‚¯ã€€ãƒ¡ã‚¤ãƒ³
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	u32		ƒqƒbƒgƒrƒbƒgBJIKI_MOVE_HIT_BIT_NON“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€‚JIKI_MOVE_HIT_BIT_NONç­‰
  */
 //--------------------------------------------------------------
 static u32 Jiki_MoveHitCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -2954,11 +2954,11 @@ static u32 Jiki_MoveHitCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int d
 
 //--------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=dir‚ÉƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒAƒŠ
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirã«ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_Jump( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -2997,11 +2997,11 @@ static int Jiki_MoveHitCheck_Jump( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, 
 
 //--------------------------------------------------------------
 /**
- * 3GƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * 3Gã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=dir‚ÉƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒAƒŠ
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirã«ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_Jump3G(
@@ -3038,11 +3038,11 @@ static int Jiki_MoveHitCheck_Jump3G(
 
 //--------------------------------------------------------------
 /**
- * o“ü‚èŒûƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * å‡ºå…¥ã‚Šå£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=dir‚Éo“ü‚èŒû‚ ‚è
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirã«å‡ºå…¥ã‚Šå£ã‚ã‚Š
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_Exit( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3074,11 +3074,11 @@ static int Jiki_MoveHitCheck_Exit( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, 
 
 //--------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒv‘äƒqƒbƒgƒ`ƒFƒbƒN
+ * ã‚¸ãƒ£ãƒ³ãƒ—å°ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=dir‚ÉƒWƒƒƒ“ƒv‘äƒAƒgƒŠƒrƒ…[ƒgƒAƒŠ
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirã«ã‚¸ãƒ£ãƒ³ãƒ—å°ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_TakeOff( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3103,11 +3103,11 @@ static int Jiki_MoveHitCheck_TakeOff( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldob
 
 //--------------------------------------------------------------
 /**
- * …ƒqƒbƒgƒ`ƒFƒbƒN
+ * æ°´ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=diræA…ƒAƒgƒŠƒrƒ…[ƒg
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirå…ˆã€æ°´ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_Water( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3128,11 +3128,11 @@ static int Jiki_MoveHitCheck_Water( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj,
 
 //--------------------------------------------------------------
 /**
- * ©“]Ôˆê–{‹´ƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * è‡ªè»¢è»Šä¸€æœ¬æ©‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=áŠQ•¨ƒqƒbƒg
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=éšœå®³ç‰©ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_BridgeHV( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3159,7 +3159,7 @@ static int Jiki_MoveHitCheck_BridgeHV( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldo
 				
 				return( TRUE );
 			}
-		}else{	//ˆê–{‹´‚Í©“]ÔˆÈŠOˆÚ“®•s‰Â
+		}else{	//ä¸€æœ¬æ©‹ã¯è‡ªè»¢è»Šä»¥å¤–ç§»å‹•ä¸å¯
 			if( FieldOBJ_MapAttrKindCheck_BridgeV(fldobj,attr) == TRUE ||
 				FieldOBJ_MapAttrKindCheck_BridgeH(fldobj,attr) == TRUE ){
 				return( TRUE );
@@ -3172,11 +3172,11 @@ static int Jiki_MoveHitCheck_BridgeHV( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldo
 
 //--------------------------------------------------------------
 /**
- * ©“]ÔˆÚ“®•s‰ÂƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * è‡ªè»¢è»Šç§»å‹•ä¸å¯ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=diræA©“]Ô‚Å‚ÍˆÚ“®•s‰Â
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirå…ˆã€è‡ªè»¢è»Šã§ã¯ç§»å‹•ä¸å¯
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_NotCycle( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3199,11 +3199,11 @@ static int Jiki_MoveHitCheck_NotCycle( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldo
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEˆÚ“®ƒ`ƒFƒbƒN
+ * ç ´ã‚ŒãŸä¸–ç•Œç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	u32		ƒqƒbƒgƒrƒbƒgBJIKI_MOVE_HIT_BIT_NON“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€‚JIKI_MOVE_HIT_BIT_NONç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_TornWorld(
@@ -3233,11 +3233,11 @@ static int Jiki_MoveHitCheck_TornWorld(
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@…ƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€æ°´ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	u32		ƒqƒbƒgƒrƒbƒgBJIKI_MOVE_HIT_BIT_NON“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€‚JIKI_MOVE_HIT_BIT_NONç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_TwWater(
@@ -3267,11 +3267,11 @@ static int Jiki_MoveHitCheck_TwWater(
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE©‹@ˆÚ“®ƒ`ƒFƒbƒN
+ * ç ´ã‚ŒãŸä¸–ç•Œè‡ªæ©Ÿç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	u32		ƒqƒbƒgƒrƒbƒgBJIKI_MOVE_HIT_BIT_NON“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€‚JIKI_MOVE_HIT_BIT_NONç­‰
  */
 //--------------------------------------------------------------
 u32 Player_TwMoveHitCheck(
@@ -3302,11 +3302,11 @@ u32 Player_TwMoveHitCheck(
 
 //--------------------------------------------------------------
 /**
- * 3GƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN@”j‚ê‚½¢ŠE—p
+ * 3Gã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã€€ç ´ã‚ŒãŸä¸–ç•Œç”¨
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @retval	int		TRUE=dir‚ÉƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒAƒŠ
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=dirã«ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Jiki_MoveHitCheck_TwJump3G(
@@ -3340,15 +3340,15 @@ static int Jiki_MoveHitCheck_TwJump3G(
 }
 
 //==============================================================================
-//	“®ìƒp[ƒc
+//	å‹•ä½œãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒL[ƒgƒŠƒKAƒvƒŒƒX‚©‚ç‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒü‚ğæ“¾
+ * ã‚­ãƒ¼ãƒˆãƒªã‚¬ã€ãƒ—ãƒ¬ã‚¹ã‹ã‚‰æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @param	key_trg 	ƒL[ƒgƒŠƒK
- * @param	key_prs		ƒL[ƒvƒŒƒX
- * @retval	int			‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒüBDIR_UP“™
+ * @param	key_trg 	ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int			æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_KeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs )
@@ -3358,9 +3358,9 @@ int Player_KeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs )
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒvƒŒƒX‚©‚ç‰Ÿ‚³‚ê‚Ä‚¢‚éX•ûŒü‚ğæ“¾
- * @param	key_prs		ƒL[ƒvƒŒƒX
- * @retval	int			‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒüBDIR_UP“™
+ * ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹ã‹ã‚‰æŠ¼ã•ã‚Œã¦ã„ã‚‹Xæ–¹å‘ã‚’å–å¾—
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int			æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_KeyDirXGet( u16 key_prs )
@@ -3378,9 +3378,9 @@ static int Jiki_KeyDirXGet( u16 key_prs )
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒvƒŒƒX‚©‚ç‰Ÿ‚³‚ê‚Ä‚¢‚éZ•ûŒü‚ğæ“¾
- * @param	key_prs		ƒL[ƒvƒŒƒX
- * @retval	int			‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒüBDIR_UP“™
+ * ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹ã‹ã‚‰æŠ¼ã•ã‚Œã¦ã„ã‚‹Zæ–¹å‘ã‚’å–å¾—
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int			æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
  */
 //--------------------------------------------------------------
 static int Jiki_KeyDirZGet( u16 key_prs )
@@ -3398,11 +3398,11 @@ static int Jiki_KeyDirZGet( u16 key_prs )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“ü—ÍƒL[æ“¾
+ * è‡ªæ©Ÿå…¥åŠ›ã‚­ãƒ¼å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
- * @retval	int		DIR_UP“™@ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒü
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int		DIR_UPç­‰ã€€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘
  */
 //--------------------------------------------------------------
 static int Jiki_InputKeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs )
@@ -3410,32 +3410,32 @@ static int Jiki_InputKeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs 
 	int key_dir_x = Jiki_KeyDirXGet( key_prs );
 	int key_dir_z = Jiki_KeyDirZGet( key_prs );
 	
-	if( key_dir_x == DIR_NOT ){									//ˆê•ûŒü‰Ÿ‚µ‚Ìê‡‚ÍZ—Dæ
+	if( key_dir_x == DIR_NOT ){									//ä¸€æ–¹å‘æŠ¼ã—ã®å ´åˆã¯Zå„ªå…ˆ
 		return( key_dir_z );
 	}
 	
-	if( key_dir_z == DIR_NOT ){									//ZƒL[–³‚µ XƒL[•Ô‚µ
+	if( key_dir_z == DIR_NOT ){									//Zã‚­ãƒ¼ç„¡ã— Xã‚­ãƒ¼è¿”ã—
 		return( key_dir_x );
 	}
 	
-	{															//Î‚ß‰Ÿ‚µ
+	{															//æ–œã‚æŠ¼ã—
 		int move_dir = Player_DirMoveGet( jiki );
 		int input_x = Player_InputKeyDirXGet( jiki );
 		int input_z = Player_InputKeyDirZGet( jiki );
 		
-		if( move_dir != DIR_NOT ){					//ˆÚ“®•ûŒü‚Æˆê’v‚µ‚È‚¢•ûŒü‚ğZ—Dæ‚Å•Ô‚·
-			if( key_dir_x == input_x && key_dir_z == input_z ){	//‰ß‹‚É‰Ÿ‚µ‚½•ûŒü‚ğŒp‘±
-				return( move_dir );								//ˆÚ“®’†‚Æˆê’v‚·‚é•ûŒü‚ğ•Ô‚·
+		if( move_dir != DIR_NOT ){					//ç§»å‹•æ–¹å‘ã¨ä¸€è‡´ã—ãªã„æ–¹å‘ã‚’Zå„ªå…ˆã§è¿”ã™
+			if( key_dir_x == input_x && key_dir_z == input_z ){	//éå»ã«æŠ¼ã—ãŸæ–¹å‘ã‚’ç¶™ç¶š
+				return( move_dir );								//ç§»å‹•ä¸­ã¨ä¸€è‡´ã™ã‚‹æ–¹å‘ã‚’è¿”ã™
 			}
 			
-			if( key_dir_z != input_z ){							//V‹KÎ‚ß‰Ÿ‚µ‚ÍZ—Dæ‚Å•Ô‚·
+			if( key_dir_z != input_z ){							//æ–°è¦æ–œã‚æŠ¼ã—ã¯Zå„ªå…ˆã§è¿”ã™
 				return( key_dir_z );
 			}
 			
 			return( key_dir_x );
 		}
 		
-		return( key_dir_z );									//Z—Dæ‚Å•Ô‚·
+		return( key_dir_z );									//Zå„ªå…ˆã§è¿”ã™
 	}
 	
 	return( DIR_NOT );
@@ -3447,24 +3447,24 @@ static int Jiki_InputKeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs 
 	int key_dir_x = Jiki_KeyDirXGet( key_prs );
 	int key_dir_z = Jiki_KeyDirZGet( key_prs );
 	
-	if( key_dir_x == DIR_NOT ){									//ˆê•ûŒü‰Ÿ‚µ‚Ìê‡‚ÍZ—Dæ
+	if( key_dir_x == DIR_NOT ){									//ä¸€æ–¹å‘æŠ¼ã—ã®å ´åˆã¯Zå„ªå…ˆ
 		return( key_dir_z );
 	}
 	
-	if( key_dir_z == DIR_NOT ){									//ZƒL[–³‚µ XƒL[•Ô‚µ
+	if( key_dir_z == DIR_NOT ){									//Zã‚­ãƒ¼ç„¡ã— Xã‚­ãƒ¼è¿”ã—
 		return( key_dir_x );
 	}
 	
-	{															//Î‚ß‰Ÿ‚µ
+	{															//æ–œã‚æŠ¼ã—
 		int move_dir = Player_DirMoveGet( jiki );
 		
 		if( move_dir != DIR_NOT ){
-			if( key_dir_x == move_dir || key_dir_z == move_dir ){	//Î‚ß‚Ì“à‚Ç‚ê‚©‚ªˆÚ“®•ûŒü
-				return( move_dir );								//ˆÚ“®’†‚Æˆê’v‚·‚é•ûŒü‚ğ•Ô‚·
+			if( key_dir_x == move_dir || key_dir_z == move_dir ){	//æ–œã‚ã®å†…ã©ã‚Œã‹ãŒç§»å‹•æ–¹å‘
+				return( move_dir );								//ç§»å‹•ä¸­ã¨ä¸€è‡´ã™ã‚‹æ–¹å‘ã‚’è¿”ã™
 			}
 		}
 		
-		return( key_dir_z );									//ˆê’v‚µ‚È‚¢ê‡‚ÍZ—Dæ
+		return( key_dir_z );									//ä¸€è‡´ã—ãªã„å ´åˆã¯Zå„ªå…ˆ
 	}
 	
 	return( DIR_NOT );
@@ -3473,9 +3473,9 @@ static int Jiki_InputKeyDirGet( PLAYER_STATE_PTR jiki, u16 key_trg, u16 key_prs 
 
 //--------------------------------------------------------------
 /**
- * “®ìƒLƒƒƒ“ƒZƒ‹‰Â”\ƒ`ƒFƒbƒN
+ * å‹•ä½œã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=‰Â”\
+ * @retval	int		TRUE=å¯èƒ½
  */
 //--------------------------------------------------------------
 int Player_MoveCancellCheck( PLAYER_STATE_PTR jiki )
@@ -3489,7 +3489,7 @@ int Player_MoveCancellCheck( PLAYER_STATE_PTR jiki )
 	{
 		int code = FieldOBJ_AcmdCodeGet( fldobj );
 		
-		if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){			//•Çƒqƒbƒg‚ÍƒLƒƒƒ“ƒZƒ‹‰Â”\ 
+		if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){			//å£ãƒ’ãƒƒãƒˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¯èƒ½ 
 			return( TRUE );
 		}
 	}
@@ -3499,9 +3499,9 @@ int Player_MoveCancellCheck( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * •ÇƒqƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒhƒ`ƒFƒbƒN
- * @param	code	AC_DIR_U“™
- * @retval	int		TRUE=•ÇƒqƒbƒgƒR[ƒh FALSE=ˆá‚¤
+ * å£ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
+ * @param	code	AC_DIR_Uç­‰
+ * @retval	int		TRUE=å£ãƒ’ãƒƒãƒˆã‚³ãƒ¼ãƒ‰ FALSE=é•ã†
  */
 //--------------------------------------------------------------
 static int Jiki_WallHitAcmdCodeCheck( int code )
@@ -3519,10 +3519,10 @@ static int Jiki_WallHitAcmdCodeCheck( int code )
 
 //--------------------------------------------------------------
 /**
- * Bƒ_ƒbƒVƒ…ƒ`ƒFƒbƒN
+ * Bãƒ€ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	prs		ƒL[ƒvƒŒƒX
- * @retval	int		TRUE=Bƒ_ƒbƒVƒ…
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int		TRUE=Bãƒ€ãƒƒã‚·ãƒ¥
  */
 //--------------------------------------------------------------
 int Player_KeyDashCheck( PLAYER_STATE_PTR jiki, u16 prs )
@@ -3536,9 +3536,9 @@ int Player_KeyDashCheck( PLAYER_STATE_PTR jiki, u16 prs )
 
 //--------------------------------------------------------------
 /**
- * Bƒ_ƒbƒVƒ…ƒR[ƒhƒ`ƒFƒbƒN
+ * Bãƒ€ãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=Bƒ_ƒbƒVƒ…ƒAƒjƒ FALSE=ˆá‚¤
+ * @retval	int		TRUE=Bãƒ€ãƒƒã‚·ãƒ¥ã‚¢ãƒ‹ãƒ¡ FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int Player_AcmdCodeDashCheck( PLAYER_STATE_PTR jiki )
@@ -3558,10 +3558,10 @@ int Player_AcmdCodeDashCheck( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * w’è•ûŒü‚ÉˆÚ“®‚³‚¹‚æ‚¤‚Æ‚·‚é‚Æ‚Ç‚¤‚È‚é‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šæ–¹å‘ã«ç§»å‹•ã•ã›ã‚ˆã†ã¨ã™ã‚‹ã¨ã©ã†ãªã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		•ûŒü DIR_UP“™B
- * @retval	int		OBJ_MOVE_VALUE_STOP“™
+ * @param	dir		æ–¹å‘ DIR_UPç­‰ã€‚
+ * @retval	int		OBJ_MOVE_VALUE_STOPç­‰
  */
 //--------------------------------------------------------------
 int Player_MoveSelectValueCheck( PLAYER_STATE_PTR jiki, int dir )
@@ -3586,7 +3586,7 @@ int Player_MoveSelectValueCheck( PLAYER_STATE_PTR jiki, int dir )
 		break;
 	default:
 		val = OBJ_MOVE_VALUE_STOP;
-		GF_ASSERT( 0 && "Player_MoveSelectValueCheck()•s³‚ÈŒ`ó" );
+		GF_ASSERT( 0 && "Player_MoveSelectValueCheck()ä¸æ­£ãªå½¢çŠ¶" );
 	}
 	
 	return( val );
@@ -3594,14 +3594,14 @@ int Player_MoveSelectValueCheck( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒL[î•ñ‚©‚ç©‹@‚ª“®‚­Û‚Éw’è‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh‚ğæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ¼æƒ…å ±ã‹ã‚‰è‡ªæ©ŸãŒå‹•ãéš›ã«æŒ‡å®šã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
- * @param	speed	JIKI_FRAME_SPEED_32F“™
- * @param	dash	ƒ_ƒbƒVƒ…ƒtƒ‰ƒO TRUE=ƒ_ƒbƒVƒ…‰Â”\@FALSE=ƒ_ƒbƒVƒ…•s‰Â
- * @param	hit     HITƒtƒ‰ƒO TRUE=HIT‚ğŒ©‚é@FALSE=HIT‚ğŒ©‚È‚¢
- * @retval	u32		ƒAƒjƒƒR[ƒhAC_WALK_D_8F“™
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @param	speed	JIKI_FRAME_SPEED_32Fç­‰
+ * @param	dash	ãƒ€ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚° TRUE=ãƒ€ãƒƒã‚·ãƒ¥å¯èƒ½ã€€FALSE=ãƒ€ãƒƒã‚·ãƒ¥ä¸å¯
+ * @param	hit     HITãƒ•ãƒ©ã‚° TRUE=HITã‚’è¦‹ã‚‹ã€€FALSE=HITã‚’è¦‹ãªã„
+ * @retval	u32		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_WALK_D_8Fç­‰
  */
 //--------------------------------------------------------------
 u32 Player_KeyMoveSelectAcmdCodeGet(
@@ -3662,9 +3662,9 @@ u32 Player_KeyMoveSelectAcmdCodeGet(
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ªƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğƒZƒbƒg‚Å‚«‚é‚©‚Ç‚¤‚©
+ * è‡ªæ©ŸãŒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚»ãƒƒãƒˆã§ãã‚‹ã‹ã©ã†ã‹
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=‰Â”\ FALSE=•s‰Â
+ * @retval	int		TRUE=å¯èƒ½ FALSE=ä¸å¯
  */
 //--------------------------------------------------------------
 int Player_AcmdSetCheck( PLAYER_STATE_PTR jiki )
@@ -3675,9 +3675,9 @@ int Player_AcmdSetCheck( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	ac		ƒAƒjƒƒR[ƒhAC_DIR_U“™
+ * @param	ac		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3689,9 +3689,9 @@ void Player_AcmdSet( PLAYER_STATE_PTR jiki, u32 ac, HEROACTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌˆÊ’u‚©‚çw’è•ûŒüæ‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+ * è‡ªæ©Ÿã®ä½ç½®ã‹ã‚‰æŒ‡å®šæ–¹å‘å…ˆã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	u32		MATR
  */
 //--------------------------------------------------------------
@@ -3703,11 +3703,11 @@ u32 Player_NextDirAttrGet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌˆÊ’u‚©‚çw’è•ûŒüæ‚ÌƒOƒŠƒbƒhÀ•Wæ“¾
+ * è‡ªæ©Ÿã®ä½ç½®ã‹ã‚‰æŒ‡å®šæ–¹å‘å…ˆã®ã‚°ãƒªãƒƒãƒ‰åº§æ¨™å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
- * @param	gx		ƒOƒŠƒbƒhXÀ•WŠi”[æ
- * @param	gz		ƒOƒŠƒbƒhZÀ•WŠi”[æ
+ * @param	dir		DIR_UPç­‰
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3719,10 +3719,10 @@ void Player_DirNextGridPosGet( PLAYER_STATE_PTR jiki, int dir, int *gx, int *gz 
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì‘O•ûˆÊ’u‚ÌƒOƒŠƒbƒhÀ•Wæ“¾
+ * è‡ªæ©Ÿã®å‰æ–¹ä½ç½®ã®ã‚°ãƒªãƒƒãƒ‰åº§æ¨™å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	gx		ƒOƒŠƒbƒhXÀ•WŠi”[æ
- * @param	gz		ƒOƒŠƒbƒhZÀ•WŠi”[æ
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3734,7 +3734,7 @@ void Player_DirFrontGridPosGet( PLAYER_STATE_PTR jiki, int *gx, int *gz )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒh@•à”ƒJƒEƒ“ƒg
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã€€æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -3749,11 +3749,11 @@ static void Jiki_WalkCount( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ‘«Œ³ˆê–{‹´ƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * è¶³å…ƒä¸€æœ¬æ©‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		U‚èŒü‚©‚¹‚é•ûŒü
- * @retval	int		TRUE=ˆê–{‹´ƒqƒbƒg
+ * @param	dir		æŒ¯ã‚Šå‘ã‹ã›ã‚‹æ–¹å‘
+ * @retval	int		TRUE=ä¸€æœ¬æ©‹ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int Jiki_UnderBridgeHVCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir )
@@ -3783,11 +3783,11 @@ static int Jiki_UnderBridgeHVCheck( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj,
 
 //--------------------------------------------------------------
 /**
- * ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ`ƒFƒbƒN
+ * ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒg
- * @param	dir		“ü—Í•ûŒü
- * @retval	int		TRUE=ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	dir		å…¥åŠ›æ–¹å‘
+ * @retval	int		TRUE=ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static int Jiki_UnderCyclingRoadCheck( PLAYER_STATE_PTR jiki, u32 attr, int dir )
@@ -3817,12 +3817,12 @@ static int Jiki_UnderCyclingRoadCheck( PLAYER_STATE_PTR jiki, u32 attr, int dir 
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE‚ğl—¶‚µ‚½•ûŒü‚ÌÀ•Wæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã—ãŸæ–¹å‘ã®åº§æ¨™å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		•ûŒü
- * @param	gx		ƒOƒŠƒbƒhGX
- * @param	gy		ƒOƒŠƒbƒhGY(’n–ÊƒOƒŠƒbƒh’PˆÊ
- * @param	gz		ƒOƒŠƒbƒhGZ
+ * @param	dir		æ–¹å‘
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰GX
+ * @param	gy		ã‚°ãƒªãƒƒãƒ‰GY(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰GZ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3854,12 +3854,12 @@ void Player_TwThinkDirPosGet(
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE‚ğl—¶‚µ‚½ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã—ãŸã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	gx		ƒOƒŠƒbƒhGX
- * @param	gy		ƒOƒŠƒbƒhGY(’n–ÊƒOƒŠƒbƒh’PˆÊ
- * @param	gz		ƒOƒŠƒbƒhGZ
- * @retval	u32		ƒAƒgƒŠƒrƒ…[ƒg
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰GX
+ * @param	gy		ã‚°ãƒªãƒƒãƒ‰GY(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰GZ
+ * @retval	u32		ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 u32 Player_TwThinkAttrGet( PLAYER_STATE_PTR jiki, int gx, int gy, int gz )
@@ -3868,12 +3868,12 @@ u32 Player_TwThinkAttrGet( PLAYER_STATE_PTR jiki, int gx, int gy, int gz )
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 	FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
 	
-	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//’Êí’nŒ`
+	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//é€šå¸¸åœ°å½¢
 		attr = GetAttributeLSB( fsys, gx, gz );
 	}else{
 		BOOL ret;
 		ret = FldTornWorld_SpAttrGet( fsys, gx, gy, gz, &attr );
-		//“Áê’nŒ`‚ÌƒI[ƒo[‚Í@‚Ç‚¤‚µ‚æ‚¤
+		//ç‰¹æ®Šåœ°å½¢ã®ã‚ªãƒ¼ãƒãƒ¼ã¯ã€€ã©ã†ã—ã‚ˆã†
 	}
 	
 	return( attr );
@@ -3881,19 +3881,19 @@ u32 Player_TwThinkAttrGet( PLAYER_STATE_PTR jiki, int gx, int gy, int gz )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE‚ğl—¶‚µ‚½w’è•ûŒüæ‚ÌƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã—ãŸæŒ‡å®šæ–¹å‘å…ˆã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
- * @retval	u32		ƒAƒgƒŠƒrƒ…[ƒg
+ * @param	dir		DIR_UPç­‰
+ * @retval	u32		ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 u32 Player_TwThinkNextDirAttrGet( PLAYER_STATE_PTR jiki, int dir )
 {
 	u32 attr;
 	
-	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//’Êí’nŒ`
+	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//é€šå¸¸åœ°å½¢
 		attr = Player_NextDirAttrGet( jiki, dir );
-	}else{												//“Áê’nŒ`
+	}else{												//ç‰¹æ®Šåœ°å½¢
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 		FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
 		int x = FieldOBJ_NowPosGX_Get( fldobj );
@@ -3908,9 +3908,9 @@ u32 Player_TwThinkNextDirAttrGet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE‚ğl—¶‚µ‚½Œ»İˆÊ’u‚Ì‚ÌƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã—ãŸç¾åœ¨ä½ç½®ã®ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	u32		ƒAƒgƒŠƒrƒ…[ƒg
+ * @retval	u32		ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 u32 Player_TwThinkNowAttrGet( PLAYER_STATE_PTR jiki )
@@ -3922,9 +3922,9 @@ u32 Player_TwThinkNowAttrGet( PLAYER_STATE_PTR jiki )
 	int y = H_GRID_G_GRID( FieldOBJ_NowPosGY_Get(fldobj) );
 	int z = FieldOBJ_NowPosGZ_Get( fldobj );
 	
-	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//’Êí’nŒ`
+	if( Player_MoveBitCheck_TWorldSp(jiki) == FALSE ){	//é€šå¸¸åœ°å½¢
 		attr = GetAttributeLSB( fsys, x, z );
-	}else{												//“Áê’nŒ`
+	}else{												//ç‰¹æ®Šåœ°å½¢
 		FldTornWorld_SpAttrGet( fsys, x, y, z, &attr );
 	}
 	
@@ -3933,11 +3933,11 @@ u32 Player_TwThinkNowAttrGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE‚ğl—¶‚µ‚½©‹@è‘O‚ÌÀ•W‚ğæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã—ãŸè‡ªæ©Ÿæ‰‹å‰ã®åº§æ¨™ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	gx		ƒOƒŠƒbƒhXÀ•WŠi”[æ
- * @param	gy		ƒOƒŠƒbƒhYÀ•WŠi”[æ(’n–ÊƒOƒŠƒbƒh’PˆÊ
- * @param	gz		ƒOƒŠƒbƒhZÀ•WŠi”[æ
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	gy		ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™æ ¼ç´å…ˆ(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3954,9 +3954,9 @@ void Player_TwThinkFrontPosGet(
 
 //--------------------------------------------------------------
 /**
- * ƒL[“ü—Í•ûŒü‚©‚ç•\¦•ûŒü‚ğæ“¾B©‹@“Áê’nŒ`‚ğl—¶‚·‚é
+ * ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ã‹ã‚‰è¡¨ç¤ºæ–¹å‘ã‚’å–å¾—ã€‚è‡ªæ©Ÿç‰¹æ®Šåœ°å½¢ã‚’è€ƒæ…®ã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 #if 0
@@ -3968,7 +3968,7 @@ int Player_TwThinkKeyDirDispDirGet( PLAYER_STATE_PTR jiki, int key_dir )
 	case HEROTWTYPE_NON:
 	case HEROTWTYPE_ON:
 	case HEROTWTYPE_GROUND:
-		return( key_dir );		//ƒL[‚»‚Ì‚Ü‚Ü
+		return( key_dir );		//ã‚­ãƒ¼ãã®ã¾ã¾
 	case HEROTWTYPE_WLEFT:
 		{
 			int tbl[DIR_4_MAX] = {DIR_UP,DIR_DOWN,DIR_LEFT,DIR_RIGHT};
@@ -3991,21 +3991,21 @@ int Player_TwThinkKeyDirDispDirGet( PLAYER_STATE_PTR jiki, int key_dir )
 #endif
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 //----
 #ifdef PLAYER_DEBUG_MOVE
 //----
 /***************************************************************
- * ƒfƒoƒbƒO—pƒvƒƒgƒ^ƒCƒv
+ * ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
  **************************************************************/
 
 //==============================================================================
-//	ƒfƒoƒbƒOˆÚ“®ƒƒCƒ“
+//	ãƒ‡ãƒãƒƒã‚°ç§»å‹•ãƒ¡ã‚¤ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒO‰Šú‰»
+ * ãƒ‡ãƒãƒƒã‚°åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -4015,7 +4015,7 @@ void DEBUG_Player_Init( PLAYER_STATE_PTR jiki )
 }
 
 //--------------------------------------------------------------
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒ`ƒFƒbƒN
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------
 static int DEBUG_JikiAcmdCheck(
 		PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj, int dir, u16 trg, u16 prs )
@@ -4047,9 +4047,9 @@ static int DEBUG_JikiAcmdCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOˆÚ“®
+ * ãƒ‡ãƒãƒƒã‚°ç§»å‹•
  * @param
- * @retval	int		TRUE=ƒfƒoƒbƒOˆÚ“®
+ * @retval	int		TRUE=ãƒ‡ãƒãƒƒã‚°ç§»å‹•
  */
 //--------------------------------------------------------------
 static int DEBUG_Jiki_Move( PLAYER_STATE_PTR jiki,
@@ -4091,20 +4091,20 @@ static int DEBUG_Jiki_Move( PLAYER_STATE_PTR jiki,
 //----
 
 //==============================================================================
-//	•s—v‚Æ‚È‚Á‚½‚ªQl‚Éc‚·
+//	ä¸è¦ã¨ãªã£ãŸãŒå‚è€ƒã«æ®‹ã™
 //==============================================================================
 //----
 #if 0
 //----
 //--------------------------------------------------------------
 /**
- * ¶•ÇˆÚ“®
+ * å·¦å£ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4126,13 +4126,13 @@ static void Jiki_MoveGLeft( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * ‰E•ÇˆÚ“®
+ * å³å£ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4154,13 +4154,13 @@ static void Jiki_MoveGRight( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * “Vˆä–ÊˆÚ“®
+ * å¤©äº•é¢ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	fldobj	FIELD_OBJ *
  * @param	dmc		DMC_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	trg		ƒL[ƒgƒŠƒK
- * @param	prs		ƒL[ƒvƒŒƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------

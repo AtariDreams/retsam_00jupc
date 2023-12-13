@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_073.s
- * @brief	‚β‚Η‚θ‚¬‚Μƒ^ƒl			73
+ * @brief	γ‚„γ©γ‚γγ®γ‚Ώγƒ			73
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(ζ°΄)
  *
- * ‚±‚±‚ΙFX‚Θ‰πΰ“™‚π‘‚Ά‚Δ‚ΰ‚ζ‚Ά
+ * γ“γ“γ«θ‰²γ€…γªθ§£θª¬η­‰γ‚’ζ›Έγ„γ¦γ‚‚γ‚γ„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	΅‚β‚Η‚θ‚¬‚Μƒ^ƒl			73
+//	β– γ‚„γ©γ‚γγ®γ‚Ώγƒ			73
 //
 //
 // =============================================================================
@@ -29,7 +29,7 @@ WEST_YADORIGINOTANE:
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK,
 	WAIT_FLAG
 
-	///< –{—
+	///< ζ¬ζ¥
 	ADD_PARTICLE 	0,W_071_071_SUITORU1, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_AT, OPERATOR_FLD_MAGNET_POS, OPERATOR_CAMERA_NONE
 	EX_DATA			OPERATOR_FLD_EX_DATA_NUM, OPERATOR_FLD_AT,OPERATOR_EX_REVERCE_ON,0,0,0

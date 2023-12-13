@@ -22,22 +22,22 @@
 # add std library
 #
 # Revision 1.41  2005/06/24 02:19:39  yasu
-# utest ’Ç‰Á
+# utest è¿½åŠ 
 #
 # Revision 1.40  2005/04/12 06:16:59  ida
-# snd‚Ì’Ç‰Á
+# sndã®è¿½åŠ 
 #
 # Revision 1.39  2005/01/13 10:08:12  yada
 # fix copyright header
 #
 # Revision 1.38  2005/01/13 01:45:57  terui
-# SUBDIRS ‚É wvr ‚ğ‰ü‚ß‚Ä’Ç‰ÁB
+# SUBDIRS ã« wvr ã‚’æ”¹ã‚ã¦è¿½åŠ ã€‚
 #
 # Revision 1.37  2005/01/13 00:25:20  terui
-# SUBDIRS ‚©‚ç wvr ‚ğˆê’Uíœ
+# SUBDIRS ã‹ã‚‰ wvr ã‚’ä¸€æ—¦å‰Šé™¤
 #
 # Revision 1.36  2004/12/14 10:50:06  seiki_masashi
-# MATH ƒWƒƒƒ“ƒ‹‚ğ’Ç‰Á
+# MATH ã‚¸ãƒ£ãƒ³ãƒ«ã‚’è¿½åŠ 
 #
 # Revision 1.35  2004/12/06 10:18:02  terui
 # Add wvr library
@@ -121,32 +121,32 @@
 # Added ext lib
 #
 # Revision 1.9  2003/12/24 07:53:15  yada
-# miƒfƒBƒŒƒNƒgƒŠ’Ç‰Á
+# miãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªè¿½åŠ 
 #
 # Revision 1.8  2003/12/10 12:19:03  yasu
-# ISD ƒ‰ƒCƒuƒ‰ƒŠ‚Ì–³‚¢ŠÂ‹«‚Ì‚½‚ß‚É‹ó‚ÌŠÖ”‚ğƒ_ƒ~[‚Å—pˆÓ‚µAstubs ‰º‚É’u‚¢‚½D
+# ISD ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ç„¡ã„ç’°å¢ƒã®ãŸã‚ã«ç©ºã®é–¢æ•°ã‚’ãƒ€ãƒŸãƒ¼ã§ç”¨æ„ã—ã€stubs ä¸‹ã«ç½®ã„ãŸï¼
 #
 # Revision 1.7  2003/11/17 00:33:15  nishida_kenji
-# fx’Ç‰Á
+# fxè¿½åŠ 
 #
 # Revision 1.6  2003/11/12 04:18:35  yasu
-# ƒfƒBƒŒƒNƒgƒŠ‚ğ•ÏX base -> init
+# ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å¤‰æ›´ base -> init
 #
 # Revision 1.5  2003/11/06 13:43:34  yasu
-# os ‚Ì’Ç‰Á
+# os ã®è¿½åŠ 
 #
 # Revision 1.4  2003/11/06 10:36:48  yasu
-# base ‚Ì’Ç‰Á
+# base ã®è¿½åŠ 
 #
 # Revision 1.3  2003/11/05 09:09:58  yasu
-# gx ‚Ì’Ç‰Á
+# gx ã®è¿½åŠ 
 #
 # Revision 1.2  2003/10/30 05:51:52  yasu
-# build: ƒ^[ƒQƒbƒg‚Ìíœ
+# build: ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å‰Šé™¤
 #
 # Revision 1.1  2003/10/29 13:27:27  yasu
-# make ‚Ì“`”d‚ÌƒtƒŒ[ƒ€ƒ[ƒNŠ®¬
-# all/install/clean/clobber ‚ªg‚¦‚é
+# make ã®ä¼æ’­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯å®Œæˆ
+# all/install/clean/clobber ãŒä½¿ãˆã‚‹
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

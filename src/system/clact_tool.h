@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	clact_tool.h
- * @brief	clactãˆÊŠÖ”ŒS
+ * @brief	clactä¸Šä½é–¢æ•°éƒ¡
  * @author	goto
- * @date	2005.09.12(ŒŽ)
+ * @date	2005.09.12(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -23,15 +23,15 @@
 // -----------------------------------------------------------------------------
 //
 //
-//	¡—LŒøE–³Œøƒtƒ‰ƒO‘€ìŒn’è‹`
+//	â– æœ‰åŠ¹ãƒ»ç„¡åŠ¹ãƒ•ãƒ©ã‚°æ“ä½œç³»å®šç¾©
 //
 //
 // -----------------------------------------------------------------------------
 // -----------------------------------------
 //
-//	¡‰Â•Ïˆø”ƒŠƒ\[ƒXƒ[ƒh‚ð—˜—p‚·‚é
+//	â– å¯å¤‰å¼•æ•°ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã‚’åˆ©ç”¨ã™ã‚‹
 //
-//		—LŒø = —˜—p‚·‚é
+//		æœ‰åŠ¹ = åˆ©ç”¨ã™ã‚‹
 //
 // -----------------------------------------
 #define CATS_CBP_RES_LOAD
@@ -39,9 +39,9 @@
 
 // -----------------------------------------
 //
-//	¡RENDER ‚ð—˜—p‚·‚é
+//	â– RENDER ã‚’åˆ©ç”¨ã™ã‚‹
 //
-//		—LŒø = —˜—p‚·‚é
+//		æœ‰åŠ¹ = åˆ©ç”¨ã™ã‚‹
 //
 // -----------------------------------------
 #define CATS_RENDER_USE
@@ -50,16 +50,16 @@
 // -----------------------------------------------------------------------------
 //
 //
-//	¡ŽÀ‘••”
+//	â– å®Ÿè£…éƒ¨
 //
 //
 // -----------------------------------------------------------------------------
 // -----------------------------------------
 //
-//	¡ƒVƒXƒeƒ€ŠÇ—\‘¢‘Ì
+//	â– ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†æ§‹é€ ä½“
 //
-//		ŠeƒAƒvƒŠ‚Å‚PŒÂ‚¾‚¯—pˆÓ‚·‚é
-//		clact_tool“à‚Å‚Í[ csp ]‚Å•\Œ»‚³‚ê‚Ä‚¢‚é
+//		å„ã‚¢ãƒ—ãƒªã§ï¼‘å€‹ã ã‘ç”¨æ„ã™ã‚‹
+//		clact_toolå†…ã§ã¯[ csp ]ã§è¡¨ç¾ã•ã‚Œã¦ã„ã‚‹
 //
 // -----------------------------------------
 typedef struct _TCATS_SYSTEM   * CATS_SYS_PTR;
@@ -67,10 +67,10 @@ typedef struct _TCATS_SYSTEM   * CATS_SYS_PTR;
 
 // -----------------------------------------
 //
-//	¡ƒŠƒ\[ƒXŠÇ—\‘¢‘Ì
+//	â– ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†æ§‹é€ ä½“
 //
-//		’PˆÊ‚²‚Æ‚É—pˆÓ‚·‚é(ƒGƒtƒFƒNƒg‚PŒÂ‚È‚Ç)
-//		clact_tool“à‚Å‚Í[ crp ]‚Å•\Œ»‚³‚ê‚Ä‚¢‚é
+//		å˜ä½ã”ã¨ã«ç”¨æ„ã™ã‚‹(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‘å€‹ãªã©)
+//		clact_toolå†…ã§ã¯[ crp ]ã§è¡¨ç¾ã•ã‚Œã¦ã„ã‚‹
 //
 // -----------------------------------------
 typedef struct _TCATS_RESOURCE * CATS_RES_PTR;
@@ -78,14 +78,14 @@ typedef struct _TCATS_RESOURCE * CATS_RES_PTR;
 
 // -----------------------------------------
 //
-//	¡CATS ‚ðŽg‚¤Žž‚Ìê—pƒAƒNƒ^[\‘¢‘Ì
+//	â– CATS ã‚’ä½¿ã†æ™‚ã®å°‚ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _TCATS_ACT {
 	
-	CLACT_WORK_PTR			act;		///< ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
-	CLACT_HEADER_PTR		act_hd;		///< ƒAƒNƒ^[ƒwƒbƒ_[‚Ìƒ|ƒCƒ“ƒ^
-	CLACT_HEADER_TBL_PTR	act_htp;	///< ƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+	CLACT_WORK_PTR			act;		///< ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+	CLACT_HEADER_PTR		act_hd;		///< ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+	CLACT_HEADER_TBL_PTR	act_htp;	///< ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
 	
 	int vram_trans;
 	
@@ -96,59 +96,59 @@ typedef struct _TCATS_ACT * CATS_ACT_PTR;
 
 // -----------------------------------------
 //
-//	¡OAM‰Šú‰»—p\‘¢‘Ì
+//	â– OAMåˆæœŸåŒ–ç”¨æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct {
 	
-	int mos;		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn
-	int moe;		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
-	int mas;		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
-	int mae;		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
-	int sos;		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
-	int soe;		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
-	int sas;		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
-	int sae;		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+	int mos;		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
+	int moe;		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
+	int mas;		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
+	int mae;		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
+	int sos;		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
+	int soe;		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
+	int sas;		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
+	int sae;		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 	
 } TCATS_OAM_INIT;
 
 
 // -----------------------------------------
 //
-//	¡ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒ‰Šú‰»—p\‘¢‘Ì
+//	â– ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–ç”¨æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct {
 	
-	int num;						///< ƒLƒƒƒ‰ƒNƒ^IDŠÇ—”
-	int m_size;						///< ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-	int s_size;						///< ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+	int num;						///< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°
+	int m_size;						///< ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+	int s_size;						///< ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 
-	GXOBJVRamModeChar	main_mode;	///< ƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh ƒƒCƒ“‰æ–Ê
-	GXOBJVRamModeChar	sub_mode;	///< ƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh ƒTƒu‰æ–Ê
+	GXOBJVRamModeChar	main_mode;	///< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ ãƒ¡ã‚¤ãƒ³ç”»é¢
+	GXOBJVRamModeChar	sub_mode;	///< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ ã‚µãƒ–ç”»é¢
 	
 } TCATS_CHAR_MANAGER_MAKE;
 
 
 // -----------------------------------------
 //
-//	¡ƒŠƒ\[ƒX‚Æƒwƒbƒ_[‚ð‚Ü‚Æ‚ß‚½‹¤—p‘Ì
+//	â– ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ã¾ã¨ã‚ãŸå…±ç”¨ä½“
 //
 // -----------------------------------------
 typedef union {
 
-	const char* res_file[ CLACT_U_RES_MAX + 1];	///< ƒŠƒ\[ƒX”z—ñ + ƒwƒbƒ_[
+	const char* res_file[ CLACT_U_RES_MAX + 1];	///< ãƒªã‚½ãƒ¼ã‚¹é…åˆ— + ãƒ˜ãƒƒãƒ€ãƒ¼
 	
 	struct {
 	
-		const char* char_path;					///< ƒLƒƒƒ‰
-		const char* pltt_path;					///< ƒpƒŒƒbƒg
-		const char* cell_path;					///< ƒZƒ‹
-		const char* cell_anm_path;				///< ƒZƒ‹ƒAƒjƒ
-		const char* mcell_path;					///< ƒ}ƒ‹ƒ`ƒZƒ‹
-		const char* mcell_anm_path;				///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		const char* char_path;					///< ã‚­ãƒ£ãƒ©
+		const char* pltt_path;					///< ãƒ‘ãƒ¬ãƒƒãƒˆ
+		const char* cell_path;					///< ã‚»ãƒ«
+		const char* cell_anm_path;				///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		const char* mcell_path;					///< ãƒžãƒ«ãƒã‚»ãƒ«
+		const char* mcell_anm_path;				///< ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		
-		const char* clact_header_path;			///< ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
+		const char* clact_header_path;			///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 
 	} resource;
 	
@@ -156,7 +156,7 @@ typedef union {
 
 // -----------------------------------------
 //
-//	¡ƒŠƒ\[ƒX‚Ì‚Ý‚Ü‚Æ‚ß‚½‚à‚Ì
+//	â– ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ã¾ã¨ã‚ãŸã‚‚ã®
 //
 // -----------------------------------------
 typedef union {
@@ -165,12 +165,12 @@ typedef union {
 	
 	struct {
 		
-		const char* char_path;					///< ƒLƒƒƒ‰
-		const char* pltt_path;					///< ƒpƒŒƒbƒg
-		const char* cell_path;					///< ƒZƒ‹
-		const char* cell_anm_path;				///< ƒZƒ‹ƒAƒjƒ
-		const char* mcell_path;					///< ƒ}ƒ‹ƒ`ƒZƒ‹
-		const char* mcell_anm_path;				///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		const char* char_path;					///< ã‚­ãƒ£ãƒ©
+		const char* pltt_path;					///< ãƒ‘ãƒ¬ãƒƒãƒˆ
+		const char* cell_path;					///< ã‚»ãƒ«
+		const char* cell_anm_path;				///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		const char* mcell_path;					///< ãƒžãƒ«ãƒã‚»ãƒ«
+		const char* mcell_anm_path;				///< ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		
 	} resource;
 	
@@ -179,23 +179,23 @@ typedef union {
 
 // -----------------------------------------
 //
-//	¡OBJ“o˜^—p\‘¢‘Ì
+//	â– OBJç™»éŒ²ç”¨æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct {
 	
-	int no;				///< ƒŠƒ\[ƒX“àƒf[ƒ^‚Ì“o˜^”Ô†
+	int no;				///< ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²ç•ªå·
 	
-	s16 x;				///< [ X ] À•W
-	s16 y;				///< [ Y ] À•W
-	s16 z;				///< [ Z ] À•W
+	s16 x;				///< [ X ] åº§æ¨™
+	s16 y;				///< [ Y ] åº§æ¨™
+	s16 z;				///< [ Z ] åº§æ¨™
 	
-	u16	anm;			///< ƒAƒjƒ”Ô†
-	int pri;			///< —Dæ‡ˆÊ
-	int	pal;			///< ƒpƒŒƒbƒg”Ô†
-	int d_area;			///< •`‰æƒGƒŠƒA
+	u16	anm;			///< ã‚¢ãƒ‹ãƒ¡ç•ªå·
+	int pri;			///< å„ªå…ˆé †ä½
+	int	pal;			///< ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	int d_area;			///< æç”»ã‚¨ãƒªã‚¢
 	
-	int param1;			///< “]‘——pƒtƒ‰ƒO
+	int param1;			///< è»¢é€ç”¨ãƒ•ãƒ©ã‚°
 	int param2;
 	int param3;
 	int param4;
@@ -204,7 +204,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	¡ƒŠƒ\[ƒX“o˜^Å‘å”’è‹`\‘¢‘Ì
+//	â– ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²æœ€å¤§æ•°å®šç¾©æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef union {
@@ -213,12 +213,12 @@ typedef union {
 	
 	struct {
 		
-		int char_num;				///< ƒLƒƒƒ‰‚Ì”
-		int pltt_num;				///< ƒpƒŒƒbƒg‚Ì”
-		int cell_num;				///< ƒZƒ‹‚Ì”
-		int cell_anm_num;			///< ƒZƒ‹ƒAƒjƒ‚Ì”
-		int mcell_num;				///< ƒ}ƒ‹ƒ`ƒZƒ‹‚Ì”
-		int mcell_anm_num;			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚Ì”
+		int char_num;				///< ã‚­ãƒ£ãƒ©ã®æ•°
+		int pltt_num;				///< ãƒ‘ãƒ¬ãƒƒãƒˆã®æ•°
+		int cell_num;				///< ã‚»ãƒ«ã®æ•°
+		int cell_anm_num;			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®æ•°
+		int mcell_num;				///< ãƒžãƒ«ãƒã‚»ãƒ«ã®æ•°
+		int mcell_anm_num;			///< ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®æ•°
 		
 	} resource_num;	
 	
@@ -226,31 +226,31 @@ typedef union {
 
 // -----------------------------------------
 //
-//	¡“o˜^—p\‘¢‘Ì ’P‘Ì“o˜^—p
+//	â– ç™»éŒ²ç”¨æ§‹é€ ä½“ å˜ä½“ç™»éŒ²ç”¨
 //
 // -----------------------------------------
 typedef struct {
 	
-	s16 x;							///< [ X ] À•W
-	s16 y;							///< [ Y ] À•W
-	s16 z;							///< [ Z ] À•W
+	s16 x;							///< [ X ] åº§æ¨™
+	s16 y;							///< [ Y ] åº§æ¨™
+	s16 z;							///< [ Z ] åº§æ¨™
 	
-	u16	anm;						///< ƒAƒjƒ”Ô†
-	int pri;						///< —Dæ‡ˆÊ
-	int	pal;						///< ƒpƒŒƒbƒg”Ô†
-	int d_area;						///< •`‰æƒGƒŠƒA
+	u16	anm;						///< ã‚¢ãƒ‹ãƒ¡ç•ªå·
+	int pri;						///< å„ªå…ˆé †ä½
+	int	pal;						///< ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	int d_area;						///< æç”»ã‚¨ãƒªã‚¢
 	
-	int id[ CLACT_U_RES_MAX ];		///< Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
+	int id[ CLACT_U_RES_MAX ];		///< ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
 		
-	int bg_pri;						///< BG–Ê‚Ö‚Ì—Dæ“x
-	int vram_trans;					///< Vram“]‘—ƒtƒ‰ƒO
+	int bg_pri;						///< BGé¢ã¸ã®å„ªå…ˆåº¦
+	int vram_trans;					///< Vramè»¢é€ãƒ•ãƒ©ã‚°
 	
 } TCATS_OBJECT_ADD_PARAM_S;
 
 
 // -----------------------------------------
 //
-//	¡CATS ê—p‚Ì’è‹`ŒQ
+//	â– CATS å°‚ç”¨ã®å®šç¾©ç¾¤
 //
 // -----------------------------------------
 enum ECATS {
@@ -273,13 +273,13 @@ enum ECATS {
 // =============================================================================
 //
 //
-//	¡‹¤’Ê‘€ìŠÖ” | ’P‘Ì“o˜^Aƒwƒbƒ_[“o˜^Œ“—p
+//	â– å…±é€šæ“ä½œé–¢æ•° âˆ’ å˜ä½“ç™»éŒ²ã€ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ²å…¼ç”¨
 //
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS_SYSTEM ‚Ìƒƒ‚ƒŠŠm•Û
+//	â– CATS_SYSTEM ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 //
 // -----------------------------------------
 extern CATS_SYS_PTR CATS_AllocMemory(int heap_area);
@@ -287,7 +287,7 @@ extern CATS_SYS_PTR CATS_AllocMemory(int heap_area);
 
 // -----------------------------------------
 //
-//	¡CATS_RESOURCE ‚Ìƒƒ‚ƒŠŠm•Û
+//	â– CATS_RESOURCE ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 //
 // -----------------------------------------
 extern CATS_RES_PTR CATS_ResourceCreate(CATS_SYS_PTR csp);
@@ -295,7 +295,7 @@ extern CATS_RES_PTR CATS_ResourceCreate(CATS_SYS_PTR csp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒX‚Ì”‚ðŽæ“¾
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ã®æ•°ã‚’å–å¾—
 //
 // -----------------------------------------
 extern int CATS_ResourceNumGet(CATS_SYS_PTR csp);
@@ -303,7 +303,7 @@ extern int CATS_ResourceNumGet(CATS_SYS_PTR csp);
 
 //------------------------------------------
 //
-//	¡CATS ƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^‚ðŽæ“¾
+//	â– CATS ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 //
 //------------------------------------------
 extern CLACT_U_EASYRENDER_DATA * CATS_EasyRenderGet(CATS_SYS_PTR csp);
@@ -311,7 +311,7 @@ extern CLACT_U_EASYRENDER_DATA * CATS_EasyRenderGet(CATS_SYS_PTR csp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒVƒXƒeƒ€‚Ì‰Šú‰»
+//	â– CATS ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 //
 // -----------------------------------------
 extern BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const TCATS_CHAR_MANAGER_MAKE* ccmm, int pal_num);
@@ -319,14 +319,14 @@ extern BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const T
 
 // -----------------------------------------
 //
-//	¡CATS RENDER‚Ì—˜—pƒtƒ‰ƒOÝ’è
+//	â– CATS RENDERã®åˆ©ç”¨ãƒ•ãƒ©ã‚°è¨­å®š
 //
 // -----------------------------------------
 extern void CATS_RenderUseSet(CATS_SYS_PTR csp, int flag);
 
 // -----------------------------------------
 //
-//	¡CATS ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬
+//	â– CATS ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆ
 //
 // -----------------------------------------
 extern BOOL CATS_ClactSetInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, int num);
@@ -334,7 +334,7 @@ extern BOOL CATS_ClactSetInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, int num);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ”jŠü
+//	â– CATS OBJç ´æ£„
 //
 // -----------------------------------------
 extern void CATS_ObjectDel(CLACT_WORK_PTR act);
@@ -342,7 +342,7 @@ extern void CATS_ObjectDel(CLACT_WORK_PTR act);
 
 // -----------------------------------------
 //
-//	¡CATS •`‰æ
+//	â– CATS æç”»
 //
 // -----------------------------------------
 extern void CATS_Draw(CATS_RES_PTR crp);
@@ -350,7 +350,7 @@ extern void CATS_Draw(CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS Vram“]‘—Ý’è
+//	â– CATS Vramè»¢é€è¨­å®š
 //
 // -----------------------------------------
 extern void CATS_UpdateTransfer(void);
@@ -358,7 +358,7 @@ extern void CATS_UpdateTransfer(void);
 
 // -----------------------------------------
 //
-//	¡CATS OAM“]‘—
+//	â– CATS OAMè»¢é€
 //
 // -----------------------------------------
 extern void CATS_RenderOamTrans(void);
@@ -367,7 +367,7 @@ extern void CATS_RenderOamTransEx(CATS_SYS_PTR csp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü	¦
+//	â– CATS ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„	â€»
 //
 // -----------------------------------------
 extern void CATS_ClactSetDelete(CATS_RES_PTR crp);
@@ -375,7 +375,7 @@ extern void CATS_ClactSetDelete(CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒwƒbƒ_[ƒe[ƒuƒ‹”jŠü		¦
+//	â– CATS ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„		â€»
 //
 // -----------------------------------------
 extern void CATS_HeaderTblDelete(CATS_RES_PTR crp);
@@ -383,7 +383,7 @@ extern void CATS_HeaderTblDelete(CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXƒf[ƒ^”jŠü		¦
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„		â€»
 //
 // -----------------------------------------
 extern void CATS_ResourceDelete(CATS_RES_PTR crp);
@@ -391,7 +391,7 @@ extern void CATS_ResourceDelete(CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒ}ƒl[ƒWƒƒ[”jŠü			¦
+//	â– CATS ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„			â€»
 //
 // -----------------------------------------
 extern void CATS_ManagerDelete(CATS_SYS_PTR csp);
@@ -399,7 +399,7 @@ extern void CATS_ManagerDelete(CATS_SYS_PTR csp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒX—p‚Ìƒƒ‚ƒŠ”jŠü	¦
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ç”¨ã®ãƒ¡ãƒ¢ãƒªç ´æ£„	â€»
 //
 // -----------------------------------------
 extern void CATS_ResourceFree(CATS_SYS_PTR csp, CATS_RES_PTR crp);
@@ -407,9 +407,9 @@ extern void CATS_ResourceFree(CATS_SYS_PTR csp, CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXŠÖ˜A‚Ì”jŠü [ „§ ]
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹é–¢é€£ã®ç ´æ£„ [ æŽ¨å¥¨ ]
 //
-//	 ¦‚Ì•t‚¢‚Ä‚¢‚é“®ì‚ð‚·‚×‚Äs‚È‚¤‚Ì‚Å„§
+//	 â€»ã®ä»˜ã„ã¦ã„ã‚‹å‹•ä½œã‚’ã™ã¹ã¦è¡Œãªã†ã®ã§æŽ¨å¥¨
 //
 // -----------------------------------------
 extern void CATS_ResourceDestructor(CATS_SYS_PTR csp, CATS_RES_PTR crp);
@@ -417,7 +417,7 @@ extern void CATS_ResourceDestructor(CATS_SYS_PTR csp, CATS_RES_PTR crp);
 
 // -----------------------------------------
 //
-//	¡CATS System–{‘Ì‚Ìƒƒ‚ƒŠ”jŠü
+//	â– CATS Systemæœ¬ä½“ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
 //
 // -----------------------------------------
 extern void CATS_FreeMemory(CATS_SYS_PTR csp);
@@ -426,20 +426,20 @@ extern void CATS_FreeMemory(CATS_SYS_PTR csp);
 // =============================================================================
 //
 //
-//	¡ƒwƒbƒ_[“Ç‚Ýž‚ÝŠÖ”
+//	â– ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿é–¢æ•°
 //
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXƒ[ƒh
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
 //
 // -----------------------------------------
 extern BOOL CATS_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RESOURCE_FILE_LIST* res_list);
 extern BOOL CATS_ResourceLoadBinary(
 			CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RESOURCE_FILE_LIST* res_list );
 
-#ifdef CATS_CBP_RES_LOAD	///< ‰Â•Ïˆø”
+#ifdef CATS_CBP_RES_LOAD	///< å¯å¤‰å¼•æ•°
 
 extern BOOL CATS_ResourceLoad_FileName(CATS_SYS_PTR csp, CATS_RES_PTR crp, ...);
 
@@ -448,7 +448,7 @@ extern BOOL CATS_ResourceLoad_FileName(CATS_SYS_PTR csp, CATS_RES_PTR crp, ...);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ“o˜^
+//	â– CATS OBJç™»éŒ²
 //
 // -----------------------------------------
 extern CLACT_WORK_PTR CATS_ObjectAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OBJECT_ADD_PARAM* coap);
@@ -462,13 +462,13 @@ extern CLACT_WORK_PTR CATS_ObjectAdd_EX(CATS_SYS_PTR csp, CATS_RES_PTR crp, int 
 // =============================================================================
 //
 //
-//	¡’P‘Ì“o˜^—p
+//	â– å˜ä½“ç™»éŒ²ç”¨
 //
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXŠÇ—”‚ÌÝ’è
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†æ•°ã®è¨­å®š
 //
 // -----------------------------------------
 extern BOOL CATS_ResourceManagerInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RESOURCE_NUM_LIST* crnl);
@@ -476,7 +476,7 @@ extern BOOL CATS_ResourceManagerInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, const T
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒX“o˜^
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
 //
 // -----------------------------------------
 extern BOOL CATS_LoadResourceChar(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path, int trans_mode, int id);
@@ -510,7 +510,7 @@ extern u8 CATS_LoadResourcePlttWorkArcH(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXíœ
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 //
 // -----------------------------------------
 extern BOOL CATS_FreeResourceChar(CATS_RES_PTR crp, int id);
@@ -523,7 +523,7 @@ extern BOOL CATS_FreeResourceMCellAnm(CATS_RES_PTR crp, int id);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ“o˜^
+//	â– CATS OBJç™»éŒ²
 //
 // -----------------------------------------
 extern CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OBJECT_ADD_PARAM_S* coap_s);
@@ -531,7 +531,7 @@ extern CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const T
 
 // -----------------------------------------
 //
-//	¡CATS ƒŠƒ\[ƒXŠÖ˜A‚Ì”jŠü
+//	â– CATS ãƒªã‚½ãƒ¼ã‚¹é–¢é€£ã®ç ´æ£„
 //
 // -----------------------------------------
 extern void CATS_ResourceDestructor_S(CATS_SYS_PTR csp, CATS_RES_PTR crp);
@@ -547,18 +547,18 @@ extern void CATS_ActorPointerDelete_S(CATS_ACT_PTR cap);
 // =============================================================================
 //
 //
-//	¡OBJ‘€ìŠÖ˜A‚Ü‚Æ‚ß
+//	â– OBJæ“ä½œé–¢é€£ã¾ã¨ã‚
 //
 //
 // =============================================================================
 // =============================================================================
 //
-//	¡•\Ž¦‘€ì
+//	â– è¡¨ç¤ºæ“ä½œ
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒjƒXV
+//	â– CATS OBJã®ã‚¢ãƒ‹ãƒ¡æ›´æ–°
 //
 // -----------------------------------------
 extern void CATS_ObjectUpdate(CLACT_WORK_PTR act);
@@ -569,7 +569,7 @@ extern void CATS_ObjectUpdateNumCap(CATS_ACT_PTR cap, fx32 frame);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒjƒƒV[ƒPƒ“ƒXÝ’è•Žæ“¾
+//	â– CATS OBJã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®šï¼†å–å¾—
 //
 // -----------------------------------------
 extern u32 CATS_ObjectAnimeSeqNumGetCap( CATS_ACT_PTR cap );
@@ -580,7 +580,7 @@ extern u32 CATS_ObjectAnimeSeqGetCap( CATS_ACT_PTR cap );
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒI[ƒgƒAƒjƒÝ’è
+//	â– CATS OBJã®ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š
 //
 // -----------------------------------------
 extern void CATS_ObjectAutoAnimeSet(CLACT_WORK_PTR act, int flag);
@@ -589,7 +589,7 @@ extern void CATS_ObjectAutoAnimeSetCap(CATS_ACT_PTR cap, int flag);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒI[ƒgƒAƒjƒŽæ“¾
+//	â– CATS OBJã®ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å–å¾—
 //
 // -----------------------------------------
 extern int CATS_ObjectAutoAnimeGet(CLACT_WORK_PTR act);
@@ -598,7 +598,7 @@ extern int CATS_ObjectAutoAnimeGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒI[ƒgƒAƒjƒƒXƒs[ƒhÝ’è•Žæ“¾
+//	â– CATS OBJã®ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®šï¼†å–å¾—
 //
 // -----------------------------------------
 extern void CATS_ObjectAutoAnimeSpeedSet(CLACT_WORK_PTR act, fx32 frame);
@@ -609,7 +609,7 @@ extern fx32 CATS_ObjectAutoAnimeSpeedGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒjƒƒtƒŒ[ƒ€Ý’è•Žæ“¾
+//	â– CATS OBJã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®šï¼†å–å¾—
 //
 // -----------------------------------------
 extern void CATS_ObjectAnimeFrameSet(CLACT_WORK_PTR act, u16 frame);
@@ -620,7 +620,7 @@ extern u16 CATS_ObjectAnimeFrameGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒjƒ“®ìƒ`ƒFƒbƒN
+//	â– CATS OBJã®ã‚¢ãƒ‹ãƒ¡å‹•ä½œãƒã‚§ãƒƒã‚¯
 //
 // -----------------------------------------
 extern BOOL CATS_ObjectAnimeActiveCheck(CLACT_WORK_PTR act);
@@ -629,7 +629,7 @@ extern BOOL CATS_ObjectAnimeActiveCheckCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚Ì•\Ž¦”ñ•\Ž¦
+//	â– CATS OBJã®è¡¨ç¤ºéžè¡¨ç¤º
 //
 // -----------------------------------------
 extern void CATS_ObjectEnable(CLACT_WORK_PTR act, int enable);
@@ -640,7 +640,7 @@ extern int	CATS_ObjectEnableGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS ƒpƒŒƒbƒg•ÏX
+//	â– CATS ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectPaletteSet(CLACT_WORK_PTR act, int pal);
@@ -652,7 +652,7 @@ extern int CATS_ObjectPaletteOffsetGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS BG‚Æ‚Ì—Dæ“x•ÏX
+//	â– CATS BGã¨ã®å„ªå…ˆåº¦å¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectBGPriSet(CLACT_WORK_PTR act, int pri);
@@ -662,7 +662,7 @@ extern int	CATS_ObjectBGPriGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚Æ‚Ì—Dæ“x•ÏX
+//	â– CATS OBJã¨ã®å„ªå…ˆåº¦å¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectPriSet(CLACT_WORK_PTR act, int pri);
@@ -674,12 +674,12 @@ extern u32	CATS_ObjectPriGetCap(CATS_ACT_PTR cap);
 
 // =============================================================================
 //
-//	¡À•W‘€ì
+//	â– åº§æ¨™æ“ä½œ
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌÀ•W•ÏX
+//	â– CATS OBJã®åº§æ¨™å¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectPosSet(CLACT_WORK_PTR act, s16 x, s16 y);
@@ -690,7 +690,7 @@ extern void CATS_ObjectPosSetCap_SubSurface(CATS_ACT_PTR cap, s16 x, s16 y, fx32
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌÀ•WŽæ“¾
+//	â– CATS OBJã®åº§æ¨™å–å¾—
 //
 // -----------------------------------------
 extern void CATS_ObjectPosGet(CLACT_WORK_PTR act, s16 *x, s16 *y);
@@ -701,7 +701,7 @@ extern void CATS_ObjectPosGetCap_SubSurface(CATS_ACT_PTR cap, s16 *x, s16 *y, fx
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌˆÚ“®
+//	â– CATS OBJã®ç§»å‹•
 //
 // -----------------------------------------
 extern void CATS_ObjectPosMove(CLACT_WORK_PTR act, s16 x, s16 y);
@@ -717,12 +717,12 @@ extern void CATS_ObjectPosGetCapFx32_SubSurface(CATS_ACT_PTR cap, fx32* x, fx32*
 
 // =============================================================================
 //
-//	¡ƒAƒtƒBƒ“‘€ì ƒtƒŠƒbƒv‘€ì
+//	â– ã‚¢ãƒ•ã‚£ãƒ³æ“ä½œ ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg
+//	â– CATS OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 //
 // -----------------------------------------
 extern void CATS_ObjectAffineSet(CLACT_WORK_PTR act, int affine);
@@ -731,7 +731,7 @@ extern void CATS_ObjectAffineSetCap(CATS_ACT_PTR cap, int affine);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^Žæ“¾
+//	â– CATS OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 //
 // -----------------------------------------
 extern int CATS_ObjectAffineGet(CLACT_WORK_PTR act);
@@ -740,7 +740,7 @@ extern int CATS_ObjectAffineGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌŠgk—¦‚Ì•ÏX
+//	â– CATS OBJã®æ‹¡ç¸®çŽ‡ã®å¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectScaleSet(CLACT_WORK_PTR act, f32 sx, f32 sy);
@@ -749,7 +749,7 @@ extern void CATS_ObjectScaleSetCap(CATS_ACT_PTR cap, f32 sx, f32 sy);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌŠgk—¦‚Ì‰ÁŒ¸ŽZ
+//	â– CATS OBJã®æ‹¡ç¸®çŽ‡ã®åŠ æ¸›ç®—
 //
 // -----------------------------------------
 extern void CATS_ObjectScaleAdd(CLACT_WORK_PTR act, f32 sx, f32 sy);
@@ -758,7 +758,7 @@ extern void CATS_ObjectScaleAddCap(CATS_ACT_PTR cap, f32 sx, f32 sy);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚ÌŠgk—¦‚ÌŽæ“¾
+//	â– CATS OBJã®æ‹¡ç¸®çŽ‡ã®å–å¾—
 //
 // -----------------------------------------
 extern void CATS_ObjectScaleGet(CLACT_WORK_PTR act, f32* sx, f32* sy);
@@ -767,7 +767,7 @@ extern void CATS_ObjectScaleGetCap(CATS_ACT_PTR cap, f32* sx, f32* sy);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚Ì‰ñ“]—¦‚Ì•ÏX
+//	â– CATS OBJã®å›žè»¢çŽ‡ã®å¤‰æ›´
 //
 // -----------------------------------------
 extern void CATS_ObjectRotationSet(CLACT_WORK_PTR act, u16 rot);
@@ -776,7 +776,7 @@ extern void CATS_ObjectRotationSetCap(CATS_ACT_PTR cap, u16 rot);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚Ì‰ñ“]—¦‚Ì‰ÁŒ¸ŽZ
+//	â– CATS OBJã®å›žè»¢çŽ‡ã®åŠ æ¸›ç®—
 //
 // -----------------------------------------
 extern void CATS_ObjectRotationAdd(CLACT_WORK_PTR act, s32 rot);
@@ -785,7 +785,7 @@ extern void CATS_ObjectRotationAddCap(CATS_ACT_PTR cap, s32 rot);
 
 // -----------------------------------------
 //
-//	¡CATS OBJ‚Ì‰ñ“]—¦Žæ“¾
+//	â– CATS OBJã®å›žè»¢çŽ‡å–å¾—
 //
 // -----------------------------------------
 extern u16	CATS_ObjectRotationGet(CLACT_WORK_PTR act);
@@ -794,7 +794,7 @@ extern u16	CATS_ObjectRotationGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡ƒtƒŠƒbƒv‘€ì
+//	â– ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
 //
 // -----------------------------------------
 extern void CATS_ObjectFlipSet(CLACT_WORK_PTR act, int flip);
@@ -803,7 +803,7 @@ extern void CATS_ObjectFlipSetCap(CATS_ACT_PTR cap, int flip);
 
 // -----------------------------------------
 //
-//	¡ƒtƒŠƒbƒvŽæ“¾
+//	â– ãƒ•ãƒªãƒƒãƒ—å–å¾—
 //
 // -----------------------------------------
 extern int CATS_ObjectFlipGet(CLACT_WORK_PTR act);
@@ -811,8 +811,8 @@ extern int CATS_ObjectFlipGetCap(CATS_ACT_PTR cap);
 
 // -----------------------------------------
 //
-//	¡CATS ƒAƒtƒBƒ“•ÏŠ·À•W‚ÌÝ’è
-//		capÀ•W + ƒAƒtƒBƒ“À•W@ˆÊ’u‚Å‰ñ“]Šg‘å‚³‚ê‚Ü‚·
+//	â– CATS ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›åº§æ¨™ã®è¨­å®š
+//		capåº§æ¨™ + ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™ã€€ä½ç½®ã§å›žè»¢æ‹¡å¤§ã•ã‚Œã¾ã™
 //
 // -----------------------------------------
 extern void CATS_ObjectAffinePosSetCap(CATS_ACT_PTR cap, s16 x, s16 y);
@@ -820,8 +820,8 @@ extern void CATS_ObjectAffinePosSetCap(CATS_ACT_PTR cap, s16 x, s16 y);
 
 // -----------------------------------------
 //
-//	¡CATS ƒAƒtƒBƒ“•ÏŠ·À•W‚ÌŽæ“¾
-//		capÀ•W + ƒAƒtƒBƒ“À•W@ˆÊ’u‚Å‰ñ“]Šg‘å‚³‚ê‚Ü‚·
+//	â– CATS ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›åº§æ¨™ã®å–å¾—
+//		capåº§æ¨™ + ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™ã€€ä½ç½®ã§å›žè»¢æ‹¡å¤§ã•ã‚Œã¾ã™
 //
 // -----------------------------------------
 extern void CATS_ObjectAffinePosGetCap(CATS_ACT_PTR cap, s16 *x, s16 *y);
@@ -829,15 +829,15 @@ extern void CATS_ObjectAffinePosGetCap(CATS_ACT_PTR cap, s16 *x, s16 *y);
 
 // -----------------------------------------
 //
-//	¡CATS ƒAƒtƒBƒ“•ÏŠ·À•W‚ÌˆÚ“®
-//		capÀ•W + ƒAƒtƒBƒ“À•W@ˆÊ’u‚Å‰ñ“]Šg‘å‚³‚ê‚Ü‚·
+//	â– CATS ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›åº§æ¨™ã®ç§»å‹•
+//		capåº§æ¨™ + ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™ã€€ä½ç½®ã§å›žè»¢æ‹¡å¤§ã•ã‚Œã¾ã™
 //
 // -----------------------------------------
 extern void CATS_ObjectAffinePosMoveCap(CATS_ACT_PTR cap, s16 x, s16 y);
 
 // -----------------------------------------
 //
-//	¡CATS ƒ‚ƒUƒCƒN
+//	â– CATS ãƒ¢ã‚¶ã‚¤ã‚¯
 //
 // -----------------------------------------
 extern void CATS_ObjectMosaicSet(CATS_ACT_PTR cap, BOOL flag);
@@ -845,12 +845,12 @@ extern void CATS_ObjectMosaicSet(CATS_ACT_PTR cap, BOOL flag);
 
 // =============================================================================
 //
-//	¡OBJƒ‚[ƒh‘€ì
+//	â– OBJãƒ¢ãƒ¼ãƒ‰æ“ä½œ
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡OBJƒ‚[ƒh‘€ì
+//	â– OBJãƒ¢ãƒ¼ãƒ‰æ“ä½œ
 //
 // -----------------------------------------
 extern void CATS_ObjectObjModeSet(CLACT_WORK_PTR act, GXOamMode objmode);
@@ -859,7 +859,7 @@ extern void CATS_ObjectObjModeSetCap(CATS_ACT_PTR cap, GXOamMode objmode);
 
 // -----------------------------------------
 //
-//	¡OBJƒ‚[ƒhŽæ“¾
+//	â– OBJãƒ¢ãƒ¼ãƒ‰å–å¾—
 //
 // -----------------------------------------
 extern GXOamMode CATS_ObjectObjModeGet(CLACT_WORK_PTR act);
@@ -870,12 +870,12 @@ extern GXOamMode CATS_ObjectObjModeGetCap(CATS_ACT_PTR cap);
 
 // =============================================================================
 //
-//	¡Šg’£ƒf[ƒ^Žæ“¾
+//	â– æ‹¡å¼µãƒ‡ãƒ¼ã‚¿å–å¾—
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	¡ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXŠg’£ƒAƒgƒŠƒrƒ…[ƒgŽæ“¾
+//	â– ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 //
 // -----------------------------------------
 extern u32 CATS_ObjectUserAttrAnimSeqGet( CATS_ACT_PTR cap, u32 seqidx );
@@ -883,7 +883,7 @@ extern u32 CATS_ObjectUserAttrNowAnimSeqGet( CATS_ACT_PTR cap );
 
 // -----------------------------------------
 //
-//	¡ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€Šg’£ƒAƒgƒŠƒrƒ…[ƒgŽæ“¾
+//	â– ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 //
 // -----------------------------------------
 extern u32 CATS_ObjectUserAttrAnimFrameGet( CATS_ACT_PTR cap, u32 seqidx, u32 frameidx );
@@ -891,7 +891,7 @@ extern u32 CATS_ObjectUserAttrNowAnimFrameGet( CATS_ACT_PTR cap );
 
 // -----------------------------------------
 //
-//	¡ƒZƒ‹ƒf[ƒ^Šg’£ƒAƒgƒŠƒrƒ…[ƒgŽæ“¾
+//	â– ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 //
 // -----------------------------------------
 extern u32 CATS_ObjectUserAttrCellGet( CATS_ACT_PTR cap, u32 cellidx );
@@ -901,7 +901,7 @@ extern u32 CATS_ObjectUserAttrCellGet( CATS_ACT_PTR cap, u32 cellidx );
 
 // =============================================================================
 //
-//	¡‚»‚Ì‘¼‚Ìƒc[ƒ‹Œn
+//	â– ãã®ä»–ã®ãƒ„ãƒ¼ãƒ«ç³»
 //
 // =============================================================================
 extern BOOL CATS_LoadResourceCharArcModeAdjust(
@@ -918,7 +918,7 @@ extern CLACT_SET_PTR CATS_GetClactSetPtr(CATS_RES_PTR crp);
 extern const NNSG2dImagePaletteProxy* CATS_PlttProxy( CATS_RES_PTR crp, int pltt_id );
 extern u32 CATS_PlttID_NoGet(CATS_RES_PTR crp, int pltt_id, NNS_G2D_VRAM_TYPE vram_type);
 
-// ARCHANDLEƒo[ƒWƒ‡ƒ“
+// ARCHANDLEãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern void CATS_ChangeResourceCharArcH(
 				CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* p_handle, int data_id, BOOL comp, int id );
 extern void CATS_ChangeResourcePlttArcH(
@@ -936,10 +936,10 @@ typedef struct {
 	
 } CHANGES_INTO_DATA_RECT;
 
-#define CHAR_DOT_X		(8/2)						///< 1ƒLƒƒƒ‰‚ÌƒoƒCƒgƒTƒCƒY
-#define CHAR_DOT_Y		(8)							///< 1ƒLƒƒƒ‰‚ÌƒoƒCƒgƒTƒCƒY
-#define CHAR_BYTE		(CHAR_DOT_X * CHAR_DOT_Y)	///< 1ƒLƒƒƒ‰ƒoƒCƒg”
-#define POKE_TEX_SX		(0)							///< ƒ|ƒPƒ‚ƒ“•ÏŠ·—pƒeƒNƒXƒ`ƒƒØ‚èŽæ‚èˆÊ’u
+#define CHAR_DOT_X		(8/2)						///< 1ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+#define CHAR_DOT_Y		(8)							///< 1ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+#define CHAR_BYTE		(CHAR_DOT_X * CHAR_DOT_Y)	///< 1ã‚­ãƒ£ãƒ©ãƒã‚¤ãƒˆæ•°
+#define POKE_TEX_SX		(0)							///< ãƒã‚±ãƒ¢ãƒ³å¤‰æ›ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šä½ç½®
 #define POKE_TEX_SY		(0)
 #define POKE_TEX_EX		(10)
 #define POKE_TEX_EY		(10)

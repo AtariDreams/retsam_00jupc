@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.10  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.9  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -27,7 +27,7 @@
   fix header comment
 
   Revision 1.6  2004/02/05 07:27:19  yada
-  —š—ğ•¶š—ñ‚ÌIRIS‚¾‚Á‚½‚à‚Ì‚ğ NITRO ‚©‚ç IRIS‚É–ß‚µ‚½B
+  å±¥æ­´æ–‡å­—åˆ—ã®IRISã ã£ãŸã‚‚ã®ã‚’ NITRO ã‹ã‚‰ IRISã«æˆ»ã—ãŸã€‚
 
   Revision 1.5  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
@@ -36,13 +36,13 @@
   Support SDK_BB
 
   Revision 1.3  2004/01/15 02:40:01  yada
-  IRIS_BB ¨ SDK_BB ‚Ö•ÏX
+  IRIS_BB â†’ SDK_BB ã¸å¤‰æ›´
 
   Revision 1.2  2004/01/14 12:06:35  yada
-  protectUnit¨protectionUnit ‚É•ÏX
+  protectUnitâ†’protectionUnit ã«å¤‰æ›´
 
   Revision 1.1  2003/12/08 12:22:34  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

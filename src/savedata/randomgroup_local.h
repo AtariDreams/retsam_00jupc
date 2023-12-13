@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	randomgroup_local.h
- * @brief	ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv\‘¢‘Ì’è‹`
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—æ§‹é€ ä½“å®šç¾©
  * @author	mori GAME FREAK inc.
  * @date	2006.03.22
  */
@@ -11,25 +11,25 @@
 
 typedef struct{
 
-	/// ƒOƒ‹[ƒv–¼
+	/// ã‚°ãƒ«ãƒ¼ãƒ—å
 	STRCODE 		group_name[GROUP_NAME_SIZE + EOM_SIZE];		// 16
 
-	/// ƒŠ[ƒ_[–¼
+	/// ãƒªãƒ¼ãƒ€ãƒ¼å
 	STRCODE 		name[PERSON_NAME_SIZE + EOM_SIZE];			// 32
 
-	///	ƒŠ[ƒ_[‚Ì«•Ê
+	///	ãƒªãƒ¼ãƒ€ãƒ¼ã®æ€§åˆ¥
 	u8 sex;														// 33
 
-	///	ƒŠ[ƒ_[‚ÌŒ¾ŒêƒR[ƒh
+	///	ãƒªãƒ¼ãƒ€ãƒ¼ã®è¨€èªžã‚³ãƒ¼ãƒ‰
 	u8 region_code;												// 34
 
 	///	pudding
 	u16 dummy;													// 36
 
-	/// —”‚ÌŽíiV‹K“o˜^Žž‚Éì¬j
+	/// ä¹±æ•°ã®ç¨®ï¼ˆæ–°è¦ç™»éŒ²æ™‚ã«ä½œæˆï¼‰
 	u32				seed;										// 40
 
-	/// —”(1“ú1‰ñXVj
+	/// ä¹±æ•°(1æ—¥1å›žæ›´æ–°ï¼‰
 	u32				random;										// 44
 
 }RANDOM_SEED;

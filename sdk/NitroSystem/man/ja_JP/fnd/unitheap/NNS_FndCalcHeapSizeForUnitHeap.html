@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_FndCalcHeapSizeForUnitHeap</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_FndCalcHeapSizeForUnitHeap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,35 +22,35 @@
         int     alignment);
 </CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">memBlockSize</font></strong></em></td>
     
-  <td width="87%">�������u���b�N�̃T�C�Y(�o�C�g)</td>
+  <td width="87%">メモリブロックのサイズ(バイト)</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">memBlockNum</font></strong></em></td>
     
-  <td width="87%">�m�ۂ��郁�����u���b�N�̑���</td>
+  <td width="87%">確保するメモリブロックの総数</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">alignment</font></strong></em></td>
     
-  <td width="87%">�������u���b�N�̃A���C�����g�B4,8,16,32�̂����ꂩ�̒l���w��ł��܂��B</td>
+  <td width="87%">メモリブロックのアライメント。4,8,16,32のいずれかの値を指定できます。</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�������u���b�N�̃T�C�Y�ƌ�����v�Z�������j�b�g�q�[�v�̃T�C�Y��Ԃ��܂��B</p>
-<H2>����</H2>
-<P>�������u���b�N�̃T�C�Y�ƌ�����A�K�v�ƂȂ郆�j�b�g�q�[�v�̃T�C�Y���擾���܂��B���j�b�g�q�[�v���쐬����Ƃ��ɁA���̊֐��œ���ꂽ�l���q�[�v�Ɋ��蓖�Ă郁�����̈�̃T�C�Y�Ƃ��Ďw�肷��ƁA���̃��j�b�g�q�[�v����memBlockNum�Ŏw�肵�����̃������u���b�N���m�ۂł��܂��B</p>
-<P>���̊֐��ł͎��ۂɍ쐬���郆�j�b�g�q�[�v�̊J�n�A�h���X���l�����܂���B���̂��߁A�A���C�����g��4���傫���l���w�肷��ƁA���ۂɕK�v�ƂȂ�T�C�Y���������o�C�g�傫���Ȃ邱�Ƃ�����܂��B</p>
-<h2>�Q��</h2>
+<h2>返り値</h2>
+<p>メモリブロックのサイズと個数から計算したユニットヒープのサイズを返します。</p>
+<H2>説明</H2>
+<P>メモリブロックのサイズと個数から、必要となるユニットヒープのサイズを取得します。ユニットヒープを作成するときに、この関数で得られた値をヒープに割り当てるメモリ領域のサイズとして指定すると、そのユニットヒープからmemBlockNumで指定した個数のメモリブロックが確保できます。</p>
+<P>この関数では実際に作成するユニットヒープの開始アドレスを考慮しません。そのため、アライメントを4より大きい値を指定すると、実際に必要となるサイズをよりも数バイト大きくなることがあります。</p>
+<h2>参照</h2>
 <p><CODE><A href="NNS_FndCreateUnitHeap.html">NNS_FndCreateUnitHeap</A>, 
 <A href="NNS_FndCreateUnitHeapEx.html">NNS_FndCreateUnitHeapEx</A>
 </CODE></p>
-<H2>����</H2>
-<P>2004/06/22 ����</P>
+<H2>履歴</H2>
+<P>2004/06/22 初版</P>
 </body>
 </html>

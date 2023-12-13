@@ -27,59 +27,59 @@
   small fix.
 
   Revision 1.17  2004/11/24 13:03:54  takano_makoto
-  MBCommParentBlockHeader‚ÆMBCommChildBlockHeader‚ğmb_block.h‚ÖˆÚ“®AMBErrorCallback‚ğ’Ç‰Á
+  MBCommParentBlockHeaderã¨MBCommChildBlockHeaderã‚’mb_block.hã¸ç§»å‹•ã€MBErrorCallbackã‚’è¿½åŠ 
 
   Revision 1.16  2004/11/22 12:54:59  takano_makoto
-  MBCommRequestData‚ğ$(NITROSDK_ROOT)/include/mb/mb.h‚ÖˆÚ“®
+  MBCommRequestDataã‚’$(NITROSDK_ROOT)/include/mb/mb.hã¸ç§»å‹•
 
   Revision 1.15  2004/10/05 14:41:06  yosizaki
   export some MB_COMM_P_* range consts.
 
   Revision 1.14  2004/09/28 08:56:17  sato_masaki
-  MB_COMM_P_SENDLEN_MINAMB_COMM_P_RECVLEN_MIN‚Ì’è‹`’Ç‰ÁB
+  MB_COMM_P_SENDLEN_MINã€MB_COMM_P_RECVLEN_MINã®å®šç¾©è¿½åŠ ã€‚
 
   Revision 1.13  2004/09/20 12:54:11  sato_masaki
-  MB_SENDFUNC_STATE_ERR’è‹`‚ğ’Ç‰ÁB
+  MB_SENDFUNC_STATE_ERRå®šç¾©ã‚’è¿½åŠ ã€‚
 
   Revision 1.12  2004/09/18 12:00:38  sato_masaki
-  q‹@‘—Mƒwƒbƒ_’è‹`‚ÉAreserved‚ğİ‚¯‚éB
+  å­æ©Ÿé€ä¿¡ãƒ˜ãƒƒãƒ€å®šç¾©ã«ã€reservedã‚’è¨­ã‘ã‚‹ã€‚
 
   Revision 1.11  2004/09/15 06:51:08  sato_masaki
-  USE_POLLBMP‚Ì’è‹`‚ğíœ
+  USE_POLLBMPã®å®šç¾©ã‚’å‰Šé™¤
 
   Revision 1.10  2004/09/15 06:20:15  sato_masaki
-  - MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ‚Ì’è‹`‚ÉˆË‘¶‚µ‚Ä‚¢‚½Adefine’è‹`‚ğƒ}ƒNƒ‰»B
+  - MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ã®å®šç¾©ã«ä¾å­˜ã—ã¦ã„ãŸã€defineå®šç¾©ã‚’ãƒã‚¯ãƒ­åŒ–ã€‚
   - MB_COMM_P_SENDLEN_DEFAULT, MB_COMM_P_RECVLEN_DEFAULT        (8)
-    MB_COMM_P_SENDLEN_MAX, MB_COMM_P_RECVLEN_MAX ‚ğ’è‹`B
+    MB_COMM_P_SENDLEN_MAX, MB_COMM_P_RECVLEN_MAX ã‚’å®šç¾©ã€‚
 
   Revision 1.9  2004/09/14 13:19:50  sato_masaki
-  ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğ’f•Ğ‰»‚µ‚Ä‘—‚é‚æ‚¤‚É•ÏXB
+  ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ–­ç‰‡åŒ–ã—ã¦é€ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.8  2004/09/13 13:06:29  sato_masaki
   remove member word from MB_CommBlockHeader
 
   Revision 1.7  2004/09/11 11:11:14  sato_masaki
-  - MB_CommUserReqŒ^‚Éƒƒ“ƒo’Ç‰ÁB
-  - MBi_BlockHeaderBegin(), MBi_BlockHeaderEnd()‚Ìˆø”‚Ésendbuf‚ğ’Ç‰ÁB
-  - MBi_DebugPrint()’Ç‰ÁB
+  - MB_CommUserReqå‹ã«ãƒ¡ãƒ³ãƒè¿½åŠ ã€‚
+  - MBi_BlockHeaderBegin(), MBi_BlockHeaderEnd()ã®å¼•æ•°ã«sendbufã‚’è¿½åŠ ã€‚
+  - MBi_DebugPrint()è¿½åŠ ã€‚
 
   Revision 1.6  2004/09/10 02:59:10  sato_masaki
-  PRINT_DEBUG, CALLBACK_WM_STATE’è‹`‚ÉŠÖ‚·‚é•ÏXB
+  PRINT_DEBUG, CALLBACK_WM_STATEå®šç¾©ã«é–¢ã™ã‚‹å¤‰æ›´ã€‚
 
   Revision 1.5  2004/09/09 02:50:29  sato_masaki
-  ƒfƒoƒbƒOŠÖ”AMBi_comm_type_output()‚Ìˆø”ƒ^ƒCƒv‚ğu16‚É•ÏXB
+  ãƒ‡ãƒãƒƒã‚°é–¢æ•°ã€MBi_comm_type_output()ã®å¼•æ•°ã‚¿ã‚¤ãƒ—ã‚’u16ã«å¤‰æ›´ã€‚
 
   Revision 1.4  2004/09/08 04:35:12  sato_masaki
-  MB_CommBlockHeader‚©‚çAfileid‚ğíœB
+  MB_CommBlockHeaderã‹ã‚‰ã€fileidã‚’å‰Šé™¤ã€‚
 
   Revision 1.3  2004/09/04 07:04:11  sato_masaki
   small fix
 
   Revision 1.2  2004/09/04 07:01:28  sato_masaki
-  MB_CommType‚ÉAMB_COMM_TYPE_PARENT_MEMBER_FULL’Ç‰ÁB
+  MB_CommTypeã«ã€MB_COMM_TYPE_PARENT_MEMBER_FULLè¿½åŠ ã€‚
 
   Revision 1.1  2004/09/03 07:06:28  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
@@ -99,7 +99,7 @@
 #define MB_COMM_WMEVENT_OUTPUT( ... )   ((void)0)
 #endif
 
-/* ‘—óMƒTƒCƒY’è‹` */
+/* é€å—ä¿¡ã‚µã‚¤ã‚ºå®šç¾© */
 #define MB_COMM_P_SENDLEN_DEFAULT       (256)
 #define MB_COMM_P_RECVLEN_DEFAULT       (8)
 
@@ -111,14 +111,14 @@
 
 #define MB_COMM_REQ_DATA_SIZE           (29)
 
-/* ’f•Ğ‰»ƒŠƒNƒGƒXƒgƒf[ƒ^‚ÉŠÖ‚·‚éŒvZƒ}ƒNƒ */
+/* æ–­ç‰‡åŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«é–¢ã™ã‚‹è¨ˆç®—ãƒã‚¯ãƒ­ */
 #define MB_COMM_CALC_REQ_DATA_PIECE_SIZE( __P_RECVLEN__ )       (( __P_RECVLEN__ ) - 2)
 #define MB_COMM_CALC_REQ_DATA_PIECE_NUM( __P_RECVLEN__ )        \
                                 ( (MB_COMM_REQ_DATA_SIZE + 1) / (MB_COMM_CALC_REQ_DATA_PIECE_SIZE( __P_RECVLEN__ )) )
 #define MB_COMM_CALC_REQ_DATA_BUF_SIZE( __P_RECVLEN__ )     (MB_COMM_REQ_DATA_SIZE + 1)
 /*
- * ª˜_—“I‚ÉŠÔˆá‚¢‚ª‚ ‚è‚Ü‚·‚ªAIPL‚ª‚±‚Ìd—l‚Å“®ì‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚Ì‚ÅA
- *   C³‚Í‚Å‚«‚Ü‚¹‚ñB –{—ˆ‚È‚ç‚Î
+ * â†‘è«–ç†çš„ã«é–“é•ã„ãŒã‚ã‚Šã¾ã™ãŒã€IPLãŒã“ã®ä»•æ§˜ã§å‹•ä½œã—ã¦ã—ã¾ã£ã¦ã„ã‚‹ã®ã§ã€
+ *   ä¿®æ­£ã¯ã§ãã¾ã›ã‚“ã€‚ æœ¬æ¥ãªã‚‰ã°
  * #define MB_COMM_CALC_REQ_DATA_PICE_NUM( __P_RECV_LEN__)                                                            \
  *                                  ( (MB_COMM_REQ_DATA_SIZE + MB_COMM_CALC_REQ_DATA_PIECE_SIZE( __P_RECVLEN__ ) - 1) \
  *                                    / MB_COMM_CALC_REQ_DATA_PIECE_SIZE( __P_RECVLEN__ ) )
@@ -128,17 +128,17 @@
  */
 
 
-/* ƒuƒƒbƒNƒwƒbƒ_‚ÌƒTƒCƒY */
-#define MB_COMM_PARENT_HEADER_SIZE      (6)     // MBCommParentBlockHeader‚ÌƒTƒCƒY(padding”²‚«)
-#define MB_COMM_CHILD_HEADER_SIZE       (8)     // MBCommChildBlockHeader‚ÌƒTƒCƒY(padding”²‚«)
+/* ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚º */
+#define MB_COMM_PARENT_HEADER_SIZE      (6)     // MBCommParentBlockHeaderã®ã‚µã‚¤ã‚º(paddingæŠœã)
+#define MB_COMM_CHILD_HEADER_SIZE       (8)     // MBCommChildBlockHeaderã®ã‚µã‚¤ã‚º(paddingæŠœã)
 
 #define MB_COMM_CALC_BLOCK_SIZE( __P_SENDLEN__ )                (( __P_SENDLEN__ ) - MB_COMM_PARENT_HEADER_SIZE)
 
-/* ƒf[ƒ^‘—MŠÖ”‚ª•Ô‚·ƒGƒ‰[’è‹`
-   WM‚ÌERRCODE‚Æ”í‚ç‚È‚¢’l‚Å’è‹`‚µ‚Ä‚¢‚Ü‚·B */
+/* ãƒ‡ãƒ¼ã‚¿é€ä¿¡é–¢æ•°ãŒè¿”ã™ã‚¨ãƒ©ãƒ¼å®šç¾©
+   WMã®ERRCODEã¨è¢«ã‚‰ãªã„å€¤ã§å®šç¾©ã—ã¦ã„ã¾ã™ã€‚ */
 #define MB_SENDFUNC_STATE_ERR           (WM_ERRCODE_MAX + 1)
 
-/* ƒuƒƒbƒN“]‘—ƒf[ƒ^ƒ^ƒCƒv */
+/* ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ— */
 typedef enum MBCommType
 {
     MB_COMM_TYPE_DUMMY = 0,            //  0
@@ -158,7 +158,7 @@ typedef enum MBCommType
 }
 MBCommType;
 
-/* ƒ†[ƒU[‚©‚ç‚ÌƒŠƒNƒGƒXƒgŒ^ */
+/* ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‹ */
 typedef enum MBCommUserReq
 {
     MB_COMM_USER_REQ_NONE = 0,         //  0
@@ -173,12 +173,12 @@ MBCommUserReq;
 /* structure definition ---------------------------------------------------- */
 
 /*
- * ƒGƒ‰[’Ê’mƒR[ƒ‹ƒoƒbƒN
+ * ã‚¨ãƒ©ãƒ¼é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 typedef struct
 {
-    u16     apiid;                     // APIƒR[ƒh
-    u16     errcode;                   // ƒGƒ‰[ƒR[ƒh
+    u16     apiid;                     // APIã‚³ãƒ¼ãƒ‰
+    u16     errcode;                   // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 }
 MBErrorCallback;
 
@@ -186,22 +186,22 @@ MBErrorCallback;
 /* functions --------------------------------------------------------------- */
 
 /*
- * ƒuƒƒbƒNƒwƒbƒ_‚ğ‰Šú‰»‚µ, ƒ^ƒCƒv‚¾‚¯İ’è‚·‚é.
- * ‚±‚Ì‚ ‚Æ MBi_BlockHeaderEnd() ‚Å‘—M‚·‚é‚Ü‚Å‚ÌŠÔ‚É
- * ‚±‚Ü‚²‚Ü‚Æ‚µ‚½ƒtƒB[ƒ‹ƒh‚ğ–„‚ß‚Ä‚¢‚­.
- * ˆø”‚ª‚È‚¯‚ê‚Î‚»‚Ì‚Ü‚Ü‚Å—Ç‚¢.
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€ã‚’åˆæœŸåŒ–ã—, ã‚¿ã‚¤ãƒ—ã ã‘è¨­å®šã™ã‚‹.
+ * ã“ã®ã‚ã¨ MBi_BlockHeaderEnd() ã§é€ä¿¡ã™ã‚‹ã¾ã§ã®é–“ã«
+ * ã“ã¾ã”ã¾ã¨ã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’åŸ‹ã‚ã¦ã„ã.
+ * å¼•æ•°ãŒãªã‘ã‚Œã°ãã®ã¾ã¾ã§è‰¯ã„.
  */
 void    MBi_BlockHeaderBegin(u8 type, u32 *sendbuf);
 
 /*
- * ƒuƒƒbƒNƒwƒbƒ_İ’è‚ğŠ®—¹‚µ, ƒ`ƒFƒbƒNƒTƒ€‚ğŒvZ‚·‚é.
- * ‚»‚ÌŒã, pollbmp ‚Åw’è‚µ‚½‘Šè‚ÖÀÛ‚É‘—M‚·‚é.
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€è¨­å®šã‚’å®Œäº†ã—, ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—ã™ã‚‹.
+ * ãã®å¾Œ, pollbmp ã§æŒ‡å®šã—ãŸç›¸æ‰‹ã¸å®Ÿéš›ã«é€ä¿¡ã™ã‚‹.
  */
 int     MBi_BlockHeaderEnd(int body_len, u16 pollbmp, u32 *sendbuf);
 
 
 /*
- * ƒ`ƒFƒbƒNƒTƒ€ŒvZ
+ * ãƒã‚§ãƒƒã‚¯ã‚µãƒ è¨ˆç®—
  */
 u16     MBi_calc_cksum(const u16 *buf, int length);
 

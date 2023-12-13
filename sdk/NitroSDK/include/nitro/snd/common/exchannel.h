@@ -15,22 +15,22 @@
   do-indent
 
   Revision 1.7  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.6  2005/04/12 06:15:07  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.12  2005/04/12 00:52:11  ida
   for SDK_FROM_TOOL
 
   Revision 1.11  2005/03/23 04:47:05  ida
-  SDK_FROM_TOOL‘Î‰
+  SDK_FROM_TOOLå¯¾å¿œ
 
   Revision 1.10  2005/03/02 00:42:26  ida
-  ƒpƒ“ƒŒƒ“ƒW‚ªƒCƒ“ƒXƒg‚Ìƒpƒ“‚É‚à‰e‹¿‚·‚é‚æ‚¤‚É•ÏX
+  ãƒ‘ãƒ³ãƒ¬ãƒ³ã‚¸ãŒã‚¤ãƒ³ã‚¹ãƒˆã®ãƒ‘ãƒ³ã«ã‚‚å½±éŸ¿ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.9  2005/02/16 07:48:49  ida
-  SND_GetLockedChannelŠÖ”’Ç‰Á
+  SND_GetLockedChannelé–¢æ•°è¿½åŠ 
 
   Revision 1.8  2004/10/06 02:24:22  ida
   add user_decay2
@@ -176,8 +176,8 @@ SNDWaveParam;
 typedef struct SNDLfoParam
 {
     u8      target;                    // enum SNDLfoTarget
-    u8      speed;                     // 256‚Å‚PƒTƒ“ƒvƒ‹‚¸‚Â
-    u8      depth;                     // 128‚Å1.0”{
+    u8      speed;                     // 256ã§ï¼‘ã‚µãƒ³ãƒ—ãƒ«ãšã¤
+    u8      depth;                     // 128ã§1.0å€
     u8      range;
     u16     delay;
 }
@@ -214,7 +214,7 @@ typedef struct SNDExChannel
     s16     user_decay;
     s16     user_pitch;
 
-    s32     env_decay;                 // ƒGƒ“ƒxƒ[ƒvEƒŠƒŠ[ƒX‚É‚æ‚éŒ¸Š
+    s32     env_decay;                 // ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ»ãƒªãƒªãƒ¼ã‚¹ã«ã‚ˆã‚‹æ¸›è¡°
 
     s32     sweep_counter;
     s32     sweep_length;

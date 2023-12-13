@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndCaptureStartSampling</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndCaptureStartSampling</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef void (*NNSSndCaptureCallback)(
@@ -31,7 +31,7 @@
         void* <var>arg</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDANNWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -39,31 +39,31 @@
 <tbody>
 <tr>
 <td><em><strong><code>buffer_p</code></strong></em></td>
-<td>�T���v�����O�o�b�t�@�̃|�C���^�ł��B32�o�C�g�A���C�����g����Ă���K�v������܂��B</td>
+<td>サンプリングバッファのポインタです。32バイトアライメントされている必要があります。</td>
 </tr>
 <tr>
 <td><em><strong><code>bufSize</code></strong></em></td>
-<td>�T���v�����O�o�b�t�@�̃T�C�Y�ł��B<var>interval</var> * 64�̔{���Ŗ�����΂Ȃ�܂���B�ő�l��0x7fff8�ł��B</td>
+<td>サンプリングバッファのサイズです。<var>interval</var> * 64の倍数で無ければなりません。最大値は0x7fff8です。</td>
 </tr>
 <tr>
 <td><em><strong><code>format</code></strong></em></td>
-<td>�T���v���f�[�^�̃t�H�[�}�b�g�ł��B</td>
+<td>サンプルデータのフォーマットです。</td>
 </tr>
 <tr>
 <td><em><strong><code>sampleRate</code></strong></em></td>
-<td>�T���v�����O���[�g�ł��B</td>
+<td>サンプリングレートです。</td>
 </tr>
 <tr>
 <td><em><strong><code>interval</code></strong></em></td>
-<td>�R�[���o�b�N�C���^�[�o���ł��B2�ȏ�̒l���w�肵�܂��B</td>
+<td>コールバックインターバルです。2以上の値を指定します。</td>
 </tr>
 <tr>
 <td><em><strong><code>callback</code></strong></em></td>
-<td>�T���v�����O�R�[���o�b�N�֐��̃|�C���^�ł��B</td>
+<td>サンプリングコールバック関数のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>arg</code></strong></em></td>
-<td>�T���v�����O�R�[���o�b�N�֐��̈����ƂȂ�p�����[�^�ł��B</td>
+<td>サンプリングコールバック関数の引数となるパラメータです。</td>
 </tr>
 </tbody>
 </table>
@@ -71,92 +71,92 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAJPWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�T���v�����O�̊J�n�ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>サンプリングの開始に成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T���v�����O���J�n���܂��B
+サンプリングを開始します。
 </p>
       <p>
-�L���v�`���[�@�\���g���ă~�L�T�[�o�͂��L���v�`�����A�R�[���o�b�N�֐��ŃT���v�����O�����f�[�^���擾���܂��B
-�T���v�����O���쒆�́A16�`�����l������2�`�����l���i�`�����l��1�y�у`�����l��3�j������܂��B
-�`�����l��1�܂��̓`�����l��3���A�V�[�P���X�ɂ���Ďg�p���̏ꍇ�A�������̉��͋����I�ɒ�~�������܂��B
+キャプチャー機能を使ってミキサー出力をキャプチャし、コールバック関数でサンプリングしたデータを取得します。
+サンプリング動作中は、16チャンネル中の2チャンネル（チャンネル1及びチャンネル3）を消費します。
+チャンネル1またはチャンネル3が、シーケンスによって使用中の場合、発音中の音は強制的に停止させられます。
 </p>
       <p>
-�T���v�����O���g�����߂ɂ́A�T���v�����O�o�b�t�@���K�v�ɂȂ�܂��B
-�T���v�����O�o�b�t�@���������قǕp�ɂɃR�[���o�b�N�֐����Ăт�����܂��B
-�擪�A�h���X<em><strong><code>buffer_p</code></strong></em>�́A32�o�C�g�A���C�����g����Ă���K�v������܂��B
-�܂��A�o�b�t�@�T�C�Y<em><strong><code>bufSize</code></strong></em>�́A<em><strong><code>interval</code></strong></em> * 64�̔{���Ŗ�����΂Ȃ�܂���B
+サンプリングを使うためには、サンプリングバッファが必要になります。
+サンプリングバッファが小さいほど頻繁にコールバック関数が呼びだされます。
+先頭アドレス<em><strong><code>buffer_p</code></strong></em>は、32バイトアライメントされている必要があります。
+また、バッファサイズ<em><strong><code>bufSize</code></strong></em>は、<em><strong><code>interval</code></strong></em> * 64の倍数で無ければなりません。
 </p>
       <p>
-�T���v���f�[�^�̃t�H�[�}�b�g<em><strong><code>format</code></strong></em>�́A���L�̒l����I�����܂��B
-16�r�b�g�̕����A�����͗ǂ��Ȃ�܂����A8�r�b�g�̎��ɔ�ׂĂQ�{�̕p�x��
-�R�[���o�b�N�֐����Ăт������悤�ɂȂ�܂��B
+サンプルデータのフォーマット<em><strong><code>format</code></strong></em>は、下記の値から選択します。
+16ビットの方が、音質は良くなりますが、8ビットの時に比べて２倍の頻度で
+コールバック関数が呼びだされるようになります。
 </p>
-      <div class="table"><a name="IDAJQWT"></a><p class="title"><b>�\ . NNSSndCaptureFormat</b></p>
+      <div class="table"><a name="IDAJQWT"></a><p class="title"><b>表 . NNSSndCaptureFormat</b></p>
 <table summary="NNSSndCaptureFormat" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_CAPTURE_FORMAT_PCM8</td>
-<td>8�r�b�gPCM</td>
+<td>8ビットPCM</td>
 </tr>
 <tr>
 <td>NNS_SND_CAPTURE_FORMAT_PCM16</td>
-<td>16�r�b�gPCM</td>
+<td>16ビットPCM</td>
 </tr>
 </tbody>
 </table>
 </div>
 
       <p>
-�T���v�����O���[�g<em><strong><code>sampleRate</code></strong></em>�́A
-�l���傫���قǃL���v�`�������f�[�^�̉����͗ǂ��Ȃ�܂����A���̕��p�ɂɃR�[���o�b�N�֐���
-�Ăт�����܂��B
+サンプリングレート<em><strong><code>sampleRate</code></strong></em>は、
+値が大きいほどキャプチャしたデータの音質は良くなりますが、その分頻繁にコールバック関数が
+呼びだされます。
 </p>
       <p>
-�R�[���o�b�N�C���^�[�o��<em><strong><code>interval</code></strong></em>�́A�T���v�����O�o�b�t�@���S�̂ɃL���v�`������ԂɁA
-����R�[���o�b�N�֐����Ăт������̂����w�肵�܂��B
-�ʏ�͂Q���w�肵�A������ǂ݂Ƃ蒆�Ɏc�蔼���ɃT���v�����O���܂��B
+コールバックインターバル<em><strong><code>interval</code></strong></em>は、サンプリングバッファが全体にキャプチャする間に、
+何回コールバック関数が呼びだされるのかを指定します。
+通常は２を指定し、半分を読みとり中に残り半分にサンプリングします。
 </p>
       <p>
-�R�[���o�b�N�֐�<em><strong><code>callback</code></strong></em>�́A
-�R�[���o�b�N�C���^�[�o��<em><strong><code>interval</code></strong></em>�Ŏw�肵���Ԋu�ŁA�T���v�����O�o�b�t�@�ɃL���v�`������閈�ɌĂт�����܂��B
-�����ɂ́A�k�~�L�T�[����<em><strong><code>bufferL</code></strong></em>����тq�~�L�T�[����<em><strong><code>bufferR</code></strong></em>��
-�擪�A�h���X�̃|�C���^�ƁA�o�b�t�@�̃T�C�Y<em><strong><code>len</code></strong></em>��������܂��B
-�t�H�[�}�b�g<em><strong><code>format</code></strong></em>�ƃ��[�U�[����<em><strong><code>arg</code></strong></em>�́A
-<tt class="function">NNS_SndCaptureStartSampling</tt>�֐��̈����ɓ��ꂽ���̂Ɠ������̂��n����܂��B
-�����ɓn�����o�b�t�@�́A�L���v�`�������������̈���w���Ă��܂��B
+コールバック関数<em><strong><code>callback</code></strong></em>は、
+コールバックインターバル<em><strong><code>interval</code></strong></em>で指定した間隔で、サンプリングバッファにキャプチャされる毎に呼びだされます。
+引数には、Ｌミキサー成分<em><strong><code>bufferL</code></strong></em>およびＲミキサー成分<em><strong><code>bufferR</code></strong></em>の
+先頭アドレスのポインタと、バッファのサイズ<em><strong><code>len</code></strong></em>が入れられます。
+フォーマット<em><strong><code>format</code></strong></em>とユーザー引数<em><strong><code>arg</code></strong></em>は、
+<tt class="function">NNS_SndCaptureStartSampling</tt>関数の引数に入れたものと同じものが渡されます。
+引数に渡されるバッファは、キャプチャが完了した領域を指しています。
 </p>
         <p>
-<tt class="function"><a href="NNS_SndCaptureCreateThread.html">NNS_SndCaptureCreateThread</a></tt>�֐���
-�L���v�`���[�X���b�h���N�����Ă���Ƃ��́A�R�[���o�b�N�֐��̓L���v�`���[�X���b�h����Ăт�����܂��B
-�L���v�`���[�X���b�h���N�����Ă��Ȃ��ꍇ�́A�R�[���o�b�N�֐���IRQ�n���h������Ăт�����܂��B
+<tt class="function"><a href="NNS_SndCaptureCreateThread.html">NNS_SndCaptureCreateThread</a></tt>関数で
+キャプチャースレッドを起動しているときは、コールバック関数はキャプチャースレッドから呼びだされます。
+キャプチャースレッドを起動していない場合は、コールバック関数はIRQハンドラから呼びだされます。
 </p>
       <p>
-�T���v�����O�J�n�̎��s�ɂ́A�ȉ��̌������l�����܂��B 
+サンプリング開始の失敗には、以下の原因が考えられます。 
 </p>
       <div class="itemizedlist">
 <ul type="disc">
-<li>�L���v�`�����T���v�����O�ȊO�̗p�r�Ŏg�p��</li>
-<li>�`�����l���P�܂��̓`�����l���R���A�T���v�����O��V�[�P���X�ɂ�锭���ȊO�̗p�r�Ŏg�p�� </li>
+<li>キャプチャがサンプリング以外の用途で使用中</li>
+<li>チャンネル１またはチャンネル３が、サンプリングやシーケンスによる発音以外の用途で使用中 </li>
 </ul>
 </div>
 
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndCaptureCreateThread.html">NNS_SndCaptureCreateThread</a></p>
-<h2>����</h2>
-<p>2005/06/27 �֐����s�̌�����ǉ�<br>2005/01/06 TEG�Ɋւ���L�q�폜<br>2004/09/13 ����<br></p>
+<h2>履歴</h2>
+<p>2005/06/27 関数失敗の原因を追加<br>2005/01/06 TEGに関する記述削除<br>2004/09/13 初版<br></p>
 </div>
 </body>
 </html>

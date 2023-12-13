@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_order.c
- * @brief	‰‰‹Z—Í•”–åF–½—ß‚ğŠeƒXƒ^ƒbƒt‚É‘—M
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ï¼šå‘½ä»¤ã‚’å„ã‚¹ã‚¿ãƒƒãƒ•ã«é€ä¿¡
  * @author	matsuda
- * @date	2005.11.25(‹à)
+ * @date	2005.11.25(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -46,33 +46,33 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“‚ª1‚Â“_“”‚·‚é–ˆ‚É‘Ò‚ÂƒEƒFƒCƒg
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ãŒ1ã¤ç‚¹ç¯ã™ã‚‹æ¯ã«å¾…ã¤ã‚¦ã‚§ã‚¤ãƒˆ
 #define APPEAL_ICON_LIGHT_WAIT		(2)
-///ƒ{ƒ‹ƒe[ƒWƒAƒCƒRƒ“‚ª1‚Â“_“”‚·‚é–ˆ‚É‘Ò‚ÂƒEƒFƒCƒg
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ã‚¤ã‚³ãƒ³ãŒ1ã¤ç‚¹ç¯ã™ã‚‹æ¯ã«å¾…ã¤ã‚¦ã‚§ã‚¤ãƒˆ
 #define VOLTAGE_ICON_LIGHT_WAIT		(APPEAL_ICON_LIGHT_WAIT)
-///ŠÏ‹qƒAƒjƒŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
+///è¦³å®¢ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define AUDIENCE_ANM_START_WAIT		(0)
-///ŠÏ‹qƒAƒjƒ‚ğƒZƒbƒg‚µ‚Ä‚©‚çŸ‚ÌƒV[ƒPƒ“ƒX‚Öi‚ß‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///è¦³å®¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‹ã‚‰æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define AUDIENCE_ANM_NEXT_WAIT		(8)
 
-///‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚ÌR”»ƒŠƒAƒNƒVƒ‡ƒ“‚ÅAƒGƒtƒFƒNƒgI—¹Œã‚Ì‘Ò‚¿ŠÔ
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã®å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã®å¾…ã¡æ™‚é–“
 #define WAZABEFORE_JUDGE_REACTION_END_WAIT		(5)
 
-///ƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgFAPƒn[ƒg‰ñ“]ƒGƒtƒFƒNƒgÀsŒãA
-///Ÿ‚ÌƒuƒŠ[ƒ_[‚ÌƒGƒtƒFƒNƒgÀs‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šAPãƒãƒ¼ãƒˆå›è»¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå¾Œã€
+///æ¬¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define TEE_APHEART_NEXT_BREEDER_WAIT		0	//(30)
 
-///ƒI[ƒvƒjƒ“ƒOŒã‚Ì‘Ò‚¿ŠÔ
+///ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°å¾Œã®å¾…ã¡æ™‚é–“
 #define OPENING_START_WAIT		(30)	//(60)
 
-///ƒGƒ“ƒfƒBƒ“ƒO‚Ì‘Ò‚¿ŠÔ
+///ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã®å¾…ã¡æ™‚é–“
 #define ENDING_WAIT				(30)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work);
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data);
@@ -147,11 +147,11 @@ static void AOTCB_EndingEffect(TCB_PTR tcb, void *work);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///–½—ß‘—óM—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ìƒe[ƒuƒ‹	¦‚±‚±‚É’Ç‰Á‚µ‚½‚ç•K‚¸.h‚Ìenum‚É‚à’Ç‰Á‚·‚é–!!
+///å‘½ä»¤é€å—ä¿¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ãƒ†ãƒ¼ãƒ–ãƒ«	â€»ã“ã“ã«è¿½åŠ ã—ãŸã‚‰å¿…ãš.hã®enumã«ã‚‚è¿½åŠ ã™ã‚‹äº‹!!
 static const CON_ORDER_FUNC OrderFuncTbl[] = {
-	{//AORDER_NO_SAMPLE		ƒTƒ“ƒvƒ‹
+	{//AORDER_NO_SAMPLE		ã‚µãƒ³ãƒ—ãƒ«
 		Request_Sample, 
 		Recieve_Sample, 
 		Answer_Sample, 
@@ -267,8 +267,8 @@ static const CON_ORDER_FUNC OrderFuncTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–åFƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‰Šú‰»
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ActinOrder_WorkInit(ACTIN_PROC_WORK *apw)
@@ -296,12 +296,12 @@ void ActinOrder_WorkInit(ACTIN_PROC_WORK *apw)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -315,34 +315,34 @@ static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
 {
 	ACTIN_PROC_WORK *apw = syswork;
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(&apw->cow, req_head, NULL, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óM(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   è¿”äº‹å—ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_head		•Ô–ƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   ansdat			óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   net_id			•Ô–‘—MÒ‚ÌƒlƒbƒgID
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_head		è¿”äº‹ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ansdat			å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   net_id			è¿”äº‹é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *answer_head, CO_ANSDAT *ansdat, int net_id)
 {
 	ACTIN_PROC_WORK *apw = syswork;
-	//•Ô–‚ğó‚¯æ‚é‚¾‚¯‚È‚Ì‚Å“Á‚É‚·‚é–‚ª‚È‚¢
+	//è¿”äº‹ã‚’å—ã‘å–ã‚‹ã ã‘ãªã®ã§ç‰¹ã«ã™ã‚‹äº‹ãŒãªã„
 	return;
 }
 
@@ -351,12 +351,12 @@ static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_H
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰‰‹Z—Í•”–åI—¹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæ¼”æŠ€åŠ›éƒ¨é–€çµ‚äº†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_ActinExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -370,11 +370,11 @@ static int Request_ActinExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰‰‹Z—Í•”–åI—¹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæ¼”æŠ€åŠ›éƒ¨é–€çµ‚äº†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_ActinExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -383,7 +383,7 @@ static void Recieve_ActinExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 	
 	apw->main_end = TRUE;
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	if(ConTool_ServerMineCheck(apw->consys) == FALSE){
 		CO_ANSWER_TransmitBufferSet(&apw->cow, req_head, NULL, 0);
 	}
@@ -395,12 +395,12 @@ static void Recieve_ActinExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_OpeningEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -414,11 +414,11 @@ static int Request_OpeningEffect(CONTEST_ORDER_WORK *cow, void *syswork, int ord
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_OpeningEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -437,10 +437,10 @@ static void Recieve_OpeningEffect(CONTEST_ORDER_WORK *cow, void *syswork, const 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_OPENING_EFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_OPENING_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_OpeningEffect(TCB_PTR tcb, void *work)
@@ -480,12 +480,12 @@ static void AOTCB_OpeningEffect(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_EndingEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -500,11 +500,11 @@ static int Request_EndingEffect(CONTEST_ORDER_WORK *cow, void *syswork, int orde
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_EndingEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -526,10 +526,10 @@ static void Recieve_EndingEffect(CONTEST_ORDER_WORK *cow, void *syswork, const C
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_ENDING_EFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_ENDING_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_EndingEffect(TCB_PTR tcb, void *work)
@@ -582,12 +582,12 @@ static void AOTCB_EndingEffect(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ|ƒPƒ‚ƒ““oê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		isƒpƒ‰ƒ[ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		é€²è¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_PokemonIn(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -602,11 +602,11 @@ static int Request_PokemonIn(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ|ƒPƒ‚ƒ““oê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_PokemonIn(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -633,10 +633,10 @@ static void Recieve_PokemonIn(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ““oê
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_POKE_INOUT\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_POKE_INOUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_PokemonIn(TCB_PTR tcb, void *work)
@@ -708,12 +708,12 @@ static void AOTCB_PokemonIn(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		isƒpƒ‰ƒ[ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		é€²è¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_PokemonOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -728,11 +728,11 @@ static int Request_PokemonOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_PokemonOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -763,10 +763,10 @@ static void Recieve_PokemonOut(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   ãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_POKE_INOUT\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_POKE_INOUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_PokemonOut(TCB_PTR tcb, void *work)
@@ -811,12 +811,12 @@ static void AOTCB_PokemonOut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚És‚¤ˆ—
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã«è¡Œã†å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_WazaEffectBefore(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -831,11 +831,11 @@ static int Request_WazaEffectBefore(CONTEST_ORDER_WORK *cow, void *syswork, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚És‚¤ˆ—
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã«è¡Œã†å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_WazaEffectBefore(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -860,10 +860,10 @@ static void Recieve_WazaEffectBefore(CONTEST_ORDER_WORK *cow, void *syswork, con
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚És‚¤ˆ—
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã«è¡Œã†å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF_BEFORE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFF_BEFOREæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_WazaEffectBefore(TCB_PTR tcb, void *work)
@@ -958,12 +958,12 @@ static void AOTCB_WazaEffectBefore(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹ZƒGƒtƒFƒNƒg‚ğo‚·
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_WazaEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -978,11 +978,11 @@ static int Request_WazaEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹ZƒGƒtƒFƒNƒg‚ğo‚·
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_WazaEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1009,10 +1009,10 @@ static void Recieve_WazaEffect(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒgÀs
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
@@ -1133,8 +1133,8 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 			def_personal_rnd = PokeParaGet(we->apw->sys.c_game->pp[def_breeder_no], 
 				ID_PARA_personal_rnd, NULL);
 			
-			//WAZA_EFFECT_PARAMƒf[ƒ^ì¬
-			//power‚â‚È‚Â‚«“x‚È‚Ç‚Ìæ“¾‚ª‚Ü‚¾–¢Šm’è 2005.11.29(‰Î) ¦check
+			//WAZA_EFFECT_PARAMãƒ‡ãƒ¼ã‚¿ä½œæˆ
+			//powerã‚„ãªã¤ãåº¦ãªã©ã®å–å¾—ãŒã¾ã æœªç¢ºå®š 2005.11.29(ç«) â€»check
 			eff.command_code = 0;
 			eff.mode = 0;
 			eff.waza_no = we->wazapara.wazano;
@@ -1151,7 +1151,7 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 			}
 			eff.mons_no[1] = def_monsno;
 			
-			//WES_CALL_BTL_EX_PARAMƒf[ƒ^ì¬
+			//WES_CALL_BTL_EX_PARAMãƒ‡ãƒ¼ã‚¿ä½œæˆ
 //			we->exchr_tbl[0] = &we->apw->sys.exchr_param[we->breeder_no];
 //			we->exchr_tbl[1] = &we->apw->sys.transparent_exchr_param;
 			exparam.bgl = we->apw->sys.bgl;
@@ -1190,17 +1190,17 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 			exparam.haikei_data.pal_num = ACTIN_HAIKEI_PAL_NUM;
 			exparam.csp = we->apw->sys.csp;
 			exparam.perap_voice = we->apw->consys->perap_voice[we->breeder_no];
-			//‹ZƒGƒtƒFƒNƒgƒZƒbƒg
+			//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
 			WES_Call_Ex(we->apw->sys.wsp, &eff, we->wazapara.wazano, &exparam);
 		}
 		
-		//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ìİ’è
+		//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è¨­å®š
 		{
 			int height;
 			
 			height = PokeParaHeightGet(we->apw->sys.c_game->pp[we->breeder_no], PARA_BACK);
 			
-			if(we->wazapara.waza_kouka != WAZAKOUKA_KIE_OFF){	//ƒVƒƒƒh[ƒ_ƒCƒu—p
+			if(we->wazapara.waza_kouka != WAZAKOUKA_KIE_OFF){	//ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–ç”¨
 				SoftSpriteParaSet(we->apw->sys.ss[we->breeder_no], SS_PARA_VANISH, FALSE);
 			}
 			SoftSpriteParaSet(we->apw->sys.ss[we->breeder_no], SS_PARA_DRAW_STOP, FALSE);
@@ -1218,14 +1218,14 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 		
 		we->seq++;
 		break;
-	case WESEQ_EFF_WAIT:	//‹ZƒGƒtƒFƒNƒgÀs
+	case WESEQ_EFF_WAIT:	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
 		WES_Executed(we->apw->sys.wsp);
 		if(IsWES_Executed(we->apw->sys.wsp) == FALSE){
 			WES_Reset(we->apw->sys.wsp);
 			if(we->wazapara.loop > 0){
 				we->wazapara.loop--;
 				we->wazapara.counter++;
-				if(we->wazapara.waza_kouka == WAZAKOUKA_KIE){	//ƒVƒƒƒh[ƒ_ƒCƒu—p
+				if(we->wazapara.waza_kouka == WAZAKOUKA_KIE){	//ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–ç”¨
 					we->wazapara.waza_kouka = WAZAKOUKA_KIE_OFF;
 				}
 				we->seq = WESEQ_EFF_SET;
@@ -1235,7 +1235,7 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 			}
 		}
 		break;
-	case WESEQ_EFF_AFTER:	//‹ZƒGƒtƒFƒNƒgI—¹Œã‚É‚·‚é•K—v‚Ì‚ ‚éŒãˆ—
+	case WESEQ_EFF_AFTER:	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã«ã™ã‚‹å¿…è¦ã®ã‚ã‚‹å¾Œå‡¦ç†
 		switch(we->wazapara.wazano){
 		case WAZANO_HENSIN:
 		case WAZANO_MIGAWARI:
@@ -1270,12 +1270,12 @@ static void AOTCB_WazaEffect(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹Z‘I‘ğ
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€é¸æŠ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1289,11 +1289,11 @@ static int Request_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹Z‘I‘ğ
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€é¸æŠ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1316,10 +1316,10 @@ static void Recieve_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‘I‘ğÀs
+ * @brief   æŠ€é¸æŠå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZASELECT\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZASELECTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_UserSelect(TCB_PTR tcb, void *work)
@@ -1342,10 +1342,10 @@ static void AOTCB_UserSelect(TCB_PTR tcb, void *work)
 	
 	switch(ws->seq){
 	case SELSEQ_INIT:
-		//‚·‚®‚É‹Z‘I‘ğ‰æ–Ê‚ğo‚»‚¤‚Æ‚·‚é‚ÆAƒ‰ƒ“ƒN–¼“™‚ÍƒoƒjƒbƒVƒ…‚³‚ê‚¸‚ÉA
-		//‚»‚Ì‚Ü‚Üíœ„‹Z–¼•`‰æ‚Æ‚È‚é‚Ì‚ÅA‘‚«Š·‚¦‚ÌuŠÔ‚ªŒ©‚¦‚Ä‚µ‚Ü‚¤B
-		//‚»‚Ì‚½‚ßA1ƒtƒŒ[ƒ€‚¾‚¯•Ç†‚Ì‚İ‚Ì‰æ–Ê‚ğ·‚µ‚ñ‚ÅAƒ‰ƒ“ƒN–¼‚È‚Ç‚ğíœ‚³‚ê‚é
-		//ƒ^ƒCƒ~ƒ“ƒO‚ğì‚éB
+		//ã™ãã«æŠ€é¸æŠç”»é¢ã‚’å‡ºãã†ã¨ã™ã‚‹ã¨ã€ãƒ©ãƒ³ã‚¯åç­‰ã¯ãƒãƒ‹ãƒƒã‚·ãƒ¥ã•ã‚Œãšã«ã€
+		//ãã®ã¾ã¾å‰Šé™¤ï¼æŠ€åæç”»ã¨ãªã‚‹ã®ã§ã€æ›¸ãæ›ãˆã®ç¬é–“ãŒè¦‹ãˆã¦ã—ã¾ã†ã€‚
+		//ãã®ãŸã‚ã€1ãƒ•ãƒ¬ãƒ¼ãƒ ã ã‘å£ç´™ã®ã¿ã®ç”»é¢ã‚’å·®ã—è¾¼ã‚“ã§ã€ãƒ©ãƒ³ã‚¯åãªã©ã‚’å‰Šé™¤ã•ã‚Œã‚‹
+		//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ä½œã‚‹ã€‚
 		AINPUT_CreateBG(ws->apw->aip, AINPUT_TYPE_HEART_WALL, FALSE, NULL);
 		ws->seq++;
 		break;
@@ -1444,7 +1444,7 @@ static void AOTCB_UserSelect(TCB_PTR tcb, void *work)
 	
 	default:
 		if(ws->apw->consys->sio_flag == TRUE){
-			AT_A_TalkMessageSet(ws->apw, A_TALK_SIO_WAIT, NULL, NULL);	//‚Â‚¤‚µ‚ñ@‚½‚¢‚«‚¿‚ã‚¤c
+			AT_A_TalkMessageSet(ws->apw, A_TALK_SIO_WAIT, NULL, NULL);	//ã¤ã†ã—ã‚“ã€€ãŸã„ãã¡ã‚…ã†â€¦
 		}
 		
 		CO_ANSWER_TransmitBufferSet(&ws->apw->cow, &ws->req_head, 
@@ -1460,12 +1460,12 @@ static void AOTCB_UserSelect(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óM(‘—MŒ³)F‹Z‘I‘ğ
+ * @brief   è¿”äº‹å—ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€é¸æŠ
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_head		•Ô–ƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data			óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   net_id			•Ô–‘—MÒ‚ÌƒlƒbƒgID
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_head		è¿”äº‹ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data			å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   net_id			è¿”äº‹é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 static void Answer_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *answer_head, CO_ANSDAT *ansdat, int net_id)
@@ -1484,12 +1484,12 @@ static void Answer_UserSelect(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹Z‚Ì•]‰¿‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€ã®è©•ä¾¡ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppealReview(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1504,11 +1504,11 @@ static int Request_AppealReview(CONTEST_ORDER_WORK *cow, void *syswork, int orde
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹Z‚Ì•]‰¿‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€ã®è©•ä¾¡ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppealReview(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1536,10 +1536,10 @@ static void Recieve_AppealReview(CONTEST_ORDER_WORK *cow, void *syswork, const C
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒgÀs
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
@@ -1563,8 +1563,8 @@ static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
 	
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("ƒuƒŠ[ƒ_[”Ô†=%d\n", ae->breeder_no);
-		OS_TPrintf("Šî–{AP=%d\n”í‚Á‚½R”»‚Ì”=%d\nƒ{ƒ‹ƒe[ƒW‘Œ¸=%d\nÅIAP’l=%d\n\n", 
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·=%d\n", ae->breeder_no);
+		OS_TPrintf("åŸºæœ¬AP=%d\nè¢«ã£ãŸå¯©åˆ¤ã®æ•°=%d\nãƒœãƒ«ãƒ†ãƒ¼ã‚¸å¢—æ¸›=%d\næœ€çµ‚APå€¤=%d\n\n", 
 			ae->aap.waza_personal.base_app, ae->aap.waza_personal.judge_suffer, 
 			ae->aap.waza_personal.voltage_after[ae->aap.waza_personal.judge_no] 
 			- ae->aap.waza_personal.voltage_before[ae->aap.waza_personal.judge_no], 
@@ -1576,7 +1576,7 @@ static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < ae->aap.waza_personal.app_total - ae->aap.waza_personal.voltage_add_ap){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -1599,7 +1599,7 @@ static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
 	case AR_VOL_INIT:
 		ae->seq++;
 		break;
-	case AR_VOL_MAIN:		//ƒ{ƒ‹ƒe[ƒW
+	case AR_VOL_MAIN:		//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸
 		if(ae->voltage != ae->aap.waza_personal.voltage_after[ae->judge_no]){
 			voltage_ofs = ae->aap.waza_personal.voltage_after[ae->judge_no] 
 				- ae->aap.waza_personal.voltage_before[ae->judge_no];
@@ -1648,7 +1648,7 @@ static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
 		if(ae->wait > APPEAL_ICON_LIGHT_WAIT){
 			ae->wait = 0;
 			if(ae->point >= ae->aap.waza_personal.app_total){
-				//ƒ{ƒ‹ƒe[ƒW‚Ì•\¦‚ğÁ‚·B(ƒ[ƒN‚Ì•û‚ÍNextBreeder‚Åe‚ªƒNƒŠƒA‚ğs‚Á‚Ä‚¢‚é)
+				//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã®è¡¨ç¤ºã‚’æ¶ˆã™ã€‚(ãƒ¯ãƒ¼ã‚¯ã®æ–¹ã¯NextBreederã§è¦ªãŒã‚¯ãƒªã‚¢ã‚’è¡Œã£ã¦ã„ã‚‹)
 				AT_VoltagePointActorMadeOver(&ae->apw->sys, ae->judge_no, 0);
 				ae->seq++;
 			}
@@ -1674,12 +1674,12 @@ static void AOTCB_AppealReview(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹Z‚Ì•]‰¿‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€ã®è©•ä¾¡ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppealFirst(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1694,11 +1694,11 @@ static int Request_AppealFirst(CONTEST_ORDER_WORK *cow, void *syswork, int order
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹Z‚Ì•]‰¿‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€ã®è©•ä¾¡ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppealFirst(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1724,10 +1724,10 @@ static void Recieve_AppealFirst(CONTEST_ORDER_WORK *cow, void *syswork, const CO
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•]‰¿Às
+ * @brief   æŠ€è©•ä¾¡å®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_AppealFirst(TCB_PTR tcb, void *work)
@@ -1746,14 +1746,14 @@ static void AOTCB_AppealFirst(TCB_PTR tcb, void *work)
 	switch(ae->seq){
 	case AR_INIT:
 	#if 0
-		OS_TPrintf("ƒuƒŠ[ƒ_[”Ô†=%d\n", ae->breeder_no);
-		OS_TPrintf("Šî–{AP=%d\n”í‚Á‚½R”»‚Ì”=%d\nƒ{ƒ‹ƒe[ƒW‘Œ¸=%d\nÅIAP’l=%d\n\n", 
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·=%d\n", ae->breeder_no);
+		OS_TPrintf("åŸºæœ¬AP=%d\nè¢«ã£ãŸå¯©åˆ¤ã®æ•°=%d\nãƒœãƒ«ãƒ†ãƒ¼ã‚¸å¢—æ¸›=%d\næœ€çµ‚APå€¤=%d\n\n", 
 			ae->aap.waza_personal.base_app, ae->aap.waza_personal.judge_suffer, 
 			ae->aap.waza_personal.voltage_after[ae->aap.waza_personal.judge_no] 
 			- ae->aap.waza_personal.voltage_before[ae->aap.waza_personal.judge_no], 
 			ae->aap.waza_personal.app_total);
 	#endif
-		OS_TPrintf("\nóMƒf[ƒ^FŠî–{’l(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("\nï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šåŸºæœ¬å€¤ï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("app_total_before=%d\napp_total=%d\nmsg_apno=%d\n", 
 			my_personal->app_total_before, my_personal->app_total, my_personal->msg_apno);
@@ -1765,7 +1765,7 @@ static void AOTCB_AppealFirst(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -1798,12 +1798,12 @@ static void AOTCB_AppealFirst(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‹Z‚ÌŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šæŠ€ã®åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppealKouka(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1818,11 +1818,11 @@ static int Request_AppealKouka(CONTEST_ORDER_WORK *cow, void *syswork, int order
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‹Z‚ÌŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šæŠ€ã®åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppealKouka(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1846,10 +1846,10 @@ static void Recieve_AppealKouka(CONTEST_ORDER_WORK *cow, void *syswork, const CO
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰ÊÀs
+ * @brief   æŠ€åŠ¹æœå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_AppealKouka(TCB_PTR tcb, void *work)
@@ -1879,7 +1879,7 @@ static void AOTCB_AppealKouka(TCB_PTR tcb, void *work)
 	my_personal = &ae->aap.wazapara.personal[ae->breeder_no];
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("óMƒf[ƒ^FŒø‰Ê(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("ï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šåŠ¹æœï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("app_total_before=%d\napp_total=%d\nmsg_apno=%d\n", 
 			my_personal->app_total_before, my_personal->app_total, my_personal->msg_apno);
@@ -1910,7 +1910,7 @@ static void AOTCB_AppealKouka(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 //		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -1941,7 +1941,7 @@ static void AOTCB_AppealKouka(TCB_PTR tcb, void *work)
 			ae->seq = AR_VOLALLDOWN_END;
 		}
 		break;
-	case AR_VOLALLDOWN_MAIN:		//ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg
+	case AR_VOLALLDOWN_MAIN:		//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆ
 		{
 			int down_num = 0, voltage, judge_no;
 			
@@ -2016,12 +2016,12 @@ static void AOTCB_AppealKouka(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F“Áê‹Z‚ÌŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šç‰¹æ®ŠæŠ€ã®åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppealSpecialKouka(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2036,11 +2036,11 @@ static int Request_AppealSpecialKouka(CONTEST_ORDER_WORK *cow, void *syswork, in
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F“Áê‹Z‚ÌŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šç‰¹æ®ŠæŠ€ã®åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppealSpecialKouka(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2064,10 +2064,10 @@ static void Recieve_AppealSpecialKouka(CONTEST_ORDER_WORK *cow, void *syswork, c
 
 //--------------------------------------------------------------
 /**
- * @brief   “Áê‹ZŒø‰ÊÀs
+ * @brief   ç‰¹æ®ŠæŠ€åŠ¹æœå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_AppealSpecialKouka(TCB_PTR tcb, void *work)
@@ -2089,7 +2089,7 @@ static void AOTCB_AppealSpecialKouka(TCB_PTR tcb, void *work)
 	my_personal = &ae->aap.wazapara.personal[ae->breeder_no];
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("óMƒf[ƒ^F“ÁêŒø‰Ê(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("ï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šç‰¹æ®ŠåŠ¹æœï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("app_total_before=%d\napp_total=%d\nmsg_apno=%d\n", 
 			my_personal->app_total_before, my_personal->app_total, my_personal->msg_apno);
@@ -2120,7 +2120,7 @@ static void AOTCB_AppealSpecialKouka(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 //		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -2156,12 +2156,12 @@ static void AOTCB_AppealSpecialKouka(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ{ƒ‹ƒe[ƒW‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppealVoltage(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2176,11 +2176,11 @@ static int Request_AppealVoltage(CONTEST_ORDER_WORK *cow, void *syswork, int ord
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ{ƒ‹ƒe[ƒW‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppealVoltage(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2204,10 +2204,10 @@ static void Recieve_AppealVoltage(CONTEST_ORDER_WORK *cow, void *syswork, const 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWÀs
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
@@ -2246,7 +2246,7 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 	my_personal = &ae->aap.wazapara.personal[ae->breeder_no];
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("óMƒf[ƒ^Fƒ{ƒ‹ƒe[ƒW(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("ï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("votage_before=%d\nvoltage_after=%d\na_talk_id=%d\nafter_a_talk_id=%d\n", 
 			ae->aap.wazapara.voltage_before[my_personal->judge_no], 
@@ -2304,7 +2304,7 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 		ae->seq++;
 //		break;
 	
-	case AR_AUDIENCE_INIT:	//ŠÏ‹qƒAƒjƒƒZƒbƒg
+	case AR_AUDIENCE_INIT:	//è¦³å®¢ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		if(ae->aap.wazapara.voltage_after[my_personal->judge_no] >
 				ae->aap.wazapara.voltage_before[my_personal->judge_no]){
 			AT_AudienceAnimeSet(ae->apw, ae->aap.wazapara.voltage_after[my_personal->judge_no], 
@@ -2329,7 +2329,7 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 	case AR_VOL_INIT:
 		ae->seq++;
 //		break;
-	case AR_VOL_MAIN:		//ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg
+	case AR_VOL_MAIN:		//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->voltage != ae->aap.wazapara.voltage_after[my_personal->judge_no]){
 			if(ae->aap.wazapara.voltage_after[my_personal->judge_no] 
 					- ae->aap.wazapara.voltage_before[my_personal->judge_no] > 0){
@@ -2409,7 +2409,7 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 		ae->point = my_personal->app_total_before;
 		ae->seq++;
 		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -2428,7 +2428,7 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 		}
 		break;
 	case AR_AP_END:
-		if(ae->voltage >= VOLTAGE_POINT_FULL){	//ƒ{ƒ‹ƒe[ƒWMAX‚È‚ç•\¦ƒNƒŠƒA
+		if(ae->voltage >= VOLTAGE_POINT_FULL){	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸MAXãªã‚‰è¡¨ç¤ºã‚¯ãƒªã‚¢
 			AT_VoltageAnimeDel(ae->vaw);
 			AT_VoltagePointActorMadeOver(&ae->apw->sys, my_personal->judge_no, 0);
 		}
@@ -2453,12 +2453,12 @@ static void AOTCB_AppealVoltage(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‘SˆõƒAƒs[ƒ‹Œã‚Ì‹ZŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šå…¨å“¡ã‚¢ãƒ”ãƒ¼ãƒ«å¾Œã®æŠ€åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_ReviewAfterKouka(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2473,11 +2473,11 @@ static int Request_ReviewAfterKouka(CONTEST_ORDER_WORK *cow, void *syswork, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‘SˆõƒAƒs[ƒ‹Œã‚Ì‹ZŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šå…¨å“¡ã‚¢ãƒ”ãƒ¼ãƒ«å¾Œã®æŠ€åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_ReviewAfterKouka(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2501,10 +2501,10 @@ static void Recieve_ReviewAfterKouka(CONTEST_ORDER_WORK *cow, void *syswork, con
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘SˆõƒAƒs[ƒ‹Œã‚Ì‹ZŒø‰ÊÀs
+ * @brief   å…¨å“¡ã‚¢ãƒ”ãƒ¼ãƒ«å¾Œã®æŠ€åŠ¹æœå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_ReviewAfterKouka(TCB_PTR tcb, void *work)
@@ -2526,7 +2526,7 @@ static void AOTCB_ReviewAfterKouka(TCB_PTR tcb, void *work)
 	my_personal = &ae->aap.wazapara.personal[ae->breeder_no];
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("óMƒf[ƒ^F‘SˆõƒAƒs[ƒ‹Œã‚Ì‹ZŒø‰Ê(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("ï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šå…¨å“¡ã‚¢ãƒ”ãƒ¼ãƒ«å¾Œã®æŠ€åŠ¹æœï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("app_total_before=%d\napp_total=%d\nmsg_apno=%d\n", 
 			my_personal->app_total_before, my_personal->app_total, my_personal->msg_apno);
@@ -2557,7 +2557,7 @@ static void AOTCB_ReviewAfterKouka(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 //		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -2593,12 +2593,12 @@ static void AOTCB_ReviewAfterKouka(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FR”»”í‚è‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šå¯©åˆ¤è¢«ã‚Šã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_JudgeSuffer(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2613,11 +2613,11 @@ static int Request_JudgeSuffer(CONTEST_ORDER_WORK *cow, void *syswork, int order
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FR”»”í‚è‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šå¯©åˆ¤è¢«ã‚Šã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_JudgeSuffer(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2641,10 +2641,10 @@ static void Recieve_JudgeSuffer(CONTEST_ORDER_WORK *cow, void *syswork, const CO
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»”í‚èÀs
+ * @brief   å¯©åˆ¤è¢«ã‚Šå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_JudgeSuffer(TCB_PTR tcb, void *work)
@@ -2791,7 +2791,7 @@ static void AOTCB_JudgeSuffer(TCB_PTR tcb, void *work)
 		aj->point = my_personal->app_total_before;
 		aj->seq++;
 		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(aj->point < my_personal->app_total){
 			aj->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&aj->apw->sys, now_breeder, now_pos, aj->point);
@@ -2835,12 +2835,12 @@ static void AOTCB_JudgeSuffer(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FR”»”í‚è‹ZŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šå¯©åˆ¤è¢«ã‚ŠæŠ€åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_JudgeWaza(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2855,11 +2855,11 @@ static int Request_JudgeWaza(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FR”»”í‚è‹ZŒø‰Ê‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šå¯©åˆ¤è¢«ã‚ŠæŠ€åŠ¹æœã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_JudgeWaza(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2883,10 +2883,10 @@ static void Recieve_JudgeWaza(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»”í‚è‹ZŒø‰ÊÀs
+ * @brief   å¯©åˆ¤è¢«ã‚ŠæŠ€åŠ¹æœå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_JudgeWaza(TCB_PTR tcb, void *work)
@@ -2914,7 +2914,7 @@ static void AOTCB_JudgeWaza(TCB_PTR tcb, void *work)
 	my_personal = &ae->aap.wazapara.personal[ae->breeder_no];
 	switch(ae->seq){
 	case AR_INIT:
-		OS_TPrintf("óMƒf[ƒ^FR”»”í‚è(ƒuƒŠ[ƒ_[No%d, wazano=%d, apno=%d)\n",
+		OS_TPrintf("ï¼ï¼ï¼å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šå¯©åˆ¤è¢«ã‚Šï¼ï¼ï¼(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, wazano=%d, apno=%d)\n",
 			ae->breeder_no, my_personal->wazano, my_personal->apno);
 		OS_TPrintf("app_total_before=%d\napp_total=%d\nmsg_apno=%d\na_talk_id=%d\n", 
 			my_personal->app_total_before, my_personal->app_total, my_personal->msg_apno,
@@ -2983,7 +2983,7 @@ static void AOTCB_JudgeWaza(TCB_PTR tcb, void *work)
 	case AR_AP_INIT:
 		ae->seq++;
 //		break;
-	case AR_AP_MAIN:		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+	case AR_AP_MAIN:		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		if(ae->point < my_personal->app_total){
 			ae->point += APPEAL_ICON_ONE_POINT;
 			AT_AppealPointActorMadeOver(&ae->apw->sys, ae->breeder_no, ae->breeder_pos, ae->point);
@@ -3020,12 +3020,12 @@ static void AOTCB_JudgeWaza(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FR”»ƒRƒƒ“ƒg‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šå¯©åˆ¤ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_JudgeComment(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -3040,11 +3040,11 @@ static int Request_JudgeComment(CONTEST_ORDER_WORK *cow, void *syswork, int orde
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FR”»ƒRƒƒ“ƒg‚ğs‚¤(‰‰o)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šå¯©åˆ¤ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_JudgeComment(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -3068,10 +3068,10 @@ static void Recieve_JudgeComment(CONTEST_ORDER_WORK *cow, void *syswork, const C
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒRƒƒ“ƒgÀs
+ * @brief   å¯©åˆ¤ã‚³ãƒ¡ãƒ³ãƒˆå®Ÿè¡Œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_WAZAEFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_WAZAEFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_JudgeComment(TCB_PTR tcb, void *work)
@@ -3116,12 +3116,12 @@ static void AOTCB_JudgeComment(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgÀsˆ—
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_TurnEndEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -3136,11 +3136,11 @@ static int Request_TurnEndEffect(CONTEST_ORDER_WORK *cow, void *syswork, int ord
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgÀsˆ—
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_TurnEndEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -3161,9 +3161,9 @@ static void Recieve_TurnEndEffect(CONTEST_ORDER_WORK *cow, void *syswork, const 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgÀsˆ—
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_TURNEND_EFF\‘¢‘Ì
+ * @brief   ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‡¦ç†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_TURNEND_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_TurnEndEffect(TCB_PTR tcb, void *work)
@@ -3257,12 +3257,12 @@ static void AOTCB_TurnEndEffect(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ^[ƒ“I—¹Œã‚Ìƒpƒ‰ƒ[ƒ^XV
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_TurnParamUpdate(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -3272,17 +3272,17 @@ static int Request_TurnParamUpdate(CONTEST_ORDER_WORK *cow, void *syswork, int o
 	
 	bit_no = CO_REQUEST_TransmitBufferSet(&apw->cow, CSELECT_ALL, order_no, 
 		work, sizeof(ACTIN_GAME_PARAM));
-	OS_TPrintf("ƒ^[ƒ“I—¹Œã‚Ìƒpƒ‰ƒ[ƒ^ƒf[ƒ^‘S‘—MBƒTƒCƒY%dbyte\n", sizeof(ACTIN_GAME_PARAM));
+	OS_TPrintf("ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ‡ãƒ¼ã‚¿å…¨é€ä¿¡ã€‚ã‚µã‚¤ã‚ºï¼%dbyte\n", sizeof(ACTIN_GAME_PARAM));
 	return bit_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ^[ƒ“I—¹Œã‚Ìƒpƒ‰ƒ[ƒ^XV
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_TurnParamUpdate(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -3294,17 +3294,17 @@ static void Recieve_TurnParamUpdate(CONTEST_ORDER_WORK *cow, void *syswork, cons
 	apw->a_game = *a_game;
 
 	
-	//-- óM‚µ‚½ƒf[ƒ^‚É]‚Á‚Ä‘‚«Š·‚¦ˆ— --//
-	//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“íœ
+	//-- å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã«å¾“ã£ã¦æ›¸ãæ›ãˆå‡¦ç† --//
+	//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	AT_AppealPointActorDelAll(&apw->sys);
-	//ŸƒAƒCƒRƒ“íœ
+	//æ¬¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	AT_NextIconActorDelAll(&apw->sys);
-	//ƒpƒlƒ‹‘‚«Š·‚¦
+	//ãƒ‘ãƒãƒ«æ›¸ãæ›ãˆ
 	//BreederParamBmpWriteAll(apw);
 	AT_BreederPanelFontOamPosUpdate(apw);
 	BreederPanelColorChangeAll(apw);
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(&apw->cow, req_head, NULL, 0);
 }
 
@@ -3314,12 +3314,12 @@ static void Recieve_TurnParamUpdate(CONTEST_ORDER_WORK *cow, void *syswork, cons
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -3334,11 +3334,11 @@ static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, vo
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -3365,9 +3365,9 @@ static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HE
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AOLOCAL_TALK_PUT\‘¢‘Ì
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AOLOCAL_TALK_PUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AOTCB_TalkPut(TCB_PTR tcb, void *work)

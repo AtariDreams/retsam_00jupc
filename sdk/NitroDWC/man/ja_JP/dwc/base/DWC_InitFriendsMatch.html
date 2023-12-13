@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_InitFriendsMatch</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_InitFriendsMatch</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -26,92 +26,92 @@ void DWC_InitFriendsMatch( DWCFriendsMatchControl* dwccnt,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �}�b�`���C�N��F�B�Ǘ��̂��߂̋@�\�Q�ł���<A href="FriendsMatch.html">FriendsMatch���C�u����</A>�����������܂��B
-		</P>
-		<P>
-		  <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>�֐����Ăяo���O�ɂ��̊֐����Ăяo���Ă��������B
+		  マッチメイクや友達管理のための機能群である<A href="FriendsMatch.html">FriendsMatchライブラリ</A>を初期化します。
 		</P>
 		<P>
-		  <code>dwccnt</code>�́A<A href="FriendsMatch.html">FriendsMatch���C�u����</A>�̐���p�̃o�b�t�@�ł��B�A�v���P�[�V�����ŁADWCFriendsMatchControl�\���̕��̃o�b�t�@���m�ۂ��A
-		  <a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>���Ăяo���܂ŁA�ێ����Ă��������B
+		  <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数を呼び出す前にこの関数を呼び出してください。
 		</P>
 		<P>
-		  <code>userdata</code>�́A<a href="DWC_CreateUserData.html">DWC_CreateUserData</a>�ō쐬���ꂽ�ADWCUserData�\���̂ւ̃|�C���^���w�肵�Ă��������B
-		  ���̃o�b�t�@�́A<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>���Ăяo���܂ŁA�ێ����Ă��������B
+		  <code>dwccnt</code>は、<A href="FriendsMatch.html">FriendsMatchライブラリ</A>の制御用のバッファです。アプリケーションで、DWCFriendsMatchControl構造体分のバッファを確保し、
+		  <a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>を呼び出すまで、保持してください。
 		</P>
 		<P>
-		  <code>productID, gameName, secretKey</code>�́A�Q�[���^�C�g�����Ɋ��蓖�Ă��܂��B
-		  ���̒P�ʂ�GameSpy�T�[�o�̊��蓖�Ă��s���A�}�b�`���C�N��F�B�֌W�쐬�͈̔͐ݒ���s���܂��B�����A�d���n�i���{��łƖk�Ĕł͒ʐM�ł��Ȃ��Ȃǁj��Q�[���̎�ނȂǂ̓���Q�[���^�C�g���͈͓̔��ł����͈̔͐ݒ���s�������ꍇ�́A
-		  <a href="DWC_CreateUserData.html">DWC_CreateUserData</a>�֐��Őݒ�ł��閼�O��Ԃ��g�p���Ă��������B
+		  <code>userdata</code>は、<a href="DWC_CreateUserData.html">DWC_CreateUserData</a>で作成された、DWCUserData構造体へのポインタを指定してください。
+		  このバッファは、<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>を呼び出すまで、保持してください。
 		</P>
-		<P><code>sendBufSize, recvBufSize</code>�́A�}�b�`���C�N�������DWC���C�u�������m�ۂ���ADS���m��Reliable����M�p�̃o�b�t�@�T�C�Y���w�肵�܂��iReliable���M�ɂ��Ă�<A href="DWC_SendReliable.html">DWC_SendReliable</A>�֐����Q�Ƃ��Ă��������j�B
-		  <a href="DWC_SetMemFunc.html">DWC_SetMemFunc</a>�֐��œn���ꂽ�������m�ۊ֐��ɂ��A�ڑ����DS���ɂ��̃T�C�Y�̃o�b�t�@���m�ۂ���܂��B
-		  0���w�肵���ꍇ�̓f�t�H���g��8KByte���m�ۂ���܂��B<BR>
-		  �����ŃT�C�Y�w�肵���o�b�t�@�́A<A href="DWC_SetRecvBuffer.html">DWC_SetRecvBuffer</A>�֐��Ŏw�肷��o�b�t�@�Ƃ͈قȂ�A���C�u�����������Ŏg�p������̂ł��B<BR>
-		  ���̃o�b�t�@�T�C�Y�𒲐�����ꍇ�́A�A�v���P�[�V�������ł�DS���m�̃f�[�^����M�̃T�C�Y��p�x�𓥂܂�����ŁA�o�b�t�@��ꂪ�������Ȃ��悤�ɒ������Ă��������B�܂��A�A�v���P�[�V������Reliable�ʐM���g�p���Ȃ��ꍇ�ł��A���C�u�������s�A�E�c�[�E�s�A�̐ڑ����m������ۂ�Reliable�ʐM���s�Ȃ����߁A�Œ���̗̈�͕K�v�ɂȂ�܂��B�ڂ����́A�uNintendo Wi-Fi Connection NITRO-DWC �v���O���~���O�}�j���A���v���Q�Ƃ��Ă��������B<BR>
-		  ����M�o�b�t�@�T�C�Y�������������ꍇ�́A<A href="DWC_SetSendSplitMax.html">DWC_SetSendSplitMax</A>�֐���p���đ��M�f�[�^�̍ő呗�M�T�C�Y�����������邱�Ƃɂ���āA�o�b�t�@�����Ȃ��悤�ɒ������邱�Ƃ��ł��܂��B
+		<P>
+		  <code>productID, gameName, secretKey</code>は、ゲームタイトル毎に割り当てられます。
+		  この単位でGameSpyサーバの割り当てを行い、マッチメイクや友達関係作成の範囲設定を行います。もし、仕向地（日本語版と北米版は通信できないなど）やゲームの種類などの同一ゲームタイトルの範囲内でこれらの範囲設定を行いたい場合は、
+		  <a href="DWC_CreateUserData.html">DWC_CreateUserData</a>関数で設定できる名前空間を使用してください。
 		</P>
-		<P><code>friendList, friendListLen</code>�́A�A�v���P�[�V�����ŊǗ�����F�B���X�g���w�肵�Ă��������B
-		  �F�B���X�g�́A�A�v���P�[�V������DS�J�[�h�̃o�b�N�A�b�v�ɕۑ�����悤�ɂ��Ă��������B
-		  �F�B���X�g�́A���C�u���������Ŏ����I�ɍX�V����܂��B
-		  �F�B���X�g�ւ̏����ɂ��ẮA�F�B���X�g�Ɋi�[����F�B�����쐬����
+		<P><code>sendBufSize, recvBufSize</code>は、マッチメイク完了後にDWCライブラリが確保する、DS同士のReliable送受信用のバッファサイズを指定します（Reliable送信については<A href="DWC_SendReliable.html">DWC_SendReliable</A>関数を参照してください）。
+		  <a href="DWC_SetMemFunc.html">DWC_SetMemFunc</a>関数で渡されたメモリ確保関数により、接続先のDS毎にこのサイズのバッファが確保されます。
+		  0を指定した場合はデフォルトの8KByteが確保されます。<BR>
+		  ここでサイズ指定したバッファは、<A href="DWC_SetRecvBuffer.html">DWC_SetRecvBuffer</A>関数で指定するバッファとは異なり、ライブラリが内部で使用するものです。<BR>
+		  このバッファサイズを調整する場合は、アプリケーション内でのDS同士のデータ送受信のサイズや頻度を踏まえた上で、バッファ溢れが発生しないように調整してください。また、アプリケーションでReliable通信を使用しない場合でも、ライブラリがピア・ツー・ピアの接続を確立する際にReliable通信を行なうため、最低限の領域は必要になります。詳しくは、「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」を参照してください。<BR>
+		  送受信バッファサイズを小さくした場合は、<A href="DWC_SetSendSplitMax.html">DWC_SetSendSplitMax</A>関数を用いて送信データの最大送信サイズを小さくすることによって、バッファが溢れないように調整することもできます。
+		</P>
+		<P><code>friendList, friendListLen</code>は、アプリケーションで管理する友達リストを指定してください。
+		  友達リストは、アプリケーションでDSカードのバックアップに保存するようにしてください。
+		  友達リストは、ライブラリ内部で自動的に更新されます。
+		  友達リストへの処理については、友達リストに格納する友達情報を作成する
 		  <a href="DWC_CreateExchangeToken.html">DWC_CreateExchangeToken</a> /
-		  <a href="DWC_CreateFriendKeyToken.html">DWC_CreateFriendKeyToken</a>�֐��̐������Q�Ƃ��Ă��������B
-		  �܂��A�F�B���X�g�̓��C�u�������ɃR�s�[���ꂸ�A�n���ꂽ�o�b�t�@�����̂܂܎g�p���܂��̂ŁA<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>�֐����Ăяo���܂ŁA�A�v���P�[�V�����ŕێ����Ă��������B
+		  <a href="DWC_CreateFriendKeyToken.html">DWC_CreateFriendKeyToken</a>関数の説明を参照してください。
+		  また、友達リストはライブラリ中にコピーされず、渡されたバッファをそのまま使用しますので、<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>関数を呼び出すまで、アプリケーションで保持してください。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>dwccnt</CODE></STRONG></EM></TD>
-					<TD width="75%"><A href="FriendsMatch.html">FriendsMatch���C�u����</A>����I�u�W�F�N�g�ւ̃|�C���^</TD>
+					<TD width="75%"><A href="FriendsMatch.html">FriendsMatchライブラリ</A>制御オブジェクトへのポインタ</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>userdata</CODE></STRONG></EM></TD>
-					<TD><A href="DWCUserData.html">DWCUserData�^</A>�̃��[�U�f�[�^�I�u�W�F�N�g�ւ̃|�C���^</TD>
+					<TD><A href="DWCUserData.html">DWCUserData型</A>のユーザデータオブジェクトへのポインタ</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>productID</CODE></STRONG></EM></TD>
-					<TD>GameSpy����^����ꂽ�v���_�N�gID</TD>
+					<TD>GameSpyから与えられたプロダクトID</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>gameName</CODE></STRONG></EM></TD>
-					<TD>GameSpy����^����ꂽ�Q�[�����iC���ꕶ����j</TD>
+					<TD>GameSpyから与えられたゲーム名（C言語文字列）</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>secretKey</CODE></STRONG></EM></TD>
-					<TD>GameSpy����^����ꂽ�V�[�N���b�g�L�[�iC���ꕶ����j</TD>
+					<TD>GameSpyから与えられたシークレットキー（C言語文字列）</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>sendBufSize</CODE></STRONG></EM></TD>
-					<TD>DS���m�̒ʐM�Ŏg�����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B</TD>
+					<TD>DS同士の通信で使う送信バッファサイズ。0ならデフォルト8KByteを使用する。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>recvBufSize</CODE></STRONG></EM></TD>
-					<TD>DS���m�̒ʐM�Ŏg����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B</TD>
+					<TD>DS同士の通信で使う受信バッファサイズ。0ならデフォルト8KByteを使用する。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>friendList</CODE></STRONG></EM></TD>
-					<TD>�ő�v�f�����̔z�񂪊m�ۂ��ꂽ�F�B���X�g�ւ̃|�C���^�i�g�p���Ȃ��ꍇ��NULL�j</TD>
+					<TD>最大要素数分の配列が確保された友達リストへのポインタ（使用しない場合はNULL）</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>friendListLen</CODE></STRONG></EM></TD>
-					<TD>�F�B���X�g�̍ő�v�f���B�ő�l��64�B</TD>
+					<TD>友達リストの最大要素数。最大値は64。</TD>
 				</TR>
 
 			</TBODY>
 		</TABLE>
 
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-		  �Ȃ�
+		  なし
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<a href="DWC_SetMemFunc.html">DWC_SetMemFunc</a>,
@@ -127,14 +127,14 @@ void DWC_InitFriendsMatch( DWCFriendsMatchControl* dwccnt,
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-		  2006/06/05 ���� sendBufSize�ArecvBufSize �Ɋւ��������ǉ�<BR>
-		  2006/01/31 �uFriendsMatch���C�u�����v�ւ̃����N��ݒ肵�A�p��̐������폜<BR>
-		  2006/01/18 ����friendListLen�̍ő�l��64�ł��邱�Ƃ�ǋL<BR>
-		  2005/12/16 ����<BR>
-		  2005/10/26 ����<br>
-		  2005/07/22 ����<BR>
+		  2006/06/05 引数 sendBufSize、recvBufSize に関する説明を追加<BR>
+		  2006/01/31 「FriendsMatchライブラリ」へのリンクを設定し、用語の説明を削除<BR>
+		  2006/01/18 引数friendListLenの最大値が64であることを追記<BR>
+		  2005/12/16 改訂<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

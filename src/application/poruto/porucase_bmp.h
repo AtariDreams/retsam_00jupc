@@ -1,5 +1,5 @@
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg BMPƒƒjƒ…[ƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆ BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  */
 
 #ifndef __H_PORUCASE_BMP_H__
@@ -13,50 +13,50 @@ typedef enum{
 };
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒgƒƒjƒ…[ì¬
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  */
 extern void PoruList_CreatePMenu(PORU_CASE_WORK* wk);
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg@ƒƒjƒ…[ƒŠƒXƒgíœ
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆå‰Šé™¤
  */
 extern void PoruList_DeletePMenu(PORU_CASE_WORK* wk,BOOL trans);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒ{ƒ^ƒ“ƒvƒbƒVƒ…ˆ—
+ *	@brief	ãƒãƒ«ãƒˆãƒœã‚¿ãƒ³ãƒ—ãƒƒã‚·ãƒ¥æ™‚å‡¦ç†
  */
 extern void PoruBtn_StateSet(PORU_CASE_WORK* wk,u8 idx,u8 state);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒgƒ\[ƒg
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã‚½ãƒ¼ãƒˆ
  */
 extern void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode);
 
 /**
- *	@brief	ƒƒjƒ…[ƒŠƒXƒgì¬
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ
  */
 extern void MenuList_Create(PORU_CASE_WORK* wk);
 
 /**
- *	@brief	ƒƒjƒ…[ƒŠƒXƒgíœ
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆå‰Šé™¤
  */
 extern void MenuList_Delete(PORU_CASE_WORK* wk);
 
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE•`‰æ‘OƒƒbƒZ[ƒW•\¦
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  */
 extern void YesNoList_StartMsgSet(PORU_CASE_WORK* wk);
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ğÌ‚Ä‚Ü‚·ƒƒbƒZ[ƒWƒZƒbƒg
+ *	@brief	ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  */
 extern void YesNoList_DelMsgSet(PORU_CASE_WORK* wk);
 
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 extern void YesNoList_Create(PORU_CASE_WORK* wk);
 
 /**
- *	@brief	‰Šú‰æ–Ê•`‰æƒƒbƒZ[ƒWƒZƒbƒg
+ *	@brief	åˆæœŸç”»é¢æç”»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  */
 extern void PoruCase_DrawInitialMsg(PORU_CASE_WORK* wk);
 

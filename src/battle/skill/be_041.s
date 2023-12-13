@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_041.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			041�@�G�́u�ڂ�����v��A�����́u���������v�Ɋ֌W�Ȃ��S�O�̌Œ�_���[�W��^����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			041　敵の「ぼうぎょ」や、自分の「こうげき」に関係なく４０の固定ダメージを与える
  *
  *@author	HisashiSogabe
  *@data		2006.01.19
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 BE_041:
-	//���M�����[�V�����Ń��g���J�b�v�̏ꍇ�́A���܂����܂��ɂ���
+	//レギュレーションでリトルカップの場合は、うまくきまらんにする
 	IF				IF_FLAG_BIT,BUF_PARA_REGULATION_FLAG,REGULATION_FLAG_LITTLE_CUP,Umakukimaran
-	//�^�C�v�␳�v�Z�𖳎�����
+	//タイプ補正計算を無視する
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT
-	//�_���[�W��40��
+	//ダメージを40に
 	VALUE			VAL_SET,BUF_PARA_DAMAGE,-40
 	SEQ_END
 

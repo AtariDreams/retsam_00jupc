@@ -4,7 +4,7 @@
  * @version "$Id: mpstruct.h,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file mpstruct.h
- * @brief MP–³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ ƒf[ƒ^’è‹`
+ * @brief MPç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ‡ãƒ¼ã‚¿å®šç¾©
  * 
  */
 #include "mpconfig.h"
@@ -14,10 +14,10 @@
 extern "C" {
 #endif
 
-/* ƒvƒƒgƒRƒ‹ID */
+/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ID */
 #define		MP_PROTOCOL_ID			(0x0F)
 
-/* ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“ */  
+/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */  
 #define		MP_PROTOCOL_VERSION		(0x01)
   
 
@@ -25,7 +25,7 @@ extern "C" {
 #define		MP_RECV_ACKNOWLEDGE_SEND_NUM	(4)
 
   
-/* •„†‰»•ûŽ® */  
+/* ç¬¦å·åŒ–æ–¹å¼ */  
 typedef enum {
   MP_ENCODE_TYPE_NONE = 0,
   MP_ENCODE_TYPE_TYCHO,  
@@ -33,50 +33,50 @@ typedef enum {
   MP_ENCODE_TYPE_END  
 } MP_ENCODE_TYPE;
 
-/* ’ÊM§ŒäƒR[ƒh */ 
+/* é€šä¿¡åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ */ 
 typedef enum {
-  MP_CONTROL_CODE_ACKNOWLEDGE,		/* ŽóM¬Œ÷ */
-  MP_CONTROL_CODE_RETRY,		/* Ä‘——v‹ */
-  MP_CONTROL_CODE_DATA_CONTINUALLY,	/* ƒf[ƒ^Œp‘± */
-  MP_CONTROL_CODE_DATA_END,		/* ƒf[ƒ^I—¹ */
+  MP_CONTROL_CODE_ACKNOWLEDGE,		/* å—ä¿¡æˆåŠŸ */
+  MP_CONTROL_CODE_RETRY,		/* å†é€è¦æ±‚ */
+  MP_CONTROL_CODE_DATA_CONTINUALLY,	/* ãƒ‡ãƒ¼ã‚¿ç¶™ç¶š */
+  MP_CONTROL_CODE_DATA_END,		/* ãƒ‡ãƒ¼ã‚¿çµ‚äº† */
   MP_CONTROL_CODE_END
 } MP_CONTROL_CODE;  
 
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_0 •„†‰»‚³‚ê‚È‚¢ */  
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€0 ç¬¦å·åŒ–ã•ã‚Œãªã„ */  
 typedef struct {
-  u32 protocol_id	: 8;	/* ƒvƒƒgƒRƒ‹”Ô† */
-  u32 protocol_version	: 4;	/* ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“ */
-  u32 encode_type	: 4;	/* •„†‰»•ûŽ® MP_ENCODE_TYPE */
-  u32 encode_data	: 16;	/* •œ†—pƒf[ƒ^ */    
+  u32 protocol_id	: 8;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ç•ªå· */
+  u32 protocol_version	: 4;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
+  u32 encode_type	: 4;	/* ç¬¦å·åŒ–æ–¹å¼ MP_ENCODE_TYPE */
+  u32 encode_data	: 16;	/* å¾©å·ç”¨ãƒ‡ãƒ¼ã‚¿ */    
 } MpSendHeader0;		/* 4byte */
 
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_1 •„†‰»‚³‚ê‚é */    
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€1 ç¬¦å·åŒ–ã•ã‚Œã‚‹ */    
 typedef struct {
-  u32 game_id		: 8;	/* ƒQ[ƒ€ƒ^ƒCƒgƒ‹ID */
-  u32 game_version	: 4;	/* ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“ */
+  u32 game_id		: 8;	/* ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒˆãƒ«ID */
+  u32 game_version	: 4;	/* ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
   u32 language		: 4;	/* OS_LANGUAGE */
-  u32 game_etc		: 16;	/* ƒQ[ƒ€•â‘«î•ñ */
+  u32 game_etc		: 16;	/* ã‚²ãƒ¼ãƒ è£œè¶³æƒ…å ± */
 } MpSendHeader1;		/* 4byte */
   
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_2 •„†‰»‚³‚ê‚é */    
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€2 ç¬¦å·åŒ–ã•ã‚Œã‚‹ */    
 typedef struct {
-  u32 sequence_num	: 8;	/* ’ÊMƒV[ƒPƒ“ƒX”Ô† */
-  u32 control_code	: 8;	/* ’ÊM§ŒäƒR[ƒh MP_CONTROL_CODE  */
-  u32 crc		: 16;	/* ƒf[ƒ^CRC */
+  u32 sequence_num	: 8;	/* é€šä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå· */
+  u32 control_code	: 8;	/* é€šä¿¡åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ MP_CONTROL_CODE  */
+  u32 crc		: 16;	/* ãƒ‡ãƒ¼ã‚¿CRC */
 } MpSendHeader2;		/* 4byte */  
 
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_3 •„†‰»‚³‚ê‚é */    
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€3 ç¬¦å·åŒ–ã•ã‚Œã‚‹ */    
 typedef struct {
-  u32 header_size	: 8;	/* ƒwƒbƒ_[ƒTƒCƒY */
-  u32 data_size		: 24;	/* ƒf[ƒ^ƒTƒCƒY */
+  u32 header_size	: 8;	/* ãƒ˜ãƒƒãƒ€ãƒ¼ã‚µã‚¤ã‚º */
+  u32 data_size		: 24;	/* ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º */
 } MpSendHeader3;		/* 4byte */
 
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_4 Šg’£—pi–¢Žg—pj*/    
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€4 æ‹¡å¼µç”¨ï¼ˆæœªä½¿ç”¨ï¼‰*/    
 typedef struct {
   u32 extend;
 } MpSendHeader4;		/* 4byte */
 
-/* “]‘—ƒf[ƒ^ƒwƒbƒ_ */  
+/* è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ */  
 typedef struct {
   MpSendHeader0 data0;
   MpSendHeader1 data1;
@@ -84,79 +84,79 @@ typedef struct {
   MpSendHeader3 data3;
 } MpSendHeader;			/* 16byte */
 
-/* ƒr[ƒRƒ“ƒf[ƒ^ƒwƒbƒ_0 •„†‰»‚³‚ê‚È‚¢ */  
+/* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€0 ç¬¦å·åŒ–ã•ã‚Œãªã„ */  
 typedef struct {
-  u32 protocol_id	: 8;	/* ƒvƒƒgƒRƒ‹”Ô† */
-  u32 protocol_version	: 4;	/* ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“ */
-  u32 encode_type	: 4;	/* •„†‰»•ûŽ® MP_ENCODE_TYPE */
-  u32 encode_data	: 16;	/* •œ†—pƒf[ƒ^ */    
+  u32 protocol_id	: 8;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ç•ªå· */
+  u32 protocol_version	: 4;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
+  u32 encode_type	: 4;	/* ç¬¦å·åŒ–æ–¹å¼ MP_ENCODE_TYPE */
+  u32 encode_data	: 16;	/* å¾©å·ç”¨ãƒ‡ãƒ¼ã‚¿ */    
 } MpBeaconHeader0;		/* 4byte */
   
-/* ƒr[ƒRƒ“ƒf[ƒ^ƒwƒbƒ_1 •„†‰»‚³‚ê‚È‚¢ */  
+/* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€1 ç¬¦å·åŒ–ã•ã‚Œãªã„ */  
 typedef struct {
-  u32 game_id		: 8;	/* ƒQ[ƒ€ƒ^ƒCƒgƒ‹ID */
-  u32 game_version	: 4;	/* ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“ */
+  u32 game_id		: 8;	/* ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒˆãƒ«ID */
+  u32 game_version	: 4;	/* ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
   u32 language		: 4;	/* OS_LANGUAGE */
-  u32 connect_id	: 16;	/* Ú‘±ID */
+  u32 connect_id	: 16;	/* æŽ¥ç¶šID */
 } MpBeaconHeader1;		/* 4byte */
 
-/* ƒr[ƒRƒ“ƒf[ƒ^ƒwƒbƒ_ */  
+/* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ */  
 typedef struct {
   MpBeaconHeader0 data0;
   MpBeaconHeader1 data1;
 } MpBeaconHeader;  
   
 
-/* SSIDƒf[ƒ^ƒwƒbƒ_0 •„†‰»‚³‚ê‚È‚¢ */  
+/* SSIDãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€0 ç¬¦å·åŒ–ã•ã‚Œãªã„ */  
 typedef struct {
-  u32 protocol_id	: 8;	/* ƒvƒƒgƒRƒ‹”Ô† */
-  u32 protocol_version	: 4;	/* ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“ */
-  u32 encode_type	: 4;	/* •„†‰»•ûŽ® MP_ENCODE_TYPE */
-  u32 encode_data	: 16;	/* •œ†—pƒf[ƒ^ */    
+  u32 protocol_id	: 8;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ç•ªå· */
+  u32 protocol_version	: 4;	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
+  u32 encode_type	: 4;	/* ç¬¦å·åŒ–æ–¹å¼ MP_ENCODE_TYPE */
+  u32 encode_data	: 16;	/* å¾©å·ç”¨ãƒ‡ãƒ¼ã‚¿ */    
 } MpSsidHeader0;		/* 4byte */
   
-/* SSIDƒf[ƒ^ƒwƒbƒ_1 •„†‰»‚³‚ê‚È‚¢ */  
+/* SSIDãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€1 ç¬¦å·åŒ–ã•ã‚Œãªã„ */  
 typedef struct {
-  u32 game_id		: 8;	/* ƒQ[ƒ€ƒ^ƒCƒgƒ‹ID */
-  u32 game_version	: 4;	/* ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“ */
+  u32 game_id		: 8;	/* ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒˆãƒ«ID */
+  u32 game_version	: 4;	/* ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
   u32 language		: 4;	/* OS_LANGUAGE */
-  u32 connect_id	: 16;	/* Ú‘±ID */
+  u32 connect_id	: 16;	/* æŽ¥ç¶šID */
 } MpSsidHeader1;		/* 4byte */
 
-/* SSIDƒf[ƒ^ƒwƒbƒ_ */  
+/* SSIDãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ */  
 typedef struct {
   MpSsidHeader0 data0;
   MpSsidHeader1 data1;
 } MpSsidHeader;			/* 8byte */
 
   
-/* SSIDƒf[ƒ^ */   
+/* SSIDãƒ‡ãƒ¼ã‚¿ */   
 typedef struct {
   MpSsidHeader header;
   u8 dummy[24-8];
 } MpSsidData;			/* 24byte */
   
 
-/* ƒ†[ƒU[–¼Ši”[—pƒoƒbƒtƒ@ */  
+/* ãƒ¦ãƒ¼ã‚¶ãƒ¼åæ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ */  
 #define MP_USERGAMEINFO_NAME_LENGTH	(12)
 typedef struct {
   u16 data[MP_USERGAMEINFO_NAME_LENGTH];
 } MpUserName;			/* 24byte */
 
-/* WMbssDesc‚ÉŠÜ‚Ü‚ê‚éÚ‘±ƒf[ƒ^ */  
+/* WMbssDescã«å«ã¾ã‚Œã‚‹æŽ¥ç¶šãƒ‡ãƒ¼ã‚¿ */  
 typedef struct {
-  MpUserName name;		/* ƒŒƒ“ƒWƒƒ[^ƒgƒŒ[ƒi–¼ */
-  MpUserName user_id;		/* ƒŒƒ“ƒWƒƒ[”Ô†^ƒgƒŒ[ƒi”Ô† */
+  MpUserName name;		/* ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ãƒˆãƒ¬ãƒ¼ãƒŠå */
+  MpUserName user_id;		/* ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ç•ªå·ï¼ãƒˆãƒ¬ãƒ¼ãƒŠç•ªå· */
 } MpUserGameInfoData;		/* 48byte */
 
-/* WMbssDescƒf[ƒ^ */  
+/* WMbssDescãƒ‡ãƒ¼ã‚¿ */  
 typedef struct {
   MpBeaconHeader	header;
   MpUserGameInfoData	data;
 } MpUserGameInfo;  
   
 
-#define	MP_SIZE_MAC_DATA	(4)	/* Ž¯•Ê—pMACƒAƒhƒŒƒXƒTƒCƒY */
+#define	MP_SIZE_MAC_DATA	(4)	/* è­˜åˆ¥ç”¨MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚µã‚¤ã‚º */
 typedef struct {
   union {
     u8 data[MP_SIZE_MAC_DATA];
@@ -164,7 +164,7 @@ typedef struct {
   } u;
 } MpMACAddData;
 
-#define	MP_SIZE_MAC_VENDOR_DATA	(2)	/* MACƒAƒhƒŒƒXƒxƒ“ƒ_IDƒTƒCƒY */
+#define	MP_SIZE_MAC_VENDOR_DATA	(2)	/* MACã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ™ãƒ³ãƒ€IDã‚µã‚¤ã‚º */
 typedef struct {
   union {
     u8 data[MP_SIZE_MAC_VENDOR_DATA];
@@ -180,7 +180,7 @@ typedef enum {
   MP_TRANS_MODE_END
 } MP_TRANS_MODE;
 
-/* ƒf[ƒ^“]‘—ƒXƒe[ƒ^ƒX */
+/* ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ */
 typedef enum {
   MP_TRANS_STATUS_ENABLE,	/*  */
   MP_TRANS_STATUS_WAIT,
@@ -202,15 +202,15 @@ typedef struct {
   u8 seq_num;
 } MpTransData;
 
-/* Žq‹@ƒXƒe[ƒ^ƒX’è‹` */  
+/* å­æ©Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å®šç¾© */  
 typedef enum {
   MP_CHILD_MP_STATUS_READY = 0,
-  MP_CHILD_MP_STATUS_SCAN_1,		/* Å‰‚Ée‹@’Tõ‚·‚é‚½‚ß‚ÌƒXƒe[ƒg */
-  MP_CHILD_MP_STATUS_SCAN_2,		/* ‘I‘ð‚µ‚½e‹@‚ÆÚ‘±‚·‚é‚½‚ß‚ÌƒXƒe[ƒg */
+  MP_CHILD_MP_STATUS_SCAN_1,		/* æœ€åˆã«è¦ªæ©ŸæŽ¢ç´¢ã™ã‚‹ãŸã‚ã®ã‚¹ãƒ†ãƒ¼ãƒˆ */
+  MP_CHILD_MP_STATUS_SCAN_2,		/* é¸æŠžã—ãŸè¦ªæ©Ÿã¨æŽ¥ç¶šã™ã‚‹ãŸã‚ã®ã‚¹ãƒ†ãƒ¼ãƒˆ */
   MP_CHILD_MP_STATUS_MAX
 } MP_CHILD_MP_STATUS;
   
-/* Žq‹@‚ª•ÛŽ‚·‚ée‹@î•ñ */ 
+/* å­æ©ŸãŒä¿æŒã™ã‚‹è¦ªæ©Ÿæƒ…å ± */ 
 typedef struct {
   MpMACAddData	mac_addr;		/* 4byte */
   MpUserName	name;			/* 24byte */
@@ -220,25 +220,25 @@ typedef struct {
   u8		data_trans_ready;	/* 1byte */
 } MpDataConnectionUser;			/* 56byte */
   
-/* MP’ÊMiŽq‹@j—pƒf[ƒ^’è‹` */  
+/* MPé€šä¿¡ï¼ˆå­æ©Ÿï¼‰ç”¨ãƒ‡ãƒ¼ã‚¿å®šç¾© */  
 typedef struct {
   MpDataConnectionUser user_list[MP_SIZE_RECEIVE_MP_PARENT_LIST]; /* 56*8byte */
   u16		time_count; 
   u8		scan_retry_count;
-  u8		select : 4;	/* ”CˆÓ‚É‘I‘ð‚µ‚½e‹@”Ô† iMP_CHILD_MP_STATUS_SCAN_2‚Å‚ÌƒXƒLƒƒƒ“‘ÎÛj */
+  u8		select : 4;	/* ä»»æ„ã«é¸æŠžã—ãŸè¦ªæ©Ÿç•ªå· ï¼ˆMP_CHILD_MP_STATUS_SCAN_2ã§ã®ã‚¹ã‚­ãƒ£ãƒ³å¯¾è±¡ï¼‰ */
   u8		status : 4;
 } MpDataChildMP;		/* 452byte */
 
-/* e‹@ƒXƒe[ƒ^ƒX’è‹` */  
+/* è¦ªæ©Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å®šç¾© */  
 typedef enum {
   MP_PARENT_MP_STATUS_READY = 0,
-  MP_PARENT_MP_STATUS_SEARCH_CHANNEL,	/* ’ÊM‚ÉŽg—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹Ý’èƒXƒe[ƒg */  
-  MP_PARENT_MP_STATUS_WAIT_CONNECT,	/* Ú‘±‚µ‚Ä‚­‚éŽq‹@‘Ò‚¿ƒXƒe[ƒg */
+  MP_PARENT_MP_STATUS_SEARCH_CHANNEL,	/* é€šä¿¡ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«è¨­å®šã‚¹ãƒ†ãƒ¼ãƒˆ */  
+  MP_PARENT_MP_STATUS_WAIT_CONNECT,	/* æŽ¥ç¶šã—ã¦ãã‚‹å­æ©Ÿå¾…ã¡ã‚¹ãƒ†ãƒ¼ãƒˆ */
   MP_PARENT_MP_STATUS_MAX
 } MP_PARENT_MP_STATUS;
 
   
-/* e‹@‚ª•ÛŽ‚·‚éŽq‹@î•ñ */ 
+/* è¦ªæ©ŸãŒä¿æŒã™ã‚‹å­æ©Ÿæƒ…å ± */ 
 typedef struct {
   MpMACAddData	mac_addr;		/* 4byte */
   MpMACVendorData mac_vendor;		/* 2byte */
@@ -249,7 +249,7 @@ typedef struct {
   u8		dummy;			/* 1byte */
 } MpDataParentConnectionUser;		/* 12byte */
   
-/* MP’ÊMie‹@j—pƒf[ƒ^’è‹` */  
+/* MPé€šä¿¡ï¼ˆè¦ªæ©Ÿï¼‰ç”¨ãƒ‡ãƒ¼ã‚¿å®šç¾© */  
 typedef struct {
   MpDataParentConnectionUser user_list[MP_SIZE_RECEIVE_MP_CHILD_LIST]; /* 8*12byte */
   u8 status;
@@ -264,70 +264,70 @@ typedef union {
   MpDataChildMP		child_mp;
 } MpModeData;
 
-/* “d”gŽg—p—¦‚ÌÅ‘åi‰Šúj’l */  
+/* é›»æ³¢ä½¿ç”¨çŽ‡ã®æœ€å¤§ï¼ˆåˆæœŸï¼‰å€¤ */  
 #define MP_MEASURE_BUSYRATIO_MAX	(102)
   
 
 /**
- * “à•”ƒXƒe[ƒ^ƒX’è‹`
+ * å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å®šç¾©
  */  
 typedef enum {
-  MP_STATUS_INIT = 0,	/* ‰Šú‰»ó‘Ô */
-  MP_STATUS_READY,	/* ‘Ò‹@ó‘Ô */
-  MP_STATUS_STOP,	/* “dŒ¹–¢“Š“üó‘Ô */  
-  MP_STATUS_IDLE,	/* ƒAƒCƒhƒ‹ó‘Ô */  
-  MP_STATUS_ERROR,	/* ‚Ç‚¤‚É‚à‚È‚ç‚È‚¢ƒGƒ‰[ó‘Ô */
-  MP_STATUS_BUSY,	/* ó‘Ô‘JˆÚ’†‚É‚Â‚«ƒrƒW[ó‘Ô */
-  MP_STATUS_SCAN,	/* e‹@‚ÌƒXƒLƒƒƒ“’†ó‘Ô iŽq‹@ê—pƒXƒe[ƒ^ƒXj*/
-  MP_STATUS_ENDSCAN,	/* ƒXƒLƒƒƒ“I—¹ó‘Ô iŽq‹@ê—pƒXƒe[ƒ^ƒXj*/
-  MP_STATUS_PARENT,	/* e‹@‚Æ‚µ‚ÄÚ‘±Ï‚Ýó‘Ô */
-  MP_STATUS_CHILD,	/* Žq‹@‚Æ‚µ‚ÄÚ‘±Ï‚Ýó‘Ô */
-  MP_STATUS_PARENT_MP,	/* e‹@‚Æ‚µ‚ÄMP’ÊMó‘Ô */
-  MP_STATUS_CHILD_MP,	/* Žq‹@‚Æ‚µ‚ÄMP’ÊMó‘Ô */
-  MP_STATUS_END,	/* ƒ‰ƒCƒuƒ‰ƒŠI—¹ó‘Ô */
+  MP_STATUS_INIT = 0,	/* åˆæœŸåŒ–çŠ¶æ…‹ */
+  MP_STATUS_READY,	/* å¾…æ©ŸçŠ¶æ…‹ */
+  MP_STATUS_STOP,	/* é›»æºæœªæŠ•å…¥çŠ¶æ…‹ */  
+  MP_STATUS_IDLE,	/* ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ */  
+  MP_STATUS_ERROR,	/* ã©ã†ã«ã‚‚ãªã‚‰ãªã„ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ */
+  MP_STATUS_BUSY,	/* çŠ¶æ…‹é·ç§»ä¸­ã«ã¤ããƒ“ã‚¸ãƒ¼çŠ¶æ…‹ */
+  MP_STATUS_SCAN,	/* è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³ä¸­çŠ¶æ…‹ ï¼ˆå­æ©Ÿå°‚ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‰*/
+  MP_STATUS_ENDSCAN,	/* ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†çŠ¶æ…‹ ï¼ˆå­æ©Ÿå°‚ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‰*/
+  MP_STATUS_PARENT,	/* è¦ªæ©Ÿã¨ã—ã¦æŽ¥ç¶šæ¸ˆã¿çŠ¶æ…‹ */
+  MP_STATUS_CHILD,	/* å­æ©Ÿã¨ã—ã¦æŽ¥ç¶šæ¸ˆã¿çŠ¶æ…‹ */
+  MP_STATUS_PARENT_MP,	/* è¦ªæ©Ÿã¨ã—ã¦MPé€šä¿¡çŠ¶æ…‹ */
+  MP_STATUS_CHILD_MP,	/* å­æ©Ÿã¨ã—ã¦MPé€šä¿¡çŠ¶æ…‹ */
+  MP_STATUS_END,	/* ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†çŠ¶æ…‹ */
   MP_STATUS_MAX
 } MP_STATUS;
   
 
 /**
- * ’ÊMƒV[ƒPƒ“ƒX”Ô†’è‹`
+ * é€šä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·å®šç¾©
  */  
 typedef enum {
-  MP_SEQUENCE_APP = 0,		/* ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªŽ©—R‚ÉŽg—p‚Å‚«‚é’l */
-  MP_SEQUENCE_APP_END	= 0xF0,	/* ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªŽ©—R‚ÉŽg—p‚Å‚«‚é’l‚ÌÅŒã */  
-  MP_SEQUENCE_READY	= 0xFD,	/* ƒf[ƒ^‘—M€”õƒV[ƒPƒ“ƒX */
-  MP_SEQUENCE_USER_DATA	= 0xFE,	/* ƒ†[ƒU|ƒf[ƒ^‘—MƒV[ƒPƒ“ƒX */
+  MP_SEQUENCE_APP = 0,		/* ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒè‡ªç”±ã«ä½¿ç”¨ã§ãã‚‹å€¤ */
+  MP_SEQUENCE_APP_END	= 0xF0,	/* ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒè‡ªç”±ã«ä½¿ç”¨ã§ãã‚‹å€¤ã®æœ€å¾Œ */  
+  MP_SEQUENCE_READY	= 0xFD,	/* ãƒ‡ãƒ¼ã‚¿é€ä¿¡æº–å‚™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  MP_SEQUENCE_USER_DATA	= 0xFE,	/* ãƒ¦ãƒ¼ã‚¶âˆ’ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
   MP_SEQUENCE_END
 } MP_SEQUENCE;
 
   
 typedef struct {
 
-  /* Œ»Ý‚ÌƒXƒe[ƒ^ƒX */
+  /* ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ */
   u8 status;
 
-  /* •ÏX—v‹ƒXƒe[ƒ^ƒX */
+  /* å¤‰æ›´è¦æ±‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ */
   u8 request_status;
   
-  /* ’ÊMƒ‚[ƒh */
+  /* é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ */
   u8 mode;
 
-  /* ’ÊMƒ|[ƒg */
+  /* é€šä¿¡ãƒãƒ¼ãƒˆ */
   u8 port;
   
   /* GameID */
   u32 ggid;
   
-  /* –Ú•WƒXƒe[ƒ^ƒX */
+  /* ç›®æ¨™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ */
   MP_STATUS target;
 
   /* AID */
   u16 aid;
   
-  /* ƒQ[ƒ€ƒtƒŒ[ƒ€ŠÔŠu */
+  /* ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ é–“éš” */
   u16 frame_period;
 
-  /* Indication’Ê’m—pƒR[ƒ‹ƒoƒbƒNÝ’èÏ‚Ýƒtƒ‰ƒO */
+  /* Indicationé€šçŸ¥ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®šæ¸ˆã¿ãƒ•ãƒ©ã‚° */
   BOOL indication_callback_flag;     
 
   BOOL connect_flag;

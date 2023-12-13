@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_145.s
- *@brief	�퓬�V�[�P���X
- *			���t���b�V���V�[�P���X
+ *@brief	戦闘シーケンス
+ *			リフレッシュシーケンス
 
  *@author	HisashiSogabe
  *@data		2006.02.09
@@ -16,7 +16,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_145:
-	//�ǂ��A�܂ЁA�₯�ǂɂȂ��Ă��Ȃ��Ȃ�A���܂����܂��
+	//どく、まひ、やけどになっていないなら、うまくきまらん
 	IF_PSP		IF_FLAG_NBIT,SIDE_ATTACK,ID_PSP_condition,CONDITION_KARAGENKI,Umakukimaran
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF
 	PSP_VALUE	VAL_SET,SIDE_ATTACK,ID_PSP_condition,0

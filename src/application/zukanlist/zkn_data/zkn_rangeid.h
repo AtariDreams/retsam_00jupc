@@ -1,7 +1,7 @@
 #ifndef __ZKN_RANGEID_H__
 #define __ZKN_RANGEID_H_
 
-/* ƒtƒB[ƒ‹ƒh•ª•zID */
+/* ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID */
 #define ZKN_FLD_ID_NONE (0)
 #define ZKN_FLD_ID_C02 (1)
 #define ZKN_FLD_ID_C04 (2)
@@ -54,7 +54,7 @@
 #define ZKN_FLD_ID_W230 (49)
 #define ZKN_FLD_ID_D03 (50)
 #define ZKN_FLD_ID_MAX (51)
-/* ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID */
+/* ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID */
 #define ZKN_DAN_ID_NONE (0)
 #define ZKN_DAN_ID_D01 (1)
 #define ZKN_DAN_ID_D03 (2)

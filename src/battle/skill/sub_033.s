@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_033.s
- *@brief	�퓬�V�[�P���X
- *			��߂����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ゆめくいシーケンス
  *@author	HisashiSogabe
  *@data		2005.12.06
  *
@@ -15,25 +15,25 @@
 	.include	"waza_seq_def.h"
 
 SUB_033:
-	//�q�[���u���b�N���󂯂Ă��鎞�͉񕜓���Ȃ�
+	//ヒールブロックを受けている時は回復動作なし
 	IF_PSP			IF_FLAG_NE,SIDE_ATTACK,ID_PSP_wkw_healblock_count,0,Healblock
-	//�_���[�W�ʂ𔼕���
+	//ダメージ量を半分に
 	VALUE_WORK	VAL_SET,BUF_PARA_HP_CALC_WORK,BUF_PARA_HIT_DAMAGE
-	//���łɃ_���[�W�ʂ�0�Ȃ�A�v�Z���Ȃ���0�̂܂܂ɂ���
+	//すでにダメージ量が0なら、計算しないで0のままにする
 	IF				IF_FLAG_EQ,BUF_PARA_HP_CALC_WORK,0,SUB_033_NEXT
 	DAMAGE_DIV		BUF_PARA_HP_CALC_WORK,2
-	//�������ʂŋz�����n�̈З̓A�b�v�́A�З̓A�b�v
+	//装備効果で吸い取る系の威力アップは、威力アップ
 	SOUBI_CHECK		SOUBI_NO_HAVE,SIDE_ATTACK,SOUBI_KYUSYUURYOKUUP,SUB_033_NEXT
 	SOUBI_ATK_GET	SIDE_ATTACK,BUF_PARA_CALC_WORK
 	VALUE			VAL_ADD,BUF_PARA_CALC_WORK,100
 	VALUE_WORK		VAL_MUL,BUF_PARA_HP_CALC_WORK,BUF_PARA_CALC_WORK
 	VALUE			VAL_DIV,BUF_PARA_HP_CALC_WORK,100
 SUB_033_NEXT:
-	//HP����Ώۂ�AttackClient��
+	//HP操作対象をAttackClientに
 	VALUE_WORK	VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE		VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
-	//�����񕜂̂��߂ɕ������]
+	//半分回復のために符号反転
 	VALUE		VAL_MUL,BUF_PARA_HP_CALC_WORK,-1
 	GOSUB		SUB_SEQ_HP_CALC
 	MESSAGE		YumekuiMineMsg,TAG_NICK,SIDE_DEFENCE

@@ -1,6 +1,6 @@
 /**
  *	@file	tmap_act.c
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹@ƒZƒ‹ƒAƒNƒ^[§Œä
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆ¶å¾¡
  *	@author	Miyuki Iwasawa
  *	@date	05.12.21
  */
@@ -37,7 +37,7 @@
 #define TMAP_ACTRES_MAX	(5)
 
 
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void TMapCellActorInit(TMAP_MAIN_DAT *pMain);
 void TMapCellActorRelease(TMAP_MAIN_DAT *pMain);
 void TMapCellActorMain(TMAP_MAIN_DAT *pMain);
@@ -51,23 +51,23 @@ void TMapCellActorInit(TMAP_MAIN_DAT *pMain)
 
 	initVramTransferManagerHeap(32,pMain->heapID);
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	pMain->pCActSys = CATS_AllocMemory(pMain->heapID);
 	pMain->pCActRes = CATS_ResourceCreate(pMain->pCActSys);
 
 	{
 		TCATS_OAM_INIT	coi = {
-			0,128,		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn/I—¹
-			0,32,		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn/I—¹
-			0,128,		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn/I—¹
-			0,32,		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn/I—¹
+			0,128,		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,128,		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			TMAP_ACTRES_MAX,	//ID§Œä”
-			1024,	//ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			1024,	//ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒƒCƒ“OBJƒ‚[ƒhŽw’è
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒTƒuOBJƒ‚[ƒhŽw’è
+			TMAP_ACTRES_MAX,	//IDåˆ¶å¾¡æ•°
+			1024,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			1024,	//ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ãƒ¡ã‚¤ãƒ³OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ã‚µãƒ–OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
 		};
 
 		CATS_SystemInit( pMain->pCActSys, &coi, &ccmm, 32 );
@@ -77,24 +77,24 @@ void TMapCellActorInit(TMAP_MAIN_DAT *pMain)
 	{
 #if 0
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/tmapn_res_chr.txt",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/tmapn_res_pal.txt",		// ƒpƒŒƒbƒg
-			"data/tmapn_res_cell.txt",	// ƒZƒ‹
-			"data/tmapn_res_canm.txt",	// ƒZƒ‹ƒAƒjƒ
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/tmapn_celact.txt"		// ƒwƒbƒ_[		
+			"data/tmapn_res_chr.txt",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/tmapn_res_pal.txt",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/tmapn_res_cell.txt",	// ã‚»ãƒ«
+			"data/tmapn_res_canm.txt",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/tmapn_celact.txt"		// ãƒ˜ãƒƒãƒ€ãƒ¼		
 		};
 		CATS_ResourceLoad(pMain->pCActSys,pMain->pCActRes,&list);
 #else
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/tmapn_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/tmapn_pal.resdat",		// ƒpƒŒƒbƒg
-			"data/tmapn_cell.resdat",	// ƒZƒ‹
-			"data/tmapn_canm.resdat",	// ƒZƒ‹ƒAƒjƒ
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/tmapn_celact.cldat"		// ƒwƒbƒ_[		
+			"data/tmapn_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/tmapn_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/tmapn_cell.resdat",	// ã‚»ãƒ«
+			"data/tmapn_canm.resdat",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/tmapn_celact.cldat"		// ãƒ˜ãƒƒãƒ€ãƒ¼		
 		};
 		CATS_ResourceLoadBinary(pMain->pCActSys,pMain->pCActRes,&list);
 #endif

@@ -22,7 +22,7 @@
   change of STD-API interface.
 
   Revision 1.1  2006/07/05 07:43:43  kitase_hirotake
-  std ‚É sjis <-> unicode •ÏŠ·ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+  std ã« sjis <-> unicode å¤‰æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -39,24 +39,24 @@
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertStringSjisToUnicode
 
-  Description:  ShiftJIS•¶š—ñ‚ğUnicode•¶š—ñ‚É•ÏŠ·.
+  Description:  ShiftJISæ–‡å­—åˆ—ã‚’Unicodeæ–‡å­—åˆ—ã«å¤‰æ›.
 
-  Arguments:    dst               •ÏŠ·æƒoƒbƒtƒ@.
-                                  NULL ‚ğw’è‚·‚é‚ÆŠi”[ˆ—‚Í–³‹‚³‚ê‚é.
-                dst_len           •ÏŠ·æƒoƒbƒtƒ@‚ÌÅ‘å•¶š”‚ğŠi”[‚µ‚Ä“n‚µ,
-                                  ÀÛ‚ÉŠi”[‚³‚ê‚½•¶š”‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                                  NULL ‚ğ—^‚¦‚½ê‡‚Í–³‹‚³‚ê‚é.
-                src               •ÏŠ·Œ³ƒoƒbƒtƒ@.
-                src_len           •ÏŠ·‚·‚×‚«Å‘å•¶š”‚ğŠi”[‚µ‚Ä“n‚µ,
-                                  ÀÛ‚É•ÏŠ·‚³‚ê‚½•¶š”‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                                  ‚±‚Ìw’è‚æ‚è‚à•¶š—ñI’[‚ÌˆÊ’u‚ª—Dæ‚³‚ê‚é.
-                                  •‰‚Ì’l‚ğŠi”[‚µ‚Ä“n‚·‚© NULL ‚ğ—^‚¦‚½ê‡‚Í
-                                  I’[ˆÊ’u‚Ü‚Å‚Ì•¶š”‚ğw’è‚µ‚½‚Æ‚İ‚È‚³‚ê‚é.
-                callback          •ÏŠ·‚Å‚«‚È‚¢•¶š‚ªŒ»‚ê‚½‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN.
-                                  NULL‚ğw’è‚µ‚½ê‡, •ÏŠ·‚Å‚«‚È‚¢•¶š‚ÌˆÊ’u‚Å
-                                  •ÏŠ·ˆ—‚ğI—¹‚·‚é.
+  Arguments:    dst               å¤‰æ›å…ˆãƒãƒƒãƒ•ã‚¡.
+                                  NULL ã‚’æŒ‡å®šã™ã‚‹ã¨æ ¼ç´å‡¦ç†ã¯ç„¡è¦–ã•ã‚Œã‚‹.
+                dst_len           å¤‰æ›å…ˆãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ–‡å­—æ•°ã‚’æ ¼ç´ã—ã¦æ¸¡ã—,
+                                  å®Ÿéš›ã«æ ¼ç´ã•ã‚ŒãŸæ–‡å­—æ•°ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  NULL ã‚’ä¸ãˆãŸå ´åˆã¯ç„¡è¦–ã•ã‚Œã‚‹.
+                src               å¤‰æ›å…ƒãƒãƒƒãƒ•ã‚¡.
+                src_len           å¤‰æ›ã™ã¹ãæœ€å¤§æ–‡å­—æ•°ã‚’æ ¼ç´ã—ã¦æ¸¡ã—,
+                                  å®Ÿéš›ã«å¤‰æ›ã•ã‚ŒãŸæ–‡å­—æ•°ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  ã“ã®æŒ‡å®šã‚ˆã‚Šã‚‚æ–‡å­—åˆ—çµ‚ç«¯ã®ä½ç½®ãŒå„ªå…ˆã•ã‚Œã‚‹.
+                                  è² ã®å€¤ã‚’æ ¼ç´ã—ã¦æ¸¡ã™ã‹ NULL ã‚’ä¸ãˆãŸå ´åˆã¯
+                                  çµ‚ç«¯ä½ç½®ã¾ã§ã®æ–‡å­—æ•°ã‚’æŒ‡å®šã—ãŸã¨ã¿ãªã•ã‚Œã‚‹.
+                callback          å¤‰æ›ã§ããªã„æ–‡å­—ãŒç¾ã‚ŒãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                  NULLã‚’æŒ‡å®šã—ãŸå ´åˆ, å¤‰æ›ã§ããªã„æ–‡å­—ã®ä½ç½®ã§
+                                  å¤‰æ›å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹.
 
-  Returns:      •ÏŠ·ˆ—‚ÌŒ‹‰Ê.
+  Returns:      å¤‰æ›å‡¦ç†ã®çµæœ.
  *---------------------------------------------------------------------------*/
 STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                                          const char *src, int *src_len,
@@ -74,14 +74,14 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
         int     src_max = (src_len && (*src_len >= 0)) ? *src_len : 0x7FFFFFFF;
         int     dst_max = (dst && dst_len && (*dst_len >= 0)) ? *dst_len : 0x7FFFFFFF;
 
-        /* ‚¢‚¸‚ê‚©‚Ìƒoƒbƒtƒ@’·‚ªI’[‚É’B‚·‚é‚Ü‚Å1•¶š‚¸‚Âˆ— */
+        /* ã„ãšã‚Œã‹ã®ãƒãƒƒãƒ•ã‚¡é•·ãŒçµ‚ç«¯ã«é”ã™ã‚‹ã¾ã§1æ–‡å­—ãšã¤å‡¦ç† */
         while ((dst_pos < dst_max) && (src_pos < src_max))
         {
             u16     dst_tmp[4];
             int     dst_count = 0;
             int     src_count;
             u32     c1 = (u8)src[src_pos];
-            /* •¶š—ñ’·‚æ‚è‚àI’[‚ÌŒŸo‚ğ—Dæ‚·‚é */
+            /* æ–‡å­—åˆ—é•·ã‚ˆã‚Šã‚‚çµ‚ç«¯ã®æ¤œå‡ºã‚’å„ªå…ˆã™ã‚‹ */
             if (!c1)
             {
                 break;
@@ -93,7 +93,7 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                 src_count = 1;
                 dst_count = 1;
             }
-            /* ”¼ŠpƒJƒi [A1, DF] */
+            /* åŠè§’ã‚«ãƒŠ [A1, DF] */
             else if ((c1 >= 0xA1) && (c1 <= 0xDF))
             {
                 dst_tmp[0] = (u16)(c1 + (0xFF61 - 0xA1));
@@ -107,10 +107,10 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                 if (src_pos + src_count <= src_max)
                 {
                     /*
-                     * •ÏŠ·ƒe[ƒuƒ‹‚Ì”ÍˆÍ‚Í
-                     * ‘æ1ƒoƒCƒg { 81 - 9F, E0 - FC }, ‘æ2ƒoƒCƒg { 40 - FF }.
-                     * ƒe[ƒuƒ‹ŒvZ‚ÉœZ‚ğ”ğ‚¯‚éŒø—¦‰»‚Ì‚½‚ß
-                     * ‘æ2ƒoƒCƒg { 7F, FD, FE, FF } ‚ÍÈ—ª‚¹‚¸c‚µ‚Ä‚ ‚é.
+                     * å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç¯„å›²ã¯
+                     * ç¬¬1ãƒã‚¤ãƒˆ { 81 - 9F, E0 - FC }, ç¬¬2ãƒã‚¤ãƒˆ { 40 - FF }.
+                     * ãƒ†ãƒ¼ãƒ–ãƒ«è¨ˆç®—æ™‚ã«é™¤ç®—ã‚’é¿ã‘ã‚‹åŠ¹ç‡åŒ–ã®ãŸã‚
+                     * ç¬¬2ãƒã‚¤ãƒˆ { 7F, FD, FE, FF } ã¯çœç•¥ã›ãšæ®‹ã—ã¦ã‚ã‚‹.
                      */
                     u32     c2 = (u8)src[src_pos + 1];
                     c1 -= 0x81 + ((c1 >= 0xE0) ? (0xE0 - 0xA0) : 0);
@@ -118,7 +118,7 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                     dst_count = (dst_tmp[0] ? 1 : 0);
                 }
             }
-            /* •ÏŠ·‚Å‚«‚È‚¢•¶š‚ªŒ»‚ê‚½‚çƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚· */
+            /* å¤‰æ›ã§ããªã„æ–‡å­—ãŒç¾ã‚ŒãŸã‚‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™ */
             if (dst_count == 0)
             {
                 if (!callback)
@@ -136,12 +136,12 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                     break;
                 }
             }
-            /* •ÏŠ·Œ³‚Ü‚½‚Í•ÏŠ·æ‚ªI’[‚ğ’´‚¦‚é‚È‚ç‚±‚±‚ÅI—¹ */
+            /* å¤‰æ›å…ƒã¾ãŸã¯å¤‰æ›å…ˆãŒçµ‚ç«¯ã‚’è¶…ãˆã‚‹ãªã‚‰ã“ã“ã§çµ‚äº† */
             if ((src_pos + src_count > src_max) || (dst_pos + dst_count > dst_max))
             {
                 break;
             }
-            /* ƒoƒbƒtƒ@‚ª—LŒø‚È‚ç‚Î•ÏŠ·Œ‹‰Ê‚ğŠi”[ */
+            /* ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªã‚‰ã°å¤‰æ›çµæœã‚’æ ¼ç´ */
             if (dst)
             {
                 int     i;
@@ -153,7 +153,7 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
             src_pos += src_count;
             dst_pos += dst_count;
         }
-        /* •ÏŠ·•¶š”‚ğ•Ô‚· */
+        /* å¤‰æ›æ–‡å­—æ•°ã‚’è¿”ã™ */
         if (src_len)
         {
             *src_len = src_pos;
@@ -169,24 +169,24 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertStringUnicodeToSjis
 
-  Description:  Unicode•¶š—ñ‚ğShiftJIS•¶š—ñ‚É•ÏŠ·
+  Description:  Unicodeæ–‡å­—åˆ—ã‚’ShiftJISæ–‡å­—åˆ—ã«å¤‰æ›
 
-  Arguments:    dst               •ÏŠ·æƒoƒbƒtƒ@.
-                                  NULL ‚ğw’è‚·‚é‚ÆŠi”[ˆ—‚Í–³‹‚³‚ê‚é.
-                dst_len           •ÏŠ·æƒoƒbƒtƒ@‚ÌÅ‘å•¶š”‚ğŠi”[‚µ‚Ä“n‚µ,
-                                  ÀÛ‚ÉŠi”[‚³‚ê‚½•¶š”‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                                  NULL ‚ğ—^‚¦‚½ê‡‚Í–³‹‚³‚ê‚é.
-                src               •ÏŠ·Œ³ƒoƒbƒtƒ@.
-                src_len           •ÏŠ·‚·‚×‚«Å‘å•¶š”‚ğŠi”[‚µ‚Ä“n‚µ,
-                                  ÀÛ‚É•ÏŠ·‚³‚ê‚½•¶š”‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                                  ‚±‚Ìw’è‚æ‚è‚à•¶š—ñI’[‚ÌˆÊ’u‚ª—Dæ‚³‚ê‚é.
-                                  •‰‚Ì’l‚ğŠi”[‚µ‚Ä“n‚·‚© NULL ‚ğ—^‚¦‚½ê‡‚Í
-                                  I’[ˆÊ’u‚Ü‚Å‚Ì•¶š”‚ğw’è‚µ‚½‚Æ‚İ‚È‚³‚ê‚é.
-                callback          •ÏŠ·‚Å‚«‚È‚¢•¶š‚ªŒ»‚ê‚½‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN.
-                                  NULL‚ğw’è‚µ‚½ê‡, •ÏŠ·‚Å‚«‚È‚¢•¶š‚ÌˆÊ’u‚Å
-                                  •ÏŠ·ˆ—‚ğI—¹‚·‚é.
+  Arguments:    dst               å¤‰æ›å…ˆãƒãƒƒãƒ•ã‚¡.
+                                  NULL ã‚’æŒ‡å®šã™ã‚‹ã¨æ ¼ç´å‡¦ç†ã¯ç„¡è¦–ã•ã‚Œã‚‹.
+                dst_len           å¤‰æ›å…ˆãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ–‡å­—æ•°ã‚’æ ¼ç´ã—ã¦æ¸¡ã—,
+                                  å®Ÿéš›ã«æ ¼ç´ã•ã‚ŒãŸæ–‡å­—æ•°ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  NULL ã‚’ä¸ãˆãŸå ´åˆã¯ç„¡è¦–ã•ã‚Œã‚‹.
+                src               å¤‰æ›å…ƒãƒãƒƒãƒ•ã‚¡.
+                src_len           å¤‰æ›ã™ã¹ãæœ€å¤§æ–‡å­—æ•°ã‚’æ ¼ç´ã—ã¦æ¸¡ã—,
+                                  å®Ÿéš›ã«å¤‰æ›ã•ã‚ŒãŸæ–‡å­—æ•°ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  ã“ã®æŒ‡å®šã‚ˆã‚Šã‚‚æ–‡å­—åˆ—çµ‚ç«¯ã®ä½ç½®ãŒå„ªå…ˆã•ã‚Œã‚‹.
+                                  è² ã®å€¤ã‚’æ ¼ç´ã—ã¦æ¸¡ã™ã‹ NULL ã‚’ä¸ãˆãŸå ´åˆã¯
+                                  çµ‚ç«¯ä½ç½®ã¾ã§ã®æ–‡å­—æ•°ã‚’æŒ‡å®šã—ãŸã¨ã¿ãªã•ã‚Œã‚‹.
+                callback          å¤‰æ›ã§ããªã„æ–‡å­—ãŒç¾ã‚ŒãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                  NULLã‚’æŒ‡å®šã—ãŸå ´åˆ, å¤‰æ›ã§ããªã„æ–‡å­—ã®ä½ç½®ã§
+                                  å¤‰æ›å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹.
 
-  Returns:      •ÏŠ·ˆ—‚ÌŒ‹‰Ê.
+  Returns:      å¤‰æ›å‡¦ç†ã®çµæœ.
  *---------------------------------------------------------------------------*/
 STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
                                          const u16 *src, int *src_len,
@@ -203,19 +203,19 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
         int     dst_pos = 0;
         int     src_max = (src_len && (*src_len >= 0)) ? *src_len : 0x7FFFFFFF;
         int     dst_max = (dst && dst_len && (*dst_len >= 0)) ? *dst_len : 0x7FFFFFFF;
-        /* ‚¢‚¸‚ê‚©‚Ìƒoƒbƒtƒ@’·‚ªI’[‚É’B‚·‚é‚Ü‚Å1•¶š‚¸‚Âˆ— */
+        /* ã„ãšã‚Œã‹ã®ãƒãƒƒãƒ•ã‚¡é•·ãŒçµ‚ç«¯ã«é”ã™ã‚‹ã¾ã§1æ–‡å­—ãšã¤å‡¦ç† */
         while ((dst_pos < dst_max) && (src_pos < src_max))
         {
             char    dst_tmp[4];
             int     dst_count = 0;
             int     src_count = 1;
             u32     w = MI_LoadLE16(&src[src_pos]);
-            /* •¶š—ñ’·‚æ‚è‚àI’[‚ÌŒŸo‚ğ—Dæ‚·‚é */
+            /* æ–‡å­—åˆ—é•·ã‚ˆã‚Šã‚‚çµ‚ç«¯ã®æ¤œå‡ºã‚’å„ªå…ˆã™ã‚‹ */
             if (!w)
             {
                 break;
             }
-            /* ŠOš („—p—Ìˆæ) */
+            /* å¤–å­— (ç§ç”¨é ˜åŸŸ) */
             else if ((w >= 0xE000) && (w < 0xF8FF))
             {
                 const u32 sjis_page = 188UL;
@@ -229,9 +229,9 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
             else
             {
                 /*
-                 * •ÏŠ·ƒe[ƒuƒ‹‚Ì”ÍˆÍ‚Í
+                 * å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç¯„å›²ã¯
                  * [0000-0480), [2000-2680), [3000-3400), [4E00-9FA8), [F928-FFE6).
-                 * ’Pƒ‚É, 0000‚Å–„‚ß‚ç‚ê‚½—Ìˆæ‚ğ‘å‚«‚¢‡‚Éíœ‚µ‚Ä‹l‚ß‚Ä‚¢‚é.
+                 * å˜ç´”ã«, 0000ã§åŸ‹ã‚ã‚‰ã‚ŒãŸé ˜åŸŸã‚’å¤§ãã„é †ã«å‰Šé™¤ã—ã¦è©°ã‚ã¦ã„ã‚‹.
                  */
 				/* *INDENT-OFF* */
                 static const int table[][2] =
@@ -249,12 +249,12 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
                 for (i = 0; i < table_max; ++i)
                 {
                     const int offset = (int)(w - table[i][0]);
-                    /* –³Œø‚È”ÍˆÍ */
+                    /* ç„¡åŠ¹ãªç¯„å›² */
                     if (offset < 0)
                     {
                         break;
                     }
-                    /* —LŒø‚È”ÍˆÍ */
+                    /* æœ‰åŠ¹ãªç¯„å›² */
                     else if (offset < table[i][1])
                     {
                         index += offset;
@@ -266,14 +266,14 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
                         }
                         break;
                     }
-                    /* ‚»‚êˆÈã‚Ì”ÍˆÍ */
+                    /* ãã‚Œä»¥ä¸Šã®ç¯„å›² */
                     else
                     {
                         index += table[i][1];
                     }
                 }
             }
-            /* •ÏŠ·‚Å‚«‚È‚¢•¶š‚ªŒ»‚ê‚½‚çƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚· */
+            /* å¤‰æ›ã§ããªã„æ–‡å­—ãŒç¾ã‚ŒãŸã‚‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™ */
             if (dst_count == 0)
             {
                 if (!callback)
@@ -291,12 +291,12 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
                     break;
                 }
             }
-            /* •ÏŠ·Œ³‚Ü‚½‚Í•ÏŠ·æ‚ªI’[‚ğ’´‚¦‚é‚È‚ç‚±‚±‚ÅI—¹ */
+            /* å¤‰æ›å…ƒã¾ãŸã¯å¤‰æ›å…ˆãŒçµ‚ç«¯ã‚’è¶…ãˆã‚‹ãªã‚‰ã“ã“ã§çµ‚äº† */
             if ((src_pos + src_count > src_max) || (dst_pos + dst_count > dst_max))
             {
                 break;
             }
-            /* ƒoƒbƒtƒ@‚ª—LŒø‚È‚ç‚Î•ÏŠ·Œ‹‰Ê‚ğŠi”[ */
+            /* ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªã‚‰ã°å¤‰æ›çµæœã‚’æ ¼ç´ */
             if (dst)
             {
                 int     i;
@@ -308,7 +308,7 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
             src_pos += src_count;
             dst_pos += dst_count;
         }
-        /* •ÏŠ·•¶š”‚ğ•Ô‚· */
+        /* å¤‰æ›æ–‡å­—æ•°ã‚’è¿”ã™ */
         if (src_len)
         {
             *src_len = src_pos;

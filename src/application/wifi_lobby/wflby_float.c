@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_float.c
- *	@brief		ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€	(SYSTEM‚Ìƒtƒ[ƒgƒf[ƒ^‚ğ•`‰æ‚É”½‰f‚³‚¹‚éƒVƒXƒeƒ€)
+ *	@brief		ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	(SYSTEMã®ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã«åæ˜ ã•ã›ã‚‹ã‚·ã‚¹ãƒ†ãƒ )
  *	@author		tomoya takahashi
  *	@data		2008.01.29
  *
@@ -21,26 +21,26 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define WFLBY_DEBUG_FLOAT_ANM_SELECT	// Lƒ{ƒ^ƒ“‚ÅƒAƒjƒ‚ğ‘I‘ğ‚·‚é
+//#define WFLBY_DEBUG_FLOAT_ANM_SELECT	// Lãƒœã‚¿ãƒ³ã§ã‚¢ãƒ‹ãƒ¡ã‚’é¸æŠã™ã‚‹
 #endif
 
-// Lƒ{ƒ^ƒ“‚ÅƒAƒjƒ‚ğ‘I‘ğ‚·‚é
+// Lãƒœã‚¿ãƒ³ã§ã‚¢ãƒ‹ãƒ¡ã‚’é¸æŠã™ã‚‹
 #ifdef WFLBY_DEBUG_FLOAT_ANM_SELECT
 static u32 s_WFLBY_DEBUG_FLOAT_ANM_SELECT_COUNT = WFLBY_FLOAT_ANM_SOUND; 
 #endif
@@ -49,20 +49,20 @@ static u32 s_WFLBY_DEBUG_FLOAT_ANM_SELECT_COUNT = WFLBY_FLOAT_ANM_SOUND;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ}ƒbƒv‚ÌˆÚ“®‹——£
+///	ãƒãƒƒãƒ—ã®ç§»å‹•è·é›¢
 //=====================================
-#define WFLBY_FLOAT_CONT_START_X_OFS	( 6 )	// ƒ}ƒbƒv‚Ì‘å‚«‚³{‚±‚ÌˆÊ’u‚©‚çƒtƒ[ƒg‚ªn‚Ü‚é
-#define WFLBY_FLOAT_CONT_END_X			( -8 )	// I—¹‚·‚éÀ•W
-#define WFLBY_FLOAT_CONT_LOCK_X_OFS		( WF2DMAP_GRID_SIZ )	// —\–ñƒƒbƒN‚ğ‚©‚¯‚é‰wˆÊ’u‚©‚ç‚ÌƒIƒtƒZƒbƒgˆÊ’u
+#define WFLBY_FLOAT_CONT_START_X_OFS	( 6 )	// ãƒãƒƒãƒ—ã®å¤§ãã•ï¼‹ã“ã®ä½ç½®ã‹ã‚‰ãƒ•ãƒ­ãƒ¼ãƒˆãŒå§‹ã¾ã‚‹
+#define WFLBY_FLOAT_CONT_END_X			( -8 )	// çµ‚äº†ã™ã‚‹åº§æ¨™
+#define WFLBY_FLOAT_CONT_LOCK_X_OFS		( WF2DMAP_GRID_SIZ )	// äºˆç´„ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã‚‹é§…ä½ç½®ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
 
 
 //-------------------------------------
-///	ƒtƒ[ƒg‚ä‚êƒAƒjƒí—Ş
+///	ãƒ•ãƒ­ãƒ¼ãƒˆã‚†ã‚Œã‚¢ãƒ‹ãƒ¡ç¨®é¡
 //=====================================
 enum {
 	WFLBY_FLOAT_SHAKE_ANM_NORMAL,
@@ -71,7 +71,7 @@ enum {
 } ;
 
 //-------------------------------------
-///	WFLBY_FLOAT_SHAKE_ANM_NORMAL’è”
+///	WFLBY_FLOAT_SHAKE_ANM_NORMALå®šæ•°
 //=====================================
 #define WFLBY_FLOAT_SHAKE_NRM_COUNT_MAX		( 8 )
 #define WFLBY_FLOAT_SHAKE_NRM_COUNT_MOVEY	( 2 )
@@ -79,7 +79,7 @@ enum {
 #define WFLBY_FLOAT_SHAKE_NRM_COUNT_ROOP	( 4 )
 
 //-------------------------------------
-///	WFLBY_FLOAT_SHAKE_ANM_NORMALBIG’è”
+///	WFLBY_FLOAT_SHAKE_ANM_NORMALBIGå®šæ•°
 //=====================================
 #define WFLBY_FLOAT_SHAKE_NRMBIG_COUNT_MAX		( 16 )
 #define WFLBY_FLOAT_SHAKE_NRMBIG_COUNT_MOVEY	( 4 )
@@ -90,17 +90,17 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	‚ä‚êƒAƒjƒƒf[ƒ^
+///	ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u16 anm;		// BOOLŒ^
-	u16	anm_type;	// WFLBY_FLOAT_SHAKE_ANM`
+	u16 anm;		// BOOLå‹
+	u16	anm_type;	// WFLBY_FLOAT_SHAKE_ANMã€œ
 	union{
-		// X²‚ä‚ê
+		// Xè»¸ã‚†ã‚Œ
 		struct{
 			s16 count;
 			s16 count_max;
@@ -113,7 +113,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒtƒ[ƒgŠÇ—ƒ[ƒN
+///	ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_FLOAT_CONT{
 	WFLBY_ROOMWK* p_rmwk;
@@ -121,29 +121,29 @@ typedef struct _WFLBY_FLOAT_CONT{
 	WFLBY_3DMAPOBJ_CONT* p_mapobjcont;
 	WFLBY_MAPCONT* p_mapcont;
 
-	// ƒAƒjƒÄ¶î•ñ
+	// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿæƒ…å ±
 	u8	anm_play[WFLBY_FLOAT_MAX][WFLBY_FLOAT_ANM_NUM];		// 3*9	27
 	u8	pad;												// 28
 
-	// ƒtƒ[ƒg—h‚êƒAƒjƒ
+	// ãƒ•ãƒ­ãƒ¼ãƒˆæºã‚Œã‚¢ãƒ‹ãƒ¡
 	WFLBY_FLOAT_SHAKE	shake[ WFLBY_FLOAT_MAX ];
 
-	// ‰wî•ñ
+	// é§…æƒ…å ±
 	WF2DMAP_POS		station_pos[ WFLBY_FLOAT_STATION_NUM ];
 
-	// ©•ª‚ÌÄ¶‚µ‚½ƒAƒjƒƒf[ƒ^
+	// è‡ªåˆ†ã®å†ç”Ÿã—ãŸã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 	u16	float_idx;
 	u16 anm_no;
 
-	// ƒtƒ[ƒg“®ì‹——£
+	// ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œè·é›¢
 	fx32	float_move_start;
 	fx32	float_move_dis;
 } WFLBY_FLOAT_CONT;
 
 
 //-------------------------------------
-///	ƒtƒ[ƒgdata
-//	‚Ö‚â”•ª‚Ìƒtƒ[ƒgƒf[ƒ^
+///	ãƒ•ãƒ­ãƒ¼ãƒˆdata
+//	ã¸ã‚„æ•°åˆ†ã®ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u16	monsno_sml;
@@ -158,11 +158,11 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒtƒ[ƒgƒf[ƒ^
+ *		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
-	// ‰Î
+	// ç«
 	{ 
 		MONSNO_ATYAMO, MONSNO_RIZAADON, 
 		WFLBY_SND_RIDE_BUTTON_ATYAMO_PV, 
@@ -171,7 +171,7 @@ static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
 		WFLBY_SND_RIDE_BUTTON_RIZAADON_EX,
 	},
 
-	// …
+	// æ°´
 	{ 
 		MONSNO_POTTYAMA, MONSNO_GYARADOSU,
 		WFLBY_SND_RIDE_BUTTON_POTTYAMA_PV,
@@ -180,7 +180,7 @@ static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
 		WFLBY_SND_RIDE_BUTTON_GYARADOSU_EX,
 	},
 
-	// “d‹C
+	// é›»æ°—
 	{ 
 		MONSNO_PIKATYUU, MONSNO_DEKAKOIRU,
 		WFLBY_SND_RIDE_BUTTON_PIKATYUU_PV,
@@ -189,7 +189,7 @@ static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
 		WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_EX,
 	},
 
-	// ‘
+	// è‰
 	{ 
 		MONSNO_HUSIGIDANE, MONSNO_HAEZIGOKU,
 		WFLBY_SND_RIDE_BUTTON_HUSIGIDANE_PV,
@@ -198,7 +198,7 @@ static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
 		WFLBY_SND_RIDE_BUTTON_HAEZIGOKU_EX,
 	},
 
-	// “Áê
+	// ç‰¹æ®Š
 	{ 
 		MONSNO_MYUU, MONSNO_MYUU,
 		WFLBY_SND_RIDE_BUTTON_MYUU_PV,
@@ -210,7 +210,7 @@ static const WFLBY_FLOAT_DATA sc_WFLBY_FLOAT_DATA[WFLBY_ROOM_NUM] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_SetMatrix( WFLBY_FLOAT_CONT* p_sys, u32 idx );
@@ -228,12 +228,12 @@ static BOOL WFLBY_FLOAT_CONT_MainShakeNormal( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	heapID		ƒq[ƒv‚h‚c
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_FLOAT_CONT* WFLBY_FLOAT_CONT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
@@ -255,15 +255,15 @@ WFLBY_FLOAT_CONT* WFLBY_FLOAT_CONT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 	p_sys->p_mapobjcont	= WFLBY_ROOM_GetMapObjCont( p_rmwk );
 	p_sys->p_mapcont	= WFLBY_ROOM_GetMapCont( p_rmwk );
 
-	// ƒtƒ[ƒg“®ìî•ñ‚ğæ“¾
+	// ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œæƒ…å ±ã‚’å–å¾—
 	p_sys->float_move_start	= WFLBY_MAPCONT_GridXGet( p_sys->p_mapcont ) + WFLBY_FLOAT_CONT_START_X_OFS;
 	p_sys->float_move_dis	= WFLBY_FLOAT_CONT_END_X - p_sys->float_move_start;
-	// ƒOƒŠƒbƒhÀ•W‚È‚Ì‚ÅA‚R‚cÀ•W‚É‚·‚é
+	// ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ãªã®ã§ã€ï¼“ï¼¤åº§æ¨™ã«ã™ã‚‹
 	p_sys->float_move_start = WF2DMAP_GRID2POS( p_sys->float_move_start ) * WFLBY_3DMATRIX_GRID_SIZ;
 	p_sys->float_move_dis	= WF2DMAP_GRID2POS( p_sys->float_move_dis ) * WFLBY_3DMATRIX_GRID_SIZ;
 
 
-	// ‰w‚ÌˆÊ’u‚ğæ“¾‚·‚é
+	// é§…ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 	for( i=0; i<WFLBY_FLOAT_STATION_NUM; i++ ){
 		WFLBY_MAPCONT_SarchObjID( p_sys->p_mapcont, sc_STATION_OBJID[i], 
 				&gridx, &gridy, 0 );
@@ -271,16 +271,16 @@ WFLBY_FLOAT_CONT* WFLBY_FLOAT_CONT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 		p_sys->station_pos[i].y	= WF2DMAP_GRID2POS(gridy);
 	}
 
-	// ƒtƒ[ƒg‚ğ’[‚ÉˆÚ“®‚³‚¹‚é
+	// ãƒ•ãƒ­ãƒ¼ãƒˆã‚’ç«¯ã«ç§»å‹•ã•ã›ã‚‹
 	for( i=0; i<WFLBY_FLOAT_MAX; i++ ){
 		WFLBY_3DMAPOBJCONT_FLOAT_SetPos( p_sys->p_mapobjcont, i, p_sys->float_move_start );
 
-		// Œ»İÀ•W‚ğƒtƒ[ƒg‚Éİ’è‚µA—\–ñƒƒbƒNó‹µ‚ğİ’è‚·‚é
+		// ç¾åœ¨åº§æ¨™ã‚’ãƒ•ãƒ­ãƒ¼ãƒˆã«è¨­å®šã—ã€äºˆç´„ãƒ­ãƒƒã‚¯çŠ¶æ³ã‚’è¨­å®šã™ã‚‹
 		if( WFLBY_SYSTEM_GetFloatMove( p_sys->p_system, i ) == WFLBY_FLOAT_STATE_MOVE ){
-			// À•W
+			// åº§æ¨™
 			WFLBY_FLOAT_CONT_SetMatrix( p_sys, i );
 
-			// —\–ñƒƒbƒNİ’è
+			// äºˆç´„ãƒ­ãƒƒã‚¯è¨­å®š
 			WFLBY_FLOAT_CONT_SetReserveLock( p_sys, i );
 		}
 	}
@@ -291,9 +291,9 @@ WFLBY_FLOAT_CONT* WFLBY_FLOAT_CONT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€	”jŠü
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_FLOAT_CONT_Exit( WFLBY_FLOAT_CONT* p_sys )
@@ -303,9 +303,9 @@ void WFLBY_FLOAT_CONT_Exit( WFLBY_FLOAT_CONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_FLOAT_CONT_Main( WFLBY_FLOAT_CONT* p_sys )
@@ -325,32 +325,32 @@ void WFLBY_FLOAT_CONT_Main( WFLBY_FLOAT_CONT* p_sys )
 	}
 #endif
 	
-	// ©•ª‚ÌÀÈî•ñæ“¾
+	// è‡ªåˆ†ã®åº§å¸­æƒ…å ±å–å¾—
 	myidx			= WFLBY_SYSTEM_GetMyIdx( p_sys->p_system );
 	my_float_idx	= WFLBY_SYSTEM_GetFloatPlIdxReserve( p_sys->p_system, myidx );
 
 	if( my_float_idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		my_float_on = FALSE;		// ƒtƒ[ƒg‚É‚Íæ‚Á‚Ä‚È‚¢
+		my_float_on = FALSE;		// ãƒ•ãƒ­ãƒ¼ãƒˆã«ã¯ä¹—ã£ã¦ãªã„
 	}else{
-		// ©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[ƒg‚©ƒ`ƒFƒbƒN
+		// è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 		WFLBY_SYSTEM_GetFloatIdxOfs( my_float_idx, &my_float_idx, &my_float_offs );
-		my_float_on = TRUE;		// ©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[ƒg‚ª‚ ‚é
+		my_float_on = TRUE;		// è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆãŒã‚ã‚‹
 	}
 
 	
 	for( i=0; i<WFLBY_FLOAT_MAX; i++ ){
 		if( WFLBY_SYSTEM_GetFloatMove( p_sys->p_system, i ) == WFLBY_FLOAT_STATE_MOVE ){
 
-			// •\¦‚Ì‚n‚m@‚n‚e‚e
+			// è¡¨ç¤ºã®ï¼¯ï¼®ã€€ï¼¯ï¼¦ï¼¦
 			WFLBY_3DMAPOBJCONT_FLOAT_SetDraw( p_sys->p_mapobjcont, i, TRUE );
 
-			// À•W
+			// åº§æ¨™
 			WFLBY_FLOAT_CONT_SetMatrix( p_sys, i );
 
-			// —\–ñƒƒbƒNİ’è
+			// äºˆç´„ãƒ­ãƒƒã‚¯è¨­å®š
 			WFLBY_FLOAT_CONT_SetReserveLock( p_sys, i );
 
-			// ©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[ƒg‚©H
+			// è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆã‹ï¼Ÿ
 			if( my_float_on ){
 				if( my_float_idx == i ){
 					my_float = TRUE;
@@ -359,28 +359,28 @@ void WFLBY_FLOAT_CONT_Main( WFLBY_FLOAT_CONT* p_sys )
 				}
 			}
 			
-			// ƒAƒjƒ
+			// ã‚¢ãƒ‹ãƒ¡
 			WFLBY_FLOAT_CONT_SetAnm( p_sys, i, my_float_on, my_float, my_float_offs );
 		}else{
 
-			// •\¦‚Ì‚n‚m@‚n‚e‚e
+			// è¡¨ç¤ºã®ï¼¯ï¼®ã€€ï¼¯ï¼¦ï¼¦
 			WFLBY_3DMAPOBJCONT_FLOAT_SetDraw( p_sys->p_mapobjcont, i, FALSE );
 		}
 	}
 
-	// ƒAƒjƒ§Œä
+	// ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡
 	for( i=0; i<WFLBY_FLOAT_MAX; i++ ){
 
 
-		// “ª
+		// é ­
 		result = WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmSound( p_sys->p_mapobjcont, i );
 		p_sys->anm_play[i][WFLBY_FLOAT_ANM_SOUND] = result;
 
-		// “·‘Ì—h‚ç‚µ
+		// èƒ´ä½“æºã‚‰ã—
 		result = WFLBY_FLOAT_CONT_MainShake( &p_sys->shake[i], p_sys->p_mapobjcont, i );
 		p_sys->anm_play[i][WFLBY_FLOAT_ANM_SHAKE] = result;
 
-		// “·‘Ì
+		// èƒ´ä½“
 		result = WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmBody( p_sys->p_mapobjcont, i );
 		p_sys->anm_play[i][WFLBY_FLOAT_ANM_BODY] = result;
 	}
@@ -388,14 +388,14 @@ void WFLBY_FLOAT_CONT_Main( WFLBY_FLOAT_CONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ’†‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	floatidx	ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
- *	@param	anmidx		ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	floatidx	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	anmidx		ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE		ƒAƒjƒ’†	
- *	@retval	FALSE		ƒAƒjƒ’â~
+ *	@retval	TRUE		ã‚¢ãƒ‹ãƒ¡ä¸­	
+ *	@retval	FALSE		ã‚¢ãƒ‹ãƒ¡åœæ­¢
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_FLOAT_CONT_CheckAnm( const WFLBY_FLOAT_CONT* cp_sys, u32 floatidx, WFLBY_FLOAT_ANM_TYPE anmidx )
@@ -411,15 +411,15 @@ BOOL WFLBY_FLOAT_CONT_CheckAnm( const WFLBY_FLOAT_CONT* cp_sys, u32 floatidx, WF
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚Ìİ’è
+ *	@brief	åº§æ¨™ã®è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_SetMatrix( WFLBY_FLOAT_CONT* p_sys, u32 idx )
@@ -429,11 +429,11 @@ static void WFLBY_FLOAT_CONT_SetMatrix( WFLBY_FLOAT_CONT* p_sys, u32 idx )
 	fx32 x;
 	fx32 dis;
 
-	// ƒJƒEƒ“ƒg’l‚ÆÅ‘å”‚©‚ç¡‚Ì•\¦ˆÊ’u‚ğæ“¾
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨æœ€å¤§æ•°ã‹ã‚‰ä»Šã®è¡¨ç¤ºä½ç½®ã‚’å–å¾—
 	count		= WFLBY_SYSTEM_GetFloatCount( p_sys->p_system, idx );
 	count_max	= WFLBY_SYSTEM_GetFloatCountMax( p_sys->p_system );
 
-	// ŒvZ‚·‚é‚É‚Í’l‚ª‘å‚«‚·‚¬‚é‚Ì‚ÅAˆÚ“®‹——£‚ğ’²®‚·‚é
+	// è¨ˆç®—ã™ã‚‹ã«ã¯å€¤ãŒå¤§ãã™ãã‚‹ã®ã§ã€ç§»å‹•è·é›¢ã‚’èª¿æ•´ã™ã‚‹
 	dis = FX_Div( p_sys->float_move_dis, FX32_CONST(2) );
 	x	= FX_Div( FX_Mul(FX32_CONST( count ), dis), FX32_CONST(count_max) );
 	x	= FX_Mul( x, FX32_CONST(2) );
@@ -441,20 +441,20 @@ static void WFLBY_FLOAT_CONT_SetMatrix( WFLBY_FLOAT_CONT* p_sys, u32 idx )
 
 //	OS_TPrintf( "idx=%d  x=%d\n", idx, x >> FX32_SHIFT );
 
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_3DMAPOBJCONT_FLOAT_SetPos( p_sys->p_mapobjcont, idx, x );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚ÌƒAƒjƒ‚ğİ’è‚·‚é
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã®ã‚¢ãƒ‹ãƒ¡ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	my_float_on		©•ª‚Íƒtƒg[ƒg‚Éæ‚Á‚Ä‚¢‚é‚©H
- *	@param	my_float		©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[ƒg‚È‚Ì‚©
- *	@param	my_float_offs	©•ª‚ªæ‚Á‚Ä‚¢‚éÀÈ‚ÌˆÊ’u
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	my_float_on		è‡ªåˆ†ã¯ãƒ•ãƒˆãƒ¼ãƒˆã«ä¹—ã£ã¦ã„ã‚‹ã‹ï¼Ÿ
+ *	@param	my_float		è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆãªã®ã‹
+ *	@param	my_float_offs	è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹åº§å¸­ã®ä½ç½®
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_float_on, BOOL my_float, u32 my_float_offs )
@@ -472,10 +472,10 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 
 	
 	for( i=0; i<WFLBY_FLOAT_ON_NUM; i++ ){
-		// ƒAƒjƒ‚ÌÄ¶ƒ`ƒFƒbƒN
+		// ã‚¢ãƒ‹ãƒ¡ã®å†ç”Ÿãƒã‚§ãƒƒã‚¯
 		anm_on = WFLBY_SYSTEM_GetFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );
 
-		// ©•ª‚Ìƒtƒ[ƒg‚Ì‚Æ‚«‚Í©•ª‚ÌÀÈ‚©ƒ`ƒFƒbƒN‚·‚é
+		// è‡ªåˆ†ã®ãƒ•ãƒ­ãƒ¼ãƒˆã®ã¨ãã¯è‡ªåˆ†ã®åº§å¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		my_float_offs_chk = FALSE;
 		if( my_float == TRUE ){
 			if( i == my_float_offs ){
@@ -489,22 +489,22 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 #else
 			switch( i ){
 #endif
-			// ‹ƒ‚«º
+			// æ³£ãå£°
 			case WFLBY_FLOAT_ANM_SOUND:
-				// ƒAƒjƒİ’è
+				// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 				anm_result = WFLBY_3DMAPOBJCONT_FLOAT_SetAnmSound( p_sys->p_mapobjcont, idx );
-				// ‚¨‚Æo‚·
+				// ãŠã¨å‡ºã™
 				if( anm_result == TRUE ){
-					// ‹ƒ‚«º‚ÆSE‚ğ–Â‚ç‚·
+					// æ³£ãå£°ã¨SEã‚’é³´ã‚‰ã™
 					if( (idx % WFLBY_FLOAT_ON_NUM) == 2 ){
-						// ‚Å‚©‚¢ƒtƒ[ƒg
+						// ã§ã‹ã„ãƒ•ãƒ­ãƒ¼ãƒˆ
 						WFLBY_FLOAT_CONT_PlayMonsVoice( my_float_on, my_float, my_float_offs_chk, sc_WFLBY_FLOAT_DATA[ room ].monsno_big );
 
 						if( sc_WFLBY_FLOAT_DATA[ room ].monsno_big_snd_pv != WFLBY_SND_RIDE_INVALIDITY ){
 							WFLBY_FLOAT_CONT_PlaySe( my_float_on, my_float, my_float_offs_chk, sc_WFLBY_FLOAT_DATA[ room ].monsno_big_snd_pv );
 						}
 					}else{
-						// ‚¿‚Á‚±‚¢ƒtƒ[ƒg
+						// ã¡ã£ã“ã„ãƒ•ãƒ­ãƒ¼ãƒˆ
 						WFLBY_FLOAT_CONT_PlayMonsVoice( my_float_on, my_float, my_float_offs_chk, sc_WFLBY_FLOAT_DATA[ room ].monsno_sml );
 
 						if( sc_WFLBY_FLOAT_DATA[ room ].monsno_sml_snd_pv != WFLBY_SND_RIDE_INVALIDITY ){
@@ -512,10 +512,10 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 						}
 					}
 					
-					WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ƒAƒjƒÄ¶‚µ‚½‚Ì‚Åƒtƒ‰ƒO‚ğ—‚Æ‚·
+					WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿã—ãŸã®ã§ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 				}
 				break;
-			// ƒtƒ[ƒg—h‚ç‚µƒAƒjƒ
+			// ãƒ•ãƒ­ãƒ¼ãƒˆæºã‚‰ã—ã‚¢ãƒ‹ãƒ¡
 			case WFLBY_FLOAT_ANM_SHAKE:
 				{
 					u32 anm;
@@ -527,7 +527,7 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 					}
 					anm_result = WFLBY_FLOAT_CONT_InitShake( &p_sys->shake[ idx ], anm, p_sys->p_mapobjcont, idx );
 					if( anm_result == TRUE ){
-						WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ƒAƒjƒÄ¶‚µ‚½‚Ì‚Åƒtƒ‰ƒO‚ğ—‚Æ‚·
+						WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿã—ãŸã®ã§ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 
 						WFLBY_FLOAT_CONT_PlaySe( my_float_on, my_float, my_float_offs_chk, WFLBY_SND_RIDE_BUTTON01 );
 						
@@ -535,18 +535,18 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 				}
 				break;
 
-			// ƒ{ƒfƒBƒAƒjƒ
+			// ãƒœãƒ‡ã‚£ã‚¢ãƒ‹ãƒ¡
 			case WFLBY_FLOAT_ANM_BODY:
 				anm_result = WFLBY_3DMAPOBJCONT_FLOAT_SetAnmBody( p_sys->p_mapobjcont, idx );
 				if( anm_result == TRUE ){
-					WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ƒAƒjƒÄ¶‚µ‚½‚Ì‚Åƒtƒ‰ƒO‚ğ—‚Æ‚·
+					WFLBY_SYSTEM_CleanFloatAnm( p_sys->p_system, (idx*WFLBY_FLOAT_ON_NUM)+i );	// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿã—ãŸã®ã§ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 					
-					// ‹ƒ‚«º‚ÆSE‚ğ–Â‚ç‚·
+					// æ³£ãå£°ã¨SEã‚’é³´ã‚‰ã™
 					if( (idx % WFLBY_FLOAT_ON_NUM) == 2 ){
-						// ‚Å‚©‚¢ƒtƒ[ƒg
+						// ã§ã‹ã„ãƒ•ãƒ­ãƒ¼ãƒˆ
 						WFLBY_FLOAT_CONT_PlaySe( my_float_on, my_float, my_float_offs_chk, sc_WFLBY_FLOAT_DATA[ room ].monsno_big_snd_ex );
 					}else{
-						// ‚¿‚Á‚±‚¢ƒtƒ[ƒg
+						// ã¡ã£ã“ã„ãƒ•ãƒ­ãƒ¼ãƒˆ
 						WFLBY_FLOAT_CONT_PlaySe( my_float_on, my_float, my_float_offs_chk, sc_WFLBY_FLOAT_DATA[ room ].monsno_sml_snd_ex );
 					}
 				}
@@ -559,21 +559,21 @@ static void WFLBY_FLOAT_CONT_SetAnm( WFLBY_FLOAT_CONT* p_sys, u32 idx, BOOL my_f
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚r‚d‚ÌÄ¶
+ *	@brief	ï¼³ï¼¥ã®å†ç”Ÿ
  *
- *	@param	my_float_on		©•ª‚Íƒtƒ[ƒg‚Éæ‚Á‚Ä‚é‚©H
- *	@param	my_float		©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[ƒg‚©H
- *	@param	my_offs			©•ª‚ªæ‚Á‚Ä‚¢‚éÀÈ‚©H
- *	@param	se_idx			‚r‚d‚m‚
+ *	@param	my_float_on		è‡ªåˆ†ã¯ãƒ•ãƒ­ãƒ¼ãƒˆã«ä¹—ã£ã¦ã‚‹ã‹ï¼Ÿ
+ *	@param	my_float		è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆã‹ï¼Ÿ
+ *	@param	my_offs			è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹åº§å¸­ã‹ï¼Ÿ
+ *	@param	se_idx			ï¼³ï¼¥ï¼®ï½
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_PlaySe( BOOL my_float_on, BOOL my_float, BOOL my_offs, u32 se_idx )
 {
 	if( my_float_on ){
-		// æ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[‚Æ‚¾‚¯‚r‚d‚ğ–Â‚ç‚·
+		// ä¹—ã£ã¦ã„ã‚‹ã¨ãã¯ã€è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ã¨ã ã‘ï¼³ï¼¥ã‚’é³´ã‚‰ã™
 		if( my_float ){
 
-			// ‚³‚ç‚É©•ª‚ÌÀÈ‚Ì‚r‚d‚È‚ç©•ªê—pƒvƒŒƒCƒ„[‚Å–Â‚ç‚·
+			// ã•ã‚‰ã«è‡ªåˆ†ã®åº§å¸­ã®ï¼³ï¼¥ãªã‚‰è‡ªåˆ†å°‚ç”¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§é³´ã‚‰ã™
 			if( my_offs ){
 				Snd_SePlayEx( se_idx, SND_PLAYER_NO_WIFI_HIROBA );
 			}else{
@@ -582,28 +582,28 @@ static void WFLBY_FLOAT_CONT_PlaySe( BOOL my_float_on, BOOL my_float, BOOL my_of
 		}
 	}else{
 
-		// æ‚Á‚Ä‚¢‚È‚¢‚Æ‚«‚Í‘S•”Snd_SePlay‚Åã‘‚«
+		// ä¹—ã£ã¦ã„ãªã„ã¨ãã¯å…¨éƒ¨Snd_SePlayã§ä¸Šæ›¸ã
 		Snd_SePlay( se_idx );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒ{ƒCƒX—p
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒœã‚¤ã‚¹ç”¨
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_PlayMonsVoice( BOOL my_float_on, BOOL my_float, BOOL my_offs, u32 monsno )
 {
 	if( my_float_on ){
-		// æ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA©•ª‚ªæ‚Á‚Ä‚¢‚éƒtƒ[‚Æ‚¾‚¯‚r‚d‚ğ–Â‚ç‚·
+		// ä¹—ã£ã¦ã„ã‚‹ã¨ãã¯ã€è‡ªåˆ†ãŒä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ã¨ã ã‘ï¼³ï¼¥ã‚’é³´ã‚‰ã™
 		if( my_float ){
 
-			// ‚³‚ç‚É©•ª‚ÌÀÈ‚Ì‚r‚d‚È‚ç©•ªê—pƒvƒŒƒCƒ„[‚Å–Â‚ç‚·
+			// ã•ã‚‰ã«è‡ªåˆ†ã®åº§å¸­ã®ï¼³ï¼¥ãªã‚‰è‡ªåˆ†å°‚ç”¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§é³´ã‚‰ã™
 			Snd_PMVoicePlay( monsno, 0 );
 		}
 	}else{
 
-		// æ‚Á‚Ä‚¢‚È‚¢‚Æ‚«‚Í‘S•”ã‘‚«
+		// ä¹—ã£ã¦ã„ãªã„ã¨ãã¯å…¨éƒ¨ä¸Šæ›¸ã
 		Snd_PMVoicePlay( monsno, 0 );
 	}
 }
@@ -613,12 +613,12 @@ static void WFLBY_FLOAT_CONT_PlayMonsVoice( BOOL my_float_on, BOOL my_float, BOO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ä‚êƒAƒjƒ	‰Šú‰»
+ *	@brief	ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡	åˆæœŸåŒ–
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	anm_type		ƒAƒjƒƒ^ƒCƒv
- *	@param	p_mapobjcont	ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm_type		ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ *	@param	p_mapobjcont	ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_FLOAT_CONT_InitShake( WFLBY_FLOAT_SHAKE* p_wk, u32 anm_type, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 idx )
@@ -629,7 +629,7 @@ static BOOL WFLBY_FLOAT_CONT_InitShake( WFLBY_FLOAT_SHAKE* p_wk, u32 anm_type, W
 	};
 	GF_ASSERT( anm_type < WFLBY_FLOAT_SHAKE_ANM_NUM );
 
-	// “®ì’†‚Í“®‚©‚³‚È‚¢
+	// å‹•ä½œä¸­ã¯å‹•ã‹ã•ãªã„
 	if( p_wk->anm == TRUE ){
 		return FALSE;
 	}
@@ -643,14 +643,14 @@ static BOOL WFLBY_FLOAT_CONT_InitShake( WFLBY_FLOAT_SHAKE* p_wk, u32 anm_type, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“·‘Ì—h‚ç‚µƒAƒjƒƒƒCƒ“
+ *	@brief	èƒ´ä½“æºã‚‰ã—ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_mapobjcont	ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mapobjcont	ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	—h‚ç‚µ’†
- *	@retval	FALSE	—h‚ç‚µI—¹
+ *	@retval	TRUE	æºã‚‰ã—ä¸­
+ *	@retval	FALSE	æºã‚‰ã—çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_FLOAT_CONT_MainShake( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 idx )
@@ -664,7 +664,7 @@ static BOOL WFLBY_FLOAT_CONT_MainShake( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_
 	if( p_wk->anm ){
 		result = pFunc[ p_wk->anm_type ]( p_wk, p_mapobjcont, idx );
 		if( result == TRUE ){
-			// I—¹
+			// çµ‚äº†
 			memset( p_wk, 0, sizeof(WFLBY_FLOAT_SHAKE) );
 		}
 		return TRUE;
@@ -674,11 +674,11 @@ static BOOL WFLBY_FLOAT_CONT_MainShake( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Êí‚ä‚êƒAƒjƒ	ŠJn
+ *	@brief	é€šå¸¸ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡	é–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_mapobjcont	ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mapobjcont	ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_InitShakeNormal( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 idx )
@@ -692,11 +692,11 @@ static void WFLBY_FLOAT_CONT_InitShakeNormal( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Êí‚ä‚ê‘å‚«‚¢ƒAƒjƒ	ŠJn
+ *	@brief	é€šå¸¸ã‚†ã‚Œå¤§ãã„ã‚¢ãƒ‹ãƒ¡	é–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_mapobjcont	ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mapobjcont	ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_InitShakeNormalBig( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 idx )
@@ -710,24 +710,24 @@ static void WFLBY_FLOAT_CONT_InitShakeNormalBig( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Êí‚ä‚êƒAƒjƒ
+ *	@brief	é€šå¸¸ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_mapobjcont	ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mapobjcont	ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retva	TRUE	ƒAƒjƒŠ®—¹
- *	@retva	FALSE	ƒAƒjƒ’†
+ *	@retva	TRUE	ã‚¢ãƒ‹ãƒ¡å®Œäº†
+ *	@retva	FALSE	ã‚¢ãƒ‹ãƒ¡ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_FLOAT_CONT_MainShakeNormal( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 idx )
 {
-	VecFx32 ofs_pos = {0};	// À•W
+	VecFx32 ofs_pos = {0};	// åº§æ¨™
 	u16	rotx;
 	u16 eff_rot;
 	BOOL ret = FALSE;
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( (p_wk->data.normal.count+1) < p_wk->data.normal.count_max ){
 		p_wk->data.normal.count ++;
 	}else{
@@ -735,34 +735,34 @@ static BOOL WFLBY_FLOAT_CONT_MainShakeNormal( WFLBY_FLOAT_SHAKE* p_wk, WFLBY_3DM
 		if( (p_wk->data.normal.roop - 1) > 0 ){
 			p_wk->data.normal.roop --;
 		}else{
-			ret = TRUE;		// I—¹
+			ret = TRUE;		// çµ‚äº†
 		}
 	}
 
-	// ƒJƒEƒ“ƒg’l‚©‚ç‰ñ“]“x”‚ğæ“¾‚·‚é
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‹ã‚‰å›è»¢åº¦æ•°ã‚’å–å¾—ã™ã‚‹
 	eff_rot = (p_wk->data.normal.count * 0xffff) / p_wk->data.normal.count_max;
 
-	// ‚»‚Ì“x”‚©‚ç‚˜²‰ñ“]Šp“x‚ğŒvZ
+	// ãã®åº¦æ•°ã‹ã‚‰ï½˜è»¸å›è»¢è§’åº¦ã‚’è¨ˆç®—
 	rotx = FX_Mul( FX_SinIdx( eff_rot ), FX32_CONST( p_wk->data.normal.rot_num ) ) >> FX32_SHIFT;
 	
-	// ‚x²ˆÚ“®ˆÊ’uŒvZ
+	// ï¼¹è»¸ç§»å‹•ä½ç½®è¨ˆç®—
 	ofs_pos.y =  FX_Mul( FX_SinIdx( eff_rot ), FX32_CONST( p_wk->data.normal.move_y ) );
 
-	// ‚»‚Ìƒf[ƒ^‚ğİ’è
+	// ãã®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	WFLBY_3DMAPOBJCONT_FLOAT_SetRot( p_mapobjcont, idx, rotx );
 	WFLBY_3DMAPOBJCONT_FLOAT_SetOfsPos( p_mapobjcont, idx, &ofs_pos );
 
 
-	return ret;		// “r’†
+	return ret;		// é€”ä¸­
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñƒƒbƒNİ’è
+ *	@brief	äºˆç´„ãƒ­ãƒƒã‚¯è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FLOAT_CONT_SetReserveLock( WFLBY_FLOAT_CONT* p_sys, u32 idx )
@@ -773,21 +773,21 @@ static void WFLBY_FLOAT_CONT_SetReserveLock( WFLBY_FLOAT_CONT* p_sys, u32 idx )
 	VecFx32 matrix;
 	fx32 lock_x;
 
-	//@ÀÈ‚ÌÀ•W‚ª‰w‚ÌXÀ•W‚ª‚æ‚è¬‚³‚­‚È‚Á‚½‚ç—\–ñƒƒbƒN‚ğ‚©‚¯‚é
+	//ã€€åº§å¸­ã®åº§æ¨™ãŒé§…ã®Xåº§æ¨™ãŒã‚ˆã‚Šå°ã•ããªã£ãŸã‚‰äºˆç´„ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã‚‹
 	for( i=0; i<WFLBY_FLOAT_ON_NUM; i++ ){
 		posidx = (idx * WFLBY_FLOAT_ON_NUM) + i;
 		now_station = WFLBY_SYSTEM_GetFloatReserveLock( p_sys->p_system, posidx );
 
-		// À•W‚ğæ“¾
+		// åº§æ¨™ã‚’å–å¾—
 		WFLBY_3DMAPOBJCONT_FLOAT_GetSheetPos( p_sys->p_mapobjcont, idx, i, &matrix );
 
-		// ƒƒbƒN‚·‚é‰w‚ğİ’è
+		// ãƒ­ãƒƒã‚¯ã™ã‚‹é§…ã‚’è¨­å®š
 		for( j=now_station; j<WFLBY_FLOAT_STATION_NUM; j++ ){
 		
-			// ‰wƒƒbƒNƒ`ƒFƒbƒN
+			// é§…ãƒ­ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
 			lock_x = ((p_sys->station_pos[j].x+WFLBY_FLOAT_CONT_LOCK_X_OFS)*WFLBY_3DMATRIX_GRID_SIZ);
 			if( lock_x > matrix.x ){
-				// ƒƒbƒN‚©‚¯‚é
+				// ãƒ­ãƒƒã‚¯ã‹ã‘ã‚‹
 				WFLBY_SYSTEM_SetFloatReserveLock( p_sys->p_system, posidx, j );
 			}
 		}

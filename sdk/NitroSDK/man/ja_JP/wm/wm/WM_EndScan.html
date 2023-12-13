@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WM_EndScan</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WM_EndScan</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
 
@@ -20,32 +20,32 @@
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
-      <TD width="800">�񓯊������������������ɌĂяo�����R�[���o�b�N�֐����w�肵�܂��B<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
     </TR>
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p><A href="WMErrCode.html">WMErrCode�񋓌^</A>�̏������ʂ�Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
 
-<H2>����</H2>
-<P>�e�@�̒T�����I�����܂��BWM��<A href="wm_state_diagram.html">SCAN�X�e�[�g</A>�̂Ƃ��ɂ̂ݎ��s�\�ł���A<A href="wm_state_diagram.html">IDLE�X�e�[�g</A>�Ɉڍs���܂��B
-API�̖߂�l��WM_ERRCODE_OPERATING�ł������ꍇ�A�T���I������������������ɃR�[���o�b�N���������܂��B</P>
+<H2>説明</H2>
+<P>親機の探索を終了します。WMが<A href="wm_state_diagram.html">SCANステート</A>のときにのみ実行可能であり、<A href="wm_state_diagram.html">IDLEステート</A>に移行します。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、探索終了処理が完了した後にコールバックが発生します。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="WM_StartScan.html">WM_StartScan</A>, <A href="WM_StartConnect.html">WM_StartConnect</A>, <A href="WM_Disconnect.html">WM_Disconnect</A></CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/08 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-2004/10/22 �Ԃ�l�̌^��ύX<BR>
-2004/07/29 �����̒ǉ���<BR>
-2004/07/23 ����<BR>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
 </P>
 </body>
 </html>

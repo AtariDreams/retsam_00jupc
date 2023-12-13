@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_233.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			233�@�����Ă��铹���Ώۂɓ�������B�����Ă��铹��Ȃ��ꍇ���s�B
- *				 �����铹��ɂ��З͂���ʕω�����B�ʓr���ʃe�[�u���p�ӁB�ʃV�[�g�y����ǉ��Z�z�̎Q�ƁB
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			233　持っている道具を対象に投げつける。持っている道具がない場合失敗。
+ *				 投げる道具により威力や効果変化あり。別途効果テーブル用意。別シート【道具追加技】の参照。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14
@@ -16,10 +16,10 @@
 	.include	"waza_seq_def.h"
 
 BE_233:
-	//�����}���`�^�C�v�́A���܂����܂��
+	//特性マルチタイプは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
 
-	//�͂����񂾂܂̏ꍇ�͂��܂����܂��
+	//はっきんだまの場合はうまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
 
 	NAGETSUKERU		Umakukimaran

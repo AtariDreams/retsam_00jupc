@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tradelist.c
- * @bfief	ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒg‰æ–Ê
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆç”»é¢
  * @author	Akito Mori
  * @date	05.12.08
  */
@@ -42,10 +42,10 @@ static void BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode);
 
 
 //------------------------------------------------------------------
-// Šeƒf[ƒ^’è‹`
+// å„ãƒ‡ãƒ¼ã‚¿å®šç¾©
 //------------------------------------------------------------------
 
-// ƒTƒu‰æ–ÊBMPWIN”z’uî•ñ
+// ã‚µãƒ–ç”»é¢BMPWINé…ç½®æƒ…å ±
 static const u16 sub_bmp_table[][5]={
 	{SUB_MYPOKENAME_X,		SUB_POKENAME_Y,SUB_POKENAME_W,SUB_POKENAME_H,SUB_MYPOKEBMP_OFFSET},
 	{SUB_FRIENDPOKENAME_X,	SUB_POKENAME_Y,SUB_POKENAME_W,SUB_POKENAME_H,SUB_FRIENDPOKEBMP_OFFSET},
@@ -83,7 +83,7 @@ static const u16 main_pokename_table[][2]={
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -94,7 +94,7 @@ void TradeList_BmpMessageSet(GF_BGL_INI *bgl, GF_BGL_BMPWIN *TradeListWin, CONFI
 {
 	int i;
 
-	// ƒƒCƒ“‰æ–Ê‚ÌŽ©•ª‚Ì–¼‘O
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®è‡ªåˆ†ã®åå‰
 	GF_BGL_BmpWinAdd(bgl, &TradeListWin[BMP_M_MYNAME_WIN], GF_BGL_FRAME1_M,
 				TRADELIST_MYNAME_X, TRADELIST_NAME_Y, TRADELIST_NAME_W, TRADELIST_NAME_H, 8,  MAIN_MYNAMEBMP_OFFSET);
 	GF_BGL_BmpWinDataFill( &TradeListWin[BMP_M_MYNAME_WIN], 0 );
@@ -103,13 +103,13 @@ void TradeList_BmpMessageSet(GF_BGL_INI *bgl, GF_BGL_BMPWIN *TradeListWin, CONFI
 				TRADELIST_FRIENDNAME_X, TRADELIST_NAME_Y, TRADELIST_NAME_W, TRADELIST_NAME_H, 8,  MAIN_FRIENDNAMEBMP_OFFSET);
 	GF_BGL_BmpWinDataFill( &TradeListWin[BMP_M_FRIENDNAME_WIN], 0 );
 
-	// u‚¨‚í‚èv
+	// ã€ŒãŠã‚ã‚Šã€
 	GF_BGL_BmpWinAdd(bgl, &TradeListWin[BMP_M_ENDSTR_WIN], GF_BGL_FRAME1_M,
 				TRADELIST_ENDSTR_X,	TRADELIST_ENDSTR_Y,TRADELIST_ENDSTR_W,TRADELIST_ENDSTR_H,8,	MAIN_ENDSTRBMP_OFFSET);
 	GF_BGL_BmpWinDataFill( &TradeListWin[BMP_M_ENDSTR_WIN], 0 );
 
 
-	// ƒƒCƒ“‰æ–Ê‚Ì‰ï˜bƒEƒCƒ“ƒhƒEˆ—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å‡¦ç†
 	TalkWinGraphicSet( bgl, GF_BGL_FRAME0_M, TALKWIN_FRAME_OFFSET, 10, CONFIG_GetWindowType(config), HEAPID_TRADELIST );           
 	MenuWinGraphicSet( bgl, GF_BGL_FRAME0_M, MENUWIN_FRAME_OFFSET, 11, 0, HEAPID_TRADELIST );
 
@@ -131,7 +131,7 @@ void TradeList_BmpMessageSet(GF_BGL_INI *bgl, GF_BGL_BMPWIN *TradeListWin, CONFI
 	GF_BGL_BmpWinDataFill( &TradeListWin[BMP_M_SELECT2_WIN], 0 );
 
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O
+	// ãƒã‚±ãƒ¢ãƒ³ã®åå‰
 	for(i=0;i<14;i++){
 		GF_BGL_BmpWinAdd(bgl, &TradeListWin[BMP_M_MYPOKENAME0_WIN+i], GF_BGL_FRAME1_M,
 				main_pokename_table[i][0],
@@ -143,7 +143,7 @@ void TradeList_BmpMessageSet(GF_BGL_INI *bgl, GF_BGL_BMPWIN *TradeListWin, CONFI
 		GF_BGL_BmpWinDataFill( &TradeListWin[BMP_M_MYPOKENAME0_WIN+i], 0 );
 	}
 
-	// ƒTƒu‰æ–Ê‚Ì•¶Žšî•ñ
+	// ã‚µãƒ–ç”»é¢ã®æ–‡å­—æƒ…å ±
 	for(i=0;i<8;i++){
 		GF_BGL_BmpWinAdd(bgl, &TradeListWin[BMP_S_MYPOKENAME_WIN+i], GF_BGL_FRAME0_S,
 				sub_bmp_table[i][0], sub_bmp_table[i][1],sub_bmp_table[i][2],sub_bmp_table[i][3], 8,  sub_bmp_table[i][4]);
@@ -158,7 +158,7 @@ void TradeList_BmpMessageSet(GF_BGL_INI *bgl, GF_BGL_BMPWIN *TradeListWin, CONFI
 
 //==============================================================================
 /**
- * BMP‰ð•ú
+ * BMPè§£æ”¾
  *
  * @param   TradeListWin		
  *
@@ -169,13 +169,13 @@ void TradeListBmpExit(GF_BGL_BMPWIN *TradeListWin)
 {
 	int i;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O
+	// ãƒã‚±ãƒ¢ãƒ³ã®åå‰
 	for(i=0;i<14;i++){
 		GF_BGL_BmpWinDel( &TradeListWin[BMP_M_MYPOKENAME0_WIN+i] );
 	}
 
 
-	// ƒTƒu‰æ–Ê‚Ì•¶Žšî•ñ
+	// ã‚µãƒ–ç”»é¢ã®æ–‡å­—æƒ…å ±
 	for(i=0;i<8;i++){
 		GF_BGL_BmpWinDel( &TradeListWin[BMP_S_MYPOKENAME_WIN+i] );
 	}
@@ -198,13 +198,13 @@ void TradeListBmpExit(GF_BGL_BMPWIN *TradeListWin)
 
 //------------------------------------------------------------------
 /**
- * ŒðŠ·ƒŠƒXƒg“à‚Å‚Ì•¶Žš—ñ•\Ž¦ˆ—
+ * äº¤æ›ãƒªã‚¹ãƒˆå†…ã§ã®æ–‡å­—åˆ—è¡¨ç¤ºå‡¦ç†
  *
  * @param   win		
  * @param   strbuf		
- * @param   bmp_width	ƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚Æ‚«‚ÌBMPWIN‚Ì‰¡•iƒLƒƒƒ‰’PˆÊ)
+ * @param   bmp_width	ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã¨ãã®BMPWINã®æ¨ªå¹…ï¼ˆã‚­ãƒ£ãƒ©å˜ä½)
  * @param   wait		
- * @param   print_sw	LEFT_PRINT‚Å¶‹l‚ß,CENTER_PRINT‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO
+ * @param   print_sw	LEFT_PRINTã§å·¦è©°ã‚,CENTER_PRINTã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°
  *
  * @retval  none		
  */
@@ -213,7 +213,7 @@ void TradeListPrint(GF_BGL_BMPWIN *win, STRBUF *strbuf, int bmp_width, u32 wait,
 {
 	int sx = 0;
 	
-	// ƒZƒ“ƒ^ƒŠƒ“ƒO‚ðs‚¤‚©H
+	// ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ï¼Ÿ
 	if(print_sw==CENTER_PRINT){
 		int strlen;
 
@@ -221,7 +221,7 @@ void TradeListPrint(GF_BGL_BMPWIN *win, STRBUF *strbuf, int bmp_width, u32 wait,
 		sx = ((win->sizx*8)-strlen)/2;
 //		sx = (bmp_width*8-strlen) / 2;
 	}else{
-		// LEFT_PRINTˆÈŠO‚Ìê‡‚Í‰¡ˆÚ“®ƒIƒtƒZƒbƒg‚É‚È‚é
+		// LEFT_PRINTä»¥å¤–ã®å ´åˆã¯æ¨ªç§»å‹•ã‚ªãƒ•ã‚»ãƒƒãƒˆã«ãªã‚‹
 		sx = print_sw;
 	}
 
@@ -230,7 +230,7 @@ void TradeListPrint(GF_BGL_BMPWIN *win, STRBUF *strbuf, int bmp_width, u32 wait,
 
 //==============================================================================
 /**
- * ‰ï˜bƒEƒCƒ“ƒhƒE•`‰æˆ—
+ * ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»å‡¦ç†
  *
  * @param   win		
  * @param   strbuf	
@@ -265,7 +265,7 @@ static const BMPWIN_DAT TradeYesNoBmpDat={
 
 //==============================================================================
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦ˆ—
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†
  *
  * @param   bgl		
  * @param   menu		
@@ -314,36 +314,36 @@ void TradeListWinWrite(GF_BGL_BMPWIN *win)
 #define _MENU_POSX    (19)
 #define _MENU_POSY    (1)
 #define _MENU_SIZE_X  (12)
-#define FLD_SYSFONT_PAL	     ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-#define FLD_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
+#define FLD_SYSFONT_PAL	     ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+#define FLD_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 
-///”Ä—p‘I‘ðƒƒjƒ…[‚ÌƒŠƒXƒg
+///æ±Žç”¨é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    WIFILIST_FRIEND_MAX,	// ƒŠƒXƒg€–Ú”
-    WIFILIST_FRIEND_MAX,	// •\Ž¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-    8,						// €–Ú•\Ž¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-    0,						// •\Ž¦‚xÀ•W
-    1,						// •¶ŽšF
-    15,						// ”wŒiF
-    2,						// •¶Žš‰eF
-    0,						// •¶ŽšŠÔŠu‚w
-    16,						// •¶ŽšŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,			// •¶ŽšŽw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    WIFILIST_FRIEND_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    WIFILIST_FRIEND_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    1,						// æ–‡å­—è‰²
+    15,						// èƒŒæ™¯è‰²
+    2,						// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 
 //==============================================================================
 /**
- * @brief   ‘I‘ðƒŠƒXƒg‰Šú‰»
+ * @brief   é¸æŠžãƒªã‚¹ãƒˆåˆæœŸåŒ–
  *
  * @param   menulist		
  * @param   count		
@@ -359,7 +359,7 @@ BMPLIST_WORK* TradeListMenuInit(BMPLIST_DATA* menulist, int count,GF_BGL_BMPWIN*
     BMPLIST_HEADER list_h;
     int line = 5;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(bgl, pWin,
                 GF_BGL_FRAME0_M, _MENU_POSX, _MENU_POSY,
                 _MENU_SIZE_X, line * 2, 13,
@@ -377,10 +377,10 @@ BMPLIST_WORK* TradeListMenuInit(BMPLIST_DATA* menulist, int count,GF_BGL_BMPWIN*
     return lw;
 }
 
-//ƒŠƒXƒg•\Ž¦—pƒR[ƒ‹ƒoƒbƒN
+//ãƒªã‚¹ãƒˆè¡¨ç¤ºç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode)
 {
-	if( mode == 0 ){	//‰Šú‰»Žž
+	if( mode == 0 ){	//åˆæœŸåŒ–æ™‚
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 }

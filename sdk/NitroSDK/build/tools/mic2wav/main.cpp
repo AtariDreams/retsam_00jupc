@@ -32,7 +32,7 @@
 #include <direct.h>
 
 
-// ƒƒOƒtƒ@ƒCƒ‹‚©‚ç WAV ƒtƒ@ƒCƒ‹‚ğ¶¬.
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ WAV ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆ.
 class   LogToWav :
     public  WAVEFORMATEX
 {
@@ -66,7 +66,7 @@ public:
         Reset();
     }
 
-    // “ü—Íƒf[ƒ^‚ğ”jŠü‚·‚é.
+    // å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹.
     void    Reset(void)
     {
         free(data), data = NULL, reserve = 0;
@@ -74,25 +74,25 @@ public:
         end = false;
     }
 
-    // ‚Ğ‚Æ‚Â‚ÌƒTƒ“ƒvƒ‹ƒf[ƒ^‚ªI—¹‚µ‚½‚©”»’è.
+    // ã²ã¨ã¤ã®ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒçµ‚äº†ã—ãŸã‹åˆ¤å®š.
     bool    IsEnd(void) const { return  end;    }
 
-    // “ü—Ís‚ğ‰ğÍ.
+    // å…¥åŠ›è¡Œã‚’è§£æ.
     void    InputLine(const char *s);
 
-    // Œ»İ‚Ìƒf[ƒ^‚ğw’èƒtƒ@ƒCƒ‹‚Öo—Í.
+    // ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸å‡ºåŠ›.
     bool    Save(const char *path);
 
 } ;
 
 
-// “ü—Ís‚ğ‰ğÍ.
+// å…¥åŠ›è¡Œã‚’è§£æ.
 void    LogToWav::InputLine(const char *s)
 {
     switch(*s++) {
-    case '#':   // –¾¦“I‚ÈƒRƒƒ“ƒg.
+    case '#':   // æ˜ç¤ºçš„ãªã‚³ãƒ¡ãƒ³ãƒˆ.
         break;
-    case '$':   // ƒpƒ‰ƒ[ƒ^İ’è.
+    case '$':   // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š.
         if(!strncmp(s, "bits=", 5)) {
             if(len == 0)
                 wBitsPerSample = (WORD)atoi(s + 5);
@@ -107,13 +107,13 @@ void    LogToWav::InputLine(const char *s)
             return;
         UpdateSetting();
         break;
-    case '|':   // ƒf[ƒ^“ü—Í.
-        // w’è‚Ìƒrƒbƒg•‚Å "^|([0-9A-F]{n},)+$" ‚Æ‚µ‚ÄŒŸo.
+    case '|':   // ãƒ‡ãƒ¼ã‚¿å…¥åŠ›.
+        // æŒ‡å®šã®ãƒ“ãƒƒãƒˆå¹…ã§ "^|([0-9A-F]{n},)+$" ã¨ã—ã¦æ¤œå‡º.
         {
             const int   width = wBitsPerSample / 4;
             int nibble = 0, sample = 0;
             for( ; ; ) {
-                // 16 i”‚ÅƒTƒ“ƒvƒ‹‚ğ’Šo.
+                // 16 é€²æ•°ã§ã‚µãƒ³ãƒ—ãƒ«ã‚’æŠ½å‡º.
                 char    c = (char)toupper(*s++);
                 if((c >= '0') && (c <= '9')) {
                     sample = (sample << 4) + (c +  0 - '0');
@@ -123,11 +123,11 @@ void    LogToWav::InputLine(const char *s)
                     sample = (sample << 4) + (c + 10 - 'A');
                     ++nibble;
                 }
-                // ‹æØ‚è‚Åƒoƒbƒtƒ@‚É’Ç‰Á.
+                // åŒºåˆ‡ã‚Šã§ãƒãƒƒãƒ•ã‚¡ã«è¿½åŠ .
                 else if(c == ',') {
-                    // ³“–‚Èê‡‚Ì‚İÌ—p.
+                    // æ­£å½“ãªå ´åˆã®ã¿æ¡ç”¨.
                     if(nibble == width) {
-                        // ƒoƒbƒtƒ@•s‘«‚È‚çŠg’£.
+                        // ãƒãƒƒãƒ•ã‚¡ä¸è¶³ãªã‚‰æ‹¡å¼µ.
                         if(len >= reserve) {
                             int new_len = reserve ? reserve * 2 : 16;
                             void    *p = realloc(data, new_len);
@@ -147,7 +147,7 @@ void    LogToWav::InputLine(const char *s)
                     }
                     nibble = 0, sample = 0;
                 }
-                // ‚»‚êˆÈŠO‚Ìê‡‚ÍI—¹.
+                // ãã‚Œä»¥å¤–ã®å ´åˆã¯çµ‚äº†.
                 else
                     break;
             }
@@ -157,14 +157,14 @@ void    LogToWav::InputLine(const char *s)
 
 }
 
-// Œ»İ‚Ìƒf[ƒ^‚ğw’èƒtƒ@ƒCƒ‹‚Öo—Í.
+// ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸å‡ºåŠ›.
 bool    LogToWav::Save(const char *path)
 {
-    // o—Íƒtƒ@ƒCƒ‹‚ğŠJ‚­.
+    // å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã.
     FILE    *f = fopen(path, "wb");
     if(!f)  return  false;
 
-    // DWORD ‹«ŠE‚É®‡‚·‚é.
+    // DWORD å¢ƒç•Œã«æ•´åˆã™ã‚‹.
     const int   size = ((len + 3) & ~3);
     while(len < size) {
         if(wBitsPerSample == 8) {
@@ -176,7 +176,7 @@ bool    LogToWav::Save(const char *path)
         len += wBitsPerSample / 8;
     }
 
-    // ‡‚Éƒf[ƒ^‚ğo—Í‚µ‚Ä‚¢‚­.
+    // é †ã«ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã—ã¦ã„ã.
     WORD    w;
     DWORD   d;
     fwrite("RIFF", 1, 4, f);        // 4.
@@ -226,14 +226,14 @@ int main(int argc, char* argv[])
         return  1;
     }
 
-    // “ü—Íƒtƒ@ƒCƒ‹‚ğŠJ‚­.
+    // å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã.
     FILE    *f = fopen(argv[1], "r");
     if(!f) {
         printf("can not open input file \"%s\".\n", argv[1]);
         return  2;
     }
 
-    // ƒfƒBƒŒƒNƒgƒŠ‚ğw’è. (‚È‚¯‚ê‚Î“ü—Íƒtƒ@ƒCƒ‹‚Æ“¯‚¶ˆÊ’u)
+    // ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®š. (ãªã‘ã‚Œã°å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã¨åŒã˜ä½ç½®)
     char    s_dir[MAX_PATH];
     if(argc >= 3) {
         strcpy(s_dir, argv[2]);
@@ -248,7 +248,7 @@ int main(int argc, char* argv[])
         s_dir[n + 1] = '\0';
     }
 
-    {   // s’PˆÊ‚Åˆ—.
+    {   // è¡Œå˜ä½ã§å‡¦ç†.
         LogToWav    wav;
         int file_index = 0;
         char    line[4096];

@@ -1,165 +1,165 @@
 typedef struct {
-	u8	person_name_size;	// l•¨‚Ì–¼‘O‚Ì’·‚³iŽ©•ª‚àŠÜ‚Þj
-	u8	tr_name_size;		// ƒgƒŒ[ƒi[‚Ì–¼‘O‚Ì’·‚³
-	u8	mons_name_size;		// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³(ƒoƒbƒtƒ@ƒTƒCƒY EOM_ŠÜ‚Ü‚¸)
-	u8	mons_disp_size;		// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³(•\Ž¦ƒTƒCƒY EOM_ŠÜ‚Ü‚¸)
-	u8	waza_name_size;		// ‚í‚´–¼‚Ì’·‚³
-	u8	item_name_size;		// ‚Ç‚¤‚®–¼‚Ì’·‚³
-	u8	seed_name_size;		// ƒ^ƒl‚Ì–¼‘O‚Ì’·‚³
-	u8	speabi_name_size;	// “Á«–¼‚Ì’·‚³
-	u8	zokusei_name_size;	// ‘®«–¼‚Ì’·‚³
-	u8	map_name_width;		// ’n–¼•¶Žš—ñ‚Ì•\Ž¦•
-	u8	mapname_max;		// ’n–¼•¶Žš—ñ‚ÌÅ‘å’·
-	u8	trtype_name_size;	// ƒgƒŒ[ƒi[ƒ^ƒCƒv–¼‚Ì’·‚³
-	u8	goods_name_size;	// ƒOƒbƒY–¼‚Ì’·‚³
-	u8	zukan_type_size;	// }ŠÓƒ^ƒCƒv–¼‚Ì’·‚³
-	u8	eom_size;			// I—¹ƒR[ƒh‚Ì’·‚³
-	u8	btl_tr_name_size;	// ƒoƒgƒ‹ƒ^ƒ[EƒgƒŒ[ƒi[‚Ì–¼‘O‚Ì’·‚³
-	u8	kaiwa_work_size;	// ŠÈˆÕ‰ï˜b‚Ì‚P’PŒê‚ÌÅ’·•¶Žš”iEOM_ŠÜ‚Ü‚¸j
+	u8	person_name_size;	// äººç‰©ã®åå‰ã®é•·ã•ï¼ˆè‡ªåˆ†ã‚‚å«ã‚€ï¼‰
+	u8	tr_name_size;		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®åå‰ã®é•·ã•
+	u8	mons_name_size;		// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º EOM_å«ã¾ãš)
+	u8	mons_disp_size;		// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•(è¡¨ç¤ºã‚µã‚¤ã‚º EOM_å«ã¾ãš)
+	u8	waza_name_size;		// ã‚ã–åã®é•·ã•
+	u8	item_name_size;		// ã©ã†ãåã®é•·ã•
+	u8	seed_name_size;		// ã‚¿ãƒã®åå‰ã®é•·ã•
+	u8	speabi_name_size;	// ç‰¹æ€§åã®é•·ã•
+	u8	zokusei_name_size;	// å±žæ€§åã®é•·ã•
+	u8	map_name_width;		// åœ°åæ–‡å­—åˆ—ã®è¡¨ç¤ºå¹…
+	u8	mapname_max;		// åœ°åæ–‡å­—åˆ—ã®æœ€å¤§é•·
+	u8	trtype_name_size;	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åã®é•·ã•
+	u8	goods_name_size;	// ã‚°ãƒƒã‚ºåã®é•·ã•
+	u8	zukan_type_size;	// å›³é‘‘ã‚¿ã‚¤ãƒ—åã®é•·ã•
+	u8	eom_size;			// çµ‚äº†ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+	u8	btl_tr_name_size;	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ»ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®åå‰ã®é•·ã•
+	u8	kaiwa_work_size;	// ç°¡æ˜“ä¼šè©±ã®ï¼‘å˜èªžã®æœ€é•·æ–‡å­—æ•°ï¼ˆEOM_å«ã¾ãšï¼‰
 }POKE_DATALEN;
 
 typedef struct {
-	u8	normal_max;	// ’ÊíƒAƒCƒeƒ€•Û‘¶”
-	u8	extra_max;	// ‘åŽ–ƒAƒCƒeƒ€•Û‘¶”
-	u8	ball_max;	// ƒ{[ƒ‹ƒAƒCƒeƒ€•Û‘¶”
-	u8	skill_max;	// ‹Zƒ}ƒVƒ“ƒAƒCƒeƒ€•Û‘¶”
-	u8	seed_max;	// ŽíƒAƒCƒeƒ€•Û‘¶”
-	u8	pc_max;		// ‚o‚bƒAƒCƒeƒ€•Û‘¶”
+	u8	normal_max;	// é€šå¸¸ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
+	u8	extra_max;	// å¤§äº‹ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
+	u8	ball_max;	// ãƒœãƒ¼ãƒ«ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
+	u8	skill_max;	// æŠ€ãƒžã‚·ãƒ³ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
+	u8	seed_max;	// ç¨®ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
+	u8	pc_max;		// ï¼°ï¼£ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æ•°
 }POKE_ITEMMAX;
 
 typedef struct {
-	u32	membox:1;	// ƒƒ‚ƒŠ[ƒ{ƒbƒNƒXŽg—p‰Â”\ƒtƒ‰ƒO
-	u32	coliseum:1;	// ƒ|ƒPƒ‚ƒ“ƒRƒƒVƒAƒ€Žg—p‰Â”\ƒtƒ‰ƒO
-	u32	dummy:30;	// —\”õ
+	u32	membox:1;	// ãƒ¡ãƒ¢ãƒªãƒ¼ãƒœãƒƒã‚¯ã‚¹ä½¿ç”¨å¯èƒ½ãƒ•ãƒ©ã‚°
+	u32	coliseum:1;	// ãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ­ã‚·ã‚¢ãƒ ä½¿ç”¨å¯èƒ½ãƒ•ãƒ©ã‚°
+	u32	dummy:30;	// äºˆå‚™
 }POKESOFT_ENABLE;
 
 typedef struct {
-	///ƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“
+	///ã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	u32	pm_version;
-	///Œ¾Œêƒo[ƒWƒ‡ƒ“
+	///è¨€èªžãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	u32 pm_lang;
 
-	///ƒQ[ƒ€ƒ^ƒCƒgƒ‹–¼
+	///ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒˆãƒ«å
 	u8 rom_name[32];
 
-	///ƒ|ƒPƒ‚ƒ“³–Ê‰æ‘œƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³æ­£é¢ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * front_cell;
-	///ƒ|ƒPƒ‚ƒ“”w–Ê‰æ‘œƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³èƒŒé¢ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * back_cell;
-	///ƒ|ƒPƒ‚ƒ“ƒm[ƒ}ƒ‹ƒJƒ‰[ƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³ãƒŽãƒ¼ãƒžãƒ«ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * normal_pal;
-	///ƒ|ƒPƒ‚ƒ“ƒŒƒAƒJƒ‰[ƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * rare_pal;
 
-	///ƒAƒCƒRƒ“‰æ‘œƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	u8* const	* icon_char;
-	///ƒAƒCƒRƒ“ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const u8 * icon_attr;
-	///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒpƒŒƒbƒgƒf[ƒ^
+	///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 	const void * icon_pal;
 
-	///ƒ|ƒPƒ‚ƒ“–¼‘Oƒf[ƒ^ƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void *mons_name;
-	///‚í‚´–¼ƒf[ƒ^ƒe[ƒuƒ‹
+	///ã‚ã–åãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void *waza_name;
-	///ƒOƒbƒYƒf[ƒ^ƒe[ƒuƒ‹
+	///ã‚°ãƒƒã‚ºãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * goods;
 
-	///ƒZ[ƒuƒf[ƒ^(fld)FƒCƒxƒ“ƒgƒtƒ‰ƒOƒIƒtƒZƒbƒg
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(fld)ï¼šã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u32	event_flag_offset;
-	///ƒZ[ƒuƒf[ƒ^(fld)FƒCƒxƒ“ƒgƒ[ƒNƒIƒtƒZƒbƒg
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(fld)ï¼šã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u32 event_work_offset;
-	///ƒZ[ƒuƒf[ƒ^(MyData)F}ŠÓƒuƒƒbƒNƒIƒtƒZƒbƒg
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(MyData)ï¼šå›³é‘‘ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u32 zukan_work_offset;
-	///ƒZ[ƒuƒf[ƒ^(fld):}ŠÓƒf[ƒ^ƒIƒtƒZƒbƒgiŒ©‚Â‚¯‚½ƒtƒ‰ƒO‚»‚Ì‚Qj
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(fld):å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆè¦‹ã¤ã‘ãŸãƒ•ãƒ©ã‚°ãã®ï¼’ï¼‰
 	u32 zukan_flag2_offset;
-	///ƒZ[ƒuƒf[ƒ^(fld):}ŠÓƒf[ƒ^ƒIƒtƒZƒbƒgiŒ©‚Â‚¯‚½ƒtƒ‰ƒO‚»‚Ì‚Rj
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(fld):å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆè¦‹ã¤ã‘ãŸãƒ•ãƒ©ã‚°ãã®ï¼“ï¼‰
 	u32 zukan_flag3_offset;
 
-	///}ŠÓ‘S‘ƒ‚[ƒhƒ[ƒNƒiƒ“ƒo[
+	///å›³é‘‘å…¨å›½ãƒ¢ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
 	u32 zenkoku_work_no;
-	///}ŠÓ‘S‘ƒ‚[ƒhƒtƒ‰ƒOƒiƒ“ƒo[
+	///å›³é‘‘å…¨å›½ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 	u32 zenkoku_flag_no;
-	///u‚Ó‚µ‚¬‚È‚Å‚«‚²‚Ævƒtƒ‰ƒOƒiƒ“ƒo[
+	///ã€Œãµã—ãŽãªã§ãã”ã¨ã€ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 	u32 husigi_flag_no;
 
-	///ƒ|ƒPƒ‚ƒ“Å‘å”
+	///ãƒã‚±ãƒ¢ãƒ³æœ€å¤§æ•°
 	u32 poke_cnt_max;
 
-	//ƒf[ƒ^’·Ý’èŠÖ˜A
+	//ãƒ‡ãƒ¼ã‚¿é•·è¨­å®šé–¢é€£
 	POKE_DATALEN	pm_datalen;
 
-	///ƒZ[ƒuƒf[ƒ^FMyData@ƒf[ƒ^ƒTƒCƒY
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šMyDataã€€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 	u32	MyData_size;
-	///ƒZ[ƒuƒf[ƒ^Ffld@ƒf[ƒ^ƒTƒCƒY
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šfldã€€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 	u32	Fld_size;
 
-	///ƒZ[ƒuƒf[ƒ^Fƒ|ƒPƒ‚ƒ“ŽèŽ‚¿”
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒã‚±ãƒ¢ãƒ³æ‰‹æŒã¡æ•°
 	u32 temoti_cnt;
-	///ƒZ[ƒuƒf[ƒ^Fƒ|ƒPƒ‚ƒ“ŽèŽ‚¿ƒf[ƒ^
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒã‚±ãƒ¢ãƒ³æ‰‹æŒã¡ãƒ‡ãƒ¼ã‚¿
 	u32 temoti_dat;
 
-	///ƒZ[ƒuƒf[ƒ^FƒZ[ƒuó‘Ô”»’è
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šã‚»ãƒ¼ãƒ–çŠ¶æ…‹åˆ¤å®š
 	u32 pokecen_flg;
-	///ƒZ[ƒuƒf[ƒ^FŽ©•ª‚Ì‚h‚c
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šè‡ªåˆ†ã®ï¼©ï¼¤
 	u32 my_id;
 
-	///ƒZ[ƒuƒf[ƒ^FŽ©•ª‚Ì–¼‘O
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šè‡ªåˆ†ã®åå‰
 	u32 my_name;
-	///ƒZ[ƒuƒf[ƒ^FŽ©•ª‚Ì«•Ê
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šè‡ªåˆ†ã®æ€§åˆ¥
 	u32 my_sex;
 
-	///ƒZ[ƒuƒf[ƒ^Fƒoƒgƒ‹ƒ^ƒ[‚k‚u‚T‚Oƒ‚[ƒh‚ÌƒXƒe[ƒ^ƒX
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ï¼¬ï¼¶ï¼•ï¼ãƒ¢ãƒ¼ãƒ‰ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	u32 b_tower_stat50;
-	///ƒZ[ƒuƒf[ƒ^Fƒoƒgƒ‹ƒ^ƒ[‚k‚u‚P‚O‚Oƒ‚[ƒh‚ÌƒXƒe[ƒ^ƒX
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ï¼¬ï¼¶ï¼‘ï¼ï¼ãƒ¢ãƒ¼ãƒ‰ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	u32 b_tower_stat100;
 
-	///ƒZ[ƒuƒf[ƒ^(Fld)FŠg’£ƒCƒxƒ“ƒgƒtƒ‰ƒOƒIƒtƒZƒbƒg
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(Fld)ï¼šæ‹¡å¼µã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u32	ex_event_flag_offset;
-	///ƒZ[ƒuƒf[ƒ^(Fld)FŠg’£ƒCƒxƒ“ƒgƒ[ƒNƒIƒtƒZƒbƒg
+	///ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(Fld)ï¼šæ‹¡å¼µã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u32 ex_event_work_offset;
 
-	///ŠO•”˜A“®ƒ\ƒtƒgŽg—p‰Â”Û”»’èƒtƒ‰ƒO
+	///å¤–éƒ¨é€£å‹•ã‚½ãƒ•ãƒˆä½¿ç”¨å¯å¦åˆ¤å®šãƒ•ãƒ©ã‚°
 	POKESOFT_ENABLE	expand_soft_disable_flag;
 
-	///ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^ƒe[ƒuƒ‹
+	///ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void*	PokemonData;
-	///“Á«–¼ƒf[ƒ^ƒe[ƒuƒ‹
+	///ç‰¹æ€§åãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * special_ability_msg;
-	///“Á«à–¾ƒf[ƒ^ƒe[ƒuƒ‹
+	///ç‰¹æ€§èª¬æ˜Žãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * special_ability_info_msg;
-	///ƒAƒCƒeƒ€ƒf[ƒ^ƒe[ƒuƒ‹
+	///ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void* item_data;
 
-	///‹Zƒf[ƒ^ƒe[ƒuƒ‹
+	///æŠ€ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void* waza_data;
 
-	///ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰æ‘œƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * monsterball_cell_tbl;
-	///ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒpƒŒƒbƒgƒf[ƒ^ƒAƒhƒŒƒXƒe[ƒuƒ‹
+	///ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 	const void * monsterball_pal_tbl;
 
-	///ƒ|ƒPƒ‚ƒ“ŒðŠ·”»’èƒtƒ‰ƒO
-	u32		pokemon_trade_flag;				//ƒ|ƒPƒ‚ƒ“ŒðŠ·Enableƒtƒ‰ƒO
+	///ãƒã‚±ãƒ¢ãƒ³äº¤æ›åˆ¤å®šãƒ•ãƒ©ã‚°
+	u32		pokemon_trade_flag;				//ãƒã‚±ãƒ¢ãƒ³äº¤æ›Enableãƒ•ãƒ©ã‚°
 
-	///ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒOƒiƒ“ƒo[
+	///ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 	u32		game_clr_flag_no;
 
-	///ƒŠƒ{ƒ“Žæ“¾‹–‰Âƒtƒ‰ƒOƒiƒ“ƒo[
+	///ãƒªãƒœãƒ³å–å¾—è¨±å¯ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 	u32		ribbon_enable_flag_no;
 
-	///ƒAƒCƒeƒ€•Û‘¶Å‘å”
+	///ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜æœ€å¤§æ•°
 	POKE_ITEMMAX	item_max_cnt;
 
-	///ƒpƒ\ƒRƒ“•Û‘¶ƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
+	///ãƒ‘ã‚½ã‚³ãƒ³ä¿å­˜ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 	u32		pc_item;
 
-	///ƒŠƒ{ƒ“‚ÆƒƒbƒZ[ƒW‚ÌŠÖ˜A‚Ã‚¯ƒe[ƒuƒ‹
+	///ãƒªãƒœãƒ³ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é–¢é€£ã¥ã‘ãƒ†ãƒ¼ãƒ–ãƒ«
 	u32			ribbon_no;
 
-	///‚q‚`‚l–Ø‚ÌŽÀƒ[ƒN
+	///ï¼²ï¼¡ï¼­æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
 	u32		ram_seed_data;
 
-	///‚q‚`‚l–Ø‚ÌŽÀƒ[ƒNƒTƒCƒY
+	///ï¼²ï¼¡ï¼­æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 	u32		ram_seed_data_size;
 }POKEMON_ROM_HEADER;

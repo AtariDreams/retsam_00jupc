@@ -2,7 +2,7 @@
 /**
  *
  *	@file		d3dobj.c
- *	@brief		ƒtƒB[ƒ‹ƒh‚RDƒIƒuƒWƒFƒNƒgŠÈˆÕì¬
+ *	@brief		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç°¡æ˜“ä½œæˆ
  *	@author		tomoya takahashi
  *	@data		2006.04.25
  *
@@ -19,38 +19,38 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€‘S‘Ì‚Ì‰Šú‰»”jŠüƒ^ƒXƒN
+// ã‚·ã‚¹ãƒ†ãƒ å…¨ä½“ã®åˆæœŸåŒ–ç ´æ£„ã‚¿ã‚¹ã‚¯
 #define D3DOBJ_TEXTRANS_TCB_PRI	( 1024 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void D3DOBJ_MdlTransTcb( TCB_PTR tcb, void* p_work );
@@ -61,52 +61,52 @@ static void D3DOBJ_MdlLoadComm( D3DOBJ_MDL* p_mdl );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	arc_idx		ƒA[ƒJƒCƒuID
- *	@param	data_idx	ƒf[ƒ^IDX
- *	@param	heap		ƒq[ƒv
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	arc_idx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_MdlLoad( D3DOBJ_MDL* p_mdl, u32 arc_idx, u32 data_idx, u32 heap )
 {
-	// ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_mdl->pResMdl = ArcUtil_Load( arc_idx, data_idx, FALSE, heap, ALLOC_TOP );
 
-	// ƒ‚ƒfƒ‹ƒf[ƒ^Ý’è•ƒeƒNƒXƒ`ƒƒ“]‘—
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®šï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€
 	D3DOBJ_MdlLoadComm( p_mdl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹“Ç‚Ýž‚Ý	ƒnƒ“ƒhƒ‹ƒo[ƒWƒ‡ƒ“
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿	ãƒãƒ³ãƒ‰ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	data_idx	ƒf[ƒ^IDX
- *	@param	heap		ƒq[ƒv
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_MdlLoadH( D3DOBJ_MDL* p_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 heap )
 {
-	// ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_mdl->pResMdl = ArcUtil_HDL_Load( p_handle, data_idx, FALSE, heap, ALLOC_TOP );
 
-	// ƒ‚ƒfƒ‹ƒf[ƒ^Ý’è•ƒeƒNƒXƒ`ƒƒ“]‘—
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®šï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€
 	D3DOBJ_MdlLoadComm( p_mdl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹“]‘—ƒ^ƒXƒN
+ *	@brief	ãƒ¢ãƒ‡ãƒ«è»¢é€ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -115,7 +115,7 @@ static void D3DOBJ_MdlTransTcb( TCB_PTR tcb, void* p_work )
 {
 	D3DOBJ_MDL* p_mdl = p_work;
 
-	// ƒ‚ƒfƒ‹ÃÞ°À‚ð“]‘—
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	LoadVRAMTexture( p_mdl->pMdlTex );
 	BindTexture( p_mdl->pResMdl, p_mdl->pMdlTex );
 
@@ -124,9 +124,9 @@ static void D3DOBJ_MdlTransTcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒ[ƒN”jŠü
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_mdl ƒ‚ƒfƒ‹ƒ[ƒN
+ *	@param	p_mdl ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -139,7 +139,7 @@ void D3DOBJ_MdlDelete( D3DOBJ_MDL* p_mdl )
 
 	
 	if( p_mdl->pMdlTex ){
-		//VramKey”jŠü
+		//VramKeyç ´æ£„
 		NNS_G3dTexReleaseTexKey( p_mdl->pMdlTex, &texKey, &tex4x4Key );
 		NNS_GfdFreeTexVram( texKey );	
 		NNS_GfdFreeTexVram( tex4x4Key );	
@@ -148,7 +148,7 @@ void D3DOBJ_MdlDelete( D3DOBJ_MDL* p_mdl )
 		NNS_GfdFreePlttVram( plttKey );
 	}
 	
-	// ‘SƒŠƒ\[ƒX”jŠü
+	// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	if(p_mdl->pResMdl){
 		sys_FreeMemoryEz( p_mdl->pResMdl );
 	}
@@ -157,14 +157,14 @@ void D3DOBJ_MdlDelete( D3DOBJ_MDL* p_mdl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ï¼“Dã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_anm		ƒAƒjƒƒ[ƒN
- *	@param	cp_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	arc_idx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	data_idx	ƒf[ƒ^IDX
- *	@param	heap		ƒq[ƒv
- *	@param	pallocator	ƒAƒƒP[ƒ^
+ *	@param	p_anm		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	arc_idx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	pallocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -172,7 +172,7 @@ void D3DOBJ_MdlDelete( D3DOBJ_MDL* p_mdl )
 void D3DOBJ_AnmLoad( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, u32 arc_idx, u32 data_idx, u32 heap, NNSFndAllocator* pallocator )
 {
 	void* p_data;
-	// ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data = ArcUtil_Load( arc_idx, data_idx, FALSE, heap, ALLOC_TOP );
 	D3DOBJ_AnmDataLoad_Core( p_anm, cp_mdl, p_data, pallocator );
 	p_anm->res_copy = FALSE;
@@ -180,14 +180,14 @@ void D3DOBJ_AnmLoad( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, u32 arc_idx, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ï¼“Dã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_anm		ƒAƒjƒƒ[ƒN
- *	@param	cp_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	arc_idx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	data_idx	ƒf[ƒ^IDX
- *	@param	heap		ƒq[ƒv
- *	@param	pallocator	ƒAƒƒP[ƒ^
+ *	@param	p_anm		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	arc_idx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	pallocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -195,7 +195,7 @@ void D3DOBJ_AnmLoad( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, u32 arc_idx, u
 void D3DOBJ_AnmLoadH( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 heap, NNSFndAllocator* pallocator )
 {
 	void* p_data;
-	// ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data = ArcUtil_HDL_Load( p_handle, data_idx, FALSE, heap, ALLOC_TOP );
 	D3DOBJ_AnmDataLoad_Core( p_anm, cp_mdl, p_data, pallocator );
 	p_anm->res_copy = FALSE;
@@ -203,12 +203,12 @@ void D3DOBJ_AnmLoadH( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, ARCHANDLE* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Ç‚Ýž‚ÝÏ‚Ýƒf[ƒ^‚©‚ç
+ *	@brief	èª­ã¿è¾¼ã¿æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰
  *
- *	@param	p_anm		ƒAƒjƒƒ[ƒN
- *	@param	cp_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	p_data		ƒAƒjƒƒf[ƒ^ƒoƒbƒtƒ@
- *	@param	pallocator	ƒAƒƒP[ƒ^
+ *	@param	p_anm		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	pallocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_AnmLoad_Data( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, void* p_data, NNSFndAllocator* pallocator )
@@ -219,10 +219,10 @@ void D3DOBJ_AnmLoad_Data( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, void* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒAƒjƒƒf[ƒ^”jŠü
+ *	@brief	ï¼“Dã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_anm		ƒAƒjƒƒ[ƒN
- *	@param	pallocator	ƒAƒƒP[ƒ^
+ *	@param	p_anm		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	pallocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -240,10 +240,10 @@ void D3DOBJ_AnmDelete( D3DOBJ_ANM* p_anm, NNSFndAllocator* pallocator )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒvÄ¶
+ *	@brief	ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
  *
- *	@param	p_anm	ƒAƒjƒƒIƒuƒWƒFƒNƒg
- *	@param	add		‘«‚·’l
+ *	@param	p_anm	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	add		è¶³ã™å€¤
  *
  *	@return	none
  */
@@ -266,13 +266,13 @@ void D3DOBJ_AnmLoop( D3DOBJ_ANM* p_anm, fx32 add )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒv‚È‚µÄ¶
+ *	@brief	ãƒ«ãƒ¼ãƒ—ãªã—å†ç”Ÿ
  *
- *	@param	p_anm ƒAƒjƒƒ[ƒN
- *	@param	add		‘«‚·’l
+ *	@param	p_anm ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	add		è¶³ã™å€¤
  *
- *	@retval	TRUE	Ä¶I—¹
- *	@retval	FALSE	Ä¶“r’†
+ *	@retval	TRUE	å†ç”Ÿçµ‚äº†
+ *	@retval	FALSE	å†ç”Ÿé€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL D3DOBJ_AnmNoLoop( D3DOBJ_ANM* p_anm, fx32 add )
@@ -302,10 +302,10 @@ BOOL D3DOBJ_AnmNoLoop( D3DOBJ_ANM* p_anm, fx32 add )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ’lÝ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡å€¤è¨­å®š
  *
- *	@param	p_anm	ƒAƒjƒƒIƒuƒWƒF
- *	@param	num		Ý’è’l
+ *	@param	p_anm	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	num		è¨­å®šå€¤
  *	
  *	@return	none
  */
@@ -318,11 +318,11 @@ void D3DOBJ_AnmSet( D3DOBJ_ANM* p_anm, fx32 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€Žæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
  *
- *	@param	p_anm	ƒAƒjƒƒIƒuƒWƒF
+ *	@param	p_anm	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒtƒŒ[ƒ€”
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //-----------------------------------------------------------------------------
 fx32 D3DOBJ_AnmGet( const D3DOBJ_ANM* cp_anm )
@@ -332,11 +332,11 @@ fx32 D3DOBJ_AnmGet( const D3DOBJ_ANM* cp_anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_anm	ƒAƒjƒƒIƒuƒWƒF
+ *	@param	cp_anm	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌI—¹‚·‚éƒtƒŒ[ƒ€
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 fx32 D3DOBJ_AnmGetFrameNum( const D3DOBJ_ANM* cp_anm )
@@ -346,10 +346,10 @@ fx32 D3DOBJ_AnmGetFrameNum( const D3DOBJ_ANM* cp_anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‰Šú‰»
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *
- *	@param	p_draw	ƒ[ƒN
- *	@param	p_mdl	ƒ‚ƒfƒ‹ƒ[ƒN
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mdl	ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -366,10 +366,10 @@ void D3DOBJ_Init( D3DOBJ* p_draw, D3DOBJ_MDL* p_mdl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^‚ðƒŠƒ“ƒN
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªãƒ³ã‚¯
  *
- *	@param	p_draw	ƒ[ƒN
- *	@param	p_anm	ƒAƒjƒƒ[ƒN
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_anm	ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -381,10 +381,10 @@ void D3DOBJ_AddAnm( D3DOBJ* p_draw, D3DOBJ_ANM* p_anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^‚ÌƒŠƒ“ƒN‚ð‚Í‚«
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ãƒªãƒ³ã‚¯ã‚’ã¯ã
  *
- *	@param	p_draw	ƒ[ƒN
- *	@param	p_anm	ƒAƒjƒƒ[ƒN
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_anm	ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_DelAnm( D3DOBJ* p_draw, D3DOBJ_ANM* p_anm )
@@ -394,9 +394,9 @@ void D3DOBJ_DelAnm( D3DOBJ* p_draw, D3DOBJ_ANM* p_anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹•`‰æ		
+ *	@brief	ãƒ¢ãƒ‡ãƒ«æç”»		
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -408,7 +408,7 @@ void D3DOBJ_Draw( D3DOBJ* p_draw )
 	MtxFx33 calc_mtx;
 
 	if( p_draw->draw_flg ){
-		// ‰ñ“]s—ñì¬
+		// å›žè»¢è¡Œåˆ—ä½œæˆ
 		MTX_Identity33( &mtx );
 		MTX_RotX33( &calc_mtx, FX_SinIdx( p_draw->rota[D3DOBJ_ROTA_WAY_X] ), FX_CosIdx( p_draw->rota[D3DOBJ_ROTA_WAY_X] ) );
 		MTX_Concat33( &calc_mtx, &mtx, &mtx );
@@ -423,10 +423,10 @@ void D3DOBJ_Draw( D3DOBJ* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹•`‰æ		‰ñ“]‚Í“ÆŽ©‚Éì¬‚µ‚½‚¢‚Æ‚«‚ª‚ ‚é‚Ì‚Å
+ *	@brief	ãƒ¢ãƒ‡ãƒ«æç”»		å›žè»¢ã¯ç‹¬è‡ªã«ä½œæˆã—ãŸã„ã¨ããŒã‚ã‚‹ã®ã§
  *
- *	@param	p_draw •`‰æƒ[ƒN
- *	@param	cp_mtx ‰ñ“]s—ñ
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mtx å›žè»¢è¡Œåˆ—
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_DrawRMtx( D3DOBJ* p_draw, const MtxFx33* cp_mtx )
@@ -438,16 +438,16 @@ void D3DOBJ_DrawRMtx( D3DOBJ* p_draw, const MtxFx33* cp_mtx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒOÝ’è
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_draw	ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
  *	flag
- *		TRUE	•\Ž¦
- *		FALSE	”ñ•\Ž¦
+ *		TRUE	è¡¨ç¤º
+ *		FALSE	éžè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_SetDraw( D3DOBJ* p_draw, BOOL flag )
@@ -457,12 +457,12 @@ void D3DOBJ_SetDraw( D3DOBJ* p_draw, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒOŽæ“¾
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_draw		ƒ[ƒN
+ *	@param	cp_draw		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•\Ž¦
- *	@retval	FALSE	”ñ•\Ž¦
+ *	@retval	TRUE	è¡¨ç¤º
+ *	@retval	FALSE	éžè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 BOOL D3DOBJ_GetDraw( const D3DOBJ* cp_draw )
@@ -472,12 +472,12 @@ BOOL D3DOBJ_GetDraw( const D3DOBJ* cp_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WÝ’è
+ *	@brief	åº§æ¨™è¨­å®š
  *	
- *	@param	p_draw		ƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	z			‚šÀ•W
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	z			ï½šåº§æ¨™
  *	
  *	@return	none
  */
@@ -491,12 +491,12 @@ void D3DOBJ_SetMatrix( D3DOBJ* p_draw, fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WŽæ“¾
+ *	@brief	åº§æ¨™å–å¾—
  *
- *	@param	p_draw	ƒ[ƒN
- *	@param	p_x		Ši”[æ
- *	@param	p_y		Ši”[æ
- *	@param	p_z		Ši”[æ
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x		æ ¼ç´å…ˆ
+ *	@param	p_y		æ ¼ç´å…ˆ
+ *	@param	p_z		æ ¼ç´å…ˆ
  *
  *	@return	none
  */
@@ -510,12 +510,12 @@ void D3DOBJ_GetMatrix( const D3DOBJ* cp_draw, fx32* p_x, fx32* p_y, fx32* p_z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šgk’lÝ’è
+ *	@brief	æ‹¡ç¸®å€¤è¨­å®š
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	x		‚˜Šgk’l
- *	@param	y		‚™Šgk’l
- *	@param	z 		‚šŠgk’l
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜æ‹¡ç¸®å€¤
+ *	@param	y		ï½™æ‹¡ç¸®å€¤
+ *	@param	z 		ï½šæ‹¡ç¸®å€¤
  *
  *	@return	noen
  */
@@ -529,12 +529,12 @@ void D3DOBJ_SetScale( D3DOBJ* p_draw, fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šgk’l‚ðŽæ“¾
+ *	@brief	æ‹¡ç¸®å€¤ã‚’å–å¾—
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	p_x		‚˜À•WŽæ“¾æ
- *	@param	p_y		‚™À•WŽæ“¾æ
- *	@param	p_z		‚šÀ•WŽæ“¾æ
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x		ï½˜åº§æ¨™å–å¾—å…ˆ
+ *	@param	p_y		ï½™åº§æ¨™å–å¾—å…ˆ
+ *	@param	p_z		ï½šåº§æ¨™å–å¾—å…ˆ
  *
  *	@return	none
  */
@@ -548,17 +548,17 @@ void D3DOBJ_GetScale( const D3DOBJ* cp_draw, fx32* p_x, fx32* p_y, fx32* p_z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ŠeÝ’è
+ *	@brief	å›žè»¢å„è¨­å®š
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	rota	‰ñ“]Šp
- *	@param	way		•ûŒü
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	rota	å›žè»¢è§’
+ *	@param	way		æ–¹å‘
  *
  *	@return	none
  *	way
- *		D3DOBJ_ROTA_WAY_X		XŽ²‰ñ“]
- *		D3DOBJ_ROTA_WAY_Y		YŽ²‰ñ“]
- *		D3DOBJ_ROTA_WAY_Z		ZŽ²‰ñ“]
+ *		D3DOBJ_ROTA_WAY_X		Xè»¸å›žè»¢
+ *		D3DOBJ_ROTA_WAY_Y		Yè»¸å›žè»¢
+ *		D3DOBJ_ROTA_WAY_Z		Zè»¸å›žè»¢
  */
 //-----------------------------------------------------------------------------
 void D3DOBJ_SetRota( D3DOBJ* p_draw, u16 rota, u32 way )
@@ -568,16 +568,16 @@ void D3DOBJ_SetRota( D3DOBJ* p_draw, u16 rota, u32 way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ[ƒN	‰ñ“]ŠpŽæ“¾
+ *	@brief	æç”»ãƒ¯ãƒ¼ã‚¯	å›žè»¢è§’å–å¾—
  *	
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	way		•ûŒü
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		æ–¹å‘
  *
- *	@return	‰ñ“]Šp
+ *	@return	å›žè»¢è§’
  *	way
- *		D3DOBJ_ROTA_WAY_X		XŽ²‰ñ“]
- *		D3DOBJ_ROTA_WAY_Y		YŽ²‰ñ“]
- *		D3DOBJ_ROTA_WAY_Z		ZŽ²‰ñ“]
+ *		D3DOBJ_ROTA_WAY_X		Xè»¸å›žè»¢
+ *		D3DOBJ_ROTA_WAY_Y		Yè»¸å›žè»¢
+ *		D3DOBJ_ROTA_WAY_Z		Zè»¸å›žè»¢
  */
 //-----------------------------------------------------------------------------
 u16 D3DOBJ_GetRota( const D3DOBJ* cp_draw, u32 way )
@@ -588,29 +588,29 @@ u16 D3DOBJ_GetRota( const D3DOBJ* cp_draw, u32 way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ“Ç‚Ýž‚ÝCoreŠÖ”
+ *	@brief	ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿Coreé–¢æ•°
  *
- *	@param	p_anm		ƒAƒjƒƒ[ƒN
- *	@param	cp_mdl		ƒ‚ƒfƒ‹ƒ[ƒN
- *	@param	p_data		ƒAƒjƒƒf[ƒ^ƒoƒbƒtƒ@
- *	@param	pallocator	ƒAƒƒP[ƒ^
+ *	@param	p_anm		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	pallocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void D3DOBJ_AnmDataLoad_Core( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, void* p_data, NNSFndAllocator* pallocator )
 {
-	// ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_anm->pResAnm = p_data;
 
-	//ƒŠƒ\[ƒXŽæ“¾
+	//ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	p_anm->pOneResAnm = NNS_G3dGetAnmByIdx(p_anm->pResAnm,0);
 
-	// ƒAƒjƒƒIƒuƒWƒF‚Ìƒƒ‚ƒŠŠm•Û
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_anm->pAnmObj = NNS_G3dAllocAnmObj( 
 			pallocator,
 			p_anm->pOneResAnm,
 			cp_mdl->pModel );
 
-	// ƒAƒjƒƒIƒuƒWƒF‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
 	NNS_G3dAnmObjInit(
 		p_anm->pAnmObj,
 		p_anm->pOneResAnm,
@@ -620,23 +620,23 @@ static void D3DOBJ_AnmDataLoad_Core( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3Dƒ‚ƒfƒ‹“Ç‚Ýž‚Ý‹¤’Ê•”•ª
+ *	@brief	3Dãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿å…±é€šéƒ¨åˆ†
  *
- *	@param	p_mdl	ƒ‚ƒfƒ‹ƒ[ƒN
+ *	@param	p_mdl	ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void D3DOBJ_MdlLoadComm( D3DOBJ_MDL* p_mdl )
 {
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚ÝÏ‚Ý‚Å‚ ‚é•K—v‚ª‚ ‚é
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 	GF_ASSERT( p_mdl->pResMdl );
 	
-	// ƒ‚ƒfƒ‹ÃÞ°ÀŽæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_mdl->pModelSet	= NNS_G3dGetMdlSet( p_mdl->pResMdl );
 	p_mdl->pModel		= NNS_G3dGetMdlByIdx( p_mdl->pModelSet, 0 );
 	p_mdl->pMdlTex		= NNS_G3dGetTex( p_mdl->pResMdl );
 	
 	if( p_mdl->pMdlTex ){
-		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€
 		VWaitTCB_Add( D3DOBJ_MdlTransTcb, p_mdl, D3DOBJ_TEXTRANS_TCB_PRI );
 	}
 }

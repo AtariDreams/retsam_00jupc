@@ -2,7 +2,7 @@
 /**
  *
  *	@file		scr_nagisa_scope.h
- *	@brief		ナギサシティ　灯台望遠鏡
+ *	@brief		繝翫ぐ繧ｵ繧ｷ繝�繧｣縲轣ｯ蜿ｰ譛幃□髀｡
  *	@author		tomoya takahashi
  *	@data		2006.07.10
  *

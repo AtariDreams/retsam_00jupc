@@ -3,32 +3,32 @@
  * @file	poke_anim.h
  * @brief	
  * @author	goto
- * @date	2007.02.05(Œ)
+ * @date	2007.02.05(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
 
 enum {
 	
-	ePokeAnimeEdit_No = 0,		///< ‚m‚D
-	ePokeAnimeEdit_Sex,			///< «•Ê
-	ePokeAnimeEdit_Col,			///< ƒJƒ‰[
-	ePokeAnimeEdit_Vo_wait,		///< ƒ{ƒCƒXƒEƒFƒCƒg			V
-	ePokeAnimeEdit_Pat,			///< ƒpƒ^[ƒ“
-	ePokeAnimeEdit_Pat_ox,		///< ƒpƒ^[ƒ“ Offset X		V
-	ePokeAnimeEdit_Pat_oy,		///< ƒpƒ^[ƒ“ Offset Y		V
-	ePokeAnimeEdit_Flm,			///< ƒtƒHƒ‹ƒ€‚m‚D
+	ePokeAnimeEdit_No = 0,		///< ï¼®ï½ï¼
+	ePokeAnimeEdit_Sex,			///< æ€§åˆ¥
+	ePokeAnimeEdit_Col,			///< ã‚«ãƒ©ãƒ¼
+	ePokeAnimeEdit_Vo_wait,		///< ãƒœã‚¤ã‚¹ã‚¦ã‚§ã‚¤ãƒˆ			æ–°
+	ePokeAnimeEdit_Pat,			///< ãƒ‘ã‚¿ãƒ¼ãƒ³
+	ePokeAnimeEdit_Pat_ox,		///< ãƒ‘ã‚¿ãƒ¼ãƒ³ Offset X		æ–°
+	ePokeAnimeEdit_Pat_oy,		///< ãƒ‘ã‚¿ãƒ¼ãƒ³ Offset Y		æ–°
+	ePokeAnimeEdit_Flm,			///< ãƒ•ã‚©ãƒ«ãƒ ï¼®ï½ï¼
 	
 	ePokeAnimeEdit_oy,			///< Offset Y
-	ePokeAnimeEdit_Shadow,		///< ‰eƒ^ƒCƒv
-	ePokeAnimeEdit_Shadow_ox,	///< ‰e Offset X
+	ePokeAnimeEdit_Shadow,		///< å½±ã‚¿ã‚¤ãƒ—
+	ePokeAnimeEdit_Shadow_ox,	///< å½± Offset X
 	
 	
-	ePokeAnimeEdit_BG_R,		///< ”wŒiF R
-	ePokeAnimeEdit_BG_G,		///< ”wŒiF G
-	ePokeAnimeEdit_BG_B,		///< ”wŒiF B
+	ePokeAnimeEdit_BG_R,		///< èƒŒæ™¯è‰² R
+	ePokeAnimeEdit_BG_G,		///< èƒŒæ™¯è‰² G
+	ePokeAnimeEdit_BG_B,		///< èƒŒæ™¯è‰² B
 };
 	
 
@@ -37,7 +37,7 @@ enum {
 //==============================================================================================
 /**
  * @file	poke_test.h
- * @brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
  * @author	sogabe
  * @date	2005.11.08
  */
@@ -45,7 +45,7 @@ enum {
 #if 0
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 extern void PokeGraAnimeProcGet(void);
@@ -53,7 +53,7 @@ extern void PokeGraAnimeProcGet(void);
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 enum{

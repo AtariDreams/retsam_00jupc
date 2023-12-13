@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_talk.h
- * @brief	’n‰º‰ï˜b‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ä¼šè©±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.12.19
  */
@@ -18,23 +18,23 @@ extern void CommUnderTalkInit(int targetID,pEndFunc func, FIELDSYS_WORK* pFSys);
 
 extern void CommUnderTalkBind(int askID, int talkID, FIELDSYS_WORK* pFSys);
 
-// ˜b‚µ‚©‚¯‚ç‚ê‚ÌƒV[ƒPƒ“ƒX‚ğ•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+// è©±ã—ã‹ã‘ã‚‰ã‚Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvAskSeq(int netID, int size, void* pData, void* pWork);
-// ˜b‚µ‚©‚¯‚ÌƒV[ƒPƒ“ƒX‚ğ•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+// è©±ã—ã‹ã‘ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvTalkSeq(int netID, int size, void* pData, void* pWork);
-// ˜b‚µ‚©‚¯‚ç‚ê‚ÌƒV[ƒPƒ“ƒX‚ğ•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+// è©±ã—ã‹ã‘ã‚‰ã‚Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvAskSeqCall(int netID, int size, void* pData, void* pWork);
-// ˜b‚µ‚©‚¯‚ÌƒV[ƒPƒ“ƒX‚ğ•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+// è©±ã—ã‹ã‘ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvTalkSeqCall(int netID, int size, void* pData, void* pWork);
-// ƒV[ƒPƒ“ƒX‚ğ•ÏX‚·‚é–½—ß‚ÌƒTƒCƒY
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ã®ã‚µã‚¤ã‚º
 extern int CommUnderTalkGetSeqCommandSize(void);
 
 
-//   ƒAƒCƒeƒ€‚ğ‚ ‚°‚é–½—ß‚ª—ˆ‚½
+//   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvSendItem(int netID, int size, void* pData, void* pWork);
-//   ƒAƒCƒeƒ€‚ğ‚ ‚°‚é–½—ß‚ª—ˆ‚½
+//   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ãŒæ¥ãŸ
 extern void CommUnderTalkRecvSendItemCall(int netID, int size, void* pData, void* pWork);
-// ƒAƒCƒeƒ€‚ğ‚ ‚°‚é–½—ß‚ÌƒTƒCƒY
+// ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ã®ã‚µã‚¤ã‚º
 extern int CommUnderTalkGetSendItemSize(void);
 
 //
@@ -44,7 +44,7 @@ extern void UgTalkRecvSecretQCall(int netID, int size, void* pData, void* pWork)
 //
 extern int UgTalkGetSecretQSize(void);
 
-// ƒŠƒZƒbƒg
+// ãƒªã‚»ãƒƒãƒˆ
 extern void TalkAskForceReset(void);
 
 

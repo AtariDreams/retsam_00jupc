@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_sub.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê@‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“ˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã€€ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.03.03
  */
@@ -40,29 +40,29 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	PST_SUB_OFF		( 0x0f )	// ‰ºƒ{ƒ^ƒ“•\¦‚È‚µ
+#define	PST_SUB_OFF		( 0x0f )	// ä¸‹ãƒœã‚¿ãƒ³è¡¨ç¤ºãªã—
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void SubPokeButtonBgInit( PST_WORK * wk );
 static int SubPokeButtonCheck( PST_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 typedef struct {
-	u8	page;		// ƒy[ƒWID
-	u8	pal;		// ƒpƒŒƒbƒg
-	u8	px;			// •\¦À•WX
-	u8	py;			// •\¦À•WY
+	u8	page;		// ãƒšãƒ¼ã‚¸ID
+	u8	pal;		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+	u8	px;			// è¡¨ç¤ºåº§æ¨™X
+	u8	py;			// è¡¨ç¤ºåº§æ¨™Y
 }PST_SUB_BUTTON;
 
-// ’Êí‚Ìƒ{ƒ^ƒ“ƒf[ƒ^
+// é€šå¸¸ã®ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 static const PST_SUB_BUTTON SubButtonType1[] =
 {
 	{ PST_PAGE_INFO, 1, 1, 4 },
@@ -76,7 +76,7 @@ static const PST_SUB_BUTTON SubButtonType1[] =
 	{ 0xff, 0xff, 0xff, 0xff }
 };
 
-// ƒRƒ“ƒeƒXƒg‹Z‚È‚µ‚Ìƒ{ƒ^ƒ“ƒf[ƒ^
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãªã—ã®ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 static const PST_SUB_BUTTON SubButtonType2[] =
 {
 /*
@@ -94,7 +94,7 @@ static const PST_SUB_BUTTON SubButtonType2[] =
 	{ 0xff, 0xff, 0xff, 0xff }
 };
 
-// ‹ZŠo‚¦‚Ìƒ{ƒ^ƒ“ƒf[ƒ^
+// æŠ€è¦šãˆã®ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 static const PST_SUB_BUTTON SubButtonType3[] =
 {
 	{ PST_PAGE_B_SKILL, 3, 10, 18 },
@@ -108,7 +108,7 @@ static const PST_SUB_BUTTON * SubButtonTypeTbl[] = {
 	SubButtonType3
 };
 
-// ’Êí‚Ìƒ^ƒbƒ`”»’è
+// é€šå¸¸ã®ã‚¿ãƒƒãƒåˆ¤å®š
 static const RECT_HIT_TBL SubButtonRect1[] =
 {
 	{ 4*8,	9*8-1,	1*8,  6*8-1 },
@@ -122,7 +122,7 @@ static const RECT_HIT_TBL SubButtonRect1[] =
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ƒRƒ“ƒeƒXƒg‹Z‚È‚µ‚Ìƒ^ƒbƒ`”»’è
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãªã—ã®ã‚¿ãƒƒãƒåˆ¤å®š
 static const RECT_HIT_TBL SubButtonRect2[] =
 {
 /*
@@ -140,7 +140,7 @@ static const RECT_HIT_TBL SubButtonRect2[] =
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ‹ZŠo‚¦‚Ìƒ^ƒbƒ`”»’è
+// æŠ€è¦šãˆã®ã‚¿ãƒƒãƒåˆ¤å®š
 static const RECT_HIT_TBL SubButtonRect3[] =
 {
 	{ 18*8,	23*8-1,	10*8, 15*8-1 },
@@ -158,9 +158,9 @@ static const RECT_HIT_TBL * SubButtonRectTbl[] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰º‰æ–Êƒ{ƒ^ƒ“İ’è
+ * ä¸‹ç”»é¢ãƒœã‚¿ãƒ³è¨­å®š
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -168,8 +168,8 @@ static const RECT_HIT_TBL * SubButtonRectTbl[] = {
 void PokeStatus_SubButtonMake( PST_WORK * wk )
 {
 	switch( wk->dat->mode ){
-	case PST_MODE_NORMAL:		// ’Êí
-	case PST_MODE_NO_WAZACHG:	// ‹Z“ü‚ê‘Ö‚¦•s‰Â
+	case PST_MODE_NORMAL:		// é€šå¸¸
+	case PST_MODE_NO_WAZACHG:	// æŠ€å…¥ã‚Œæ›¿ãˆä¸å¯
 		if( wk->dat->ev_contest != 0 ){
 			wk->sub_type = 0;
 		}else{
@@ -178,8 +178,8 @@ void PokeStatus_SubButtonMake( PST_WORK * wk )
 		}
 		break;
 
-	case PST_MODE_WAZAADD:		// ‹ZŠo‚¦/‹Z–Y‚ê
-	case PST_MODE_PORUTO:		// ƒ|ƒ‹ƒgg—p
+	case PST_MODE_WAZAADD:		// æŠ€è¦šãˆ/æŠ€å¿˜ã‚Œ
+	case PST_MODE_PORUTO:		// ãƒãƒ«ãƒˆä½¿ç”¨
 	default:
 		wk->sub_type = PST_SUB_OFF;
 	}
@@ -187,19 +187,19 @@ void PokeStatus_SubButtonMake( PST_WORK * wk )
 	PokeStatus_SubButtonBgInit( wk );
 }
 
-#define	BUTTON_CGX_SIZE		( 5 )		// ˆê•Ó‚Ìƒ{ƒ^ƒ“ƒTƒCƒY
-#define	BUTTON_CGX_WIDE		( 30 )		// ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ÌX•
+#define	BUTTON_CGX_SIZE		( 5 )		// ä¸€è¾ºã®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
+#define	BUTTON_CGX_WIDE		( 30 )		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®Xå¹…
 
-#define	BUTTON_CGX_XNEXT	( 15 )									// Ÿ‚Ìƒ{ƒ^ƒ“‚Ö‚ÌƒLƒƒƒ‰ƒTƒCƒYX
-#define	BUTTON_CGX_YNEXT	( BUTTON_CGX_WIDE * BUTTON_CGX_SIZE )	// Ÿ‚Ìƒ{ƒ^ƒ“‚Ö‚ÌƒLƒƒƒ‰ƒTƒCƒYY
+#define	BUTTON_CGX_XNEXT	( 15 )									// æ¬¡ã®ãƒœã‚¿ãƒ³ã¸ã®ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚ºX
+#define	BUTTON_CGX_YNEXT	( BUTTON_CGX_WIDE * BUTTON_CGX_SIZE )	// æ¬¡ã®ãƒœã‚¿ãƒ³ã¸ã®ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚ºY
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“BG‘‚«Š·‚¦
+ * ãƒœã‚¿ãƒ³BGæ›¸ãæ›ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
- * @param	num		ƒ{ƒ^ƒ“”Ô†
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ãƒœã‚¿ãƒ³ç•ªå·
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -226,9 +226,9 @@ static void SubPokeButtonBgChg( PST_WORK * wk, const PST_SUB_BUTTON * tbl, u8 an
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“BG‰Šú‰»
+ * ãƒœã‚¿ãƒ³BGåˆæœŸåŒ–
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -257,12 +257,12 @@ void PokeStatus_SubButtonBgInit( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“æ“¾
+ * æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"0xff = ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0xff != ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“”Ô†"
+ * @retval	"0xff = æŠ¼ã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0xff != æŠ¼ã—ãŸãƒœã‚¿ãƒ³ç•ªå·"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeStatus_SubBottonPageGet( PST_WORK * wk )
@@ -284,12 +284,12 @@ u8 PokeStatus_SubBottonPageGet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ{ƒ^ƒ“‰Ÿ‚µ”»’è
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒœã‚¿ãƒ³æŠ¼ã—åˆ¤å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"RECT_HIT_NONE = ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"RECT_HIT_NONE != ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“”Ô†"
+ * @retval	"RECT_HIT_NONE = æŠ¼ã•ã‚Œã¦ã„ãªã„"
+ * @retval	"RECT_HIT_NONE != æŠ¼ã—ãŸãƒœã‚¿ãƒ³ç•ªå·"
  */
 //--------------------------------------------------------------------------------------------
 static int SubPokeButtonCheck( PST_WORK * wk )
@@ -316,12 +316,12 @@ static int SubPokeButtonCheck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ{ƒ^ƒ“•ú‚µ”»’è
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒœã‚¿ãƒ³æ”¾ã—åˆ¤å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"RECT_HIT_NONE = •ú‚µ‚½"
- * @retval	"RECT_HIT_NONE != ‰Ÿ‚³‚ê‚Ä‚¢‚é"
+ * @retval	"RECT_HIT_NONE = æ”¾ã—ãŸ"
+ * @retval	"RECT_HIT_NONE != æŠ¼ã•ã‚Œã¦ã„ã‚‹"
  */
 //--------------------------------------------------------------------------------------------
 static int SubPokeButtonEndCheck( PST_WORK * wk )
@@ -346,12 +346,12 @@ static int SubPokeButtonEndCheck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒ
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒAƒjƒI—¹"
- * @retval	"FALSE = ƒAƒjƒ’†"
+ * @retval	"TRUE = ã‚¢ãƒ‹ãƒ¡çµ‚äº†"
+ * @retval	"FALSE = ã‚¢ãƒ‹ãƒ¡ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeStatus_SubButtonAnm( PST_WORK * wk )
@@ -397,11 +397,11 @@ u8 PokeStatus_SubButtonAnm( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“‚ÌÀ•Wæ“¾
+ * ãƒœã‚¿ãƒ³ã®åº§æ¨™å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
- * @param	x		XÀ•WŠi”[êŠ
- * @param	y		YÀ•WŠi”[êŠ
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	x		Xåº§æ¨™æ ¼ç´å ´æ‰€
+ * @param	y		Yåº§æ¨™æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -416,12 +416,12 @@ void PokeStatus_ButtonPosGet( PST_WORK * wk, s16 * x, s16 * y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“‚Ìƒy[ƒWæ“¾
+ * ãƒœã‚¿ãƒ³ã®ãƒšãƒ¼ã‚¸å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Ê‚Ìƒ[ƒN
- * @param	pos		ƒ{ƒ^ƒ“ID
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒœã‚¿ãƒ³ID
  *
- * @retval	ƒy[ƒW”Ô†
+ * @retval	ãƒšãƒ¼ã‚¸ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeStatus_ButtonPosPageGet( PST_WORK * wk, u8 pos )

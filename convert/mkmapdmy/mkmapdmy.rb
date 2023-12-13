@@ -1,12 +1,12 @@
-#’nŒ`—pƒ_ƒ~[ƒtƒ@ƒCƒ‹Šeí¶¬
-#‘æˆêˆø” ƒ_ƒ~[ƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘æ“ñˆø” ƒoƒCƒiƒŠƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘æOˆø” imdƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘ælˆø” ’nŒ`ƒ‚ƒfƒ‹ƒRƒ“ƒpƒCƒ‹ƒŠƒXƒgƒtƒ@ƒCƒ‹ƒl[ƒ€
+#åœ°å½¢ç”¨ãƒ€ãƒŸãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å„ç¨®ç”Ÿæˆ
+#ç¬¬ä¸€å¼•æ•° ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬äºŒå¼•æ•° ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬ä¸‰å¼•æ•° imdãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬å››å¼•æ•° åœ°å½¢ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 
 require "fileutils"
 
-#’è”’è‹`
+#å®šæ•°å®šç¾©
 Dmyimd = "map_tmpc.imd"
 Dmybhc = "map_tmpc.bhc"
 Dmyobj = "map_tmpe.dat"
@@ -76,7 +76,7 @@ imd_lst.map!{|wk| wk.sub(/#{ExtImd}/,"")}
   #end
   #f.close
 
-#‘¶İ‚µ‚È‚¢ƒtƒ@ƒCƒ‹‚ğƒŠƒXƒg
+#å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒªã‚¹ãƒˆ
 $mk_lst = Array.new
 for m in atr_lst do
   if imd_lst.include?(m)==FALSE then
@@ -90,19 +90,19 @@ end
   #end
   #f.close
 
-#‘¶İ‚µ‚È‚¢ƒtƒ@ƒCƒ‹‚ğì¬
+#å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
 for m in $mk_lst do
-	#‚‚³ƒf[ƒ^ƒ_ƒ~[
+	#é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_bsp+m+ExtBhc
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(dmypath+Dmybhc,path) 
 	end
-	#”z’uƒ‚ƒfƒ‹ƒf[ƒ^ƒ_ƒ~[
+	#é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_bsp+m+ExtObj
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(dmypath+Dmyobj,path) 
 	end
-	#imdƒf[ƒ^ƒ_ƒ~[
+	#imdãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_isp+m+ExtImd
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(dmypath+Dmyimd,path) 

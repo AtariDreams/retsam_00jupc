@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_188.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			188�@�Ώۂ���������������Ă��Ȃ���Ԃɂ��܂��B�퓬�I���㓹��͌��ɖ߂�B
- *				�i���̏�Ԃ̎��ɂʂ��ނ��g�p���Ă��K�����s����j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			188　対象が所持道具を持っていない状態にします。戦闘終了後道具は元に戻る。
+ *				（この状態の時にぬすむを使用しても必ず失敗する）
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

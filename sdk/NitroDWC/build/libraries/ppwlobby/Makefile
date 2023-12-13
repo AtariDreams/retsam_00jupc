@@ -46,7 +46,7 @@ CXXFLAGS		+=	-RTTI off
 INSTALL_TARGETS	=	$(TARGETS)
 INSTALL_DIR		=	$(NITRODWC_INSTALL_LIBDIR)
 
-# ilobby‚Ì‹¤’Êƒwƒbƒ_Aƒ†[ƒeƒBƒŠƒeƒB‚ðƒCƒ“ƒNƒ‹[ƒh
+# ilobbyã®å…±é€šãƒ˜ãƒƒãƒ€ã€ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 LINCLUDES += $(NITRODWC_ROOT)/build/libraries/ilobby/include
 
 #----------------------------------------------------------------------------

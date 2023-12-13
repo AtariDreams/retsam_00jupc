@@ -13,7 +13,7 @@ def read_table infile
 	area_count = 0
 	mml_count = 0
 	now_id = nil
-	line = infile.gets	#	“Ç‚İ”ò‚Î‚µ
+	line = infile.gets	#	èª­ã¿é£›ã°ã—
 	while line = infile.gets
 		#puts "#{line}"
 		m = /(MMLID_\w+)\W(\d+)\W([0-9A-Z]+)\W.+/.match line
@@ -24,7 +24,7 @@ def read_table infile
 			areaID = m[1]
 			mmlID = m[3]
 			unless mmlID =~ /^[0-9A-Z]+$/
-				STDERR.puts "“®ìƒ‚ƒfƒ‹ID‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñIF#{mmlID}\n"
+				STDERR.puts "å‹•ä½œãƒ¢ãƒ‡ãƒ«IDãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ï¼ï¼š#{mmlID}\n"
 				exit 1
 			end
 			if now_id == nil
@@ -49,7 +49,7 @@ end
 def make_asm_text ofile, ar
 	#STDERR.puts "#{ofile.path}...#{ar}"
 	ofile.puts <<HEADER
-#í’““®ìƒ‚ƒfƒ‹’è‹`ƒŠƒXƒg	#{ofile.path}
+#å¸¸é§å‹•ä½œãƒ¢ãƒ‡ãƒ«å®šç¾©ãƒªã‚¹ãƒˆ	#{ofile.path}
 
 	.text
 
@@ -69,12 +69,12 @@ end
 #---------------------------------------------------
 #---------------------------------------------------
 
-#“ü—Íƒtƒ@ƒCƒ‹‚©‚ç’è‹`‚ğ“Ç‚İ‚Ş
+#å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å®šç¾©ã‚’èª­ã¿è¾¼ã‚€
 infile = File.open(ARGV[0],"r")
 mml = read_table infile
 infile.close
 
-#ƒ_ƒ~[—p’è‹`‚ğ’Ç‰Á
+#ãƒ€ãƒŸãƒ¼ç”¨å®šç¾©ã‚’è¿½åŠ 
 mml << ["mmlid_noentry"]
 
 
@@ -83,7 +83,7 @@ archead = File.open(ARGV[2],"w")
 archead_def = "__#{ARGV[2].upcase.gsub(/\./,"_")}__"
 
 archead.puts <<HEADER
-//	“®ìƒ‚ƒfƒ‹‚Ó‚è‚í‚¯w’èID
+//	å‹•ä½œãƒ¢ãƒ‡ãƒ«ãµã‚Šã‚ã‘æŒ‡å®šID
 
 \#ifndef	#{archead_def}
 \#define #{archead_def}
@@ -94,12 +94,12 @@ linecount = 0
 mml.each{|ar|
 	sym = ar[0].downcase
 
-	#’è‹`‚²‚Æ‚Éƒtƒ@ƒCƒ‹¶¬
+	#å®šç¾©ã”ã¨ã«ãƒ•ã‚¡ã‚¤ãƒ«ç”Ÿæˆ
 	outfile = File.open("#{sym}.s", "w")
 	make_asm_text outfile, ar[1..ar.length - 1]
 	outfile.close
 
-	#ƒA[ƒJƒCƒuw’èƒtƒ@ƒCƒ‹‚Éˆêso—Í
+	#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã«ä¸€è¡Œå‡ºåŠ›
 	arclist.puts "\"#{sym}.bin\""
 
 	#

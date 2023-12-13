@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_121.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			121�@�Ȃ��x�ŋZ�̈З͂��ω�����A�Ȃ��x�������قǈЗ͂�����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			121　なつき度で技の威力が変化する、なつき度が高いほど威力が高い
  *
  *@author	HisashiSogabe
  *@data		2006.01.31

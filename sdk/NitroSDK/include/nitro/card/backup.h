@@ -39,7 +39,7 @@
   add some internal parameters.
 
   Revision 1.8  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.7  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -142,19 +142,19 @@ void    CARD_CancelBackupAsync(void);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestStreamCommand
 
-  Description:  ƒf[ƒ^‚ð“]‘—‚·‚éƒRƒ}ƒ“ƒh‚ÌƒŠƒNƒGƒXƒg‚ð”­s.
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹ã‚³ãƒžãƒ³ãƒ‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
-                req_type   ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒgƒ^ƒCƒv
-                req_retry  ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‚ÌŽ¸”sŽžƒŠƒgƒ‰ƒCÅ‘å‰ñ”
-                req_mode   ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‚Ì“®ìƒ‚[ƒh
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
+                req_type   ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
+                req_retry  ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å¤±æ•—æ™‚ãƒªãƒˆãƒ©ã‚¤æœ€å¤§å›žæ•°
+                req_mode   ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    CARDi_RequestStreamCommand(u32 src, u32 dst, u32 len,
                                    MIDmaCallback callback, void *arg, BOOL is_async,
@@ -163,17 +163,17 @@ BOOL    CARDi_RequestStreamCommand(u32 src, u32 dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestWriteSectorCommand
 
-  Description:  ƒZƒNƒ^Á‹Ž + ƒvƒƒOƒ‰ƒ€‚ÌƒŠƒNƒGƒXƒg‚ð”­s.
+  Description:  ã‚»ã‚¯ã‚¿æ¶ˆåŽ» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg
-                len        “]‘—ƒTƒCƒY
-                verify     ƒxƒŠƒtƒ@ƒC‚ðs‚¤ê‡‚Í TRUE
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        è»¢é€ã‚µã‚¤ã‚º
+                verify     ãƒ™ãƒªãƒ•ã‚¡ã‚¤ã‚’è¡Œã†å ´åˆã¯ TRUE
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    CARDi_RequestWriteSectorCommand(u32 src, u32 dst, u32 len, BOOL verify,
                                         MIDmaCallback callback, void *arg, BOOL is_async);
@@ -181,16 +181,16 @@ BOOL    CARDi_RequestWriteSectorCommand(u32 src, u32 dst, u32 len, BOOL verify,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_ReadBackup(u32 src, void *dst, u32 len,
                                  MIDmaCallback callback, void *arg, BOOL is_async)
@@ -203,16 +203,16 @@ SDK_INLINE BOOL CARDi_ReadBackup(u32 src, void *dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ProgramBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚ðŽg—p‚·‚é“Ç‚Ýž‚ÝƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã‚’ä½¿ç”¨ã™ã‚‹èª­ã¿è¾¼ã¿ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_ProgramBackup(u32 dst, const void *src, u32 len,
                                     MIDmaCallback callback, void *arg, BOOL is_async)
@@ -225,16 +225,16 @@ SDK_INLINE BOOL CARDi_ProgramBackup(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚ð‚ðŽg—p‚·‚é‘‚«ž‚ÝƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã‚’ã‚’ä½¿ç”¨ã™ã‚‹æ›¸ãè¾¼ã¿ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_WriteBackup(u32 dst, const void *src, u32 len,
                                   MIDmaCallback callback, void *arg, BOOL is_async)
@@ -247,16 +247,16 @@ SDK_INLINE BOOL CARDi_WriteBackup(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_VerifyBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚ðŽg—p‚·‚éƒxƒŠƒtƒ@ƒCƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã‚’ä½¿ç”¨ã™ã‚‹ãƒ™ãƒªãƒ•ã‚¡ã‚¤ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_VerifyBackup(u32 dst, const void *src, u32 len,
                                    MIDmaCallback callback, void *arg, BOOL is_async)
@@ -268,16 +268,16 @@ SDK_INLINE BOOL CARDi_VerifyBackup(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ProgramAndVerifyBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚ðŽg—p‚·‚éƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒCƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã‚’ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_ProgramAndVerifyBackup(u32 dst, const void *src, u32 len,
                                              MIDmaCallback callback, void *arg, BOOL is_async)
@@ -290,16 +290,16 @@ SDK_INLINE BOOL CARDi_ProgramAndVerifyBackup(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteAndVerifyBackup
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚ðŽg—p‚·‚éƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒCƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã‚’ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                dst        “]‘—æƒIƒtƒZƒbƒg‚Ü‚½‚Íƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆã¾ãŸã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_WriteAndVerifyBackup(u32 dst, const void *src, u32 len,
                                            MIDmaCallback callback, void *arg, BOOL is_async)
@@ -312,15 +312,15 @@ SDK_INLINE BOOL CARDi_WriteAndVerifyBackup(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSector
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "erase sector" ‚ðŽg—p‚·‚éƒZƒNƒ^Á‹ŽƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "erase sector" ã‚’ä½¿ç”¨ã™ã‚‹ã‚»ã‚¯ã‚¿æ¶ˆåŽ»ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_EraseBackupSector(u32 dst, u32 len,
                                         MIDmaCallback callback, void *arg, BOOL is_async)
@@ -333,15 +333,15 @@ SDK_INLINE BOOL CARDi_EraseBackupSector(u32 dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSubSector
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "erase subsector" ‚ðŽg—p‚·‚éƒZƒNƒ^Á‹ŽƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "erase subsector" ã‚’ä½¿ç”¨ã™ã‚‹ã‚»ã‚¯ã‚¿æ¶ˆåŽ»ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_EraseBackupSubSector(u32 dst, u32 len,
                                            MIDmaCallback callback, void *arg, BOOL is_async)
@@ -354,13 +354,13 @@ SDK_INLINE BOOL CARDi_EraseBackupSubSector(u32 dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupChip
 
-  Description:  ƒ`ƒbƒvƒRƒ}ƒ“ƒh "erase chip" ‚ðŽg—p‚·‚éƒZƒNƒ^Á‹ŽƒRƒ}ƒ“ƒh‚ð”­s.
+  Description:  ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "erase chip" ã‚’ä½¿ç”¨ã™ã‚‹ã‚»ã‚¯ã‚¿æ¶ˆåŽ»ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œ.
 
-  Arguments:    callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šú‘€ì‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î TRUE
+  Arguments:    callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸæ“ä½œã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° TRUE
 
-  Returns:      ˆ—‚ª¬Œ÷‚µ‚½‚ç TRUE.
+  Returns:      å‡¦ç†ãŒæˆåŠŸã—ãŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_EraseBackupChip(MIDmaCallback callback, void *arg, BOOL is_async)
 {
@@ -371,13 +371,13 @@ SDK_INLINE BOOL CARDi_EraseBackupChip(MIDmaCallback callback, void *arg, BOOL is
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒŠ[ƒh (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒªãƒ¼ãƒ‰ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -389,13 +389,13 @@ SDK_INLINE void CARD_ReadBackupAsync(u32 src, void *dst, u32 len, MIDmaCallback 
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒŠ[ƒh (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒªãƒ¼ãƒ‰ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ReadBackup(u32 src, void *dst, u32 len)
 {
@@ -405,13 +405,13 @@ SDK_INLINE BOOL CARD_ReadBackup(u32 src, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒvƒƒOƒ‰ƒ€ (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ  (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -424,13 +424,13 @@ SDK_INLINE void CARD_ProgramBackupAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒvƒƒOƒ‰ƒ€ (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ  (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ProgramBackup(u32 dst, const void *src, u32 len)
 {
@@ -440,13 +440,13 @@ SDK_INLINE BOOL CARD_ProgramBackup(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒ‰ƒCƒg (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒˆ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -459,13 +459,13 @@ SDK_INLINE void CARD_WriteBackupAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒ‰ƒCƒg (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚É‘Š“–)
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒˆ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteBackup(u32 dst, const void *src, u32 len)
 {
@@ -475,13 +475,13 @@ SDK_INLINE BOOL CARD_WriteBackup(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒxƒŠƒtƒ@ƒC (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ™ãƒªãƒ•ã‚¡ã‚¤ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        ”äŠrŒ³ƒIƒtƒZƒbƒg
-                dst        ”äŠræƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    src        æ¯”è¼ƒå…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        æ¯”è¼ƒå…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -494,13 +494,13 @@ SDK_INLINE void CARD_VerifyBackupAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒxƒŠƒtƒ@ƒC (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ™ãƒªãƒ•ã‚¡ã‚¤ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        ”äŠrŒ³ƒIƒtƒZƒbƒg
-                dst        ”äŠræƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
+  Arguments:    src        æ¯”è¼ƒå…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        æ¯”è¼ƒå…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_VerifyBackup(u32 dst, const void *src, u32 len)
 {
@@ -510,13 +510,13 @@ SDK_INLINE BOOL CARD_VerifyBackup(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramAndVerifyBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -529,13 +529,13 @@ SDK_INLINE void CARD_ProgramAndVerifyBackupAsync(u32 dst, const void *src, u32 l
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramAndVerifyBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ProgramAndVerifyBackup(u32 dst, const void *src, u32 len)
 {
@@ -545,13 +545,13 @@ SDK_INLINE BOOL CARD_ProgramAndVerifyBackup(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyBackupAsync
 
-  Description:  ”ñ“¯ŠúƒoƒbƒNƒAƒbƒvƒ‰ƒCƒg + ƒxƒŠƒtƒ@ƒC
+  Description:  éžåŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒˆ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -564,13 +564,13 @@ SDK_INLINE void CARD_WriteAndVerifyBackupAsync(u32 dst, const void *src, u32 len
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyBackup
 
-  Description:  “¯ŠúƒoƒbƒNƒAƒbƒvƒ‰ƒCƒg + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒˆ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteAndVerifyBackup(u32 dst, const void *src, u32 len)
 {
@@ -580,12 +580,12 @@ SDK_INLINE BOOL CARD_WriteAndVerifyBackup(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupSectorAsync
 
-  Description:  ”ñ“¯ŠúƒZƒNƒ^Á‹Ž.
+  Description:  éžåŒæœŸã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -597,12 +597,12 @@ SDK_INLINE void CARD_EraseBackupSectorAsync(u32 dst, u32 len, MIDmaCallback call
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupSector
 
-  Description:  “¯ŠúƒZƒNƒ^Á‹Ž.
+  Description:  åŒæœŸã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_EraseBackupSector(u32 dst, u32 len)
 {
@@ -612,12 +612,12 @@ SDK_INLINE BOOL CARD_EraseBackupSector(u32 dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupSubSectorAsync
 
-  Description:  ”ñ“¯ŠúƒTƒuƒZƒNƒ^Á‹Ž.
+  Description:  éžåŒæœŸã‚µãƒ–ã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -629,12 +629,12 @@ SDK_INLINE void CARD_EraseBackupSubSectorAsync(u32 dst, u32 len, MIDmaCallback c
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupSubSector
 
-  Description:  “¯ŠúƒTƒuƒZƒNƒ^Á‹Ž.
+  Description:  åŒæœŸã‚µãƒ–ã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                len        Á‹ŽƒTƒCƒY
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_EraseBackupSubSector(u32 dst, u32 len)
 {
@@ -644,10 +644,10 @@ SDK_INLINE BOOL CARD_EraseBackupSubSector(u32 dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupChipAsync
 
-  Description:  ”ñ“¯Šúƒ`ƒbƒvÁ‹Ž.
+  Description:  éžåŒæœŸãƒãƒƒãƒ—æ¶ˆåŽ».
 
-  Arguments:    callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -659,11 +659,11 @@ SDK_INLINE void CARD_EraseBackupChipAsync(MIDmaCallback callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseBackupChip
 
-  Description:  “¯ŠúƒZƒNƒ^Á‹Ž.
+  Description:  åŒæœŸã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
   Arguments:    None.
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_EraseBackupChip(void)
 {
@@ -673,13 +673,13 @@ SDK_INLINE BOOL CARD_EraseBackupChip(void)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteBackupSectorAsync
 
-  Description:  ƒZƒNƒ^’PˆÊÁ‹Ž + ƒZƒNƒ^’PˆÊƒvƒƒOƒ‰ƒ€.
+  Description:  ã‚»ã‚¯ã‚¿å˜ä½æ¶ˆåŽ» + ã‚»ã‚¯ã‚¿å˜ä½ãƒ—ãƒ­ã‚°ãƒ©ãƒ .
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -692,13 +692,13 @@ SDK_INLINE void CARD_WriteBackupSectorAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteBackupSector
 
-  Description:  ƒZƒNƒ^’PˆÊÁ‹Ž + ƒZƒNƒ^’PˆÊƒvƒƒOƒ‰ƒ€.
+  Description:  ã‚»ã‚¯ã‚¿å˜ä½æ¶ˆåŽ» + ã‚»ã‚¯ã‚¿å˜ä½ãƒ—ãƒ­ã‚°ãƒ©ãƒ .
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteBackupSector(u32 dst, const void *src, u32 len)
 {
@@ -708,13 +708,13 @@ SDK_INLINE BOOL CARD_WriteBackupSector(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyBackupSectorAsync
 
-  Description:  ƒZƒNƒ^’PˆÊÁ‹Ž + ƒZƒNƒ^’PˆÊƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC.
+  Description:  ã‚»ã‚¯ã‚¿å˜ä½æ¶ˆåŽ» + ã‚»ã‚¯ã‚¿å˜ä½ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤.
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -727,13 +727,13 @@ SDK_INLINE void CARD_WriteAndVerifyBackupSectorAsync(u32 dst, const void *src, u
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyBackupSector
 
-  Description:  ƒZƒNƒ^’PˆÊÁ‹Ž + ƒZƒNƒ^’PˆÊƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC.
+  Description:  ã‚»ã‚¯ã‚¿å˜ä½æ¶ˆåŽ» + ã‚»ã‚¯ã‚¿å˜ä½ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤.
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteAndVerifyBackupSector(u32 dst, const void *src, u32 len)
 {
@@ -743,23 +743,23 @@ SDK_INLINE BOOL CARD_WriteAndVerifyBackupSector(u32 dst, const void *src, u32 le
 /*---------------------------------------------------------------------------*
   Name:         CARDi_AccessStatus
 
-  Description:  ƒXƒe[ƒ^ƒXƒŠ[ƒh‚Ü‚½‚Íƒ‰ƒCƒg (ƒeƒXƒg—p)
+  Description:  ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªãƒ¼ãƒ‰ã¾ãŸã¯ãƒ©ã‚¤ãƒˆ (ãƒ†ã‚¹ãƒˆç”¨)
 
-  Arguments:    command    CARD_REQ_READ_STATUS‚Ü‚½‚ÍCARD_REQ_WRITE_STATUS
-                value      CARD_REQ_WRITE_STATUS‚Å‚ ‚ê‚Î‘‚«ž‚Þ’l
+  Arguments:    command    CARD_REQ_READ_STATUSã¾ãŸã¯CARD_REQ_WRITE_STATUS
+                value      CARD_REQ_WRITE_STATUSã§ã‚ã‚Œã°æ›¸ãè¾¼ã‚€å€¤
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’lAŽ¸”s‚·‚ê‚Î•‰‚Ì’l
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤ã€å¤±æ•—ã™ã‚Œã°è² ã®å€¤
  *---------------------------------------------------------------------------*/
 int CARDi_AccessStatus(CARDRequest command, u8 value);
 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadStatus
 
-  Description:  ƒXƒe[ƒ^ƒXƒŠ[ƒh (ƒeƒXƒg—p)
+  Description:  ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªãƒ¼ãƒ‰ (ãƒ†ã‚¹ãƒˆç”¨)
 
   Arguments:    None.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’lAŽ¸”s‚·‚ê‚Î•‰‚Ì’l
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤ã€å¤±æ•—ã™ã‚Œã°è² ã®å€¤
  *---------------------------------------------------------------------------*/
 SDK_INLINE int CARDi_ReadStatus(void)
 {
@@ -769,11 +769,11 @@ SDK_INLINE int CARDi_ReadStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteStatus
 
-  Description:  ƒXƒe[ƒ^ƒXƒ‰ƒCƒg (ƒeƒXƒg—p)
+  Description:  ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒˆ (ãƒ†ã‚¹ãƒˆç”¨)
 
-  Arguments:    value      ‘‚«ž‚Þ’l
+  Arguments:    value      æ›¸ãè¾¼ã‚€å€¤
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARDi_WriteStatus(u8 value)
 {

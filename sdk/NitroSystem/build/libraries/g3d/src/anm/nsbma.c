@@ -38,45 +38,45 @@ GetMatColAnmValue_(const NNSG3dResMatCAnm* pAnm, u32 info, u32 frame)
     
     if (!(info & NNS_G3D_MATCANM_ELEM_STEP_MASK))
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_1‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_1ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         return *(pDataHead + frame);
     }
     
     //
-    // ’è”’l‚Å‚È‚­‚ÄANNS_G3D_MATCANM_ELEM_STEP_2‚©NNS_G3D_MATCANM_ELEM_STEP_4‚Ìê‡
+    // å®šæ•°å€¤ã§ãªãã¦ã€NNS_G3D_MATCANM_ELEM_STEP_2ã‹NNS_G3D_MATCANM_ELEM_STEP_4ã®å ´åˆ
     //
     
-    // last_interpˆÈ~‚Í1ƒRƒ}‚¸‚Âƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // last_interp‚Í2‚Ì”{”‚©4‚Ì”{”‚Å‚ ‚éB
+    // last_interpä»¥é™ã¯1ã‚³ãƒžãšã¤ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // last_interpã¯2ã®å€æ•°ã‹4ã®å€æ•°ã§ã‚ã‚‹ã€‚
     last_interp = (NNS_G3D_MATCANM_ELEM_LAST_INTERP_MASK & info)
                           >> NNS_G3D_MATCANM_ELEM_LAST_INTERP_SHIFT;
 
     if (info & NNS_G3D_MATCANM_ELEM_STEP_2)
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_2‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_2ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+                // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
                 return *(pDataHead + (last_interp >> 1) + 1);
             }
             else
             {
-                // Šï”‚ÅÅIƒtƒŒ[ƒ€‚Å‚È‚¢‚Ì‚Å50:50‚Ì•âŠÔˆ—‚ª‚¢‚éB
+                // å¥‡æ•°ã§æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã„ã®ã§50:50ã®è£œé–“å‡¦ç†ãŒã„ã‚‹ã€‚
                 idx = frame >> 1;
                 goto MATC_INTERP_50_50;
             }
         }
         else
         {
-            // ‹ô”ƒtƒŒ[ƒ€‚È‚Ì‚Å•âŠÔˆ—‚Í‚¢‚ç‚È‚¢
+            // å¶æ•°ãƒ•ãƒ¬ãƒ¼ãƒ ãªã®ã§è£œé–“å‡¦ç†ã¯ã„ã‚‰ãªã„
             return *(pDataHead + (frame >> 1));
         }
     }
     else
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_4‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_4ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         if (frame & 3)
         {
             if (frame > last_interp)
@@ -84,7 +84,7 @@ GetMatColAnmValue_(const NNSG3dResMatCAnm* pAnm, u32 info, u32 frame)
                 return *(pDataHead + (last_interp >> 2) + (frame & 3));
             }
 
-            // •âŠÔˆ—‚ ‚è
+            // è£œé–“å‡¦ç†ã‚ã‚Š
             if (frame & 1)
             {
                 u32 idx_sub;
@@ -96,18 +96,18 @@ GetMatColAnmValue_(const NNSG3dResMatCAnm* pAnm, u32 info, u32 frame)
 
                 if (frame & 2)
                 {
-                    // 3:1‚ÌˆÊ’u‚Å•âŠÔ
+                    // 3:1ã®ä½ç½®ã§è£œé–“
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3‚ÌˆÊ’u‚Å•âŠÔ
+                    // 1:3ã®ä½ç½®ã§è£œé–“
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
 
-                // 1:3, 3:1‚Ìê‡‚Ì•âŠÔ
+                // 1:3, 3:1ã®å ´åˆã®è£œé–“
                 v = *(pDataHead + idx);
                 v_sub = *(pDataHead + idx_sub);
 
@@ -123,14 +123,14 @@ GetMatColAnmValue_(const NNSG3dResMatCAnm* pAnm, u32 info, u32 frame)
             }
             else
             {
-                // 50:50‚Ì•âŠÔ‚É‚È‚éB
+                // 50:50ã®è£œé–“ã«ãªã‚‹ã€‚
                 idx = frame >> 2;
                 goto MATC_INTERP_50_50;
             }
         }
         else
         {
-            // ƒtƒŒ[ƒ€‚Í’š“x4‚Ì”{”‚É‚È‚Á‚Ä‚¢‚é
+            // ãƒ•ãƒ¬ãƒ¼ãƒ ã¯ä¸åº¦4ã®å€æ•°ã«ãªã£ã¦ã„ã‚‹
             return *(pDataHead + (frame >> 2));
         }
     }
@@ -171,43 +171,43 @@ GetMatColAnmuAlphaValue_(const NNSG3dResMatCAnm* pAnm,
 
     if (!(info & NNS_G3D_MATCANM_ELEM_STEP_MASK))
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_1‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_1ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         return *(pDataHead + frame);
     }
 
     //
-    // ’è”’l‚Å‚È‚­‚ÄANNS_G3D_MATCANM_ELEM_STEP_2‚©NNS_G3D_MATCANM_ELEM_STEP_4‚Ìê‡
+    // å®šæ•°å€¤ã§ãªãã¦ã€NNS_G3D_MATCANM_ELEM_STEP_2ã‹NNS_G3D_MATCANM_ELEM_STEP_4ã®å ´åˆ
     //
     
-    // last_interpˆÈ~‚Í1ƒRƒ}‚¸‚Âƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // last_interp‚Í2‚Ì”{”‚©4‚Ì”{”‚Å‚ ‚éB
+    // last_interpä»¥é™ã¯1ã‚³ãƒžãšã¤ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // last_interpã¯2ã®å€æ•°ã‹4ã®å€æ•°ã§ã‚ã‚‹ã€‚
     last_interp = (NNS_G3D_MATCANM_ELEM_LAST_INTERP_MASK & info)
                           >> NNS_G3D_MATCANM_ELEM_LAST_INTERP_SHIFT;
     if (info & NNS_G3D_MATCANM_ELEM_STEP_2)
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_2‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_2ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+                // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
                 return *(pDataHead + (last_interp >> 1) + 1);
             }
             else
             {
-                // Šï”‚ÅÅIƒtƒŒ[ƒ€‚Å‚È‚¢‚Ì‚Å50:50‚Ì•âŠÔˆ—‚ª‚¢‚éB
+                // å¥‡æ•°ã§æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã„ã®ã§50:50ã®è£œé–“å‡¦ç†ãŒã„ã‚‹ã€‚
                 return (u16)((*(pDataHead + (frame >> 1)) + *(pDataHead + (frame >> 1) + 1)) >> 1);
             }
         }
         else
         {
-            // ‹ô”ƒtƒŒ[ƒ€‚È‚Ì‚Å•âŠÔˆ—‚Í‚¢‚ç‚È‚¢
+            // å¶æ•°ãƒ•ãƒ¬ãƒ¼ãƒ ãªã®ã§è£œé–“å‡¦ç†ã¯ã„ã‚‰ãªã„
             return *(pDataHead + (frame >> 1));
         }
     }
     else
     {
-        // NNS_G3D_MATCANM_ELEM_STEP_4‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_MATCANM_ELEM_STEP_4ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹
         if (frame & 3)
         {
             if (frame > last_interp)
@@ -215,7 +215,7 @@ GetMatColAnmuAlphaValue_(const NNSG3dResMatCAnm* pAnm,
                 return *(pDataHead + (last_interp >> 2) + (frame & 3));
             }
 
-            // •âŠÔˆ—‚ ‚è
+            // è£œé–“å‡¦ç†ã‚ã‚Š
             if (frame & 1)
             {
                 u32 idx, idx_sub;
@@ -223,18 +223,18 @@ GetMatColAnmuAlphaValue_(const NNSG3dResMatCAnm* pAnm,
 
                 if (frame & 2)
                 {
-                    // 3:1‚ÌˆÊ’u‚Å•âŠÔ
+                    // 3:1ã®ä½ç½®ã§è£œé–“
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3‚ÌˆÊ’u‚Å•âŠÔ
+                    // 1:3ã®ä½ç½®ã§è£œé–“
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
 
-                // 1:3, 3:1‚Ìê‡‚Ì•âŠÔ
+                // 1:3, 3:1ã®å ´åˆã®è£œé–“
                 v = *(pDataHead + idx);
                 v_sub = *(pDataHead + idx_sub);
 
@@ -242,13 +242,13 @@ GetMatColAnmuAlphaValue_(const NNSG3dResMatCAnm* pAnm,
             }
             else
             {
-                // 50:50‚Ì•âŠÔ‚É‚È‚éB
+                // 50:50ã®è£œé–“ã«ãªã‚‹ã€‚
                 return (u16)((*(pDataHead + (frame >> 2)) + *(pDataHead + (frame >> 2) + 1)) >> 1);
             }
         }
         else
         {
-            // ƒtƒŒ[ƒ€‚Í’š“x4‚Ì”{”‚É‚È‚Á‚Ä‚¢‚é
+            // ãƒ•ãƒ¬ãƒ¼ãƒ ã¯ä¸åº¦4ã®å€æ•°ã«ãªã£ã¦ã„ã‚‹
             return *(pDataHead + (frame >> 2));
         }
     }
@@ -259,15 +259,15 @@ GetMatColAnmuAlphaValue_(const NNSG3dResMatCAnm* pAnm,
 /*---------------------------------------------------------------------------*
   Name:         GetMatColAnm_
 
-  Description:  ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì 
-                Žw’è”Ô†‚ÌŽw’èƒtƒŒ[ƒ€‚É‚¨‚¯‚éƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® 
+                æŒ‡å®šç•ªå·ã®æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã«ãŠã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnm      :      ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒ}ƒeƒŠƒAƒ‹”Ô†
-                frame     :      Žw’èƒtƒŒ[ƒ€    
-                pResult   :      ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê
+  Arguments:    pAnm      :      ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒžãƒ†ãƒªã‚¢ãƒ«ç•ªå·
+                frame     :      æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ     
+                pResult   :      ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœ
                 
-  Returns:      ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 static NNS_G3D_INLINE void
@@ -311,8 +311,8 @@ GetMatColAnm_(const NNSG3dResMatCAnm* pAnm,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmObjInitNsBma
 
-    NNSG3dAnmObj‚ð.nsbmaƒŠƒ\[ƒX—p‚ÉƒCƒjƒVƒƒƒ‰ƒCƒY‚µ‚Ü‚·B
-    NNS_G3dInitAnmObj‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B
+    NNSG3dAnmObjã‚’.nsbmaãƒªã‚½ãƒ¼ã‚¹ç”¨ã«ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
+    NNS_G3dInitAnmObjã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dAnmObjInitNsBma(NNSG3dAnmObj* pAnmObj,
@@ -332,7 +332,7 @@ NNSi_G3dAnmObjInitNsBma(NNSG3dAnmObj* pAnmObj,
     pAnmObj->funcAnm = (void*) NNS_G3dFuncAnmMatNsBmaDefault;
     pAnmObj->numMapData = pResMdl->info.numMat;
 
-    // ‚Ü‚¸‚ÍmapData‚ðƒ[ƒƒNƒŠƒA
+    // ã¾ãšã¯mapDataã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢
     MI_CpuClear16(&pAnmObj->mapData[0], sizeof(u16) * pAnmObj->numMapData);
 
     for (i = 0; i < matCAnm->dict.numEntry; ++i)
@@ -341,8 +341,8 @@ NNSi_G3dAnmObjInitNsBma(NNSG3dAnmObj* pAnmObj,
         int idx = NNS_G3dGetMatIdxByName(mat, name);
         if (!(idx < 0))
         {
-            // ƒŠƒ\[ƒXID i‚É‘Î‰ž‚·‚éƒŠƒ\[ƒX‚ª‘¶Ý‚·‚éê‡‚ÍA
-            // ƒ}ƒeƒŠƒAƒ‹ID idx‚ÉƒŠƒ\[ƒXID i‚ðŠÖ˜A•t‚¯‚éB
+            // ãƒªã‚½ãƒ¼ã‚¹ID iã«å¯¾å¿œã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã€
+            // ãƒžãƒ†ãƒªã‚¢ãƒ«ID idxã«ãƒªã‚½ãƒ¼ã‚¹ID iã‚’é–¢é€£ä»˜ã‘ã‚‹ã€‚
             pAnmObj->mapData[idx] = (u16)(i | NNS_G3D_ANMOBJ_MAPDATA_EXIST);
         }
         
@@ -353,9 +353,9 @@ NNSi_G3dAnmObjInitNsBma(NNSG3dAnmObj* pAnmObj,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmCalcNsBma
 
-    pResult: ƒ}ƒeƒŠƒAƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ‹‰Ê‚ðŠi”[‚µ‚Ü‚·B
+    pResult: ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµæžœã‚’æ ¼ç´ã—ã¾ã™ã€‚
     pAnmObj:
-    dataIdx: ƒŠƒ\[ƒX“àƒf[ƒ^‚ÌŠi”[êŠ‚ðŽ¦‚·ƒCƒ“ƒfƒbƒNƒX‚Å‚·
+    dataIdx: ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€ã‚’ç¤ºã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã™
  *---------------------------------------------------------------------------*/
 void NNSi_G3dAnmCalcNsBma(NNSG3dMatAnmResult* pResult,
                           const NNSG3dAnmObj* pAnmObj,
@@ -367,10 +367,10 @@ void NNSi_G3dAnmCalcNsBma(NNSG3dMatAnmResult* pResult,
         const NNSG3dResMatCAnm*     pMatAnm 
                 = (const NNSG3dResMatCAnm*)pAnmObj->resAnm;
         //
-        // ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ÌŽæ“¾
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã®å–å¾—
         //
         GetMatColAnm_( pMatAnm,
-                       (u16)dataIdx,                    // TODO:ˆø”‚ÌŒ^‚ðˆê’v‚³‚¹‚é•K—v‚ª‚ ‚é
+                       (u16)dataIdx,                    // TODO:å¼•æ•°ã®åž‹ã‚’ä¸€è‡´ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹
                        (u32)FX_Whole( pAnmObj->frame ),
                        pResult );
     }

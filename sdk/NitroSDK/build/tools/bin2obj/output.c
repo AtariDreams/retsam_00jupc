@@ -12,19 +12,19 @@
 
   $Log: output.c,v $
   Revision 1.5  2006/07/21 07:57:19  yasu
-  PowerPC ‘Î‰
+  PowerPC å¯¾å¿œ
 
   Revision 1.4  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.3  2005/06/13 02:56:34  yasu
-  ƒIƒvƒVƒ‡ƒ“‚ÌC³AƒeƒXƒgì¬‚É‚æ‚é“®ì‚ÌŠm”F
+  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿®æ­£ã€ãƒ†ã‚¹ãƒˆä½œæˆã«ã‚ˆã‚‹å‹•ä½œã®ç¢ºèª
 
   Revision 1.2  2005/06/10 12:55:43  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   Revision 1.1  2005/06/10 00:43:01  yasu
-  ‰Šú”Å
+  åˆæœŸç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -35,12 +35,12 @@ static BOOL output_region(FILE * fp, u32 offset, const u8 *ptr, u32 size);
 /*---------------------------------------------------------------------------*
   Name:         output_object
 
-  Description:  ƒIƒuƒWƒFƒNƒg‚ğƒtƒ@ƒCƒ‹‚Éo—Í‚·‚é
+  Description:  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã™ã‚‹
 
-  Arguments:    obj		ƒIƒuƒWƒFƒNƒgî•ñ
-                filename	o—Íƒtƒ@ƒCƒ‹–¼
+  Arguments:    obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±
+                filename	å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 BOOL output_object(const Object * obj, const char *filename)
 {
@@ -137,13 +137,13 @@ BOOL output_object(const Object * obj, const char *filename)
 /*---------------------------------------------------------------------------*
   Name:         output_region
 
-  Description:  ƒƒ‚ƒŠ®—ñ•t‚Ìƒf[ƒ^‚Ìo—Í
+  Description:  ãƒ¡ãƒ¢ãƒªæ•´åˆ—ä»˜ã®ãƒ‡ãƒ¼ã‚¿ã®å‡ºåŠ›
 
-  Arguments:    fp               ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
-                ptr              ƒf[ƒ^
-                size             ƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒY
-                offset           ‘‚«‚İŠJnƒIƒtƒZƒbƒg
-  Returns:      TRUE:¬Œ÷  FALSE:¸”s
+  Arguments:    fp               ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+                ptr              ãƒ‡ãƒ¼ã‚¿
+                size             ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+                offset           æ›¸ãè¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+  Returns:      TRUE:æˆåŠŸ  FALSE:å¤±æ•—
  *---------------------------------------------------------------------------*/
 static BOOL output_region(FILE * fp, u32 offset, const u8 *ptr, u32 size)
 {

@@ -15,13 +15,13 @@
   indent source
 
   Revision 1.8  2006/08/09 06:40:52  takano_makoto
-  CP_RestoreContext‚ÅœZŠí‚Ìó‘Ô•œŒ³Š®—¹‚ğ‘Ò‚Â‚æ‚¤‚ÉC³
+  CP_RestoreContextã§é™¤ç®—å™¨ã®çŠ¶æ…‹å¾©å…ƒå®Œäº†ã‚’å¾…ã¤ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.7  2006/01/18 02:11:20  kitase_hirotake
   do-indent
 
   Revision 1.6  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.5  2005/02/28 05:26:03  yosizaki
   do-indent.

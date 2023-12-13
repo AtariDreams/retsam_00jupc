@@ -1,13 +1,13 @@
 #ifndef _PAIR_SCR_DEF_H_
 #define _PAIR_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_PAIR_R201_RIVAL		(9700)
 #define	SCRID_PAIR_L01_RIVAL		(9701)
 #define	SCRID_PAIR_D03R0101_SEVEN1		(9702)
 #define	SCRID_PAIR_D16R0102_SEVEN5		(9703)
 #define	SCRID_PAIR_D21R0101_SEVEN2		(9704)
 #define	SCRID_PAIR_D09R0104_SEVEN4		(9705)
-#define	SCRID_PAIR_SCR_DATA_MAX		(6)		//最大数
+#define	SCRID_PAIR_SCR_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_PAIR_SCR_DEF_H_

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ship_demo.h
- * @brief	ëDÉfÉÇ
+ * @brief	Ëàπ„Éá„É¢
  * @date	2006.05.23
  * @author	Nozomu Saito
  *
@@ -25,7 +25,7 @@ typedef struct SHIPDEMO_DAT_tag
 
 extern void ShipDemo_ProcSet( FIELDSYS_WORK * fsys , void * wk );
 
-/// ÉKÉäÉìÉRçÜ
+/// „Ç¨„É™„É≥„Ç≥Âè∑
 extern PROC_RESULT ShipDemoGarinkoProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT ShipDemoGarinkoProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT ShipDemoGarinkoProc_End( PROC * proc, int * seq );

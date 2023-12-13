@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	quaternion.h
- * @brief	ƒNƒH[ƒ^ƒjƒIƒ“
+ * @brief	ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
  * @author	goto
- * @date	2007.10.09(‰Î)
+ * @date	2007.10.09(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -15,16 +15,16 @@
 
 // -----------------------------------------
 //
-//	ƒNƒH[ƒ^ƒjƒIƒ“
+//	ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
 //
 // -----------------------------------------
 typedef union {
 	
 	struct {		
-		f32	wr;		///< À”
-		f32	xi;		///< ‹•”
-		f32	yi;		///< ‹•”
-		f32	zi;		///< ‹•”
+		f32	wr;		///< å®Ÿæ•°
+		f32	xi;		///< è™šæ•°
+		f32	yi;		///< è™šæ•°
+		f32	zi;		///< è™šæ•°
 	};
 	f32 q[ 4 ];
 	
@@ -33,7 +33,7 @@ typedef union {
 
 // -----------------------------------------
 //
-//	ƒNƒH[ƒ^ƒjƒIƒ“ƒ}ƒgƒŠƒbƒNƒX ( 4x4 )
+//	ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ ( 4x4 )
 //
 // -----------------------------------------
 typedef union {
@@ -52,40 +52,40 @@ typedef union {
 
 
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ì‰Šú‰»
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®åˆæœŸåŒ–
 extern void Quaternion_Identity( QUATERNION* q );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ÌƒRƒs[
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ã‚³ãƒ”ãƒ¼
 extern void Quaternion_Copy( QUATERNION* q1, QUATERNION* q2 );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ÌÏ
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ç©
 extern void Quaternion_Mul( QUATERNION* q, const QUATERNION* q1, const QUATERNION* q2 );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ì‰ÁZ
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®åŠ ç®—
 extern void Quaternion_Add( QUATERNION* q, const QUATERNION* q1, const QUATERNION* q2 );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ÌŒ¸Z
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®æ¸›ç®—
 extern void Quaternion_Sub( QUATERNION* q, const QUATERNION* q1, const QUATERNION* q2 );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ÆÀ”‚ÌœZ
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã¨å®Ÿæ•°ã®é™¤ç®—
 extern void Quaternion_DivReal( QUATERNION *ans, const QUATERNION *qt, f32 s );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ìƒmƒ‹ƒ€ || a || ^ 2
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ãƒãƒ«ãƒ  || a || ^ 2
 extern f32  Quaternion_GetNormSqrt( const QUATERNION* q );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ìƒmƒ‹ƒ€ || a ||
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ãƒãƒ«ãƒ  || a ||
 extern f32  Quaternion_GetNorm( const QUATERNION* q );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ğƒ}ƒgƒŠƒbƒNƒX‚Éİ’è
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã«è¨­å®š
 extern void Quaternion_SetMtx44( QUATERNION_MTX44* qmtx, const QUATERNION* q );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“ƒ}ƒgƒŠƒbƒNƒX‚ğfx32Œ^4x4ƒ}ƒgƒŠƒbƒNƒX‚É•ÏŠ·
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’fx32å‹4x4ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã«å¤‰æ›
 extern void Quaternion_SetMtx44_to_MtxFx44( const QUATERNION_MTX44* qmtx, MtxFx44* mtx );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“ƒ}ƒgƒŠƒbƒNƒX‚ğfx32Œ^4x3ƒ}ƒgƒŠƒbƒNƒX‚É•ÏŠ·
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’fx32å‹4x3ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã«å¤‰æ›
 extern void Quaternion_SetMtx44_to_MtxFx43( const QUATERNION_MTX44* qmtx, MtxFx43* mtx );
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ì•Û‚µ‚Ä‚¢‚é‰ñ“]—Ê
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ä¿æŒã—ã¦ã„ã‚‹å›è»¢é‡
 extern u16  Quaternion_GetRotation( const QUATERNION* q );
 
 #endif

@@ -1,6 +1,6 @@
 /**
  *	@file	tmap.h
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹“à‚Å‚¾‚¯ŒöŠJ‚·‚éƒwƒbƒ_
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…ã§ã ã‘å…¬é–‹ã™ã‚‹ãƒ˜ãƒƒãƒ€
  *	@date	05.11.02
  *	@author	Miyuki Iwasawa
  */
@@ -9,12 +9,12 @@
 
 #include "townmap.dat"
 #include "tmap_def.h"
-#include "tmap_gra.naix"	//ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹
-#include "tmap_sub.h"	//ƒTƒu
+#include "tmap_gra.naix"	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«
+#include "tmap_sub.h"	//ã‚µãƒ–
 
 
 //================================================================
-///ƒf[ƒ^Œ^’è‹`ƒGƒŠƒA
+///ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©ã‚¨ãƒªã‚¢
 //================================================================
 typedef struct _TMAP_SCROLLPRM{
 	int	scrX;
@@ -23,48 +23,48 @@ typedef struct _TMAP_SCROLLPRM{
 	int	difY;
 }TMAP_SCROLLPRM;
 
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 struct TMAP_MAIN_DAT;
-///ƒTƒuƒvƒƒZƒX’è‹`—pŠÖ”Œ^
+///ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ç”¨é–¢æ•°å‹
 //typedef int (*TMapSubProc)(TMAP_MAIN_DAT* pMain);
 
-///ƒƒCƒ“ƒ[ƒN
+///ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct TMAP_MAIN_DAT{
-	u8	mode;	///<“®ìƒ‚[ƒhæ“¾
-	u8	forcus;	///<ã‰º‰æ–Ê‚Ç‚¿‚ç‚É§Œä‚ª‚¢‚é‚©H
-	u16	mapView;	///<”z•zƒ}ƒbƒv•`‰æ§Œäƒtƒ‰ƒO
+	u8	mode;	///<å‹•ä½œãƒ¢ãƒ¼ãƒ‰å–å¾—
+	u8	forcus;	///<ä¸Šä¸‹ç”»é¢ã©ã¡ã‚‰ã«åˆ¶å¾¡ãŒã„ã‚‹ã‹ï¼Ÿ
+	u16	mapView;	///<é…å¸ƒãƒãƒƒãƒ—æç”»åˆ¶å¾¡ãƒ•ãƒ©ã‚°
 	int	heapID;	///<HeapID
-	int	main_seq;	///<ƒV[ƒPƒ“ƒX
-	int	sub_seq;	///<ƒV[ƒPƒ“ƒX
+	int	main_seq;	///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int	sub_seq;	///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	int seq;
-	int	wipe_f;		///<ƒƒCƒvƒtƒ‰ƒO
+	int	wipe_f;		///<ãƒ¯ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
 
 	int	cposX;
 	int cposZ;
 	int	gx;
 	int gz;
 	
-	GF_BGL_INI *bgl;	///<BGLƒf[ƒ^
-	TOWNMAP_PARAM* param;	///<ŠO•”ˆøŒp‚¬ƒpƒ‰ƒ[ƒ^IO
-	FMZ_PTR	pZone;		///<ƒ][ƒ“ƒf[ƒ^æ“¾ƒ|ƒCƒ“ƒ^
-	void*	pSwork;			///<ƒTƒuƒ[ƒNŠm•Ûƒ|ƒCƒ“ƒ^
+	GF_BGL_INI *bgl;	///<BGLãƒ‡ãƒ¼ã‚¿
+	TOWNMAP_PARAM* param;	///<å¤–éƒ¨å¼•ç¶™ããƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IO
+	FMZ_PTR	pZone;		///<ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
+	void*	pSwork;			///<ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯ç¢ºä¿ãƒã‚¤ãƒ³ã‚¿
 	int (*keyFunc)(struct TMAP_MAIN_DAT*);
 
 	TMAP_VIEW_DAT*	pVDat;
 	TMAP_GDAT_LIST* pBDat;
 	TMAP_FOOT	foot[TMAP_FVIEW_MAX];
 	
-	///ƒƒbƒZ[ƒWƒŠƒ\[ƒX
+	///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹
 	MSGDATA_MANAGER*	pMsgMap;
 	MSGDATA_MANAGER*	pMsgTMap;
 	STRBUF				*placeName;
 	
-	///VBlank“]‘——p•Û‘¶ƒpƒ‰ƒ[ƒ^
+	///VBlankè»¢é€ç”¨ä¿å­˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	int	vb_trans;
 	int	vb_zoneID;
 	TMAP_GDAT*	vb_block;
 	
-	///ƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX
+	///ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹
 	void*	pScrBuf01;
 	void*	pScrBuf01_back;
 	void*	pScrBuf01_dis;
@@ -83,12 +83,12 @@ typedef struct TMAP_MAIN_DAT{
 	NNSG2dScreenData*	pScr02_sw;
 	NNSG2dScreenData*	pScr02_dis;
 
-	CATS_SYS_PTR	pCActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-	CATS_RES_PTR	pCActRes;	///<ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
-	CATS_ACT_PTR	pCAct;		///<ƒAƒNƒg
+	CATS_SYS_PTR	pCActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR	pCActRes;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
+	CATS_ACT_PTR	pCAct;		///<ã‚¢ã‚¯ãƒˆ
 }TMAP_MAIN_DAT;
 
-///ƒTƒuƒvƒƒZƒX’è‹`—pŠÖ”Œ^
+///ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ç”¨é–¢æ•°å‹
 typedef int (*TMapSubProc)(TMAP_MAIN_DAT* pMain);
 
 typedef struct _TMAP_SUB_PROC{
@@ -104,7 +104,7 @@ typedef struct _TMAP_SUB_PROC{
 }TMAP_SUB_PROC;
 
 ///==============================================================
-//ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹“àƒOƒ[ƒoƒ‹ŠÖ”
+//ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°
 ///==============================================================
 
 #endif	//_TMAP_H_

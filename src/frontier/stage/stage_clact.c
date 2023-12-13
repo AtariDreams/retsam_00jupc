@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_clact.c
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	06.06.08
  */
@@ -20,11 +20,11 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒLƒƒƒ‰ƒNƒ^[ƒ}ƒl[ƒWƒƒ[
-#define CHAR_CONT_NUM						(3)		//ƒLƒƒƒ‰ƒNƒ^§Œä”
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+#define CHAR_CONT_NUM						(3)		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
 #if 1
 #define CHAR_VRAMTRANS_MAIN_SIZE			(2048)
 #define CHAR_VRAMTRANS_SUB_SIZE				(2048)
@@ -40,32 +40,32 @@ enum{
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒŠƒ\[ƒXƒ^ƒCƒv—ñ‹“‚É‡‚í‚¹‚é(include/system/clact_util_res.h)
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—åˆ—æŒ™ã«åˆã‚ã›ã‚‹(include/system/clact_util_res.h)
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[STAGE_RESOURCE_NUM] = {
 #if 0
-	2,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	3,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	2,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	3,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #else
-	STAGE_RES_OBJ_MAX,		//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	STAGE_RES_OBJ_MAX,		//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	STAGE_RES_OBJ_MAX,		//ƒZƒ‹ƒŠƒ\[ƒX
-	STAGE_RES_OBJ_MAX,		//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	STAGE_RES_OBJ_MAX,		//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	STAGE_RES_OBJ_MAX,		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	STAGE_RES_OBJ_MAX,		//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	STAGE_RES_OBJ_MAX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
-//StageClactŠÖ”
+//StageClacté–¢æ•°
 //void			StageClact_InitCellActor( STAGE_CLACT* wk );
 void			StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp );
 CLACT_WORK_PTR	StageClact_SetActor( STAGE_CLACT* wk, u32 data_no, u32 anm_no, u32 pri, u8 disp );
@@ -77,15 +77,15 @@ static void		InitCharPlttManager( void );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		STAGE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -96,64 +96,64 @@ void StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp )
 	int i;
 	ARCHANDLE* p_handle;
 
-	//ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitCharPlttManager();
 
-	//OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	//OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	//‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	//ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	//‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
-	REND_OAMInit(	0, 128,				//ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					0, 128,				//ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+	//å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
+	REND_OAMInit(	0, 128,				//ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					0, 128,				//ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 					HEAPID_STAGE);
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ÌŠÈ’P‰Šú‰»(ì¬‚³‚ê‚½ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ª•Ô‚é)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ç°¡å˜åˆæœŸåŒ–(ä½œæˆã•ã‚ŒãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãŒè¿”ã‚‹)
 	wk->ClactSet = CLACT_U_SetEasyInit( STAGE_CLACT_OBJ_MAX, &wk->RendData, HEAPID_STAGE );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for( i=0; i < STAGE_RESOURCE_NUM ;i++ ){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for( i=0; i < STAGE_RESOURCE_NUM ;i++ ){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit( ResEntryNumTbl[i], i, HEAPID_STAGE );
 	}
 
 	/***************/
-	//	‰º‰æ–Ê
+	//	ä¸‹ç”»é¢
 	/***************/
 
 	/***************/
-	//	ã‰æ–Ê
+	//	ä¸Šç”»é¢
 	/***************/
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_CSR][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_FRONTIER_OBJ, BS_SELECT_CURSOR_NCGR_BIN,
 					1, STAGE_ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_STAGE);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_CSR][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 				wk->ResMan[CLACT_U_PLTT_RES],
 				ARC_FRONTIER_OBJ, BS_SELECT_CURSOR_NCLR,
 				FALSE, STAGE_ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, DISP_MAIN_OBJ_PAL,HEAPID_STAGE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_CSR][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_FRONTIER_OBJ, BS_SELECT_CURSOR_NCER_BIN,
 					1, STAGE_ID_OBJ_CSR, CLACT_U_CELL_RES, HEAPID_STAGE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_CSR][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_FRONTIER_OBJ, BS_SELECT_CURSOR_NANR_BIN,
 					1, STAGE_ID_OBJ_CSR, CLACT_U_CELLANM_RES, HEAPID_STAGE);
 
 	/******************************/
-	//	ã‰æ–Ê(ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	p_handle = ArchiveDataHandleOpen( ARC_POKEICON, HEAPID_STAGE );	
 
 	wk->ResObjTbl[STAGE_RES_OBJ_ICON][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
@@ -162,13 +162,13 @@ void StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp )
 					0, STAGE_ID_OBJ_ICON, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_STAGE );
 
 	
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_ICON][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 			wk->ResMan[CLACT_U_PLTT_RES],
 			ARC_POKEICON, PokeIconPalArcIndexGet(),
 			FALSE, STAGE_ID_OBJ_ICON, NNS_G2D_VRAM_TYPE_2DMAIN, POKEICON_PAL_MAX, HEAPID_STAGE );
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_ICON][CLACT_U_CELL_RES] = 
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 					wk->ResMan[CLACT_U_CELL_RES],
@@ -177,7 +177,7 @@ void StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp )
 					p_handle, PokeIconAnmCellArcIndexGet(),
 					0, STAGE_ID_OBJ_ICON, CLACT_U_CELL_RES, HEAPID_STAGE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[STAGE_RES_OBJ_ICON][CLACT_U_CELLANM_RES] =
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 					wk->ResMan[CLACT_U_CELLANM_RES],
@@ -186,10 +186,10 @@ void StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp )
 					p_handle, PokeIconAnmCellAnmArcIndexGet(),
 					0, STAGE_ID_OBJ_ICON, CLACT_U_CELLANM_RES, HEAPID_STAGE);
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	for( i=0; i < STAGE_RES_OBJ_MAX ;i++ ){
-		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Char“]‘—
-		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Charè»¢é€
+		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );			//SUB DISP OBJ ON
@@ -201,9 +201,9 @@ void StageClact_InitCellActor( STAGE_CLACT* wk, POKEMON_PARAM* pp )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚ðƒZƒbƒg
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -214,13 +214,13 @@ CLACT_WORK_PTR StageClact_SetActor( STAGE_CLACT* wk, u32 data_no, u32 anm_no, u3
 	CLACT_HEADER cl_act_header;
 	CLACT_WORK_PTR act;
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
-						//“o˜^‚µ‚½ƒŠƒ\[ƒX‚ÌID(ResObjTbl[id])
+						//ç™»éŒ²ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ID(ResObjTbl[id])
 						data_no, data_no, data_no, data_no,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
-						//0, 0,							//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ
-						0, 1,							//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ(1)
+						//0, 0,							//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½
+						0, 1,							//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½(1)
 						wk->ResMan[CLACT_U_CHAR_RES],
 						wk->ResMan[CLACT_U_PLTT_RES],
 						wk->ResMan[CLACT_U_CELL_RES],
@@ -228,16 +228,16 @@ CLACT_WORK_PTR StageClact_SetActor( STAGE_CLACT* wk, u32 data_no, u32 anm_no, u3
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->ClactSet;
 		add.ClActHeader	= &cl_act_header;
 
 		//add.mat.x		= 0;//FX32_CONST(32) ;
-		//add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		//add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.x		= 0;
-		add.mat.y		= 0;						//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= 0;						//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -253,16 +253,16 @@ CLACT_WORK_PTR StageClact_SetActor( STAGE_CLACT* wk, u32 data_no, u32 anm_no, u3
 
 		add.heap		= HEAPID_STAGE;
 
-		if( disp == DISP_SUB ){						//À•W‚ð•â³
+		if( disp == DISP_SUB ){						//åº§æ¨™ã‚’è£œæ­£
 			add.mat.y += SUB_SURFACE_Y;
 		}
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 		act = CLACT_Add(&add);
-		//CLACT_SetAnmFlag( act, 0 );				//”ñƒAƒjƒ
-		CLACT_SetAnmFlag( act, 1 );					//ƒI[ƒgƒAƒjƒ
-		CLACT_SetAnmFrame( act, FX32_ONE );			//ƒI[ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è
-		CLACT_AnmChg( act, anm_no );				//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒ“ƒW‚·‚é
+		//CLACT_SetAnmFlag( act, 0 );				//éžã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFlag( act, 1 );					//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFrame( act, FX32_ONE );			//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
+		CLACT_AnmChg( act, anm_no );				//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	}	
 
 	return act;
@@ -270,9 +270,9 @@ CLACT_WORK_PTR StageClact_SetActor( STAGE_CLACT* wk, u32 data_no, u32 anm_no, u3
 
 //--------------------------------------------------------------
 /**
- * @brief	2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ð•ú
+ * @brief	2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk		STAGE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -281,21 +281,21 @@ void StageClact_DeleteCellObject(STAGE_CLACT* wk)
 {
 	u8 i;
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	for( i=0; i < STAGE_RES_OBJ_MAX ;i++ ){
-		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//char“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
-		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//pltt“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//charè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
+		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//plttè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 		
-	//ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	//ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for( i=0; i < STAGE_RESOURCE_NUM ;i++ ){
 		CLACT_U_ResManagerDelete( wk->ResMan[i] );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -313,7 +313,7 @@ void StageClact_DeleteCellObject(STAGE_CLACT* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -322,27 +322,27 @@ void StageClact_DeleteCellObject(STAGE_CLACT* wk)
 //--------------------------------------------------------------
 static void InitCharPlttManager(void)
 {
-	//ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
-			CHAR_CONT_NUM,						//ƒLƒƒƒ‰ƒNƒ^§Œä”
-			CHAR_VRAMTRANS_MAIN_SIZE,			//ƒƒCƒ“‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			CHAR_VRAMTRANS_SUB_SIZE,			//ƒTƒu‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			HEAPID_STAGE						//Žg—p‚·‚éƒq[ƒv
+			CHAR_CONT_NUM,						//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
+			CHAR_VRAMTRANS_MAIN_SIZE,			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			CHAR_VRAMTRANS_SUB_SIZE,			//ã‚µãƒ–ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			HEAPID_STAGE						//ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 		};
-		//InitCharManager( &cm );				//OBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒhÝ’è
+		//InitCharManager( &cm );				//OBJãƒžãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
 		//InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
 
-	//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 #if 0
 	InitPlttManager( PLTT_CONT_NUM, HEAPID_STAGE );
 #else
 	InitPlttManager( (DISP_MAIN_OBJ_PAL + POKEICON_PAL_MAX), HEAPID_STAGE );
 #endif
 
-	//“Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	//èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 

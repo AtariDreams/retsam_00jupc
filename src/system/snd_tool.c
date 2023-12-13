@@ -1,13 +1,13 @@
 //==============================================================================================
 /**
  * @file	snd_tool.c
- * @brief	�T�E���h�c�[���֐�
+ * @brief	サウンドツール関数
  * @author	Satoshi Nohara
  * @date	2005.06.09
  *
- * ��������
- * �퓬�ŃQ�[���I�[�o�[�ɂȂ��āA�|�P�Z���ɖ߂鎞�Ȃǂ́A
- * Snd_PauseClearAll���Ă�ŁA�|�[�Y�t���O���N���A���Ȃ��Ƃ����Ȃ��I
+ * ＜メモ＞
+ * 戦闘でゲームオーバーになって、ポケセンに戻る時などは、
+ * Snd_PauseClearAllを呼んで、ポーズフラグをクリアしないといけない！
  */
 //==============================================================================================
 #include "common.h"
@@ -20,52 +20,52 @@
 #include "communication/communication.h"
 
 
-//�ʎq���r�b�g�^�C�v8bit,�T���v�����O���[�g8k
+//量子化ビットタイプ8bit,サンプリングレート8k
 //#define MIC_TYPE_8BIT_RATE_8K
 
 
 //==============================================================================================
 //
-//	����
+//	メモ
 //
 //==============================================================================================
 #if 0
-	//���X���[�v���[�h���畜�A��̍Đ����
-	//�X���[�v�O�̍Đ���ԂƊ��S�Ɉ�v����킯�ł͂Ȃ�
-	//�ꎞ�I�ɉ������������Ȃ�����A������񂾂肷�邱�Ƃ�����
-	//���ꂪ���ɂȂ鎞�́A�X���[�v�O�ɍĐ����~���A
-	//�X���[�v��ɍĐ����ĊJ����Ƃ������Ώ����K�v�ɂȂ�
+	//●スリープモードから復帰後の再生状態
+	//スリープ前の再生状態と完全に一致するわけではない
+	//一時的に音がおかしくなったり、音が飛んだりすることがある
+	//これが問題になる時は、スリープ前に再生を停止し、
+	//スリープ後に再生を再開するといった対処が必要になる
 #endif
 
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
-//PLAYER_BGM�̎g�p�`�����l���̃r�b�g�w��
-#define PLAYER_BGM_NORMAL_CH	(0x07ff)		//�ʏ�̎g�pCH
-#define PLAYER_BGM_EXTRA_CH		(0x7fff)		//����̃V�[���̂ݎg�pCH
-#define SND_REVERB_NUM_OP		(30)//(40)//(50)//OP���o�[�u�̒l(0-63)
-#define SND_REVERB_NUM_ED		(15)//(50)		//ED���o�[�u�̒l(0-63)
+//PLAYER_BGMの使用チャンネルのビット指定
+#define PLAYER_BGM_NORMAL_CH	(0x07ff)		//通常の使用CH
+#define PLAYER_BGM_EXTRA_CH		(0x7fff)		//特定のシーンのみ使用CH
+#define SND_REVERB_NUM_OP		(30)//(40)//(50)//OPリバーブの値(0-63)
+#define SND_REVERB_NUM_ED		(15)//(50)		//EDリバーブの値(0-63)
 
-#define SND_CH_SET								//��`�L���Ŏg�p�\�`�����l���̑��������
-
-
-//==============================================================================================
-//
-//	�ϐ�
-//
-//==============================================================================================
-//�Z�[�u����K�v���胏�[�N(�ǂ̊��ŕK�v������)
-static s8 sWaveBuffer[ SWAVE_BUFFER_SIZE ] ATTRIBUTE_ALIGN(32);	//�g�`�i�[�o�b�t�@
-
-static int mono_flag;										//���m�����t���O
+#define SND_CH_SET								//定義有効で使用可能チャンネルの操作をする
 
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	変数
+//
+//==============================================================================================
+//セーブする必要ありワーク(どの企画で必要か未定)
+static s8 sWaveBuffer[ SWAVE_BUFFER_SIZE ] ATTRIBUTE_ALIGN(32);	//波形格納バッファ
+
+static int mono_flag;										//モノラルフラグ
+
+
+//==============================================================================================
+//
+//	プロトタイプ宣言
 //
 //==============================================================================================
 void Snd_PlayerSetSeqArcNo( NNSSndHandle *p, int arc_no, int index );
@@ -127,7 +127,7 @@ BOOL Snd_WaveOutStart( WAVEOUT_WORK* p, u32 ch );
 void Snd_WaveOutStop( u32 no );
 BOOL Snd_WaveOutIsPlaying( u32 no );
 
-//�t�Đ�
+//逆再生
 BOOL Snd_WaveOutStartReverse( u16 no, int vol, int pan, u32 ch, int heap_id );
 BOOL Snd_WaveOutStartReverseChorus( int vol, int pan );
 void Snd_WaveOutStopReverse( u32 );
@@ -168,7 +168,7 @@ void Snd_SetMasterVolume( int vol );
 
 void* Snd_GetWaveBufAdrs();
 
-//�f�o�b�N�p
+//デバック用
 BOOL Snd_PlayerHeapCreate( int player_no, u32 size );
 
 void Snd_BankFlagSet( int no );
@@ -187,17 +187,17 @@ static void Snd_FieldPauseOrStop( void );
 
 //==============================================================================================
 //
-//	�v���O����
+//	プログラム
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�A�[�J�C�u�ԍ���ݒ�
+ * @brief	シーケンスアーカイブ番号を設定
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
- * @param	arc_no	�V�[�P���X�A�[�J�C�u�ԍ�
- * @param	index	�C���f�b�N�X
+ * @param	p		サウンドハンドルのアドレス
+ * @param	arc_no	シーケンスアーカイブ番号
+ * @param	index	インデックス
  *
  * @retval	none
  */
@@ -210,9 +210,9 @@ void Snd_PlayerSetSeqArcNo( NNSSndHandle *p, int arc_no, int index )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�Œ�t���O�Z�b�g(�Z�[�u�͂��Ȃ�)
+ * @brief	フィールドBGM固定フラグセット(セーブはしない)
  *
- * @param	flag	1=BGM�؂�ւ��Ȃ��A0E=BGM�؂�ւ��(�ʏ�)
+ * @param	flag	1=BGM切り替わらない、0E=BGM切り替わる(通常)
  *
  * @retval	none
  */
@@ -226,11 +226,11 @@ void Snd_CtrlBgmFlagSet( u8 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�Œ�t���O�`�F�b�N(�Z�[�u�͂��Ȃ�)
+ * @brief	フィールドBGM固定フラグチェック(セーブはしない)
  *
  * @param	none
  *
- * @retval	"1=BGM�؂�ւ��Ȃ��A0E=BGM�؂�ւ��(�ʏ�)"
+ * @retval	"1=BGM切り替わらない、0E=BGM切り替わる(通常)"
  */
 //--------------------------------------------------------------
 u8 Snd_CtrlBgmFlagCheck( void )
@@ -241,30 +241,30 @@ u8 Snd_CtrlBgmFlagCheck( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM�i���o�[�X�V
+ * @brief	今のBGMナンバー更新
  *
- * @param	no		�X�V����BGM�i���o�[
+ * @param	no		更新するBGMナンバー
  *
  * @retval	none
  *
- * ����BGM�i���o�[(next_bgm_no)���N���A���Ă���I
+ * 次のBGMナンバー(next_bgm_no)をクリアしている！
  */
 //--------------------------------------------------------------
 void Snd_NowBgmNoSet( u16 no )
 {
 	u16* now_bgm_no = Snd_GetParamAdrs(SND_W_ID_NOW_BGM_NO);
 	*now_bgm_no = no;
-	Snd_NextBgmNoSet( 0 );			//���ӁI ����BGM�i���o�[���N���A�I
+	Snd_NextBgmNoSet( 0 );			//注意！ 次のBGMナンバーをクリア！
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM�i���o�[�擾
+ * @brief	今のBGMナンバー取得
  *
  * @param	none
  *
- * @retval	"����BGM�i���o�["
+ * @retval	"今のBGMナンバー"
  */
 //--------------------------------------------------------------
 u16 Snd_NowBgmNoGet()
@@ -275,9 +275,9 @@ u16 Snd_NowBgmNoGet()
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM�i���o�[�X�V
+ * @brief	次のBGMナンバー更新
  *
- * @param	no		�X�V����BGM�i���o�[
+ * @param	no		更新するBGMナンバー
  *
  * @retval	none
  */
@@ -291,11 +291,11 @@ void Snd_NextBgmNoSet( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM�i���o�[�擾
+ * @brief	次のBGMナンバー取得
  *
  * @param	none
  *
- * @retval	"����BGM�i���o�["
+ * @retval	"次のBGMナンバー"
  */
 //--------------------------------------------------------------
 u16 Snd_NextBgmNoGet()
@@ -306,9 +306,9 @@ u16 Snd_NextBgmNoGet()
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���h�o���N�i���o�[�Z�b�g
+ * @brief	フィールドバンクナンバーセット
  *
- * @param	bank_no		�o���N�i���o�[
+ * @param	bank_no		バンクナンバー
  *
  * @retval	none
  */
@@ -323,20 +323,20 @@ void Snd_ZoneBgmSet( u16 bgm )
 
 //==============================================================================================
 //
-//	�T�E���h�f�[�^�̃��[�h�֘A
+//	サウンドデータのロード関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[���Z�b�g
+ * @brief	シーンセット
  *
- * @param	scene	�V�[��
+ * @param	scene	シーン
  *
  * @retval	none
  *
- * ���C���V�[�����Z�b�g����ƁA
- * �T�u�V�[����"SND_SCENE_DUMMY"�ɃN���A�����
+ * メインシーンをセットすると、
+ * サブシーンは"SND_SCENE_DUMMY"にクリアされる
  */
 //--------------------------------------------------------------
 void Snd_SceneSet( u8 scene )
@@ -345,16 +345,16 @@ void Snd_SceneSet( u8 scene )
 	u8* scene_sub	= Snd_GetParamAdrs(SND_W_ID_SCENE_SUB);
 
 	if( scene < SND_SCENE_SUB ){
-		*scene_main	= scene;			//���C���V�[��
-		*scene_sub  = SND_SCENE_DUMMY;	//�N���A
+		*scene_main	= scene;			//メインシーン
+		*scene_sub  = SND_SCENE_DUMMY;	//クリア
 	}else{
-		*scene_sub	= scene;			//�T�u�V�[��
+		*scene_sub	= scene;			//サブシーン
 	}
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n--------�T�E���h�@�V�[��--------\n" );
-	OS_Printf( "���C�� = %d\n", *scene_main );
-	OS_Printf( "�T�u = %d\n", *scene_sub );
+	OS_Printf( "\n--------サウンド　シーン--------\n" );
+	OS_Printf( "メイン = %d\n", *scene_main );
+	OS_Printf( "サブ = %d\n", *scene_sub );
 	OS_Printf( "\n--------------------------------\n\n" );
 #endif
 
@@ -363,9 +363,9 @@ void Snd_SceneSet( u8 scene )
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�u�V�[���Z�b�g
+ * @brief	サブシーンセット
  *
- * @param	sub_scene	�T�u�V�[��
+ * @param	sub_scene	サブシーン
  *
  * @retval	none
  */
@@ -378,9 +378,9 @@ void Snd_SubSceneSet( u8 scene )
 	*scene_sub  = scene;
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n--------�T�E���h�@�V�[��--------\n" );
-	OS_Printf( "���C�� = %d\n", *scene_main );
-	OS_Printf( "�T�u = %d\n", *scene_sub );
+	OS_Printf( "\n--------サウンド　シーン--------\n" );
+	OS_Printf( "メイン = %d\n", *scene_main );
+	OS_Printf( "サブ = %d\n", *scene_sub );
 	OS_Printf( "\n--------------------------------\n\n" );
 #endif
 
@@ -389,24 +389,24 @@ void Snd_SubSceneSet( u8 scene )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�����L�[�ɂ��āASE�f�[�^�����[�h
+ * @brief	シーンをキーにして、SEデータをロード
  *
- * @param	scene		�V�[��
+ * @param	scene		シーン
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 int Snd_LoadSeByScene( u8 scene )
 {
 	int ret;
 
-	//SE�V�[�P���X�O���[�v
+	//SEシーケンスグループ
 	switch( scene ){
 
-	//�^�C�g��
+	//タイトル
 	//AGB
-	//���E����(�K���t�B�[���h�ɂ���I��t�A��p��ʂŋȂ������Ȃ��̂Ő�p�̃��[�h�͂��߁I)
-	//�ӂ����Ȃ��������(�K���t�B�[���h�ɂ���Iug_20�g�p)
+	//世界交換(必ずフィールドにする！受付、専用画面で曲がかわらないので専用のロードはだめ！)
+	//ふしぎなおくりもの(必ずフィールドにする！ug_20使用)
 	case SND_SCENE_TITLE:
 	case SND_SCENE_AGB:
 	//case SND_SCENE_WORLDTRADE:
@@ -415,90 +415,90 @@ int Snd_LoadSeByScene( u8 scene )
 	//case SND_SCENE_WIFI_LOBBY_GAME:
 	case SND_SCENE_WIFI_LOBBY_PARADE:
 	case SND_SCENE_WIFI_WORLD_TRADE:
-		//��p�̉����Ȃ����́A�t�B�[���h�����[�h���Ă����I
+		//専用の音がない時は、フィールドをロードしておく！
 		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 		break;
 
 #if 1
 	case SND_SCENE_WIFI_LOBBY_GAME:
-		//��p�̉����Ȃ����́A�t�B�[���h�����[�h���Ă����I
+		//専用の音がない時は、フィールドをロードしておく！
 		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 
-		//�����Ɉ�ԂȂ肻���ȃV�[�P���X�f�[�^�����[�h���Ă���(�v���C���[�q�[�v���g��Ȃ��悤�ɂ���)
+		//試しに一番なりそうなシーケンスデータをロードしておく(プレイヤーヒープを使わないようにする)
 		//
-		//�ӂ����񊄂�
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON02, NNS_SND_ARC_LOAD_SEQ );		//�\�[�i���X������
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON03_2, NNS_SND_ARC_LOAD_SEQ );	//�|���v�ɋ�C������
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON05, NNS_SND_ARC_LOAD_SEQ );		//�u�[�X�^
+		//ふうせん割り
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON02, NNS_SND_ARC_LOAD_SEQ );		//ソーナンスを押す
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON03_2, NNS_SND_ARC_LOAD_SEQ );	//ポンプに空気が発生
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON05, NNS_SND_ARC_LOAD_SEQ );		//ブースタ
 
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON01, NNS_SND_ARC_LOAD_SEQ );		//�\�[�i���X�傫��
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON07, NNS_SND_ARC_LOAD_SEQ );		//���D�j��
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_ALERT4, NNS_SND_ARC_LOAD_SEQ );			//���D�s���`
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON01, NNS_SND_ARC_LOAD_SEQ );		//ソーナンス大きく
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON07, NNS_SND_ARC_LOAD_SEQ );		//風船破裂
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_ALERT4, NNS_SND_ARC_LOAD_SEQ );			//風船ピンチ
 
-		//�ʂ���
-		Snd_ArcLoadSeqEx( SEQ_SE_DP_FW104, NNS_SND_ARC_LOAD_SEQ );			//������
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_NOMI02, NNS_SND_ARC_LOAD_SEQ );			//�H�ׂ�
-		Snd_ArcLoadSeqEx( SEQ_SE_DP_023, NNS_SND_ARC_LOAD_SEQ );			//�͂���
+		//玉いれ
+		Snd_ArcLoadSeqEx( SEQ_SE_DP_FW104, NNS_SND_ARC_LOAD_SEQ );			//投げる
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_NOMI02, NNS_SND_ARC_LOAD_SEQ );			//食べる
+		Snd_ArcLoadSeqEx( SEQ_SE_DP_023, NNS_SND_ARC_LOAD_SEQ );			//はじく
 
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT1, NNS_SND_ARC_LOAD_SEQ );			//�|�C���g1
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT2, NNS_SND_ARC_LOAD_SEQ );			//�|�C���g2
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT3, NNS_SND_ARC_LOAD_SEQ );			//�|�C���g3
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON05_2, NNS_SND_ARC_LOAD_SEQ );	//�}���m�[���t�B�[�o�[
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT1, NNS_SND_ARC_LOAD_SEQ );			//ポイント1
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT2, NNS_SND_ARC_LOAD_SEQ );			//ポイント2
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_POINT3, NNS_SND_ARC_LOAD_SEQ );			//ポイント3
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_BALLOON05_2, NNS_SND_ARC_LOAD_SEQ );	//マルノームフィーバー
 
-		Snd_ArcLoadSeqEx( SEQ_SE_DP_HAMARU,	NNS_SND_ARC_LOAD_SEQ );			//�͂܂�
-		Snd_ArcLoadSeqEx( SEQ_SE_DP_CON_016,NNS_SND_ARC_LOAD_SEQ );			//�X�^�[�g
+		Snd_ArcLoadSeqEx( SEQ_SE_DP_HAMARU,	NNS_SND_ARC_LOAD_SEQ );			//はまる
+		Snd_ArcLoadSeqEx( SEQ_SE_DP_CON_016,NNS_SND_ARC_LOAD_SEQ );			//スタート
 
-		//���łɃ��[�h�ς�
-		//Snd_ArcLoadSeqEx( SEQ_SE_DP_KI_GASYAN, NNS_SND_ARC_LOAD_SEQ );	//�K�V����
-		//Snd_ArcLoadSeqEx( SEQ_SE_DP_DECIDE, NNS_SND_ARC_LOAD_SEQ );		//�R�E�Q�E�P
+		//すでにロード済み
+		//Snd_ArcLoadSeqEx( SEQ_SE_DP_KI_GASYAN, NNS_SND_ARC_LOAD_SEQ );	//ガシャン
+		//Snd_ArcLoadSeqEx( SEQ_SE_DP_DECIDE, NNS_SND_ARC_LOAD_SEQ );		//３・２・１
 
-		//�ʂ̂�
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_KIRAKIRA, NNS_SND_ARC_LOAD_SEQ );		//�{�[��������
+		//玉のり
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_KIRAKIRA, NNS_SND_ARC_LOAD_SEQ );		//ボール動かす
 
-		//�Q�[���J�n
-		Snd_ArcLoadSeqEx( SEQ_SE_PL_FCALL, NNS_SND_ARC_LOAD_SEQ );			//3�C�̊G���\��
+		//ゲーム開始
+		Snd_ArcLoadSeqEx( SEQ_SE_PL_FCALL, NNS_SND_ARC_LOAD_SEQ );			//3匹の絵が表示
 		
 		break;
 #endif
 
-	//�G���f�B���O(�ȃf�[�^���傫���̂�SE�����[�h���Ȃ��悤�ɂ��ėe�ʊm�ۂ��Ă���)
+	//エンディング(曲データが大きいのでSEをロードしないようにして容量確保しておく)
 	case SND_SCENE_ENDING:
-		ret = Snd_ArcLoadGroup( GROUP_SE_NUTMIXER );	//�K���ɏ����߂̃f�[�^�����[�h
+		ret = Snd_ArcLoadGroup( GROUP_SE_NUTMIXER );	//適当に小さめのデータをロード
 		break;
 
-	//�I�[�v�j���O
-	//�^�}�S�z��
+	//オープニング
+	//タマゴ孵化
 	case SND_SCENE_OPENING:
 	case SND_SCENE_EGG:
-		ret = Snd_ArcLoadGroup( GROUP_SE_BATTLE );		//�o�g���̉����K�v�Ȃ̂ŁI
+		ret = Snd_ArcLoadGroup( GROUP_SE_BATTLE );		//バトルの音が必要なので！
 		break;
 
-	//�M���e�B�i�o��f��
+	//ギラティナ登場デモ
 	case SND_SCENE_GIRA:
-		ret = Snd_ArcLoadGroup( GROUP_SE_BATTLE );		//�o�g���̉����K�v�Ȃ̂ŁI
+		ret = Snd_ArcLoadGroup( GROUP_SE_BATTLE );		//バトルの音が必要なので！
 		//ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 		//ret = Snd_ArcLoadGroup( GROUP_SE_CLIMAX );
 		break;
 
-	//WIFI�L��
+	//WIFI広場
 	case SND_SCENE_WIFI_LOBBY_HIROBA:
 		//ret = Snd_ArcLoadGroup( GROUP_SE_HIROBA );
-		ret = Snd_ArcLoadBank( BANK_SE_HIROBA );		//�o���N���[�h
-		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_HIROBA );	//�g�`�A�[�J�C�u
+		ret = Snd_ArcLoadBank( BANK_SE_HIROBA );		//バンクロード
+		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_HIROBA );	//波形アーカイブ
 		break;
 
-	//�����f��
+	//交換デモ
 	case SND_SCENE_TRADE:
 		ret = Snd_ArcLoadGroup( GROUP_SE_TRADE );
 		break;
 
-	//�t�B�[���h
+	//フィールド
 	case SND_SCENE_FIELD:
 	case SND_SCENE_DEMO01:
 		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 		break;
 
-	//�o�g��
+	//バトル
 	case SND_SCENE_BATTLE:
 		ret = Snd_ArcLoadGroup( GROUP_SE_BATTLE );
 		break;
@@ -508,130 +508,130 @@ int Snd_LoadSeByScene( u8 scene )
 		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 		break;
 
-	//�R���e�X�g
+	//コンテスト
 	case SND_SCENE_CONTEST:
 		ret = Snd_ArcLoadGroup( GROUP_SE_CONTEST );
 		break;
 
-	//�a���f��
+	//殿堂デモ
 	case SND_SCENE_DENDOU:
-		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );		//SEQ_SE_DP_SAVE���g�p���Ă���I
+		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );		//SEQ_SE_DP_SAVEが使用している！
 		break;
 
-	//����
+	//料理
 	case SND_SCENE_NUTMIXER:
 		ret = Snd_ArcLoadGroup( GROUP_SE_NUTMIXER );
 		break;
 
-	//�ʂ���
+	//玉いれ
 	case SND_SCENE_BCT:
-		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );		//���Ŏg�p���Ă���I
-		ret = Snd_ArcLoadGroup( GROUP_SE_DIG );			//���Ŏg�p���Ă���I
+		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );		//仮で使用している！
+		ret = Snd_ArcLoadGroup( GROUP_SE_DIG );			//仮で使用している！
 		break;
 
-	//���邮�����
+	//ぐるぐる交換
 	case SND_SCENE_GURUGURU:
-		//SE_FIELD��ǂݍ���ł��������A��p�̃O���[�v�ł��悢�B
-		//����ȂɎ�ނȂ����������H
+		//SE_FIELDを読み込んでもいいし、専用のグループでもよい。
+		//そんなに種類なさそうかも？
 		ret = Snd_ArcLoadGroup( GROUP_SE_FIELD );
 		//ret = Snd_ArcLoadGroup( GROUP_SE_GURUGURU );
 		break;
 
-	//�o�b�O
+	//バッグ
 	case SND_SCENE_SUB_BAG:
 		ret = Snd_ArcLoadGroup( GROUP_SE_BAG );
 		break;
 
-	//�X���b�g
+	//スロット
 	case SND_SCENE_SUB_SLOT:
 		ret = Snd_ArcLoadGroup( GROUP_SE_SLOT );
 		break;
 
-	//���O����
+	//名前入力
 	case SND_SCENE_SUB_NAMEIN:
 		ret = Snd_ArcLoadGroup( GROUP_SE_NAMEIN );
 		break;
 
-	//�C���[�W�N���b�v
-	case SND_SCENE_CON_IMAGE:	//�R���e�X�g
+	//イメージクリップ
+	case SND_SCENE_CON_IMAGE:	//コンテスト
 	case SND_SCENE_SUB_IMAGE:
 		ret = Snd_ArcLoadGroup( GROUP_SE_IMAGE );
 		break;
 
-	//�}��
+	//図鑑
 	case SND_SCENE_SUB_ZUKAN:
 		ret = Snd_ArcLoadGroup( GROUP_SE_ZUKAN );
 		break;
 
-	//�^�E���}�b�v(���ӁI)
-	//�`���m�[�g
+	//タウンマップ(注意！)
+	//冒険ノート
 	case SND_SCENE_SUB_TOWNMAP:
 	case SND_SCENE_SUB_FNOTE:
-		ret = Snd_ArcLoadBank( BANK_SE_TOWNMAP );			//�o���N���[�h
-		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_TOWNMAP );	//�g�`�A�[�J�C�u
+		ret = Snd_ArcLoadBank( BANK_SE_TOWNMAP );			//バンクロード
+		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_TOWNMAP );	//波形アーカイブ
 		break;
 
-	//�g���[�i�[�J�[�h
+	//トレーナーカード
 	case SND_SCENE_SUB_TRCARD:
 		ret = Snd_ArcLoadGroup( GROUP_SE_TRCARD );
 		break;
 
-	//�|�P�������X�g
+	//ポケモンリスト
 	case SND_SCENE_SUB_POKELIST:
 		ret = Snd_ArcLoadGroup( GROUP_SE_POKELIST );
 		break;
 
-	//���Ό@��
+	//化石掘り
 	case SND_SCENE_SUB_DIG:
 		ret = Snd_ArcLoadGroup( GROUP_SE_DIG );
 		break;
 
-	//�J�X�^���{�[��
+	//カスタムボール
 	case SND_SCENE_SUB_CUSTOM:
 		ret = Snd_ArcLoadGroup( GROUP_SE_CUSTOM );
 		break;
 
-	//�ŏ��̃|�P�����I��
+	//最初のポケモン選択
 	case SND_SCENE_SUB_FIRSTPOKE:
-		ret = Snd_ArcLoadGroup( GROUP_SE_BAG );			//���ӁF���̃O���[�v���g���񂵂Ă���I
+		ret = Snd_ArcLoadGroup( GROUP_SE_BAG );			//注意：他のグループを使い回している！
 		break;
 
-	//�|�P�����X�e�[�^�X
+	//ポケモンステータス
 	case SND_SCENE_SUB_PST:
-		ret = Snd_ArcLoadGroup( GROUP_SE_NAMEIN );		//���ӁF���̃O���[�v���g���񂵂Ă���I
+		ret = Snd_ArcLoadGroup( GROUP_SE_NAMEIN );		//注意：他のグループを使い回している！
 		break;
 
-	//�ȈՉ�b
+	//簡易会話
 	case SND_SCENE_SUB_PMS:
-		ret = Snd_ArcLoadGroup( GROUP_SE_CUSTOM );		//���ӁF���̃O���[�v���g���񂵂Ă���I
+		ret = Snd_ArcLoadGroup( GROUP_SE_CUSTOM );		//注意：他のグループを使い回している！
 		break;
 
-	//�N���C�}�b�N�X
+	//クライマックス
 	case SND_SCENE_SUB_CLIMAX:
 		ret = Snd_ArcLoadGroup( GROUP_SE_CLIMAX );
 		break;
 
-	//�D�f��(���ӁI)
+	//船デモ(注意！)
 	case SND_SCENE_SUB_SHIP:
-		ret = Snd_ArcLoadBank( BANK_SE_SHIP );			//�o���N���[�h
-		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_SHIP );	//�g�`�A�[�J�C�u
+		ret = Snd_ArcLoadBank( BANK_SE_SHIP );			//バンクロード
+		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_SHIP );	//波形アーカイブ
 		break;
 
-	//�����b�R��(���ӁI)
+	//モロッコ号(注意！)
 	case SND_SCENE_SUB_TRAIN:
-		ret = Snd_ArcLoadBank( BANK_SE_TRAIN );			//�o���N���[�h
-		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_TRAIN );	//�g�`�A�[�J�C�u
+		ret = Snd_ArcLoadBank( BANK_SE_TRAIN );			//バンクロード
+		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_TRAIN );	//波形アーカイブ
 		break;
 
-	//�X�N���b�`(���ӁI)
+	//スクラッチ(注意！)
 	case SND_SCENE_SUB_SCRATCH:
-		ret = Snd_ArcLoadBank( BANK_SE_SCRATCH );		//�o���N���[�h
-		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_SCRATCH );//�g�`�A�[�J�C�u
+		ret = Snd_ArcLoadBank( BANK_SE_SCRATCH );		//バンクロード
+		ret = Snd_ArcLoadWaveArc( WAVE_ARC_SE_SCRATCH );//波形アーカイブ
 		break;
 
-	//�G���[
+	//エラー
 	defalut:
-		GF_ASSERT( (0) && "�V�[���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "シーンナンバーが不正です！" );
 		ret = FALSE;
 		break;
 	}
@@ -641,16 +641,16 @@ int Snd_LoadSeByScene( u8 scene )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�����L�[�ɂ��āA�T�E���h�f�[�^�Z�b�g
+ * @brief	シーンをキーにして、サウンドデータセット
  *
- * @param	scene	�V�[��
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	scene	シーン
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
- * @retval	"0=�������Ȃ��A1=�f�[�^���[�h"
+ * @retval	"0=何もしない、1=データロード"
  *
- * ���݂̃V�[���ƁA�n���ꂽ�V�[�����������́A
- * �T�E���h�f�[�^�����[�h����K�v���Ȃ��̂ŉ������Ȃ��I
+ * 現在のシーンと、渡されたシーンが同じ時は、
+ * サウンドデータをロードする必要がないので何もしない！
  */
 //--------------------------------------------------------------
 BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
@@ -659,7 +659,7 @@ BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
 	u8* scene_sub	= Snd_GetParamAdrs(SND_W_ID_SCENE_SUB);
 	u16* me_wait	= Snd_GetParamAdrs(SND_W_ID_ME_WAIT);
 
-	//�V�[�����������͉������Ȃ�
+	//シーンが同じ時は何もしない
 	if( scene < SND_SCENE_SUB ){
 		if( *scene_main == scene ){	
 			return 0;
@@ -670,23 +670,23 @@ BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
 		}
 	}
 
-	//�V�[���Z�b�g
+	//シーンセット
 	Snd_SceneSet( scene );
 
 	switch( scene ){
 
-	//�t�B�[���h
+	//フィールド
 	case SND_SCENE_FIELD:
-		Snd_BgmChannelSetAndReverbSet( 0 );		//�g�p�\�`�����l������A���o�[�u�ݒ�(�N���A)
+		Snd_BgmChannelSetAndReverbSet( 0 );		//使用可能チャンネル操作、リバーブ設定(クリア)
 		Snd_FieldDataSet( no, flag );
 
-		//ME�Đ����ɒʐM�G���[�ȂǂŁAME�J��������Ȃ���Ԃ��ƁA
-		//Snd_Main��ME�g�p���̂܂܂ɂȂ��Ă��܂��̂ŁA
-		//�t�B�[���h�f�[�^���[�h�̃^�C�~���O�ŕK�����Ƃ��悤�ɉ��}���������Ă���(06.07.27)
-		(*me_wait) = 0;	//�N���A
+		//ME再生中に通信エラーなどで、ME開放が入らない状態だと、
+		//Snd_MainでME使用中のままになってしまうので、
+		//フィールドデータロードのタイミングで必ず落とすように応急処理を入れておく(06.07.27)
+		(*me_wait) = 0;	//クリア
 		break;
 
-	//�o�g��
+	//バトル
 	case SND_SCENE_BATTLE:
 		Snd_BattleDataSet( no, flag );
 		break;
@@ -696,17 +696,17 @@ BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
 		Snd_P2PDataSet( no, flag );
 		break;
 
-	//�R���e�X�g
+	//コンテスト
 	case SND_SCENE_CONTEST:
 		Snd_ContestDataSet( no, flag );
 		break;
 
-	//�C���[�W�N���b�v(�R���e�X�g)
+	//イメージクリップ(コンテスト)
 	case SND_SCENE_CON_IMAGE:
 		Snd_ConImageDataSet( no, flag );
 		break;
 
-	//�T�u���(BGM�������p���ASE��ǉ����[�h����)
+	//サブ画面(BGMを引き継ぎ、SEを追加ロードする)
 	case SND_SCENE_SUB_BAG:
 	case SND_SCENE_SUB_NAMEIN:
 	case SND_SCENE_SUB_IMAGE:
@@ -726,30 +726,30 @@ BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
 	case SND_SCENE_SUB_FNOTE:
 	case SND_SCENE_SUB_SCRATCH:
 		/************/
-		//�ǉ����Ă���
+		//追加していく
 		/************/
 		Snd_AddSceneSeDataSet( scene );
 		break;
 
-	//�S�Ē�~���āA�풓�ȊO�����[�h������
+	//全て停止して、常駐以外をロードし直す
 	case SND_SCENE_TITLE:
-		Snd_BgmChannelSetAndReverbSet( 1 );		//�g�p�\�`�����l������A���o�[�u�ݒ�(�Z�b�g)
+		Snd_BgmChannelSetAndReverbSet( 1 );		//使用可能チャンネル操作、リバーブ設定(セット)
 		Snd_DemoDataSet( scene, no, flag );
 		break;
 
-	//�S�Ē�~���āA�풓�ȊO�����[�h������
+	//全て停止して、常駐以外をロードし直す
 	case SND_SCENE_ENDING:
-		Snd_BgmChannelSetAndReverbSet( 2 );		//�g�p�\�`�����l������A���o�[�u�ݒ�(�Z�b�g)
+		Snd_BgmChannelSetAndReverbSet( 2 );		//使用可能チャンネル操作、リバーブ設定(セット)
 		Snd_DemoDataSet( scene, no, flag );
 		break;
 
-	//�S�Ē�~���āA�풓�ȊO�����[�h������
+	//全て停止して、常駐以外をロードし直す
 	case SND_SCENE_OPENING:
-		Snd_BgmChannelSetAndReverbSet( 0 );		//�g�p�\�`�����l������A���o�[�u�ݒ�(�N���A)
+		Snd_BgmChannelSetAndReverbSet( 0 );		//使用可能チャンネル操作、リバーブ設定(クリア)
 		Snd_DemoDataSet( scene, no, flag );
 		break;
 
-	//�S�Ē�~���āA�풓�ȊO�����[�h������
+	//全て停止して、常駐以外をロードし直す
 	case SND_SCENE_TRADE:
 	case SND_SCENE_DENDOU:
 	case SND_SCENE_AGB:
@@ -766,41 +766,41 @@ BOOL Snd_DataSetByScene( u8 scene, u16 no, int flag )
 	case SND_SCENE_WIFI_LOBBY_HIROBA:
 	case SND_SCENE_WIFI_WORLD_TRADE:
 		/************/
-		//�ǉ����Ă���
+		//追加していく
 		/************/
 		Snd_DemoDataSet( scene, no, flag );
 		break;
 
-	//��SE��SE�̃o���N�Ȃ̂ŁABGM�̃o���N��؂�ւ��ă��C���ɂ��Ă��悳���������A
-	//�Z�[�u�o����󋵁A���[�h����󋵂ŁABANK_BASIC�̋Ȃ�����ƁA
-	//BANK_BGM_FIELD,DUNGEON�̋Ȃɖ߂�Ƃ܂����̂ŁA�]�[���̃o���N��ǂݍ��ގd�g�݂ɂ��Ă���
-	//�Ȃ̂ŁA�f���̃o���N�ŃZ�[�u���āA���[�h����ƁA
-	//�]�[���̃o���N�ǂݍ��݂ɂȂ�̂ŁA�Ȃ���Ȃ��Ȃ��Ă��܂�(���R�ړ������Ă̓_���I)
+	//★SEはSEのバンクなので、BGMのバンクを切り替えてメインにしてもよさそうだが、
+	//セーブ出来る状況、ロードする状況で、BANK_BASICの曲があると、
+	//BANK_BGM_FIELD,DUNGEONの曲に戻るとまずいので、ゾーンのバンクを読み込む仕組みにしている
+	//なので、デモのバンクでセーブして、ロードすると、
+	//ゾーンのバンク読み込みになるので、曲が鳴らなくなってしまう(自由移動させてはダメ！)
 	case SND_SCENE_DEMO01:
-		//�m�C�Y���ڗ��̂Ŏg��Ȃ��I
+		//ノイズが目立つので使わない！
 		//if( sys.cont & PAD_BUTTON_L ){
-		//	Snd_BgmChannelSetAndReverbSet( 1 );		//�g�p�\�`�����l������A���o�[�u�ݒ�(�Z�b�g)
+		//	Snd_BgmChannelSetAndReverbSet( 1 );		//使用可能チャンネル操作、リバーブ設定(セット)
 		//}
 		Snd_DemoDataSet( scene, no, flag );
 		break;
 
-	//�|�[�Y���K�v�ȃf���͕ʂ̃Z�b�g�R�}���h���
+	//ポーズが必要なデモは別のセットコマンド作る
 	//case SND_SCENE_DEMO:
 		//break;
 
-	//�������Ȃ�
+	//何もしない
 	defalut:
 		return 0;
 	};
 
-	return 1;		//�f�[�^���[�h
+	return 1;		//データロード
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�f�[�^�Z�b�g���ʏ���
+ * @brief	サウンドデータセット共通処理
  *
- * @param	scene	�V�[��
+ * @param	scene	シーン
  *
  * @retval	none
  */
@@ -809,37 +809,37 @@ static void Snd_DataSetSub( u8 scene )
 {
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
-	Snd_HeapLoadState( *heap_save_global );						//�풓�ȊO������
-	//�풓�͏����Ȃ��̂ŁA�ēx�K�w��ۑ�����K�v�͂Ȃ��I
-	//Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_GLOBAL]);	//�K�w�ۑ�(�풓�ȊO���������Ɏg�p)
+	Snd_HeapLoadState( *heap_save_global );						//常駐以外を消す
+	//常駐は消さないので、再度階層を保存する必要はない！
+	//Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_GLOBAL]);	//階層保存(常駐以外を消す時に使用)
 	
-	//�ꉞ�Ă�ł���
-	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM_BANK));	//�ۑ�(�풓,bnk,SE�ȊO����)
+	//一応呼んでおく
+	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM_BANK));	//保存(常駐,bnk,SE以外消す)
 
-	Snd_LoadSeByScene( scene );									//SE�V�[�P���X�O���[�v
-	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//�K�w�ۑ�(�풓�ASE�ȊO�������g�p)
+	Snd_LoadSeByScene( scene );									//SEシーケンスグループ
+	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//階層保存(常駐、SE以外消す時使用)
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���h��ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	フィールド画面に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM(WAVEARC)
  *
- * �V�[�P���X�A�o���N�̓v���C���[�q�[�v�Ń��[�h���Ă���I
+ * シーケンス、バンクはプレイヤーヒープでロードしている！
  *
- * �퓬�ŃQ�[���I�[�o�[�ɂȂ��āA�|�P�Z���ɖ߂�Ƃ��Ȃǂ́A
- * Snd_PauseClearAll���Ă�ŁA�|�[�Y�t���O���N���A���Ȃ��Ƃ����Ȃ��I
+ * 戦闘でゲームオーバーになって、ポケセンに戻るときなどは、
+ * Snd_PauseClearAllを呼んで、ポーズフラグをクリアしないといけない！
  */
 //--------------------------------------------------------------
 static void Snd_FieldDataSet( u16 no, int flag )
@@ -851,81 +851,81 @@ static void Snd_FieldDataSet( u16 no, int flag )
 	u16* zone_bgm			= Snd_GetParamAdrs(SND_W_ID_ZONE_BGM);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@�t�B�[���h�V�[���؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　フィールドシーン切り替わり＞\n" );
 #endif
 
 
-	//�|�[�Y���Ă��Ȃ��āA�����Ȃ�炻���Ƃ�����ABGM���p���ɂ��Ă���I
+	//ポーズしていなくて、同じ曲を鳴らそうとしたら、BGM引継ぎにしている！
 
-	//PLAYER_FIELD��BGM�i���o�[�擾
+	//PLAYER_FIELDのBGMナンバー取得
 	player_seq_no = Snd_GetSeqNo( Snd_HandleGet(SND_HANDLE_FIELD) );
 
-	//PLAYER_FIELD���|�[�Y���Ă��Ȃ���
+	//PLAYER_FIELDをポーズしていない時
 	if( *field_pause_flag == 0 ){
 	
-		//�����Ȃ�炻���Ƃ�����
+		//同じ曲を鳴らそうとした時
 		if( player_seq_no == no ){
 
-			//Snd_AddSceneSeDataSet( SND_SCENE_FIELD );			//SE��ǉ����[�h����
+			//Snd_AddSceneSeDataSet( SND_SCENE_FIELD );			//SEを追加ロードする
 
-			//PLAYER_FIELD���~���Ă���A�ʉ�ʂɍs���΁A
-			//�߂��Ă����Ƃ��ɁABGM�i���o�[�擾�̒l���ς��̂ŁA
-			//FieldData�����[�h�����I
+			//PLAYER_FIELDを停止してから、別画面に行けば、
+			//戻ってきたときに、BGMナンバー取得の値が変わるので、
+			//FieldDataがロードされる！
 			
-			//����BGM�Ɏ��]�Ԃ��Z�b�g���Ă����Ԃ�(�t�F�[�h�A�E�g��)
-			//�v���C���[�V�[�P���X�i���o�[�́A�܂����]�ԂɂȂ��Ă��Ȃ��̂ŁA
-			//�����������^�[�����Ă��܂��I�Ȃ̂Ń`�F�b�N������
+			//次のBGMに自転車をセットしている状態で(フェードアウト中)
+			//プレイヤーシーケンスナンバーは、まだ自転車になっていないので、
+			//何もせずリターンしてしまう！なのでチェックを入れる
 			if( Snd_NextBgmNoGet() != SEQ_BICYCLE ){
-				return;		//���ӁI
+				return;		//注意！
 			}
 		}
 	}
 
-	//�|�[�Y���A�̕���ɂ��K�v�I
-	//�g�`�A�[�J�C�u�̃��[�h���K�v�Ȃ̂ŁI
-	Snd_BankFlagSet( SND_BANK_CHANGE );							//�o���N�؂�ւ��邩�t���O���Z�b�g
+	//ポーズ復帰の分岐にも必要！
+	//波形アーカイブのロードが必要なので！
+	Snd_BankFlagSet( SND_BANK_CHANGE );							//バンク切り替えるかフラグをセット
 
-	//�菇(1)
-	Snd_StopEx();												//�t�B�[���hBGM�𔲂����đS��~
+	//手順(1)
+	Snd_StopEx();												//フィールドBGMを抜かして全停止
 
-	//PLAYER_FIELD���|�[�Y���Ă��鎞�ł��A
-	//���Ɩ邪�؂�ւ�������́A�Ⴄ�Ȃ�炷�悤�ɂ���I
-	//���̎��́A�|�[�Y�t���O�𗎂Ƃ��āA������Ⴄ�Ȃ��Đ��ɂ����悤�ɂ���I(06.04.12)
+	//PLAYER_FIELDをポーズしている時でも、
+	//昼と夜が切り替わった時は、違う曲を鳴らすようにする！
+	//その時は、ポーズフラグを落として、頭から違う曲を再生にいくようにする！(06.04.12)
 	if( player_seq_no != no ){
-		Snd_PlayerPause( PLAYER_FIELD, FALSE );					//�t�B�[���hBGM�ĊJ
+		Snd_PlayerPause( PLAYER_FIELD, FALSE );					//フィールドBGM再開
 		Snd_Stop();
 	}
 
-	//�t�B�[���hBGM���|�[�Y���Ă������������I
+	//フィールドBGMをポーズしていたら解除する！
 	if( *field_pause_flag == 1 ){
 
 		Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_BGM_BANK) );
 
-		Snd_LoadSeByScene( SND_SCENE_FIELD );						//SE�V�[�P���X�O���[�v
-		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//�K�w�ۑ�(�풓�ASE�ȊO������)
+		Snd_LoadSeByScene( SND_SCENE_FIELD );						//SEシーケンスグループ
+		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//階層保存(常駐、SE以外消す時)
 
-		//���Ɩ邪�؂�ւ���āA�Ⴄ�Ȃ�炻���Ƃ������́A
-		//�|�[�Y�t���O�𗎂Ƃ��āA������Ⴄ�Ȃ��Đ��ɂ����悤�ɂ���I(06.04.12)
+		//昼と夜が切り替わって、違う曲を鳴らそうとした時は、
+		//ポーズフラグを落として、頭から違う曲を再生にいくようにする！(06.04.12)
 		if( player_seq_no != no ){
-			Snd_PlayerPause( PLAYER_FIELD, FALSE );					//�t�B�[���hBGM�ĊJ
+			Snd_PlayerPause( PLAYER_FIELD, FALSE );					//フィールドBGM再開
 		}
 
 		Snd_FieldDataSet_PauseOffStart( no, player_seq_no );
 		return;
 	}
 
-	//BGM�Đ�(�X�e�[�^�X���Đ�)
-	Snd_BgmPlay( no );											//�t�B�[���hBGM�Đ�
+	//BGM再生(ステータス＝再生)
+	Snd_BgmPlay( no );											//フィールドBGM再生
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM���|�[�Y�������闬��
+ * @brief	フィールドBGMをポーズ解除する流れ
  *
- * @param	no					�V�[�P���X�i���o�[
- * @param	player_field_seq_no	�t�B�[���h�̃V�[�P���X�i���o�[
+ * @param	no					シーケンスナンバー
+ * @param	player_field_seq_no	フィールドのシーケンスナンバー
  *
  * @retval	none
  */
@@ -933,14 +933,14 @@ static void Snd_FieldDataSet( u16 no, int flag )
 static void Snd_FieldDataSet_PauseOffStart( u16 no, u16 player_field_seq_no )
 {
 	u16* zone_bgm	= Snd_GetParamAdrs(SND_W_ID_ZONE_BGM);
-	u16 tmp_bank_no = Snd_GetBankNo(*zone_bgm);					//�s���Ȓl�������Ă��Ȃ����`�F�b�N
+	u16 tmp_bank_no = Snd_GetBankNo(*zone_bgm);					//不正な値が入っていないかチェック
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "���t�B�[���hBGM�|�[�Y�����I��\n" );
+	OS_Printf( "＜フィールドBGMポーズ解除！＞\n" );
 #endif
 
 	if( (tmp_bank_no != BANK_BGM_FIELD) && (tmp_bank_no != BANK_BGM_DUNGEON) ){
-		Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_WAVE );				//�g�`�A�[�J�C�u���[�h
+		Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_WAVE );				//波形アーカイブロード
 		OS_Printf( "zone_bgm = %d\n", *zone_bgm );
 		OS_Printf( "tmp_bank_no = %d\n", tmp_bank_no );
 		GF_ASSERT( (0) && "bgm play : *zone_bgm error" );
@@ -948,30 +948,30 @@ static void Snd_FieldDataSet_PauseOffStart( u16 no, u16 player_field_seq_no )
 		Snd_ArcLoadSeqEx( *zone_bgm, NNS_SND_ARC_LOAD_WAVE | NNS_SND_ARC_LOAD_BANK);//arc,bank
 	}
 
-	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//�K�w�ۑ�(BGM�̌������)
+	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//階層保存(BGMの後を消す)
 
-	//�|�[�Y��Ԃ��畜�A����ɂ́A�o���N���ă��[�h����K�v�����邪�A
-	//�v���C���[�q�[�v�Ńo���N�����[�h���Ă���̂ő��v�I
+	//ポーズ状態から復帰するには、バンクも再ロードする必要があるが、
+	//プレイヤーヒープでバンクをロードしているので大丈夫！
 
-	//Snd_NowBgmNoSet( Snd_GetSeqNo(Snd_HandleGet(SND_HANDLE_FIELD)) );	//����BGM�i���o�[�Z�b�g
+	//Snd_NowBgmNoSet( Snd_GetSeqNo(Snd_HandleGet(SND_HANDLE_FIELD)) );	//今のBGMナンバーセット
 
-	//�v���C���[�q�[�v��BGM_FIELD_BANK(BGM_DUNGEON_BANK)���c���Ă���̂��O��I
-	//���ꂪ�o���Ȃ��V�`���G�[�V��������������ABGM_DUNGEON_BANK�͔p�~���Ȃ��ƃ_���I
+	//プレイヤーヒープにBGM_FIELD_BANK(BGM_DUNGEON_BANK)が残っているのが前提！
+	//これが出来ないシチュエーションがあったら、BGM_DUNGEON_BANKは廃止しないとダメ！
 	
-	Snd_PlayerPause( PLAYER_FIELD, FALSE );						//�t�B�[���hBGM�ĊJ
-	Snd_BgmFadeIn( BGM_VOL_MAX, 40, BGM_FADEIN_START_VOL_MIN );	//�t�F�[�h�C��
+	Snd_PlayerPause( PLAYER_FIELD, FALSE );						//フィールドBGM再開
+	Snd_BgmFadeIn( BGM_VOL_MAX, 40, BGM_FADEIN_START_VOL_MIN );	//フェードイン
 
-	//�o���N�؂�ւ��邩�t���O�����Z�b�g
-	Snd_BankFlagSet( SND_BANK_CONTINUE );					//�N���A = �p��
+	//バンク切り替えるかフラグをリセット
+	Snd_BankFlagSet( SND_BANK_CONTINUE );					//クリア = 継続
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���h�f�[�^�Z�b�g�̋��ʏ���(snd_tool.c,snd_play.c)
+ * @brief	フィールドデータセットの共通処理(snd_tool.c,snd_play.c)
  *
- * @param	no			�V�[�P���X�i���o�[
- * @param	old_bank_no	�t�B�[���h�̃o���N�i���o�[
+ * @param	no			シーケンスナンバー
+ * @param	old_bank_no	フィールドのバンクナンバー
  *
  * @retval	none
  */
@@ -983,57 +983,57 @@ void Snd_FieldDataSetSub( u16 no, u16 old_bank_no )
 	u16* zone_bgm	= Snd_GetParamAdrs(SND_W_ID_ZONE_BGM);
 
 	/*
-	//PLAYER_FIELD�Ŗ炷BGM�̃o���N�w��͒��ӂ���I
-	//Snd_DataSetByScene��������ɁABGM�f�[�^�̃��[�h���������Ȃ����Ƃ��N����̂ŁI
+	//PLAYER_FIELDで鳴らすBGMのバンク指定は注意する！
+	//Snd_DataSetBySceneをした後に、BGMデータのロードが発生しないことが起きるので！
 	//
-	//BANK_BASIC���w�肵�Ă���΁A���[�h������Ȃ��Ă����C�B
-	//�Q�[���J�n���́Aold_bank_no��0�Ȃ̂ŁA�K���K�w�ۑ��܂ŌĂ΂��B
+	//BANK_BASICを指定していれば、ロードが入らなくても平気。
+	//ゲーム開始時は、old_bank_noは0なので、必ず階層保存まで呼ばれる。
 	*/
 
-	//�o���N�؂�ւ���t���O��ON�ɂȂ��Ă��邩�`�F�b�N
+	//バンク切り替えるフラグがONになっているかチェック
 	if( (*bank_flag == SND_BANK_CHANGE) || (old_bank_no == 0) ){
 
-		//�}�b�v�J�ڂ̎��A�o���N�����[�h����
-		//�]�[�����܂������A�o���N�����[�h���Ȃ�
+		//マップ遷移の時、バンクをロードする
+		//ゾーンをまたぐ時、バンクをロードしない
 		
-		Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_GLOBAL) );	//�풓�ȊO������
+		Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_GLOBAL) );	//常駐以外を消す
 
 #if 1
-		//���T�u�V�[���̃f�[�^��������Ă���̂ŃN���A�I
+		//★サブシーンのデータも消されているのでクリア！
 		//
-		//���oBGM��炷�O�Ƀt�B�[���hBGM���~���Ă���̂ŁA
-		//Snd_GetSeqNo( Snd_GetBankNo(FIELD... )���擾���Ă��A
-		//old_bank_no = 0 �ɂȂ��Ă��܂��Ă���
+		//演出BGMを鳴らす前にフィールドBGMを停止しているので、
+		//Snd_GetSeqNo( Snd_GetBankNo(FIELD... )を取得しても、
+		//old_bank_no = 0 になってしまっていた
 		//
-		//�ēx�����T�u�V�[�����ĂԂƁASE�Đ����s���Ă��܂�
+		//再度同じサブシーンを呼ぶと、SE再生失敗してしまう
 		Snd_SubSceneSet( SND_SCENE_DUMMY );
 #endif
 
-		Snd_ArcLoadSeqEx( *zone_bgm, NNS_SND_ARC_LOAD_BANK );			//�o���N���[�h
-		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM_BANK));//�ۑ�(�풓,bnk,SE�ȊO����)
+		Snd_ArcLoadSeqEx( *zone_bgm, NNS_SND_ARC_LOAD_BANK );			//バンクロード
+		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM_BANK));//保存(常駐,bnk,SE以外消す)
 	
-		Snd_LoadSeByScene( SND_SCENE_FIELD );							//SE�V�[�P���X�O���[�v
-		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));		//�ۑ�(�풓�ASE�ȊO����)
+		Snd_LoadSeByScene( SND_SCENE_FIELD );							//SEシーケンスグループ
+		Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));		//保存(常駐、SE以外消す)
 
-		//�g���A��ꑐ��ԂŐ퓬�ɂ����āA���A����ƁA
-		//�ǂݍ��܂��f�[�^�́ABANK_BASIC�ɂȂ��Ă��܂��I
-		//�]�[�����܂��������A���ɏ㗤�������ȂǂɁA
-		//BANK_FIELD(BANK_DUNGEON)���ǂݍ��܂�Ă��Ȃ��̂ŁA
-		//BGM�Đ������Ŏ��s���Ă��܂��̂ŁA
-		//�ۑ����Ă������]�[���̋ȃi���o�[�����āA
-		//�K�v�Ȕg�`���t�F�[�h�A�E�g���Ƀ��[�h����
+		//波乗り、ゆれ草状態で戦闘にいって、復帰すると、
+		//読み込まれるデータは、BANK_BASICになってしまう！
+		//ゾーンをまたいだ時、陸に上陸した時などに、
+		//BANK_FIELD(BANK_DUNGEON)が読み込まれていないので、
+		//BGM再生処理で失敗してしまうので、
+		//保存しておいたゾーンの曲ナンバーを見て、
+		//必要な波形をフェードアウト中にロードする
 
-		tmp_bank_no = Snd_GetBankNo(*zone_bgm);				//�s���Ȓl�������Ă��Ȃ����`�F�b�N
+		tmp_bank_no = Snd_GetBankNo(*zone_bgm);				//不正な値が入っていないかチェック
 		if( (tmp_bank_no != BANK_BGM_FIELD) && (tmp_bank_no != BANK_BGM_DUNGEON) ){
-			Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_WAVE );				//�g�`�A�[�J�C�u���[�h
+			Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_WAVE );				//波形アーカイブロード
 			OS_Printf( "zone_bgm = %d\n", *zone_bgm );
 			OS_Printf( "tmp_bank_no = %d\n", tmp_bank_no );
 			GF_ASSERT( (0) && "bgm play : *zone_bgm error" );
 		}else{
-			Snd_ArcLoadSeqEx( *zone_bgm, NNS_SND_ARC_LOAD_WAVE );		//�g�`�A�[�J�C�u���[�h
+			Snd_ArcLoadSeqEx( *zone_bgm, NNS_SND_ARC_LOAD_WAVE );		//波形アーカイブロード
 		}
 
-		Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//�K�w�ۑ�(BGM�̌������)
+		Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//階層保存(BGMの後を消す)
 	}
 
 	return;
@@ -1041,15 +1041,15 @@ void Snd_FieldDataSetSub( u16 no, u16 old_bank_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�g����ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	バトル画面に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM
  */
@@ -1059,36 +1059,36 @@ static void Snd_BattleDataSet( u16 no, int flag )
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@�o�g���V�[���؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　バトルシーン切り替わり＞\n" );
 #endif
 
-	//�t�B�[���hBGM���|�[�Y���邩�A��~���邩�𔻕ʂ��ď���
+	//フィールドBGMをポーズするか、停止するかを判別して処理
 	Snd_FieldPauseOrStop();
 
-	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_BGM_BANK) );	//�풓��field_bnk�ȊO����
+	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_BGM_BANK) );	//常駐とfield_bnk以外消す
 
-	Snd_LoadSeByScene( SND_SCENE_BATTLE );							//SE�V�[�P���X�O���[�v
-	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//�K�w�ۑ�(�풓�ASE�ȊO�������g�p)
+	Snd_LoadSeByScene( SND_SCENE_BATTLE );							//SEシーケンスグループ
+	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE));	//階層保存(常駐、SE以外消す時使用)
 
-	//�t�B�[���hBGM�̃V�[�P���X�A�o���N�́A�v���C���[�q�[�v�ŏ������Ă���̂ŁA
-	//��~�������Ă΂Ȃ��ƊJ������Ȃ�(�|�[�Y��Ԃɂ��Ă���)
+	//フィールドBGMのシーケンス、バンクは、プレイヤーヒープで処理しているので、
+	//停止処理を呼ばないと開放されない(ポーズ状態にしている)
 
-	Snd_BankFlagSet( SND_BANK_CHANGE );							//�o���N�؂�ւ��邩�t���O���Z�b�g
-	Snd_BgmPlay( no );											//BGM�Đ�
+	Snd_BankFlagSet( SND_BANK_CHANGE );							//バンク切り替えるかフラグをセット
+	Snd_BgmPlay( no );											//BGM再生
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	P2P��ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	P2P画面に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM
  */
@@ -1098,41 +1098,41 @@ static void Snd_P2PDataSet( u16 no, int flag )
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@P2P�V�[���؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　P2Pシーン切り替わり＞\n" );
 #endif
 
-	//�菇(1)
-	Snd_Stop();													//�S��~
+	//手順(1)
+	Snd_Stop();													//全停止
 
-	//�|�[�Y�t���O�𗎂Ƃ��Ȃ��Ƃ����Ȃ��I
-	//Snd_PlayerPause( PLAYER_FIELD, FALSE );					//�t�B�[���hBGM�|�[�Y����
+	//ポーズフラグを落とさないといけない！
+	//Snd_PlayerPause( PLAYER_FIELD, FALSE );					//フィールドBGMポーズ解除
 	
-	//�S�Ẵ|�[�Y�t���O�N���A
+	//全てのポーズフラグクリア
 	Snd_PauseClearAll();
 
-	//���ʏ���
+	//共通処理
 	Snd_DataSetSub( SND_SCENE_FIELD );
 
-	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//�o���N���̂܂܌p��
-	Snd_BgmPlay( no );											//BGM�Đ�
+	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//バンクそのまま継続
+	Snd_BgmPlay( no );											//BGM再生
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�R���e�X�g��ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	コンテスト画面に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM
  *
- * �b��ŁA�o�b�O�̃T�u�V�[�������[�h���Ă���
+ * 暫定で、バッグのサブシーンもロードしている
  */
 //--------------------------------------------------------------
 void Snd_ContestDataSet( u16 no, int flag )
@@ -1140,35 +1140,35 @@ void Snd_ContestDataSet( u16 no, int flag )
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@�R���e�X�g�V�[���؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　コンテストシーン切り替わり＞\n" );
 #endif
 
-	//�菇(1)
-	Snd_Stop();													//�S��~
+	//手順(1)
+	Snd_Stop();													//全停止
 
-	//���ʏ���
+	//共通処理
 	Snd_DataSetSub( SND_SCENE_CONTEST );
 
-	Snd_BankFlagSet( SND_BANK_CHANGE );							//�o���N�؂�ւ��邩�t���O���Z�b�g
-	Snd_BgmPlay( no );											//BGM�Đ�
+	Snd_BankFlagSet( SND_BANK_CHANGE );							//バンク切り替えるかフラグをセット
+	Snd_BgmPlay( no );											//BGM再生
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�C���[�W�N���b�v(�R���e�X�g)��ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	イメージクリップ(コンテスト)画面に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM
  *
- * �b��ŁA�o�b�O�̃T�u�V�[�������[�h���Ă���
+ * 暫定で、バッグのサブシーンもロードしている
  */
 //--------------------------------------------------------------
 void Snd_ConImageDataSet( u16 no, int flag )
@@ -1176,31 +1176,31 @@ void Snd_ConImageDataSet( u16 no, int flag )
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@�C���[�W�N���b�v(�R���e�X�g)�V�[���؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　イメージクリップ(コンテスト)シーン切り替わり＞\n" );
 #endif
 
-	//�菇(1)
-	Snd_Stop();													//�S��~
+	//手順(1)
+	Snd_Stop();													//全停止
 
-	//���ʏ���
+	//共通処理
 	Snd_DataSetSub( SND_SCENE_CON_IMAGE );
 
-	Snd_BankFlagSet( SND_BANK_CHANGE );							//�o���N�؂�ւ��邩�t���O���Z�b�g
-	Snd_BgmPlay( no );											//BGM�Đ�
+	Snd_BankFlagSet( SND_BANK_CHANGE );							//バンク切り替えるかフラグをセット
+	Snd_BgmPlay( no );											//BGM再生
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�������p���ASE��ǉ����[�h����A�؂�ւ��̃T�E���h�f�[�^�Z�b�g
+ * @brief	BGMを引き継ぎ、SEを追加ロードする、切り替わりのサウンドデータセット
  *
- * @param	scene		�V�[��
+ * @param	scene		シーン
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM(WAVEARC)
  * ADD_SCENE_SE
@@ -1209,30 +1209,30 @@ void Snd_ConImageDataSet( u16 no, int flag )
 static void Snd_AddSceneSeDataSet( u8 scene )
 {
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h %d �؂�ւ�� �T�u��ʁ�\n", scene );
+	OS_Printf( "\n＜サウンドデータロード %d 切り替わり サブ画面＞\n", scene );
 #endif
 
-	//���ʏ���
+	//共通処理
 	//Snd_DataSetSub( scene );
 
-	Snd_DeleteHeapAfterBgm();										//BGM�̌�������
-	Snd_LoadSeByScene( scene );										//SE�V�[�P���X�O���[�v
-	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SUB_SE));	//�K�w�ۑ�(�T�u��ʂ̏������)
+	Snd_DeleteHeapAfterBgm();										//BGMの後ろを消す
+	Snd_LoadSeByScene( scene );										//SEシーケンスグループ
+	Snd_HeapSaveState(Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SUB_SE));	//階層保存(サブ画面の上を消す)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�f����ʂɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	デモ画面に切り替わる時のサウンドデータセット
  *
- * @param	scene	�V�[��
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	"���g�p"
+ * @param	scene	シーン
+ * @param	no		シーケンスナンバー
+ * @param	flag	"未使用"
  *
  * @retval	none
  *
- * ���f�[�^���[�h����
- * �풓
+ * ＜データロード順＞
+ * 常駐
  * SE
  * BGM(SEQ,BANK,WAVEARC)
  */
@@ -1242,30 +1242,30 @@ static void Snd_DemoDataSet( u8 scene, u16 no, int flag )
 	int* heap_save_global	= Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_GLOBAL);
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "���T�E���h�f�[�^���[�h�@�f���V�[���؂�ւ�聄\n" );
+	OS_Printf( "＜サウンドデータロード　デモシーン切り替わり＞\n" );
 #endif
 
-	//�菇(1)
-	Snd_Stop();													//�S��~
+	//手順(1)
+	Snd_Stop();													//全停止
 
-	//���ʏ���
+	//共通処理
 	Snd_DataSetSub( scene );
 
-	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//�o���N���̂܂܌p��
-	Snd_BgmPlay( no );											//BGM�Đ�
+	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//バンクそのまま継続
+	Snd_BgmPlay( no );											//BGM再生
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�����Ȃɐ؂�ւ�鎞�̃T�E���h�f�[�^�Z�b�g
+ * @brief	視線曲に切り替わる時のサウンドデータセット
  *
- * @param	no		�V�[�P���X�i���o�[
+ * @param	no		シーケンスナンバー
  *
  * @retval	none
  *
- * FIELD����Ă΂�邱�Ƃ�O��Ƃ��Ă���I
+ * FIELDから呼ばれることを前提としている！
  */
 //--------------------------------------------------------------
 void Snd_EyeBgmSet( u16 no )
@@ -1274,24 +1274,24 @@ void Snd_EyeBgmSet( u16 no )
 	SND_WORK* wk	= Snd_GetSystemAdrs();
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���T�E���h�f�[�^���[�h�@�����Ȑ؂�ւ�聄\n" );
+	OS_Printf( "\n＜サウンドデータロード　視線曲切り替わり＞\n" );
 #endif
 
-	//BattleDataSet�ŃV�[���̃Z�b�g������̂ŁA
-	//���̃^�C�~���O�ŃV�[�����Z�b�g����K�v�͂Ȃ��I
+	//BattleDataSetでシーンのセットをするので、
+	//このタイミングでシーンをセットする必要はない！
 
-	//�t�B�[���hBGM���|�[�Y���邩�A��~���邩�𔻕ʂ��ď���
+	//フィールドBGMをポーズするか、停止するかを判別して処理
 	Snd_FieldPauseOrStop();
 
-	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//�o���N���̂܂܌p��
-	ret = Snd_BgmPlay( no );									//BGM�Đ�
+	//Snd_BankFlagSet( SND_BANK_CONTINUE );						//バンクそのまま継続
+	ret = Snd_BgmPlay( no );									//BGM再生
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�������[�h���Ă��Ȃ���Ԃɂ���(�T�E���h�e�X�g�݂̂Ŏg��)
+ * @brief	何もロードしていない状態にする(サウンドテストのみで使う)
  *
  * @param	none
  *
@@ -1302,20 +1302,20 @@ void Snd_HeapStateClear(void)
 {
 	int* heap_save_start = Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_START);
 	Snd_HeapLoadState( *heap_save_start );
-	//Snd_HeapSaveState( heap_save_start );		//�K�w�ۑ�(�S�ď������Ɏg�p)
+	//Snd_HeapSaveState( heap_save_start );		//階層保存(全て消す時に使用)
 	return;
 }
 
 
 //==============================================================================================
 //
-//	�q�[�v�֘A
+//	ヒープ関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�̌��̃f�[�^������
+ * @brief	BGMの後ろのデータを消す
  *
  * @param	none
  *
@@ -1324,18 +1324,18 @@ void Snd_HeapStateClear(void)
 //--------------------------------------------------------------
 void Snd_DeleteHeapAfterBgm( void )
 {
-	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_BGM) );				//BGM�̌�������
+	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_BGM) );				//BGMの後ろを消す
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�K�w���x�����擾
+ * @brief	階層レベルを取得
  *
- * @param	wk		SND_WORK�^�̃A�h���X
- * @param	type	�K�w���x����`(snd_tool.h�Q��)
+ * @param	wk		SND_WORK型のアドレス
+ * @param	type	階層レベル定義(snd_tool.h参照)
  *
- * @retval	"�K�w���x��"
+ * @retval	"階層レベル"
  */
 //--------------------------------------------------------------
 int Snd_GetHeapSaveLv( int type )
@@ -1344,7 +1344,7 @@ int Snd_GetHeapSaveLv( int type )
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
 	if( type >= SND_HEAP_SAVE_MAX ){
-		GF_ASSERT( (0) && "�K�w���x�����s���ł��I" );
+		GF_ASSERT( (0) && "階層レベルが不正です！" );
 		heap_save = Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM);
 		return *heap_save;
 	}
@@ -1379,26 +1379,26 @@ int Snd_GetHeapSaveLv( int type )
 
 //==============================================================================================
 //
-//	�V�[�P���X�֘A
+//	シーケンス関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X���ꎞ��~�܂��͍ĊJ���܂��B 
+ * @brief	シーケンスを一時停止または再開します。 
  *
- * @param	player	�v���C���[�i���o�[(sound_data.sadl�Q��)
- * @param	flag	TRUE=�ꎞ��~�AFALSE=�ĊJ
+ * @param	player	プレイヤーナンバー(sound_data.sadl参照)
+ * @param	flag	TRUE=一時停止、FALSE=再開
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
- * ��Ԃ��ς��Ȃ��ꍇ�A�Ⴆ�΁A���łɈꎞ��~��Ԃ̎��Ɉꎞ��~���s���Ă��A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
+ * 状態が変わらない場合、例えば、すでに一時停止状態の時に一時停止を行っても、何もしません。 
  *
- * ����
- * �ꎞ��~���s���ƁA�������̉��͋����I�ɒ�~�������܂��B
- * �ĊJ���s���Ă��A�������̉�����������Đ�����邱�Ƃ͂���܂���̂Œ��ӂ��Ă��������B
- * �ĊJ��́A���̃m�[�g�I�����特����n�߂܂��B 
+ * 注意
+ * 一時停止を行うと、発音中の音は強制的に停止させられます。
+ * 再開を行っても、発音中の音が続きから再生されることはありませんので注意してください。
+ * 再開後は、次のノートオンから音が鳴り始めます。 
  */
 //--------------------------------------------------------------
 void Snd_PlayerPause( u8 player, BOOL flag )
@@ -1415,29 +1415,29 @@ void Snd_PlayerPause( u8 player, BOOL flag )
 		handle_no	= SND_HANDLE_BGM;
 
 	}else{
-		return;			//�������Ȃ�
+		return;			//何もしない
 	}
 
-	//�ĊJ������̂ŁA����BGM�i���o�[�ɃZ�b�g���Ȃ���
+	//再開させるので、今のBGMナンバーにセットしなおす
 	if( flag == FALSE ){
 		Snd_NowBgmNoSet( Snd_GetSeqNo(Snd_HandleGet(handle_no)) );
 	}
 
 	NNS_SndPlayerPause( Snd_HandleGet(handle_no), flag );
-	*pause_flag = flag;	//�|�[�Y���Ă��邩�t���O
+	*pause_flag = flag;	//ポーズしているかフラグ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ẵ|�[�Y���Ă��邩�t���O�̃N���A
+ * @brief	全てのポーズしているかフラグのクリア
  *
  * @param	none
  *
  * @retval	none
  *
- * �퓬�ŃQ�[���I�[�o�[�ɂȂ��āA�|�P�Z���ɖ߂�Ƃ��ȂǂɁA
- * FieldDataSet���ĂԑO�ɁA�|�[�Y�t���O���N���A���Ȃ��Ƃ����Ȃ��I
+ * 戦闘でゲームオーバーになって、ポケセンに戻るときなどに、
+ * FieldDataSetを呼ぶ前に、ポーズフラグをクリアしないといけない！
  */
 //--------------------------------------------------------------
 void Snd_PauseClearAll()
@@ -1445,8 +1445,8 @@ void Snd_PauseClearAll()
 	u8* field_pause_flag	= Snd_GetParamAdrs( SND_W_ID_FIELD_PAUSE_FLAG );
 	u8* bgm_pause_flag		= Snd_GetParamAdrs( SND_W_ID_BGM_PAUSE_FLAG );
 
-	//�ǉ����ꂽ���̑Ή��Y����l����Ɣz��Ŏ����Ă����ق����悳����
-	//����ȏ�͑����Ȃ��͂������B�B�B
+	//追加された時の対応忘れを考えると配列で持っていたほうがよさそう
+	//これ以上は増えないはずだが。。。
 	
 	*field_pause_flag = 0;
 	*bgm_pause_flag = 0;
@@ -1455,24 +1455,24 @@ void Snd_PauseClearAll()
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�̃{�����[�������X�ɕύX����
+ * @brief	シーケンスのボリュームを徐々に変更する
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
+ * @param	p		サウンドハンドルのアドレス
  *
  * @retval	none
  *
- * frames��0�̎��A�����Ɍ��݂̃{�����[���l���X�V����܂��B
- * ���Ƃ��΁A���݂̃{�����[���l�Ƃ͖��֌W�ɁA
- * �{�����[��������l����A�ʂ̒l�Ɏ��ԕω����������ꍇ�́A
- * �܂��Aframes��0�Ƃ��Ă��̊֐����Ăт����āA���݂̃{�����[���l���X�V������A
- * �Ăѓ����֐��ŁA�ڕW�Ƃ���{�����[���l���w�肵�܂��B 
+ * framesが0の時、即座に現在のボリューム値が更新されます。
+ * たとえば、現在のボリューム値とは無関係に、
+ * ボリュームをある値から、別の値に時間変化させたい場合は、
+ * まず、framesを0としてこの関数を呼びだして、現在のボリューム値を更新した後、
+ * 再び同じ関数で、目標とするボリューム値を指定します。 
  *
- * �V�[�P���X�X�^�[�g����̃{�����[���l��0�ŁA���� NNS_SndMain�֐��ŁA127 �ɕω����܂��B
- * ���̂��߁A�V�[�P���X�X�^�[�g����ɂ��̊֐����Ăт����ƁA
- * �{�����[��0���珙�X�Ɏw��̃{�����[���֕ω�����悤�ȁA�t�F�[�h�C�����ʂ������܂��B 
+ * シーケンススタート直後のボリューム値は0で、次の NNS_SndMain関数で、127 に変化します。
+ * このため、シーケンススタート直後にこの関数を呼びだすと、
+ * ボリューム0から徐々に指定のボリュームへ変化するような、フェードイン効果が得られます。 
  *
- * ���̃{�����[���l�́A NNS_SndPlayerSetVolume�֐��̒l�Ƃ́A�Ɨ����Č��ʂ𔭊����A
- * �݂��ɏd�ˍ��킳��܂��B�������A�t�F�[�h�A�E�g���́A�����Őݒ肵���l�͖�������܂��B 
+ * このボリューム値は、 NNS_SndPlayerSetVolume関数の値とは、独立して効果を発揮し、
+ * 互いに重ね合わされます。ただし、フェードアウト中は、ここで設定した値は無視されます。 
  */
 //--------------------------------------------------------------
 void Snd_PlayerMoveVolume( int handle_no, int vol, int frame )
@@ -1483,9 +1483,9 @@ void Snd_PlayerMoveVolume( int handle_no, int vol, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�ẴV�[�P���X�̃{�����[����ύX����
+ * @brief	全てのシーケンスのボリュームを変更する
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
+ * @param	p		サウンドハンドルのアドレス
  *
  * @retval	none
  */
@@ -1502,39 +1502,39 @@ void Snd_AllPlayerMoveVolume( int vol, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�̏����{�����[���ݒ�
+ * @brief	シーケンスの初期ボリューム設定
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
- * @param	vol		�{�����[��(0-127)
+ * @param	p		サウンドハンドルのアドレス
+ * @param	vol		ボリューム(0-127)
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  *
- * �{�����[���̃f�t�H���g�l�́A�ő��127�ł��B
- * ���̒l�̉e���̓V�[�P���X�S�̂ɂ�����܂��B
+ * ボリュームのデフォルト値は、最大の127です。
+ * この値の影響はシーケンス全体にかかります。
  *
- * ���̊֐��́ANNS_SndArcPlayerStartSeq*�֐��� NNS_SndArcPlayerStartSeqArc*�֐�����
- * �Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B
- * �㏑���������Ȃ��ꍇ�́A NNS_SndPlayerSetVolume�֐��Ȃǂ��g���Ă��������B
+ * この関数は、NNS_SndArcPlayerStartSeq*関数と NNS_SndArcPlayerStartSeqArc*関数内で
+ * 呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。
+ * 上書きしたくない場合は、 NNS_SndPlayerSetVolume関数などを使ってください。
  *
- * ��
+ * 例
  * Snd_PMVoicePlay( no );
  * Snd_PlayerSetInitialVolume( handle_no. 30 );
- * �{�����[��30�ōĐ������
+ * ボリューム30で再生される
  *
- * ���̂��ƁA
+ * そのあと、
  * Snd_PMVoicePlay( no );
- * �f�t�H���g�̒l127�ōĐ������(���ɖ߂��Ă���)
+ * デフォルトの値127で再生される(元に戻っている)
  *
- * �t�ɂ����ƁA��Ƀ{�����[��30�ɂ�����������A
+ * 逆にいうと、常にボリューム30にしたかったら、
  * Snd_PlayerSetInitialVolume( handle_no. 30 );
- * �𖈉�Z�b�g����
+ * を毎回セットする
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetInitialVolume( int handle_no, int vol )
 {
-	//�G���[���
+	//エラー回避
 	if( vol < 0 ){
 		vol = 0;
 	}
@@ -1543,36 +1543,36 @@ void Snd_PlayerSetInitialVolume( int handle_no, int vol )
 		vol = 127;
 	}
 
-	//���̊֐��́ANNS_SndArcPlayerStartSeq*�֐��� NNS_SndArcPlayerStartSeqArc*�֐�����
-	//�Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B
-	//�㏑���������Ȃ��ꍇ�́A NNS_SndPlayerSetVolume�֐��Ȃǂ��g���Ă��������B
+	//この関数は、NNS_SndArcPlayerStartSeq*関数と NNS_SndArcPlayerStartSeqArc*関数内で
+	//呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。
+	//上書きしたくない場合は、 NNS_SndPlayerSetVolume関数などを使ってください。
 	NNS_SndPlayerSetInitialVolume( Snd_HandleGet(handle_no), vol );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�{�C�X�`���b�g���̉��ʑ���(�V�[�P���X�i���o�[�w���)
+ * @brief	ボイスチャット中の音量操作(シーケンスナンバー指定版)
  *
- * @param	seq_no		�V�[�P���X�i���o�[
+ * @param	seq_no		シーケンスナンバー
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void Snd_VChatVolSetBySeqNo( int seq_no )
 {
-	u8 player_no= Snd_GetPlayerNo(seq_no);				//seq�i���o�[����A�v���C���[�i���o�[���擾
-	int type	= Snd_GetHandleNoByPlayerNo(player_no);	//player�i���o�[����A�n���h���i���o�[���擾
+	u8 player_no= Snd_GetPlayerNo(seq_no);				//seqナンバーから、プレイヤーナンバーを取得
+	int type	= Snd_GetHandleNoByPlayerNo(player_no);	//playerナンバーから、ハンドルナンバーを取得
 	Snd_VChatVolSet( seq_no, type );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�{�C�X�`���b�g���̉��ʑ���(�V�[�P���X�i���o�[�A�n���h���i���o�[�w���)
+ * @brief	ボイスチャット中の音量操作(シーケンスナンバー、ハンドルナンバー指定版)
  *
- * @param	seq_no		�V�[�P���X�i���o�[
- * @param	handle_no	�n���h���i���o�[
+ * @param	seq_no		シーケンスナンバー
+ * @param	handle_no	ハンドルナンバー
  *
  * @retval	none
  */
@@ -1580,19 +1580,19 @@ void Snd_VChatVolSetBySeqNo( int seq_no )
 void Snd_VChatVolSet( int seq_no, int handle_no )
 {
 	u8 vol;
-	const NNSSndSeqParam* p = NNS_SndArcGetSeqParam( seq_no );	//�V�[�P���X�p�����[�^�擾
+	const NNSSndSeqParam* p = NNS_SndArcGetSeqParam( seq_no );	//シーケンスパラメータ取得
 
 	switch( handle_no ){
 
-	//����
+	//鳴き声
 	case SND_HANDLE_PMVOICE:
 	case SND_HANDLE_CHORUS:
 		vol = PV_VOL_MAX;
 		break;
 
-	//�����ȊO
+	//鳴き声以外
 	default:
-		//�G���[���
+		//エラー回避
 		if( p == NULL ){
 			return;
 		}
@@ -1601,9 +1601,9 @@ void Snd_VChatVolSet( int seq_no, int handle_no )
 		break;
 	};
 
-	//�{�C�X�`���b�g�����`�F�b�N
+	//ボイスチャット中かチェック
 	if( CommIsVChat() == TRUE ){
-		Snd_PlayerSetInitialVolume( handle_no, (vol / SND_VCHAT_VOL_LV) );	//���ʔ���(06.07.20)
+		Snd_PlayerSetInitialVolume( handle_no, (vol / SND_VCHAT_VOL_LV) );	//音量半分(06.07.20)
 	}
 
 	return;
@@ -1611,58 +1611,58 @@ void Snd_VChatVolSet( int seq_no, int handle_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�̏����{�����[���ݒ�(�V�[�P���X�i���o�[�w���)
+ * @brief	シーケンスの初期ボリューム設定(シーケンスナンバー指定版)
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	vol		�{�����[��(0-127)
+ * @param	no		シーケンスナンバー
+ * @param	vol		ボリューム(0-127)
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  *
- * �{�����[���̃f�t�H���g�l�́A�ő��127�ł��B
- * ���̒l�̉e���̓V�[�P���X�S�̂ɂ�����܂��B
+ * ボリュームのデフォルト値は、最大の127です。
+ * この値の影響はシーケンス全体にかかります。
  *
- * ���̊֐��́ANNS_SndArcPlayerStartSeq*�֐��� NNS_SndArcPlayerStartSeqArc*�֐�����
- * �Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B
- * �㏑���������Ȃ��ꍇ�́A NNS_SndPlayerSetVolume�֐��Ȃǂ��g���Ă��������B
+ * この関数は、NNS_SndArcPlayerStartSeq*関数と NNS_SndArcPlayerStartSeqArc*関数内で
+ * 呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。
+ * 上書きしたくない場合は、 NNS_SndPlayerSetVolume関数などを使ってください。
  *
- * ��
+ * 例
  * Snd_PMVoicePlay( no );
  * Snd_PlayerSetInitialVolume( handle_no. 30 );
- * �{�����[��30�ōĐ������
+ * ボリューム30で再生される
  *
- * ���̂��ƁA
+ * そのあと、
  * Snd_PMVoicePlay( no );
- * �f�t�H���g�̒l127�ōĐ������(���ɖ߂��Ă���)
+ * デフォルトの値127で再生される(元に戻っている)
  *
- * �t�ɂ����ƁA��Ƀ{�����[��30�ɂ�����������A
+ * 逆にいうと、常にボリューム30にしたかったら、
  * Snd_PlayerSetInitialVolume( handle_no. 30 );
- * �𖈉�Z�b�g����
+ * を毎回セットする
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetInitialVolumeBySeqNo( u16 no, int vol )
 {
-	u8 player_no = Snd_GetPlayerNo(no);				//seq�i���o�[����A�v���C���[�i���o�[���擾
-	int type = Snd_GetHandleNoByPlayerNo(player_no);//player�i���o�[����A�n���h���i���o�[���擾
+	u8 player_no = Snd_GetPlayerNo(no);				//seqナンバーから、プレイヤーナンバーを取得
+	int type = Snd_GetHandleNoByPlayerNo(player_no);//playerナンバーから、ハンドルナンバーを取得
 	Snd_PlayerSetInitialVolume( type, vol );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X���Đ�(�v���C���[�ԍ��w��)
+ * @brief	シーケンスを再生(プレイヤー番号指定)
  *
- * @param	handle_no	�T�E���h�n���h���i���o�[
- * @param	player_no	�v���C���[�i���o�[
- * @param	no			BGM�i���o�[
+ * @param	handle_no	サウンドハンドルナンバー
+ * @param	player_no	プレイヤーナンバー
+ * @param	no			BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �Đ��ɐ�������ƁA�T�E���h�n���h���ɃV�[�P���X�����т����܂��B 
+ * 再生に成功すると、サウンドハンドルにシーケンスが結びつけられます。 
  *
- * �V�[�P���X�f�[�^���v���C���[�q�[�v�Ń��[�h���鎞�́A
- * �e�ʂ�����Ȃ��ƍĐ����s����I
+ * シーケンスデータをプレイヤーヒープでロードする時は、
+ * 容量が足りないと再生失敗する！
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcPlayerStartSeqEx( int handle_no, int player_no, u16 no )
@@ -1673,34 +1673,34 @@ BOOL Snd_ArcPlayerStartSeqEx( int handle_no, int player_no, u16 no )
 
 //==============================================================================================
 //
-//	�v���C���[�֘A
+//	プレイヤー関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�Đ����̃V�[�P���X�̐���Ԃ�
+ * @brief	再生中のシーケンスの数を返す
  *
- * @param	player_no	�v���C���[�ԍ�
+ * @param	player_no	プレイヤー番号
  *
- * @retval	"�Đ����̃V�[�P���X�̐�"
+ * @retval	"再生中のシーケンスの数"
  *
- * PLAYER_FIELD	: �t�B�[���hBGM
+ * PLAYER_FIELD	: フィールドBGM
  * PLAYER_ME 	: ME
- * PLAYER_SE_1 	: ���ʉ�
- * PLAYER_SE_2 	: ���ʉ�
- * PLAYER_SE_3 	: ���ʉ�
- * PLAYER_SE_4 	: ���ʉ�
- * PLAYER_PV	: �|�P��������
- * PLAYER_VOICE	: ����
- * PLAYER_BGM	: �t�B�[���h�ȊOBGM
+ * PLAYER_SE_1 	: 効果音
+ * PLAYER_SE_2 	: 効果音
+ * PLAYER_SE_3 	: 効果音
+ * PLAYER_SE_4 	: 効果音
+ * PLAYER_PV	: ポケモン鳴き声
+ * PLAYER_VOICE	: 音声
+ * PLAYER_BGM	: フィールド以外BGM
  */
 //--------------------------------------------------------------
 int Snd_PlayerCountPlayingSeq( int player_no )
 {
-	//����̓`�F�b�N���Ă��Ȃ��̂Œ��ӁI
+	//上限はチェックしていないので注意！
 	if( player_no < 0 ){
-		GF_ASSERT( (0) && "�������s���ł��I" );
+		GF_ASSERT( (0) && "引数が不正です！" );
 	}
 
 	return NNS_SndPlayerCountPlayingSeqByPlayerNo( player_no );
@@ -1708,11 +1708,11 @@ int Snd_PlayerCountPlayingSeq( int player_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�i���o�[����v���C���[�i���o�[�擾
+ * @brief	シーケンスナンバーからプレイヤーナンバー取得
  *
- * @param	no		�V�[�P���X�i���o�[
+ * @param	no		シーケンスナンバー
  *
- * @retval	"�v���C���[�i���o�[�A0xff=�擾���s"
+ * @retval	"プレイヤーナンバー、0xff=取得失敗"
  */
 //--------------------------------------------------------------
 u8 Snd_GetPlayerNo( u16 no )
@@ -1720,18 +1720,18 @@ u8 Snd_GetPlayerNo( u16 no )
 	const NNSSndSeqParam* param;
 	
 	if( no == 0 ){
-		//GF_ASSERT( (0) && "�V�[�P���X�i���o�[���s���Ȃ̂Ńv���C���[�i���o�[�擾���s�I" );
-		return 0xff;	//�G���[
+		//GF_ASSERT( (0) && "シーケンスナンバーが不正なのでプレイヤーナンバー取得失敗！" );
+		return 0xff;	//エラー
 	}
 
-	//�T�E���h�A�[�J�C�u���̊e�V�[�P���X�ɑ΂���A�V�[�P���X�p�����[�^�\���̂��擾
+	//サウンドアーカイブ中の各シーケンスに対する、シーケンスパラメータ構造体を取得
 	param = NNS_SndArcGetSeqParam( no );
-	//OS_Printf( "�v���C���[�i���o�[ = %d\n", param->playerNo );
+	//OS_Printf( "プレイヤーナンバー = %d\n", param->playerNo );
 
 	if( param == NULL ){
-		//GF_ASSERT( (0) && "�V�[�P���X�i���o�[���s���Ȃ̂Ńv���C���[�i���o�[�擾���s�I" );
-		OS_Printf( "�V�[�P���X�i���o�[���s���Ȃ̂Ńv���C���[�i���o�[�擾���s�I\n" );
-		return 0xff;	//�G���[
+		//GF_ASSERT( (0) && "シーケンスナンバーが不正なのでプレイヤーナンバー取得失敗！" );
+		OS_Printf( "シーケンスナンバーが不正なのでプレイヤーナンバー取得失敗！\n" );
+		return 0xff;	//エラー
 	}
 
 	return param->playerNo;
@@ -1739,11 +1739,11 @@ u8 Snd_GetPlayerNo( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�n���h������V�[�P���X�i���o�[���擾
+ * @brief	サウンドハンドルからシーケンスナンバーを取得
  *
- * @param	p			�T�E���h�n���h���̃A�h���X
+ * @param	p			サウンドハンドルのアドレス
  *
- * @retval	"�V�[�P���X�i���o�[�A�ݒ肳��Ă��Ȃ�����-1"
+ * @retval	"シーケンスナンバー、設定されていない時は-1"
  */
 //--------------------------------------------------------------
 int Snd_GetSeqNo( NNSSndHandle *p )
@@ -1754,17 +1754,17 @@ int Snd_GetSeqNo( NNSSndHandle *p )
 
 //==============================================================================================
 //
-//	�o���N�֘A
+//	バンク関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�o���N���\���̂̃A�h���X���擾
+ * @brief	バンク情報構造体のアドレスを取得
  *
- * @param	no		�V�[�P���X�i���o�[
+ * @param	no		シーケンスナンバー
  *
- * @retval	"�o���N���\���̂̃A�h���X"
+ * @retval	"バンク情報構造体のアドレス"
  */
 //--------------------------------------------------------------
 const NNSSndArcBankInfo* Snd_GetBankInfo( int no )
@@ -1773,9 +1773,9 @@ const NNSSndArcBankInfo* Snd_GetBankInfo( int no )
 
 	info = NNS_SndArcGetBankInfo( Snd_GetBankNo(no) );
 
-	//�������`�F�b�N
+	//無効かチェック
 	if( info == NULL ){
-		OS_Printf( "�o���N���\���̂̃A�h���X���擾�o���܂���ł����B\n" );
+		OS_Printf( "バンク情報構造体のアドレスを取得出来ませんでした。\n" );
 	}
 
 	return info;
@@ -1783,22 +1783,22 @@ const NNSSndArcBankInfo* Snd_GetBankInfo( int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�i���o�[����o���N�i���o�[�擾
+ * @brief	シーケンスナンバーからバンクナンバー取得
  *
- * @param	no		�V�[�P���X�i���o�[
+ * @param	no		シーケンスナンバー
  *
- * @retval	"0=�G���[�A0�ȊO=�o���N�i���o�["
+ * @retval	"0=エラー、0以外=バンクナンバー"
  */
 //--------------------------------------------------------------
 u16 Snd_GetBankNo( int no )
 {
 	const NNSSndSeqParam* param;
 	
-	//�T�E���h�A�[�J�C�u���̊e�V�[�P���X�ɑ΂���A�V�[�P���X�p�����[�^�\���̂��擾
+	//サウンドアーカイブ中の各シーケンスに対する、シーケンスパラメータ構造体を取得
 	param = NNS_SndArcGetSeqParam( no );
 	if( param == NULL ){
-		OS_Printf( "�o���N�i���o�[���擾�o���܂���ł����B\n" );
-		OS_Printf( "�n���ꂽ�V�[�P���X�i���o�[�� %d �ł��B\n", no );
+		OS_Printf( "バンクナンバーが取得出来ませんでした。\n" );
+		OS_Printf( "渡されたシーケンスナンバーは %d です。\n", no );
 		return 0;
 	}
 
@@ -1808,13 +1808,13 @@ u16 Snd_GetBankNo( int no )
 
 //==============================================================================================
 //
-//	�}�C�N�֘A
+//	マイク関連
 //
 //==============================================================================================
       
 //--------------------------------------------------------------
 /**
- * @brief	�}�C�N�R�[���o�b�N�֐�
+ * @brief	マイクコールバック関数
  *
  * @param	none
  *
@@ -1828,12 +1828,12 @@ static void MicCallback( MICResult /*result*/, void* /*arg*/ )
 
 //--------------------------------------------------------------
 /**
- * @brief	�^���J�n
+ * @brief	録音開始
  *
- * @param	p		MICAutoParam�^�̃A�h���X
+ * @param	p		MICAutoParam型のアドレス
  *
- * @retval	"MIC_RESULT_SUCCESS		����������Ɋ���"
- * @retval	"����ȊO				���炩�̌����Ŏ��s"
+ * @retval	"MIC_RESULT_SUCCESS		処理が正常に完了"
+ * @retval	"それ以外				何らかの原因で失敗"
  */
 //--------------------------------------------------------------
 MICResult Snd_MicStartAutoSampling( MICAutoParam* p )
@@ -1843,7 +1843,7 @@ MICResult Snd_MicStartAutoSampling( MICAutoParam* p )
 	ret = MIC_StartAutoSampling( p );
 
 	if( ret != MIC_RESULT_SUCCESS ){
-		OS_Printf( "�}�C�N�����T���v�����O�J�n�����s���܂����I\n" );
+		OS_Printf( "マイク自動サンプリング開始が失敗しました！\n" );
 	}
 
 	return ret;
@@ -1851,12 +1851,12 @@ MICResult Snd_MicStartAutoSampling( MICAutoParam* p )
 
 //--------------------------------------------------------------
 /**
- * @brief	�^����~
+ * @brief	録音停止
  *
  * @param	none
  *
- * @retval	"MIC_RESULT_SUCCESS		����������Ɋ���"
- * @retval	"����ȊO				���炩�̌����Ŏ��s"
+ * @retval	"MIC_RESULT_SUCCESS		処理が正常に完了"
+ * @retval	"それ以外				何らかの原因で失敗"
  */
 //--------------------------------------------------------------
 MICResult Snd_MicStopAutoSampling(void)
@@ -1867,7 +1867,7 @@ MICResult Snd_MicStopAutoSampling(void)
 	ret = MIC_StopAutoSampling();
 
 	if( ret != MIC_RESULT_SUCCESS ){
-		OS_Printf( "�}�C�N�����T���v�����O��~�����s���܂����I\n" );
+		OS_Printf( "マイク自動サンプリング停止が失敗しました！\n" );
 	}
 
 	return ret;
@@ -1875,13 +1875,13 @@ MICResult Snd_MicStopAutoSampling(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�蓮�^��
- * @param	type      �T���v�����O���[�g�̃^�C�v
- * @param	heap      �L�^�̈�
- * @param	callback  �L�^�����ۂ̃R�[���o�b�N
- * @param	arg       �R�[���o�b�N�ɓn�������|�C���^
- * @retval	"MIC_RESULT_SUCCESS		����������Ɋ���"
- * @retval	"����ȊO				���炩�̌����Ŏ��s"
+ * @brief	手動録音
+ * @param	type      サンプリングレートのタイプ
+ * @param	heap      記録領域
+ * @param	callback  記録した際のコールバック
+ * @param	arg       コールバックに渡す引数ポインタ
+ * @retval	"MIC_RESULT_SUCCESS		処理が正常に完了"
+ * @retval	"それ以外				何らかの原因で失敗"
  */
 //--------------------------------------------------------------
 MICResult Snd_MicManualSampling(MICSamplingType type ,void* heap,MICCallback callback,void* arg)
@@ -1890,28 +1890,28 @@ MICResult Snd_MicManualSampling(MICSamplingType type ,void* heap,MICCallback cal
 
     ret = MIC_DoSamplingAsync( type, heap, callback, arg);
 	if( ret != MIC_RESULT_SUCCESS ){
-        OS_Printf( "�}�C�N�蓮�T���v�����O�����s\n" );
+        OS_Printf( "マイク手動サンプリングが失敗\n" );
 	}
 	return ret;
 }
 
 //==============================================================================================
 //
-//	�g�`�Đ��֘A
+//	波形再生関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�n���h���̃A�h���X���擾
+ * @brief	波形ハンドルのアドレスを取得
  *
- * @param	no		�g�p���Ă���`�����l���i���o�[
+ * @param	no		使用しているチャンネルナンバー
  *
- * @retval	"�g�`�n���h���̃A�h���X"
+ * @retval	"波形ハンドルのアドレス"
  *
  * BGM		NNSSndHandle
- * �g�`		NNSSndWaveOutHandle
- * �n���h���̃^�C�v���Ⴄ�̂Œ��ӁI
+ * 波形		NNSSndWaveOutHandle
+ * ハンドルのタイプが違うので注意！
  */
 //--------------------------------------------------------------
 NNSSndWaveOutHandle * Snd_WaveOutHandleGet( u32 no )
@@ -1921,15 +1921,15 @@ NNSSndWaveOutHandle * Snd_WaveOutHandleGet( u32 no )
 	u8* ch_chorus_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 
 	if( (no != WAVEOUT_CH_NORMAL) && (no != WAVEOUT_CH_CHORUS) ){
-		GF_ASSERT( (0) && "�`�����l���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "チャンネルナンバーが不正です！" );
 	}
 
-	if( (no == WAVEOUT_CH_NORMAL) && (*ch_normal_flag == 0) ){	//�m�ۃt���O��OFF��������
-		GF_ASSERT( (0) && "�m�ۂ��Ă��Ȃ�NORMAL�n���h���ɃA�N�Z�X���Ă��܂��I" );
+	if( (no == WAVEOUT_CH_NORMAL) && (*ch_normal_flag == 0) ){	//確保フラグがOFFだったら
+		GF_ASSERT( (0) && "確保していないNORMALハンドルにアクセスしています！" );
 	}
 
-	if( (no == WAVEOUT_CH_CHORUS) && (*ch_chorus_flag == 0) ){	//�m�ۃt���O��OFF��������
-		GF_ASSERT( (0) && "�m�ۂ��Ă��Ȃ�CHORUS�n���h���ɃA�N�Z�X���Ă��܂��I" );
+	if( (no == WAVEOUT_CH_CHORUS) && (*ch_chorus_flag == 0) ){	//確保フラグがOFFだったら
+		GF_ASSERT( (0) && "確保していないCHORUSハンドルにアクセスしています！" );
 	}
 
 	if( no == WAVEOUT_CH_NORMAL ){
@@ -1941,11 +1941,11 @@ NNSSndWaveOutHandle * Snd_WaveOutHandleGet( u32 no )
  
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ��p�Ƀ`�����l�����m�ۂ���
+ * @brief	波形再生用にチャンネルを確保する
  *
- * @param	no		�g�p����`�����l���i���o�[
+ * @param	no		使用するチャンネルナンバー
  *
- * @retval	BOOL	TRUE=�����AFALSE=���s
+ * @retval	BOOL	TRUE=成功、FALSE=失敗
  */
 //--------------------------------------------------------------
 BOOL Snd_WaveOutAllocChannel( u32 no )
@@ -1959,51 +1959,51 @@ BOOL Snd_WaveOutAllocChannel( u32 no )
 	ch_chorus_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 
 	if( (no != WAVEOUT_CH_NORMAL) && (no != WAVEOUT_CH_CHORUS) ){
-		GF_ASSERT( (0) && "�`�����l���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "チャンネルナンバーが不正です！" );
 	}
 
 	if( no == WAVEOUT_CH_NORMAL ){
 
-		if( *ch_normal_flag == 0 ){		//�m�ۃt���O��OFF��������
+		if( *ch_normal_flag == 0 ){		//確保フラグがOFFだったら
 
-			//�g�`�n���h���̃A�h���X�擾
+			//波形ハンドルのアドレス取得
 			wave_handle = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_HANDLE_NORMAL);
-			*wave_handle = NNS_SndWaveOutAllocChannel( no );			//CH�m��
+			*wave_handle = NNS_SndWaveOutAllocChannel( no );			//CH確保
 
 			if ( *wave_handle == NNS_SND_WAVEOUT_INVALID_HANDLE ) {
 				OS_Printf("NNS_SndWaveOutAllocChannel is Failed\n");
-				return FALSE;			//���s
+				return FALSE;			//失敗
 			}
-			*ch_normal_flag = 1;		//�m�ۃt���OON
+			*ch_normal_flag = 1;		//確保フラグON
 		}else{
-			GF_ASSERT( (0) && "�`�����l�����J�����Ă��Ȃ��̂ɁA�m�ۂ��悤�Ƃ��Ă��܂��I" );
+			GF_ASSERT( (0) && "チャンネルを開放していないのに、確保しようとしています！" );
 		}
 
 	}else{
 
-		if( *ch_chorus_flag == 0 ){		//�m�ۃt���O��OFF��������
+		if( *ch_chorus_flag == 0 ){		//確保フラグがOFFだったら
 
 			wave_handle = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_HANDLE_CHORUS);
-			*wave_handle = NNS_SndWaveOutAllocChannel( no );			//CH�m��
+			*wave_handle = NNS_SndWaveOutAllocChannel( no );			//CH確保
 
 			if ( *wave_handle == NNS_SND_WAVEOUT_INVALID_HANDLE ) {
 				OS_Printf("NNS_SndWaveOutAllocChannel is Failed\n");
-				return FALSE;			//���s
+				return FALSE;			//失敗
 			}
-			*ch_chorus_flag = 1;		//�m�ۃt���OON
+			*ch_chorus_flag = 1;		//確保フラグON
 		}else{
-			GF_ASSERT( (0) && "�`�����l�����J�����Ă��Ȃ��̂ɁA�m�ۂ��悤�Ƃ��Ă��܂��I" );
+			GF_ASSERT( (0) && "チャンネルを開放していないのに、確保しようとしています！" );
 		}
 	}
 
-	return TRUE;		//����
+	return TRUE;		//成功
 }
  
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ��p�̃`�����l�����������
+ * @brief	波形再生用のチャンネルを解放する
  *
- * @param	no		�g�p����`�����l���i���o�[
+ * @param	no		使用するチャンネルナンバー
  *
  * @retval	none
  */
@@ -2016,29 +2016,29 @@ void Snd_WaveOutFreeChannel( u32 no )
 	u8* ch_chorus_flag	= Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 
 	if( (no != WAVEOUT_CH_NORMAL) && (no != WAVEOUT_CH_CHORUS) ){
-		GF_ASSERT( (0) && "�`�����l���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "チャンネルナンバーが不正です！" );
 		return;
 	}
 
 	if( no == WAVEOUT_CH_NORMAL ){
-		if( *ch_normal_flag == 1 ){	//�m�ۃt���O��ON��������
+		if( *ch_normal_flag == 1 ){	//確保フラグがONだったら
 
 			wave_handle = Snd_WaveOutHandleGet(no);
 			NNS_SndWaveOutFreeChannel( *wave_handle );
-			*ch_normal_flag = 0;	//�m�ۃt���OOFF
+			*ch_normal_flag = 0;	//確保フラグOFF
 
 		}else{
-			GF_ASSERT( (0) && "�m�ۂ���Ă��Ȃ��`�����l�����J�����悤�Ƃ��Ă��܂��I" );
+			GF_ASSERT( (0) && "確保されていないチャンネルを開放しようとしています！" );
 		}
 	}else{
-		if( *ch_chorus_flag == 1 ){	//�m�ۃt���O��ON��������
+		if( *ch_chorus_flag == 1 ){	//確保フラグがONだったら
 
 			wave_handle = Snd_WaveOutHandleGet(no);
 			NNS_SndWaveOutFreeChannel( *wave_handle );
-			*ch_chorus_flag = 0;	//�m�ۃt���OOFF
+			*ch_chorus_flag = 0;	//確保フラグOFF
 
 		}else{
-			GF_ASSERT( (0) && "�m�ۂ���Ă��Ȃ��`�����l�����J�����悤�Ƃ��Ă��܂��I" );
+			GF_ASSERT( (0) && "確保されていないチャンネルを開放しようとしています！" );
 		}
 	}
 
@@ -2047,12 +2047,12 @@ void Snd_WaveOutFreeChannel( u32 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ�
+ * @brief	波形再生
  *
- * @param	p		WAVEOUT_WORK�^�̃|�C���^
- * @param	ch		�g�p����`�����l���i���o�[(�ʏ�́AWAVEOUT_CH_NORMAL)
+ * @param	p		WAVEOUT_WORK型のポインタ
+ * @param	ch		使用するチャンネルナンバー(通常は、WAVEOUT_CH_NORMAL)
  *
- * @retval	BOOL	TRUE=�����AFALSE=���s
+ * @retval	BOOL	TRUE=成功、FALSE=失敗
  */
 //--------------------------------------------------------------
 BOOL Snd_WaveOutStart( WAVEOUT_WORK* p, u32 ch )
@@ -2063,10 +2063,10 @@ BOOL Snd_WaveOutStart( WAVEOUT_WORK* p, u32 ch )
 								p->samples, p->sampleRate, p->volume, p->speed, p->pan );
 
 	if( ret == FALSE ){
-		OS_Printf( "�g�`�Đ����s�I\n" );
+		OS_Printf( "波形再生失敗！\n" );
 
-		//���̊֐����Ă΂�鎞�́A�K���`�����l���m�ۂ��Ă���͂��Ȃ̂ŁA
-		//�Đ��Ɏ��s�������́A�J������������悤�ɂ���I
+		//この関数が呼ばれる時は、必ずチャンネル確保しているはずなので、
+		//再生に失敗した時は、開放処理を入れるようにする！
 		Snd_WaveOutFreeChannel( ch );
 	}
 
@@ -2075,9 +2075,9 @@ BOOL Snd_WaveOutStart( WAVEOUT_WORK* p, u32 ch )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`��~
+ * @brief	波形停止
  *
- * @param	no		�g�p����`�����l���i���o�[
+ * @param	no		使用するチャンネルナンバー
  *
  * @retval	none
  */
@@ -2090,11 +2090,11 @@ void Snd_WaveOutStop( u32 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ������`�F�b�N
+ * @brief	波形再生中かチェック
  *
- * @param	no		�g�p����`�����l���i���o�[
+ * @param	no		使用するチャンネルナンバー
  *
- * @retval	BOOL	TRUE=�Đ����AFALSE=�Đ����łȂ�
+ * @retval	BOOL	TRUE=再生中、FALSE=再生中でない
  */
 //--------------------------------------------------------------
 BOOL Snd_WaveOutIsPlaying( u32 no )
@@ -2104,10 +2104,10 @@ BOOL Snd_WaveOutIsPlaying( u32 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ���PAN�ݒ�
+ * @brief	波形再生のPAN設定
  *
- * @param	no		�g�p����`�����l���i���o�[
- * @param	pan		�p���̒l(0-127�A64��center)
+ * @param	no		使用するチャンネルナンバー
+ * @param	pan		パンの値(0-127、64がcenter)
  *
  * @retval	none
  */
@@ -2128,19 +2128,19 @@ void Snd_WaveOutSetPan( u32 no, u8 pan )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ��̍Đ��X�s�[�h�ݒ�
+ * @brief	波形再生の再生スピード設定
  *
- * @param	no		�g�p����`�����l���i���o�[
- * @param	spd		�Đ��X�s�[�h
+ * @param	no		使用するチャンネルナンバー
+ * @param	spd		再生スピード
  *
  * @retval	none
  *
- * 2����1�{��	(32768 / 2)
- * 1�{��		(32768)
- * 2�{��		(32768 * 2)
- * 3�{��		(32768 * 3)
+ * 2分の1倍速	(32768 / 2)
+ * 1倍速		(32768)
+ * 2倍速		(32768 * 2)
+ * 3倍速		(32768 * 3)
  *
- * �Đ��X�s�[�h�𑬂�����ƁA�Đ����Ԃ��Z���Ȃ�A�Đ�����鉹�̍����������Ȃ�܂��B 
+ * 再生スピードを速くすると、再生時間が短くなり、再生される音の高さが高くなります。 
  */
 //--------------------------------------------------------------
 void Snd_WaveOutSetSpeed( u32 no, u32 spd )
@@ -2151,19 +2151,19 @@ void Snd_WaveOutSetSpeed( u32 no, u32 spd )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ��̃{�����[���ύX
+ * @brief	波形再生のボリューム変更
  *
- * @param	no		�g�p����`�����l���i���o�[
- * @param	vol		�{�����[���l(0-127)
+ * @param	no		使用するチャンネルナンバー
+ * @param	vol		ボリューム値(0-127)
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void Snd_WaveOutSetVolume( u32 no, int vol )
 {
-	//�{�C�X�`���b�g�����`�F�b�N
+	//ボイスチャット中かチェック
 	if( CommIsVChat() == TRUE ){
-		NNS_SndWaveOutSetVolume( *Snd_WaveOutHandleGet(no), (vol/SND_VCHAT_VOL_LV) );	//���ʑ���
+		NNS_SndWaveOutSetVolume( *Snd_WaveOutHandleGet(no), (vol/SND_VCHAT_VOL_LV) );	//音量操作
 	}else{
 		NNS_SndWaveOutSetVolume( *Snd_WaveOutHandleGet(no), vol );
 	}
@@ -2173,27 +2173,27 @@ void Snd_WaveOutSetVolume( u32 no, int vol )
 
 //==============================================================================================
 //
-//	�g�`�t�Đ��֘A(�|�P�����̖�����p)
+//	波形逆再生関連(ポケモンの鳴き声専用)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�Đ��̃|�P�����������Đ�
+ * @brief	逆再生のポケモン鳴き声を再生
  *
- * @param	no		�|�P�����i���o�[(�g�`�i���o�[)
- * @param	vol		�{�����[��(0-127)
- * @param	pan		�p��(0-127)
- * @param	ch		�g�p����`�����l���i���o�[(�ʏ�́AWAVEOUT_CH_NORMAL)
- * @param	heap_id	�q�[�vID
+ * @param	no		ポケモンナンバー(波形ナンバー)
+ * @param	vol		ボリューム(0-127)
+ * @param	pan		パン(0-127)
+ * @param	ch		使用するチャンネルナンバー(通常は、WAVEOUT_CH_NORMAL)
+ * @param	heap_id	ヒープID
  *
- * @retval	BOOL	TRUE=�����AFALSE=���s
+ * @retval	BOOL	TRUE=成功、FALSE=失敗
  *
- * �����ŋt�Đ��p�̃o�b�t�@���m�ۂ��Ă��܂��B
+ * 内部で逆再生用のバッファを確保しています。
  *
- * Snd_WaveOutStopReverse(...)���Ă�ŁA�o�b�t�@���J�����Ă��������B
+ * Snd_WaveOutStopReverse(...)を呼んで、バッファを開放してください。
  *
- * �|�P�����i���o�[�Ɩ����̔g�`�A�[�J�C�u�i���o�[�������ɂȂ�悤�ɂ���I
+ * ポケモンナンバーと鳴き声の波形アーカイブナンバーが同じになるようにする！
  */
 //--------------------------------------------------------------
 BOOL Snd_WaveOutStartReverse( u16 no, int vol, int pan, u32 ch, int heap_id )
@@ -2206,81 +2206,81 @@ BOOL Snd_WaveOutStartReverse( u16 no, int vol, int pan, u32 ch, int heap_id )
 	void** reverse_buf = Snd_GetParamAdrs(SND_W_ID_REVERSE_BUF);
 
 	if( (ch != WAVEOUT_CH_NORMAL) && (ch != WAVEOUT_CH_CHORUS) ){
-		GF_ASSERT( (0) && "�`�����l���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "チャンネルナンバーが不正です！" );
 	}
 
-	//�g�`�A�[�J�C�u���\����NNSSndArcWaveArcInfo�̃|�C���^��Ԃ��܂��B
+	//波形アーカイブ情報構造体NNSSndArcWaveArcInfoのポインタを返します。
 	//info =  NNS_SndArcGetWaveArcInfo( WAVE_ARC_PV001 );
 	info = NNS_SndArcGetWaveArcInfo( no );
 	if( info == NULL ){
-		GF_ASSERT( (0) && "�����Ȕg�`�A�[�J�C�u�ԍ����w�肳��܂����I" );
+		GF_ASSERT( (0) && "無効な波形アーカイブ番号が指定されました！" );
 		return FALSE;
 	}
 
-	//�t�@�C���T�C�Y�擾
+	//ファイルサイズ取得
 	size = NNS_SndArcGetFileSize( info->fileId );
 	if( size == 0 ){
-		GF_ASSERT( (0) && "�t�@�C��ID�������ł��I" );
+		GF_ASSERT( (0) && "ファイルIDが無効です！" );
 		return FALSE;
 	}
-	OS_Printf( "�t�@�C���T�C�Y = %d\n", size );	//.smap�Ɣ�r���Ă݂�
+	OS_Printf( "ファイルサイズ = %d\n", size );	//.smapと比較してみる
 
-	//�ʏ�̋t�Đ���������
+	//通常の逆再生だったら
 	if( ch == WAVEOUT_CH_NORMAL ){
-		//�o�b�t�@�m��
+		//バッファ確保
 		*reverse_buf = sys_AllocMemory( heap_id, size );
 		if( *reverse_buf == NULL ){
-			GF_ASSERT( (0) && "�������m�ۂɎ��s���܂����I" );
+			GF_ASSERT( (0) && "メモリ確保に失敗しました！" );
 			return FALSE;
 		}
 		memset( *reverse_buf, 0, size );
 
-		//�T�E���h�A�[�J�C�u���̃t�@�C����ǂݍ���
+		//サウンドアーカイブ中のファイルを読み込む
 		size2 = NNS_SndArcReadFile( info->fileId, *reverse_buf, size, 0 );
 		if( size2 == -1 ){
-			GF_ASSERT( (0) && "�ǂݍ��݂Ɏ��s���܂����I" );
+			GF_ASSERT( (0) && "読み込みに失敗しました！" );
 			return FALSE;
 		}
 
-		//�f�[�^�����ւ���
+		//データを入れ替える
 		Snd_BufReverse( *reverse_buf, size );
 	}
 
-	//WAVEOUT_WORK�^�Ƀp�����[�^�Z�b�g
+	//WAVEOUT_WORK型にパラメータセット
 	{
 		WAVEOUT_WORK waveout_wk;
-		waveout_wk.handle			= Snd_WaveOutHandleGet(ch);	//�g�`�Đ��n���h��
-		waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;	//�g�`�f�[�^�t�H�[�}�b�g
-		waveout_wk.dataaddr			= *reverse_buf;				//�g�`�f�[�^�̐擪�A�h���X
-		waveout_wk.loopFlag			= FALSE;					//���[�v�t���O
-		waveout_wk.loopStartSample	= 0;						//���[�v�J�n�T���v���ʒu
-		waveout_wk.samples			= size;						//�g�`�f�[�^�̃T���v����
-		waveout_wk.sampleRate		= 13379;					//�g�`�f�[�^�̃T���v�����O���[�g
-		waveout_wk.volume			= vol;						//����
-		waveout_wk.speed			= 24576;					//�Đ��X�s�[�h
-		waveout_wk.pan				= pan;						//�p��(0-127)
+		waveout_wk.handle			= Snd_WaveOutHandleGet(ch);	//波形再生ハンドル
+		waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;	//波形データフォーマット
+		waveout_wk.dataaddr			= *reverse_buf;				//波形データの先頭アドレス
+		waveout_wk.loopFlag			= FALSE;					//ループフラグ
+		waveout_wk.loopStartSample	= 0;						//ループ開始サンプル位置
+		waveout_wk.samples			= size;						//波形データのサンプル数
+		waveout_wk.sampleRate		= 13379;					//波形データのサンプリングレート
+		waveout_wk.volume			= vol;						//音量
+		waveout_wk.speed			= 24576;					//再生スピード
+		waveout_wk.pan				= pan;						//パン(0-127)
 
-		//�g�`�Đ�
+		//波形再生
 		ret = Snd_WaveOutStart( &waveout_wk, ch );
 
-		//�{�C�X�`���b�g�̉��ʑΉ�
+		//ボイスチャットの音量対応
 		Snd_WaveOutSetVolume( ch, vol );
 
-		//BANK�̐ݒ��"PCM8"�ɂ���Ƃ��܂�����
+		//BANKの設定を"PCM8"にするとうまくいく
 	}
 
 	reverse_flag = Snd_GetParamAdrs( SND_W_ID_REVERSE_FLAG );
-	*reverse_flag = 1;	//�t�Đ��g�p�t���OON
+	*reverse_flag = 1;	//逆再生使用フラグON
 
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�f�[�^�����ւ���
+ * @brief	データを入れ替える
  *
- * @param	p		�g�`�f�[�^���i�[�����o�b�t�@�̃|�C���^
- * @param	size	�g�`�f�[�^�T�C�Y
+ * @param	p		波形データを格納したバッファのポインタ
+ * @param	size	波形データサイズ
  *
  * @retval	none
  */
@@ -2290,9 +2290,9 @@ static void Snd_BufReverse( u8* p, u32 size )
 	int i;
 	u8 temp;
 
-	//�f�[�^�����ւ���( [0]-[MAX]�A[1]-[MAX-1]... )
+	//データを入れ替える( [0]-[MAX]、[1]-[MAX-1]... )
 	for( i=0; i < (size / 2) ;i++ ){
-		temp		= p[i];			//�ޔ�
+		temp		= p[i];			//退避
 		p[i]		= p[size-1-i];
 		p[size-1-i]	= temp;
 	}
@@ -2302,9 +2302,9 @@ static void Snd_BufReverse( u8* p, u32 size )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�Đ��̃|�P�����������~���ăo�b�t�@���J������
+ * @brief	逆再生のポケモン鳴き声を停止してバッファを開放する
  *
- * @param	no		�g�p����`�����l���i���o�[
+ * @param	no		使用するチャンネルナンバー
  *
  * @retval	none
  */
@@ -2316,15 +2316,15 @@ void Snd_WaveOutStopReverse( u32 no )
 	void** reverse_buf	= Snd_GetParamAdrs(SND_W_ID_REVERSE_BUF);
 
 	if( (no != WAVEOUT_CH_NORMAL) && (no != WAVEOUT_CH_CHORUS) ){
-		GF_ASSERT( (0) && "�`�����l���i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "チャンネルナンバーが不正です！" );
 	}
 
-	Snd_WaveOutStop( no );										//������~
+	Snd_WaveOutStop( no );										//鳴き声停止
 
-	//�t�Đ��g�p�t���O
-	if( *reverse_flag == 1 ){									//�t�Đ��g�p�t���O�������Ă�����
-		*reverse_flag = 0;										//�t�Đ��g�p�t���OOFF
-		sys_FreeMemoryEz( *reverse_buf );						//�o�b�t�@�J��
+	//逆再生使用フラグ
+	if( *reverse_flag == 1 ){									//逆再生使用フラグが立っていたら
+		*reverse_flag = 0;										//逆再生使用フラグOFF
+		sys_FreeMemoryEz( *reverse_buf );						//バッファ開放
 	}
 
 	return;
@@ -2333,23 +2333,23 @@ void Snd_WaveOutStopReverse( u32 no )
 
 //==============================================================================================
 //
-//	�L���v�`���֘A
+//	キャプチャ関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�L���v�`���[�X���b�h���N��(�Ƃ肠�����D��x�͌Œ�)
+ * @brief	キャプチャースレッドを起動(とりあえず優先度は固定)
  *
  * @param	none
  *
  * @retval	none
  *
- * �L���v�`���[�X���b�h���N�����Ă����ƁA�L���v�`���[������IRQ�n���h���ł͂Ȃ��A
- * �L���v�`���[�X���b�h�ŏ��������悤�ɂȂ�܂��B 
+ * キャプチャースレッドを起動しておくと、キャプチャー処理がIRQハンドラではなく、
+ * キャプチャースレッドで処理されるようになります。 
  *
- * �X���b�h�̗D��xthreadPrio�́A�ʏ�A�X�g���[���X���b�h���������ݒ肵�܂��B
- * �������x���ƁA����ȍĐ����s���Ȃ��Ȃ�܂��̂ŁA���ӂ��Ă��������B 
+ * スレッドの優先度threadPrioは、通常、ストリームスレッドよりも高く設定します。
+ * 処理が遅れると、正常な再生が行われなくなりますので、注意してください。 
  */
 //--------------------------------------------------------------
 void Snd_CaptureCreateThread(void)
@@ -2360,11 +2360,11 @@ void Snd_CaptureCreateThread(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�L���v�`�������s�����擾
+ * @brief	キャプチャが実行中か取得
  *
  * @param	none
  *
- * @retval	"TRUE=���s���AFALSE=���s���Ă��Ȃ�"
+ * @retval	"TRUE=実行中、FALSE=実行していない"
  */
 //--------------------------------------------------------------
 BOOL Snd_CaptureIsActive(void)
@@ -2374,18 +2374,18 @@ BOOL Snd_CaptureIsActive(void)
 	ret = NNS_SndCaptureIsActive();
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�L���v�`�����L�����H = %d\n", ret );
+	OS_Printf( "キャプチャが有効か？ = %d\n", ret );
 
-	//�L����������A�L���v�`���^�C�v��\��
+	//有効だったら、キャプチャタイプを表示
 	if( ret == TRUE ){
 		type = Snd_CaptureGetCaptureType();
 
 		if( type == NNS_SND_CAPTURE_TYPE_REVERB ){
-			OS_Printf( "���݂̃L���v�`���́ANNS_SND_CAPTURE_TYPE_REVERB\n" );
+			OS_Printf( "現在のキャプチャは、NNS_SND_CAPTURE_TYPE_REVERB\n" );
 		}else if( type == NNS_SND_CAPTURE_TYPE_EFFECT ){
-			OS_Printf( "���݂̃L���v�`���́ANNS_SND_CAPTURE_TYPE_EFFECT\n" );
+			OS_Printf( "現在のキャプチャは、NNS_SND_CAPTURE_TYPE_EFFECT\n" );
 		}else if( type == NNS_SND_CAPTURE_TYPE_SAMPLING ){
-			OS_Printf( "���݂̃L���v�`���́ANNS_SND_CAPTURE_TYPE_SAMPLING\n" );
+			OS_Printf( "現在のキャプチャは、NNS_SND_CAPTURE_TYPE_SAMPLING\n" );
 		}
 	}
 #endif
@@ -2395,16 +2395,16 @@ BOOL Snd_CaptureIsActive(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	���s���̃L���v�`���^�C�v���擾
+ * @brief	実行中のキャプチャタイプを取得
  *
  * @param	none
  *
- * @retval	"NNS_SND_CAPTURE_TYPE_REVERB = ���o�[�u"
- * @retval	"NNS_SND_CAPTURE_TYPE_EFFECT = �G�t�F�N�g"
- * @retval	"NNS_SND_CAPTURE_TYPE_SAMPLING = �T���v�����O"
+ * @retval	"NNS_SND_CAPTURE_TYPE_REVERB = リバーブ"
+ * @retval	"NNS_SND_CAPTURE_TYPE_EFFECT = エフェクト"
+ * @retval	"NNS_SND_CAPTURE_TYPE_SAMPLING = サンプリング"
  *
- * �L���v�`���[�����s���̎��̂݌Ăт������Ƃ��ł��܂��B
- * �L���v�`���[�����s�����ǂ����𒲂ׂ邽�߂ɂ́A NNS_SndCaptureIsActive�֐����Ăт����܂��B 
+ * キャプチャーが実行中の時のみ呼びだすことができます。
+ * キャプチャーが実行中かどうかを調べるためには、 NNS_SndCaptureIsActive関数を呼びだします。 
  */
 //--------------------------------------------------------------
 NNSSndCaptureType Snd_CaptureGetCaptureType(void)
@@ -2414,22 +2414,22 @@ NNSSndCaptureType Snd_CaptureGetCaptureType(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�̓G�t�F�N�g������ύX
+ * @brief	出力エフェクト処理を変更
  *
  * @param	none
  *
  * @retval	none
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL		�����������܂���(�ʏ�̃X�e���I���[�h)
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL		何も処理しません(通常のステレオモード)
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO		���m�������[�h 
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO		モノラルモード 
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND	�T���E���h���[�h 
- * DS�X�s�[�J�[����o�͂������Ƃ��ɁA
- * �X�s�[�J�[�ʒu���L�����ĉ�����������悤�ɂ���G�t�F�N�g�������܂��B
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND	サラウンドモード 
+ * DSスピーカーから出力させたときに、
+ * スピーカー位置より広がって音を感じられるようにするエフェクトをかけます。
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE	�w�b�h�t�H�����[�h 
- * �w�b�h�t�H���g�p���ɁA���̕��S���y������G�t�F�N�g�������܂��B
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE	ヘッドフォンモード 
+ * ヘッドフォン使用時に、耳の負担を軽減するエフェクトをかけます。
  */
 //--------------------------------------------------------------
 void Snd_CaptureChangeOutputEffect( NNSSndCaptureOutputEffectType type )
@@ -2441,7 +2441,7 @@ void Snd_CaptureChangeOutputEffect( NNSSndCaptureOutputEffectType type )
 	case NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE:
 		break;
 	default:
-		return;	//�������Ȃ�
+		return;	//何もしない
 	}
 
     NNS_SndCaptureChangeOutputEffect( type );
@@ -2451,34 +2451,34 @@ void Snd_CaptureChangeOutputEffect( NNSSndCaptureOutputEffectType type )
 
 //==============================================================================================
 //
-//	�L���v�`���@���o�[�u
+//	キャプチャ　リバーブ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�̓G�t�F�N�g�������J�n
+ * @brief	出力エフェクト処理を開始
  *
  * @param	none
  *
  * @retval	none
  *
- * �L���v�`���[�@�\���g���ă~�L�T�[�o�͂��L���v�`�����A
- * �R�[���o�b�N�֐��ŃG�t�F�N�g�������s������A�ŏI�����Ƃ��ďo�͂��܂��B
- * �G�t�F�N�g���쒆�́A16�`�����l������2�`�����l���i�`�����l��1�y�у`�����l��3�j������܂��B
- * �`�����l��1�܂��̓`�����l��3���A�V�[�P���X�ɂ���Ďg�p���̏ꍇ�A
- * �������̉��͋����I�ɒ�~�������܂��B 
+ * キャプチャー機能を使ってミキサー出力をキャプチャし、
+ * コールバック関数でエフェクト処理を行った後、最終音声として出力します。
+ * エフェクト動作中は、16チャンネル中の2チャンネル（チャンネル1及びチャンネル3）を消費します。
+ * チャンネル1またはチャンネル3が、シーケンスによって使用中の場合、
+ * 発音中の音は強制的に停止させられます。 
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL		�����������܂���(�ʏ�̃X�e���I���[�h)
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL		何も処理しません(通常のステレオモード)
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO		���m�������[�h 
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO		モノラルモード 
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND	�T���E���h���[�h 
- * DS�X�s�[�J�[����o�͂������Ƃ��ɁA
- * �X�s�[�J�[�ʒu���L�����ĉ�����������悤�ɂ���G�t�F�N�g�������܂��B
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND	サラウンドモード 
+ * DSスピーカーから出力させたときに、
+ * スピーカー位置より広がって音を感じられるようにするエフェクトをかけます。
  *
- * NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE	�w�b�h�t�H�����[�h 
- * �w�b�h�t�H���g�p���ɁA���̕��S���y������G�t�F�N�g�������܂��B
+ * NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE	ヘッドフォンモード 
+ * ヘッドフォン使用時に、耳の負担を軽減するエフェクトをかけます。
  */
 //--------------------------------------------------------------
 void Snd_CaptureStartOutputEffect( NNSSndCaptureOutputEffectType type )
@@ -2501,15 +2501,15 @@ void Snd_CaptureStartOutputEffect( NNSSndCaptureOutputEffectType type )
 
 //--------------------------------------------------------------
 /**
- * @brief	���o�[�u�@�J�n
+ * @brief	リバーブ　開始
  *
- * @param	vol		���o�[�u�����̃{�����[��(0-63)
+ * @param	vol		リバーブ成分のボリューム(0-63)
  *
- * @retval	BOOL	TRUE=�����AFALSE=���s
+ * @retval	BOOL	TRUE=成功、FALSE=失敗
  *
- * �������Đ����Ȃ��炱�̊֐����Ăт����ƁA�Đ�����鉹���r�؂�܂��B 
+ * 音声を再生しながらこの関数を呼びだすと、再生される音が途切れます。 
  *
- * �`�����l��1,3���g�p����̂Œ��ӁI
+ * チャンネル1,3を使用するので注意！
  */
 //--------------------------------------------------------------
 BOOL Snd_CaptureStartReverb( int vol )
@@ -2521,18 +2521,18 @@ BOOL Snd_CaptureStartReverb( int vol )
 	return NNS_SndCaptureStartReverb( capture_buf, CAPTURE_BUFSIZE,
 										CAPTURE_FORMAT, REVERB_SAMPLING_RATE, vol );
 
-	//���o�[�u�o�b�t�@���傫���قǁA�x�����Ԃ������Ȃ�A�[�����o�[�u��������܂��B
-	//�T���v�����O���[�g�́A�l���傫���قǃ��o�[�u�����̉����͗ǂ��Ȃ�܂����A
-	//���̕��x�����Ԃ͒Z���Ȃ�܂��B�x�����Ԃ�ς������Ȃ��ꍇ�́A
-	//���o�[�u�o�b�t�@�T�C�Y��傫������K�v������܂��B
-	//�x�����ԁ�bufsize / samplerate;
+	//リバーブバッファが大きいほど、遅延時間が長くなり、深いリバーブがかかります。
+	//サンプリングレートは、値が大きいほどリバーブ成分の音質は良くなりますが、
+	//その分遅延時間は短くなります。遅延時間を変えたくない場合は、
+	//リバーブバッファサイズを大きくする必要があります。
+	//遅延時間＝bufsize / samplerate;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	���o�[�u�@�I��
+ * @brief	リバーブ　終了
  *
- * @param	frame	�t���[����
+ * @param	frame	フレーム数
  *
  * @retval	none
  */
@@ -2545,17 +2545,17 @@ void Snd_CaptureStopReverb( int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	���o�[�u�@�{�����[���ύX
+ * @brief	リバーブ　ボリューム変更
  *
- * @param	vol		���o�[�u�����̃{�����[��(0-63)
- * @param	frame	�t���[����
+ * @param	vol		リバーブ成分のボリューム(0-63)
+ * @param	frame	フレーム数
  *
  * @retval	none
  *
- * frame�Ŏw�肵���t���[�����ŁA���X�Ɍ��݂̃{�����[���l����A
- * vol�Ŏw�肵���{�����[���l�֕ω����܂��B  
+ * frameで指定したフレーム数で、徐々に現在のボリューム値から、
+ * volで指定したボリューム値へ変化します。  
  *
- * ���o�[�u�����삵�Ă��Ȃ��ꍇ�́A�������܂���B 
+ * リバーブが動作していない場合は、何もしません。 
  */
 //--------------------------------------------------------------
 void Snd_CaptureReverbVol( int vol, int frame )
@@ -2566,13 +2566,13 @@ void Snd_CaptureReverbVol( int vol, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	�G�t�F�N�g�J�n
+ * @brief	エフェクト開始
  *
  * @param	none
  *
- * @retval	BOOL	TRUE=�����AFALSE=���s
+ * @retval	BOOL	TRUE=成功、FALSE=失敗
  *
- * �`�����l��1,3���g�p����̂Œ��ӁI
+ * チャンネル1,3を使用するので注意！
  */
 //--------------------------------------------------------------
 BOOL Snd_CaptureStartEffect(void)
@@ -2589,8 +2589,8 @@ BOOL Snd_CaptureStartEffect(void)
 */
 
 	//-----------------------------------------------------
-	//�T���v�����O���[�g���Ⴂ�ƁA�L���v�`���@�\���g�����ɁA
-	//�������H���Ă��Ȃ��Ă��A���������Ȃ�̂Œ��ӁI
+	//サンプリングレートが低いと、キャプチャ機能を使う時に、
+	//何も加工していなくても、音が悪くなるので注意！
 	//-----------------------------------------------------
 
 #if 1
@@ -2598,7 +2598,7 @@ BOOL Snd_CaptureStartEffect(void)
 	//									CAPTURE_FORMAT, SAMPLING_RATE,2, 
 	//								EffectCallback, Snd_GetParamAdrs(SND_W_ID_CALLBACK_INFO) );
 
-	//�e�X�g��(06.02.24)
+	//テスト中(06.02.24)
 	return NNS_SndCaptureStartEffect( Snd_GetParamAdrs(SND_W_ID_CAPTURE_BUF),CAPTURE_BUFSIZE,
 										//NNS_SND_CAPTURE_FORMAT_PCM16, 16000,2, 
 										NNS_SND_CAPTURE_FORMAT_PCM16, 22000,2, 
@@ -2614,7 +2614,7 @@ BOOL Snd_CaptureStartEffect(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�G�t�F�N�g��~
+ * @brief	エフェクト停止
  *
  * @param	none
  *
@@ -2629,9 +2629,9 @@ void Snd_CaptureStopEffect(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�G�t�F�N�g���x���̑���
+ * @brief	エフェクトレベルの操作
  *
- * @param	level	���x��(0-8)
+ * @param	level	レベル(0-8)
  *
  * @retval	none
  */
@@ -2639,7 +2639,7 @@ void Snd_CaptureStopEffect(void)
 void Snd_CaptureEffectLevel( int level )
 {
 	u8* filter_size = Snd_GetParamAdrs(SND_W_ID_FILTER_SIZE);
-	//���Ή�
+	//未対応
 	
 	if( level > 8 ){
 		level = 8;
@@ -2653,21 +2653,21 @@ void Snd_CaptureEffectLevel( int level )
  
 //--------------------------------------------------------------
 /**
- * @brief	�G�t�F�N�g�̃R�[���o�b�N�֐�
+ * @brief	エフェクトのコールバック関数
  *
- * @param	bufferL_p	L�~�L�T�[����
- * @param	bufferR_p	R�~�L�T�[����
- * @param	len			�o�b�t�@�̃T�C�Y
- * @param	format		NNS_SndCaptureStartEffect�֐��̈���(CAPTURE_FORMAT)�Ɠ������̂��n�����
- * @param	arg			NNS_SndCaptureStartEffect�֐��̈���(callbackInfo)�Ɠ������̂��n�����
+ * @param	bufferL_p	Lミキサー成分
+ * @param	bufferR_p	Rミキサー成分
+ * @param	len			バッファのサイズ
+ * @param	format		NNS_SndCaptureStartEffect関数の引数(CAPTURE_FORMAT)と同じものが渡される
+ * @param	arg			NNS_SndCaptureStartEffect関数の引数(callbackInfo)と同じものが渡される
  *
  * @retval	none
  *
- * �ȒP�ȃ��[�p�X�t�B���^�i�ړ����ρj�������ďo�͂��Ă���
+ * 簡単なローパスフィルタ（移動平均）をかけて出力している
  *
- * �����Ԃ̊Ԋu���߁A���̊Ԋu���̕��ϒl��A�����Čv�Z���邱�Ƃɂ����
- * ����(��������)�I�ȓ�����m�낤�Ƃ�����́B
- * (��������ւƓ������� )
+ * 一定期間の間隔を定め、その間隔内の平均値を連続して計算することによって
+ * 趨勢(すうせい)的な動向を知ろうとするもの。
+ * (ある方向へと動く勢い )
  */
 //--------------------------------------------------------------
 static void EffectCallback( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCaptureFormat format, void* arg )
@@ -2681,8 +2681,8 @@ static void EffectCallback( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCap
     int x;
     int i, j;
     
-	//�T���v����8�r�b�gPCM�͂��̂܂�
-	//�T���v����16�r�b�gPCM��������o�b�t�@�̃T�C�Y�𔼕��ɂ���
+	//サンプルが8ビットPCMはそのまま
+	//サンプルが16ビットPCMだったらバッファのサイズを半分にする
     samples = ( format == NNS_SND_CAPTURE_FORMAT_PCM8 ) ? len : ( len >> 1 );
 
 #ifdef SOUND_OS_PRINT_ON
@@ -2693,108 +2693,108 @@ static void EffectCallback( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCap
 #endif
     
 	//--------------------------------------------
-	//�� �o�b�t�@�T�C�Y = 24 �t�B���^�[�T�C�Y = 8
+	//例 バッファサイズ = 24 フィルターサイズ = 8
 	//lp[0+24-8+1]=17
-	//17,18,19,20,21,22,23��ۑ�
+	//17,18,19,20,21,22,23を保存
 	//--------------------------------------------
-    //�o�b�t�@�̈�Ԍ�납��A�t�B���^�[�T�C�Y����ۑ�
+    //バッファの一番後ろから、フィルターサイズ分を保存
     for( i = 0; i < FILTER_SIZE-1; i++ ) {
         org[i][0] = lp[ i + samples - FILTER_SIZE + 1 ];
         org[i][1] = rp[ i + samples - FILTER_SIZE + 1 ];
-		OS_Printf( "org[i][��] = %d\n", org[i][0] );
+		OS_Printf( "org[i][左] = %d\n", org[i][0] );
     }
     
 	//--------------------------------------------
-	//�� �o�b�t�@�T�C�Y = 24 �t�B���^�[�T�C�Y = 8
+	//例 バッファサイズ = 24 フィルターサイズ = 8
     //for( i = 24 - 1; i >= 8 - 1 ; i-- ){
-	//23...8�܂ŏ�������
+	//23...8まで処理する
 	//--------------------------------------------
-	//�o�b�t�@�̈�Ԍ�납��A�t�B���^�[�T�C�Y�̒l��菬�����Ȃ�܂ŏ�������
+	//バッファの一番後ろから、フィルターサイズの値より小さくなるまで処理する
     for( i = samples - 1; i >= FILTER_SIZE - 1 ; i-- ){
 
 		//--------------------------------------------
-		//�� �o�b�t�@�T�C�Y = 24 �t�B���^�[�T�C�Y = 8
+		//例 バッファサイズ = 24 フィルターサイズ = 8
 		//x += lp[ 23 - 0 ];
-		//(-0����-7�܂�)
+		//(-0から-7まで)
 		//x += lp[ 23 - 7 ];
-		//�t�B���^�[�T�C�Y�������Ă���
+		//フィルターサイズ分足していく
 		//--------------------------------------------
-		//L�~�L�T�[����
+		//Lミキサー成分
         x = 0;
-        for( j = 0 ; j < FILTER_SIZE ; j++ ) {	//�t�B���^�[�T�C�Y�������Ă���
+        for( j = 0 ; j < FILTER_SIZE ; j++ ) {	//フィルターサイズ分足していく
             x += lp[ i - j ];
         }
-        lp[ i ] = (smp_t)(x /= FILTER_SIZE);	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        lp[ i ] = (smp_t)(x /= FILTER_SIZE);	//フィルターサイズで割り平均で上書きする
         
-		//R�~�L�T�[����
+		//Rミキサー成分
         x = 0;
-        for( j = 0 ; j < FILTER_SIZE ; j++ ) {	//�t�B���^�[�T�C�Y�������Ă���
+        for( j = 0 ; j < FILTER_SIZE ; j++ ) {	//フィルターサイズ分足していく
             x += rp[ i - j ];
         }
-        rp[ i ] = (smp_t)(x /= FILTER_SIZE);	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        rp[ i ] = (smp_t)(x /= FILTER_SIZE);	//フィルターサイズで割り平均で上書きする
     }
     
 #if FILTER_SIZE >= 2    
 	//--------------------------------------------
-	//�� �o�b�t�@�T�C�Y = 24 �t�B���^�[�T�C�Y = 8
+	//例 バッファサイズ = 24 フィルターサイズ = 8
     //for( i = 8 - 2; i >= 0 ; i-- ){
-	//6...0�܂ŏ�������
+	//6...0まで処理する
 	//--------------------------------------------
     for( i = FILTER_SIZE - 2 ; i >= 0 ; i-- ){
 
-		//L�~�L�T�[����
+		//Lミキサー成分
         x = lp[ i ];
-        for( j = 1 ; j < FILTER_SIZE ; j++ ) {	//�t�B���^�[�T�C�Y��
+        for( j = 1 ; j < FILTER_SIZE ; j++ ) {	//フィルターサイズ分
             x += GetSample( lp, i-j, 0, info );
         }
-        lp[ i ] = (smp_t)(x /= FILTER_SIZE);	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        lp[ i ] = (smp_t)(x /= FILTER_SIZE);	//フィルターサイズで割り平均で上書きする
         
-		//R�~�L�T�[����
+		//Rミキサー成分
         x = rp[ i ];
         for( j = 1 ; j < FILTER_SIZE ; j++ ) {
             x += GetSample( rp, i-j, 1, info );
         }
-        rp[ i ] = (smp_t)(x /= FILTER_SIZE);	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        rp[ i ] = (smp_t)(x /= FILTER_SIZE);	//フィルターサイズで割り平均で上書きする
     }
 #endif
     
-	//�L���v�`�������������̈�̃t�B���^�T�C�Y����
-	//�ۑ����Ă������f�[�^�ŏ㏑������
-	//(�o�b�t�@�̈�Ԍ�납��A�t�B���^�[�T�C�Y����ۑ����Ă������f�[�^)
+	//キャプチャが完成した領域のフィルタサイズ分を
+	//保存しておいたデータで上書きする
+	//(バッファの一番後ろから、フィルターサイズ分を保存しておいたデータ)
     for( i = 0; i < FILTER_SIZE-1; i++ ) {
         info->sample[i][0] = org[i][0];
         info->sample[i][1] = org[i][1];
     }
 
-	//���C���������Ɋm���ɏ�������
+	//メインメモリに確実に書き込む
     DC_FlushRange( bufferL_p, len );
     DC_FlushRange( bufferR_p, len );
 
-	//�����ɓn�����o�b�t�@�́A(���̊֐����ł�info)
-	//�L���v�`�������������̈���w���Ă��܂��B
-	//���̗̈���C�����邱�ƂŁA���ۂɏo�͂���鉹��ύX���邱�Ƃ��ł��܂��B 
+	//引数に渡されるバッファは、(この関数内ではinfo)
+	//キャプチャが完了した領域を指しています。
+	//この領域を修正することで、実際に出力される音を変更することができます。 
 }
  
 //--------------------------------------------------------------
 /**
- * @brief	�T���v���̒l�擾
+ * @brief	サンプルの値取得
  *
- * @param	p			�~�L�T�[����
+ * @param	p			ミキサー成分
  * @param	x			i-j
  * @param	n
- * @param	info		NNS_SndCaptureStartEffect�֐��̈���(callbackInfo)�Ɠ������̂��n�����
+ * @param	info		NNS_SndCaptureStartEffect関数の引数(callbackInfo)と同じものが渡される
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static inline smp_t GetSample( smp_t* p, int x, int n, const EffectCallbackInfo* info )
 {
-	//i-j��0�ȏ�̎��́A�~�L�T�[�����̒l�����̂܂ܕԂ�
+	//i-jが0以上の時は、ミキサー成分の値をそのまま返す
     if ( x >= 0 ){
 		return p[x];
 	}
 
-	//i-j��0�����̎��Ax(i-j)�̒l�𒲐������l���擾
+	//i-jが0未満の時、x(i-j)の値を調整した値を取得
     x += FILTER_SIZE-1;
     return info->sample[x][n];
 }
@@ -2835,7 +2835,7 @@ void SamplingCallback( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCaptureF
 		rp[i] += 1000;
 	}
 
-   	//���C���������Ɋm���ɏ�������
+   	//メインメモリに確実に書き込む
     DC_FlushRange( bufferL_p, len );
     DC_FlushRange( bufferR_p, len );
 #endif
@@ -2846,25 +2846,25 @@ void SamplingCallback( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCaptureF
 
 //==============================================================================================
 //
-//	�g���b�N����
+//	トラック操作
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���b�N�~���[�g
+ * @brief	トラックミュート
  *
- * @param	handle_no	�T�E���h�n���h���i���o�[
- * @param	bitmask		�g���b�N�r�b�g�}�X�N
- * @param	flag		TRUE=�~���[�g�AFALSE=����
+ * @param	handle_no	サウンドハンドルナンバー
+ * @param	bitmask		トラックビットマスク
+ * @param	flag		TRUE=ミュート、FALSE=解除
  *
  * @retval	none
  *
- * trackBitMask�ŁA�ݒ肷��g���b�N���w�肵�܂��B
- * ���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�g���b�N2�A�A�A��\���A
- * �r�b�g�������Ă���g���b�N�S�Ăɑ΂��āA�~���[�g�̐ݒ��ύX���܂��B
- * �Ⴆ�΁A�g���b�N2�ƃg���b�N5�̃~���[�g�ݒ��ύX�������ꍇ�́A 
- * (1 << 2) | (1 << 5) ���Ȃ킿�A0x0024 �Ƃ��܂��B 
+ * trackBitMaskで、設定するトラックを指定します。
+ * 下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、
+ * ビットが立っているトラック全てに対して、ミュートの設定を変更します。
+ * 例えば、トラック2とトラック5のミュート設定を変更したい場合は、 
+ * (1 << 2) | (1 << 5) すなわち、0x0024 とします。 
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetTrackMute( int handle_no, u16 bitmask, BOOL flag )
@@ -2875,11 +2875,11 @@ void Snd_PlayerSetTrackMute( int handle_no, u16 bitmask, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���b�N�{�����[���ύX
+ * @brief	トラックボリューム変更
  *
- * @param	p			�T�E���h�n���h���̃A�h���X
- * @param	bitmask		�g���b�N�r�b�g�}�X�N
- * @param	vol			�{�����[��
+ * @param	p			サウンドハンドルのアドレス
+ * @param	bitmask		トラックビットマスク
+ * @param	vol			ボリューム
  *
  * @retval	none
  */
@@ -2892,16 +2892,16 @@ void Snd_PlayerSetTrackVolume( NNSSndHandle *p, u16 bitmask, int vol )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���b�N�����ύX
+ * @brief	トラック音程変更
  *
- * @param	handle_no	�T�E���h�n���h���i���o�[
- * @param	bitmask		�g���b�N�r�b�g�}�X�N
- * @param	pitch		�����ω��̒l(-32768�`32767)
+ * @param	handle_no	サウンドハンドルナンバー
+ * @param	bitmask		トラックビットマスク
+ * @param	pitch		音程変化の値(-32768〜32767)
  *
  * @retval	none
  *
- * pitch�͐��̒l�ō������ցA���̒l�ŒႢ���֕ω����܂��B 
- * �}64�ł��傤�ǔ����ω����܂��B�i�ĂԂ��тɌ��ʂ��ݐς����킯�ł͂���܂���)
+ * pitchは正の値で高い方へ、負の値で低い方へ変化します。 
+ * ±64でちょうど半音変化します。（呼ぶたびに効果が累積されるわけではありません)
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetTrackPitch( int handle_no, u16 bitmask, int pitch )
@@ -2912,33 +2912,33 @@ void Snd_PlayerSetTrackPitch( int handle_no, u16 bitmask, int pitch )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���b�N�����ύX(�V�[�P���X�i���o�[�w���)
+ * @brief	トラック音程変更(シーケンスナンバー指定版)
  *
- * @param	no			�V�[�P���X�i���o�[
- * @param	bitmask		�g���b�N�r�b�g�}�X�N
- * @param	pitch		�����ω��̒l(-32768�`32767)
+ * @param	no			シーケンスナンバー
+ * @param	bitmask		トラックビットマスク
+ * @param	pitch		音程変化の値(-32768〜32767)
  *
  * @retval	none
  *
- * pitch�͐��̒l�ō������ցA���̒l�ŒႢ���֕ω����܂��B 
- * �}64�ł��傤�ǔ����ω����܂��B�i�ĂԂ��тɌ��ʂ��ݐς����킯�ł͂���܂���)
+ * pitchは正の値で高い方へ、負の値で低い方へ変化します。 
+ * ±64でちょうど半音変化します。（呼ぶたびに効果が累積されるわけではありません)
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetTrackPitchBySeqNo( u16 no, u16 bitmask, int pitch )
 {
-	u8 player_no = Snd_GetPlayerNo(no);				//seq�i���o�[����A�v���C���[�i���o�[���擾
-	int type = Snd_GetHandleNoByPlayerNo(player_no);//player�i���o�[����A�n���h���i���o�[���擾
+	u8 player_no = Snd_GetPlayerNo(no);				//seqナンバーから、プレイヤーナンバーを取得
+	int type = Snd_GetHandleNoByPlayerNo(player_no);//playerナンバーから、ハンドルナンバーを取得
 	Snd_PlayerSetTrackPitch( type, bitmask, pitch );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���b�N�p���ύX
+ * @brief	トラックパン変更
  *
- * @param	handle_no	�T�E���h�n���h���i���o�[
- * @param	bitmask		�g���b�N�r�b�g�}�X�N
- * @param	pan			�p���ω��̒l(-128�`127)
+ * @param	handle_no	サウンドハンドルナンバー
+ * @param	bitmask		トラックビットマスク
+ * @param	pan			パン変化の値(-128〜127)
  *
  * @retval	none
  */
@@ -2951,10 +2951,10 @@ void Snd_PlayerSetTrackPan( int handle_no, u16 bitmask, int pan )
 
 //--------------------------------------------------------------
 /**
- * @brief	�e���|�ύX
+ * @brief	テンポ変更
  *
- * @param	handle_no	�T�E���h�n���h���i���o�[
- * @param	tempo		�{��(256=1�{)
+ * @param	handle_no	サウンドハンドルナンバー
+ * @param	tempo		倍率(256=1倍)
  *
  * @retval	none
  */
@@ -2968,22 +2968,22 @@ void Snd_PlayerSetTempoRatio( int handle_no, int tempo )
 
 //==============================================================================================
 //
-//	���̑��֘A
+//	その他関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	���m�����t���O��ύX
+ * @brief	モノラルフラグを変更
  *
- * @param	flag	TRUE=���m�����AFALSE=�X�e���I
+ * @param	flag	TRUE=モノラル、FALSE=ステレオ
  *
  * @retval	none
  *
- * �f�t�H���g�́AFALSE�ł��B 
+ * デフォルトは、FALSEです。 
  *
- * ���m�����t���O��L���ɂ���ƁA�p���̐ݒ�l�𖳎����āA
- * �S�Ă̔����������̒�ʂōs���܂��B 
+ * モノラルフラグを有効にすると、パンの設定値を無視して、
+ * 全ての発音が中央の定位で行われます。 
  */
 //--------------------------------------------------------------
 void Snd_SetMonoFlag( BOOL flag )
@@ -2995,9 +2995,9 @@ void Snd_SetMonoFlag( BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�J�E���^�[�Z�b�g
+ * @brief	フェードカウンターセット
  *
- * @param	frame		�t���[����
+ * @param	frame		フレーム数
  *
  * @retval	none
  */
@@ -3011,9 +3011,9 @@ void Snd_FadeCountSet( int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM��炷�܂ł̃E�F�C�g�Z�b�g
+ * @brief	次のBGMを鳴らすまでのウェイトセット
  *
- * @param	frame		�t���[����
+ * @param	frame		フレーム数
  *
  * @retval	none
  */
@@ -3027,11 +3027,11 @@ void Snd_NextWaitSet( int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM��炷�܂ł̃E�F�C�g�`�F�b�N(�J�E���^�[�����炵�Ă��܂�)
+ * @brief	次のBGMを鳴らすまでのウェイトチェック(カウンターを減らしています)
  *
  * @param	none
  *
- * @retval	"0=�I���A0�ȊO=�J�E���^�[�l"
+ * @retval	"0=終了、0以外=カウンター値"
  */
 //--------------------------------------------------------------
 int Snd_NextWaitCheck()
@@ -3049,9 +3049,9 @@ int Snd_NextWaitCheck()
 
 //--------------------------------------------------------------
 /**
- * @brief	�}�X�^�[�{�����[���ݒ�(�f�t�H���g��127)
+ * @brief	マスターボリューム設定(デフォルトは127)
  *
- * @param	vol		�{�����[��(0-127)
+ * @param	vol		ボリューム(0-127)
  *
  * @retval	none
  */
@@ -3066,9 +3066,9 @@ void Snd_SetMasterVolume( int vol )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�i�[�o�b�t�@�̃A�h���X�擾(��)
+ * @brief	波形格納バッファのアドレス取得(仮)
  *
- * @param	vol		�{�����[��(0-127)
+ * @param	vol		ボリューム(0-127)
  *
  * @retval	none
  */
@@ -3080,12 +3080,12 @@ void* Snd_GetWaveBufAdrs(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�v���C���[�q�[�v���쐬(snd_test.c�ł̂ݎg�p)
+ * @brief	プレイヤーヒープを作成(snd_test.cでのみ使用)
  *
- * @param	player_no	�v���C���[�i���o�[
- * @param	size		�v���C���[�q�[�v�T�C�Y
+ * @param	player_no	プレイヤーナンバー
+ * @param	size		プレイヤーヒープサイズ
  *
- * @retval	"TRUE=�����AFALSE=���s"
+ * @retval	"TRUE=成功、FALSE=失敗"
  */
 //--------------------------------------------------------------
 BOOL Snd_PlayerHeapCreate( int player_no, u32 size )
@@ -3096,39 +3096,39 @@ BOOL Snd_PlayerHeapCreate( int player_no, u32 size )
 
 //==============================================================================================
 //
-//	���[�J���֐�
+//	ローカル関数
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	�t�B�[���h����؂�ւ��
+//	フィールドから切り替わる
 //
-//	�P�j�퓬�ɓ���
-//	�Q�j�����ɓ���
-//	�R�j�ŃQ�[���I�[�o�[
-//	�S�j���]�Ԃɏ������
-//	�T�j�g��肵����
-//	���ɂ͉������邩�H�H
+//	１）戦闘に入る
+//	２）部屋に入る
+//	３）毒ゲームオーバー
+//	４）自転車に乗った時
+//	５）波乗りした時
+//	他には何かあるか？？
 //
-//	�i�K�I�ɕω�����֐������łɌĂ�ł���ꍇ�̑Ώ����m�F�I(TCB�ȊO�ł�)
-//	����~�������Ă΂Ȃ��Ƃ����Ȃ��ȂǁB
+//	段階的に変化する関数をすでに呼んでいる場合の対処を確認！(TCB以外でも)
+//	→停止処理を呼ばないといけないなど。
 //
-//	���C�����t�B�[���h�łȂ��Ȃ�����폜�Ȃ�
+//	メインがフィールドでなくなったら削除など
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	���g�p�E�f�o�b�N�֘A
+//	未使用・デバック関連
 //
 //==============================================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h���[�J�����[�N�m��
+ * @brief	サウンドローカルワーク確保
  *
  * @param	none
  *
@@ -3140,7 +3140,7 @@ static void Snd_LocalWorkCreate(void)
 {
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(SND_LOCAL_WORK) );
 	if( wk == NULL ){
-		GF_ASSERT( (0) && "�T�E���h���[�J�����[�N�m�ێ��s�I" );
+		GF_ASSERT( (0) && "サウンドローカルワーク確保失敗！" );
 	}
 	memset( wk, 0, sizeof(SND_LOCAL_WORK) );
 
@@ -3149,7 +3149,7 @@ static void Snd_LocalWorkCreate(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�ẴT�E���h�q�[�v�N���A(�ʏ�g�p���Ȃ�)
+ * @brief	全てのサウンドヒープクリア(通常使用しない)
  *
  * @param	none
  *
@@ -3166,17 +3166,17 @@ static void Snd_HeapClear(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X���Đ�
+ * @brief	シーケンスを再生
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
- * @param	no		BGM�i���o�[
+ * @param	p		サウンドハンドルのアドレス
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �Đ��ɐ�������ƁA�T�E���h�n���h���ɃV�[�P���X�����т����܂��B 
+ * 再生に成功すると、サウンドハンドルにシーケンスが結びつけられます。 
  *
- * �V�[�P���X�f�[�^���v���C���[�q�[�v�Ń��[�h���鎞�́A
- * �e�ʂ�����Ȃ��ƍĐ����s����I
+ * シーケンスデータをプレイヤーヒープでロードする時は、
+ * 容量が足りないと再生失敗する！
  */
 //--------------------------------------------------------------
 static BOOL Snd_ArcPlayerStartSeq( NNSSndHandle *p, u16 no )
@@ -3186,22 +3186,22 @@ static BOOL Snd_ArcPlayerStartSeq( NNSSndHandle *p, u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�A�[�J�C�u���Đ�
+ * @brief	シーケンスアーカイブを再生
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
- * @param	arc_no	�V�[�P���X�A�[�J�C�u�i���o�[(�V�[�P���X�A�[�J�C�u�̕��я�)
- * @param	index	�C���f�b�N�X
+ * @param	p		サウンドハンドルのアドレス
+ * @param	arc_no	シーケンスアーカイブナンバー(シーケンスアーカイブの並び順)
+ * @param	index	インデックス
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �Đ��ɐ�������ƁA�T�E���h�n���h���ɃV�[�P���X�����т����܂��B 
+ * 再生に成功すると、サウンドハンドルにシーケンスが結びつけられます。 
  *
- * �Đ����s�̌����́A
- * �V�[�P���X�A�[�J�C�u�ԍ�������
- * �C���f�b�N�X�ԍ������� 
- * ���ɍĐ����̃V�[�P���X�����D��x���Ⴂ 
- * �f�[�^����������ɖ��� 
- * �q�[�v�̈悪����Ȃ�(�O���[�v���[�h�����s���Ă���)
+ * 再生失敗の原因は、
+ * シーケンスアーカイブ番号が無効
+ * インデックス番号が無効 
+ * 既に再生中のシーケンスよりも優先度が低い 
+ * データがメモリ上に無い 
+ * ヒープ領域が足りない(グループロードが失敗している)
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcPlayerStartSeqArc( NNSSndHandle *p, int arc_no, int index )
@@ -3211,24 +3211,24 @@ BOOL Snd_ArcPlayerStartSeqArc( NNSSndHandle *p, int arc_no, int index )
 
 //--------------------------------------------------------------
 /**
- * @brief	�w��v���C���[�̃V�[�P���X�ő哯���Đ�����ݒ�(���d�Đ������������Ɏg�p�I)
+ * @brief	指定プレイヤーのシーケンス最大同時再生数を設定(多重再生をしたい時に使用！)
  *
- * @param	player_no	�v���C���[�ԍ�
- * @param	no			�V�[�P���X�ő哯���Đ���
+ * @param	player_no	プレイヤー番号
+ * @param	no			シーケンス最大同時再生数
  *
- * @retval	"�ύX�O�̃V�[�P���X�ő哯���Đ���"
+ * @retval	"変更前のシーケンス最大同時再生数"
  *
- * PLAYER_FIELD	: �t�B�[���hBGM
+ * PLAYER_FIELD	: フィールドBGM
  * PLAYER_ME 	: ME
- * PLAYER_SE_1 	: ���ʉ�
- * PLAYER_SE_2 	: ���ʉ�
- * PLAYER_SE_3 	: ���ʉ�
- * PLAYER_SE_4 	: ���ʉ�
- * PLAYER_PV	: �|�P��������
- * PLAYER_VOICE	: ����
- * PLAYER_BGM	: �t�B�[���h�ȊOBGM
+ * PLAYER_SE_1 	: 効果音
+ * PLAYER_SE_2 	: 効果音
+ * PLAYER_SE_3 	: 効果音
+ * PLAYER_SE_4 	: 効果音
+ * PLAYER_PV	: ポケモン鳴き声
+ * PLAYER_VOICE	: 音声
+ * PLAYER_BGM	: フィールド以外BGM
  *
- * �g�p��́A�K�����̐ݒ�ɖ߂��悤�ɂ��ĉ������I
+ * 使用後は、必ず元の設定に戻すようにして下さい！
  */
 //--------------------------------------------------------------
 static u8 Snd_PlayerSetPlayableSeqCount( int player_no, int no );
@@ -3237,33 +3237,33 @@ static u8 Snd_PlayerSetPlayableSeqCount( int player_no, int no )
 	const NNSSndArcPlayerInfo* info;
 	u8 ret;
 
-	//���ӁI �T�E���h�A�[�J�C�u����̎擾
-	info = NNS_SndArcGetPlayerInfo( player_no );		//�v���C���[���\���̎擾
-	ret = info->seqMax;									//�ޔ�
+	//注意！ サウンドアーカイブからの取得
+	info = NNS_SndArcGetPlayerInfo( player_no );		//プレイヤー情報構造体取得
+	ret = info->seqMax;									//退避
 
 	NNS_SndPlayerSetPlayableSeqCount( player_no, no );
 
-	return ret;											//�ύX�O�̃V�[�P���X�ő哯���Đ���
+	return ret;											//変更前のシーケンス最大同時再生数
 }
 #endif
 
 
 //==============================================================================================
 //
-//	�X�g���[���֐�
+//	ストリーム関数
 //
 //==============================================================================================
 #ifdef STREAM_ON
 //--------------------------------------------------------------
 /**
- * @brief	�X�g���[���Đ�
+ * @brief	ストリーム再生
  *
- * @param	no		�X�g���[���i���o�[
+ * @param	no		ストリームナンバー
  *
  * @retval	none
  *
- * �p���A�{�����[���̂ݑ���o����
- * (��������A�R�[���X���ʂ͏o���Ȃ����ƂɂȂ�I)
+ * パン、ボリュームのみ操作出来る
+ * (音程操作、コーラス効果は出来ないことになる！)
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcStrmStart( u16 no );
@@ -3278,15 +3278,15 @@ BOOL Snd_ArcStrmStart( u16 no )
 
 //==============================================================================================
 //
-//	fld_bgm�Ŏg�p����֐�
+//	fld_bgmで使用する関数
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�o���N�؂�ւ��邩�Z�b�g
+ * @brief	バンク切り替えるかセット
  *
- * @param	no		0=���A1=��
+ * @param	no		0=昼、1=夜
  *
  * @retval	none
  */
@@ -3300,11 +3300,11 @@ void Snd_BankFlagSet( int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�o���N�؂�ւ��邩�t���O�擾
+ * @brief	バンク切り替えるかフラグ取得
  *
  * @param	none
  *
- * @retval	"���A1=��"
+ * @retval	"昼、1=夜"
  */
 //--------------------------------------------------------------
 u8 Snd_BankFlagGet()
@@ -3315,102 +3315,102 @@ u8 Snd_BankFlagGet()
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�A�E�g �� BGM�Đ�
+ * @brief	フェードアウト → BGM再生
  *
- * @param	scene		�V�[��(���)�i���o�[
- * @param	no			�V�[�P���X�i���o�[
- * @param	frame		�t���[����
- * @param	next_wait	����BGM��炷�܂ł̃E�F�C�g
- * @param	flag		0=���A1=��A0xff=����(�������Ȃ�)
- * @param	adrs		�t�F�[�h�f�[�^�̃A�h���X
+ * @param	scene		シーン(場面)ナンバー
+ * @param	no			シーケンスナンバー
+ * @param	frame		フレーム数
+ * @param	next_wait	次のBGMを鳴らすまでのウェイト
+ * @param	flag		0=昼、1=夜、0xff=無効(何もしない)
+ * @param	adrs		フェードデータのアドレス
  *
- * @retval	"0=�������Ȃ��A1=�J�n"
+ * @retval	"0=何もしない、1=開始"
  *
- * �t�F�[�h�J�E���^�[���Z�b�g���Ă��܂�
+ * フェードカウンターをセットしています
  */
 //--------------------------------------------------------------
 BOOL Snd_FadeOutNextPlaySet( u8 scene, u16 no, int frame, int next_wait, u8 flag, void* adrs )
 {
 	u8* scene_sub	= Snd_GetParamAdrs(SND_W_ID_SCENE_SUB);
 
-	//�t�F�[�h���ʏ���
+	//フェード共通処理
 	Snd_FadeCommonSet( scene, no, frame, next_wait, flag, adrs );
 	
-	//�T�u�V�[�����N���A
+	//サブシーンをクリア
 	*scene_sub = SND_SCENE_DUMMY;
 
-	//�X�e�[�^�X���ăZ�b�g
-	Snd_StatusSet( SND_STATUS_FADEOUT_NEXT_PLAY );	//�X�e�[�^�X(�t�F�[�h�A�E�g���Đ�)
+	//ステータスを再セット
+	Snd_StatusSet( SND_STATUS_FADEOUT_NEXT_PLAY );	//ステータス(フェードアウト→再生)
 	return 1;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�A�E�g �� BGM�t�F�[�h�C��
+ * @brief	フェードアウト → BGMフェードイン
  *
- * @param	scene		�V�[��(���)�i���o�[
- * @param	no			�V�[�P���X�i���o�[
- * @param	frame		�t���[����
- * @param	next_wait	����BGM��炷�܂ł̃E�F�C�g
- * @param	next_frame	����BGM�̃t�F�[�h�C���t���[����
- * @param	flag		�o���N��؂�ւ��邩(SND_BANK_CONTINUE�ASND_BANK_CHANGE)
- * @param	adrs		�t�F�[�h�f�[�^�̃A�h���X
+ * @param	scene		シーン(場面)ナンバー
+ * @param	no			シーケンスナンバー
+ * @param	frame		フレーム数
+ * @param	next_wait	次のBGMを鳴らすまでのウェイト
+ * @param	next_frame	次のBGMのフェードインフレーム数
+ * @param	flag		バンクを切り替えるか(SND_BANK_CONTINUE、SND_BANK_CHANGE)
+ * @param	adrs		フェードデータのアドレス
  *
- * @retval	"0=�������Ȃ��A1=�J�n"
+ * @retval	"0=何もしない、1=開始"
  *
- * �t�F�[�h�J�E���^�[���Z�b�g���Ă��܂�
+ * フェードカウンターをセットしています
  */
 //--------------------------------------------------------------
 BOOL Snd_FadeOutNextFadeInSet( u8 scene, u16 no, int frame, int next_wait, int next_frame, u8 flag, void* adrs )
 {
 	int* next_frame_wk = Snd_GetParamAdrs(SND_W_ID_NEXT_FRAME);
 
-	//�t�F�[�h���ʏ���
+	//フェード共通処理
 	Snd_FadeCommonSet( scene, no, frame, next_wait, flag, adrs );
 	
-	*next_frame_wk = next_frame;						//����BGM�̃t�F�[�h�C���t���[�����Z�b�g
+	*next_frame_wk = next_frame;						//次のBGMのフェードインフラーム数セット
 
-	//�X�e�[�^�X���ăZ�b�g
-	Snd_StatusSet( SND_STATUS_FADEOUT_NEXT_FADEIN );	//�X�e�[�^�X(�t�F�[�h�A�E�g���t�F�[�h�C��)
+	//ステータスを再セット
+	Snd_StatusSet( SND_STATUS_FADEOUT_NEXT_FADEIN );	//ステータス(フェードアウト→フェードイン)
 	return 1;
 }
 
-//���ʏ���
+//共通処理
 static void Snd_FadeCommonSet( u8 scene, u16 no, int frame, int next_wait, u8 flag, void* adrs )
 {
 	const NNSSndArcBankInfo** info		= Snd_GetParamAdrs(SND_W_ID_BANK_INFO);
 
-	//�t�F�[�h�A�E�g�J�n(�X�e�[�^�X���t�F�[�h�A�E�g)
+	//フェードアウト開始(ステータス＝フェードアウト)
 	Snd_BgmFadeOut( BGM_VOL_MIN, frame );
 
-	//�t�F�[�h�A�E�g����"����BGM�i���o�["�́A�K��0�������Ă���悤�ɂ���I
+	//フェードアウト中の"今のBGMナンバー"は、必ず0が入っているようにする！
 	
-	//�ēx�]�[���؂�ւ��������Ă΂��悤�ɁA����BGM�i���o�[���N���A����I
-	Snd_NowBgmNoSet( 0 );							//����BGM�i���o�[�Z�b�g
+	//再度ゾーン切り替え処理が呼ばれるように、今のBGMナンバーをクリアする！
+	Snd_NowBgmNoSet( 0 );							//今のBGMナンバーセット
 
-	//����(�]�[��)BGM�i���o�[���Z�b�g���Ă���
-	Snd_NextBgmNoSet( no );							//����BGM�i���o�[�Z�b�g
-	Snd_NextWaitSet( next_wait );					//����BGM��炷�܂ł̃E�F�C�g�Z�b�g
+	//次の(ゾーン)BGMナンバーをセットしておく
+	Snd_NextBgmNoSet( no );							//次のBGMナンバーセット
+	Snd_NextWaitSet( next_wait );					//次のBGMを鳴らすまでのウェイトセット
 
-	//06.01.25�폜
-	//Snd_SceneSet( scene );						//�ύX����V�[���Z�b�g
+	//06.01.25削除
+	//Snd_SceneSet( scene );						//変更するシーンセット
 	
-	*info		= Snd_GetBankInfo( no );			//�o���N���\���̃Z�b�g
+	*info		= Snd_GetBankInfo( no );			//バンク情報構造体セット
 
-	Snd_BankFlagSet( flag );						//�o���N�؂�ւ��邩�Z�b�g
+	Snd_BankFlagSet( flag );						//バンク切り替えるかセット
 	return;
 }
 
 
 //==============================================================================================
 //
-//	d_nohara�Ŏg�p����֐�(�f�o�b�N�p)
+//	d_noharaで使用する関数(デバック用)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�Đ��p�̃`�����l�����������(�f�o�b�N����)
+ * @brief	波形再生用のチャンネルを解放する(デバック処理)
  *
  * @param	none
  *
@@ -3421,7 +3421,7 @@ void Snd_DebugNormalChannelFree()
 {
 	u8* ch_normal_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 
-	if( *ch_normal_flag == 1 ){	//�m�ۃt���O��ON��������
+	if( *ch_normal_flag == 1 ){	//確保フラグがONだったら
 		Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );
 	}
 
@@ -3431,15 +3431,15 @@ void Snd_DebugNormalChannelFree()
 
 //==============================================================================================
 //
-//	snd_test�Ŏg�p����֐�(�f�o�b�N�p)
+//	snd_testで使用する関数(デバック用)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�o���N���[�h
+ * @brief	バンクロード
  *
- * @param	no		�o���N�i���o�[
+ * @param	no		バンクナンバー
  *
  * @retval	none
  */
@@ -3453,7 +3453,7 @@ void Snd_DebugLoadBank( u16 no )
 
 //==============================================================================================
 //
-//	�g�`�֘A(�|�P�����}�ӂ̖�����ʂŎg�p)
+//	波形関連(ポケモン図鑑の鳴き声画面で使用)
 //
 //	<nitro/snd.h>
 //	typedef struct SNDWaveData
@@ -3469,11 +3469,11 @@ u32 Snd_PlayerGetTick( int handle_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̃A�h���X����T���v���f�[�^�̃A�h���X���擾
+ * @brief	波形データのアドレスからサンプルデータのアドレスを取得
  *
- * @param	p_data		�g�`�f�[�^�̃A�h���X
+ * @param	p_data		波形データのアドレス
  *
- * @retval	"�T���v���f�[�^�̃A�h���X�ANULL=���s"
+ * @retval	"サンプルデータのアドレス、NULL=失敗"
  */
 //--------------------------------------------------------------
 const u8* Snd_WaveDataSampleAdrsGet( const SNDWaveData* p_data )
@@ -3487,11 +3487,11 @@ const u8* Snd_WaveDataSampleAdrsGet( const SNDWaveData* p_data )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̃A�h���X����T���v���f�[�^�̔z��̑傫�����擾
+ * @brief	波形データのアドレスからサンプルデータの配列の大きさを取得
  *
- * @param	p_data		�g�`�f�[�^�̃A�h���X
+ * @param	p_data		波形データのアドレス
  *
- * @retval	"�T���v���f�[�^�̔z��̑傫���A0=���s"
+ * @retval	"サンプルデータの配列の大きさ、0=失敗"
  */
 //--------------------------------------------------------------
 const u32 Snd_WaveDataSampleSizeGet( const SNDWaveData* p_data )
@@ -3505,49 +3505,49 @@ const u32 Snd_WaveDataSampleSizeGet( const SNDWaveData* p_data )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̃A�h���X���擾(�}�Ӑ�p)
+ * @brief	波形データのアドレスを取得(図鑑専用)
  *
- * @param	wave_arc_no	�g�`�A�[�J�C�u�ԍ�(�|�P�����i���o�[)
+ * @param	wave_arc_no	波形アーカイブ番号(ポケモンナンバー)
  *
- * @retval	"�g�`�f�[�^�\���̂̃A�h���X�ANULL=���s"
+ * @retval	"波形データ構造体のアドレス、NULL=失敗"
  *
- * 1)BGM�̌����J��
- * 2)�g�`�A�[�J�C�u���[�h
- * �̏��������Ă���̂Œ��ӁI
+ * 1)BGMの後ろを開放
+ * 2)波形アーカイブロード
+ * の処理をしているので注意！
  */
 //--------------------------------------------------------------
 const SNDWaveData* Snd_ZukanWaveDataSet( int wave_arc_no )
 {
 	u16 monsno;
 
-	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SUB_SE) );	//�T�u���SE�̌�������
+	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SUB_SE) );	//サブ画面SEの後ろを消す
 
 	monsno = wave_arc_no;
 
-	//�s���Ȓl�`�F�b�N
-	if( monsno != MONSNO_PERAPPU ){					//�f�o�b�N�̂��߂؃��b�v�͗�O�ɂ��Ă���
+	//不正な値チェック
+	if( monsno != MONSNO_PERAPPU ){					//デバックのためぺラップは例外にしておく
 		if( (wave_arc_no > MONSNO_MAX) || (wave_arc_no == 0) ){
-			//GF_ASSERT( (0) && "�|�P�����i���o�[���s���ł��I" );
-			//return FALSE;	//�G���[
-			OS_Printf( "�|�P�����i���o�[���s���ł��I" );
+			//GF_ASSERT( (0) && "ポケモンナンバーが不正です！" );
+			//return FALSE;	//エラー
+			OS_Printf( "ポケモンナンバーが不正です！" );
 			monsno = MONSNO_HUSIGIDANE;
 		}
 	}
 
-	//�g�`�A�[�J�C�u���[�h(���[�h���Ȃ��ƁA���Ƃ̏����Ŏ��s����I)
+	//波形アーカイブロード(ロードしないと、あとの処理で失敗する！)
 	Snd_ArcLoadWaveArc( monsno );
 
-	//�g�`�f�[�^�̃A�h���X�擾
+	//波形データのアドレス取得
 	return Snd_WaveDataAdrsGet( monsno );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̃A�h���X���擾
+ * @brief	波形データのアドレスを取得
  *
- * @param	wave_arc_no	�g�`�A�[�J�C�u�ԍ�(�|�P�����i���o�[)
+ * @param	wave_arc_no	波形アーカイブ番号(ポケモンナンバー)
  *
- * @retval	"�g�`�f�[�^�\���̂̃A�h���X�ANULL=���s"
+ * @retval	"波形データ構造体のアドレス、NULL=失敗"
  */
 //--------------------------------------------------------------
 static const SNDWaveData* Snd_WaveDataAdrsGet( int wave_arc_no )
@@ -3559,36 +3559,36 @@ static const SNDWaveData* Snd_WaveDataAdrsGet( int wave_arc_no )
 
 	monsno = wave_arc_no;
 
-	//�s���Ȓl�`�F�b�N
-	if( monsno != MONSNO_PERAPPU ){					//�f�o�b�N�̂��߂؃��b�v�͗�O�ɂ��Ă���
+	//不正な値チェック
+	if( monsno != MONSNO_PERAPPU ){					//デバックのためぺラップは例外にしておく
 		if( (wave_arc_no > MONSNO_MAX) || (wave_arc_no == 0) ){
-			//GF_ASSERT( (0) && "�|�P�����i���o�[���s���ł��I" );
-			//return FALSE;	//�G���[
-			OS_Printf( "�|�P�����i���o�[���s���ł��I" );
+			//GF_ASSERT( (0) && "ポケモンナンバーが不正です！" );
+			//return FALSE;	//エラー
+			OS_Printf( "ポケモンナンバーが不正です！" );
 			monsno = MONSNO_HUSIGIDANE;
 		}
 	}
 
-	//�g�`�A�[�J�C�u���\���̎擾
+	//波形アーカイブ情報構造体取得
     wave_arc_info = NNS_SndArcGetWaveArcInfo( monsno );
     if( wave_arc_info == NULL ){
-		GF_ASSERT( (0) && "�g�`�A�[�J�C�u�i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "波形アーカイブナンバーが不正です！" );
 		return NULL;
 	}
 
-	//�t�@�C��ID����A�g�`�A�[�J�C�u���\���̎擾
+	//ファイルIDから、波形アーカイブ情報構造体取得
 	wave_arc = (SNDWaveArc*)NNS_SndArcGetFileAddress( wave_arc_info->fileId );
     if( wave_arc == NULL ){
-		OS_Printf( "�T�E���h�q�[�v������Ȃ��āA�������[�h�Ɏ��s���܂����I\n" );
-		OS_Printf( "�|�P�����i���o�[ = %d\n", wave_arc_no );
-		GF_ASSERT( (0) && "�g�`�A�[�J�C�u�i���o�[���s���ł��I" );
+		OS_Printf( "サウンドヒープが足りなくて、鳴き声ロードに失敗しました！\n" );
+		OS_Printf( "ポケモンナンバー = %d\n", wave_arc_no );
+		GF_ASSERT( (0) && "波形アーカイブナンバーが不正です！" );
 		return NULL;
 	}
 
-	//SNDWaveData�^�̔g�`�f�[�^�̃A�h���X���擾
+	//SNDWaveData型の波形データのアドレスを取得
 	*p_data = SND_GetWaveDataAddress( wave_arc, 0 );
 
-	OS_Printf( "���g�`�f�[�^��\n" );
+	OS_Printf( "＜波形データ＞\n" );
 	OS_Printf( "wave_data formt    = %d\n", (*p_data)->param.format );
 	OS_Printf( "wave_data loopflag = %d\n", (*p_data)->param.loopflag );
 	OS_Printf( "wave_data rate     = %d\n", (*p_data)->param.rate );
@@ -3601,12 +3601,12 @@ static const SNDWaveData* Snd_WaveDataAdrsGet( int wave_arc_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̍Đ����Ă���T���v���f�[�^�v�f����Ԃ�
+ * @brief	波形データの再生しているサンプルデータ要素数を返す
  *
- * @param	handle_no	�n���h���i���o�[
- * @param	p_data		�g�`�f�[�^�̃A�h���X
+ * @param	handle_no	ハンドルナンバー
+ * @param	p_data		波形データのアドレス
  *
- * @retval	"�v�f��"
+ * @retval	"要素数"
  */
 //--------------------------------------------------------------
 u32 Snd_PlayerGetSampleTick( int handle_no, const SNDWaveData* p_data )
@@ -3615,8 +3615,8 @@ u32 Snd_PlayerGetSampleTick( int handle_no, const SNDWaveData* p_data )
 	u32 tick = Snd_PlayerGetTick( handle_no );
 	u32 max  = p_data->param.looplen;
 
-	//num = (max / 32);		//�Đ��I����������tick�̒l
-	num = (tick * 32);		//�Đ����Ă���v�f��
+	//num = (max / 32);		//再生終了した時のtickの値
+	num = (tick * 32);		//再生している要素数
 	if( num >= max ){
 		num = 0;
 	}
@@ -3626,13 +3626,13 @@ u32 Snd_PlayerGetSampleTick( int handle_no, const SNDWaveData* p_data )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�f�[�^�̍Đ����Ă���T���v���f�[�^�v�f����Ԃ�(�}�ӗp)
+ * @brief	波形データの再生しているサンプルデータ要素数を返す(図鑑用)
  *
- * @param	handle_no	�n���h���i���o�[
- * @param	p_data		�g�`�f�[�^�̃A�h���X
- * @param	pitch		�ݒ肵�Ă���s�b�`
+ * @param	handle_no	ハンドルナンバー
+ * @param	p_data		波形データのアドレス
+ * @param	pitch		設定しているピッチ
  *
- * @retval	"�v�f��"
+ * @retval	"要素数"
  */
 //--------------------------------------------------------------
 u32 Snd_ZukanPlayerGetSampleTick( int handle_no, const SNDWaveData* p_data, int pitch )
@@ -3643,13 +3643,13 @@ u32 Snd_ZukanPlayerGetSampleTick( int handle_no, const SNDWaveData* p_data, int 
 	u32 max  = p_data->param.looplen;
 
 #if 1
-	//�ׂ����v�Z�͂��Ă��Ȃ��A�I�N�^�[�u�̂ݑΉ�
+	//細かい計算はしていない、オクターブのみ対応
 	
 	no = pitch / (64*12);
 	no = no * 2;
 
 	if( no < 0 ){
-		no = 32 / no * -1;	//���̒l�ɂ���
+		no = 32 / no * -1;	//正の値にする
 	}else if( no == 0 ){
 		no = 32;
 	}else{
@@ -3661,8 +3661,8 @@ u32 Snd_ZukanPlayerGetSampleTick( int handle_no, const SNDWaveData* p_data, int 
 	no = 32;
 #endif
 
-	//num = (max / no);		//�Đ��I����������tick�̒l
-	num = (tick * no);		//�Đ����Ă���v�f��
+	//num = (max / no);		//再生終了した時のtickの値
+	num = (tick * no);		//再生している要素数
 	if( num >= max ){
 		num = 0;
 	}
@@ -3677,11 +3677,11 @@ u32 Snd_ZukanPlayerGetSampleTick( int handle_no, const SNDWaveData* p_data, int 
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�B�b�N���擾
+ * @brief	ティック数取得
  *
- * @param	p_data		�g�`�f�[�^�̃A�h���X
+ * @param	p_data		波形データのアドレス
  *
- * @retval	"�e�B�b�N��"
+ * @retval	"ティック数"
  */
 //--------------------------------------------------------------
 u32 Snd_PlayerGetTick( int handle_no )
@@ -3708,35 +3708,35 @@ u32 Snd_PlayerGetTick( int handle_no )
 
 
 
-#define WAVE_8_BIT_CENTER		(128)			//8bit �؂�ւ�(u8)
-#define WAVE_16_BIT_CENTER		(0)				//16bit �؂�ւ�(s16)
+#define WAVE_8_BIT_CENTER		(128)			//8bit 切り替え(u8)
+#define WAVE_16_BIT_CENTER		(0)				//16bit 切り替え(s16)
 
-//�{�[�O���t�p�̒�`
+//ボーグラフ用の定義
 enum{
-	//��������"3"tick���ƂɌĂ΂��̂ŁA32*3=96��100�ɂ��Ă���
-	//WAVE_LEVEL_BEFORE_POS	=	(50),			//��r���鍷���̕�
-	WAVE_LEVEL_BEFORE_POS	=	(100),			//��r���鍷���̕�
-	//WAVE_LEVEL_BEFORE_POS	=	(150),			//��r���鍷���̕�
-	//WAVE_LEVEL_BEFORE_POS	=	(200),			//��r���鍷���̕�
+	//だいたい"3"tickごとに呼ばれるので、32*3=96で100にしておく
+	//WAVE_LEVEL_BEFORE_POS	=	(50),			//比較する差分の幅
+	WAVE_LEVEL_BEFORE_POS	=	(100),			//比較する差分の幅
+	//WAVE_LEVEL_BEFORE_POS	=	(150),			//比較する差分の幅
+	//WAVE_LEVEL_BEFORE_POS	=	(200),			//比較する差分の幅
 
-	//�������v�f�������߂�Ԋu
-	//�Ԋu��������قǗv�f��[0]�̐������Ȃ��Ȃ�
+	//代入する要素数を決める間隔
+	//間隔狭くするほど要素数[0]の数が少なくなる
 	//
-	//06.03.30�e�X�g
-	WAVE_LEVEL_HABA				=	(1),		//���x���𕪂���Ԋu("0","1",...�ƕ������)
+	//06.03.30テスト
+	WAVE_LEVEL_HABA				=	(1),		//レベルを分ける間隔("0","1",...と分かれる)
 	//
-	//06.03.29�ȑO
-	//WAVE_LEVEL_HABA			=	(2),		//���x���𕪂���Ԋu("0,1","2,3",...�ƕ������)
+	//06.03.29以前
+	//WAVE_LEVEL_HABA			=	(2),		//レベルを分ける間隔("0,1","2,3",...と分かれる)
 	//
-	//WAVE_LEVEL_HABA			=	(3),		//���x���𕪂���Ԋu("0,1,2","3,4,5",...�ƕ������)
-	//WAVE_LEVEL_HABA		=	(4),				//���x���𕪂���Ԋu(("0,1,2,3",...�ƕ������)
-	//WAVE_LEVEL_HABA		=	(8),				//���x���𕪂���Ԋu(("0,1,2,3",...�ƕ������)
+	//WAVE_LEVEL_HABA			=	(3),		//レベルを分ける間隔("0,1,2","3,4,5",...と分かれる)
+	//WAVE_LEVEL_HABA		=	(4),				//レベルを分ける間隔(("0,1,2,3",...と分かれる)
+	//WAVE_LEVEL_HABA		=	(8),				//レベルを分ける間隔(("0,1,2,3",...と分かれる)
 };
 
 //06.04.11
-//�������v�f�������߂�Ԋu���e�[�u���ł��悤�ɂ��Ē�������I
+//代入する要素数を決める間隔をテーブルでもつようにして調整する！
 #define WAVE_LEVEL_HABA_MAX	(9)
-//static const u8 wave_level_haba[WAVE_LEVEL_HABA_MAX] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };	//�O�Ɠ���
+//static const u8 wave_level_haba[WAVE_LEVEL_HABA_MAX] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };	//前と同じ
 //static const u8 wave_level_haba[WAVE_LEVEL_HABA_MAX] = { 1, 2, 4, 6, 7, 8, 9, 10, 11 };
 static const u8 wave_level_haba[WAVE_LEVEL_HABA_MAX] = { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -3745,17 +3745,17 @@ u32 Snd_ZukanPlayerGetTick();
 void Snd_DebugWaveDataPut( const SNDWaveData* p_data, u32 start, u32 end );
 
 
-//const SNDWaveData* snd_wave_data;				//�g�`�f�[�^�̃|�C���^
+//const SNDWaveData* snd_wave_data;				//波形データのポインタ
 
-//�Đ��I��������A
-//�Ō�Ɏ擾�������x������A
-//�������Ã��x���𗎂Ƃ��Ă���
+//再生終了したら、
+//最後に取得したレベルから、
+//少しずづレベルを落としていく
 //--------------------------------------------------------------
 /**
- * @brief	"�f�o�b�N"�@�g�`�f�[�^�\��
+ * @brief	"デバック"　波形データ表示
  *
- * @param	start		�\������f�[�^�̊J�n�ʒu
- * @param	end			�\������f�[�^�̏I���ʒu
+ * @param	start		表示するデータの開始位置
+ * @param	end			表示するデータの終了位置
  *
  * @retval	none
  */
@@ -3777,13 +3777,13 @@ void Snd_DebugWaveDataPut( const SNDWaveData* p_data, u32 start, u32 end )
 
 	for( i=start;  i < end ;i++ ){
 
-		//�G���[���
+		//エラー回避
 		if( i >= data_size ){
 			return;
 		}
 
 		//--------------------------------
-		//			�f�[�^	��	�\���ʒu
+		//			データ	→	表示位置
 		//			127			0
 		//
 		//			0			128
@@ -3792,14 +3792,14 @@ void Snd_DebugWaveDataPut( const SNDWaveData* p_data, u32 start, u32 end )
 		//
 		//			128			255
 		//--------------------------------
-		if( (p_data)->samples[i] == 255 ){								//255��������
-			pos = 129;													//�\��129
+		if( (p_data)->samples[i] == 255 ){								//255だったら
+			pos = 129;													//表示129
 
-		}else if( (p_data)->samples[i] < WAVE_8_BIT_CENTER ){				//0-127��������
-			pos = (128 - (p_data)->samples[i]);							//�\��0-128
+		}else if( (p_data)->samples[i] < WAVE_8_BIT_CENTER ){				//0-127だったら
+			pos = (128 - (p_data)->samples[i]);							//表示0-128
 
 		}else{
-			pos = (255 - ((p_data)->samples[i] - WAVE_8_BIT_CENTER));		//�\��129-255
+			pos = (255 - ((p_data)->samples[i] - WAVE_8_BIT_CENTER));		//表示129-255
 		}
 
 		//OS_Printf( "(p_data)->samples[%d] = %d\n", i, pos );
@@ -3811,12 +3811,12 @@ void Snd_DebugWaveDataPut( const SNDWaveData* p_data, u32 start, u32 end )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`���x���Z�b�g(�}�ӗp)
+ * @brief	波形レベルセット(図鑑用)
  *
- * @param	p_data		�g�`�f�[�^�̃A�h���X
- * @param	buf			�i�[����o�b�t�@�̃|�C���^
- * @param	max			�i�[����o�b�t�@�̍ő吔
- * @param	pitch		�ݒ肵�Ă���s�b�`
+ * @param	p_data		波形データのアドレス
+ * @param	buf			格納するバッファのポインタ
+ * @param	max			格納するバッファの最大数
+ * @param	pitch		設定しているピッチ
  *
  * @retval	none
  */
@@ -3825,60 +3825,60 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int pitch )
 {
 	int flag;
-	int start;									//�f�[�^���`�F�b�N����J�n�ʒu
-	s8	status;									//���݂̏��(+1=��A-1=��)
-	int i,j,pos,count;							//�v�Z�p
+	int start;									//データをチェックする開始位置
+	s8	status;									//現在の状態(+1=上、-1=下)
+	int i,j,pos,count;							//計算用
 	u32 tick = Snd_ZukanPlayerGetSampleTick( SND_HANDLE_PMVOICE, p_data, pitch );
 
-	//[100]��������A[50]�`[100]���`�F�b�N����
+	//[100]だったら、[50]〜[100]をチェックする
 	start = tick - WAVE_LEVEL_BEFORE_POS;
 	if( start < 0 ){
-		start = 0;								//�␳
+		start = 0;								//補正
 	}
 
-	//������
+	//初期化
 	count = 0;
 	pos	= 0;
 
-	//���݂̏�ԃZ�b�g(128�ȉ��͏�A����ȊO�͉�)
+	//現在の状態セット(128以下は上、それ以外は下)
 	status = ((p_data)->samples[start] < 128 ) ? 1 : -1;
 
 #ifdef SOUND_OS_PRINT_ON
 	OS_Printf( "\n===========================\n" );
-	OS_Printf( "�`�F�b�N�J�n�ʒu start = %d\n", start );
-	OS_Printf( "��� 1=�� -1=�� status = %d\n", status );
-	OS_Printf( "�`�F�b�N���݈ʒu tick = %d\n", tick );
+	OS_Printf( "チェック開始位置 start = %d\n", start );
+	OS_Printf( "状態 1=上 -1=下 status = %d\n", status );
+	OS_Printf( "チェック現在位置 tick = %d\n", tick );
 #endif
 
-	//�J�n�ʒu���猻�݈ʒu�܂Ń`�F�b�N����
+	//開始位置から現在位置までチェックする
 	//for( i=start; i < tick ;i++ ){
-	//for( i=start; i < tick ;i+=max ){	//�e�X�g�I1���Ã`�F�b�N�ł͂Ȃ��A�Ԉ����ă`�F�b�N����
-	//for( i=start; i < tick ;i+=(max/2) ){	//�e�X�g�I1���Ã`�F�b�N�ł͂Ȃ��A�Ԉ����ă`�F�b�N����
-	for( i=start; i < tick ;i+=2 ){	//�e�X�g�I1���Ã`�F�b�N�ł͂Ȃ��A�Ԉ����ă`�F�b�N����
+	//for( i=start; i < tick ;i+=max ){	//テスト！1ずづチェックではなく、間引いてチェックする
+	//for( i=start; i < tick ;i+=(max/2) ){	//テスト！1ずづチェックではなく、間引いてチェックする
+	for( i=start; i < tick ;i+=2 ){	//テスト！1ずづチェックではなく、間引いてチェックする
 	
 		flag = 0;
 
-		if( status > 0 ){									//��ɂ���
-			if( (p_data)->samples[i] > 128 ){				//�����H
+		if( status > 0 ){									//上にいて
+			if( (p_data)->samples[i] > 128 ){				//下か？
 				flag = 1;
 			}else{
-				count++;									//��̂܂܂Ȃ̂ŃJ�E���^�C���N�������g
+				count++;									//上のままなのでカウンタインクリメント
 			}
 
-		//}else if( status < 0 ){							//���ɂ���
-		}else{												//���ɂ���
-			if( (p_data)->samples[i] < 128 ){				//�ォ�H
+		//}else if( status < 0 ){							//下にいて
+		}else{												//下にいて
+			if( (p_data)->samples[i] < 128 ){				//上か？
 				flag = 1;
 			}else{
-				count++;									//���̂܂܂Ȃ̂ŃJ�E���^�C���N�������g
+				count++;									//下のままなのでカウンタインクリメント
 			}
 		}
 
-		//�Z���^�[���������̂ŁA���x���C���N�������g
+		//センターをこえたので、レベルインクリメント
 		if( flag == 1 ){
 #if 0
 			pos = (count / WAVE_LEVEL_HABA);
-			//pos = (pos >= max) ? (max-1) : pos;		//�␳(�K�������H)
+			//pos = (pos >= max) ? (max-1) : pos;		//補正(適当かも？)
 #else
 			for( j=0; j < WAVE_LEVEL_HABA_MAX ;j++ ){ 
 				if( count < wave_level_haba[j] ){
@@ -3889,20 +3889,20 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 
 #endif
 
-			//�J�b�g����(�̂Ă�)���܂��Ă����������H
+			//カットして(捨てて)しまってもいいかも？
 			if( pos >= max ){
-				pos = ( max - 1 );						//�␳(�K�������H)
+				pos = ( max - 1 );						//補正(適当かも？)
 			}
 			//------------------------------
 
-			//�o�����X���Ƃ邽�߂ɊԊu�������鐬���͖�������
+			//バランスをとるために間隔狭すぎる成分は無視する
 			if( count != 0 ){
-				//�v�f���̎�O����
-				//�v�f���̌�낪��
-				buf[max - 1 - pos]++;						//���x���C���N�������g
+				//要素数の手前が低
+				//要素数の後ろが高
+				buf[max - 1 - pos]++;						//レベルインクリメント
 			}else{
 #ifdef SOUND_OS_PRINT_ON
-				OS_Printf( "��count = 0 �𖳎����܂����I\n" );
+				OS_Printf( "▲count = 0 を無視しました！\n" );
 #endif
 			}
 
@@ -3913,17 +3913,17 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 	}
 
 #ifdef SOUND_OS_PRINT_ON
-	//�f�o�b�N�\��
+	//デバック表示
 	for( i=0; i < max ;i++ ){
-		OS_Printf( "���␳�Obuf[%d] = %d\n", i, buf[i] );
+		OS_Printf( "★補正前buf[%d] = %d\n", i, buf[i] );
 	}
 	OS_Printf( "\n------------\n" );
 #endif
 
 #if 0
-	//�␳�e�X�g��
+	//補正テスト中
 	
-	//�c10�i�K�ɕ␳����
+	//縦10段階に補正する
 	for( i=0; i < max ;i++ ){
 		if( buf[i] >= 100 ){
 			buf[i] = 9;
@@ -3933,7 +3933,7 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 	}
 #else
 
-	//�c10�i�K�ɕ␳����
+	//縦10段階に補正する
 	for( i=0; i < max ;i++ ){
 		if( buf[i] >= 10 ){
 			buf[i] = 9;
@@ -3945,8 +3945,8 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 
 #if 1
 
-	//��ԍ�����f�[�^������Ȃ������v�f����T���āA
-	//���ׂ̗̃f�[�^�̔����̃��x����␳���đ��
+	//一番左からデータが入らなかった要素数を探して、
+	//その隣のデータの半分のレベルを補正して代入
 
 	for( i=0; i < (max-1) ;i++ ){
 		if( (buf[i] == 0) && (buf[i+1] != 0) ){
@@ -3960,19 +3960,19 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
 
 
 #if 0
-	//0�����݂�����A�ƂȂ�̃��x�������āA�␳����H
-	//�ψ�ɂȂ肷���Ă��܂��H
+	//0が存在したら、となりのレベルを見て、補正する？
+	//均一になりすぎてしまう？
 	
-	//�Ԉ����̊Ԋu���L����������ƁA���̃f�[�^���ǂ��Ȃ邩���A�^�������Ȃ�̂ł��߁I
-	//�A�������`��������x�����邽�߂ɁA+1,+2���炢�̊Ԉ����͂��������H
+	//間引きの間隔を広くしすぎると、そのデータがどうなるかが、運が強くなるのでだめ！
+	//連続した形をある程度さけるために、+1,+2ぐらいの間引きはいいかも？
 	
-	//�オ10�i�K�Ȃ̂ŁA�A�������`�͔����Ȃ��Ƃ����Ȃ��B
+	//上が10段階なので、連続した形は避けないといけない。
 #endif
 
 #ifdef SOUND_OS_PRINT_ON
-	//�f�o�b�N�\��
+	//デバック表示
 	for( i=0; i < max ;i++ ){
-		OS_Printf( "���␳��buf[%d] = %d\n", i, buf[i] );
+		OS_Printf( "■補正後buf[%d] = %d\n", i, buf[i] );
 	}
 	OS_Printf( "\n------------\n" );
 #endif
@@ -3982,21 +3982,21 @@ void Snd_ZukanWaveLevelSet_New( const SNDWaveData* p_data, u8* buf, int max, int
  
 //--------------------------------------------------------------
 /**
- * @brief	�G�t�F�N�g�̃R�[���o�b�N�֐�(�}�Ӗ����p)
+ * @brief	エフェクトのコールバック関数(図鑑鳴き声用)
  *
- * @param	bufferL_p	L�~�L�T�[����
- * @param	bufferR_p	R�~�L�T�[����
- * @param	len			�o�b�t�@�̃T�C�Y
- * @param	format		NNS_SndCaptureStartEffect�֐��̈���(CAPTURE_FORMAT)�Ɠ������̂��n�����
- * @param	arg			NNS_SndCaptureStartEffect�֐��̈���(callbackInfo)�Ɠ������̂��n�����
+ * @param	bufferL_p	Lミキサー成分
+ * @param	bufferR_p	Rミキサー成分
+ * @param	len			バッファのサイズ
+ * @param	format		NNS_SndCaptureStartEffect関数の引数(CAPTURE_FORMAT)と同じものが渡される
+ * @param	arg			NNS_SndCaptureStartEffect関数の引数(callbackInfo)と同じものが渡される
  *
  * @retval	none
  *
- * �ȒP�ȃ��[�p�X�t�B���^�i�ړ����ρj�������ďo�͂��Ă���
+ * 簡単なローパスフィルタ（移動平均）をかけて出力している
  *
- * �����Ԃ̊Ԋu���߁A���̊Ԋu���̕��ϒl��A�����Čv�Z���邱�Ƃɂ����
- * ����(��������)�I�ȓ�����m�낤�Ƃ�����́B
- * (��������ւƓ������� )
+ * 一定期間の間隔を定め、その間隔内の平均値を連続して計算することによって
+ * 趨勢(すうせい)的な動向を知ろうとするもの。
+ * (ある方向へと動く勢い )
  */
 //--------------------------------------------------------------
 static void EffectCallback2( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCaptureFormat format, void* arg )
@@ -4011,12 +4011,12 @@ static void EffectCallback2( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCa
     int x;
     int i, j;
     
-	//�T���v����8�r�b�gPCM�͂��̂܂�
-	//�T���v����16�r�b�gPCM��������o�b�t�@�̃T�C�Y�𔼕��ɂ���
+	//サンプルが8ビットPCMはそのまま
+	//サンプルが16ビットPCMだったらバッファのサイズを半分にする
     samples = ( format == NNS_SND_CAPTURE_FORMAT_PCM8 ) ? len : ( len >> 1 );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n\n���T�E���h�@�L���v�`���@�G�t�F�N�g��\n" );
+	OS_Printf( "\n\n＜サウンド　キャプチャ　エフェクト＞\n" );
 	OS_Printf( "format = %d\n", format );			//0
 	OS_Printf( "len = %d\n", len );					//1024
 	OS_Printf( "samples = %d\n", samples );			//
@@ -4024,60 +4024,60 @@ static void EffectCallback2( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCa
 #endif
     
 	if( (*filter_size) == 0 ){
-		return;		//�������Ȃ�
+		return;		//何もしない
 	}
 
 	//--------------------------------------------
-	//��
-	//	LR�~�L�T�[�����̃T�C�Y(samples)	= 256 
-	//	�t�B���^�[�T�C�Y				= 8
+	//例
+	//	LRミキサー成分のサイズ(samples)	= 256 
+	//	フィルターサイズ				= 8
 	//
 	//	lp[ 256 - 8 + i ]				= 248 + i
 	//
-	//	248,249,250,251,252,253,254,255��ۑ�
+	//	248,249,250,251,252,253,254,255を保存
 	//--------------------------------------------
-    //LR�~�L�T�[�����̂�����A�t�B���^�[�T�C�Y����ۑ�
+    //LRミキサー成分のけつから、フィルターサイズ分を保存
     for( i = 0; i < (*filter_size) ; i++ ) {
         org[i][0] = lp[ samples - (*filter_size) + i ];
         org[i][1] = rp[ samples - (*filter_size) + i ];
-		OS_Printf( "org[%d][��] = %d\n", i, org[i][0] );
-		OS_Printf( "org[%d][�E] = %d\n", i, org[i][1] );
+		OS_Printf( "org[%d][左] = %d\n", i, org[i][0] );
+		OS_Printf( "org[%d][右] = %d\n", i, org[i][1] );
     }
     
 	//--------------------------------------------
-	//�� 
-	//	LR�~�L�T�[�����̃T�C�Y		= 256
-	//	�t�B���^�[�T�C�Y			= 8
+	//例 
+	//	LRミキサー成分のサイズ		= 256
+	//	フィルターサイズ			= 8
 	//
     //	for( i = 256 - 1; i >= 8 - 1 ; i-- ){
-	//	255...7�܂ŏ�������
+	//	255...7まで処理する
 	//--------------------------------------------
-	//LR�~�L�T�[�����̂�����A�t�B���^�[�T�C�Y�̒l��菬�����Ȃ�܂ŏ�������
+	//LRミキサー成分のけつから、フィルターサイズの値より小さくなるまで処理する
     for( i = samples - 1; i >= (*filter_size) - 1 ; i-- ){
 
 		//--------------------------------------------
-		//�� 
-		//	LR�~�L�T�[�����̃T�C�Y		= 256
-		//	�t�B���^�[�T�C�Y			= 8
+		//例 
+		//	LRミキサー成分のサイズ		= 256
+		//	フィルターサイズ			= 8
 		//
-		//	j = 0 �` 7
+		//	j = 0 〜 7
 		//	x += lp[ 255 - j ];
-		//	lp[255],[254],...[248]�܂ł̒l�𑫂��āA
-		//	�t�B���^�[�T�C�Y�Ŋ���A���ς̒l�����߂�
+		//	lp[255],[254],...[248]までの値を足して、
+		//	フィルターサイズで割り、平均の値を求める
 		//--------------------------------------------
-		//L�~�L�T�[����
+		//Lミキサー成分
         x = 0;
-        for( j = 0 ; j < (*filter_size) ; j++ ) {	//�t�B���^�[�T�C�Y�������Ă���
+        for( j = 0 ; j < (*filter_size) ; j++ ) {	//フィルターサイズ分足していく
             x += lp[ i - j ];
         }
-        lp[ i ] = (smp_t)(x /= (*filter_size));		//�t�B���^�[�T�C�Y�Ŋ��蕽�ς̒l�����߂ď㏑��
+        lp[ i ] = (smp_t)(x /= (*filter_size));		//フィルターサイズで割り平均の値を求めて上書き
         
-		//R�~�L�T�[����
+		//Rミキサー成分
         x = 0;
-        for( j = 0 ; j < (*filter_size) ; j++ ) {	//�t�B���^�[�T�C�Y�������Ă���
+        for( j = 0 ; j < (*filter_size) ; j++ ) {	//フィルターサイズ分足していく
             x += rp[ i - j ];
         }
-        rp[ i ] = (smp_t)(x /= (*filter_size));		//�t�B���^�[�T�C�Y�Ŋ��蕽�ς̒l�����߂ď㏑��
+        rp[ i ] = (smp_t)(x /= (*filter_size));		//フィルターサイズで割り平均の値を求めて上書き
     }
     
 
@@ -4085,25 +4085,25 @@ static void EffectCallback2( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCa
 #if 0
 #if FILTER_SIZE >= 2    
 	//--------------------------------------------
-	//�� �o�b�t�@�T�C�Y = 24 �t�B���^�[�T�C�Y = 8
+	//例 バッファサイズ = 24 フィルターサイズ = 8
     //for( i = 8 - 2; i >= 0 ; i-- ){
-	//6...0�܂ŏ�������
+	//6...0まで処理する
 	//--------------------------------------------
     for( i = (*filter_size) - 2 ; i >= 0 ; i-- ){
 
-		//L�~�L�T�[����
+		//Lミキサー成分
         x = lp[ i ];
-        for( j = 1 ; j < (*filter_size) ; j++ ) {	//�t�B���^�[�T�C�Y��
+        for( j = 1 ; j < (*filter_size) ; j++ ) {	//フィルターサイズ分
             x += GetSample( lp, i-j, 0, info );
         }
-        lp[ i ] = (smp_t)(x /= (*filter_size));	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        lp[ i ] = (smp_t)(x /= (*filter_size));	//フィルターサイズで割り平均で上書きする
         
-		//R�~�L�T�[����
+		//Rミキサー成分
         x = rp[ i ];
         for( j = 1 ; j < (*filter_size) ; j++ ) {
             x += GetSample( rp, i-j, 1, info );
         }
-        rp[ i ] = (smp_t)(x /= (*filter_size));	//�t�B���^�[�T�C�Y�Ŋ��蕽�ςŏ㏑������
+        rp[ i ] = (smp_t)(x /= (*filter_size));	//フィルターサイズで割り平均で上書きする
     }
 #endif
 #endif
@@ -4111,32 +4111,32 @@ static void EffectCallback2( void* bufferL_p, void* bufferR_p, u32 len, NNSSndCa
 
 
 
-	//�L���v�`�������������̈�̃t�B���^�T�C�Y����
-	//�ۑ����Ă������f�[�^�ŏ㏑������
-	//(�o�b�t�@�̈�Ԍ�납��A�t�B���^�[�T�C�Y����ۑ����Ă������f�[�^)
+	//キャプチャが完成した領域のフィルタサイズ分を
+	//保存しておいたデータで上書きする
+	//(バッファの一番後ろから、フィルターサイズ分を保存しておいたデータ)
     for( i = 0; i < (*filter_size) ; i++ ) {
     	info->sample[i][0] = org[i][0];
 		info->sample[i][1] = org[i][1];
     }
 
-	//���C���������Ɋm���ɏ�������
+	//メインメモリに確実に書き込む
     DC_FlushRange( bufferL_p, samples );
     DC_FlushRange( bufferR_p, samples );
 
-	//�����ɓn�����o�b�t�@�́A(���̊֐����ł�info)
-	//�L���v�`�������������̈���w���Ă��܂��B
-	//���̗̈���C�����邱�ƂŁA���ۂɏo�͂���鉹��ύX���邱�Ƃ��ł��܂��B 
+	//引数に渡されるバッファは、(この関数内ではinfo)
+	//キャプチャが完了した領域を指しています。
+	//この領域を修正することで、実際に出力される音を変更することができます。 
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X���[�J�����[�N��ύX����
+ * @brief	シーケンスローカルワークを変更する
  *
- * @param	num		�V�[�P���X���[�J�����[�N"0"�ɃZ�b�g����l
+ * @param	num		シーケンスローカルワーク"0"にセットする値
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  *
- * �F�X�o�����������A����͎g�p�����肵�Ă����I
+ * 色々出来そうだが、今回は使用を限定しておく！
  */
 //--------------------------------------------------------------
 BOOL Snd_PlayerWriteVariable( s16 num )
@@ -4146,15 +4146,15 @@ BOOL Snd_PlayerWriteVariable( s16 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	PLAYER_BGM�̎g�p�`�����l����ύX����
+ * @brief	PLAYER_BGMの使用チャンネルを変更する
  *
- * @param	ch		�g�p�`�����l���̃r�b�g�w��
+ * @param	ch		使用チャンネルのビット指定
  *
  * @retval	none
  *
- * �I�[�v�j���O�A�G���f�B���O�݂̂Ŏg�p����I
+ * オープニング、エンディングのみで使用する！
  *
- * 14,15ch�𔲂����Ďg�p�\�ɂ���I
+ * 14,15chを抜かして使用可能にする！
  */
 //--------------------------------------------------------------
 static void Snd_PlayerBgmChannelSet( u16 ch_bit )
@@ -4166,15 +4166,15 @@ static void Snd_PlayerBgmChannelSet( u16 ch_bit )
 #if 0 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�g���b�N�̊m�ۉ\�ȃ`�����l����ύX
+ * @brief	シーケンストラックの確保可能なチャンネルを変更
  *
- * @param	ch_bit			�m�ۉ\�ȃ`�����l���̃r�b�g�t���O
+ * @param	ch_bit			確保可能なチャンネルのビットフラグ
  *
  * @retval	none
  *
- * �I�[�v�j���O�A�G���f�B���O�݂̂Ŏg�p����I
+ * オープニング、エンディングのみで使用する！
  *
- * 14,15ch�𔲂����Ďg�p�\�ɂ���I
+ * 14,15chを抜かして使用可能にする！
  */
 //--------------------------------------------------------------
 static void Snd_PlayerBgmChannelSet( u16 ch_bit )
@@ -4186,9 +4186,9 @@ static void Snd_PlayerBgmChannelSet( u16 ch_bit )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�p�\�`�����l������A���o�[�u�ݒ�
+ * @brief	使用可能チャンネル操作、リバーブ設定
  *
- * @param	flag	2=�Z�b�g(ED)�A1=�Z�b�g(OP)�A0=�N���A
+ * @param	flag	2=セット(ED)、1=セット(OP)、0=クリア
  *
  * @retval	none
  */
@@ -4197,22 +4197,22 @@ void Snd_BgmChannelSetAndReverbSet( int flag )
 {
 #ifdef SND_CH_SET
 	if( flag == 0 ){
-		Snd_PlayerBgmChannelSet( PLAYER_BGM_NORMAL_CH );	//PLAYER_GM�̎g�p�`�����l�������ɖ߂�
-		Snd_CaptureStopReverb( 0 );							//���o�[�u��~
-		//OS_Printf( "\n**********\nOP,ED ���o�[�u��~�I\n*********\n" );
+		Snd_PlayerBgmChannelSet( PLAYER_BGM_NORMAL_CH );	//PLAYER_GMの使用チャンネルを元に戻す
+		Snd_CaptureStopReverb( 0 );							//リバーブ停止
+		//OS_Printf( "\n**********\nOP,ED リバーブ停止！\n*********\n" );
 	}else if( flag == 1 ){
-		Snd_PlayerBgmChannelSet( PLAYER_BGM_EXTRA_CH );	//OP�AED�̂�BGM�̎g�p�`�����l���𑝂₷
-		if( Snd_CaptureStartReverb( SND_REVERB_NUM_OP ) == FALSE ){	//���o�[�u�J�n
-			OS_Printf( "\n**********\nOP,ED ���o�[�u���s�I\n*********\n" );
+		Snd_PlayerBgmChannelSet( PLAYER_BGM_EXTRA_CH );	//OP、EDのみBGMの使用チャンネルを増やす
+		if( Snd_CaptureStartReverb( SND_REVERB_NUM_OP ) == FALSE ){	//リバーブ開始
+			OS_Printf( "\n**********\nOP,ED リバーブ失敗！\n*********\n" );
 		}else{
-			//OS_Printf( "\n**********\nOP,ED ���o�[�u�J�n�I\n*********\n" );
+			//OS_Printf( "\n**********\nOP,ED リバーブ開始！\n*********\n" );
 		}
 	}else{
-		Snd_PlayerBgmChannelSet( PLAYER_BGM_EXTRA_CH );	//OP�AED�̂�BGM�̎g�p�`�����l���𑝂₷
-		if( Snd_CaptureStartReverb( SND_REVERB_NUM_ED ) == FALSE ){	//���o�[�u�J�n
-			OS_Printf( "\n**********\nOP,ED ���o�[�u���s�I\n*********\n" );
+		Snd_PlayerBgmChannelSet( PLAYER_BGM_EXTRA_CH );	//OP、EDのみBGMの使用チャンネルを増やす
+		if( Snd_CaptureStartReverb( SND_REVERB_NUM_ED ) == FALSE ){	//リバーブ開始
+			OS_Printf( "\n**********\nOP,ED リバーブ失敗！\n*********\n" );
 		}else{
-			//OS_Printf( "\n**********\nOP,ED ���o�[�u�J�n�I\n*********\n" );
+			//OS_Printf( "\n**********\nOP,ED リバーブ開始！\n*********\n" );
 		}
 	}
 
@@ -4223,7 +4223,7 @@ void Snd_BgmChannelSetAndReverbSet( int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM���|�[�Y���邩�A��~���邩�𔻕ʂ��ď���
+ * @brief	フィールドBGMをポーズするか、停止するかを判別して処理
  *
  * @param	none
  *
@@ -4232,18 +4232,18 @@ void Snd_BgmChannelSetAndReverbSet( int flag )
 //--------------------------------------------------------------
 static void Snd_FieldPauseOrStop( void )
 {
-	//�t�F�[�h���ł͂Ȃ��A
-	//PLAYER_FIELD�ɃV�[�P���X���ݒ肳��Ă��āA
-	//���݂�BGM���u��ꑐ�v�łȂ�������
+	//フェード中ではなく、
+	//PLAYER_FIELDにシーケンスが設定されていて、
+	//現在のBGMが「ゆれ草」でなかったら
 	if( (Snd_FadeCheck() == 0) && 
 		(Snd_GetSeqNo(Snd_HandleGet(SND_HANDLE_FIELD)) != -1) &&
 		(Snd_NowBgmNoGet() != SEQ_KUSAGASA) ){
 
-		Snd_StopEx();											//�t�B�[���hBGM�𔲂����đS��~
-		Snd_PlayerPause( PLAYER_FIELD, TRUE );					//�t�B�[���hBGM�|�[�Y
+		Snd_StopEx();											//フィールドBGMを抜かして全停止
+		Snd_PlayerPause( PLAYER_FIELD, TRUE );					//フィールドBGMポーズ
 
 	}else{
-		Snd_Stop();												//�S��~
+		Snd_Stop();												//全停止
 	}
 
 	return;
@@ -4252,14 +4252,14 @@ static void Snd_FieldPauseOrStop( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	�v���C���[�̉��ʑ���(�f�t�H���g��127���ݒ肳��Ă���)
+ * @brief	プレイヤーの音量操作(デフォルトは127が設定されている)
  *
- * @param	player_no	�v���C���[�i���o�[
- * @param	volume		�{�����[��
+ * @param	player_no	プレイヤーナンバー
+ * @param	volume		ボリューム
  *
  * @retval	none
  *
- * �g�p��́A�K��127�ɖ߂��Ă��������I
+ * 使用後は、必ず127に戻してください！
  */
 //--------------------------------------------------------------
 void Snd_PlayerSetPlayerVolume( int player_no, int volume )
@@ -4271,15 +4271,15 @@ void Snd_PlayerSetPlayerVolume( int player_no, int volume )
 #ifdef SND_PV_070213
 //--------------------------------------------------------------
 /**
- * @brief	�������Q�Đ��o����t���O�̑���
+ * @brief	鳴き声を２つ再生出来るフラグの操作
  *
  * @param	flag		0=OFF,1=ON
  *
  * @retval	none
  *
- * �g�p��́A�K��0=OFF�ɖ߂��Ă�������
+ * 使用後は、必ず0=OFFに戻してください
  *
- * ��{�I�Ƀo�g��(�Q�C�o����)�ł����g�p���Ȃ��͂��I
+ * 基本的にバトル(２匹出す時)でしか使用しないはず！
  */
 //--------------------------------------------------------------
 void Snd_PMVoiceDoubleFlagSet( BOOL flag )
@@ -4292,15 +4292,15 @@ void Snd_PMVoiceDoubleFlagSet( BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�g���^��Đ��t���O�̑���
+ * @brief	バトル録画再生フラグの操作
  *
  * @param	flag		0=OFF,1=ON
  *
  * @retval	none
  *
- * �g�p��́A�K��0=OFF�ɖ߂��Ă�������
+ * 使用後は、必ず0=OFFに戻してください
  *
- * br_manager.c���炵���Ă΂�Ȃ��B
+ * br_manager.cからしか呼ばれない。
  */
 //--------------------------------------------------------------
 void Snd_BattleRecFlag( BOOL flag )

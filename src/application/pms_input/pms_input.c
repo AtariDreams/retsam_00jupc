@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_input.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–Ê
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢
  * @author	taya
  * @date	06.01.20
  */
@@ -20,7 +20,7 @@
 
 //------------------------------------------------------
 /**
- * ’è”’è‹`
+ * å®šæ•°å®šç¾©
  */
 //------------------------------------------------------
 enum {
@@ -76,7 +76,7 @@ enum TOUCH_BUTTON {
 
 //------------------------------------------------------
 /**
- * ŠÖ”Œ^’è‹`
+ * é–¢æ•°å‹å®šç¾©
  */
 //------------------------------------------------------
 typedef  void (*SubProc)(PMS_INPUT_WORK*, int*);
@@ -84,7 +84,7 @@ typedef  PROC_RESULT (*MainProc)(PMS_INPUT_WORK*, int*);
 
 //------------------------------------------------------
 /**
- * ƒƒjƒ…[‘€ìƒ[ƒN
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ“ä½œãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------------
 typedef struct {
@@ -111,7 +111,7 @@ typedef struct {
 
 //------------------------------------------------------
 /**
- * ƒ[ƒN—Ìˆæ’è‹`
+ * ãƒ¯ãƒ¼ã‚¯é ˜åŸŸå®šç¾©
  */
 //------------------------------------------------------
 struct _PMS_INPUT_WORK{
@@ -223,7 +223,7 @@ const PROC_DATA ProcData_PMSInput = {
 
 //------------------------------------------------------------------
 /**
- * PROC‰Šú‰»
+ * PROCåˆæœŸåŒ–
  *
  * @param   proc		
  * @param   seq		
@@ -237,7 +237,7 @@ PROC_RESULT PMSInput_Init( PROC * proc, int * seq )
 
 	switch( *seq ){
 	case 0:
-		Snd_DataSetByScene( SND_SCENE_SUB_PMS, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(PMS)(BGMˆøŒp‚¬)
+		Snd_DataSetByScene( SND_SCENE_SUB_PMS, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(PMS)(BGMå¼•ç¶™ã)
 
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_PMS_INPUT_SYSTEM, HEAPSIZE_SYS );
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_PMS_INPUT_VIEW, HEAPSIZE_VIEW );
@@ -270,7 +270,7 @@ PROC_RESULT PMSInput_Init( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * PROC ƒƒCƒ“
+ * PROC ãƒ¡ã‚¤ãƒ³
  *
  * @param   proc		
  * @param   seq		
@@ -303,7 +303,7 @@ PROC_RESULT PMSInput_Main( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒƒR[ƒ‹ƒoƒbƒN
+ * ãƒœã‚¿ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   buttonID	
  * @param   event		
@@ -357,7 +357,7 @@ static void BmnCallBack( u32 buttonID, u32 event, void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * PROC I—¹
+ * PROC çµ‚äº†
  *
  * @param   proc		
  * @param   seq		
@@ -376,7 +376,7 @@ PROC_RESULT PMSInput_Quit( PROC * proc, int * seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒN\’z
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰
  *
  * @param   wk		
  * @param   proc		
@@ -385,7 +385,7 @@ PROC_RESULT PMSInput_Quit( PROC * proc, int * seq )
 //------------------------------------------------------------------
 static PMS_INPUT_WORK* ConstructWork( PROC* proc )
 {
-	// enum TOUCH_BUTTON ‚Æˆê’v‚³‚¹‚é
+	// enum TOUCH_BUTTON ã¨ä¸€è‡´ã•ã›ã‚‹
 	static const TP_HIT_TBL hit_tbl[] = {
 		{ BUTTON_GROUP_TOUCH_TOP, BUTTON_GROUP_TOUCH_BOTTOM, BUTTON_GROUP_TOUCH_LEFT, BUTTON_GROUP_TOUCH_RIGHT },
 		{ BUTTON_INITIAL_TOUCH_TOP, BUTTON_INITIAL_TOUCH_BOTTOM, BUTTON_INITIAL_TOUCH_LEFT, BUTTON_INITIAL_TOUCH_RIGHT },
@@ -472,7 +472,7 @@ static void sentence_decrement( SENTENCE_WORK* s_wk, PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒN”jŠü
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
  * @param   wk		
  *
@@ -502,7 +502,7 @@ static void ChangeMainProc_ToCommandButtonArea( PMS_INPUT_WORK* wk )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒvƒƒZƒXF“ü—Í—“‚Å‚Ì“®ì
+ * ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šå…¥åŠ›æ¬„ã§ã®å‹•ä½œ
  *
  * @param   wk		
  * @param   seq		
@@ -523,7 +523,7 @@ static PROC_RESULT MainProc_EditArea( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ’PŒê‚P‚Â“ü—Íƒ‚[ƒh
+ * å˜èªï¼‘ã¤å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
  *
  * @param   wk		
  * @param   seq		
@@ -595,7 +595,7 @@ static PROC_RESULT mp_input_single( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ’PŒê‚Q‚Â“ü—Íƒ‚[ƒh
+ * å˜èªï¼’ã¤å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
  *
  * @param   wk		
  * @param   seq		
@@ -687,7 +687,7 @@ static PROC_RESULT mp_input_double( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * •¶Í“ü—Íƒ‚[ƒh
+ * æ–‡ç« å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
  *
  * @param   wk		
  * @param   seq		
@@ -824,7 +824,7 @@ static PROC_RESULT mp_input_sentence( PMS_INPUT_WORK* wk, int* seq )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒvƒƒZƒXFƒRƒ}ƒ“ƒhƒ{ƒ^ƒ“i‚¯‚Á‚Ä‚¢E‚â‚ß‚éj‚Å‚Ì“®ì
+ * ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šã‚³ãƒãƒ³ãƒ‰ãƒœã‚¿ãƒ³ï¼ˆã‘ã£ã¦ã„ãƒ»ã‚„ã‚ã‚‹ï¼‰ã§ã®å‹•ä½œ
  *
  * @param   wk		
  * @param   seq		
@@ -934,7 +934,7 @@ static PROC_RESULT MainProc_CommandButton( PMS_INPUT_WORK* wk, int* seq )
 }
 //----------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒvƒƒZƒXFƒJƒeƒSƒŠ‘I‘ğ
+ * ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šã‚«ãƒ†ã‚´ãƒªé¸æŠ
  *
  * @param   wk
  * @param   seq		
@@ -1030,11 +1030,11 @@ static PROC_RESULT MainProc_Category( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ‘I‘ğ‚µ‚Ä‚¢‚éƒJƒeƒSƒŠ‚Ég—p‰Â”\‚È’PŒê‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * é¸æŠã—ã¦ã„ã‚‹ã‚«ãƒ†ã‚´ãƒªã«ä½¿ç”¨å¯èƒ½ãªå˜èªãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE‚ÅŠÜ‚Ü‚ê‚Ä‚¢‚é
+ * @retval  BOOL	TRUEã§å«ã¾ã‚Œã¦ã„ã‚‹
  */
 //------------------------------------------------------------------
 static BOOL check_category_enable( PMS_INPUT_WORK* wk )
@@ -1052,11 +1052,11 @@ static BOOL check_category_enable( PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ğ‚ÌƒJ[ƒ\ƒ‹ˆÚ“®ƒ`ƒFƒbƒN
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠæ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒJ[ƒ\ƒ‹ˆÚ“®‚µ‚½
+ * @retval  BOOL		TRUEã§ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã—ãŸ
  */
 //------------------------------------------------------------------
 static BOOL check_category_cursor_move( PMS_INPUT_WORK* wk )
@@ -1069,7 +1069,7 @@ static BOOL check_category_cursor_move( PMS_INPUT_WORK* wk )
 	return func_tbl[wk->category_mode]( wk );
 }
 //----------------------------------------------
-// ƒOƒ‹[ƒvƒ‚[ƒh
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰
 //----------------------------------------------
 static BOOL keycheck_category_group_mode( PMS_INPUT_WORK* wk )
 {
@@ -1079,25 +1079,25 @@ static BOOL keycheck_category_group_mode( PMS_INPUT_WORK* wk )
 		u8   left_pos;
 		u8   right_pos;
 	}next_pos_tbl[] = {
-		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_SKILL,	CATEGORY_GROUP_POKEMON2 },	// ƒ|ƒPƒ‚ƒ“
-		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_POKEMON,	CATEGORY_GROUP_SKILL },		// ƒ|ƒPƒ‚ƒ“‚Q
-		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_POKEMON2,CATEGORY_GROUP_POKEMON },	// ‚í‚´
-		{ CATEGORY_GROUP_POKEMON,	CATEGORY_GROUP_PERSON,	CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_STATUS },	// ‚í‚´‚Q
-		{ CATEGORY_GROUP_POKEMON2,	CATEGORY_GROUP_GREET,	CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_TRAINER },	// ƒXƒe[ƒ^ƒX
-		{ CATEGORY_GROUP_SKILL,		CATEGORY_GROUP_LIFE,	CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_SKILL2 },	// ƒgƒŒ[ƒi[
-		{ CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_MIND,	CATEGORY_GROUP_LIFE,	CATEGORY_GROUP_GREET },		// ‚Ğ‚Æ
-		{ CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_NANKAI,	CATEGORY_GROUP_PERSON,	CATEGORY_GROUP_LIFE },		// ‚ ‚¢‚³‚Â
-		{ CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_UNION,	CATEGORY_GROUP_GREET,	CATEGORY_GROUP_PERSON },	// ‚¹‚¢‚©‚Â
-		{ CATEGORY_GROUP_PERSON,	CATEGORY_POS_BACK,		CATEGORY_GROUP_UNION,	CATEGORY_GROUP_NANKAI },	// ‚«‚à‚¿
-		{ CATEGORY_GROUP_GREET,		CATEGORY_POS_BACK,		CATEGORY_GROUP_MIND,	CATEGORY_GROUP_UNION },		// ‚È‚ñ‚©‚¢‚±‚Æ‚Î
-		{ CATEGORY_GROUP_LIFE,		CATEGORY_POS_BACK,		CATEGORY_GROUP_NANKAI,	CATEGORY_GROUP_MIND },		// ƒ†ƒjƒIƒ“
-		{ CATEGORY_GROUP_MIND,		CATEGORY_GROUP_POKEMON,	CATEGORY_POS_BACK,		CATEGORY_POS_BACK },		// ‚à‚Ç‚é
+		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_SKILL,	CATEGORY_GROUP_POKEMON2 },	// ãƒã‚±ãƒ¢ãƒ³
+		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_POKEMON,	CATEGORY_GROUP_SKILL },		// ãƒã‚±ãƒ¢ãƒ³ï¼’
+		{ CATEGORY_POS_BACK,		CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_POKEMON2,CATEGORY_GROUP_POKEMON },	// ã‚ã–
+		{ CATEGORY_GROUP_POKEMON,	CATEGORY_GROUP_PERSON,	CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_STATUS },	// ã‚ã–ï¼’
+		{ CATEGORY_GROUP_POKEMON2,	CATEGORY_GROUP_GREET,	CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_TRAINER },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+		{ CATEGORY_GROUP_SKILL,		CATEGORY_GROUP_LIFE,	CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_SKILL2 },	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+		{ CATEGORY_GROUP_SKILL2,	CATEGORY_GROUP_MIND,	CATEGORY_GROUP_LIFE,	CATEGORY_GROUP_GREET },		// ã²ã¨
+		{ CATEGORY_GROUP_STATUS,	CATEGORY_GROUP_NANKAI,	CATEGORY_GROUP_PERSON,	CATEGORY_GROUP_LIFE },		// ã‚ã„ã•ã¤
+		{ CATEGORY_GROUP_TRAINER,	CATEGORY_GROUP_UNION,	CATEGORY_GROUP_GREET,	CATEGORY_GROUP_PERSON },	// ã›ã„ã‹ã¤
+		{ CATEGORY_GROUP_PERSON,	CATEGORY_POS_BACK,		CATEGORY_GROUP_UNION,	CATEGORY_GROUP_NANKAI },	// ãã‚‚ã¡
+		{ CATEGORY_GROUP_GREET,		CATEGORY_POS_BACK,		CATEGORY_GROUP_MIND,	CATEGORY_GROUP_UNION },		// ãªã‚“ã‹ã„ã“ã¨ã°
+		{ CATEGORY_GROUP_LIFE,		CATEGORY_POS_BACK,		CATEGORY_GROUP_NANKAI,	CATEGORY_GROUP_MIND },		// ãƒ¦ãƒ‹ã‚ªãƒ³
+		{ CATEGORY_GROUP_MIND,		CATEGORY_GROUP_POKEMON,	CATEGORY_POS_BACK,		CATEGORY_POS_BACK },		// ã‚‚ã©ã‚‹
 	};
 
 	u32  pos = wk->category_pos;
 	if( pos == CATEGORY_POS_BACK )
 	{
-		// ƒe[ƒuƒ‹‚ğˆø‚­‚æ‚¤‚É
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å¼•ãã‚ˆã†ã«
 		pos = CATEGORY_GROUP_MAX;
 	}
 
@@ -1144,7 +1144,7 @@ static BOOL keycheck_category_group_mode( PMS_INPUT_WORK* wk )
 	return FALSE;
 }
 //----------------------------------------------
-// ƒCƒjƒVƒƒƒ‹ƒ‚[ƒh
+// ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒ¢ãƒ¼ãƒ‰
 //----------------------------------------------
 static BOOL keycheck_category_initial_mode( PMS_INPUT_WORK* wk )
 {
@@ -1203,7 +1203,7 @@ static BOOL keycheck_category_initial_mode( PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒEƒBƒ“ƒhƒEƒpƒ‰ƒ[ƒ^‰Šú‰»
+ * å˜èªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
  * @param   word_win		
  * @param   wk		
@@ -1253,7 +1253,7 @@ static int get_wordwin_linemax( const WORDWIN_WORK* wordwin )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒvƒƒZƒXF’PŒê‘I‘ğ
+ * ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šå˜èªé¸æŠ
  *
  * @param   wk
  * @param   seq		
@@ -1507,11 +1507,11 @@ static int check_wordwin_scroll_down( WORDWIN_WORK* wordwin )
 
 //------------------------------------------------------------------
 /**
- * ‘I‘ğ‚³‚ê‚½’PŒê‚ğƒf[ƒ^‚É”½‰f‚·‚é
+ * é¸æŠã•ã‚ŒãŸå˜èªã‚’ãƒ‡ãƒ¼ã‚¿ã«åæ˜ ã™ã‚‹
  *
  * @param   wk		
  *
- * @retval  BOOL	“ü—Í‚Å‚«‚é—“‚ğ‘S‚Ä–„‚ß‚½‚çTRUE‚ª•Ô‚é
+ * @retval  BOOL	å…¥åŠ›ã§ãã‚‹æ¬„ã‚’å…¨ã¦åŸ‹ã‚ãŸã‚‰TRUEãŒè¿”ã‚‹
  */
 //------------------------------------------------------------------
 static BOOL set_select_word( PMS_INPUT_WORK* wk )
@@ -1548,7 +1548,7 @@ static BOOL set_select_word( PMS_INPUT_WORK* wk )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒvƒƒZƒXFƒtƒF[ƒhƒAƒEƒg`I—¹
+ * ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã€œçµ‚äº†
  *
  * @param   wk
  * @param   seq		
@@ -1582,7 +1582,7 @@ static PROC_RESULT MainProc_Quit( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXƒXƒ^[ƒgiƒƒCƒ“EƒTƒu—¼•û‚©‚çŒÄ‚ñ‚Å—Ç‚¢j
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆï¼ˆãƒ¡ã‚¤ãƒ³ãƒ»ã‚µãƒ–ä¸¡æ–¹ã‹ã‚‰å‘¼ã‚“ã§è‰¯ã„ï¼‰
  *
  * @param   wk		
  * @param   sub_proc
@@ -1597,7 +1597,7 @@ static void SetSubProc( PMS_INPUT_WORK* wk, SubProc sub_proc )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXI—¹iÀs’†‚ÌƒTƒuƒvƒƒZƒX‚©‚ç‚Ì‚İŒÄ‚Ño‚·j
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†ï¼ˆå®Ÿè¡Œä¸­ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‹ã‚‰ã®ã¿å‘¼ã³å‡ºã™ï¼‰
  *
  * @param   wk		
  *
@@ -1613,10 +1613,10 @@ static void QuitSubProc( PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXFƒtƒF[ƒhƒCƒ“
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -1637,10 +1637,10 @@ static void SubProc_FadeIn( PMS_INPUT_WORK* wk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXFu‚¯‚Á‚Ä‚¢vƒRƒ}ƒ“ƒh
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ï¼šã€Œã‘ã£ã¦ã„ã€ã‚³ãƒãƒ³ãƒ‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -1725,10 +1725,10 @@ static void SubProc_CommandOK( PMS_INPUT_WORK* wk, int* seq )
 }
 //--------------------------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXFu‚â‚ß‚évƒRƒ}ƒ“ƒh
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ï¼šã€Œã‚„ã‚ã‚‹ã€ã‚³ãƒãƒ³ãƒ‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //--------------------------------------------------------------------------------------
@@ -1786,11 +1786,11 @@ static void SubProc_CommandCancel( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * “ü—Í—“‚ª‰Šúó‘Ô‚Æ”ä‚×‚Ä•ÏX‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * å…¥åŠ›æ¬„ãŒåˆæœŸçŠ¶æ…‹ã¨æ¯”ã¹ã¦å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   wk			
  *
- * @retval  BOOL		XV‚³‚ê‚Ä‚¢‚½‚çTRUE‚ğ•Ô‚·
+ * @retval  BOOL		æ›´æ–°ã•ã‚Œã¦ã„ãŸã‚‰TRUEã‚’è¿”ã™
  */
 //------------------------------------------------------------------
 static BOOL CheckModified( PMS_INPUT_WORK* wk )
@@ -1817,7 +1817,7 @@ static BOOL check_input_complete( PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
  *
  * @param   menu		
  * @param   max		
@@ -1833,7 +1833,7 @@ static void InitMenuState( MENU_WORK* menu, int max, int pos )
 
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒRƒ“ƒgƒ[ƒ‹XV
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ›´æ–°
  *
  * @param   menu		
  * @param   key		
@@ -1885,10 +1885,10 @@ static u32 get_menu_cursor_pos( const MENU_WORK* menu )
 
 //--------------------------------------------------------------------------------------
 /**
- * ƒTƒuƒvƒƒZƒXF ƒJƒeƒSƒŠƒ‚[ƒh•ÏXi•ÒWEƒ{ƒ^ƒ“‘€ì‚Ì‚İj
+ * ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ï¼š ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ï¼ˆç·¨é›†ãƒ»ãƒœã‚¿ãƒ³æ“ä½œæ™‚ã®ã¿ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //--------------------------------------------------------------------------------------
@@ -1919,11 +1919,11 @@ static void SubProc_ChangeCategoryMode( PMS_INPUT_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * “ü—Íƒ‚[ƒhæ“¾
+ * å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰å–å¾—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		“ü—Íƒ‚[ƒhienum PMSI_MODE)
+ * @retval  u32		å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆenum PMSI_MODE)
  */
 //------------------------------------------------------------------
 u32 PMSI_GetInputMode( const PMS_INPUT_WORK* wk )
@@ -1933,11 +1933,11 @@ u32 PMSI_GetInputMode( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * à–¾•¶š—ñƒ^ƒCƒvæ“¾
+ * èª¬æ˜æ–‡å­—åˆ—ã‚¿ã‚¤ãƒ—å–å¾—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		à–¾•¶š—ñƒ^ƒCƒvienum PMSI_GUIDANCE)
+ * @retval  u32		èª¬æ˜æ–‡å­—åˆ—ã‚¿ã‚¤ãƒ—ï¼ˆenum PMSI_GUIDANCE)
  */
 //------------------------------------------------------------------
 u32 PMSI_GetGuidanceType( const PMS_INPUT_WORK* wk )
@@ -1947,11 +1947,11 @@ u32 PMSI_GetGuidanceType( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒ‚[ƒhæ“¾
+ * ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰å–å¾—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		ƒJƒeƒSƒŠƒ‚[ƒh
+ * @retval  u32		ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰
  */
 //------------------------------------------------------------------
 u32 PMSI_GetCategoryMode( const PMS_INPUT_WORK* wk )
@@ -1961,11 +1961,11 @@ u32 PMSI_GetCategoryMode( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * •\¦’†‚Ì•¶Íƒ^ƒCƒv‚ğæ“¾
+ * è¡¨ç¤ºä¸­ã®æ–‡ç« ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		•¶Íƒ^ƒCƒvienum PMS_TYPEj
+ * @retval  u32		æ–‡ç« ã‚¿ã‚¤ãƒ—ï¼ˆenum PMS_TYPEï¼‰
  */
 //------------------------------------------------------------------
 u32 PMSI_GetSentenceType( const PMS_INPUT_WORK* wk )
@@ -1975,12 +1975,12 @@ u32 PMSI_GetSentenceType( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * •ÒW’†‚Ì’PŒêƒiƒ“ƒo[‚ğ•Ô‚·
+ * ç·¨é›†ä¸­ã®å˜èªãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos			‰½”Ô–Ú‚Ì’PŒêH
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ä½•ç•ªç›®ã®å˜èªï¼Ÿ
  *
- * @retval  PMS_WORD	ŠÈˆÕ‰ï˜b’PŒêƒiƒ“ƒo[
+ * @retval  PMS_WORD	ç°¡æ˜“ä¼šè©±å˜èªãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 PMS_WORD  PMSI_GetEditWord( const PMS_INPUT_WORK* wk, int pos )
@@ -2012,7 +2012,7 @@ STRBUF* PMSI_GetEditSourceString( const PMS_INPUT_WORK* wk, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * •ÒWƒGƒŠƒA‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•Ô‚·
+ * ç·¨é›†ã‚¨ãƒªã‚¢ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’è¿”ã™
  *
  * @param   wk		
  *
@@ -2026,7 +2026,7 @@ u32 PMSI_GetEditAreaCursorPos( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
+ * ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
  *
  * @param   wk		
  *
@@ -2040,7 +2040,7 @@ u32 PMSI_GetButtonCursorPos( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
+ * ã‚«ãƒ†ã‚´ãƒªã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
  *
  * @param   wk		
  *
@@ -2056,7 +2056,7 @@ u32 PMSI_GetCategoryCursorPos( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ“à‚Ì—LŒø’PŒê‘”‚ğ•Ô‚·
+ * ã‚«ãƒ†ã‚´ãƒªå†…ã®æœ‰åŠ¹å˜èªç·æ•°ã‚’è¿”ã™
  *
  * @param   wk		
  *
@@ -2077,7 +2077,7 @@ u32 PMSI_GetCategoryWordMax( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ“à‚Ì—LŒø’PŒê‚Ì“àAw’èƒCƒ“ƒfƒbƒNƒX‚Ì’PŒê‚ğƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+ * ã‚«ãƒ†ã‚´ãƒªå†…ã®æœ‰åŠ¹å˜èªã®å†…ã€æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å˜èªã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param   wk		
  * @param   word_num		
@@ -2127,7 +2127,7 @@ int PMSI_GetTalkWindowType( const PMS_INPUT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ•Ô‚·
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’è¿”ã™
  *
  * @param   wk		
  *

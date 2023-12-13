@@ -1,5 +1,5 @@
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -12,7 +12,7 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒTƒCƒY‚ğæ“¾
+ * @brief	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
  * @param	none	
  *
@@ -28,7 +28,7 @@ int	CustomBall_GetWorkSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒ[ƒN‚ğì¬
+ * @brief	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
  *
  * @param	heap_id	
  *
@@ -53,7 +53,7 @@ CB_SAVE_DATA*	CustomBall_AllocSaveData(u32 heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ì‰Šú‰»
+ * @brief	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®åˆæœŸåŒ–
  *
  * @param	csd	
  *
@@ -78,13 +78,13 @@ void CustomBall_Init(CB_SAVE_DATA* csd)
 // =============================================================================
 //
 //
-//	¡ƒc[ƒ‹‚Á‚Û‚¢‚à‚Ì
+//	â– ãƒ„ãƒ¼ãƒ«ã£ã½ã„ã‚‚ã®
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ğƒRƒs[‚·‚é
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param	from	
  * @param	to	
@@ -104,7 +104,7 @@ void CB_Tool_SaveData_Copy(const CB_SAVE_DATA* from, CB_SAVE_DATA* to)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒA(Edit)ƒf[ƒ^‚ğƒRƒs[‚·‚é
+ * @brief	ã‚³ã‚¢(Edit)ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param	from	
  * @param	to	
@@ -124,7 +124,7 @@ void CB_Tool_CoreData_Copy(const CB_CORE* from, CB_CORE* to)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹ƒf[ƒ^‚ğƒRƒs[‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param	from	
  * @param	to	
@@ -147,13 +147,13 @@ void CB_Tool_SealData_Copy(const CB_SEAL* from, CB_SEAL* to)
 // =============================================================================
 //
 //
-//	¡ƒZ[ƒuƒf[ƒ^‚Ö‚ÌƒAƒNƒZƒXŠÖ”
+//	â– ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒZ[ƒuƒf[ƒ^‚ğæ“¾‚·‚é
+ * @brief	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param	sv	
  *
@@ -176,7 +176,7 @@ CB_SAVE_DATA* CB_SaveData_AllDataGet(SAVEDATA* sv)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒA(Edit)ƒf[ƒ^‚ğæ“¾‚·‚é
+ * @brief	ã‚³ã‚¢(Edit)ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param	save	
  * @param	no	
@@ -195,7 +195,7 @@ CB_CORE* CB_SaveData_CoreDataGet(CB_SAVE_DATA* save, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒAƒf[ƒ^‚ğİ’è‚·‚é
+ * @brief	ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
  * @param	save	
  * @param	core	
@@ -222,7 +222,7 @@ void CB_SaveData_CoreDataSet(CB_SAVE_DATA* save, CB_CORE* core, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹ƒf[ƒ^‚ğæ“¾‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param	core	
  * @param	no	
@@ -241,7 +241,7 @@ CB_SEAL* CB_SaveData_SealDataGet(CB_CORE* core, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹ƒf[ƒ^‚ğİ’è‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
  * @param	save	
  * @param	core	
@@ -268,7 +268,7 @@ void CB_SaveData_SealDataSet(CB_CORE* core, CB_SEAL* seal, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹‚ÌID‚ğæ“¾‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ã®IDã‚’å–å¾—ã™ã‚‹
  *
  * @param	seal	
  *
@@ -284,7 +284,7 @@ u8 CB_SaveData_SealIDGet(const CB_SEAL* seal)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹‚ÌÀ•WX‚ğæ“¾‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ã®åº§æ¨™Xã‚’å–å¾—ã™ã‚‹
  *
  * @param	seal	
  *
@@ -300,7 +300,7 @@ u8 CB_SaveData_SealPXGet(const CB_SEAL* seal)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹‚ÌÀ•WY‚ğæ“¾‚·‚é
+ * @brief	ã‚·ãƒ¼ãƒ«ã®åº§æ¨™Yã‚’å–å¾—ã™ã‚‹
  *
  * @param	seal	
  *
@@ -316,7 +316,7 @@ u8 CB_SaveData_SealPYGet(const CB_SEAL* seal)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€ƒf[ƒ^‚Ìæ“¾
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
  * @param	save	
  *
@@ -332,7 +332,7 @@ CB_ITEM_DATA* CB_SaveData_ItemDataGet(CB_SAVE_DATA* save)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚Ìí—Şæ“¾
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡å–å¾—
  *
  * @param	save	
  * @param	no	
@@ -349,7 +349,7 @@ u8 CB_SaveData_ItemTypeGet(const CB_ITEM_DATA* item, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚Ìí—Şİ’è
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡è¨­å®š
  *
  * @param	save	
  * @param	no	
@@ -367,7 +367,7 @@ void CB_SaveData_ItemTypeSet(CB_ITEM_DATA* item, int no, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚ÌŒÂ”æ“¾
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°å–å¾—
  *
  * @param	save	
  * @param	no	
@@ -385,7 +385,7 @@ u8 CB_SaveData_ItemNumGet(const CB_ITEM_DATA* item, int no)
 	return item->seal[ no - CB_DEF_INDEX_ORIGIN ];
 }
 
-///< ƒJƒvƒZƒ‹‚¾‚¯g‚¦‚é
+///< ã‚«ãƒ—ã‚»ãƒ«ã ã‘ä½¿ãˆã‚‹
 u8 CB_SaveData_ItemNumGet_CBO(const CB_ITEM_DATA* item, int no)
 {
 	return item->seal[ no ];
@@ -394,7 +394,7 @@ u8 CB_SaveData_ItemNumGet_CBO(const CB_ITEM_DATA* item, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ‹‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚·ãƒ¼ãƒ«ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	save	
  * @param	id	
@@ -429,7 +429,7 @@ BOOL CB_Tool_IsSeal(const CB_SAVE_DATA* save, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒAƒf[ƒ^‚©‚çƒV[ƒ‹‚ğŒŸo
+ * @brief	ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚·ãƒ¼ãƒ«ã‚’æ¤œå‡º
  *
  * @param	cb_core	
  * @param	id	
@@ -458,7 +458,7 @@ BOOL CB_Tool_IsSealCore(const CB_CORE* cb_core, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒvƒZƒ‹‚É“\‚ç‚ê‚½ƒV[ƒ‹‚ª‰½–‡‚ ‚é‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚«ãƒ—ã‚»ãƒ«ã«è²¼ã‚‰ã‚ŒãŸã‚·ãƒ¼ãƒ«ãŒä½•æšã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	save	
  * @param	id	
@@ -491,7 +491,7 @@ int CB_Tool_IsSealTotalNum(const CB_SAVE_DATA* save, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚ÌŒÂ”İ’è
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°è¨­å®š
  *
  * @param	save	
  * @param	no	
@@ -511,7 +511,7 @@ void CB_SaveData_ItemNumSet(CB_ITEM_DATA* item, int no, int stock)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚ÌŒÂ”•ÏX
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°å¤‰æ›´
  *
  * @param	save	
  * @param	no	
@@ -532,13 +532,13 @@ void CB_SaveData_ItemNumAdd(CB_ITEM_DATA* save, int no, s16 stock)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ÁŒ¸‚·‚é
+ * @brief	åŠ æ¸›ã™ã‚‹
  *
  * @param	save	
  * @param	no	
  * @param	stock	
  *
- * @retval	BOOL	FALSE = ‰ÁŒ¸‚Å‚«‚È‚©‚Á‚½
+ * @retval	BOOL	FALSE = åŠ æ¸›ã§ããªã‹ã£ãŸ
  *
  */
 //--------------------------------------------------------------
@@ -547,14 +547,14 @@ BOOL CB_SaveData_ItemNumAddCheck(CB_SAVE_DATA* save, int no, s16 stock)
 	int num;
 	int total;
 	
-	///< ‚·‚Å‚Éƒ}ƒbƒNƒX
+	///< ã™ã§ã«ãƒãƒƒã‚¯ã‚¹
 	
 	num = CB_Tool_IsSealTotalNum(save, no - CB_DEF_INDEX_ORIGIN);
 	
 	total = num + save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ];
 	
 	if (stock < 0){
-		///< Œ¸‚ç‚·
+		///< æ¸›ã‚‰ã™
 		if (save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] + stock >= 0){
 			save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] += stock;
 		}
@@ -563,7 +563,7 @@ BOOL CB_SaveData_ItemNumAddCheck(CB_SAVE_DATA* save, int no, s16 stock)
 		}
 	}
 	else {
-		///< ‘‚â‚·
+		///< å¢—ã‚„ã™
 		OS_Printf("now set = %2d, now num = %2d, add = %2d\n", num, save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ], stock);
 		if (total + stock <= CB_DEF_SEAL_STOCK_MAX){
 			save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] += stock;
@@ -584,14 +584,14 @@ BOOL CB_SaveData_ItemNumAddCheck_CBO(CB_SAVE_DATA* save, int no, s16 stock)
 	int num;
 	int total;
 	
-	///< ‚·‚Å‚Éƒ}ƒbƒNƒX
+	///< ã™ã§ã«ãƒãƒƒã‚¯ã‚¹
 	
 	num = CB_Tool_IsSealTotalNum(save, no - CB_DEF_INDEX_ORIGIN);
 	
 	total = num;// + save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ];
 	
 	if (stock < 0){
-		///< Œ¸‚ç‚·
+		///< æ¸›ã‚‰ã™
 		if (save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] + stock >= 0){
 			save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] += stock;
 		}
@@ -600,7 +600,7 @@ BOOL CB_SaveData_ItemNumAddCheck_CBO(CB_SAVE_DATA* save, int no, s16 stock)
 		}
 	}
 	else {
-		///< ‘‚â‚·
+		///< å¢—ã‚„ã™
 		OS_Printf("now set = %2d, now num = %2d, add = %2d\n", num, save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ], stock);
 		if (total + stock <= CB_DEF_SEAL_STOCK_MAX){
 			save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] += stock;
@@ -620,13 +620,13 @@ BOOL CB_SaveData_ItemNumAddCheck_CBO(CB_SAVE_DATA* save, int no, s16 stock)
 
 //--------------------------------------------------------------
 /**
- * @brief	’Ç‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN (ÀÛ‚É‰ÁŒ¸‚µ‚È‚¢)
+ * @brief	è¿½åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯ (å®Ÿéš›ã«åŠ æ¸›ã—ãªã„)
  *
  * @param	save	
  * @param	no	
  * @param	stock	
  *
- * @retval	BOOL	TRUE = ‚Å‚«‚é
+ * @retval	BOOL	TRUE = ã§ãã‚‹
  *
  */
 //--------------------------------------------------------------
@@ -635,14 +635,14 @@ BOOL CB_SaveData_IsAddIt(CB_SAVE_DATA* save, int no, s16 stock)
 	int num;
 	int total;
 	
-	///< ‚·‚Å‚Éƒ}ƒbƒNƒX
+	///< ã™ã§ã«ãƒãƒƒã‚¯ã‚¹
 	
 	num = CB_Tool_IsSealTotalNum(save, no - CB_DEF_INDEX_ORIGIN);
 	
 	total = num + save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ];
 	
 	if (stock < 0){
-		///< Œ¸‚ç‚·
+		///< æ¸›ã‚‰ã™
 		if (save->cb_item.seal[ no - CB_DEF_INDEX_ORIGIN ] + stock >= 0){
 			return TRUE;
 		}
@@ -651,7 +651,7 @@ BOOL CB_SaveData_IsAddIt(CB_SAVE_DATA* save, int no, s16 stock)
 		}
 	}
 	else {
-		///< ‘‚â‚·
+		///< å¢—ã‚„ã™
 		if (total + stock <= CB_DEF_SEAL_STOCK_MAX){
 			return TRUE;
 		}
@@ -664,7 +664,7 @@ BOOL CB_SaveData_IsAddIt(CB_SAVE_DATA* save, int no, s16 stock)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰½í—Ş‚ÌƒV[ƒ‹‚ğ‚Á‚Ä‚¢‚é‚©
+ * @brief	ä½•ç¨®é¡ã®ã‚·ãƒ¼ãƒ«ã‚’æŒã£ã¦ã„ã‚‹ã‹
  *
  * @param	save	
  *
@@ -701,7 +701,7 @@ int CB_Tool_SealCllectionGet(const CB_SAVE_DATA* save)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚»‚ÌƒV[ƒ‹‚Ì‘”
+ * @brief	ãã®ã‚·ãƒ¼ãƒ«ã®ç·æ•°
  *
  * @param	save	
  * @param	id	
@@ -796,7 +796,7 @@ void Debug_CB_SaveData_Sample(CB_SAVE_DATA* save, int mode)
 			break;
 		case DEBUG_CB_MODE_ITEM_RANDOM:
 			for (i = CB_DEF_INDEX_ORIGIN; i < CB_DEF_ITEM_DATA_NUM; i++){
-				item->seal[ i - CB_DEF_INDEX_ORIGIN] = 99; ///< “K“–
+				item->seal[ i - CB_DEF_INDEX_ORIGIN] = 99; ///< é©å½“
 			}
 			if ( 0 )
 			{

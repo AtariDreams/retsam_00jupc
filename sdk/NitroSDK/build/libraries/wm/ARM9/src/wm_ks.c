@@ -15,23 +15,23 @@
   do-indent
 
   Revision 1.6  2005/06/07 05:45:26  seiki_masashi
-  Key Sharing ‚ÉŠÖ‚·‚é“Á•Êˆ—‚ğ’áŒ¸‚·‚é‚½‚ß‚Ì•ÏX
+  Key Sharing ã«é–¢ã™ã‚‹ç‰¹åˆ¥å‡¦ç†ã‚’ä½æ¸›ã™ã‚‹ãŸã‚ã®å¤‰æ›´
 
   Revision 1.5  2005/03/03 14:46:19  seiki_masashi
-  WM_DISABLE_KEYSHARING ƒXƒCƒbƒ`‚Ì’Ç‰Á
-  WM_EndKeySharing ŠÖ”‚ªí‚ÉƒGƒ‰[’l‚ğ•Ô‚µ‚Ä‚¢‚½‚Ì‚ğC³
+  WM_DISABLE_KEYSHARING ã‚¹ã‚¤ãƒƒãƒã®è¿½åŠ 
+  WM_EndKeySharing é–¢æ•°ãŒå¸¸ã«ã‚¨ãƒ©ãƒ¼å€¤ã‚’è¿”ã—ã¦ã„ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.4  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.3  2004/11/02 07:26:51  terui
-  ƒRƒƒ“ƒgC³B
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£ã€‚
 
   Revision 1.2  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -43,15 +43,15 @@
 /*---------------------------------------------------------------------------*
   Name:         WM_StartKeySharing
 
-  Description:  ƒL[ƒVƒFƒAƒŠƒ“ƒO‹@”\‚ğ—LŒø‚É‚·‚éB
-                ‹@”\‚ğ—LŒø‚É‚µ‚½ŒãMP’ÊM‚ğs‚¤‚±‚Æ‚ÅAMP’ÊM‚É•t‚µ‚Ä
-                ƒL[ƒVƒFƒAƒŠƒ“ƒO’ÊM‚ªs‚í‚ê‚éB
+  Description:  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã€‚
+                æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã—ãŸå¾ŒMPé€šä¿¡ã‚’è¡Œã†ã“ã¨ã§ã€MPé€šä¿¡ã«ä»˜éšã—ã¦
+                ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°é€šä¿¡ãŒè¡Œã‚ã‚Œã‚‹ã€‚
 
-  Arguments:    buf         -   ƒL[î•ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                À‘Ì‚Í WMDataSharingInfo \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                port        -   g—p‚·‚é port ”Ô†
+  Arguments:    buf         -   ã‚­ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                å®Ÿä½“ã¯ WMDataSharingInfo æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                port        -   ä½¿ç”¨ã™ã‚‹ port ç•ªå·
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartKeySharing(WMKeySetBuf *buf, u16 port)
 {
@@ -61,12 +61,12 @@ WMErrCode WM_StartKeySharing(WMKeySetBuf *buf, u16 port)
 /*---------------------------------------------------------------------------*
   Name:         WM_EndKeySharing
 
-  Description:  ƒL[ƒVƒFƒAƒŠƒ“ƒO‹@”\‚ğ–³Œø‚É‚·‚éB
+  Description:  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°æ©Ÿèƒ½ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã€‚
 
-  Arguments:    buf         -   ƒL[î•ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                À‘Ì‚Í WMDataSharingInfo \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    buf         -   ã‚­ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                å®Ÿä½“ã¯ WMDataSharingInfo æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndKeySharing(WMKeySetBuf *buf)
 {
@@ -76,15 +76,15 @@ WMErrCode WM_EndKeySharing(WMKeySetBuf *buf)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetKeySet
 
-  Description:  ƒL[ƒVƒFƒAƒŠƒ“ƒO‚³‚ê‚½ƒL[ƒZƒbƒgƒf[ƒ^‚ğ‚Ğ‚Æ‚Â“Ç‚İo‚·B
+  Description:  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã•ã‚ŒãŸã‚­ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã²ã¨ã¤èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    buf         -   ƒL[î•ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                À‘Ì‚Í WMDataSharingInfo \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                keySet      -   ƒL[ƒZƒbƒg‚ğ“Ç‚İo‚·ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                WM_StartKeySharing‚É‚Ä—^‚¦‚½ƒoƒbƒtƒ@‚Æ‚Í
-                                •Ê‚Ìƒoƒbƒtƒ@‚ğw’è‚·‚éB
+  Arguments:    buf         -   ã‚­ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                å®Ÿä½“ã¯ WMDataSharingInfo æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                keySet      -   ã‚­ãƒ¼ã‚»ãƒƒãƒˆã‚’èª­ã¿å‡ºã™ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                WM_StartKeySharingã«ã¦ä¸ãˆãŸãƒãƒƒãƒ•ã‚¡ã¨ã¯
+                                åˆ¥ã®ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã™ã‚‹ã€‚
 
-  Returns:      MWErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      MWErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_GetKeySet(WMKeySetBuf *buf, WMKeySet *keySet)
 {
@@ -112,12 +112,12 @@ WMErrCode WM_GetKeySet(WMKeySetBuf *buf, WMKeySet *keySet)
                     }
                     else
                     {
-                        // óM‚É¸”s‚µ‚½‘Šè‚Í 0
+                        // å—ä¿¡ã«å¤±æ•—ã—ãŸç›¸æ‰‹ã¯ 0
                         keySet->key[iAid] = 0;
                     }
                 }
             }
-            return WM_ERRCODE_SUCCESS; // ¬Œ÷I—¹
+            return WM_ERRCODE_SUCCESS; // æˆåŠŸçµ‚äº†
         }
         else
         {

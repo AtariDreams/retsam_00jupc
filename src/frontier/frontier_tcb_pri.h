@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_tcb_pri.h
- * @brief	ƒtƒƒ“ƒeƒBƒA‚ÌƒVƒXƒeƒ€ŠÖ˜ATCBƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®ã‚·ã‚¹ãƒ†ãƒ é–¢é€£TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
  * @author	matsuda
- * @date	2007.04.16(ŒŽ)
+ * @date	2007.04.16(æœˆ)
  */
 //==============================================================================
 #ifndef __FRONTIER_TCB_PRI_H__
@@ -11,36 +11,36 @@
 
 
 //--------------------------------------------------------------
-//	ƒVƒXƒeƒ€Œn
+//	ã‚·ã‚¹ãƒ†ãƒ ç³»
 //--------------------------------------------------------------
-///ƒ}ƒbƒvFƒIƒuƒWƒFƒNƒgƒƒCƒ“ŽÀsˆ—
+///ãƒžãƒƒãƒ—ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³å®Ÿè¡Œå‡¦ç†
 #define TCBPRI_OBJSYS_UPDATE		(60000)
-///ƒ}ƒbƒvFƒIƒuƒWƒFƒNƒgƒRƒ}ƒ“ƒh”»’fˆ—
+///ãƒžãƒƒãƒ—ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­å‡¦ç†
 #define TCBPRI_CMDJUDGE_UPDATE		(61000)
-///ƒ}ƒbƒvFƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+///ãƒžãƒƒãƒ—ï¼šãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
 #define TCBPRI_MAP_UPDATE			(80000)
 
-///ƒtƒB[ƒ‹ƒhOBJƒAƒjƒ[ƒVƒ‡ƒ“ŽÀsTCBƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿè¡ŒTCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_FIELDOBJ_ANIME		(TCBPRI_OBJSYS_UPDATE + 100)
 
-///ƒXƒe[ƒWFBGƒAƒjƒ§Œäƒ^ƒXƒN
+///ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šBGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_STAGE_BGANIME_CONTROL		(TCBPRI_MAP_UPDATE - 500)
-///ƒXƒe[ƒWFƒpƒŒƒbƒgƒAƒjƒ§Œäƒ^ƒXƒN
+///ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_STAGE_PALANIME_CONTROL		(TCBPRI_STAGE_BGANIME_CONTROL + 1)
-///ƒXƒe[ƒWFƒ‰ƒXƒ^[ƒAƒjƒ§Œäƒ^ƒXƒN
+///ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_STAGE_LASTER_CONTROL			(TCBPRI_STAGE_PALANIME_CONTROL + 1)
 
-///’nk§Œäƒ^ƒXƒN
+///åœ°éœ‡åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_SHAKE				(70000)
-///Window§Œäƒ^ƒXƒN
+///Windowåˆ¶å¾¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_WND					(300)
 
 //--------------------------------------------------------------
-//	ƒGƒtƒFƒNƒgŒn
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç³»
 //--------------------------------------------------------------
-///ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“í‚ÌƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
+///ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³æˆ¦ã®ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define TCBPRI_ENC_CUTIN			(1000)
-///ƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg‚ÌƒWƒOƒUƒOBG‚ÌƒpƒŒƒbƒgƒAƒjƒ
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¸ã‚°ã‚¶ã‚°BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 #define TCBPRI_ENC_CUTIN_BGPALANM	(1100)
 
 

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wbtower_def.h
- * @bfief	WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê
+ * @bfief	WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šç”»é¢
  * @author	Akito Mori
  * @date	06.06.08
  */
@@ -10,10 +10,10 @@
 #define _WBTOWER_DEF_H_
 
 
-// Ú‘±Œ‹‰Ê
+// æŽ¥ç¶šçµæžœ
 
-#define 	WIFI_BTOWER_RESULT_SUCCESS	 	( 0 )	// Ú‘±‚µ‚½Œ‹‰Ê—pŒ‚ð‰Ê‚½‚µ‚½
-#define 	WIFI_BTOWER_RESULT_CANCEL		( 1 )	// ‚â‚ß‚½
-#define 	WIFI_BTOWER_RESULT_ERROR		( 2 )	// ƒGƒ‰[‚ª‹N‚«‚½‚Ì‚Å‚â‚ß‚½i‚¢‚ç‚È‚¢‚©‚àj
+#define 	WIFI_BTOWER_RESULT_SUCCESS	 	( 0 )	// æŽ¥ç¶šã—ãŸçµæžœç”¨ä»¶ã‚’æžœãŸã—ãŸ
+#define 	WIFI_BTOWER_RESULT_CANCEL		( 1 )	// ã‚„ã‚ãŸ
+#define 	WIFI_BTOWER_RESULT_ERROR		( 2 )	// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã®ã§ã‚„ã‚ãŸï¼ˆã„ã‚‰ãªã„ã‹ã‚‚ï¼‰
 
 #endif

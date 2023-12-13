@@ -22,19 +22,19 @@
 
 
 /* ========================================================================
-    ƒ}ƒNƒ’è”
+    ãƒã‚¯ãƒ­å®šæ•°
    ======================================================================== */
 
-// ƒAƒ‰ƒCƒƒ“ƒg‚ÌÅ¬’l
+// ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã®æœ€å°å€¤
 #define MIN_ALIGNMENT           4
 
 
 /* ========================================================================
-    staticŠÖ”
+    staticé–¢æ•°
    ======================================================================== */
 
 /* ------------------------------------------------------------------------
-    ƒƒ‚ƒŠƒuƒƒbƒNƒŠƒXƒg‘€ì
+    ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆæ“ä½œ
    ------------------------------------------------------------------------ */
 
 static NNSiFndUntHeapMBlockHead*
@@ -52,12 +52,12 @@ PopMBlock(NNSiFndUntMBlockList* list)
 /*---------------------------------------------------------------------------*
   Name:         PushMBlock
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚ğƒŠƒXƒg‚Ìæ“ª‚É’Ç‰Á‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ãƒªã‚¹ãƒˆã®å…ˆé ­ã«è¿½åŠ ã—ã¾ã™ã€‚
 
-  Arguments:    link:   ’Ç‰Á‚·‚éƒŠƒXƒg
-                block:  ’Ç‰Á‚·‚éƒƒ‚ƒŠƒuƒƒbƒN
+  Arguments:    link:   è¿½åŠ ã™ã‚‹ãƒªã‚¹ãƒˆ
+                block:  è¿½åŠ ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE void
 PushMBlock(
@@ -73,11 +73,11 @@ PushMBlock(
 /*---------------------------------------------------------------------------*
   Name:         GetUnitHeapHeadPtrFromHeapHead
 
-  Description:  ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çAƒ†ƒjƒbƒgƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pHeapHd:  ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pHeapHd:  ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ƒ†ƒjƒbƒgƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndUntHeapHead*
 GetUnitHeapHeadPtrFromHeapHead(NNSiFndHeapHead* pHeapHd)
@@ -101,18 +101,18 @@ IsValidUnitHeapHandle(NNSFndHeapHandle handle)
 
 
 /* ========================================================================
-    ŠO•”ŠÖ”(”ñŒöŠJ)
+    å¤–éƒ¨é–¢æ•°(éå…¬é–‹)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_FndDumpUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv“à•”‚Ìî•ñ‚ğ•\¦‚µ‚Ü‚·B
-                ‚±‚ê‚ÍƒfƒoƒbƒO—p‚ÌŠÖ”‚Å‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—å†…éƒ¨ã®æƒ…å ±ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+                ã“ã‚Œã¯ãƒ‡ãƒãƒƒã‚°ç”¨ã®é–¢æ•°ã§ã™ã€‚
 
-  Arguments:    heap:    ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:    ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -141,23 +141,23 @@ IsValidUnitHeapHandle(NNSFndHeapHandle handle)
 
 
 /* ========================================================================
-    ŠO•”ŠÖ”(ŒöŠJ)
+    å¤–éƒ¨é–¢æ•°(å…¬é–‹)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateUnitHeapEx
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚ğì¬‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    startAddress:  ƒq[ƒv—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒXB
-                heapSize:      ƒq[ƒv—Ìˆæ‚ÌƒTƒCƒYB
-                memBlockSize:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYB
-                alignment:     ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒgB
-                               4,8,16,32‚Ì‚¢‚¸‚ê‚©‚Ì’l‚ªw’è‚Å‚«‚Ü‚·B
-                optFlag:       ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒOB
+  Arguments:    startAddress:  ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+                heapSize:      ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ã‚µã‚¤ã‚ºã€‚
+                memBlockSize:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã€‚
+                alignment:     ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã€‚
+                               4,8,16,32ã®ã„ãšã‚Œã‹ã®å€¤ãŒæŒ‡å®šã§ãã¾ã™ã€‚
+                optFlag:       ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ŠÖ”‚ª¬Œ÷‚µ‚½ê‡Aì¬‚³‚ê‚½ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹‚ª•Ô‚è‚Ü‚·B
-                ŠÖ”‚ª¸”s‚·‚é‚ÆANNS_FND_INVALID_HEAP_HANDLE ‚ª•Ô‚è‚Ü‚·B
+  Returns:      é–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã€ä½œæˆã•ã‚ŒãŸãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ãŒè¿”ã‚Šã¾ã™ã€‚
+                é–¢æ•°ãŒå¤±æ•—ã™ã‚‹ã¨ã€NNS_FND_INVALID_HEAP_HANDLE ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNSFndHeapHandle
 NNS_FndCreateUnitHeapEx(
@@ -173,7 +173,7 @@ NNS_FndCreateUnitHeapEx(
 
     SDK_NULL_ASSERT(startAddress);
 
-    // alignment ‚Ìƒ`ƒFƒbƒN
+    // alignment ã®ãƒã‚§ãƒƒã‚¯
     NNS_ASSERT(alignment % MIN_ALIGNMENT == 0);
     NNS_ASSERT(MIN_ALIGNMENT <= alignment && alignment <= 32);
 
@@ -185,7 +185,7 @@ NNS_FndCreateUnitHeapEx(
         return NNS_FND_HEAP_INVALID_HANDLE;
     }
 
-    memBlockSize = NNSi_FndRoundUp(memBlockSize, alignment);    // À¿‚ÌƒuƒƒbƒNƒTƒCƒY
+    memBlockSize = NNSi_FndRoundUp(memBlockSize, alignment);    // å®Ÿè³ªã®ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
 
     {
         NNSiFndUntHeapHead* pUntHeapHd = GetUnitHeapHeadPtrFromHeapHead(pHeapHd);
@@ -205,7 +205,7 @@ NNS_FndCreateUnitHeapEx(
 
         heapEnd = AddU32ToPtr(heapStart, elementNum * memBlockSize);
 
-        NNSi_FndInitHeapHead(           // ƒq[ƒv‹¤’Ê‰Šú‰»
+        NNSi_FndInitHeapHead(           // ãƒ’ãƒ¼ãƒ—å…±é€šåˆæœŸåŒ–
             pHeapHd,
             NNSI_UNTHEAP_SIGNATURE,
             heapStart,
@@ -234,11 +234,11 @@ NNS_FndCreateUnitHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndDestroyUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚ğ”jŠü‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã‚’ç ´æ£„ã—ã¾ã™ã€‚
 
-  Arguments:    heap: ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap: ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_FndDestroyUnitHeap(NNSFndHeapHandle heap)
@@ -252,13 +252,13 @@ NNS_FndDestroyUnitHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚©‚çƒƒ‚ƒŠƒuƒƒbƒN‚ğŠm•Û‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
 
-  Arguments:    heap:   ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:   ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û‚ª¬Œ÷‚µ‚½ê‡AŠm•Û‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ì
-                ƒ|ƒCƒ“ƒ^‚ª•Ô‚è‚Ü‚·B
-                ¸”s‚µ‚½ê‡ANULL‚ª•Ô‚è‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿ãŒæˆåŠŸã—ãŸå ´åˆã€ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®
+                ãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã‚Šã¾ã™ã€‚
+                å¤±æ•—ã—ãŸå ´åˆã€NULLãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndAllocFromUnitHeap(NNSFndHeapHandle heap)
@@ -281,12 +281,12 @@ NNS_FndAllocFromUnitHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndFreeToUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚Öƒƒ‚ƒŠƒuƒƒbƒN‚ğ•Ô‹p‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã¸ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”å´ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                memBlock: •Ô‹p‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    heap:     ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                memBlock: è¿”å´ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_FndFreeToUnitHeap(
@@ -308,11 +308,11 @@ NNS_FndFreeToUnitHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCountFreeBlockForUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒuƒƒbƒN”‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:     ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒ†ƒjƒbƒgƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒuƒƒbƒN”‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndCountFreeBlockForUnitHeap(NNSFndHeapHandle heap)
@@ -336,13 +336,13 @@ NNS_FndCountFreeBlockForUnitHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCalcHeapSizeForUnitHeap
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY‚ÆŒÂ”‚©‚ç•K—v‚Èƒq[ƒv‚ÌƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã¨å€‹æ•°ã‹ã‚‰å¿…è¦ãªãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    memBlockSize:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY(ƒoƒCƒg’l)B
-                memBlockNum:   Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ì‘”B
-                alignment:     ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒgB
+  Arguments:    memBlockSize:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå€¤)ã€‚
+                memBlockNum:   ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç·æ•°ã€‚
+                alignment:     ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã€‚
 
-  Returns:      •K—v‚Èƒq[ƒv‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      å¿…è¦ãªãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndCalcHeapSizeForUnitHeap(
@@ -352,12 +352,12 @@ NNS_FndCalcHeapSizeForUnitHeap(
 )
 {
     return
-          // ƒq[ƒv‚ª“à•”‚Åg—p‚·‚éƒTƒCƒY
+          // ãƒ’ãƒ¼ãƒ—ãŒå†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ã‚µã‚¤ã‚º
           sizeof(NNSiFndHeapHead) + sizeof(NNSiFndUntHeapHead)
 
-          // ƒAƒ‰ƒCƒƒ“ƒg‚Ì’²®‚É•K—v‚ÈƒTƒCƒY‚ÌÅ‘å
+          // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã®èª¿æ•´ã«å¿…è¦ãªã‚µã‚¤ã‚ºã®æœ€å¤§
         + (alignment - 4)
 
-          // ‘Sƒ†ƒjƒbƒg‚ª•K—v‚Æ‚·‚éƒTƒCƒY
+          // å…¨ãƒ¦ãƒ‹ãƒƒãƒˆãŒå¿…è¦ã¨ã™ã‚‹ã‚µã‚¤ã‚º
         + memBlockNum * NNSi_FndRoundUp(memBlockSize, alignment);
 }

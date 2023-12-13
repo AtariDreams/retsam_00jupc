@@ -46,10 +46,10 @@
   OS_Set/GetUserParameter -> OS_Set/GetThreadParameter
 
   Revision 1.67  2005/07/06 06:37:21  yasu
-  OS_KillThreadWithPriority ‚Ì’Ç‰Á
+  OS_KillThreadWithPriority ã®è¿½åŠ 
 
   Revision 1.66  2005/07/05 09:43:13  yasu
-  version.h ‚ğQÆ‚µ SDK ‚Ìƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Ä define ‚ğØ‚è‘Ö‚¦‚é
+  version.h ã‚’å‚ç…§ã— SDK ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦ define ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 
   Revision 1.65  2005/07/01 09:20:06  yada
   specific size becomes 4
@@ -142,7 +142,7 @@
   CALLSTACK->CALLTRACE
 
   Revision 1.35  2004/04/13 06:20:52  yada
-  OS_DumpThreadCallTrace() ’Ç‰Á
+  OS_DumpThreadCallTrace() è¿½åŠ 
 
   Revision 1.34  2004/04/12 12:11:45  yada
   add callTrace.h
@@ -151,31 +151,31 @@
   fix header comment
 
   Revision 1.32  2004/04/02 12:49:25  yada
-  OSThread‚Émutex‚Ìqueue‚ğ’Ç‰ÁB
+  OSThreadã«mutexã®queueã‚’è¿½åŠ ã€‚
 
   Revision 1.31  2004/03/31 09:25:14  yada
   add thread switch callback function
 
   Revision 1.30  2004/03/30 05:58:40  yada
-  OS_IsThreadAvailable’Ç‰Á
+  OS_IsThreadAvailableè¿½åŠ 
 
   Revision 1.29  2004/03/03 07:03:44  yada
-  \‘¢‘Ì“à‚ÌƒXƒŒƒbƒhƒŠƒXƒgƒ|ƒCƒ“ƒ^ˆÊ’u‚ğC³
+  æ§‹é€ ä½“å†…ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿ä½ç½®ã‚’ä¿®æ­£
 
   Revision 1.28  2004/03/02 11:54:29  yada
-  OS_Sleep() ’Ç‰Á
+  OS_Sleep() è¿½åŠ 
 
   Revision 1.27  2004/02/26 12:14:10  yada
-  priority‚Ì”ÍˆÍAlaunch—Dæ“x=16’è‹`
+  priorityã®ç¯„å›²ã€launchå„ªå…ˆåº¦=16å®šç¾©
 
   Revision 1.26  2004/02/26 09:42:04  yada
-  ƒXƒŒƒbƒh‚ğA—Dæ“xƒŠƒXƒgŠÇ—‚·‚é‚æ‚¤‚É•ÏX
+  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã€å„ªå…ˆåº¦ãƒªã‚¹ãƒˆç®¡ç†ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.25  2004/02/26 05:49:42  yada
-  OS_CreateThread() ‚É‹N“®ŠÖ”‚Ìˆø”’Ç‰Á
+  OS_CreateThread() ã«èµ·å‹•é–¢æ•°ã®å¼•æ•°è¿½åŠ 
 
   Revision 1.24  2004/02/17 09:29:21  yada
-  tab®Œ`
+  tabæ•´å½¢
 
   Revision 1.23  2004/02/12 10:56:04  yasu
   new location of include files ARM9/ARM7
@@ -184,70 +184,70 @@
   change SDK prefix iris -> nitro
 
   Revision 1.21  2004/01/21 12:02:05  yada
-  ƒXƒ^ƒbƒNˆì‚êƒ`ƒFƒbƒN‚ğì¬
+  ã‚¹ã‚¿ãƒƒã‚¯æº¢ã‚Œãƒã‚§ãƒƒã‚¯ã‚’ä½œæˆ
 
   Revision 1.20  2004/01/18 04:47:31  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.19  2004/01/17 02:28:38  nishida_kenji
   convert 'inline' to 'static inline' in header files
 
   Revision 1.18  2003/12/25 07:30:11  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.17  2003/12/17 08:19:05  yasu
-  OSi_isNeedRescheduling ‚ğ OS_ThreadInfo ‚Ö“‡
-  OS_InitContext ‚Ìˆø”•ÏX
+  OSi_isNeedRescheduling ã‚’ OS_ThreadInfo ã¸çµ±åˆ
+  OS_InitContext ã®å¼•æ•°å¤‰æ›´
 
   Revision 1.16  2003/12/16 10:52:52  yasu
-  •s—vƒRƒƒ“ƒgíœ
+  ä¸è¦ã‚³ãƒ¡ãƒ³ãƒˆå‰Šé™¤
 
   Revision 1.15  2003/12/16 07:14:05  yada
-  ƒXƒŒƒbƒhˆì‚êƒ`ƒFƒbƒN‹@\’Ç‰Á
+  ã‚¹ãƒ¬ãƒƒãƒ‰æº¢ã‚Œãƒã‚§ãƒƒã‚¯æ©Ÿæ§‹è¿½åŠ 
 
   Revision 1.14  2003/12/16 06:07:57  yasu
-  misc.h ‚Ì’Ç‰Á
+  misc.h ã®è¿½åŠ 
 
   Revision 1.13  2003/12/16 00:18:02  yada
-  threadî•ñ‚ğ‚Ü‚Æ‚ß‚½‚±‚Æ‚É‚æ‚é•ÏX
+  threadæƒ…å ±ã‚’ã¾ã¨ã‚ãŸã“ã¨ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.12  2003/12/11 11:54:27  yada
-  OS_CreateThreadQueue() ¨ OS_InitThreadQueue() ‚Æ‰ü–¼B
-  OS_GetMaxThreadId() ‚ğ inline ‚Å‚Í‚È‚¢‚æ‚¤‚É‚µ‚½B
+  OS_CreateThreadQueue() â†’ OS_InitThreadQueue() ã¨æ”¹åã€‚
+  OS_GetMaxThreadId() ã‚’ inline ã§ã¯ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.11  2003/12/11 11:37:51  yada
-  OS_GetThread, OS_GetThreadId, OS_GetMaxThreadId, OS_GetThreadContext, OS_GetThreadState ‚ğ’Ç‰ÁB
+  OS_GetThread, OS_GetThreadId, OS_GetMaxThreadId, OS_GetThreadContext, OS_GetThreadState ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2003/11/30 06:16:09  yasu
-  thread ŠÖŒW‚ÌŠÖ”‚ğŠ„‚è‚İƒT[ƒrƒX‚©‚çŒÄ‚Ño‚µ‰Â”\‚É‚µ‚½D
+  thread é–¢ä¿‚ã®é–¢æ•°ã‚’å‰²ã‚Šè¾¼ã¿ã‚µãƒ¼ãƒ“ã‚¹ã‹ã‚‰å‘¼ã³å‡ºã—å¯èƒ½ã«ã—ãŸï¼
 
   Revision 1.9  2003/11/30 02:08:23  yada
-  OS_CreateThread() ‚Ìˆø”‚ÉƒXƒ^ƒbƒNƒTƒCƒY‚ğ‰Á‚¦AƒXƒŒƒbƒhì¬‚ÉƒXƒ^ƒbƒN‚ğƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
+  OS_CreateThread() ã®å¼•æ•°ã«ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’åŠ ãˆã€ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆæ™‚ã«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.8  2003/11/27 07:32:43  yasu
-  OSThreadQueue ‚ÌÅ’áƒTƒCƒY‚ğ 16bit ‚É‚µ‚½
+  OSThreadQueue ã®æœ€ä½ã‚µã‚¤ã‚ºã‚’ 16bit ã«ã—ãŸ
 
   Revision 1.7  2003/11/26 10:51:42  yasu
-  OS_GetCurrentThread/OS_SetCurrentThread ‚ğŒöŠJ‚µ inline ‰»
+  OS_GetCurrentThread/OS_SetCurrentThread ã‚’å…¬é–‹ã— inline åŒ–
 
   Revision 1.6  2003/11/26 09:31:15  yasu
-  OS_Reschedule ‚ğ•ª—£‚µAOS_SelectThread ‚ğì¬
+  OS_Reschedule ã‚’åˆ†é›¢ã—ã€OS_SelectThread ã‚’ä½œæˆ
 
   Revision 1.5  2003/11/26 01:27:13  yasu
-  OS_CreateThread ‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX•ÏX
-  OS_InitThread ‚Ì’Ç‰Á
+  OS_CreateThread ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹å¤‰æ›´
+  OS_InitThread ã®è¿½åŠ 
 
   Revision 1.4  2003/11/25 13:31:56  yasu
-  ThreadQueue ‚Ì’Ç‰Á
+  ThreadQueue ã®è¿½åŠ 
 
   Revision 1.3  2003/11/25 06:28:32  yasu
-  OS_CreateThread ‚Ìˆø”‚ÌŒ^•ÏX
+  OS_CreateThread ã®å¼•æ•°ã®å‹å¤‰æ›´
 
   Revision 1.2  2003/11/25 05:01:12  yasu
-  typo C³Aƒvƒƒgƒ^ƒCƒvéŒ¾’Ç‰Á
+  typo ä¿®æ­£ã€ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€è¿½åŠ 
 
   Revision 1.1  2003/11/25 04:32:38  yasu
-  ‰”Å’Ç‰Á
+  åˆç‰ˆè¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

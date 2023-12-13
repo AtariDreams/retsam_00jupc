@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief newハンドラ ソース
+ * @brief new繝上Φ繝峨Λ 繧ｽ繝ｼ繧ｹ
  */
 
 #include <lobby/dwci_lobby.h>

@@ -16,46 +16,46 @@
 # Copyright fix
 #
 # Revision 1.14  2006/02/28 08:49:05  okubata_ryoma
-# NitroCryptoØ‚èo‚µ‚É‚æ‚é•ÏX
+# NitroCryptoåˆ‡ã‚Šå‡ºã—ã«ã‚ˆã‚‹å¤‰æ›´
 #
 # Revision 1.13  2005/12/21 00:22:27  seiki_masashi
-# crypt ‚ğ NITROWIFI_HIDDEN ‚ÅˆÍ‚¤‚æ‚¤‚ÉC³
+# crypt ã‚’ NITROWIFI_HIDDEN ã§å›²ã†ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.12  2005/12/13 11:54:39  seiki_masashi
-# private ‚È crypt ƒfƒBƒŒƒNƒgƒŠ‚ğ’Ç‰Á
+# private ãª crypt ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿½åŠ 
 #
 # Revision 1.11  2005/08/19 12:28:20  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # Revision 1.10  2005/08/17 10:49:55  yasu
-# add-ins/env ‚Ì’Ç‰Á
+# add-ins/env ã®è¿½åŠ 
 #
 # Revision 1.9  2005/07/29 05:08:16  terui
-# SUBDIRS ‚É stubs ‚ğ’Ç‰Á
+# SUBDIRS ã« stubs ã‚’è¿½åŠ 
 #
 # Revision 1.8  2005/07/22 14:04:13  yasu
-# ˆê“I‚ÈƒRƒƒ“ƒgƒAƒEƒg
+# ä¸€æ™‚çš„ãªã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 #
 # Revision 1.7  2005/07/22 13:57:49  yasu
-# ƒCƒ“ƒfƒ“ƒgC³
+# ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆä¿®æ­£
 #
 # Revision 1.6  2005/07/21 11:20:14  seiki_masashi
-# bsafe ‚ğƒrƒ‹ƒh‘ÎÛ‚É’Ç‰Á
+# bsafe ã‚’ãƒ“ãƒ«ãƒ‰å¯¾è±¡ã«è¿½åŠ 
 #
 # Revision 1.5  2005/07/15 13:33:25  yasu
-# soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+# soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 #
 # Revision 1.4  2005/07/15 09:27:32  yasu
-# cps, ssl ƒ‰ƒCƒuƒ‰ƒŠó‚¯“ü‚ê‚É‚Æ‚à‚È‚¤ƒcƒŠ[‚Ì’²®
+# cps, ssl ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå—ã‘å…¥ã‚Œã«ã¨ã‚‚ãªã†ãƒ„ãƒªãƒ¼ã®èª¿æ•´
 #
 # Revision 1.3  2005/07/07 10:46:40  terui
-# SUBDIRS ‚É wcm ‚ğ’Ç‰Á
+# SUBDIRS ã« wcm ã‚’è¿½åŠ 
 #
 # Revision 1.2  2005/06/23 11:13:17  yasu
-# NitroWiFi ‚Ì commondefs, modulerules ‚ğ“Ç‚İ‚Ş
+# NitroWiFi ã® commondefs, modulerules ã‚’èª­ã¿è¾¼ã‚€
 #
 # Revision 1.1  2005/06/22 11:07:57  yasu
-# ƒ\[ƒXƒcƒŠ[ƒeƒ“ƒvƒŒ[ƒgì¬
+# ã‚½ãƒ¼ã‚¹ãƒ„ãƒªãƒ¼ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä½œæˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

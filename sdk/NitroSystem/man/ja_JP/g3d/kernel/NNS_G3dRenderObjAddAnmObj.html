@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dRenderObjAddAnmObj</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dRenderObjAddAnmObj</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
@@ -23,36 +23,36 @@ NNS_G3dRenderObjAddAnmObj(
 );</CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
-      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>�\���̂ւ̃|�C���^</TD>
+      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>構造体へのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>pAnmObj</STRONG></EM></TD>
-      <TD width="87%"><CODE>NNSG3dAnmObj</CODE>�\���̂ւ̃|�C���^</TD>
+      <TD width="87%"><CODE>NNSG3dAnmObj</CODE>構造体へのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
 
-<H2>����</H2>
-<P><I><B>pRenderObj</B></I>�Ŏw�肳�ꂽ�����_�����O�I�u�W�F�N�g�ɁA<B><I>pAnmObj</I></B>�Ŏw�肳�ꂽ�A�j���[�V�����I�u�W�F�N�g��ǉ����܂��B�����_�����O�I�u�W�F�N�g�ɃA�j���[�V�����I�u�W�F�N�g��ǉ����邱�Ƃɂ���ă����_�����O���ɃA�j���[�V�������Đ�����悤�ɂȂ�܂��B</P>
-<P>���̊֐��́A�A�j���[�V�����I�u�W�F�N�g�Ɋi�[����Ă���w�b�_�����Q�Ƃ��A
-�����_�����O�I�u�W�F�N�g�����}�e���A���A�j���[�V�����̃��X�g�A�W���C���g�A�j���[�V�����̃��X�g�A�r�W�r���e�B�A�j���[�V�����̃��X�g
-�̂R��ނ̃��X�g���̓K�؂ȃ��X�g�ɃA�j���[�V�����I�u�W�F�N�g��ǉ����܂��B</P>
+<H2>説明</H2>
+<P><I><B>pRenderObj</B></I>で指定されたレンダリングオブジェクトに、<B><I>pAnmObj</I></B>で指定されたアニメーションオブジェクトを追加します。レンダリングオブジェクトにアニメーションオブジェクトを追加することによってレンダリング時にアニメーションを再生するようになります。</P>
+<P>この関数は、アニメーションオブジェクトに格納されているヘッダ情報を参照し、
+レンダリングオブジェクトが持つマテリアルアニメーションのリスト、ジョイントアニメーションのリスト、ビジビリティアニメーションのリスト
+の３種類のリスト中の適切なリストにアニメーションオブジェクトを追加します。</P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <A href="NNS_G3dRenderObjRemoveAnmObj.html">NNS_G3dRenderObjRemoveAnmObj</A>
 </CODE></P>
 
-<H2>����</H2>
-<P>2004/08/02 ����</P>
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
 </BODY>
 
 </HTML>

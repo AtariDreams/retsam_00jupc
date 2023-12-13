@@ -1,12 +1,12 @@
 /* Metrowerks ARM Runtime Support Library 
- * Copyright © 1995-2003 Metrowerks Corporation. All rights reserved. 
+ * Copyright 1995-2003 Metrowerks Corporation. All rights reserved. 
  * 
  * $Date: 2004/07/13 19:27:40 $ 
  * $Revision: 1.2 $ 
  */ 
 
 /*
- *	abort_exit.c	-	"dummy" abort() and exit() routines for CodeWarriorª C/C++ (PowerPC)
+ *	abort_exit.c	-	"dummy" abort() and exit() routines for CodeWarriorã‚§ C/C++ (PowerPC)
  *
  *	THEORY OF OPERATION
  *

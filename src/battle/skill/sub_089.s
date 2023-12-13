@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_089.s
- *@brief	�퓬�V�[�P���X
- *			�݂����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			みがわりシーケンス
  *@author	HisashiSogabe
  *@data		2006.01.25
  *
@@ -17,17 +17,17 @@
 SUB_089:
 	ATTACK_MESSAGE
 	SERVER_WAIT
-	//���łɂ݂���肪�łĂ���ꍇ�́A���s
+	//すでにみがわりがでている場合は、失敗
 	IF_PSP			IF_FLAG_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_MIGAWARI,MigawariAlready
 	MIGAWARI		MigawariNG
 //	WAZA_EFFECT		SIDE_ATTACK
 	STATUS_EFFECT	SIDE_ATTACK,STATUS_ACTION_DOLL_ON
 	SERVER_WAIT
-	//�݂����t���O�𗧂Ă�
+	//みがわりフラグを立てる
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_MIGAWARI
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
-	//HP����Ώۂ�AttackClient��
+	//HP操作対象をAttackClientに
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
 	GOSUB			SUB_SEQ_HP_CALC
 	MESSAGE			MigawariMineMsg,TAG_NICK,SIDE_ATTACK

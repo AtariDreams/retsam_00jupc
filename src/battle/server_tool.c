@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	server_tool.c
- * @bfief	í“¬ƒT[ƒo—pƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚µãƒ¼ãƒç”¨ãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.26
  */
@@ -49,11 +49,11 @@
 
 #ifdef DEBUG_ONLY_FOR_sogabe
 #include "skill_intp.h"
-//#define DEBUG_PRINT_BATTLE	///<í“¬—pƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ğ—LŒø‚É‚·‚éiƒƒ‚ƒŠƒI[ƒo[‚·‚é‚Ì‚ÅA—LŒø‚É‚Å‚«‚È‚¢j
+//#define DEBUG_PRINT_BATTLE	///<æˆ¦é—˜ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã‚’æœ‰åŠ¹ã«ã™ã‚‹ï¼ˆãƒ¡ãƒ¢ãƒªã‚ªãƒ¼ãƒãƒ¼ã™ã‚‹ã®ã§ã€æœ‰åŠ¹ã«ã§ããªã„ï¼‰
 #endif
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 void		ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_mons_no);
@@ -176,14 +176,14 @@ BOOL		ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,
 void		ST_ServerPressurePPDecCheck(SERVER_PARAM *sp,int attack,int defence);
 BOOL		ST_BattleRecordStopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp);
 
-//ƒpƒ‰ƒ[ƒ^ƒQƒbƒgŒn
+//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚²ãƒƒãƒˆç³»
 int		ST_ServerParamDataGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no);
 
-//ƒpƒ‰ƒ[ƒ^ƒZƒbƒgŒn
+//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆç³»
 void	ST_ServerOSTFStatusFlagSet(SERVER_PARAM *sp,int client_no,u32 value);
 void	ST_ServerParamDataPut(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no,int data);
 
-//ŠO•”ŒöŠJ‚µ‚È‚¢Œn
+//å¤–éƒ¨å…¬é–‹ã—ãªã„ç³»
 static	BOOL	ST_KoukanaiCheck(SERVER_PARAM *sp,int attack_client,int defence_client,int pos);
 static	int		ST_ServerAddStatusParamSet(SERVER_PARAM *sp,int type,u32 flag);
 static	int		ST_TypeCheckCalc(SERVER_PARAM *sp,int attack,int power,int damage,int waza_damage,u32 *flag);
@@ -200,7 +200,7 @@ static	BOOL	ST_ServerKikenyochiWazaSeqCheck(SERVER_PARAM *sp,int waza_no);
 static	int		ST_AIWazaTypeGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_no);
 #endif //B1366_060815_FIX
 
-//‹Z‚ÌƒV[ƒPƒ“ƒX“à‚Å‚àŒÄ‚Î‚ê‚é‚Ì‚Å,battle_ai‚ÌƒI[ƒo[ƒŒƒC‚©‚ç‚Í‚¸‚·
+//æŠ€ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å†…ã§ã‚‚å‘¼ã°ã‚Œã‚‹ã®ã§,battle_aiã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‹ã‚‰ã¯ãšã™
 int				ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no);
 int				ClientAIReshuffleSelMonsNoGet(BATTLE_WORK *bw,int client_no);
 int				AIWazaTypeGetPP(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM *pp,int waza_no);
@@ -215,12 +215,12 @@ static	void	AssertCheck(int client_no,int num);
 
 //============================================================================================
 /**
- *	PokemonParam‚ğPokemonServerParam‚É“Ç‚İ‚Ş
+ *	PokemonParamã‚’PokemonServerParamã«èª­ã¿è¾¼ã‚€
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	“Ç‚İ‚Şclient_no
- * @param[in]	sel_mons_no	“Ç‚İ‚ŞPokemonParam‚Ìæ“ª‚©‚ç‚ÌˆÊ’u
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	èª­ã¿è¾¼ã‚€client_no
+ * @param[in]	sel_mons_no	èª­ã¿è¾¼ã‚€PokemonParamã®å…ˆé ­ã‹ã‚‰ã®ä½ç½®
  */
 //============================================================================================
 void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_mons_no)
@@ -256,24 +256,24 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 	sp->psp[client_no].tamago_flag=		PokeParaGet(pp,ID_PARA_tamago_flag,		0);
 	sp->psp[client_no].nickname_flag=	PokeParaGet(pp,ID_PARA_nickname_flag,	0);
 
-	//ƒoƒgƒ“ƒ^ƒbƒ`Œø‰Ê‚Ì‚ÍA‰Šú‰»‚µ‚È‚¢
+	//ãƒãƒˆãƒ³ã‚¿ãƒƒãƒåŠ¹æœã®æ™‚ã¯ã€åˆæœŸåŒ–ã—ãªã„
 	if((sp->server_status_flag&SERVER_STATUS_FLAG_BATON_TOUCH)==0){
 		for(i=0;i<COND_MAX;i++){
 			sp->psp[client_no].abiritycnt[i]=COND_NUM_DEFAULT;
 		}
 	}
 
-	sp->psp[client_no].appear_check_flag=0;			//“oê“VŒóŒn“Á«ƒ`ƒFƒbƒN‚ğ‚µ‚½‚©‚Ç‚¤‚©
-	sp->psp[client_no].ikaku_flag=0;				//“oê‚¢‚©‚­ƒ`ƒFƒbƒN‚µ‚½‚©‚Ç‚¤‚©
-	sp->psp[client_no].trace_flag=0;				//“oêƒgƒŒ[ƒXƒ`ƒFƒbƒN‚µ‚½‚©‚Ç‚¤‚©
-	sp->psp[client_no].download_flag=0;				//“oêƒ_ƒEƒ“ƒ[ƒhƒ`ƒFƒbƒN
-	sp->psp[client_no].kikenyochi_flag=0;			//“oê‚«‚¯‚ñ‚æ‚¿ƒ`ƒFƒbƒN
-	sp->psp[client_no].yochimu_flag=0;				//“oê‚æ‚¿‚Şƒ`ƒFƒbƒN
-	sp->psp[client_no].slow_start_flag=0;			//“oêƒXƒ[ƒXƒ^[ƒgƒ`ƒFƒbƒN
-	sp->psp[client_no].slow_start_end_flag=0;		//ƒXƒ[ƒXƒ^[ƒgI—¹ƒ`ƒFƒbƒN
-	sp->psp[client_no].omitooshi_flag=0;			//“oê‚¨‚İ‚Æ‚¨‚µƒ`ƒFƒbƒN
-	sp->psp[client_no].katayaburi_flag=0;			//“oê‚©‚½‚â‚Ô‚èƒ`ƒFƒbƒN
-	sp->psp[client_no].pressure_flag=0;				//“oêƒvƒŒƒbƒVƒƒ[ƒ`ƒFƒbƒN
+	sp->psp[client_no].appear_check_flag=0;			//ç™»å ´æ™‚å¤©å€™ç³»ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ã‚’ã—ãŸã‹ã©ã†ã‹
+	sp->psp[client_no].ikaku_flag=0;				//ç™»å ´æ™‚ã„ã‹ããƒã‚§ãƒƒã‚¯ã—ãŸã‹ã©ã†ã‹
+	sp->psp[client_no].trace_flag=0;				//ç™»å ´æ™‚ãƒˆãƒ¬ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯ã—ãŸã‹ã©ã†ã‹
+	sp->psp[client_no].download_flag=0;				//ç™»å ´æ™‚ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].kikenyochi_flag=0;			//ç™»å ´æ™‚ãã‘ã‚“ã‚ˆã¡ãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].yochimu_flag=0;				//ç™»å ´æ™‚ã‚ˆã¡ã‚€ãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].slow_start_flag=0;			//ç™»å ´æ™‚ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].slow_start_end_flag=0;		//ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].omitooshi_flag=0;			//ç™»å ´æ™‚ãŠã¿ã¨ãŠã—ãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].katayaburi_flag=0;			//ç™»å ´æ™‚ã‹ãŸã‚„ã¶ã‚Šãƒã‚§ãƒƒã‚¯
+	sp->psp[client_no].pressure_flag=0;				//ç™»å ´æ™‚ãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ãƒã‚§ãƒƒã‚¯
 
 	sp->psp[client_no].type1=			PokeParaGet(pp,ID_PARA_type1,			0);
 	sp->psp[client_no].type2=			PokeParaGet(pp,ID_PARA_type2,			0);
@@ -281,8 +281,8 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 	sp->psp[client_no].sex=				PokeSexGet(pp);
 	sp->psp[client_no].rare=			PokeRareGet(pp);
 
-	//ƒTƒtƒ@ƒŠAƒ|ƒPƒp[ƒN‚È‚ÇA“oê‚É”­“®‚·‚é“Á«‚ğ—}§‚·‚é‚½‚ß‚É0‚ğƒZƒbƒg
-	//ƒTƒtƒ@ƒŠAƒ|ƒPƒp[ƒN‚È‚ÇAó‘ÔˆÙí‚Ìƒ`ƒFƒbƒN‚ğ—}§‚·‚é‚½‚ß‚É0‚ğƒZƒbƒg
+	//ã‚µãƒ•ã‚¡ãƒªã€ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãªã©ã€ç™»å ´æ™‚ã«ç™ºå‹•ã™ã‚‹ç‰¹æ€§ã‚’æŠ‘åˆ¶ã™ã‚‹ãŸã‚ã«0ã‚’ã‚»ãƒƒãƒˆ
+	//ã‚µãƒ•ã‚¡ãƒªã€ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãªã©ã€çŠ¶æ…‹ç•°å¸¸ã®ãƒã‚§ãƒƒã‚¯ã‚’æŠ‘åˆ¶ã™ã‚‹ãŸã‚ã«0ã‚’ã‚»ãƒƒãƒˆ
 	if(BattleWorkFightTypeGet(bw)&FIGHT_TYPE_NO_TOKUSEI){
 		sp->psp[client_no].speabino=	0;
 		sp->psp[client_no].condition=	0;
@@ -322,18 +322,18 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 	sp->psp[client_no].oyasex=			PokeParaGet(pp,ID_PARA_oyasex,			0);
 	sp->psp[client_no].get_ball=		PokeParaGet(pp,ID_PARA_get_ball,		0);
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚Åæ“¾‚·‚éƒf[ƒ^‚ğ•ªŠò
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã§å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å²
 	ZKN_GIRA_Init(sp->psp[client_no].form_no);
-	//}ŠÓ‚Ì‚‚³d‚³î•ñƒ[ƒN‚ğŠm•Û
+	//å›³é‘‘ã®é«˜ã•é‡ã•æƒ…å ±ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿
 	zhgp=ZKN_HEIGHTGRAM_Alloc(HEAPID_BATTLE);
-	//}ŠÓ‚Ì‚‚³d‚³î•ñ‚ğƒ[ƒh
+	//å›³é‘‘ã®é«˜ã•é‡ã•æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰
 	ZKN_HEIGHTGRAM_Load(zhgp,ZKN_HEIGHT_GRAM_TYPE_MAN,HEAPID_BATTLE);
 
 	sp->psp[client_no].weight=ZKN_HEIGHTGRAM_GetGram(zhgp,sp->psp[client_no].monsno);
 
-	//}ŠÓ‚Ì‚‚³d‚³î•ñ‚ğ”jŠü
+	//å›³é‘‘ã®é«˜ã•é‡ã•æƒ…å ±ã‚’ç ´æ£„
 	ZKN_HEIGHTGRAM_Release(zhgp);
-	//}ŠÓ‚Ì‚‚³d‚³î•ñƒ[ƒN‚ğŠJ•ú
+	//å›³é‘‘ã®é«˜ã•é‡ã•æƒ…å ±ãƒ¯ãƒ¼ã‚¯ã‚’é–‹æ”¾
 	ZKN_HEIGHTGRAM_Free(zhgp);
 
 	PokeParaGet(pp,ID_PARA_nickname,&sp->psp[client_no].nickname[0]);
@@ -342,7 +342,7 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 	sp->psp[client_no].hit_count=0;
 	sp->psp[client_no].message_flag=0;
 
-	//‚Í‚½‚«‚¨‚Æ‚³‚ê‚Ä‚¢‚é‚ÍAƒAƒCƒeƒ€‚ğ‚Á‚Ä‚¢‚È‚¢‚±‚Æ‚É‚·‚é
+	//ã¯ãŸããŠã¨ã•ã‚Œã¦ã„ã‚‹æ™‚ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãªã„ã“ã¨ã«ã™ã‚‹
 	dir=BattleWorkMineEnemyCheck(bw,client_no);
 	if(sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[client_no])){
 		sp->psp[client_no].item=0;
@@ -357,12 +357,12 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 
 //============================================================================================
 /**
- *	PokemonParam‚ğPokemonServerParam‚É“Ç‚İ‚ŞiƒŒƒxƒ‹ƒAƒbƒv‚ÌƒŠƒ[ƒhj
+ *	PokemonParamã‚’PokemonServerParamã«èª­ã¿è¾¼ã‚€ï¼ˆãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã®ãƒªãƒ­ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	“Ç‚İ‚Şclient_no
- * @param[in]	sel_mons_no	“Ç‚İ‚ŞPokemonParam‚Ìæ“ª‚©‚ç‚ÌˆÊ’u
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	èª­ã¿è¾¼ã‚€client_no
+ * @param[in]	sel_mons_no	èª­ã¿è¾¼ã‚€PokemonParamã®å…ˆé ­ã‹ã‚‰ã®ä½ç½®
  */
 //============================================================================================
 void	ST_PokemonParamReload(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_mons_no)
@@ -384,10 +384,10 @@ void	ST_PokemonParamReload(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int se
 	sp->psp[client_no].hp=				PokeParaGet(pp,ID_PARA_hp,				0);
 	sp->psp[client_no].hpmax=			PokeParaGet(pp,ID_PARA_hpmax,			0);
 
-	//‚Ö‚ñ‚µ‚ñ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÍˆÈ‰º‚ÌƒŠƒ[ƒh‚Í‚µ‚È‚¢
+	//ã¸ã‚“ã—ã‚“ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¯ä»¥ä¸‹ã®ãƒªãƒ­ãƒ¼ãƒ‰ã¯ã—ãªã„
 	if((sp->psp[client_no].condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
-			//‚à‚Ì‚Ü‚Ë‚µ‚Ä‚¢‚é‹Z‚ÌƒŠƒ[ƒh‚Í‚µ‚È‚¢
+			//ã‚‚ã®ã¾ã­ã—ã¦ã„ã‚‹æŠ€ã®ãƒªãƒ­ãƒ¼ãƒ‰ã¯ã—ãªã„
 			if((sp->psp[client_no].wkw.monomane_bit&No2Bit(i))==0){
 				sp->psp[client_no].waza[i]=		PokeParaGet(pp,ID_PARA_waza1+i,			0);
 				sp->psp[client_no].pp[i]=		PokeParaGet(pp,ID_PARA_pp1+i,			0);
@@ -400,11 +400,11 @@ void	ST_PokemonParamReload(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int se
 
 //============================================================================================
 /**
- *	ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param[in]	sp		ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	kind	“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—Ş
- * @param[in]	index	“Ç‚İ‚Şƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	sp		ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	kind	èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡
+ * @param[in]	index	èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	ST_ServerSequenceLoad(SERVER_PARAM *sp,int	kind,int index)
@@ -421,11 +421,11 @@ void	ST_ServerSequenceLoad(SERVER_PARAM *sp,int	kind,int index)
 
 //============================================================================================
 /**
- *	ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğ“Ç‚İ‚ŞiƒTƒuƒ‹[ƒ`ƒ“ƒWƒƒƒ“ƒv‘Î‰j
+ *	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ï¼ˆã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ã‚¸ãƒ£ãƒ³ãƒ—å¯¾å¿œï¼‰
  *
- * @param[in]	sp		ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	kind	“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—Ş
- * @param[in]	index	“Ç‚İ‚Şƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	sp		ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	kind	èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡
+ * @param[in]	index	èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	ST_ServerSequenceLoadGosub(SERVER_PARAM *sp,int	kind,int index)
@@ -447,11 +447,11 @@ void	ST_ServerSequenceLoadGosub(SERVER_PARAM *sp,int	kind,int index)
 
 //============================================================================================
 /**
- *	ƒTƒuƒ‹[ƒ`ƒ“ƒWƒƒƒ“ƒv‚ª‚ ‚Á‚½‚©ƒ`ƒFƒbƒN
+ *	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ã‚¸ãƒ£ãƒ³ãƒ—ãŒã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp		ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	sp		ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	TRUE:ƒWƒƒƒ“ƒv‚È‚µ@FALSEFƒWƒƒƒ“ƒv‘O‚ÌƒAƒhƒŒƒX‚É‚à‚Ç‚µ‚ÄAƒV[ƒPƒ“ƒX‘±s
+ * @retval	TRUE:ã‚¸ãƒ£ãƒ³ãƒ—ãªã—ã€€FALSEï¼šã‚¸ãƒ£ãƒ³ãƒ—å‰ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã‚‚ã©ã—ã¦ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç¶šè¡Œ
  */
 //============================================================================================
 BOOL	ST_ServerSequencePushCheck(SERVER_PARAM *sp)
@@ -469,12 +469,12 @@ BOOL	ST_ServerSequencePushCheck(SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ƒT[ƒo–½—ßƒLƒ…[‚Éƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+ *	ã‚µãƒ¼ãƒå‘½ä»¤ã‚­ãƒ¥ãƒ¼ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	id			’ÊM‚Ì’ÊMID
- * @param[in]	client_no	ƒT[ƒo‚ª–½—ß‚ğƒZƒbƒg‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param[in]	index		–½—ßƒR[ƒh‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	id			é€šä¿¡æ™‚ã®é€šä¿¡ID
+ * @param[in]	client_no	ã‚µãƒ¼ãƒãŒå‘½ä»¤ã‚’ã‚»ãƒƒãƒˆã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	index		å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	ST_ServerQueSet(SERVER_PARAM *sp,int id,int client_no,int index)
@@ -491,18 +491,18 @@ void	ST_ServerQueSet(SERVER_PARAM *sp,int id,int client_no,int index)
 		}
 	}
 //	OS_Printf("id:%d client_no:%d no:%d index:%d\n",id,client_no,i,index);
-	//ƒT[ƒoƒLƒ…[‚ª‚ ‚Ó‚ê‚Ä‚Í‚Ü‚¸‚¢‚Ì‚ÅAASSERT‚ğo‚·
+	//ã‚µãƒ¼ãƒã‚­ãƒ¥ãƒ¼ãŒã‚ãµã‚Œã¦ã¯ã¾ãšã„ã®ã§ã€ASSERTã‚’å‡ºã™
 	GF_ASSERT_MSG(i<SERVER_QUE_MAX,"ServerQueSet:ServerQue Overflow!\n");
 }
 
 //============================================================================================
 /**
- *	ƒT[ƒo–½—ßƒLƒ…[‚ÌƒŠƒZƒbƒg
+ *	ã‚µãƒ¼ãƒå‘½ä»¤ã‚­ãƒ¥ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	id			’ÊM‚Ì’ÊMID
- * @param[in]	client_no	ƒŠƒZƒbƒg‚µ‚½‚¢ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param[in]	index		ƒŠƒZƒbƒg‚·‚é–½—ßƒR[ƒh‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	id			é€šä¿¡æ™‚ã®é€šä¿¡ID
+ * @param[in]	client_no	ãƒªã‚»ãƒƒãƒˆã—ãŸã„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	index		ãƒªã‚»ãƒƒãƒˆã™ã‚‹å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	ST_ServerQueReset(SERVER_PARAM *sp,int id,int client_no,int index)
@@ -512,7 +512,7 @@ void	ST_ServerQueReset(SERVER_PARAM *sp,int id,int client_no,int index)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,3);
 #endif
-	//index‚ª‚O‚Í‚ ‚è‚¦‚È‚¢‚Ì‚ÅAASSERT‚ğo‚·
+	//indexãŒï¼ã¯ã‚ã‚Šãˆãªã„ã®ã§ã€ASSERTã‚’å‡ºã™
 	GF_ASSERT_MSG(index!=0,"ServerQueSet:index == 0\n");
 
 	for(i=0;i<SERVER_QUE_MAX;i++){
@@ -521,17 +521,17 @@ void	ST_ServerQueReset(SERVER_PARAM *sp,int id,int client_no,int index)
 			break;
 		}
 	}
-	//ƒT[ƒoƒLƒ…[‚É‘ÎÛ‚ª‚È‚¢ó‘Ô‚Å‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚é‚Ì‚Í‚Ü‚¸‚¢‚Ì‚ÅAASSERT‚ğo‚·
+	//ã‚µãƒ¼ãƒã‚­ãƒ¥ãƒ¼ã«å¯¾è±¡ãŒãªã„çŠ¶æ…‹ã§ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹ã®ã¯ã¾ãšã„ã®ã§ã€ASSERTã‚’å‡ºã™
 	GF_ASSERT_MSG(i<SERVER_QUE_MAX,"ServerQueSet:ServerQue NotFound code=%d!\n",index);
 }
 
 //============================================================================================
 /**
- *	ƒT[ƒo–½—ßƒLƒ…[‚ª‹ó‚©ƒ`ƒFƒbƒN‚·‚é
+ *	ã‚µãƒ¼ãƒå‘½ä»¤ã‚­ãƒ¥ãƒ¼ãŒç©ºã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	TRUE:‹ó@FALSE:‹ó‚Å‚Í‚È‚¢
+ * @retval	TRUE:ç©ºã€€FALSE:ç©ºã§ã¯ãªã„
  */
 //============================================================================================
 BOOL	ST_ServerQueCheck(SERVER_PARAM *sp)
@@ -546,7 +546,7 @@ BOOL	ST_ServerQueCheck(SERVER_PARAM *sp)
 			}
 		}
 	}
-	//ƒ^ƒCƒ€ƒAƒEƒgƒJƒEƒ“ƒg‚ğƒNƒŠƒA
+	//ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢
 	if(data==0){
 		sp->server_que_time_out=0;
 	}
@@ -555,26 +555,26 @@ BOOL	ST_ServerQueCheck(SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ƒT[ƒo–½—ßƒLƒ…[ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN
+ *	ã‚µãƒ¼ãƒå‘½ä»¤ã‚­ãƒ¥ãƒ¼ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	ST_ServerQueTimeOutCheck(SERVER_PARAM *sp)
 {
 	sp->server_que_time_out++;
 	if(sp->server_que_time_out>SERVER_QUE_TIME_OUT){
-		OS_Printf("ƒT[ƒoƒ^ƒCƒ€ƒAƒEƒg”­¶\n");
+		OS_Printf("ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç™ºç”Ÿ\n");
 		CommStateSetError(COMM_ERROR_RESET_SAVEPOINT);
 	}
 }
 
 //============================================================================================
 /**
- *	server_buffer‚ğƒNƒŠƒA‚·‚é
+ *	server_bufferã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒNƒŠƒA‚·‚éƒoƒbƒtƒ@‚Ìclient_no
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¯ãƒªã‚¢ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®client_no
  */
 //============================================================================================
 void	ST_ServerBufferClear(SERVER_PARAM *sp,int client_no)
@@ -591,12 +591,12 @@ void	ST_ServerBufferClear(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	POKEMON_SERVER_PARAM‚©‚ç’l‚ğæ“¾‚·‚é
+ *	POKEMON_SERVER_PARAMã‹ã‚‰å€¤ã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client	æ“¾‚·‚éClientNo
- * @param[in]	id		æ“¾‚·‚é’l‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	data	æ“¾‚·‚é’l‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^iint‚Å‚Í‘«‚è‚È‚¢•¶š—ñ‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client	å–å¾—ã™ã‚‹ClientNo
+ * @param[in]	id		å–å¾—ã™ã‚‹å€¤ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	data	å–å¾—ã™ã‚‹å€¤ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ï¼ˆintã§ã¯è¶³ã‚Šãªã„æ–‡å­—åˆ—ãªã©ï¼‰
  */
 //============================================================================================
 int		ST_ServerPokemonServerParamGet(SERVER_PARAM *sp,int client,int id,void *data)
@@ -673,7 +673,7 @@ int		ST_ServerPokemonServerParamGet(SERVER_PARAM *sp,int client,int id,void *dat
 		break;
 	case ID_PSP_type1:
 	case ID_PSP_type2:
-		//“Á«ƒ}ƒ‹ƒ`ƒ^ƒCƒv‚ÍA‘•”õ“¹‹ï‚É‚æ‚Á‚Äƒ^ƒCƒv‚ª•Ï‚í‚é
+		//ç‰¹æ€§ãƒãƒ«ãƒã‚¿ã‚¤ãƒ—ã¯ã€è£…å‚™é“å…·ã«ã‚ˆã£ã¦ã‚¿ã‚¤ãƒ—ãŒå¤‰ã‚ã‚‹
 		return ST_ServerTypeGet(sp,client,id);
 		break;
 	case ID_PSP_sex:
@@ -879,14 +879,14 @@ int		ST_ServerPokemonServerParamGet(SERVER_PARAM *sp,int client,int id,void *dat
 	case ID_PSP_slow_start_end_flag:
 		return psp->slow_start_end_flag;
 		break;
-	case ID_PSP_form_no:	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	case ID_PSP_form_no:	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		return psp->form_no;
 		break;
 	case ID_PSP_work:
 		return ST_ServerPokemonServerParamGet(sp,client,sp->temp_work,data);
 		break;
 	default:
-		GF_ASSERT_MSG((0),"‘¶İ‚µ‚È‚¢PSPƒpƒ‰ƒ[ƒ^‚Å‚·\n");
+		GF_ASSERT_MSG((0),"å­˜åœ¨ã—ãªã„PSPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™\n");
 		break;
 	}
 
@@ -895,12 +895,12 @@ int		ST_ServerPokemonServerParamGet(SERVER_PARAM *sp,int client,int id,void *dat
 
 //============================================================================================
 /**
- *	POKEMON_SERVER_PARAM‚É’l‚ğŠi”[‚·‚é
+ *	POKEMON_SERVER_PARAMã«å€¤ã‚’æ ¼ç´ã™ã‚‹
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client	Ši”[‚·‚éClientNo
- * @param[in]	id		Ši”[‚·‚é’l‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	data	Ši”[‚·‚é’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client	æ ¼ç´ã™ã‚‹ClientNo
+ * @param[in]	id		æ ¼ç´ã™ã‚‹å€¤ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	data	æ ¼ç´ã™ã‚‹å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerPokemonServerParamPut(SERVER_PARAM *sp,int client,int id,const void *buf)
@@ -1007,7 +1007,7 @@ void	ST_ServerPokemonServerParamPut(SERVER_PARAM *sp,int client,int id,const voi
 	case ID_PSP_pp_max2:
 	case ID_PSP_pp_max3:
 	case ID_PSP_pp_max4:
-		GF_ASSERT_MSG((0),"Put‚Å‚«‚Ü‚¹‚ñ\n");
+		GF_ASSERT_MSG((0),"Putã§ãã¾ã›ã‚“\n");
 		break;
 	case ID_PSP_level:
 		psp->level=buf8[0];
@@ -1182,26 +1182,26 @@ void	ST_ServerPokemonServerParamPut(SERVER_PARAM *sp,int client,int id,const voi
 	case ID_PSP_slow_start_end_flag:
 		psp->slow_start_end_flag=buf8[0];
 		break;
-	case ID_PSP_form_no:	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	case ID_PSP_form_no:	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		psp->form_no=buf8[0];
 		break;
 	case ID_PSP_work:
 		ST_ServerPokemonServerParamPut(sp,client,sp->temp_work,buf);
 		break;
 	default:
-		GF_ASSERT_MSG((0),"‘¶İ‚µ‚È‚¢PSPƒpƒ‰ƒ[ƒ^‚Å‚·\n");
+		GF_ASSERT_MSG((0),"å­˜åœ¨ã—ãªã„PSPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™\n");
 		break;
 	}
 }
 
 //============================================================================================
 /**
- *	POKEMON_SERVER_PARAM‚É’l‚ğ‰ÁZ‚·‚é
+ *	POKEMON_SERVER_PARAMã«å€¤ã‚’åŠ ç®—ã™ã‚‹
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client	‰ÁZ‚·‚éClientNo
- * @param[in]	id		‰ÁZ‚³‚ê‚é’l‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	value	‰ÁZ‚·‚é’l
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client	åŠ ç®—ã™ã‚‹ClientNo
+ * @param[in]	id		åŠ ç®—ã•ã‚Œã‚‹å€¤ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	value	åŠ ç®—ã™ã‚‹å€¤
  */
 //============================================================================================
 void	ST_ServerPokemonServerParamAdd(SERVER_PARAM *sp,int client,int id,int value)
@@ -1215,11 +1215,11 @@ void	ST_ServerPokemonServerParamAdd(SERVER_PARAM *sp,int client,int id,int value
 
 //============================================================================================
 /**
- *	POKEMON_SERVER_PARAM‚É’l‚ğ‰ÁZ‚·‚é
+ *	POKEMON_SERVER_PARAMã«å€¤ã‚’åŠ ç®—ã™ã‚‹
  *
- * @param[in]	psp		ƒT[ƒo—pƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	id		‰ÁZ‚·‚é’l‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	value	‰ÁZ‚·‚é’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	psp		ã‚µãƒ¼ãƒç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	id		åŠ ç®—ã™ã‚‹å€¤ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	value	åŠ ç®—ã™ã‚‹å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_PokemonServerParamAdd(POKEMON_SERVER_PARAM *psp,int id,int value)
@@ -1403,18 +1403,18 @@ void	ST_PokemonServerParamAdd(POKEMON_SERVER_PARAM *psp,int id,int value)
 	case ID_PSP_slow_start_end_flag:
 		psp->slow_start_end_flag+=value;
 		break;
-	case ID_PSP_form_no:	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	case ID_PSP_form_no:	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		psp->form_no+=value;
 		break;
 	default:
-		GF_ASSERT_MSG((0),"‘¶İ‚µ‚È‚¢PSPƒpƒ‰ƒ[ƒ^‚Å‚·\n");
+		GF_ASSERT_MSG((0),"å­˜åœ¨ã—ãªã„PSPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™\n");
 		break;
 	}
 }
 
 //============================================================================================
 /**
- *	‘f‘‚³‚ğ”¼Œ¸‚·‚é‘•”õŒø‰Êƒe[ƒuƒ‹
+ *	ç´ æ—©ã•ã‚’åŠæ¸›ã™ã‚‹è£…å‚™åŠ¹æœãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u8	ItemEqpAgiHalfTable[]={
@@ -1430,15 +1430,15 @@ static	const	u8	ItemEqpAgiHalfTable[]={
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì‘f‘‚³ŒvZ
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ç´ æ—©ã•è¨ˆç®—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	cl1			ƒ`ƒFƒbƒN‚·‚éClientNo‚Ì1
- * @param[in]	cl2			ƒ`ƒFƒbƒN‚·‚éClientNo‚Ì2
- * @param[in]	flag		‹Z‚Ìæ§ƒvƒ‰ƒCƒIƒŠƒeƒB‚Ì—LŒø(0)^–³Œø(1)
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	cl1			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNoã®1
+ * @param[in]	cl2			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNoã®2
+ * @param[in]	flag		æŠ€ã®å…ˆåˆ¶ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã®æœ‰åŠ¹(0)ï¼ç„¡åŠ¹(1)
  *
- * @retval	0:ƒ\[ƒg‚Ì•K—v‚È‚µ@1:ƒ\[ƒg‚Ì•K—v‚ ‚è@2:ƒ\[ƒg‚Ì•K—v‚ ‚èi‘f‘‚³‚ª“¯‚¶‚¾‚Á‚½‚Ì‚ÅAƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è‚³‚ê‚½j
+ * @retval	0:ã‚½ãƒ¼ãƒˆã®å¿…è¦ãªã—ã€€1:ã‚½ãƒ¼ãƒˆã®å¿…è¦ã‚ã‚Šã€€2:ã‚½ãƒ¼ãƒˆã®å¿…è¦ã‚ã‚Šï¼ˆç´ æ—©ã•ãŒåŒã˜ã ã£ãŸã®ã§ã€ãƒ©ãƒ³ãƒ€ãƒ ã§æ±ºå®šã•ã‚ŒãŸï¼‰
  */
 //============================================================================================
 u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
@@ -1464,7 +1464,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	int	cond_agi2;
 	int	i;
 
-	//HP0‚Ì“z‚Í–³ğŒ‚É’x‚­‚·‚é
+	//HP0ã®å¥´ã¯ç„¡æ¡ä»¶ã«é…ãã™ã‚‹
 	if((sp->psp[cl1].hp==0)&&(sp->psp[cl2].hp)){
 		return 1;
 	}
@@ -1483,7 +1483,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	cond_agi1=sp->psp[cl1].abiritycnt[COND_AGI];
 	cond_agi2=sp->psp[cl2].abiritycnt[COND_AGI];
 
-	//“Á«‚½‚ñ‚¶‚ã‚ñ‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA‚·‚Î‚â‚³ã¸‚ğ”{
+	//ç‰¹æ€§ãŸã‚“ã˜ã‚…ã‚“ã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ã™ã°ã‚„ã•ä¸Šæ˜‡ã‚’å€
 	if(ST_ServerTokuseiGet(sp,cl1)==TOKUSYU_TANZYUN){
 		cond_agi1=6+((cond_agi1-6)*2);
 		if(cond_agi1>12){
@@ -1509,24 +1509,24 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	agi2=sp->psp[cl2].agi*CondChgTable[cond_agi2][0]/
 						  CondChgTable[cond_agi2][1];
 
-	//“Áê”\—Í‚Ì‚¤‚Ä‚ñ‚«‚Ìƒ|ƒPƒ‚ƒ“‚ªí“¬‚Éo‚Ä‚¢‚é‚Æ‚«‚Íƒ`ƒFƒbƒN‚ğ‚µ‚È‚¢
+	//ç‰¹æ®Šèƒ½åŠ›ã®ã†ã¦ã‚“ãã®ãƒã‚±ãƒ¢ãƒ³ãŒæˆ¦é—˜ã«å‡ºã¦ã„ã‚‹ã¨ãã¯ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„
 	if((ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_NOOTENKI)==0)&&
 	   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_EAROKKU)==0)){
-		//“Áê”\—Í‚·‚¢‚·‚¢‚ÍA‰J‚Ì‚Æ‚«‘f‘‚³‚ª”{
-		//“Áê”\—Í‚æ‚¤‚è‚å‚­‚»‚ÍA°‚ê‚Ì‚Æ‚«‘f‘‚³‚ª”{
+		//ç‰¹æ®Šèƒ½åŠ›ã™ã„ã™ã„ã¯ã€é›¨ã®ã¨ãç´ æ—©ã•ãŒå€
+		//ç‰¹æ®Šèƒ½åŠ›ã‚ˆã†ã‚Šã‚‡ããã¯ã€æ™´ã‚Œã®ã¨ãç´ æ—©ã•ãŒå€
 		if(((speabi1==TOKUSYU_SUISUI)&&(sp->field_condition&FIELD_CONDITION_AME_ALL))||
 		   ((speabi1==TOKUSYU_YOURYOKUSO)&&(sp->field_condition&FIELD_CONDITION_HARE_ALL))){
 			agi1*=2;
 		}
-		//“Áê”\—Í‚·‚¢‚·‚¢‚ÍA‰J‚Ì‚Æ‚«‘f‘‚³‚ª”{
-		//“Áê”\—Í‚æ‚¤‚è‚å‚­‚»‚ÍA°‚ê‚Ì‚Æ‚«‘f‘‚³‚ª”{
+		//ç‰¹æ®Šèƒ½åŠ›ã™ã„ã™ã„ã¯ã€é›¨ã®ã¨ãç´ æ—©ã•ãŒå€
+		//ç‰¹æ®Šèƒ½åŠ›ã‚ˆã†ã‚Šã‚‡ããã¯ã€æ™´ã‚Œã®ã¨ãç´ æ—©ã•ãŒå€
 		if(((speabi2==TOKUSYU_SUISUI)&&(sp->field_condition&FIELD_CONDITION_AME_ALL))||
 		   ((speabi2==TOKUSYU_YOURYOKUSO)&&(sp->field_condition&FIELD_CONDITION_HARE_ALL))){
 			agi2*=2;
 		}
 	}
 
-	//ƒAƒCƒeƒ€‚Å“w—Í’l‚Q”{‚ÌŒø‰ÊA‚·‚Î‚â‚³DOWN‚ğ‘•”õ‚·‚é‚Æ‘f‘‚³‚ğ1/2‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§åŠªåŠ›å€¤ï¼’å€ã®åŠ¹æœã€ã™ã°ã‚„ã•DOWNã‚’è£…å‚™ã™ã‚‹ã¨ç´ æ—©ã•ã‚’1/2ã«ã™ã‚‹
 	for(i=0;i<NELEMS(ItemEqpAgiHalfTable);i++){
 		if(ST_ItemParamGet(sp,sp->psp[cl1].item,ITEM_PRM_EQUIP)==ItemEqpAgiHalfTable[i]){
 			agi1/=2;
@@ -1534,46 +1534,46 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		}
 	}
 
-	//ƒAƒCƒeƒ€‚Å‚±‚¾‚í‚èŒn‚ğ‘•”õ‚·‚é‚Æ‘f‘‚³‚ğ1.5”{‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã“ã ã‚ã‚Šç³»ã‚’è£…å‚™ã™ã‚‹ã¨ç´ æ—©ã•ã‚’1.5å€ã«ã™ã‚‹
 	if(eqp1==SOUBI_ONAZIWAZAONLYSUBAYASAUP){
 		agi1=agi1*15/10;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒƒ^ƒ‚ƒ“‚ª‚Â‚Æ‘f‘‚³‚ğ2”{‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ¡ã‚¿ãƒ¢ãƒ³ãŒæŒã¤ã¨ç´ æ—©ã•ã‚’2å€ã«ã™ã‚‹
 	if((eqp1==SOUBI_METAMONSUBAYASAUP)&&(sp->psp[cl1].monsno==MONSNO_METAMON)){
 		agi1*=2;
 	}
 
-	//“Á«‚Í‚â‚ ‚µ‚ÍAó‘ÔˆÙí‚Å‘f‘‚³‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ€§ã¯ã‚„ã‚ã—ã¯ã€çŠ¶æ…‹ç•°å¸¸ã§ç´ æ—©ã•ã‚’1.5å€ã«ã™ã‚‹
 	if((speabi1==TOKUSYU_HAYAASI)&&(sp->psp[cl1].condition&CONDITION_BAD)){
 		agi1=agi1*15/10;
 	}
 	else{
-		//‚Ü‚Ğ‚Ì‚ÍA‘f‘‚³‚ğ1/4‚É‚·‚é
+		//ã¾ã²ã®æ™‚ã¯ã€ç´ æ—©ã•ã‚’1/4ã«ã™ã‚‹
 		if(sp->psp[cl1].condition&CONDITION_MAHI){
 			agi1/=4;
 		}
 	}
 
-	//“Á«ƒXƒ[ƒXƒ^[ƒg‚ÍAê‚É‚Å‚Ä‚©‚ç5ƒ^[ƒ“ˆÈ“à‚Í‘f‘‚³‚ğ”¼•ª‚É‚·‚é
+	//ç‰¹æ€§ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆã¯ã€å ´ã«ã§ã¦ã‹ã‚‰5ã‚¿ãƒ¼ãƒ³ä»¥å†…ã¯ç´ æ—©ã•ã‚’åŠåˆ†ã«ã™ã‚‹
 	if((speabi1==TOKUSYU_SUROOSUTAATO)&&
 	  ((sp->total_turn-sp->psp[cl1].wkw.slow_start_count)<5)){
 		agi1/=2;
 	}
 
-	//“Á«‚©‚é‚í‚´‚ÍAƒAƒCƒeƒ€‚ğ‚Â‚©‚Á‚Ä‚µ‚Ü‚¤‚Æ‘f‘‚³‚ª”{‚É‚È‚é
+	//ç‰¹æ€§ã‹ã‚‹ã‚ã–ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã¤ã‹ã£ã¦ã—ã¾ã†ã¨ç´ æ—©ã•ãŒå€ã«ãªã‚‹
 	if((speabi1==TOKUSYU_KARUWAZA)&&
 	   (sp->psp[cl1].wkw.karuwaza_flag)&&
 	   (sp->psp[cl1].item==0)){
 		agi1*=2;
 	}
 
-	//‹ZŒø‰Ê‚¨‚¢‚©‚º‚ğó‚¯‚Ä‚¢‚é‚ÍA‘f‘‚³‚ğ2”{‚É
+	//æŠ€åŠ¹æœãŠã„ã‹ãœã‚’å—ã‘ã¦ã„ã‚‹æ™‚ã¯ã€ç´ æ—©ã•ã‚’2å€ã«
 	if(sp->side_condition[BattleWorkMineEnemyCheck(bw,cl1)]&SIDE_CONDITION_OIKAZE){
 		agi1*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚Åæ§UŒ‚‚ÌŒø‰Ê‚ğ‘•”õ‚·‚é‚Ææ§UŒ‚‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å…ˆåˆ¶æ”»æ’ƒã®åŠ¹æœã‚’è£…å‚™ã™ã‚‹ã¨å…ˆåˆ¶æ”»æ’ƒã«ã™ã‚‹
 	if(eqp1==SOUBI_SENSEIKOUGEKI){
 #ifdef PM_DEBUG
 		if(((sp->agi_rand[cl1]%(100/atk1))==0)||sp->dbp.debug_flag&DEBUG_FLAG_SOUBI){
@@ -1581,7 +1581,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		if((sp->agi_rand[cl1]%(100/atk1))==0){
 #endif
 			sensei1=1;
-			//‹Z‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ğŒ©‚È‚¢‚ÍAŒø‰ÊƒGƒtƒFƒNƒg‚Ì”­“®‚Í‚È‚µ
+			//æŠ€ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¦‹ãªã„æ™‚ã¯ã€åŠ¹æœã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™ºå‹•ã¯ãªã—
 			if(flag==0){
 				sp->psp[cl1].wkw.sensei_flag=1;
 			}
@@ -1589,7 +1589,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	}
 	
 #if 0
-	//‘•”õŒø‰Ê‚Åæ§UŒ‚‚É‚·‚é
+	//è£…å‚™åŠ¹æœã§å…ˆåˆ¶æ”»æ’ƒã«ã™ã‚‹
 	if(sp->psp[cl1].wkw.once_agi_up){
 		sensei1=1;
 	}
@@ -1600,7 +1600,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		}
 		if(sp->psp[cl1].hp<=(sp->psp[cl1].hpmax/atk1)){
 			sensei1=1;
-			//‹Z‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ğŒ©‚È‚¢‚ÍAŒø‰ÊƒGƒtƒFƒNƒg‚Ì”­“®‚Í‚È‚µ
+			//æŠ€ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¦‹ãªã„æ™‚ã¯ã€åŠ¹æœã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™ºå‹•ã¯ãªã—
 			if(flag==0){
 				sp->psp[cl1].wkw.once_agi_up=1;
 			}
@@ -1608,12 +1608,12 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	}
 #endif
 
-	//ƒAƒCƒeƒ€‚ÅŒãUUŒ‚‚ÌŒø‰Ê‚ğ‘•”õ‚·‚é‚ÆŒãUUŒ‚‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å¾Œæ”»æ”»æ’ƒã®åŠ¹æœã‚’è£…å‚™ã™ã‚‹ã¨å¾Œæ”»æ”»æ’ƒã«ã™ã‚‹
 	if(eqp1==SOUBI_KOUKOUNINARU){
 		koukou1=1;
 	}
 
-	//ƒAƒCƒeƒ€‚Å“w—Í’l‚Q”{‚ÌŒø‰ÊA‚·‚Î‚â‚³DOWN‚ğ‘•”õ‚·‚é‚Æ‘f‘‚³‚ğ1/2‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§åŠªåŠ›å€¤ï¼’å€ã®åŠ¹æœã€ã™ã°ã‚„ã•DOWNã‚’è£…å‚™ã™ã‚‹ã¨ç´ æ—©ã•ã‚’1/2ã«ã™ã‚‹
 	for(i=0;i<NELEMS(ItemEqpAgiHalfTable);i++){
 		if(ST_ItemParamGet(sp,sp->psp[cl2].item,ITEM_PRM_EQUIP)==ItemEqpAgiHalfTable[i]){
 			agi2/=2;
@@ -1621,46 +1621,46 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		}
 	}
 
-	//ƒAƒCƒeƒ€‚Å‚±‚¾‚í‚èŒn‚ğ‘•”õ‚·‚é‚Æ‘f‘‚³‚ğ1.5”{‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã“ã ã‚ã‚Šç³»ã‚’è£…å‚™ã™ã‚‹ã¨ç´ æ—©ã•ã‚’1.5å€ã«ã™ã‚‹
 	if(eqp2==SOUBI_ONAZIWAZAONLYSUBAYASAUP){
 		agi2=agi2*15/10;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒƒ^ƒ‚ƒ“‚ª‚Â‚Æ‘f‘‚³‚ğ2”{‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ¡ã‚¿ãƒ¢ãƒ³ãŒæŒã¤ã¨ç´ æ—©ã•ã‚’2å€ã«ã™ã‚‹
 	if((eqp2==SOUBI_METAMONSUBAYASAUP)&&(sp->psp[cl2].monsno==MONSNO_METAMON)){
 		agi2*=2;
 	}
 
-	//“Á«‚Í‚â‚ ‚µ‚ÍAó‘ÔˆÙí‚Å‘f‘‚³‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ€§ã¯ã‚„ã‚ã—ã¯ã€çŠ¶æ…‹ç•°å¸¸ã§ç´ æ—©ã•ã‚’1.5å€ã«ã™ã‚‹
 	if((speabi2==TOKUSYU_HAYAASI)&&(sp->psp[cl2].condition&CONDITION_BAD)){
 		agi2=agi2*15/10;
 	}
 	else{
-		//‚Ü‚Ğ‚Ì‚ÍA‘f‘‚³‚ğ1/4‚É‚·‚é
+		//ã¾ã²ã®æ™‚ã¯ã€ç´ æ—©ã•ã‚’1/4ã«ã™ã‚‹
 		if(sp->psp[cl2].condition&CONDITION_MAHI){
 			agi2/=4;
 		}
 	}
 
-	//“Á«ƒXƒ[ƒXƒ^[ƒg‚ÍAê‚É‚Å‚Ä‚©‚ç5ƒ^[ƒ“ˆÈ“à‚Í‘f‘‚³‚ğ”¼•ª‚É‚·‚é
+	//ç‰¹æ€§ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆã¯ã€å ´ã«ã§ã¦ã‹ã‚‰5ã‚¿ãƒ¼ãƒ³ä»¥å†…ã¯ç´ æ—©ã•ã‚’åŠåˆ†ã«ã™ã‚‹
 	if((speabi2==TOKUSYU_SUROOSUTAATO)&&
 	  ((sp->total_turn-sp->psp[cl2].wkw.slow_start_count)<5)){
 		agi2/=2;
 	}
 
-	//“Á«‚©‚é‚í‚´‚ÍAƒAƒCƒeƒ€‚ğ‚Â‚©‚Á‚Ä‚µ‚Ü‚¤‚Æ‘f‘‚³‚ª”{‚É‚È‚é
+	//ç‰¹æ€§ã‹ã‚‹ã‚ã–ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã¤ã‹ã£ã¦ã—ã¾ã†ã¨ç´ æ—©ã•ãŒå€ã«ãªã‚‹
 	if((speabi2==TOKUSYU_KARUWAZA)&&
 	   (sp->psp[cl2].wkw.karuwaza_flag)&&
 	   (sp->psp[cl2].item==0)){
 		agi2*=2;
 	}
 
-	//‹ZŒø‰Ê‚¨‚¢‚©‚º‚ğó‚¯‚Ä‚¢‚é‚ÍA‘f‘‚³‚ğ2”{‚É
+	//æŠ€åŠ¹æœãŠã„ã‹ãœã‚’å—ã‘ã¦ã„ã‚‹æ™‚ã¯ã€ç´ æ—©ã•ã‚’2å€ã«
 	if(sp->side_condition[BattleWorkMineEnemyCheck(bw,cl2)]&SIDE_CONDITION_OIKAZE){
 		agi2*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚Åæ§UŒ‚‚ÌŒø‰Ê‚ğ‘•”õ‚·‚é‚Ææ§UŒ‚‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å…ˆåˆ¶æ”»æ’ƒã®åŠ¹æœã‚’è£…å‚™ã™ã‚‹ã¨å…ˆåˆ¶æ”»æ’ƒã«ã™ã‚‹
 	if(eqp2==SOUBI_SENSEIKOUGEKI){
 #ifdef PM_DEBUG
 		if(((sp->agi_rand[cl2]%(100/atk2))==0)||sp->dbp.debug_flag&DEBUG_FLAG_SOUBI){
@@ -1668,7 +1668,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		if((sp->agi_rand[cl2]%(100/atk2))==0){
 #endif
 			sensei2=1;
-			//‹Z‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ğŒ©‚È‚¢‚ÍAŒø‰ÊƒGƒtƒFƒNƒg‚Ì”­“®‚Í‚È‚µ
+			//æŠ€ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¦‹ãªã„æ™‚ã¯ã€åŠ¹æœã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™ºå‹•ã¯ãªã—
 			if(flag==0){
 				sp->psp[cl2].wkw.sensei_flag=1;
 			}
@@ -1676,7 +1676,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	}
 
 #if 0
-	//‘•”õŒø‰Ê‚Åæ§UŒ‚‚É‚·‚é
+	//è£…å‚™åŠ¹æœã§å…ˆåˆ¶æ”»æ’ƒã«ã™ã‚‹
 	if(sp->psp[cl2].wkw.once_agi_up){
 		sensei2=1;
 	}
@@ -1687,7 +1687,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 		}
 		if(sp->psp[cl2].hp<=(sp->psp[cl2].hpmax/atk2)){
 			sensei2=1;
-			//‹Z‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ğŒ©‚È‚¢‚ÍAŒø‰ÊƒGƒtƒFƒNƒg‚Ì”­“®‚Í‚È‚µ
+			//æŠ€ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¦‹ãªã„æ™‚ã¯ã€åŠ¹æœã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™ºå‹•ã¯ãªã—
 			if(flag==0){
 				sp->psp[cl2].wkw.once_agi_up=1;
 			}
@@ -1695,12 +1695,12 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	}
 #endif
 
-	//ƒAƒCƒeƒ€‚ÅŒãUUŒ‚‚ÌŒø‰Ê‚ğ‘•”õ‚·‚é‚ÆŒãUUŒ‚‚É‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å¾Œæ”»æ”»æ’ƒã®åŠ¹æœã‚’è£…å‚™ã™ã‚‹ã¨å¾Œæ”»æ”»æ’ƒã«ã™ã‚‹
 	if(eqp2==SOUBI_KOUKOUNINARU){
 		koukou2=1;
 	}
 
-	//ƒˆ‚È‘f‘‚³ƒpƒ‰ƒ[ƒ^‚ğƒ[ƒN‚ÉŠi”[
+	//ç´”ç²‹ãªç´ æ—©ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«æ ¼ç´
 	sp->psp_agi_point[cl1]=agi1;
 	sp->psp_agi_point[cl2]=agi2;
 
@@ -1732,7 +1732,7 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 	}
 
 	if(attackpri1==attackpri2){
-		//æ§ƒvƒ‰ƒCƒIƒŠƒeƒB‚ªˆê‚Ì‚ÍA‚¹‚ñ‚¹‚¢‚ÌƒcƒA‚±‚¤‚±‚¤‚Ì‚µ‚Á‚ÛA‚ ‚Æ‚¾‚µAƒgƒŠƒbƒNƒ‹[ƒ€‚Ì‡‚ÅŒ©‚é
+		//å…ˆåˆ¶ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãŒä¸€ç·’ã®æ™‚ã¯ã€ã›ã‚“ã›ã„ã®ãƒ„ãƒ¡ã€ã“ã†ã“ã†ã®ã—ã£ã½ã€ã‚ã¨ã ã—ã€ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ ã®é †ã§è¦‹ã‚‹
 		if((sensei1)&&(sensei2)){
 			if(agi1<agi2){
 				ret=1;
@@ -1801,10 +1801,10 @@ u8	ST_ServerAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl1,int cl2,int flag)
 
 //============================================================================================
 /**
- *	ŒoŒ±’l‚ğŠl“¾‚Å‚«‚éŒ —˜ƒtƒ‰ƒO‚ÌƒNƒŠƒA
+ *	çµŒé¨“å€¤ã‚’ç²å¾—ã§ãã‚‹æ¨©åˆ©ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒNƒŠƒA‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ã‚¯ãƒªã‚¢ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	ST_ServerGetExpRightFlagClear(SERVER_PARAM *sp,int client_no)
@@ -1817,11 +1817,11 @@ void	ST_ServerGetExpRightFlagClear(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ŒoŒ±’l‚ğŠl“¾‚Å‚«‚éŒ —˜ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ *	çµŒé¨“å€¤ã‚’ç²å¾—ã§ãã‚‹æ¨©åˆ©ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒZƒbƒg‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	ST_ServerGetExpRightFlagSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -1850,10 +1850,10 @@ void	ST_ServerGetExpRightFlagSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ŒoŒ±’l‚ğŠl“¾‚Å‚«‚éŒ —˜ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ *	çµŒé¨“å€¤ã‚’ç²å¾—ã§ãã‚‹æ¨©åˆ©ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒŠƒZƒbƒg‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	ST_ServerGetExpRightFlagReset(SERVER_PARAM *sp,int client_no)
@@ -1875,11 +1875,11 @@ void	ST_ServerGetExpRightFlagReset(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	’Ç‰ÁŒø‰Ê‚Ìƒ`ƒFƒbƒNi’¼Ú’Ç‰Á‚Ì‚İj
+ *	è¿½åŠ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯ï¼ˆç›´æ¥è¿½åŠ ã®ã¿ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[out]	seq_no		’Ç‰ÁŒø‰Ê‚ğ‚·‚é‚½‚ß‚ÌƒTƒuƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[out]	seq_no		è¿½åŠ åŠ¹æœã‚’ã™ã‚‹ãŸã‚ã®ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 BOOL	ST_ServerAddStatusDirectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -1887,19 +1887,19 @@ BOOL	ST_ServerAddStatusDirectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 	BOOL	ret=FALSE;
 
 	if(sp->add_status_flag_direct&ADD_STATUS_WAZAKOUKA){
-		//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+		//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_DIRECT,sp->add_status_flag_direct);
 		sp->add_status_flag_direct=0;
-		//‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+		//ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 		if((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0){
 			ret=TRUE;
 		}
 	}
 	else if(sp->add_status_flag_direct){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_DIRECT,sp->add_status_flag_direct);
-		//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹
 		if((sp->psp[sp->tsuika_client].hp)&&
-		//‹ZŒø‰Ê‚Ì’Ç‰Á‚Å‚Í‚¸‚ê‚ğ–³‹‚·‚éw’è‚ª‚È‚¢‚ÍA‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+		//æŠ€åŠ¹æœã®è¿½åŠ ã§ã¯ãšã‚Œã‚’ç„¡è¦–ã™ã‚‹æŒ‡å®šãŒãªã„æ™‚ã¯ã€ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 		  (((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)||
 		   ((sp->add_status_flag_direct&ADD_STATUS_WAZAKOUKA_KAWARAWARI)&&
 		    (sp->waza_status_flag&WAZA_STATUS_FLAG_KAWARAWARI))||
@@ -1915,11 +1915,11 @@ BOOL	ST_ServerAddStatusDirectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 
 //============================================================================================
 /**
- *	’Ç‰ÁŒø‰Ê‚Ìƒ`ƒFƒbƒNi’¼Ú’Ç‰ÁˆÈŠOj
+ *	è¿½åŠ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯ï¼ˆç›´æ¥è¿½åŠ ä»¥å¤–ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[out]	seq_no		’Ç‰ÁŒø‰Ê‚ğ‚·‚é‚½‚ß‚ÌƒTƒuƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[out]	seq_no		è¿½åŠ åŠ¹æœã‚’ã™ã‚‹ãŸã‚ã®ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -1927,48 +1927,48 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 	BOOL	ret=FALSE;
 	u16		kakuritsu;
 
-	//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+	//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 	if(sp->add_status_flag_indirect&ADD_STATUS_WAZAKOUKA){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 		sp->add_status_flag_indirect=0;
-		//‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+		//ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 		if(((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)){
 			ret=TRUE;
 		}
 	}
-	//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+	//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 	else if(sp->add_status_flag_indirect&ADD_STATUS_WAZAKOUKA_NOHP){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 		sp->add_status_flag_indirect=0;
-		//‚İ‚ª‚í‚è‚ª‚¢‚éê‡‚ÍA¸”s‚É‚·‚é@‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+		//ã¿ãŒã‚ã‚ŠãŒã„ã‚‹å ´åˆã¯ã€å¤±æ•—ã«ã™ã‚‹ã€€ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 		if((ST_ServerMigawariCheck(sp,sp->tsuika_client)==FALSE)&&
 		   ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)){
 			ret=TRUE;
 		}
 	}
-	//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+	//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 	else if(sp->add_status_flag_indirect&ADD_STATUS_WAZAKOUKA_CHECK){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 		sp->add_status_flag_indirect=0;
-		//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é ‚İ‚ª‚í‚è‚ª‚¢‚éê‡‚ÍA¸”s‚É‚·‚é@‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹ ã¿ãŒã‚ã‚ŠãŒã„ã‚‹å ´åˆã¯ã€å¤±æ•—ã«ã™ã‚‹ã€€ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 		if((sp->psp[sp->tsuika_client].hp)&&
 		  (ST_ServerMigawariCheck(sp,sp->tsuika_client)==FALSE)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)){
 			ret=TRUE;
 		}
 	}
-	//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+	//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 	else if(sp->add_status_flag_indirect&ADD_STATUS_WAZAKOUKA_NOHIT){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 		sp->add_status_flag_indirect=0;
-		//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹
 		if(sp->psp[sp->tsuika_client].hp){
 			ret=TRUE;
 		}
 	}
-	//‹ZŒø‰Ê‚Ì’Ç‰Á‚ÍA100%‹N“®
+	//æŠ€åŠ¹æœã®è¿½åŠ ã¯ã€100%èµ·å‹•
 	else if(sp->add_status_flag_indirect&ADD_STATUS_WAZAKOUKA_PROB){
-		//“Áê”\—Í‚Ä‚ñ‚Ì‚ß‚®‚İ‚ÍAŠm—¦‚ğ”{‚É‚·‚é
+		//ç‰¹æ®Šèƒ½åŠ›ã¦ã‚“ã®ã‚ãã¿ã¯ã€ç¢ºç‡ã‚’å€ã«ã™ã‚‹
 		if(ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_TENNOMEGUMI){
 //			kakuritsu=WT_WazaDataParaGet(sp->waza_no_now,ID_WTD_addeffect)*2;
 			kakuritsu=sp->AIWT.wtd[sp->waza_no_now].addeffect*2;
@@ -1977,29 +1977,29 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 //			kakuritsu=WT_WazaDataParaGet(sp->waza_no_now,ID_WTD_addeffect);
 			kakuritsu=sp->AIWT.wtd[sp->waza_no_now].addeffect;
 		}
-		//ŠÔÚ‚ÅŠm—¦‚O‚Í‚ ‚è‚¦‚È‚¢‚Ì‚ÅAƒAƒT[ƒg
+		//é–“æ¥ã§ç¢ºç‡ï¼ã¯ã‚ã‚Šãˆãªã„ã®ã§ã€ã‚¢ã‚µãƒ¼ãƒˆ
 		GF_ASSERT(kakuritsu!=0);
 #ifdef PM_DEBUG
 		if(((BattleWorkRandGet(bw)%100)<kakuritsu)||(sp->dbp.debug_flag&DEBUG_FLAG_ADD_STATUS)){
-			//’Ç‰ÁŒø‰Ê‹N“®‚É‚È‚Á‚½‚çAƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é
+			//è¿½åŠ åŠ¹æœèµ·å‹•ã«ãªã£ãŸã‚‰ã€ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹
 			sp->server_status_flag|=SERVER_STATUS_FLAG_TSUIKA;
 		}
 #else
 		if((BattleWorkRandGet(bw)%100)<kakuritsu){
-			//’Ç‰ÁŒø‰Ê‹N“®‚É‚È‚Á‚½‚çAƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é
+			//è¿½åŠ åŠ¹æœèµ·å‹•ã«ãªã£ãŸã‚‰ã€ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹
 			sp->server_status_flag|=SERVER_STATUS_FLAG_TSUIKA;
 		}
 #endif
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 		sp->add_status_flag_indirect=0;
-		//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹
 		if(sp->psp[sp->tsuika_client].hp==0){
 			sp->server_status_flag&=SERVER_STATUS_FLAG_TSUIKA_OFF;
 		}
 		ret=TRUE;
 	}
 	else if(sp->add_status_flag_indirect){
-		//“Áê”\—Í‚Ä‚ñ‚Ì‚ß‚®‚İ‚ÍAŠm—¦‚ğ”{‚É‚·‚é
+		//ç‰¹æ®Šèƒ½åŠ›ã¦ã‚“ã®ã‚ãã¿ã¯ã€ç¢ºç‡ã‚’å€ã«ã™ã‚‹
 		if(ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_TENNOMEGUMI){
 //			kakuritsu=WT_WazaDataParaGet(sp->waza_no_now,ID_WTD_addeffect)*2;
 			kakuritsu=sp->AIWT.wtd[sp->waza_no_now].addeffect*2;
@@ -2008,13 +2008,13 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 //			kakuritsu=WT_WazaDataParaGet(sp->waza_no_now,ID_WTD_addeffect);
 			kakuritsu=sp->AIWT.wtd[sp->waza_no_now].addeffect;
 		}
-		//ŠÔÚ‚ÅŠm—¦‚O‚Í‚ ‚è‚¦‚È‚¢‚Ì‚ÅAƒAƒT[ƒg
+		//é–“æ¥ã§ç¢ºç‡ï¼ã¯ã‚ã‚Šãˆãªã„ã®ã§ã€ã‚¢ã‚µãƒ¼ãƒˆ
 		GF_ASSERT(kakuritsu!=0);
 #ifdef PM_DEBUG
 		if(((BattleWorkRandGet(bw)%100)<kakuritsu)||(sp->dbp.debug_flag&DEBUG_FLAG_ADD_STATUS)){
 			seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 			sp->add_status_flag_indirect=0;
-			//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é ‚İ‚ª‚í‚è‚ª‚¢‚éê‡‚ÍA¸”s‚É‚·‚é@‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+			//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹ ã¿ãŒã‚ã‚ŠãŒã„ã‚‹å ´åˆã¯ã€å¤±æ•—ã«ã™ã‚‹ã€€ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 			if((sp->psp[sp->tsuika_client].hp)&&
 			   (ST_ServerMigawariCheck(sp,sp->tsuika_client)==FALSE)&&
 			   (sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0){
@@ -2025,7 +2025,7 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		if((BattleWorkRandGet(bw)%100)<kakuritsu){
 			seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_INDIRECT,sp->add_status_flag_indirect);
 			sp->add_status_flag_indirect=0;
-			//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é ‚İ‚ª‚í‚è‚ª‚¢‚éê‡‚ÍA¸”s‚É‚·‚é@‚Í‚¸‚ê‚Å¸”s‚É‚·‚é
+			//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹ ã¿ãŒã‚ã‚ŠãŒã„ã‚‹å ´åˆã¯ã€å¤±æ•—ã«ã™ã‚‹ã€€ã¯ãšã‚Œã§å¤±æ•—ã«ã™ã‚‹
 			if((sp->psp[sp->tsuika_client].hp)&&
 			   (ST_ServerMigawariCheck(sp,sp->tsuika_client)==FALSE)&&
 			   (sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0){
@@ -2037,7 +2037,7 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 	else if(sp->add_status_flag_tokusei){
 		seq_no[0]=ST_ServerAddStatusParamSet(sp,ADD_STATUS_TOKUSEI,sp->add_status_flag_tokusei);
 		sp->add_status_flag_tokusei=0;
-		//‹Câ‚µ‚Ä‚¢‚é‘Šè‚É‚Í¸”s‚³‚¹‚é
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯å¤±æ•—ã•ã›ã‚‹
 		if(sp->psp[sp->tsuika_client].hp){
 			ret=TRUE;
 		}
@@ -2048,16 +2048,16 @@ BOOL	ST_ServerAddStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 
 //============================================================================================
 /**
- * @brief	UŒ‚‘ÎÛ‚ğƒZƒbƒg
+ * @brief	æ”»æ’ƒå¯¾è±¡ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	attack		UŒ‚‘¤ClientNo
- * @param[in]	waza_no		ŒJ‚èo‚»‚¤‚Æ‚µ‚Ä‚¢‚é‹Z
- * @param[in]	flag		0:DirSelect‚ÅƒZƒbƒg‚µ‚½’l 1:‘ÎÛ‚ğƒ‰ƒ“ƒ_ƒ€‚Å‘I‘ğ
- * @param[in]	range		waza_no‚ª0‚Ì‚É—LŒø‚ÈRANGE’l
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	attack		æ”»æ’ƒå´ClientNo
+ * @param[in]	waza_no		ç¹°ã‚Šå‡ºãã†ã¨ã—ã¦ã„ã‚‹æŠ€
+ * @param[in]	flag		0:DirSelectã§ã‚»ãƒƒãƒˆã—ãŸå€¤ 1:å¯¾è±¡ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§é¸æŠ
+ * @param[in]	range		waza_noãŒ0ã®æ™‚ã«æœ‰åŠ¹ãªRANGEå€¤
  *
- * @retval	ƒZƒbƒg‚·‚éClientNo
+ * @retval	ã‚»ãƒƒãƒˆã™ã‚‹ClientNo
  */
 //============================================================================================
 int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 waza_no,int flag,int set_range)
@@ -2119,7 +2119,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 			}
 		}
 	}
-	//‚ä‚Ñ‚ğ‚Ó‚é‚È‚Ç‚ÅA‘ÎÛ‚ğ‘I‚Î‚¸‚É‹Z‚ªo‚½‚Ìˆ—
+	//ã‚†ã³ã‚’ãµã‚‹ãªã©ã§ã€å¯¾è±¡ã‚’é¸ã°ãšã«æŠ€ãŒå‡ºãŸæ™‚ã®å‡¦ç†
 	else if((range==RANGE_TUBOWOTUKU)&&(flag==1)){
 		{
 			int	fight_type;
@@ -2137,7 +2137,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 			}
 		}
 	}
-	//‚ä‚Ñ‚ğ‚Ó‚é‚È‚Ç‚ÅA‘ÎÛ‚ğ‘I‚Î‚¸‚É‹Z‚ªo‚½‚Ìˆ—
+	//ã‚†ã³ã‚’ãµã‚‹ãªã©ã§ã€å¯¾è±¡ã‚’é¸ã°ãšã«æŠ€ãŒå‡ºãŸæ™‚ã®å‡¦ç†
 	else if((range==RANGE_SAKIDORI)&&(flag==1)){
 		defence=ST_ServerDirClientGet(bw,sp,attack);
 	}
@@ -2191,7 +2191,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 			def[1]=BattleWorkEnemyClientNoGet(bw,attack,BWECNG_SIDE_LEFT);
 
 #if 0
-			//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+			//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 			if(ST_ServerTokuseiGet(sp,attack)==TOKUSYU_NOOMARUSUKIN){
 				wazatype=NORMAL_TYPE;
 			}
@@ -2204,23 +2204,23 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 #endif
 
 			if(fight_type&FIGHT_TYPE_2vs2){
-				//‚±‚Ì‚ä‚Ñ‚Æ‚Ü‚ê‚ª‚¢‚é‚È‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+				//ã“ã®ã‚†ã³ã¨ã¾ã‚ŒãŒã„ã‚‹ãªã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 				if((sp->scw[dir].konoyubitomare_flag)&&(sp->psp[sp->scw[dir].konoyubitomare_client].hp)){
 					defence=sp->scw[dir].konoyubitomare_client;
 				}
-				//—¼•û‚¢‚é‚È‚çAƒ‰ƒ“ƒ_ƒ€‚Å‘I‘ğ
+				//ä¸¡æ–¹ã„ã‚‹ãªã‚‰ã€ãƒ©ãƒ³ãƒ€ãƒ ã§é¸æŠ
 				else if((sp->psp[def[0]].hp)&&(sp->psp[def[1]].hp)){
 					dir=BattleWorkRandGet(bw)&1;
 					defence=def[dir];
-#if 0	//ƒ`ƒFƒbƒNêŠˆÚ“®
-					//‹Zƒ^ƒCƒv‚ª‚Å‚ñ‚«‚ÅA“Á«‚Ğ‚ç‚¢‚µ‚ñ‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+#if 0	//ãƒã‚§ãƒƒã‚¯å ´æ‰€ç§»å‹•
+					//æŠ€ã‚¿ã‚¤ãƒ—ãŒã§ã‚“ãã§ã€ç‰¹æ€§ã²ã‚‰ã„ã—ã‚“ã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 					if((wazatype==ELECTRIC_TYPE)&&
 					   (ST_ServerTokuseiGet(sp,defence)!=TOKUSYU_HIRAISIN)&&
 					   (ST_ServerKatayaburiTokuseiCheck(sp,attack,def[dir^1],TOKUSYU_HIRAISIN)==TRUE)){
 						defence=def[dir^1];
 						sp->ostf[defence].hiraisin_flag=1;
 					}
-					//‹Zƒ^ƒCƒv‚ª‚İ‚¸‚ÅA“Á«‚æ‚Ñ‚İ‚¸‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+					//æŠ€ã‚¿ã‚¤ãƒ—ãŒã¿ãšã§ã€ç‰¹æ€§ã‚ˆã³ã¿ãšã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 					if((wazatype==WATER_TYPE)&&
 					   (ST_ServerTokuseiGet(sp,defence)!=TOKUSYU_YOBIMIZU)&&
 					   (ST_ServerKatayaburiTokuseiCheck(sp,attack,def[dir^1],TOKUSYU_YOBIMIZU)==TRUE)){
@@ -2229,7 +2229,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 					}
 #endif
 				}
-				//‚Ç‚Á‚¿‚©‚È‚çA‚¢‚é•û‚ğ‘I‘ğ
+				//ã©ã£ã¡ã‹ãªã‚‰ã€ã„ã‚‹æ–¹ã‚’é¸æŠ
 				else if(sp->psp[def[0]].hp){
 					defence=def[0];
 				}
@@ -2256,7 +2256,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 			client_set_max=BattleWorkClientSetMaxGet(bw);
 
 #if 0
-			//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+			//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 			if(ST_ServerTokuseiGet(sp,attack)==TOKUSYU_NOOMARUSUKIN){
 				wazatype=NORMAL_TYPE;
 			}
@@ -2268,15 +2268,15 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 			}
 #endif
 
-			//‚±‚Ì‚ä‚Ñ‚Æ‚Ü‚ê‚ª‚¢‚é‚È‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+			//ã“ã®ã‚†ã³ã¨ã¾ã‚ŒãŒã„ã‚‹ãªã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 			if((sp->scw[dir].konoyubitomare_flag)&&(sp->psp[sp->scw[dir].konoyubitomare_client].hp)){
 				defence=sp->scw[dir].konoyubitomare_client;
 			}
 			else{
-#if 0	//ƒ`ƒFƒbƒNêŠˆÚ“®
-				//“Á«‚©‚½‚â‚Ô‚è‚Å‚Í‚È‚¢‚Æ‚«‚ÍA‚Ğ‚ç‚¢‚µ‚ñ‚Æ‚æ‚Ñ‚İ‚¸ƒ`ƒFƒbƒN‚ğ‚·‚é
+#if 0	//ãƒã‚§ãƒƒã‚¯å ´æ‰€ç§»å‹•
+				//ç‰¹æ€§ã‹ãŸã‚„ã¶ã‚Šã§ã¯ãªã„ã¨ãã¯ã€ã²ã‚‰ã„ã—ã‚“ã¨ã‚ˆã³ã¿ãšãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹
 				if(ST_ServerTokuseiGet(sp,attack)!=TOKUSYU_KATAYABURI){
-					//‹Zƒ^ƒCƒv‚ª‚Å‚ñ‚«‚ÅA“Á«‚Ğ‚ç‚¢‚µ‚ñ‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+					//æŠ€ã‚¿ã‚¤ãƒ—ãŒã§ã‚“ãã§ã€ç‰¹æ€§ã²ã‚‰ã„ã—ã‚“ã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 					if((wazatype==ELECTRIC_TYPE)&&
 					   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_NOMINE_HP,attack,TOKUSYU_HIRAISIN))){
 						for(def_no=0;def_no<client_set_max;def_no++){
@@ -2291,7 +2291,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 							sp->ostf[defence].hiraisin_flag=1;
 						}
 					}
-					//‹Zƒ^ƒCƒv‚ª‚İ‚¸‚ÅA“Á«‚æ‚Ñ‚İ‚¸‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+					//æŠ€ã‚¿ã‚¤ãƒ—ãŒã¿ãšã§ã€ç‰¹æ€§ã‚ˆã³ã¿ãšã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 					else if((wazatype==WATER_TYPE)&&
 							(ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_NOMINE_HP,attack,TOKUSYU_YOBIMIZU))){
 						for(def_no=0;def_no<client_set_max;def_no++){
@@ -2306,7 +2306,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 							sp->ostf[defence].yobimizu_flag=1;
 						}
 					}
-					//UŒ‚‘ÎÛ‚ª‹Câ‚µ‚Ä‚¢‚½‚çAˆá‚¤Client‚ÉƒXƒCƒbƒ`
+					//æ”»æ’ƒå¯¾è±¡ãŒæ°—çµ¶ã—ã¦ã„ãŸã‚‰ã€é•ã†Clientã«ã‚¹ã‚¤ãƒƒãƒ
 					else if(sp->psp[def_no].hp){
 						defence=def_no;
 					}
@@ -2318,7 +2318,7 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 					}
 				}
 #endif
-				//UŒ‚‘ÎÛ‚ª‹Câ‚µ‚Ä‚¢‚½‚çAˆá‚¤Client‚ÉƒXƒCƒbƒ`
+				//æ”»æ’ƒå¯¾è±¡ãŒæ°—çµ¶ã—ã¦ã„ãŸã‚‰ã€é•ã†Clientã«ã‚¹ã‚¤ãƒƒãƒ
 //				else if(sp->psp[def_no].hp){
 				if(sp->psp[def_no].hp){
 					defence=def_no;
@@ -2338,14 +2338,14 @@ int		ST_ServerDefenceClientSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 w
 
 //============================================================================================
 /**
- * @brief	UŒ‚‘ÎÛ‚ğ•Ï‚¦‚é“Á«‚Ìƒ`ƒFƒbƒN
+ * @brief	æ”»æ’ƒå¯¾è±¡ã‚’å¤‰ãˆã‚‹ç‰¹æ€§ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	attack		UŒ‚‘¤ClientNo
- * @param[in]	waza_no		ŒJ‚èo‚»‚¤‚Æ‚µ‚Ä‚¢‚é‹Z
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	attack		æ”»æ’ƒå´ClientNo
+ * @param[in]	waza_no		ç¹°ã‚Šå‡ºãã†ã¨ã—ã¦ã„ã‚‹æŠ€
  *
- * @retval	TRUE:UŒ‚‘ÎÛ‚ª•Ï‚í‚Á‚½@FALSE:UŒ‚‘ÎÛ‚»‚Ì‚Ü‚Ü
+ * @retval	TRUE:æ”»æ’ƒå¯¾è±¡ãŒå¤‰ã‚ã£ãŸã€€FALSE:æ”»æ’ƒå¯¾è±¡ãã®ã¾ã¾
  */
 //============================================================================================
 void	ST_ServerDefenceClientTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,u16 waza_no)
@@ -2356,19 +2356,19 @@ void	ST_ServerDefenceClientTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int att
 	int		wazatype;
 	int		client_set_max;
 
-	//‘ÎÛ‚ª‚¢‚È‚¯‚ê‚ÎAƒ`ƒFƒbƒN‚È‚µ
+	//å¯¾è±¡ãŒã„ãªã‘ã‚Œã°ã€ãƒã‚§ãƒƒã‚¯ãªã—
 	if(sp->defence_client==NONE_CLIENT_NO){
 		return;
 	}
 
-	//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ªƒm[ƒ}ƒ‹‚È‚Ì‚ÅAƒ`ƒFƒbƒN‚È‚µ
-	//“Á«‚©‚½‚â‚Ô‚è‚ÍAŠÖŒW‚È‚­‹Z‚ª‚Å‚é‚Ì‚ÅAƒ`ƒFƒbƒN‚È‚µ
+	//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ãŒãƒãƒ¼ãƒãƒ«ãªã®ã§ã€ãƒã‚§ãƒƒã‚¯ãªã—
+	//ç‰¹æ€§ã‹ãŸã‚„ã¶ã‚Šã¯ã€é–¢ä¿‚ãªãæŠ€ãŒã§ã‚‹ã®ã§ã€ãƒã‚§ãƒƒã‚¯ãªã—
 	if((ST_ServerTokuseiGet(sp,attack)==TOKUSYU_NOOMARUSUKIN)||
 	   (ST_ServerTokuseiGet(sp,attack)==TOKUSYU_KATAYABURI)){
 		return;
 	}
 	dir=BattleWorkMineEnemyCheck(bw,attack)^1;
-	//‚±‚Ì‚ä‚Ñ‚Æ‚Ü‚ê‚ğ—Dæ‚·‚é‚Ì‚ÅAƒ`ƒFƒbƒN‚È‚µ
+	//ã“ã®ã‚†ã³ã¨ã¾ã‚Œã‚’å„ªå…ˆã™ã‚‹ã®ã§ã€ãƒã‚§ãƒƒã‚¯ãªã—
 	if((sp->scw[dir].konoyubitomare_flag)&&(sp->psp[sp->scw[dir].konoyubitomare_client].hp)){
 		return;
 	}
@@ -2389,7 +2389,7 @@ void	ST_ServerDefenceClientTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int att
 
 	client_set_max=BattleWorkClientSetMaxGet(bw);
 
-	//‹Zƒ^ƒCƒv‚ª‚Å‚ñ‚«‚ÅA“Á«‚Ğ‚ç‚¢‚µ‚ñ‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+	//æŠ€ã‚¿ã‚¤ãƒ—ãŒã§ã‚“ãã§ã€ç‰¹æ€§ã²ã‚‰ã„ã—ã‚“ã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 	if((wazatype==ELECTRIC_TYPE)&&
 	  ((sp->AIWT.wtd[waza_no].attackrange==RANGE_NORMAL)||
 	   (sp->AIWT.wtd[waza_no].attackrange==RANGE_RANDOM))&&
@@ -2408,7 +2408,7 @@ void	ST_ServerDefenceClientTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int att
 			sp->defence_client=defence;
 		}
 	}
-	//‹Zƒ^ƒCƒv‚ª‚İ‚¸‚ÅA“Á«‚æ‚Ñ‚İ‚¸‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚½‚çA‚»‚¢‚Â‚ğ‘I‘ğ
+	//æŠ€ã‚¿ã‚¤ãƒ—ãŒã¿ãšã§ã€ç‰¹æ€§ã‚ˆã³ã¿ãšã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ãŸã‚‰ã€ãã„ã¤ã‚’é¸æŠ
 	else if((wazatype==WATER_TYPE)&&
 		   ((sp->AIWT.wtd[waza_no].attackrange==RANGE_NORMAL)||
 			(sp->AIWT.wtd[waza_no].attackrange==RANGE_RANDOM))&&
@@ -2431,19 +2431,19 @@ void	ST_ServerDefenceClientTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int att
 
 //============================================================================================
 /**
- * @brief	UŒ‚‘ÎÛ‚ğ•Ï‚¦‚é“Á«‚Ì‹N“®
+ * @brief	æ”»æ’ƒå¯¾è±¡ã‚’å¤‰ãˆã‚‹ç‰¹æ€§ã®èµ·å‹•
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE:UŒ‚‘ÎÛ‚ª•Ï‚í‚Á‚½@FALSE:UŒ‚‘ÎÛ‚»‚Ì‚Ü‚Ü
+ * @retval	TRUE:æ”»æ’ƒå¯¾è±¡ãŒå¤‰ã‚ã£ãŸã€€FALSE:æ”»æ’ƒå¯¾è±¡ãã®ã¾ã¾
  */
 //============================================================================================
 BOOL	ST_ServerDefenceClientTokuseiAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
 	BOOL	ret=FALSE;
 
-	//‚Ğ‚ç‚¢‚µ‚ñƒ`ƒFƒbƒN
+	//ã²ã‚‰ã„ã—ã‚“ãƒã‚§ãƒƒã‚¯
 	if(((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 	    (sp->ostf[sp->defence_client].hiraisin_flag)){
 	    sp->ostf[sp->defence_client].hiraisin_flag=0;
@@ -2452,7 +2452,7 @@ BOOL	ST_ServerDefenceClientTokuseiAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		sp->server_seq_no=SERVER_WAZA_SEQUENCE_NO;
 		ret=TRUE;
 	}
-	//‚æ‚Ñ‚İ‚¸ƒ`ƒFƒbƒN
+	//ã‚ˆã³ã¿ãšãƒã‚§ãƒƒã‚¯
 	if(((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 	    (sp->ostf[sp->defence_client].yobimizu_flag)){
 	    sp->ostf[sp->defence_client].yobimizu_flag=0;
@@ -2467,11 +2467,11 @@ BOOL	ST_ServerDefenceClientTokuseiAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	PokemonServerParam‚©‚ç•K—v‚Èƒf[ƒ^‚Ì‚İPokemonParam‚É‘‚«–ß‚·
+ *	PokemonServerParamã‹ã‚‰å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®ã¿PokemonParamã«æ›¸ãæˆ»ã™
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	“Ç‚İ‘‚«‚·‚éclient_no
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	èª­ã¿æ›¸ãã™ã‚‹client_no
  */
 //============================================================================================
 void	ST_PSPtoPPCopy(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -2479,7 +2479,7 @@ void	ST_PSPtoPPCopy(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,11);
 #endif
-	//ƒAƒCƒeƒ€‚ğ‚Á‚Ä‚¢‚È‚¢‚È‚çAAI—p‚Ìƒ[ƒN‚ğƒNƒŠƒA‚µ‚Ä‚¨‚­
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãªã„ãªã‚‰ã€AIç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 	if(sp->psp[client_no].item==0){
 		SoubiItemClear(sp,client_no);
 	}
@@ -2488,11 +2488,11 @@ void	ST_PSPtoPPCopy(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚½‚ßŒn‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+ *	ãŸã‚ç³»ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒtƒ‰ƒO‚ğ—§‚Ä‚éclient_no
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹client_no
  */
 //============================================================================================
 void	ST_ServerKeepOn(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -2506,11 +2506,11 @@ void	ST_ServerKeepOn(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚½‚ßŒn‚Ìƒtƒ‰ƒO‚ğ—‚Æ‚·
+ *	ãŸã‚ç³»ã®ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒtƒ‰ƒO‚ğ—‚Æ‚·client_no
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™client_no
  */
 //============================================================================================
 void	ST_ServerKeepOff(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -2527,10 +2527,10 @@ void	ST_ServerKeepOff(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚©‚çAó‘ÔˆÙíƒiƒ“ƒo[‚ğ•Ô‚·
+ *	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‹ã‚‰ã€çŠ¶æ…‹ç•°å¸¸ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ó‘ÔˆÙí‚ğƒ`ƒFƒbƒN‚·‚éclient_no
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	çŠ¶æ…‹ç•°å¸¸ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹client_no
  */
 //============================================================================================
 int		ST_ServerConditionNoGet(SERVER_PARAM *sp,int client_no)
@@ -2561,7 +2561,7 @@ int		ST_ServerConditionNoGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	í“¬’†‚ÉƒgƒŒ[ƒi[‚ªo‚Ä‚«‚Ä•\¦‚·‚éƒƒbƒZ[ƒWƒ`ƒFƒbƒN‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ *	æˆ¦é—˜ä¸­ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã¦ãã¦è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 enum{
@@ -2574,10 +2574,10 @@ enum{
 
 //============================================================================================
 /**
- *	í“¬’†‚ÉƒgƒŒ[ƒi[‚ªo‚Ä‚«‚Ä•\¦‚·‚éƒƒbƒZ[ƒWƒ`ƒFƒbƒN
+ *	æˆ¦é—˜ä¸­ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã¦ãã¦è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp		ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp		ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -2588,16 +2588,16 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	fight_type=BattleWorkFightTypeGet(bw);
 
-	//’ÊM‘ÎíAƒoƒgƒ‹ƒ^ƒ[‚ÍA”»’è‚µ‚È‚¢
+	//é€šä¿¡å¯¾æˆ¦ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã¯ã€åˆ¤å®šã—ãªã„
 	if(fight_type&(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER)){
 		return FALSE;
 	}
-	//ƒgƒŒ[ƒi[í‚Å‚Í‚È‚¯‚ê‚ÎA”»’è‚µ‚È‚¢
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã§ã¯ãªã‘ã‚Œã°ã€åˆ¤å®šã—ãªã„
 	if((fight_type&FIGHT_TYPE_TRAINER)==0){
 		return FALSE;
 	}
 
-	//2vs2‚ÍA”»’è‚µ‚È‚¢
+	//2vs2ã¯ã€åˆ¤å®šã—ãªã„
 	if(fight_type&FIGHT_TYPE_2vs2){
 		return FALSE;
 	}
@@ -2607,7 +2607,7 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	do{
 		switch(seq_no){
-		//í“¬’†F‘Šèƒ|ƒPƒ‚ƒ“‚ÉÅ‰‚Ìƒ_ƒ[ƒW‚ğ—^‚¦‚½‚Æ‚«i•¡”‘Ì‚à‚Á‚Ä‚¢‚Ä‚àÅ‰‚Ì1‘Ì‚É‚¾‚¯•\¦j
+		//æˆ¦é—˜ä¸­ï¼šç›¸æ‰‹ãƒã‚±ãƒ¢ãƒ³ã«æœ€åˆã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆãŸã¨ãï¼ˆè¤‡æ•°ä½“ã‚‚ã£ã¦ã„ã¦ã‚‚æœ€åˆã®1ä½“ã«ã ã‘è¡¨ç¤ºï¼‰
 		case SEQ_STMC_FIRST_DAMAGE:
 			if((sp->psp[CLIENT_NO_ENEMY].hit_count==1)&&
 //			  ((sp->psp[CLIENT_NO_ENEMY].message_flag&TRAINER_MESSAGE_FLAG_FIRST_DAMAGE)==0)){
@@ -2621,7 +2621,7 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			}
 			seq_no++;
 			break;
-		//í“¬’†F‘Šèƒ|ƒPƒ‚ƒ“‚Ì‚g‚o”¼•ªˆÈ‰º
+		//æˆ¦é—˜ä¸­ï¼šç›¸æ‰‹ãƒã‚±ãƒ¢ãƒ³ã®ï¼¨ï¼°åŠåˆ†ä»¥ä¸‹
 		case SEQ_STMC_HP_HALF:
 			if((sp->psp[CLIENT_NO_ENEMY].message_flag&TRAINER_MESSAGE_FLAG_POKE_HP_HALF)==0){
 				if(sp->psp[CLIENT_NO_ENEMY].hp<=(sp->psp[CLIENT_NO_ENEMY].hpmax/2)){
@@ -2634,7 +2634,7 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			}
 			seq_no++;
 			break;
-		//í“¬’†F‘Šèƒ|ƒPƒ‚ƒ“‚ªc‚è‚P•C
+		//æˆ¦é—˜ä¸­ï¼šç›¸æ‰‹ãƒã‚±ãƒ¢ãƒ³ãŒæ®‹ã‚Šï¼‘åŒ¹
 		case SEQ_STMC_POKE_LAST:
 			if((sp->psp[CLIENT_NO_ENEMY].message_flag&TRAINER_MESSAGE_FLAG_POKE_LAST)==0){
 				{
@@ -2663,7 +2663,7 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			}
 			seq_no++;
 			break;
-		//í“¬’†F‘Šèƒ|ƒPƒ‚ƒ“‚ªc‚è‚P•C‚Å‚g‚o”¼•ªˆÈ‰º
+		//æˆ¦é—˜ä¸­ï¼šç›¸æ‰‹ãƒã‚±ãƒ¢ãƒ³ãŒæ®‹ã‚Šï¼‘åŒ¹ã§ï¼¨ï¼°åŠåˆ†ä»¥ä¸‹
 		case SEQ_STMC_POKE_LAST_HP_HALF:
 			if((sp->psp[CLIENT_NO_ENEMY].message_flag&TRAINER_MESSAGE_FLAG_POKE_LAST_HP_HALF)==0){
 				{
@@ -2702,61 +2702,61 @@ BOOL	ST_ServerTrainerMessageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ServerWork‚Ì‰Šú‰»
+ *	ServerWorkã®åˆæœŸåŒ–
  *
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerWorkInit(SERVER_PARAM *sp)
 {
 	int	client_no;
 
-	sp->damage=0;							///<‹Z‚É‚æ‚éƒ_ƒ[ƒWƒ[ƒN
-	sp->critical=1;							///<ƒNƒŠƒeƒBƒJƒ‹ƒqƒbƒgƒ[ƒN
-	sp->critical_count=0;					///<ƒNƒŠƒeƒBƒJƒ‹ƒ`ƒFƒbƒN‚Ég—p‚·‚éƒNƒŠƒeƒBƒJƒ‹‚Ìo‚â‚·‚³”{—¦ƒ[ƒN
-	sp->damage_power=0;						///<‹Z‚É‚æ‚éUŒ‚—Íƒ[ƒN
-	sp->damage_value=10;					///<‹Z‚É‚æ‚éƒ_ƒ[ƒW”{—¦ƒ[ƒN
-	sp->waza_type=0;						///<‹Zƒ^ƒCƒvƒ[ƒN
-	sp->waza_eff_cnt=0;						///<‹ZƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^
+	sp->damage=0;							///<æŠ€ã«ã‚ˆã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+	sp->critical=1;							///<ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒ’ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯
+	sp->critical_count=0;					///<ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒã‚§ãƒƒã‚¯ã«ä½¿ç”¨ã™ã‚‹ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã®å‡ºã‚„ã™ã•å€ç‡ãƒ¯ãƒ¼ã‚¯
+	sp->damage_power=0;						///<æŠ€ã«ã‚ˆã‚‹æ”»æ’ƒåŠ›ãƒ¯ãƒ¼ã‚¯
+	sp->damage_value=10;					///<æŠ€ã«ã‚ˆã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸å€ç‡ãƒ¯ãƒ¼ã‚¯
+	sp->waza_type=0;						///<æŠ€ã‚¿ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+	sp->waza_eff_cnt=0;						///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿
 
-	sp->waza_status_flag=0;					///<‹Z‚ª“–‚½‚Á‚½‚±‚Æ‚Å•Ï‰»‚·‚éƒtƒ‰ƒO
+	sp->waza_status_flag=0;					///<æŠ€ãŒå½“ãŸã£ãŸã“ã¨ã§å¤‰åŒ–ã™ã‚‹ãƒ•ãƒ©ã‚°
 
-	sp->kizetsu_client=NONE_CLIENT_NO;		///<‹Câ‚µ‚½ClientNo‚ğ‰Šú‰»
+	sp->kizetsu_client=NONE_CLIENT_NO;		///<æ°—çµ¶ã—ãŸClientNoã‚’åˆæœŸåŒ–
 
-	sp->add_status_flag_direct=0;			///<’¼Ú’Ç‰ÁŒø‰Êƒtƒ‰ƒO
-	sp->add_status_flag_indirect=0;			///<ŠÔÚ’Ç‰ÁŒø‰Êƒtƒ‰ƒO
-	sp->add_status_flag_tokusei=0;			///<“Á«‚É‚æ‚é’Ç‰ÁŒø‰Êƒtƒ‰ƒO
-	sp->tsuika_type=ADD_STATUS_NONE;		///<’Ç‰ÁŒø‰Ê‚Ìí—Şi’¼ÚAŠÔÚA“Á«j
-	sp->tsuika_para=ADD_COND_NONE;			///<’Ç‰ÁŒø‰Ê‚Ìí—Şi‚Ë‚Ş‚éA‚Ü‚Ğ‚Æ‚©j
-	sp->tsuika_client=NONE_CLIENT_NO;		///<’Ç‰ÁŒø‰Ê‚ğ‚·‚éƒNƒ‰ƒCƒAƒ“ƒg
+	sp->add_status_flag_direct=0;			///<ç›´æ¥è¿½åŠ åŠ¹æœãƒ•ãƒ©ã‚°
+	sp->add_status_flag_indirect=0;			///<é–“æ¥è¿½åŠ åŠ¹æœãƒ•ãƒ©ã‚°
+	sp->add_status_flag_tokusei=0;			///<ç‰¹æ€§ã«ã‚ˆã‚‹è¿½åŠ åŠ¹æœãƒ•ãƒ©ã‚°
+	sp->tsuika_type=ADD_STATUS_NONE;		///<è¿½åŠ åŠ¹æœã®ç¨®é¡ï¼ˆç›´æ¥ã€é–“æ¥ã€ç‰¹æ€§ï¼‰
+	sp->tsuika_para=ADD_COND_NONE;			///<è¿½åŠ åŠ¹æœã®ç¨®é¡ï¼ˆã­ã‚€ã‚‹ã€ã¾ã²ã¨ã‹ï¼‰
+	sp->tsuika_client=NONE_CLIENT_NO;		///<è¿½åŠ åŠ¹æœã‚’ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
 
-	sp->renzoku_count=0;					///<˜A‘±UŒ‚—pƒJƒEƒ“ƒ^
-	sp->renzoku_count_temp=0;				///<˜A‘±UŒ‚—pƒJƒEƒ“ƒ^i•\¦—pj
-	sp->client_loop=0;						///<•¡”‘Ì“–‚½‚é‹ZƒJƒEƒ“ƒ^
-	sp->loop_flag=0;						///<ƒ‹[ƒv‚ğ‚µ‚½ƒtƒ‰ƒO
-	sp->swoam_type=0;						///<ServerWazaOutAfterMessage—pƒ^ƒCƒvƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->waza_out_check_on_off=0;			///<HITCHECK—L–³ƒtƒ‰ƒO
-	sp->loop_hit_check=0;					///<ƒ‹[ƒv‚µ‚½‚ÌHITCHECK—L–³ƒtƒ‰ƒO
+	sp->renzoku_count=0;					///<é€£ç¶šæ”»æ’ƒç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	sp->renzoku_count_temp=0;				///<é€£ç¶šæ”»æ’ƒç”¨ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆè¡¨ç¤ºç”¨ï¼‰
+	sp->client_loop=0;						///<è¤‡æ•°ä½“å½“ãŸã‚‹æŠ€ã‚«ã‚¦ãƒ³ã‚¿
+	sp->loop_flag=0;						///<ãƒ«ãƒ¼ãƒ—ã‚’ã—ãŸãƒ•ãƒ©ã‚°
+	sp->swoam_type=0;						///<ServerWazaOutAfterMessageç”¨ã‚¿ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->waza_out_check_on_off=0;			///<HITCHECKæœ‰ç„¡ãƒ•ãƒ©ã‚°
+	sp->loop_hit_check=0;					///<ãƒ«ãƒ¼ãƒ—ã—ãŸæ™‚ã®HITCHECKæœ‰ç„¡ãƒ•ãƒ©ã‚°
 
-	sp->fcc_seq_no=0;						///<FieldConditionCheck—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->pcc_seq_no=0;						///<PokeConditionCheck—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->scc_seq_no=0;						///<SideConditionCheck—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->sba_seq_no=0;						///<ServerBeforeAct—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->swhac_seq_no=0;						///<ServerWazaHitAfterCheck—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->swoam_seq_no=0;						///<ServerWazaOutAfterMessage—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->swoak_seq_no=0;						///<ServerWazaOutAfterKouka—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
-	sp->wb_seq_no=0;						///<WazaBefore‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	sp->woc_seq_no=0;						///<WazaOutCheck‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	sp->ssc_seq_no=0;						///<ServerStatusCheck‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	sp->stc_seq_no=0;						///<ServerTokuseiCheck‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+	sp->fcc_seq_no=0;						///<FieldConditionCheckç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->pcc_seq_no=0;						///<PokeConditionCheckç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->scc_seq_no=0;						///<SideConditionCheckç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->sba_seq_no=0;						///<ServerBeforeActç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->swhac_seq_no=0;						///<ServerWazaHitAfterCheckç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->swoam_seq_no=0;						///<ServerWazaOutAfterMessageç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->swoak_seq_no=0;						///<ServerWazaOutAfterKoukaç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	sp->wb_seq_no=0;						///<WazaBeforeã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	sp->woc_seq_no=0;						///<WazaOutCheckã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	sp->ssc_seq_no=0;						///<ServerStatusCheckã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	sp->stc_seq_no=0;						///<ServerTokuseiCheckã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
 
-	sp->server_status_flag&=SERVER_STATUS_FLAG_ATTACK_TURN;	//©•ª‚Ìƒ^[ƒ“‚¾‚¯—LŒø‚Èƒtƒ‰ƒO‚ğ‰Šú‰»
-	sp->server_status_flag2&=SERVER_STATUS_FLAG2_ATTACK_TURN;	//©•ª‚Ìƒ^[ƒ“‚¾‚¯—LŒø‚Èƒtƒ‰ƒO‚ğ‰Šú‰»
+	sp->server_status_flag&=SERVER_STATUS_FLAG_ATTACK_TURN;	//è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã ã‘æœ‰åŠ¹ãªãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
+	sp->server_status_flag2&=SERVER_STATUS_FLAG2_ATTACK_TURN;	//è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã ã‘æœ‰åŠ¹ãªãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
 
-	sp->magnitude=0;						///<ƒ}ƒOƒjƒ`ƒ…[ƒh‚Ì‘å‚«‚³
+	sp->magnitude=0;						///<ãƒã‚°ãƒ‹ãƒãƒ¥ãƒ¼ãƒ‰ã®å¤§ãã•
 
 	for(client_no=0;client_no<CLIENT_MAX;client_no++){
-		MI_CpuClearFast(&sp->ostf[client_no],sizeof(ONE_SELF_TURN_FLAG));		//©•ª‚Ìƒ^[ƒ“‚Ì‚İ¶‘¶‰Â”\‚Èƒ[ƒNŒQ
+		MI_CpuClearFast(&sp->ostf[client_no],sizeof(ONE_SELF_TURN_FLAG));		//è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã®ã¿ç”Ÿå­˜å¯èƒ½ãªãƒ¯ãƒ¼ã‚¯ç¾¤
 		sp->ai_reshuffle_sel_mons_no[client_no]=6;
 	}
 
@@ -2764,9 +2764,9 @@ void	ST_ServerWorkInit(SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ƒJƒEƒ“ƒ^ƒ[ƒN‚Ì‰Šú‰»
+ *	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerCounterWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -2777,12 +2777,12 @@ void	ST_ServerCounterWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	for(i=0;i<CLIENT_MAX;i++){
 		sp->waza_no_hit_client[i]=NONE_CLIENT_NO;
 		sp->reshuffle_sel_mons_no[i]=6;
-		sp->agi_rand[i]=BattleWorkRandGet(bw);	///<‘f‘‚³ƒ`ƒFƒbƒN‚Ég—p‚·‚é—”’l
+		sp->agi_rand[i]=BattleWorkRandGet(bw);	///<ç´ æ—©ã•ãƒã‚§ãƒƒã‚¯ã«ä½¿ç”¨ã™ã‚‹ä¹±æ•°å€¤
 	}
 
-	sp->okodukai_value=1;		///<‚¨¬Œ­‚¢‚Ì”{—¦ƒ[ƒN
+	sp->okodukai_value=1;		///<ãŠå°é£ã„ã®å€ç‡ãƒ¯ãƒ¼ã‚¯
 
-	sp->sakidori_total_turn=1;	///<‚³‚«‚Ç‚è—p‚Ìƒg[ƒ^ƒ‹ƒ^[ƒ“ƒJƒEƒ“ƒ^
+	sp->sakidori_total_turn=1;	///<ã•ãã©ã‚Šç”¨ã®ãƒˆãƒ¼ã‚¿ãƒ«ã‚¿ãƒ¼ãƒ³ã‚«ã‚¦ãƒ³ã‚¿
 
 	fight_type=BattleWorkFightTypeGet(bw);
 
@@ -2791,15 +2791,15 @@ void	ST_ServerCounterWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		sp->no_reshuffle_client|=No2Bit(CLIENT_NO_ENEMY2);
 	}
 
-	sp->safari_get_count=	SAFARI_COUNT_FLAT;		///<ƒTƒtƒ@ƒŠ‚Ì•ßŠl—¦ƒJƒEƒ“ƒ^
-	sp->safari_escape_count=SAFARI_COUNT_FLAT;		///<ƒTƒtƒ@ƒŠ‚Ì“¦‘–—¦ƒJƒEƒ“ƒ^
+	sp->safari_get_count=	SAFARI_COUNT_FLAT;		///<ã‚µãƒ•ã‚¡ãƒªã®æ•ç²ç‡ã‚«ã‚¦ãƒ³ã‚¿
+	sp->safari_escape_count=SAFARI_COUNT_FLAT;		///<ã‚µãƒ•ã‚¡ãƒªã®é€ƒèµ°ç‡ã‚«ã‚¦ãƒ³ã‚¿
 }
 
 //============================================================================================
 /**
- *	ƒT[ƒoƒ[ƒN‚Ì‰Šú‰»iƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦j
+ *	ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ï¼ˆãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆæ™‚ï¼‰
  *
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -2820,11 +2820,11 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 	if((sp->server_status_flag&SERVER_STATUS_FLAG_BATON_TOUCH)==0){
 		for(i=0;i<client_set_max;i++){
-			//u‚­‚ë‚¢‚Ü‚È‚´‚µvAuƒNƒ‚‚Ì‚·v‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+			//ã€Œãã‚ã„ã¾ãªã–ã—ã€ã€ã€Œã‚¯ãƒ¢ã®ã™ã€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 			if((sp->psp[i].condition2&CONDITION2_KUROIMANAZASHI)&&(sp->psp[i].wkw.manazashi_client_no==client_no)){
 				sp->psp[i].condition2&=CONDITION2_KUROIMANAZASHI_OFF;
 			}
-			//ƒƒbƒNƒIƒ“‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚¦‚©‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+			//ãƒ­ãƒƒã‚¯ã‚ªãƒ³ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ãˆã‹ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 			if((sp->psp[i].waza_kouka&WAZAKOUKA_LOCKON)&&(sp->psp[i].wkw.lockon_client_no==client_no)){
 				sp->psp[i].waza_kouka&=WAZAKOUKA_LOCKON_OFF;
 				sp->psp[i].wkw.lockon_client_no=0;
@@ -2837,7 +2837,7 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		sp->psp[client_no].condition2&=CONDITION2_BATON_TOUCH_ON;
 		sp->psp[client_no].waza_kouka&=WAZAKOUKA_BATON_TOUCH_ON;
 		for(i=0;i<client_set_max;i++){
-			//ƒƒbƒNƒIƒ“‚ğ‚©‚¯‚½‚â‚Â‚ªƒoƒgƒ“ƒ^ƒbƒ`‚µ‚½‚çAƒJƒEƒ“ƒ^‚ğŒ³‚É–ß‚µ‚ÄŒø‰Ê‚ğŒp‘±
+			//ãƒ­ãƒƒã‚¯ã‚ªãƒ³ã‚’ã‹ã‘ãŸã‚„ã¤ãŒãƒãƒˆãƒ³ã‚¿ãƒƒãƒã—ãŸã‚‰ã€ã‚«ã‚¦ãƒ³ã‚¿ã‚’å…ƒã«æˆ»ã—ã¦åŠ¹æœã‚’ç¶™ç¶š
 			if((sp->psp[i].waza_kouka&WAZAKOUKA_LOCKON)&&(sp->psp[i].wkw.lockon_client_no==client_no)){
 				sp->psp[i].waza_kouka&=WAZAKOUKA_LOCKON_OFF;
 				sp->psp[i].waza_kouka|=(LOCKON_COUNT*2);
@@ -2846,11 +2846,11 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	}
 
 	for(i=0;i<client_set_max;i++){
-	//uƒƒƒƒv‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+	//ã€Œãƒ¡ãƒ­ãƒ¡ãƒ­ã€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 		if(sp->psp[i].condition2&(No2Bit(client_no)<<MEROMERO_SHIFT)){
 			sp->psp[i].condition2&=((No2Bit(client_no)<<MEROMERO_SHIFT)^0xffffffff);
 		}
-	//‚µ‚ßŒn‚Ì‹Z‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+	//ã—ã‚ç³»ã®æŠ€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 		if((sp->psp[i].condition2&CONDITION2_SHIME)&&(sp->psp[i].wkw.shime_client_no==client_no)){
 			sp->psp[i].condition2&=CONDITION2_SHIME_OFF;
 		}
@@ -2870,44 +2870,44 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		sp->psp[client_no].wkw.healblock_count=		wkw_temp.healblock_count;
 	}
 
-	sp->psp[client_no].wkw.nekodamashi_count=sp->total_turn+1;		//ƒlƒR‚¾‚Ü‚µƒJƒEƒ“ƒ^‰Šú‰»
-	sp->psp[client_no].wkw.slow_start_count=sp->total_turn+1;		//ƒXƒ[ƒXƒ^[ƒgƒJƒEƒ“ƒ^‰Šú‰»
-	//‚È‚Ü‚¯‚éƒ^[ƒ“iŠï”E‹ô”j‚ğƒZƒbƒg
+	sp->psp[client_no].wkw.nekodamashi_count=sp->total_turn+1;		//ãƒã‚³ã ã¾ã—ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+	sp->psp[client_no].wkw.slow_start_count=sp->total_turn+1;		//ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+	//ãªã¾ã‘ã‚‹ã‚¿ãƒ¼ãƒ³ï¼ˆå¥‡æ•°ãƒ»å¶æ•°ï¼‰ã‚’ã‚»ãƒƒãƒˆ
 	sp->psp[client_no].wkw.namake_bit=(sp->total_turn+1)&1;
 
-	sp->waza_no_mamoru[client_no]=0;					///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ª”­“®‚µ‚½‚©‚Ç‚¤‚©i‚Ü‚à‚éê—pj
-	sp->waza_no_hit[client_no]=0;						///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ªó‚¯‚½‚©‚Ç‚¤‚©
-	sp->waza_no_hit_client[client_no]=NONE_CLIENT_NO;	///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ğ”­“®‚µ‚½ClientNo
-	sp->waza_no_hit_type[client_no]=0;					///<1ƒ^[ƒ“‘O‚Éƒqƒbƒg‚µ‚½‹Z‚Ìƒ^ƒCƒv
-	sp->waza_no_old[client_no]=0;						///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z
-	sp->waza_no_oumu[client_no]=0;						///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[iƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][0]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][1]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][2]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][3]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_sketch[client_no]=0;					///<ƒXƒPƒbƒ`—p‚Ì‹Zƒiƒ“ƒo[ƒ[ƒN
+	sp->waza_no_mamoru[client_no]=0;					///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒç™ºå‹•ã—ãŸã‹ã©ã†ã‹ï¼ˆã¾ã‚‚ã‚‹å°‚ç”¨ï¼‰
+	sp->waza_no_hit[client_no]=0;						///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒå—ã‘ãŸã‹ã©ã†ã‹
+	sp->waza_no_hit_client[client_no]=NONE_CLIENT_NO;	///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã‚’ç™ºå‹•ã—ãŸClientNo
+	sp->waza_no_hit_type[client_no]=0;					///<1ã‚¿ãƒ¼ãƒ³å‰ã«ãƒ’ãƒƒãƒˆã—ãŸæŠ€ã®ã‚¿ã‚¤ãƒ—
+	sp->waza_no_old[client_no]=0;						///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€
+	sp->waza_no_oumu[client_no]=0;						///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][0]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][1]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][2]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][3]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_sketch[client_no]=0;					///<ã‚¹ã‚±ãƒƒãƒç”¨ã®æŠ€ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯
 #if GB002_060815_FIX
-	sp->waza_no_texture2[client_no]=0;					///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ªó‚¯‚½‚©‚Ç‚¤‚©iƒeƒNƒXƒ`ƒƒ[‚Qê—pj
-	sp->waza_no_texture2_client[client_no]=0;			///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ğ”­“®‚µ‚½ClientiƒeƒNƒXƒ`ƒƒ[‚Qê—pj
-	sp->waza_no_texture2_type[client_no]=0;				///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚Ìƒ^ƒCƒviƒeƒNƒXƒ`ƒƒ[‚Qê—pj
+	sp->waza_no_texture2[client_no]=0;					///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒå—ã‘ãŸã‹ã©ã†ã‹ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
+	sp->waza_no_texture2_client[client_no]=0;			///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã‚’ç™ºå‹•ã—ãŸClientï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
+	sp->waza_no_texture2_type[client_no]=0;				///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã®ã‚¿ã‚¤ãƒ—ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
 #endif //GB002_060815_FIX
 #if GB003_060815_FIX
-	sp->waza_no_metronome[client_no]=0;					///<ƒƒgƒƒm[ƒ€—p‹Zƒ[ƒN
+	sp->waza_no_metronome[client_no]=0;					///<ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ç”¨æŠ€ãƒ¯ãƒ¼ã‚¯
 #endif //GB003_060815_FIX
 
 #if B1371_060815_FIX
-	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//‚³‚í‚®ƒtƒ‰ƒO‚ğ—‚Æ‚·
+	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//ã•ã‚ããƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 #endif B1371_060815_FIX
 
-	//ƒpƒ[ƒgƒŠƒbƒNƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍAUŒ‚‚Æ–hŒä‚Ì’l‚ğ“ü‚ê‘Ö‚¦‚é
+	//ãƒ‘ãƒ¯ãƒ¼ãƒˆãƒªãƒƒã‚¯ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ã€æ”»æ’ƒã¨é˜²å¾¡ã®å€¤ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 	if(sp->psp[client_no].waza_kouka&WAZAKOUKA_POWER_TRICK){
 		i=sp->psp[client_no].pow;
 		sp->psp[client_no].pow=sp->psp[client_no].def;
 		sp->psp[client_no].def=i;
 	}
 
-///<‹Câ‚ÌŠm”F‚ğ‚µ‚Ä‚¢‚é‚É“ü‚ê‘Ö‚¦‚Ì•s‹ï‡‚ğ”­Œ©‚µ‚½‚Ì‚Å
-///<‘Šè‚Ìƒ[ƒN‚ğƒNƒŠƒA‚·‚é‚æ‚¤‚ÉC³iGB”Å‚Æ“¯‚¶d—l‚É‚È‚è‚Ü‚·j
+///<æ°—çµ¶æ™‚ã®ç¢ºèªã‚’ã—ã¦ã„ã‚‹æ™‚ã«å…¥ã‚Œæ›¿ãˆæ™‚ã®ä¸å…·åˆã‚’ç™ºè¦‹ã—ãŸã®ã§
+///<ç›¸æ‰‹ã®ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£ï¼ˆGBç‰ˆã¨åŒã˜ä»•æ§˜ã«ãªã‚Šã¾ã™ï¼‰
 	for(i=0;i<client_set_max;i++){
 		if((i!=client_no)&&(BattleWorkMineEnemyCheck(bw,i)!=BattleWorkMineEnemyCheck(bw,client_no))){
 			sp->waza_no_oumu[i]=0;
@@ -2915,16 +2915,16 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		sp->waza_no_oumu_hit[i][client_no]=0;
 	}
 
-	WazaNoStockClear(sp,client_no);		//AI—p‚Ì‹Zƒiƒ“ƒo[ƒXƒgƒbƒNƒ[ƒN‚ğƒNƒŠƒA
-	TokusyuNoClear(sp,client_no);		//AI—p‚Ì“Á«ƒiƒ“ƒo[ƒ[ƒN‚ğƒNƒŠƒA
-	SoubiItemClear(sp,client_no);		//AI—p‚Ì‘•”õƒAƒCƒeƒ€ƒiƒ“ƒo[ƒ[ƒN‚ğƒNƒŠƒA
+	WazaNoStockClear(sp,client_no);		//AIç”¨ã®æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚¹ãƒˆãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
+	TokusyuNoClear(sp,client_no);		//AIç”¨ã®ç‰¹æ€§ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
+	SoubiItemClear(sp,client_no);		//AIç”¨ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
 }
 
 //============================================================================================
 /**
- *	ƒT[ƒoƒ[ƒN‚Ì‰Šú‰»iƒ|ƒPƒ‚ƒ“‹Câj
+ *	ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ï¼ˆãƒã‚±ãƒ¢ãƒ³æ°—çµ¶æ™‚ï¼‰
  *
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -2945,22 +2945,22 @@ void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	sp->psp[client_no].condition2=0;
 	sp->psp[client_no].waza_kouka=0;
 
-	//u‚­‚ë‚¢‚Ü‚È‚´‚µvAuƒNƒ‚‚Ì‚·v‚ğ‚©‚¯‚½‚â‚Â‚ª‹Câ‚µ‚½‚çAŒø‰Ê‚ğ‰ğœ
+	//ã€Œãã‚ã„ã¾ãªã–ã—ã€ã€ã€Œã‚¯ãƒ¢ã®ã™ã€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒæ°—çµ¶ã—ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 	for(i=0;i<client_set_max;i++){
 		if((sp->psp[i].condition2&CONDITION2_KUROIMANAZASHI)&&(sp->psp[i].wkw.manazashi_client_no==client_no)){
 			sp->psp[i].condition2&=CONDITION2_KUROIMANAZASHI_OFF;
 		}
-	//uƒƒƒƒv‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+	//ã€Œãƒ¡ãƒ­ãƒ¡ãƒ­ã€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 		if(sp->psp[i].condition2&(No2Bit(client_no)<<MEROMERO_SHIFT)){
 			sp->psp[i].condition2&=((No2Bit(client_no)<<MEROMERO_SHIFT)^0xffffffff);
 		}
-	//‚µ‚ßŒn‚Ì‹Z‚ğ‚©‚¯‚½‚â‚Â‚ª“ü‚ê‘Ö‚í‚Á‚½‚çAŒø‰Ê‚ğ‰ğœ
+	//ã—ã‚ç³»ã®æŠ€ã‚’ã‹ã‘ãŸã‚„ã¤ãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã‚‰ã€åŠ¹æœã‚’è§£é™¤
 		if((sp->psp[i].condition2&CONDITION2_SHIME)&&(sp->psp[i].wkw.shime_client_no==client_no)){
 			sp->psp[i].condition2&=CONDITION2_SHIME_OFF;
 		}
 	}
 
-	//‚»‚Ìƒ^[ƒ“‚É‚©‚©‚Á‚Ä‚¢‚½Œø‰ÊŒn‚ğ‘S‚Ä‰Šú‰»
+	//ãã®ã‚¿ãƒ¼ãƒ³ã«ã‹ã‹ã£ã¦ã„ãŸåŠ¹æœç³»ã‚’å…¨ã¦åˆæœŸåŒ–
 	adr=(u8 *)&sp->psp[client_no].wkw;
 	for(i=0;i<sizeof(WAZA_KOUKA_WORK);i++){
 		adr[i]=0;
@@ -2971,37 +2971,37 @@ void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		adr[i]=0;
 	}
 
-	sp->psp[client_no].wkw.nekodamashi_count=sp->total_turn+1;		//ƒlƒR‚¾‚Ü‚µƒJƒEƒ“ƒ^‰Šú‰»
-	sp->psp[client_no].wkw.slow_start_count=sp->total_turn+1;		//ƒXƒ[ƒXƒ^[ƒgƒJƒEƒ“ƒ^‰Šú‰»
-	//‚È‚Ü‚¯‚éƒ^[ƒ“iŠï”E‹ô”j‚ğƒZƒbƒg
+	sp->psp[client_no].wkw.nekodamashi_count=sp->total_turn+1;		//ãƒã‚³ã ã¾ã—ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+	sp->psp[client_no].wkw.slow_start_count=sp->total_turn+1;		//ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+	//ãªã¾ã‘ã‚‹ã‚¿ãƒ¼ãƒ³ï¼ˆå¥‡æ•°ãƒ»å¶æ•°ï¼‰ã‚’ã‚»ãƒƒãƒˆ
 	sp->psp[client_no].wkw.namake_bit=(sp->total_turn+1)&1;
 
-	sp->waza_no_mamoru[client_no]=0;						///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ª”­“®‚µ‚½‚©‚Ç‚¤‚©i‚Ü‚à‚éê—pj
-	sp->waza_no_hit[client_no]=0;						///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ªó‚¯‚½‚©‚Ç‚¤‚©
-	sp->waza_no_hit_client[client_no]=NONE_CLIENT_NO;	///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ğ”­“®‚µ‚½ClientNo
-	sp->waza_no_hit_type[client_no]=0;					///<1ƒ^[ƒ“‘O‚Éƒqƒbƒg‚µ‚½‹Z‚Ìƒ^ƒCƒv
-	sp->waza_no_old[client_no]=0;						///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z
-	sp->waza_no_oumu[client_no]=0;						///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[iƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][0]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][1]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][2]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_oumu_hit[client_no][3]=0;				///<’¼‘O‚Éó‚¯‚½‹Z‚ğŠi”[i2vs2‚ÌƒIƒEƒ€‚ª‚¦‚µ—pj
-	sp->waza_no_sketch[client_no]=0;					///<ƒXƒPƒbƒ`—p‚Ì‹Zƒiƒ“ƒo[ƒ[ƒN
+	sp->waza_no_mamoru[client_no]=0;						///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒç™ºå‹•ã—ãŸã‹ã©ã†ã‹ï¼ˆã¾ã‚‚ã‚‹å°‚ç”¨ï¼‰
+	sp->waza_no_hit[client_no]=0;						///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒå—ã‘ãŸã‹ã©ã†ã‹
+	sp->waza_no_hit_client[client_no]=NONE_CLIENT_NO;	///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã‚’ç™ºå‹•ã—ãŸClientNo
+	sp->waza_no_hit_type[client_no]=0;					///<1ã‚¿ãƒ¼ãƒ³å‰ã«ãƒ’ãƒƒãƒˆã—ãŸæŠ€ã®ã‚¿ã‚¤ãƒ—
+	sp->waza_no_old[client_no]=0;						///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€
+	sp->waza_no_oumu[client_no]=0;						///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][0]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][1]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][2]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_oumu_hit[client_no][3]=0;				///<ç›´å‰ã«å—ã‘ãŸæŠ€ã‚’æ ¼ç´ï¼ˆ2vs2æ™‚ã®ã‚ªã‚¦ãƒ ãŒãˆã—ç”¨ï¼‰
+	sp->waza_no_sketch[client_no]=0;					///<ã‚¹ã‚±ãƒƒãƒç”¨ã®æŠ€ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯
 #if GB002_060815_FIX
-	sp->waza_no_texture2[client_no]=0;					///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ªó‚¯‚½‚©‚Ç‚¤‚©iƒeƒNƒXƒ`ƒƒ[‚Qê—pj
-	sp->waza_no_texture2_client[client_no]=0;			///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚ğ”­“®‚µ‚½ClientiƒeƒNƒXƒ`ƒƒ[‚Qê—pj
-	sp->waza_no_texture2_type[client_no]=0;				///<1ƒ^[ƒ“‘O‚ÉŒJ‚èo‚³‚ê‚Ä‚¢‚½‹Z‚Ìƒ^ƒCƒviƒeƒNƒXƒ`ƒƒ[‚Qê—pj
+	sp->waza_no_texture2[client_no]=0;					///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ãŒå—ã‘ãŸã‹ã©ã†ã‹ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
+	sp->waza_no_texture2_client[client_no]=0;			///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã‚’ç™ºå‹•ã—ãŸClientï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
+	sp->waza_no_texture2_type[client_no]=0;				///<1ã‚¿ãƒ¼ãƒ³å‰ã«ç¹°ã‚Šå‡ºã•ã‚Œã¦ã„ãŸæŠ€ã®ã‚¿ã‚¤ãƒ—ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼’å°‚ç”¨ï¼‰
 #endif //GB002_060815_FIX
 #if GB003_060815_FIX
-	sp->waza_no_metronome[client_no]=0;					///<ƒƒgƒƒm[ƒ€—p‹Zƒ[ƒN
+	sp->waza_no_metronome[client_no]=0;					///<ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ç”¨æŠ€ãƒ¯ãƒ¼ã‚¯
 #endif //GB003_060815_FIX
 
 #if B1371_060815_FIX
-	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//‚³‚í‚®ƒtƒ‰ƒO‚ğ—‚Æ‚·
+	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//ã•ã‚ããƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 #endif B1371_060815_FIX
 
-///<‹Câ‚ÌŠm”F‚ğ‚µ‚Ä‚¢‚é‚É“ü‚ê‘Ö‚¦‚Ì•s‹ï‡‚ğ”­Œ©‚µ‚½‚Ì‚Å
-///<‘Šè‚Ìƒ[ƒN‚ğƒNƒŠƒA‚·‚é‚æ‚¤‚ÉC³iGB”Å‚Æ“¯‚¶d—l‚É‚È‚è‚Ü‚·j
+///<æ°—çµ¶æ™‚ã®ç¢ºèªã‚’ã—ã¦ã„ã‚‹æ™‚ã«å…¥ã‚Œæ›¿ãˆæ™‚ã®ä¸å…·åˆã‚’ç™ºè¦‹ã—ãŸã®ã§
+///<ç›¸æ‰‹ã®ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£ï¼ˆGBç‰ˆã¨åŒã˜ä»•æ§˜ã«ãªã‚Šã¾ã™ï¼‰
 	for(i=0;i<client_set_max;i++){
 		if((i!=client_no)&&(BattleWorkMineEnemyCheck(bw,i)!=BattleWorkMineEnemyCheck(bw,client_no))){
 			sp->waza_no_oumu[i]=0;
@@ -3009,19 +3009,19 @@ void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		sp->waza_no_oumu_hit[i][client_no]=0;
 	}
 
-	//“ü‚ê‘Ö‚¦‚¨‚¢‚¤‚¿‚Å‹Câ‚µ‚Ä‚¢‚éê‡‚ÍA‚¢‚ê‚©‚¦ƒtƒ‰ƒO‚ª—§‚¿‚Á‚Ï‚È‚µ‚È‚Ì‚ÅA—‚Æ‚·
+	//å…¥ã‚Œæ›¿ãˆãŠã„ã†ã¡ã§æ°—çµ¶ã—ã¦ã„ã‚‹å ´åˆã¯ã€ã„ã‚Œã‹ãˆãƒ•ãƒ©ã‚°ãŒç«‹ã¡ã£ã±ãªã—ãªã®ã§ã€è½ã¨ã™
 	sp->client_status[client_no]&=CLIENT_STATUS_POKE_RESHUFFLE_OFF;
 
-	WazaNoStockClear(sp,client_no);		//AI—p‚Ì‹Zƒiƒ“ƒo[ƒXƒgƒbƒNƒ[ƒN‚ğƒNƒŠƒA
-	TokusyuNoClear(sp,client_no);		//AI—p‚Ì“Á«ƒiƒ“ƒo[ƒ[ƒN‚ğƒNƒŠƒA
-	SoubiItemClear(sp,client_no);		//AI—p‚Ì‘•”õƒAƒCƒeƒ€ƒiƒ“ƒo[ƒ[ƒN‚ğƒNƒŠƒA
+	WazaNoStockClear(sp,client_no);		//AIç”¨ã®æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚¹ãƒˆãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
+	TokusyuNoClear(sp,client_no);		//AIç”¨ã®ç‰¹æ€§ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
+	SoubiItemClear(sp,client_no);		//AIç”¨ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
 }
 
 //============================================================================================
 /**
- *	‚Pƒ^[ƒ“‚¾‚¯—LŒø‚Èƒtƒ‰ƒO‚ğ‰Šú‰»
+ *	ï¼‘ã‚¿ãƒ¼ãƒ³ã ã‘æœ‰åŠ¹ãªãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerOneTurnFlagInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -3035,7 +3035,7 @@ void	ST_ServerOneTurnFlagInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		if(sp->psp[client_no].wkw.handou_count+1<sp->total_turn){
 			sp->psp[client_no].condition2&=CONDITION2_HANDOU_OFF;
 		}
-		//–°‚Á‚Ä‚¢‚é‚Éo‚µ‚½A‚½‚ß‹ZŒn‚ÍA‚½‚ß‚ğ‚Í‚¸‚·i‚Ë‚²‚Æ‘Îôj
+		//çœ ã£ã¦ã„ã‚‹æ™‚ã«å‡ºã—ãŸã€ãŸã‚æŠ€ç³»ã¯ã€ãŸã‚ã‚’ã¯ãšã™ï¼ˆã­ã”ã¨å¯¾ç­–ï¼‰
 		if((sp->psp[client_no].condition&CONDITION_NEMURI)&&(sp->psp[client_no].condition2&CONDITION2_KEEP)){
 			ST_ServerKeepOff(bw,sp,client_no);
 		}
@@ -3043,19 +3043,19 @@ void	ST_ServerOneTurnFlagInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			sp->psp[client_no].condition2&=CONDITION2_ABARERU_OFF;
 		}
 	}
-	//‚±‚Ì‚ä‚Ñ‚Æ‚Ü‚êƒtƒ‰ƒO‚àƒNƒŠƒA
+	//ã“ã®ã‚†ã³ã¨ã¾ã‚Œãƒ•ãƒ©ã‚°ã‚‚ã‚¯ãƒªã‚¢
 	sp->scw[0].konoyubitomare_flag=0;
 	sp->scw[1].konoyubitomare_flag=0;
 }
 
 //============================================================================================
 /**
- *	‚í‚é‚ ‚ª‚«‚É‚È‚é‚©ƒ`ƒFƒbƒN
+ *	ã‚ã‚‹ã‚ãŒãã«ãªã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw				í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- * @param[in]	check_bit	ƒ`ƒFƒbƒN‚·‚é€–Úibattle_common.h‚É’è‹`j
+ * @param[in]	bw				æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ * @param[in]	check_bit	ãƒã‚§ãƒƒã‚¯ã™ã‚‹é …ç›®ï¼ˆbattle_common.hã«å®šç¾©ï¼‰
  */
 //============================================================================================
 int		ST_ServerWaruagakiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_bit,int check_bit)
@@ -3069,49 +3069,49 @@ int		ST_ServerWaruagakiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 	eqp=ST_ServerSoubiEqpGet(sp,client_no);
 
 	for(pos=0;pos<4;pos++){
-		//‚í‚´‚ª‚È‚¢
+		//ã‚ã–ãŒãªã„
 		if((sp->psp[client_no].waza[pos]==0)&&(check_bit&SSWC_WAZA_NONE)){
 			waza_bit|=No2Bit(pos);
 		}
-		//PP‚ª‚È‚¢
+		//PPãŒãªã„
 		if((sp->psp[client_no].pp[pos]==0)&&(check_bit&SSWC_PP_NONE)){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚©‚È‚µ‚Î‚è‚³‚ê‚Ä‚é
+		//ã‹ãªã—ã°ã‚Šã•ã‚Œã¦ã‚‹
 		if((sp->psp[client_no].waza[pos]==sp->psp[client_no].wkw.kanashibari_wazano)&&(check_bit&SSWC_KANASHIBARI)){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚¢‚¿‚á‚à‚ñ‚ğ‚Â‚¯‚ç‚ê‚Ä‚¢‚é
+		//ã„ã¡ã‚ƒã‚‚ã‚“ã‚’ã¤ã‘ã‚‰ã‚Œã¦ã„ã‚‹
 		if((sp->psp[client_no].waza[pos]==sp->waza_no_old[client_no])&&(check_bit&SSWC_ICHAMON)&&
 		   (sp->psp[client_no].condition2&CONDITION2_ICHAMON)){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚¿‚å‚¤‚Í‚Â‚³‚ê‚Ä‚¢‚é
+		//ã¡ã‚‡ã†ã¯ã¤ã•ã‚Œã¦ã„ã‚‹
 		if((sp->psp[client_no].wkw.chouhatsu_count)&&(check_bit&SSWC_CHOUHATSU)&&
 //	   	   (WT_WazaDataParaGet(sp->psp[client_no].waza[pos],ID_WTD_damage)==0)){
 	   	   (sp->AIWT.wtd[sp->psp[client_no].waza[pos]].damage==0)){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚Ó‚¤‚¢‚ñ‚³‚ê‚Ä‚¢‚é
+		//ãµã†ã„ã‚“ã•ã‚Œã¦ã„ã‚‹
 		if((ST_ServerHuuinCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_HUUIN)){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚¶‚ã‚¤‚è‚å‚­‚ğó‚¯‚Ä‚¢‚é
+		//ã˜ã‚…ã†ã‚Šã‚‡ãã‚’å—ã‘ã¦ã„ã‚‹
 		if((ST_ServerJuuryokuCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_JUURYOKU)){
 			waza_bit|=No2Bit(pos);
 		}
-		//ƒq[ƒ‹ƒuƒƒbƒN‚ğó‚¯‚Ä‚¢‚é
+		//ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚’å—ã‘ã¦ã„ã‚‹
 		if((ST_ServerHealblockCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_HEALBLOCK)){
 			waza_bit|=No2Bit(pos);
 		}
-		//ƒAƒ“ƒR[ƒ‹
+		//ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«
 		if((sp->psp[client_no].wkw.encore_wazano)&&(sp->psp[client_no].wkw.encore_wazano!=sp->psp[client_no].waza[pos])){
 			waza_bit|=No2Bit(pos);
 		}
-		//‚±‚¾‚í‚èƒnƒ`ƒ}ƒLƒ`ƒFƒbƒN
+		//ã“ã ã‚ã‚Šãƒãƒãƒã‚­ãƒã‚§ãƒƒã‚¯
 		if(((eqp==SOUBI_ONAZIWAZAONLY)||(eqp==SOUBI_ONAZIWAZAONLYSUBAYASAUP)||(eqp==SOUBI_ONAZIAWZAONLYTOKUSYUUP))&&
 		    (check_bit&SSWC_KODAWARI)){
-			//‹Z–Y‚ê‚Å‚±‚¾‚í‚èƒnƒ`ƒ}ƒLŒn‚Ìƒ[ƒN‚ÉŠi”[‚µ‚½‹Z‚ªÁ‚¦‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			//æŠ€å¿˜ã‚Œã§ã“ã ã‚ã‚Šãƒãƒãƒã‚­ç³»ã®ãƒ¯ãƒ¼ã‚¯ã«æ ¼ç´ã—ãŸæŠ€ãŒæ¶ˆãˆã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if(ST_ServerWazaPosGet(&sp->psp[client_no],sp->psp[client_no].wkw.kodawari_wazano)==WAZA_TEMOTI_MAX){
 				sp->psp[client_no].wkw.kodawari_wazano=0;
 			}
@@ -3128,13 +3128,13 @@ int		ST_ServerWaruagakiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 
 //============================================================================================
 /**
- *	‘I‘ğ‚µ‚½‹Z‚ğo‚·‚±‚Æ‚ªo—ˆ‚é‚©ƒ`ƒFƒbƒN
+ *	é¸æŠã—ãŸæŠ€ã‚’å‡ºã™ã“ã¨ãŒå‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no		ƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no		ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	TRUE:o‚¹‚é@FALSE:o‚¹‚È‚¢
+ * @retval	TRUE:å‡ºã›ã‚‹ã€€FALSE:å‡ºã›ãªã„
  */
 //============================================================================================
 BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos,MESSAGE_PARAM *mp)
@@ -3146,7 +3146,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 #endif
 	ret=TRUE;
 
-	//‚©‚È‚µ‚Î‚èƒ`ƒFƒbƒN
+	//ã‹ãªã—ã°ã‚Šãƒã‚§ãƒƒã‚¯
 	if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KANASHIBARI)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=KanashibariNGMineMsg;
@@ -3154,14 +3154,14 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[1]=sp->psp[client_no].waza[pos];
 		ret=FALSE;
 	}
-	//‚¢‚¿‚á‚à‚ñƒ`ƒFƒbƒN
+	//ã„ã¡ã‚ƒã‚‚ã‚“ãƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_ICHAMON)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK;
 		mp->msg_id=IchamonNGMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
 		ret=FALSE;
 	}
-	//‚¿‚å‚¤‚Í‚Âƒ`ƒFƒbƒN
+	//ã¡ã‚‡ã†ã¯ã¤ãƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_CHOUHATSU)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=ChouhatsuNGMineMsg;
@@ -3169,7 +3169,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[1]=sp->psp[client_no].waza[pos];
 		ret=FALSE;
 	}
-	//‚Ó‚¤‚¢‚ñƒ`ƒFƒbƒN
+	//ãµã†ã„ã‚“ãƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HUUIN)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=HuuinNGMineMsg;
@@ -3177,7 +3177,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[1]=sp->psp[client_no].waza[pos];
 		ret=FALSE;
 	}
-	//‚¶‚ã‚¤‚è‚å‚­ƒ`ƒFƒbƒN
+	//ã˜ã‚…ã†ã‚Šã‚‡ããƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_JUURYOKU)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=JuuryokuNGMineMsg;
@@ -3185,7 +3185,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[1]=sp->psp[client_no].waza[pos];
 		ret=FALSE;
 	}
-	//ƒq[ƒ‹ƒuƒƒbƒNƒ`ƒFƒbƒN
+	//ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HEALBLOCK)&No2Bit(pos)){
 		mp->msg_tag=TAG_NICK_WAZA_WAZA;
 		mp->msg_id=HealblockNGMineMsg;
@@ -3194,7 +3194,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[2]=sp->psp[client_no].waza[pos];
 		ret=FALSE;
 	}
-	//‚±‚¾‚í‚èƒnƒ`ƒ}ƒLƒ`ƒFƒbƒN
+	//ã“ã ã‚ã‚Šãƒãƒãƒã‚­ãƒã‚§ãƒƒã‚¯
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KODAWARI)&No2Bit(pos)){
 		mp->msg_tag=TAG_ITEM_WAZA;
 		mp->msg_id=ItemOnaziWazaOnlyMsg;
@@ -3202,7 +3202,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		mp->msg_para[1]=sp->psp[client_no].wkw.kodawari_wazano;
 		ret=FALSE;
 	}
-	//PPƒ`ƒFƒbƒNi‚±‚ê‚ÍA‚©‚È‚ç‚¸ÅŒã‚É‚·‚éj
+	//PPãƒã‚§ãƒƒã‚¯ï¼ˆã“ã‚Œã¯ã€ã‹ãªã‚‰ãšæœ€å¾Œã«ã™ã‚‹ï¼‰
 	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_PP_NONE)&No2Bit(pos)){
 		mp->msg_tag=TAG_NONE;
 		mp->msg_id=PPNoneMsg;
@@ -3214,10 +3214,10 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 
 //============================================================================================
 /**
- *	‹Z‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾
+ *	æŠ€ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no		ƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no		ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 int	ST_ServerWazaPosGet(POKEMON_SERVER_PARAM *psp,u16 waza_no)
@@ -3235,7 +3235,7 @@ int	ST_ServerWazaPosGet(POKEMON_SERVER_PARAM *psp,u16 waza_no)
 
 //============================================================================================
 /**
- *	‹Z‚Æƒ|ƒPƒ‚ƒ“‚Ì‘Š«ƒ`ƒFƒbƒN—p‘Š«ƒe[ƒuƒ‹
+ *	æŠ€ã¨ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ãƒã‚§ãƒƒã‚¯ç”¨ç›¸æ€§ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 #define	KOUKANAI	(0)
@@ -3249,8 +3249,8 @@ enum{
 };
 
 static	const	u8	TypeCheckTable[][3]={
-	{NORMAL_TYPE,	IWA_TYPE,		IMAHITOTSU},	// NORMAL ‚Å IWA ‚ÉUŒ‚‚·‚é‚ÆA
-													// ˆĞ—Í‚OD‚T”{
+	{NORMAL_TYPE,	IWA_TYPE,		IMAHITOTSU},	// NORMAL ã§ IWA ã«æ”»æ’ƒã™ã‚‹ã¨ã€
+													// å¨åŠ›ï¼ï¼ï¼•å€
 	{NORMAL_TYPE,	METAL_TYPE,		IMAHITOTSU},
 
 	{FIRE_TYPE,		FIRE_TYPE,		IMAHITOTSU},
@@ -3386,14 +3386,14 @@ static	const	u8	TypeCheckTable[][3]={
 
 //============================================================================================
 /**
- *	Œø‰Ê‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ì‘Š«‚ğ“–‚Ä‚é‹ZŒø‰Ê‚Ìƒ`ƒFƒbƒN
+ *	åŠ¹æœãªã„ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ã‚’å½“ã¦ã‚‹æŠ€åŠ¹æœã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp				ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	attack_client	UŒ‚‘¤ClientNo
- * @param[in]	defence_client	–hŒä‘¤ClientNo
- * @param[in]	pos				TypeCheckTable‚ÌIndex
+ * @param[in]	sp				ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	attack_client	æ”»æ’ƒå´ClientNo
+ * @param[in]	defence_client	é˜²å¾¡å´ClientNo
+ * @param[in]	pos				TypeCheckTableã®Index
  *
- * @retval	FALSE:“–‚½‚é@TRUE:Œø‰Ê‚È‚¢‚Ü‚Ü‚ÅOK
+ * @retval	FALSE:å½“ãŸã‚‹ã€€TRUE:åŠ¹æœãªã„ã¾ã¾ã§OK
  */
 //============================================================================================
 static	BOOL	ST_KoukanaiCheck(SERVER_PARAM *sp,int attack_client,int defence_client,int pos)
@@ -3405,33 +3405,33 @@ static	BOOL	ST_KoukanaiCheck(SERVER_PARAM *sp,int attack_client,int defence_clie
 
 	ret=TRUE;
 
-	//‚Ë‚ğ‚Í‚éƒ`ƒFƒbƒN
-	//‘•”õŒø‰Ê‚·‚Î‚â‚³DOWN
+	//ã­ã‚’ã¯ã‚‹ãƒã‚§ãƒƒã‚¯
+	//è£…å‚™åŠ¹æœã™ã°ã‚„ã•DOWN
 	if((eqp==SOUBI_SUBAYASADOWN)||(sp->psp[defence_client].waza_kouka&WAZAKOUKA_NEWOHARU)){
-		//‚Ğ‚±‚¤‚Éƒqƒbƒg
+		//ã²ã“ã†ã«ãƒ’ãƒƒãƒˆ
 		if((TypeCheckTable[pos][POKE_TYPE]==HIKOU_TYPE)&&
 		   (TypeCheckTable[pos][POWER]==KOUKANAI)){
 			ret=FALSE;
 		}
 	}
-	//‚Í‚Ë‚â‚·‚ßƒ`ƒFƒbƒN
+	//ã¯ã­ã‚„ã™ã‚ãƒã‚§ãƒƒã‚¯
 	if(sp->otf[defence_client].haneyasume_flag){
-		//‚Ğ‚±‚¤‚Éƒqƒbƒg(1”{‚Å‚ ‚Ä‚éj
+		//ã²ã“ã†ã«ãƒ’ãƒƒãƒˆ(1å€ã§ã‚ã¦ã‚‹ï¼‰
 		if(TypeCheckTable[pos][POKE_TYPE]==HIKOU_TYPE){
 			ret=FALSE;
 		}
 	}
-	//‚¶‚ã‚¤‚è‚å‚­ƒ`ƒFƒbƒN
+	//ã˜ã‚…ã†ã‚Šã‚‡ããƒã‚§ãƒƒã‚¯
 	if(sp->field_condition&FIELD_CONDITION_JUURYOKU){
-		//‚Ğ‚±‚¤‚Éƒqƒbƒg
+		//ã²ã“ã†ã«ãƒ’ãƒƒãƒˆ
 		if((TypeCheckTable[pos][POKE_TYPE]==HIKOU_TYPE)&&
 		   (TypeCheckTable[pos][POWER]==KOUKANAI)){
 			ret=FALSE;
 		}
 	}
-	//ƒ~ƒ‰ƒNƒ‹ƒAƒCƒ`ƒFƒbƒN
+	//ãƒŸãƒ©ã‚¯ãƒ«ã‚¢ã‚¤ãƒã‚§ãƒƒã‚¯
 	if(sp->psp[defence_client].waza_kouka&WAZAKOUKA_MIRACLE_EYE){
-		//‚ ‚­‚Éƒqƒbƒg
+		//ã‚ãã«ãƒ’ãƒƒãƒˆ
 		if((TypeCheckTable[pos][POKE_TYPE]==AKU_TYPE)&&
 		   (TypeCheckTable[pos][POWER]==KOUKANAI)){
 			ret=FALSE;
@@ -3443,15 +3443,15 @@ static	BOOL	ST_KoukanaiCheck(SERVER_PARAM *sp,int attack_client,int defence_clie
 
 //============================================================================================
 /**
- *	‹Z‚Æƒ|ƒPƒ‚ƒ“‚Ì‘Š«ƒ`ƒFƒbƒN
+ *	æŠ€ã¨ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw				í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp				ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no			ƒ`ƒFƒbƒN‚·‚é‹Z
- * @param[in]	attack_client	UŒ‚‘¤ClientNo
- * @param[in]	defence_client	–hŒä‘¤ClientNo
- * @param[out]	damage			’~Ï‚³‚ê‚Ä‚¢‚éƒ_ƒ[ƒW
- * @param[out]	flag			ƒ`ƒFƒbƒNŒ‹‰Ê‚Ìƒtƒ‰ƒO‚ğŠi”[‚·‚éƒ[ƒN
+ * @param[in]	bw				æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp				ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no			ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€
+ * @param[in]	attack_client	æ”»æ’ƒå´ClientNo
+ * @param[in]	defence_client	é˜²å¾¡å´ClientNo
+ * @param[out]	damage			è“„ç©ã•ã‚Œã¦ã„ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸
+ * @param[out]	flag			ãƒã‚§ãƒƒã‚¯çµæœã®ãƒ•ãƒ©ã‚°ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //============================================================================================
 int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_type,int attack_client,int defence_client,int damage,u32 *flag)
@@ -3467,7 +3467,7 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 
 	bairitu=1;
 	
-	//‚í‚é‚ ‚ª‚«‚ÍA–³‘®«‚È‚Ì‚ÅTypeCheck‚µ‚È‚¢
+	//ã‚ã‚‹ã‚ãŒãã¯ã€ç„¡å±æ€§ãªã®ã§TypeCheckã—ãªã„
 	if(waza_no==WAZANO_WARUAGAKI){
 		return damage;
 	}
@@ -3477,7 +3477,7 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 	eqp_d=ST_ServerSoubiEqpGet(sp,defence_client);
 	atk_d=ST_ServerSoubiAtkGet(sp,defence_client,ATK_CHECK_NORMAL);
 
-	//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+	//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	if(ST_ServerTokuseiGet(sp,attack_client)==TOKUSYU_NOOMARUSUKIN){
 		wazatype=NORMAL_TYPE;
 	}
@@ -3495,7 +3495,7 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 	if(((sp->server_status_flag&SERVER_STATUS_FLAG_TYPE_FLAT)==0)&&
 	   ((ST_ServerPokemonServerParamGet(sp,attack_client,ID_PSP_type1,NULL)==wazatype)||
 		(ST_ServerPokemonServerParamGet(sp,attack_client,ID_PSP_type2,NULL)==wazatype))){
-		//“Á«‚Ä‚«‚¨‚¤‚è‚å‚­‚ÍAƒ^ƒCƒvˆê’v‚µ‚½A1.5”{‚ğ2”{‚É‚·‚é
+		//ç‰¹æ€§ã¦ããŠã†ã‚Šã‚‡ãã¯ã€ã‚¿ã‚¤ãƒ—ä¸€è‡´ã—ãŸæ™‚ã€1.5å€ã‚’2å€ã«ã™ã‚‹
 		if(ST_ServerTokuseiGet(sp,attack_client)==TOKUSYU_TEKIOURYOKU){
 			damage*=2;
 		}
@@ -3504,14 +3504,14 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 		}
 	}
 
-	//“ÁêŒø‰Ê‚Ó‚ä‚¤‚É‚ÍA‚¶‚ß‚ñƒ^ƒCƒv‚Ì‹Z‚Í“–‚½‚ç‚È‚¢i‘•”õŒø‰Ê‚Å‘f‘‚³DOWN‚Íƒqƒbƒg‚·‚éj
+	//ç‰¹æ®ŠåŠ¹æœãµã‚†ã†ã«ã¯ã€ã˜ã‚ã‚“ã‚¿ã‚¤ãƒ—ã®æŠ€ã¯å½“ãŸã‚‰ãªã„ï¼ˆè£…å‚™åŠ¹æœã§ç´ æ—©ã•DOWNã¯ãƒ’ãƒƒãƒˆã™ã‚‹ï¼‰
 	if((ST_ServerKatayaburiTokuseiCheck(sp,attack_client,defence_client,TOKUSYU_HUYUU)==TRUE)&&
   	   (wazatype==JIMEN_TYPE)&&
 	   (eqp_d!=SOUBI_SUBAYASADOWN)){
 		flag[0]|=WAZA_STATUS_FLAG_JIMEN_NOHIT;
 	}
-	//‹ZŒø‰Ê‚Å‚ñ‚¶‚Ó‚ä‚¤‚É‚ÍA‚¶‚ß‚ñƒ^ƒCƒv‚Ì‹Z‚Í“–‚½‚ç‚È‚¢i‚¶‚ã‚¤‚è‚å‚­’†‚ÍA‚Å‚ñ‚¶‚Ó‚ä‚¤‚ğ–³Œø‚É‚·‚éj
-	//i‘•”õŒø‰Ê‚Å‘f‘‚³DOWN‚Íƒqƒbƒg‚·‚éj
+	//æŠ€åŠ¹æœã§ã‚“ã˜ãµã‚†ã†ã«ã¯ã€ã˜ã‚ã‚“ã‚¿ã‚¤ãƒ—ã®æŠ€ã¯å½“ãŸã‚‰ãªã„ï¼ˆã˜ã‚…ã†ã‚Šã‚‡ãä¸­ã¯ã€ã§ã‚“ã˜ãµã‚†ã†ã‚’ç„¡åŠ¹ã«ã™ã‚‹ï¼‰
+	//ï¼ˆè£…å‚™åŠ¹æœã§ç´ æ—©ã•DOWNã¯ãƒ’ãƒƒãƒˆã™ã‚‹ï¼‰
 	else if((sp->psp[defence_client].wkw.denzihuyuu_count)&&
 		   ((sp->psp[defence_client].waza_kouka&WAZAKOUKA_NEWOHARU)==0)&&
 			(wazatype==JIMEN_TYPE)&&
@@ -3522,7 +3522,7 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 		i=0;
 		while(TypeCheckTable[i][WAZA_TYPE]!=0xff){
 			if(TypeCheckTable[i][WAZA_TYPE]==0xfe){
-				//‚İ‚â‚Ô‚éƒ`ƒFƒbƒNor“Á«‚«‚à‚Á‚½‚Ü‚ğ‚Á‚Ä‚¢‚é
+				//ã¿ã‚„ã¶ã‚‹ãƒã‚§ãƒƒã‚¯orç‰¹æ€§ãã‚‚ã£ãŸã¾ã‚’æŒã£ã¦ã„ã‚‹
 				if((sp->psp[defence_client].condition2&CONDITION2_MIYABURU)||
 				   (ST_ServerTokuseiGet(sp,attack_client)==TOKUSYU_KIMOTTAMA)){
 					break;
@@ -3556,7 +3556,7 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 		}
 	}
 
-	//“Áê”\—Í‚Ó‚µ‚¬‚È‚Ü‚à‚è‚ÍAŒø‰Ê‚ª”²ŒQ‚µ‚©“–‚½‚ç‚È‚¢
+	//ç‰¹æ®Šèƒ½åŠ›ãµã—ããªã¾ã‚‚ã‚Šã¯ã€åŠ¹æœãŒæŠœç¾¤ã—ã‹å½“ãŸã‚‰ãªã„
 	if((ST_ServerKatayaburiTokuseiCheck(sp,attack_client,defence_client,TOKUSYU_HUSIGINAMAMORI)==TRUE)&&
 	   (ST_TameWazaTurnCheck(sp,waza_no))&&
 	 (((flag[0]&WAZA_STATUS_FLAG_BATSUGUN)==0)||
@@ -3568,18 +3568,18 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 		if(((sp->server_status_flag&SERVER_STATUS_FLAG_TYPE_FLAT)==0)&&
 		   ((sp->server_status_flag&SERVER_STATUS_FLAG_TYPE_NONE)==0)){
 			if((flag[0]&WAZA_STATUS_FLAG_BATSUGUN)&&(waza_damage)){
-				//“Á«ƒtƒBƒ‹ƒ^[Aƒn[ƒhƒƒbƒN‚ÍA”²ŒQ‚Å“–‚½‚Á‚½Aƒ_ƒ[ƒW‚ğ3/4‚É‚·‚é
+				//ç‰¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã€ãƒãƒ¼ãƒ‰ãƒ­ãƒƒã‚¯ã¯ã€æŠœç¾¤ã§å½“ãŸã£ãŸæ™‚ã€ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’3/4ã«ã™ã‚‹
 				if((ST_ServerKatayaburiTokuseiCheck(sp,attack_client,defence_client,TOKUSYU_FIRUTAA)==TRUE)||
 				   (ST_ServerKatayaburiTokuseiCheck(sp,attack_client,defence_client,TOKUSYU_HAADOROKKU)==TRUE)){
 					damage=ST_ServerDamageDiv(damage*3,4);
 				}
-				//‘•”õŒø‰Ê‚Å”²ŒQ‚ğˆĞ—Í“•ªƒAƒbƒv‚·‚é
+				//è£…å‚™åŠ¹æœã§æŠœç¾¤ã‚’å¨åŠ›ï¼…åˆ†ã‚¢ãƒƒãƒ—ã™ã‚‹
 				if(eqp_a==SOUBI_BATUGUNIRYOKUUP){
 					damage=damage*(100+atk_a)/100;
 				}
 			}
 			if((flag[0]&WAZA_STATUS_FLAG_IMAHITOTSU)&&(waza_damage)){
-				//“Á«‚¢‚ë‚ß‚ª‚Ë‚ÍA‚¢‚Ü‚Ğ‚Æ‚Â‚Ì0.5‚ğ1‚ÉA0.25‚ğ0.5‚É‚·‚é
+				//ç‰¹æ€§ã„ã‚ã‚ãŒã­ã¯ã€ã„ã¾ã²ã¨ã¤ã®0.5ã‚’1ã«ã€0.25ã‚’0.5ã«ã™ã‚‹
 				if(ST_ServerTokuseiGet(sp,attack_client)==TOKUSYU_IROMEGANE){
 					damage*=2;
 				}
@@ -3596,14 +3596,14 @@ int	ST_ServerTypeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_no,int waza_typ
 
 //============================================================================================
 /**
- *	‹Z‚Æƒ|ƒPƒ‚ƒ“‚Ì‘Š«ƒ`ƒFƒbƒNiAI—pj
+ *	æŠ€ã¨ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ãƒã‚§ãƒƒã‚¯ï¼ˆAIç”¨ï¼‰
  *
- * @param[in]	bw				í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp				ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no			ƒ`ƒFƒbƒN‚·‚é‹Z
- * @param[in]	attack_client	UŒ‚‘¤ClientNo
- * @param[in]	defence_client	–hŒä‘¤ClientNo
- * @param[out]	flag			ƒ`ƒFƒbƒNŒ‹‰Ê‚Ìƒtƒ‰ƒO‚ğŠi”[‚·‚éƒ[ƒN
+ * @param[in]	bw				æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp				ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no			ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€
+ * @param[in]	attack_client	æ”»æ’ƒå´ClientNo
+ * @param[in]	defence_client	é˜²å¾¡å´ClientNo
+ * @param[out]	flag			ãƒã‚§ãƒƒã‚¯çµæœã®ãƒ•ãƒ©ã‚°ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //============================================================================================
 void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe_d,int eqp,int type1,int type2,u32 *flag)
@@ -3611,12 +3611,12 @@ void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe
 	int	i;
 	u8	wazatype;
 
-	//‚í‚é‚ ‚ª‚«‚ÍA–³‘®«‚È‚Ì‚ÅTypeCheck‚µ‚È‚¢
+	//ã‚ã‚‹ã‚ãŒãã¯ã€ç„¡å±æ€§ãªã®ã§TypeCheckã—ãªã„
 	if(waza_no==WAZANO_WARUAGAKI){
 		return;
 	}
 
-	//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+	//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	if(spe_a==TOKUSYU_NOOMARUSUKIN){
 		wazatype=NORMAL_TYPE;
 	}
@@ -3627,7 +3627,7 @@ void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe
 		wazatype=sp->AIWT.wtd[waza_no].wazatype;
 	}
 
-	//“ÁêŒø‰Ê‚Ó‚ä‚¤‚É‚ÍA‚¶‚ß‚ñƒ^ƒCƒv‚Ì‹Z‚Í“–‚½‚ç‚È‚¢i‘•”õŒø‰Ê‚Å‘f‘‚³DOWN‚Íƒqƒbƒg‚·‚éj
+	//ç‰¹æ®ŠåŠ¹æœãµã‚†ã†ã«ã¯ã€ã˜ã‚ã‚“ã‚¿ã‚¤ãƒ—ã®æŠ€ã¯å½“ãŸã‚‰ãªã„ï¼ˆè£…å‚™åŠ¹æœã§ç´ æ—©ã•DOWNã¯ãƒ’ãƒƒãƒˆã™ã‚‹ï¼‰
 	if((spe_a!=TOKUSYU_KATAYABURI)&&
 	   (spe_d==TOKUSYU_HUYUU)&&
   	   (wazatype==JIMEN_TYPE)&&
@@ -3639,7 +3639,7 @@ void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe
 		i=0;
 		while(TypeCheckTable[i][WAZA_TYPE]!=0xff){
 			if(TypeCheckTable[i][WAZA_TYPE]==0xfe){
-				//‚İ‚â‚Ô‚éƒ`ƒFƒbƒNor“Á«‚«‚à‚Á‚½‚Ü‚ğ‚Á‚Ä‚¢‚é
+				//ã¿ã‚„ã¶ã‚‹ãƒã‚§ãƒƒã‚¯orç‰¹æ€§ãã‚‚ã£ãŸã¾ã‚’æŒã£ã¦ã„ã‚‹
 				if(spe_a==TOKUSYU_KIMOTTAMA){
 					break;
 				}
@@ -3664,7 +3664,7 @@ void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe
 		}
 	}
 
-	//“Áê”\—Í‚Ó‚µ‚¬‚È‚Ü‚à‚è‚ÍAŒø‰Ê‚ª”²ŒQ‚µ‚©“–‚½‚ç‚È‚¢
+	//ç‰¹æ®Šèƒ½åŠ›ãµã—ããªã¾ã‚‚ã‚Šã¯ã€åŠ¹æœãŒæŠœç¾¤ã—ã‹å½“ãŸã‚‰ãªã„
 	if((spe_a!=TOKUSYU_KATAYABURI)&&
 	   (spe_d==TOKUSYU_HUSIGINAMAMORI)&&
 	   (ST_TameWazaTurnCheck(sp,waza_no))&&
@@ -3678,13 +3678,13 @@ void	ST_AITypeCheck(SERVER_PARAM *sp,int waza_no,int waza_type,int spe_a,int spe
 
 //============================================================================================
 /**
- *	Œø‰Ê‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ì‘Š«‚ğ“–‚Ä‚é‹ZŒø‰Ê‚Ìƒ`ƒFƒbƒN
+ *	åŠ¹æœãªã„ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ã‚’å½“ã¦ã‚‹æŠ€åŠ¹æœã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp				ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	eqp				‘•”õŒø‰Ê
- * @param[in]	pos				TypeCheckTable‚ÌIndex
+ * @param[in]	sp				ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	eqp				è£…å‚™åŠ¹æœ
+ * @param[in]	pos				TypeCheckTableã®Index
  *
- * @retval	FALSE:“–‚½‚é@TRUE:Œø‰Ê‚È‚¢‚Ü‚Ü‚ÅOK
+ * @retval	FALSE:å½“ãŸã‚‹ã€€TRUE:åŠ¹æœãªã„ã¾ã¾ã§OK
  */
 //============================================================================================
 static	BOOL	ST_AIKoukanaiCheck(SERVER_PARAM *sp,int eqp,int pos)
@@ -3693,17 +3693,17 @@ static	BOOL	ST_AIKoukanaiCheck(SERVER_PARAM *sp,int eqp,int pos)
 
 	ret=TRUE;
 
-	//‘•”õŒø‰Ê‚·‚Î‚â‚³DOWN
+	//è£…å‚™åŠ¹æœã™ã°ã‚„ã•DOWN
 	if(eqp==SOUBI_SUBAYASADOWN){
-		//‚Ğ‚±‚¤‚Éƒqƒbƒg
+		//ã²ã“ã†ã«ãƒ’ãƒƒãƒˆ
 		if((TypeCheckTable[pos][POKE_TYPE]==HIKOU_TYPE)&&
 		   (TypeCheckTable[pos][POWER]==KOUKANAI)){
 			ret=FALSE;
 		}
 	}
-	//‚¶‚ã‚¤‚è‚å‚­ƒ`ƒFƒbƒN
+	//ã˜ã‚…ã†ã‚Šã‚‡ããƒã‚§ãƒƒã‚¯
 	if(sp->field_condition&FIELD_CONDITION_JUURYOKU){
-		//‚Ğ‚±‚¤‚Éƒqƒbƒg
+		//ã²ã“ã†ã«ãƒ’ãƒƒãƒˆ
 		if((TypeCheckTable[pos][POKE_TYPE]==HIKOU_TYPE)&&
 		   (TypeCheckTable[pos][POWER]==KOUKANAI)){
 			ret=FALSE;
@@ -3715,11 +3715,11 @@ static	BOOL	ST_AIKoukanaiCheck(SERVER_PARAM *sp,int eqp,int pos)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Æ‹Z‚Ìƒ^ƒCƒv‚Ì‘Š«‚Åƒtƒ‰ƒO‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã¨æŠ€ã®ã‚¿ã‚¤ãƒ—ã®ç›¸æ€§ã§ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	client_no	‹Z‚ğŒJ‚èo‚·ClientNo
- * @param[in]	power		‘Š«‚ğ¦‚·ˆĞ—Í
- * @param[out]	flag		ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚éƒ[ƒN
+ * @param[in]	client_no	æŠ€ã‚’ç¹°ã‚Šå‡ºã™ClientNo
+ * @param[in]	power		ç›¸æ€§ã‚’ç¤ºã™å¨åŠ›
+ * @param[out]	flag		ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //============================================================================================
 static	void	ST_AITypeCheckCalc(int power,u32 *flag)
@@ -3753,11 +3753,11 @@ static	void	ST_AITypeCheckCalc(int power,u32 *flag)
 
 //============================================================================================
 /**
- *	‹Z‚Ì”­“®‚ğ–W‚°‚ç‚ê‚½‚©ƒ`ƒFƒbƒN
+ *	æŠ€ã®ç™ºå‹•ã‚’å¦¨ã’ã‚‰ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	FALSE:–W‚°‚ç‚ê‚Ä‚¢‚È‚¢@TRUE:–W‚°‚ç‚ê‚½
+ * @retval	FALSE:å¦¨ã’ã‚‰ã‚Œã¦ã„ãªã„ã€€TRUE:å¦¨ã’ã‚‰ã‚ŒãŸ
  */
 //============================================================================================
 BOOL	ST_ServerWazaOutCheck(SERVER_PARAM *sp,int client_no)
@@ -3783,13 +3783,13 @@ BOOL	ST_ServerWazaOutCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	UŒ‚‚ğ“–‚Ä‚é‚±‚Æ‚Ìo—ˆ‚éƒ|ƒPƒ‚ƒ“‚ª‰½‘Ì‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	æ”»æ’ƒã‚’å½“ã¦ã‚‹ã“ã¨ã®å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒä½•ä½“ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag		ƒ`ƒFƒbƒN‘ÎÛƒtƒ‰ƒO
- * @param[in]	client_no	ƒ`ƒFƒbƒN‘ÎÛClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag		ãƒã‚§ãƒƒã‚¯å¯¾è±¡ãƒ•ãƒ©ã‚°
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯å¯¾è±¡ClientNo
  *
- * @retval	ƒ|ƒPƒ‚ƒ“‚Ì”
+ * @retval	ãƒã‚±ãƒ¢ãƒ³ã®æ•°
  */
 //============================================================================================
 u8		ST_ServerHitCountCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_no)
@@ -3826,12 +3826,12 @@ u8		ST_ServerHitCountCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 
 //============================================================================================
 /**
- *	ƒƒbƒZ[ƒW•\¦ƒpƒ‰ƒ[ƒ^‚ÌƒjƒbƒNƒl[ƒ€ƒf[ƒ^‚ğ¶¬
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	¶¬‘ÎÛClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ç”Ÿæˆå¯¾è±¡ClientNo
  *
- * @retval	¶¬‚µ‚½ƒpƒ‰ƒ[ƒ^
+ * @retval	ç”Ÿæˆã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //============================================================================================
 int		ST_ServerTagNickParaMake(SERVER_PARAM *sp,int client_no)
@@ -3844,12 +3844,12 @@ int		ST_ServerTagNickParaMake(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‘I‘ğ‚µ‚½‹Zƒiƒ“ƒo[‚ğæ“¾
+ *	é¸æŠã—ãŸæŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‘I‘ğ‚µ‚½‹Zƒiƒ“ƒo[
+ * @retval	é¸æŠã—ãŸæŠ€ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		ST_ServerSelectWazaGet(SERVER_PARAM *sp,int client_no)
@@ -3870,14 +3870,14 @@ u16		ST_ServerSelectWazaGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	“Á«‚ğ‚Á‚½ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ç‰¹æ€§ã‚’æŒã£ãŸãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag		ƒ`ƒFƒbƒN‚Ìí—Ş
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNoiƒ`ƒFƒbƒN‚Ìí—Ş‚É‚æ‚èˆÓ–¡‚ª•Ï‰»j
- * @param[in]	speabi		ƒ`ƒFƒbƒN‚·‚é“Á«ƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag		ãƒã‚§ãƒƒã‚¯ã®ç¨®é¡
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNoï¼ˆãƒã‚§ãƒƒã‚¯ã®ç¨®é¡ã«ã‚ˆã‚Šæ„å‘³ãŒå¤‰åŒ–ï¼‰
+ * @param[in]	speabi		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	‚Á‚Ä‚¢‚½ƒ|ƒPƒ‚ƒ“”
+ * @retval	æŒã£ã¦ã„ãŸãƒã‚±ãƒ¢ãƒ³æ•°
  */
 //============================================================================================
 int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_no,int speabi)
@@ -3893,7 +3893,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 	client_set_max=BattleWorkClientSetMaxGet(bw);
 
 	switch(flag){
-	case STC_HAVE_MINE_SIDE:	//©•ª‘¤‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	case STC_HAVE_MINE_SIDE:	//è‡ªåˆ†å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for(no=0;no<client_set_max;no++){
 			if((BattleWorkMineEnemyCheck(bw,no)==BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (ST_ServerTokuseiGet(sp,no)==speabi)){
@@ -3901,7 +3901,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_MINE_SIDE_HP:	//©•ª‘¤‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
+	case STC_HAVE_MINE_SIDE_HP:	//è‡ªåˆ†å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
 		for(no=0;no<client_set_max;no++){
 			if((BattleWorkMineEnemyCheck(bw,no)==BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (sp->psp[no].hp)&&
@@ -3910,7 +3910,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_ENEMY_SIDE:	//‘Šè‘¤‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	case STC_HAVE_ENEMY_SIDE:	//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for(no=0;no<client_set_max;no++){
 			if((BattleWorkMineEnemyCheck(bw,no)!=BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (ST_ServerTokuseiGet(sp,no)==speabi)){
@@ -3918,7 +3918,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_ENEMY_SIDE_HP:	//‘Šè‘¤‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
+	case STC_HAVE_ENEMY_SIDE_HP:	//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
 		for(no=0;no<client_set_max;no++){
 			if((BattleWorkMineEnemyCheck(bw,no)!=BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (sp->psp[no].hp)&&
@@ -3927,7 +3927,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_ENEMY_SIDE_RET:	//‘Šè‘¤‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚Ä‚Á‚Ä‚¢‚½ClientNo‚ğ•Ô‚·
+	case STC_HAVE_ENEMY_SIDE_RET:	//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦æŒã£ã¦ã„ãŸClientNoã‚’è¿”ã™
 		for(no=0;no<client_set_max;no++){
 			if((BattleWorkMineEnemyCheck(bw,no)!=BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (sp->psp[no].hp)&&
@@ -3936,21 +3936,21 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_ALL:			//©•ª‚àŠÜ‚ß‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	case STC_HAVE_ALL:			//è‡ªåˆ†ã‚‚å«ã‚æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for(no=0;no<client_set_max;no++){
 			if(ST_ServerTokuseiGet(sp,no)==speabi){
 				cnt++;
 			}
 		}
 		break;
-	case STC_HAVE_ALL_NOMINE:	//©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	case STC_HAVE_ALL_NOMINE:	//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for(no=0;no<client_set_max;no++){
 			if((no!=client_no)&&(ST_ServerTokuseiGet(sp,no)==speabi)){
 				cnt++;
 			}
 		}
 		break;
-	case STC_HAVE_ALL_NOMINE_RET:	//©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚Ä‚Á‚Ä‚¢‚½ClientNo‚ğ•Ô‚·
+	case STC_HAVE_ALL_NOMINE_RET:	//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦æŒã£ã¦ã„ãŸClientNoã‚’è¿”ã™
 		for(no=0;no<client_set_max;no++){
 			if((no!=client_no)&&(ST_ServerTokuseiGet(sp,no)==speabi)){
 				cnt=no+1;
@@ -3958,14 +3958,14 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			}
 		}
 		break;
-	case STC_HAVE_ALL_HP:			//©•ª‚àŠÜ‚ß‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
+	case STC_HAVE_ALL_HP:			//è‡ªåˆ†ã‚‚å«ã‚æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
 		for(no=0;no<client_set_max;no++){
 			if((ST_ServerTokuseiGet(sp,no)==speabi)&&(sp->psp[no].hp)){
 				cnt++;
 			}
 		}
 		break;
-	case STC_HAVE_ALL_NOMINE_HP:	//©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
+	case STC_HAVE_ALL_NOMINE_HP:	//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
 		for(no=0;no<client_set_max;no++){
 			if((no!=client_no)&&(ST_ServerTokuseiGet(sp,no)==speabi)&&(sp->psp[no].hp)){
 				cnt++;
@@ -3979,26 +3979,26 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 
 //============================================================================================
 /**
- *	‚½‚ß‹Z‚ğ‘I‘ğ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ãŸã‚æŠ€ã‚’é¸æŠã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	TRUEF‚½‚ß‹Z@FALSE:‚½‚ß‹Z‚¶‚á‚È‚¢
+ * @retval	TRUEï¼šãŸã‚æŠ€ã€€FALSE:ãŸã‚æŠ€ã˜ã‚ƒãªã„
  */
 //============================================================================================
 BOOL	ST_TameWazaCheck(SERVER_PARAM *sp,int waza_no)
 {
 	switch(sp->AIWT.wtd[waza_no].battleeffect){
-	case 26:	//‚ª‚Ü‚ñ
-	case 39:	//‚©‚Ü‚¢‚½‚¿
-	case 75:	//ƒSƒbƒhƒo[ƒh
-	case 145:	//ƒƒPƒbƒg“ª“Ë‚«
-	case 151:	//ƒ\[ƒ‰[ƒr[ƒ€
-	case 155:	//‚»‚ç‚ğ‚Æ‚Ô
-	case 255:	//ƒ_ƒCƒrƒ“ƒO
-	case 256:	//‚ ‚È‚ğ‚Ù‚é
-	case 263:	//‚Æ‚Ñ‚Í‚Ë‚é
-	case 272:	//ƒVƒƒƒh[ƒ_ƒCƒu
+	case 26:	//ãŒã¾ã‚“
+	case 39:	//ã‹ã¾ã„ãŸã¡
+	case 75:	//ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰
+	case 145:	//ãƒ­ã‚±ãƒƒãƒˆé ­çªã
+	case 151:	//ã‚½ãƒ¼ãƒ©ãƒ¼ãƒ“ãƒ¼ãƒ 
+	case 155:	//ãã‚‰ã‚’ã¨ã¶
+	case 255:	//ãƒ€ã‚¤ãƒ“ãƒ³ã‚°
+	case 256:	//ã‚ãªã‚’ã»ã‚‹
+	case 263:	//ã¨ã³ã¯ã­ã‚‹
+	case 272:	//ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–
 		return TRUE;
 		break;
 	}
@@ -4008,15 +4008,15 @@ BOOL	ST_TameWazaCheck(SERVER_PARAM *sp,int waza_no)
 
 //============================================================================================
 /**
- *	TypeCheckTable‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+ *	TypeCheckTableã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pos		ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	type_w	‹Zƒ^ƒCƒvŠi”[æ
- * @param[in]	type_p	ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvŠi”[æ
- * @param[in]	value	type_w‚Ætype_p‚Ì‘Š«
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pos		ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	type_w	æŠ€ã‚¿ã‚¤ãƒ—æ ¼ç´å…ˆ
+ * @param[in]	type_p	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—æ ¼ç´å…ˆ
+ * @param[in]	value	type_wã¨type_pã®ç›¸æ€§
  *
- * @retval	FALSE:ƒe[ƒuƒ‹‚ğƒI[ƒo[@TRUE:ƒe[ƒuƒ‹‚È‚¢‚©‚çæ“¾
+ * @retval	FALSE:ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚ªãƒ¼ãƒãƒ¼ã€€TRUE:ãƒ†ãƒ¼ãƒ–ãƒ«ãªã„ã‹ã‚‰å–å¾—
  *
  */
 //============================================================================================
@@ -4039,11 +4039,11 @@ BOOL	ST_ServerTypeCheckTableParaGet(BATTLE_WORK *bw,int pos,u8 *type_w,u8 *type_
 
 //============================================================================================
 /**
- *	TypeCheckTable‚©‚çƒpƒ[‚ğæ“¾
+ *	TypeCheckTableã‹ã‚‰ãƒ‘ãƒ¯ãƒ¼ã‚’å–å¾—
  *
- * @param[in]	type_w	‹Zƒ^ƒCƒv
- * @param[in]	type_p1	ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv
- * @param[in]	type_p2	ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv
+ * @param[in]	type_w	æŠ€ã‚¿ã‚¤ãƒ—
+ * @param[in]	type_p1	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—
+ * @param[in]	type_p2	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—
  *
  * @retval	power
  *
@@ -4074,11 +4074,11 @@ int	ST_ServerTypeCheckTablePowerGet(u8 type_w,u8 type_p1,u8 type_p2)
 
 //============================================================================================
 /**
- *	ˆá‚¤‹Z‚Ö”h¶‚·‚é‹Z‚Ìƒ`ƒFƒbƒN
+ *	é•ã†æŠ€ã¸æ´¾ç”Ÿã™ã‚‹æŠ€ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	waza_no	ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:”h¶‹Z‚Å‚Í‚È‚¢@TRUE:”h¶‹Z
+ * @retval	FALSE:æ´¾ç”ŸæŠ€ã§ã¯ãªã„ã€€TRUE:æ´¾ç”ŸæŠ€
  */
 //============================================================================================
 BOOL	ST_RendouWazaCheck(u16 waza_no)
@@ -4097,13 +4097,13 @@ BOOL	ST_RendouWazaCheck(u16 waza_no)
 
 //============================================================================================
 /**
- *	ŒJ‚èo‚»‚¤‚Æ‚µ‚Ä‚¢‚é‚Ì‚ë‚¢‚ªAƒm[ƒ}ƒ‹‚©AƒS[ƒXƒg‚©ƒ`ƒFƒbƒN
+ *	ç¹°ã‚Šå‡ºãã†ã¨ã—ã¦ã„ã‚‹ã®ã‚ã„ãŒã€ãƒãƒ¼ãƒãƒ«ã‹ã€ã‚´ãƒ¼ã‚¹ãƒˆã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
- * @param[in]	client_no	ŒJ‚èo‚»‚¤‚Æ‚µ‚Ä‚¢‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	client_no	ç¹°ã‚Šå‡ºãã†ã¨ã—ã¦ã„ã‚‹ClientNo
  *
- * @retval	FALSE:ƒm[ƒ}ƒ‹@TRUE:ƒS[ƒXƒg
+ * @retval	FALSE:ãƒãƒ¼ãƒãƒ«ã€€TRUE:ã‚´ãƒ¼ã‚¹ãƒˆ
  */
 //============================================================================================
 BOOL	ST_ServerWazaNoroiCheck(SERVER_PARAM *sp,u16 waza_no,int client_no)
@@ -4118,12 +4118,12 @@ BOOL	ST_ServerWazaNoroiCheck(SERVER_PARAM *sp,u16 waza_no,int client_no)
 
 //============================================================================================
 /**
- *	‚Ç‚ë‚Ú‚¤‚Å‚«‚éƒAƒCƒeƒ€‚©ƒ`ƒFƒbƒN
+ *	ã©ã‚ã¼ã†ã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‚Ç‚ë‚Ú‚¤‚³‚ê‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã©ã‚ã¼ã†ã•ã‚Œã‚‹ClientNo
  *
- * @retval	FALSE:‚Å‚«‚È‚¢@TRUE:‚Å‚«‚é
+ * @retval	FALSE:ã§ããªã„ã€€TRUE:ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerDorobouItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -4149,12 +4149,12 @@ BOOL	ST_ServerDorobouItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒgƒŠƒbƒN‚Å‚«‚éƒAƒCƒeƒ€‚©ƒ`ƒFƒbƒN
+ *	ãƒˆãƒªãƒƒã‚¯ã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒgƒŠƒbƒN‚ğ‚µ‚Ä‚¢‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒˆãƒªãƒƒã‚¯ã‚’ã—ã¦ã„ã‚‹ClientNo
  *
- * @retval	FALSE:‚Å‚«‚È‚¢@TRUE:‚Å‚«‚é
+ * @retval	FALSE:ã§ããªã„ã€€TRUE:ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerTrickItemCheck(SERVER_PARAM *sp,int client_no)
@@ -4167,11 +4167,11 @@ BOOL	ST_ServerTrickItemCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚Ó‚«‚Æ‚Î‚µ¬”Û”»’è
+ *	ãµãã¨ã°ã—æˆå¦åˆ¤å®š
  *
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	FALSE:‚Å‚«‚È‚¢@TRUE:‚Å‚«‚é
+ * @retval	FALSE:ã§ããªã„ã€€TRUE:ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerHukitobasiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -4180,7 +4180,7 @@ BOOL	ST_ServerHukitobasiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	ret=FALSE;
 
-	//o‚µ‚½‘¤‚ÌƒŒƒxƒ‹‚ª‚‚¯‚ê‚ÎA100%¬Œ÷
+	//å‡ºã—ãŸå´ã®ãƒ¬ãƒ™ãƒ«ãŒé«˜ã‘ã‚Œã°ã€100%æˆåŠŸ
 	if(sp->psp[sp->attack_client].level>=sp->psp[sp->defence_client].level){
 		ret=TRUE;
 	}
@@ -4201,11 +4201,11 @@ BOOL	ST_ServerHukitobasiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	“Á«æ“¾i‹Zu‚¢‚¦‚«v‚ÌŒø‰Ê‚à”½‰f‚µ‚Äæ“¾j
+ *	ç‰¹æ€§å–å¾—ï¼ˆæŠ€ã€Œã„ãˆãã€ã®åŠ¹æœã‚‚åæ˜ ã—ã¦å–å¾—ï¼‰
  *
- * @param[in]	psp			ƒ|ƒPƒ‚ƒ“ƒT[ƒoƒ[ƒN\‘¢‘Ì
+ * @param[in]	psp			ãƒã‚±ãƒ¢ãƒ³ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	“Á«ƒiƒ“ƒo[
+ * @retval	ç‰¹æ€§ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u8	ST_ServerTokuseiGet(SERVER_PARAM *sp,int client_no)
@@ -4213,15 +4213,15 @@ u8	ST_ServerTokuseiGet(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,27);
 #endif
-	//‚¢‚¦‚«”­“®’†‚ÍA“Á«–³Œøiƒ}ƒ‹ƒ`ƒ^ƒCƒv‚ÍœŠOj
+	//ã„ãˆãç™ºå‹•ä¸­ã¯ã€ç‰¹æ€§ç„¡åŠ¹ï¼ˆãƒãƒ«ãƒã‚¿ã‚¤ãƒ—ã¯é™¤å¤–ï¼‰
 	if((sp->psp[client_no].waza_kouka&WAZAKOUKA_IEKI)&&(sp->psp[client_no].speabino!=TOKUSYU_MARUTITAIPU)){
 		return 0;
 	}
-	//‚¶‚ã‚¤‚è‚å‚­”­“®’†‚ÍA‚Ó‚ä‚¤‚Í–³Œø
+	//ã˜ã‚…ã†ã‚Šã‚‡ãç™ºå‹•ä¸­ã¯ã€ãµã‚†ã†ã¯ç„¡åŠ¹
 	else if((sp->field_condition&FIELD_CONDITION_JUURYOKU)&&(sp->psp[client_no].speabino==TOKUSYU_HUYUU)){
 		return 0;
 	}
-	//‚Ë‚ğ‚Í‚é”­“®’†‚ÍA‚Ó‚ä‚¤‚Í–³Œø
+	//ã­ã‚’ã¯ã‚‹ç™ºå‹•ä¸­ã¯ã€ãµã‚†ã†ã¯ç„¡åŠ¹
 	else if((sp->psp[client_no].waza_kouka&WAZAKOUKA_NEWOHARU)&&(sp->psp[client_no].speabino==TOKUSYU_HUYUU)){
 		return 0;
 	}
@@ -4232,14 +4232,14 @@ u8	ST_ServerTokuseiGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	“Á«‚©‚½‚â‚Ô‚è‚ğ”½‰f‚µ‚Äƒ`ƒFƒbƒN
+ *	ç‰¹æ€§ã‹ãŸã‚„ã¶ã‚Šã‚’åæ˜ ã—ã¦ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	attack		UŒ‚‘¤
- * @param[in]	defence		–hŒä‘¤
- * @param[in]	tokusei		ƒ`ƒFƒbƒN‚·‚é“Á«
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	attack		æ”»æ’ƒå´
+ * @param[in]	defence		é˜²å¾¡å´
+ * @param[in]	tokusei		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§
  *
- * @retval	FALSE:‚©‚½‚â‚Ô‚è‚Å“Á«‚ª–³Œø@TRUEF‚©‚½‚â‚Ô‚èŠÖŒW‚È‚¢
+ * @retval	FALSE:ã‹ãŸã‚„ã¶ã‚Šã§ç‰¹æ€§ãŒç„¡åŠ¹ã€€TRUEï¼šã‹ãŸã‚„ã¶ã‚Šé–¢ä¿‚ãªã„
  */
 //============================================================================================
 BOOL	ST_ServerKatayaburiTokuseiCheck(SERVER_PARAM *sp,int attack,int defence,int tokusei)
@@ -4265,13 +4265,13 @@ BOOL	ST_ServerKatayaburiTokuseiCheck(SERVER_PARAM *sp,int attack,int defence,int
 
 //============================================================================================
 /**
- *	“ü‚ê‘Ö‚¦‚éƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	å…¥ã‚Œæ›¿ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- * @retval	FALSE:‚¢‚È‚¢@TRUE:‚¢‚é
+ * @retval	FALSE:ã„ãªã„ã€€TRUE:ã„ã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -4301,7 +4301,7 @@ BOOL	ST_ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		selmons1=sp->sel_mons_no[client_no];
 		selmons2=sp->sel_mons_no[client_no];
 	}
-	//ƒ_ƒuƒ‹
+	//ãƒ€ãƒ–ãƒ«
 	else if(fight_type&FIGHT_TYPE_2vs2){
 		start=0;
 		end=poke_count;
@@ -4310,7 +4310,7 @@ BOOL	ST_ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		selmons1=sp->sel_mons_no[client_no];
 		selmons2=sp->sel_mons_no[BattleWorkPartnerClientNoGet(bw,client_no)];
 	}
-	//ƒVƒ“ƒOƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«
 	else{
 		start=0;
 		end=poke_count;
@@ -4338,14 +4338,14 @@ BOOL	ST_ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	í“¬‚©‚ç“¦‚°‚ç‚ê‚é‚©‚ğƒ`ƒFƒbƒN‚·‚éi“¦‚°‚éƒRƒ}ƒ“ƒh‚ª¬—§‚·‚é‚©‚Ç‚¤‚©j
+ *	æˆ¦é—˜ã‹ã‚‰é€ƒã’ã‚‰ã‚Œã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼ˆé€ƒã’ã‚‹ã‚³ãƒãƒ³ãƒ‰ãŒæˆç«‹ã™ã‚‹ã‹ã©ã†ã‹ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	mp			ƒAƒ‰[ƒgƒƒbƒZ[ƒW‚Ìƒpƒ‰ƒ[ƒ^‚ğŠi”[‚·‚é\‘¢‘Ì
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	mp			ã‚¢ãƒ©ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
  *	
- *	@retval	FALSE:“¦‚°‚ç‚ê‚é@TRUE:“¦‚°‚ç‚ê‚È‚¢
+ *	@retval	FALSE:é€ƒã’ã‚‰ã‚Œã‚‹ã€€TRUE:é€ƒã’ã‚‰ã‚Œãªã„
  */
 //============================================================================================
 BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PARAM *mp)
@@ -4363,11 +4363,11 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 
 	eqp=ST_ServerSoubiEqpGet(sp,client_no);
 
-	//ƒAƒCƒeƒ€‚Å•K‚¸“¦‚°‚ç‚ê‚é‚Ì‘•”õŒø‰Ê‚Í100%“¦‚°‚ê‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å¿…ãšé€ƒã’ã‚‰ã‚Œã‚‹ã®è£…å‚™åŠ¹æœã¯100%é€ƒã’ã‚Œã‚‹
 	if((eqp==SOUBI_KANARAZUNIGERARERU)||
-	//•K‚¸“¦‚°‚ê‚éFIGHT_TYPE‚Íƒ`ƒFƒbƒN‚µ‚È‚¢
+	//å¿…ãšé€ƒã’ã‚Œã‚‹FIGHT_TYPEã¯ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	   (fight_type&FIGHT_TYPE_ESCAPE)||
-	//“Áê”\—Í‚É‚°‚ ‚µ‚Í•K‚¸“¦‚°‚ê‚é‚Ì‚Åƒ`ƒFƒbƒN‚µ‚È‚¢
+	//ç‰¹æ®Šèƒ½åŠ›ã«ã’ã‚ã—ã¯å¿…ãšé€ƒã’ã‚Œã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	   (ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_NIGEASI)){
 		return 0;
 	}
@@ -4375,7 +4375,7 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 	dir=BattleWorkMineEnemyCheck(bw,client_no);
 	client_set_max=BattleWorkClientSetMaxGet(bw);
 
-	//“Á«‚©‚°‚Ó‚İ‚©‚ç‚Í“¦‚°‚ç‚ê‚È‚¢i‚¨Œİ‚¢‚ª‚©‚°‚Ó‚İ‚Ì‚Í—áŠOj
+	//ç‰¹æ€§ã‹ã’ãµã¿ã‹ã‚‰ã¯é€ƒã’ã‚‰ã‚Œãªã„ï¼ˆãŠäº’ã„ãŒã‹ã’ãµã¿ã®æ™‚ã¯ä¾‹å¤–ï¼‰
 	if((i=ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_NOMINE_HP,client_no,TOKUSYU_KAGEHUMI))&&
 	   (ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_KAGEHUMI)){
 		if(mp==NULL){
@@ -4387,15 +4387,15 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 		mp->msg_para[1]=TOKUSYU_KAGEHUMI;
 		return TRUE;
 	}
-	//“Á«‚ ‚è‚¶‚²‚­‚©‚ç‚Í“¦‚°‚ç‚ê‚È‚¢
+	//ç‰¹æ€§ã‚ã‚Šã˜ã”ãã‹ã‚‰ã¯é€ƒã’ã‚‰ã‚Œãªã„
 	if((i=ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ENEMY_SIDE_HP,client_no,TOKUSYU_ARIZIGOKU))){
 #if B1373_060816_FIX
-	   //‚·‚Î‚â‚³ƒ_ƒEƒ“‚ğ‘•”õ‚µ‚Ä‚¢‚é‚Í‚ ‚è‚¶‚²‚­”»’è‚ ‚è
+	   //ã™ã°ã‚„ã•ãƒ€ã‚¦ãƒ³ã‚’è£…å‚™ã—ã¦ã„ã‚‹æ™‚ã¯ã‚ã‚Šã˜ã”ãåˆ¤å®šã‚ã‚Š
 		if(((sp->field_condition&FIELD_CONDITION_JUURYOKU)==0)&&(eqp!=SOUBI_SUBAYASADOWN)){
 #else //B1373_060816_FIX
 		if((sp->field_condition&FIELD_CONDITION_JUURYOKU)==0){
 #endif //B1373_060816_FIX
-			//“Á«‚Ó‚ä‚¤A”òsƒ^ƒCƒv‚É‚ÍA“Á«‚ ‚è‚¶‚²‚­‚ÍŒø‰Ê‚ª–³‚¢
+			//ç‰¹æ€§ãµã‚†ã†ã€é£›è¡Œã‚¿ã‚¤ãƒ—ã«ã¯ã€ç‰¹æ€§ã‚ã‚Šã˜ã”ãã¯åŠ¹æœãŒç„¡ã„
 			if((ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_HUYUU)&&
 			   (sp->psp[client_no].wkw.denzihuyuu_count==0)&&
 			  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)!=HIKOU_TYPE)&&
@@ -4422,9 +4422,9 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 		}
 	}
 #if 0
-	//“Á«‚ ‚è‚¶‚²‚­‚©‚ç‚Í“¦‚°‚ç‚ê‚È‚¢
+	//ç‰¹æ€§ã‚ã‚Šã˜ã”ãã‹ã‚‰ã¯é€ƒã’ã‚‰ã‚Œãªã„
 	if((i=ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_NOMINE,client_no,TOKUSYU_ARIZIGOKU))&&
-		//“Á«‚Ó‚ä‚¤A”òsƒ^ƒCƒv‚É‚ÍA“Á«‚ ‚è‚¶‚²‚­‚ÍŒø‰Ê‚ª–³‚¢
+		//ç‰¹æ€§ãµã‚†ã†ã€é£›è¡Œã‚¿ã‚¤ãƒ—ã«ã¯ã€ç‰¹æ€§ã‚ã‚Šã˜ã”ãã¯åŠ¹æœãŒç„¡ã„
 	   (ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_HUYUU)&&
 	   (sp->psp[client_no].wkw.denzihuyuu_count==0)&&
 	  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)!=HIKOU_TYPE)&&
@@ -4439,7 +4439,7 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 		return TRUE;
 	}
 #endif
-	//“Á«‚¶‚è‚å‚­‚©‚ç|ƒ^ƒCƒv‚Ìƒ|ƒPƒ‚ƒ“‚Í“¦‚°‚ç‚ê‚È‚¢
+	//ç‰¹æ€§ã˜ã‚Šã‚‡ãã‹ã‚‰é‹¼ã‚¿ã‚¤ãƒ—ã®ãƒã‚±ãƒ¢ãƒ³ã¯é€ƒã’ã‚‰ã‚Œãªã„
 	if((i=ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ENEMY_SIDE_HP,client_no,TOKUSYU_ZIRYOKU))&&
 	  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)==METAL_TYPE)||
 	   (ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type2,NULL)==METAL_TYPE))){
@@ -4453,7 +4453,7 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 		return TRUE;
 	}
 
-	//‚µ‚ß‚Â‚¯‚ç‚ê‚Ä‚¢‚éA‚­‚ë‚¢‚Ü‚È‚´‚µ‚ğ‚¤‚¯‚Ä‚¢‚éA‚Ë‚ğ‚Í‚Á‚Ä‚¢‚é‚Í“¦‚°‚ç‚ê‚È‚¢
+	//ã—ã‚ã¤ã‘ã‚‰ã‚Œã¦ã„ã‚‹ã€ãã‚ã„ã¾ãªã–ã—ã‚’ã†ã‘ã¦ã„ã‚‹ã€ã­ã‚’ã¯ã£ã¦ã„ã‚‹æ™‚ã¯é€ƒã’ã‚‰ã‚Œãªã„
 	if((sp->psp[client_no].condition2&(CONDITION2_SHIME|CONDITION2_KUROIMANAZASHI))||
 	   (sp->psp[client_no].waza_kouka&WAZAKOUKA_NEWOHARU)){
 		if(mp==NULL){
@@ -4465,7 +4465,7 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 	}
 
 #if 0
-	//í“¬ƒ^ƒCƒv‚ªƒKƒCƒhƒoƒgƒ‹‚Ì‚Í“¦‚°‚ç‚ê‚È‚¢
+	//æˆ¦é—˜ã‚¿ã‚¤ãƒ—ãŒã‚¬ã‚¤ãƒ‰ãƒãƒˆãƒ«ã®æ™‚ã¯é€ƒã’ã‚‰ã‚Œãªã„
 	if(FightType&FIGHT_TYPE_GUIDE){
 		ServerWork[5]=1;
 		return 1;
@@ -4476,12 +4476,12 @@ BOOL	ST_EscapeNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,MESSAGE_PAR
 
 //============================================================================================
 /**
- *	í“¬‚©‚ç“¦‚°‚ç‚ê‚é‚©‚ğƒ`ƒFƒbƒN‚·‚éi“¦‚°‚éƒRƒ}ƒ“ƒh¬—§Œãj
+ *	æˆ¦é—˜ã‹ã‚‰é€ƒã’ã‚‰ã‚Œã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼ˆé€ƒã’ã‚‹ã‚³ãƒãƒ³ãƒ‰æˆç«‹å¾Œï¼‰
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *	
- *	@retval	TRUE:“¦‚°‚ç‚ê‚é@FALSE:“¦‚°‚ç‚ê‚È‚¢
+ *	@retval	TRUE:é€ƒã’ã‚‰ã‚Œã‚‹ã€€FALSE:é€ƒã’ã‚‰ã‚Œãªã„
  */
 //============================================================================================
 BOOL	ST_EscapeActCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -4499,33 +4499,33 @@ BOOL	ST_EscapeActCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	eqp=ST_ServerSoubiEqpGet(sp,client_no);
 	ret=FALSE;
 
-	//ƒAƒCƒeƒ€‚Å•K‚¸“¦‚°‚ç‚ê‚é‚Ì‘•”õŒø‰Ê‚Í100%“¦‚°‚ê‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§å¿…ãšé€ƒã’ã‚‰ã‚Œã‚‹ã®è£…å‚™åŠ¹æœã¯100%é€ƒã’ã‚Œã‚‹
 	if(eqp==SOUBI_KANARAZUNIGERARERU){
 		sp->otf[client_no].escape_flag=1;
 		ret=TRUE;
 	}
-	//100%“¦‚°‚ê‚éFIGHT_TYPE‚ğƒ`ƒFƒbƒN
+	//100%é€ƒã’ã‚Œã‚‹FIGHT_TYPEã‚’ãƒã‚§ãƒƒã‚¯
 	else if(fight_type&FIGHT_TYPE_ESCAPE){
 		ret=TRUE;
 	}
-	//“Áê”\—Í‚É‚°‚ ‚µ‚Í100%“¦‚°‚ê‚é
+	//ç‰¹æ®Šèƒ½åŠ›ã«ã’ã‚ã—ã¯100%é€ƒã’ã‚Œã‚‹
 	else if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_NIGEASI){
 		sp->otf[client_no].escape_flag=2;
 		ret=TRUE;
 	}
 	else{
-		//‘Šè‚Ì•û‚ª‘‚¯‚ê‚Î“¦‚°‚é‚ğ‘I‘ğ‚µ‚½‰ñ”‚ª‘½‚¢‚Ù‚Ç“¦‚°‚â‚·‚­‚·‚é
+		//ç›¸æ‰‹ã®æ–¹ãŒæ—©ã‘ã‚Œã°é€ƒã’ã‚‹ã‚’é¸æŠã—ãŸå›æ•°ãŒå¤šã„ã»ã©é€ƒã’ã‚„ã™ãã™ã‚‹
 		if(sp->psp[client_no].agi<sp->psp[client_no^1].agi){
 			escape=sp->psp[client_no].agi*128/sp->psp[client_no^1].agi+sp->escape_count*30;
 			if(escape>(BattleWorkRandGet(bw)%256)){
 				ret=TRUE;
 			}
 		}
-		//©•ª‚Ì•û‚ª‘‚¯‚ê‚Î100%“¦‚°‚ê‚é
+		//è‡ªåˆ†ã®æ–¹ãŒæ—©ã‘ã‚Œã°100%é€ƒã’ã‚Œã‚‹
 		else{
 			ret=TRUE;
 		}
-		//“¦‚°‚é‚É¸”s‚µ‚½ƒJƒEƒ“ƒ^‚ğƒJƒEƒ“ƒgƒAƒbƒv
+		//é€ƒã’ã‚‹ã«å¤±æ•—ã—ãŸã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		if(ret==FALSE){
 			SCIO_IncRecord(bw,client_no,CLIENT_BOOT_TYPE_MINE,RECID_NIGERU_SIPPAI);
 		}
@@ -4536,12 +4536,12 @@ BOOL	ST_EscapeActCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚È‚Ü‚¯ƒ`ƒFƒbƒN
+ *	ãªã¾ã‘ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *	
- *	@retval	FALSE:‚È‚Ü‚¯‚È‚¢@TRUE:‚È‚Ü‚¯‚é
+ *	@retval	FALSE:ãªã¾ã‘ãªã„ã€€TRUE:ãªã¾ã‘ã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerNamakeCheck(SERVER_PARAM *sp,int client_no)
@@ -4564,12 +4564,12 @@ BOOL	ST_ServerNamakeCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚³‚í‚®ƒ`ƒFƒbƒN
+ *	ã•ã‚ããƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *	
- *	@retval	FALSE:‚µ‚¸‚©@TRUE:‚³‚í‚ª‚µ‚¢
+ *	@retval	FALSE:ã—ãšã‹ã€€TRUE:ã•ã‚ãŒã—ã„
  */
 //============================================================================================
 BOOL	ST_ServerSawaguCheck(SERVER_PARAM *sp,int client_no)
@@ -4591,14 +4591,14 @@ BOOL	ST_ServerSawaguCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚Ó‚¤‚¢‚ñƒ`ƒFƒbƒN
+ *	ãµã†ã„ã‚“ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚éWazaNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹WazaNo
  *	
- *	@retval	FALSE:‚Ó‚¤‚¢‚ñ‚³‚ê‚Ä‚¢‚È‚¢@TRUE:‚Ó‚¤‚¢‚ñ‚³‚ê‚Ä‚¢‚é
+ *	@retval	FALSE:ãµã†ã„ã‚“ã•ã‚Œã¦ã„ãªã„ã€€TRUE:ãµã†ã„ã‚“ã•ã‚Œã¦ã„ã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerHuuinCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_no)
@@ -4635,13 +4635,13 @@ BOOL	ST_ServerHuuinCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza
 
 //============================================================================================
 /**
- *	ê‚É‚¢‚éƒ|ƒPƒ‚ƒ“‚É‹ZŒø‰Ê‚ª”­“®‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	å ´ã«ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã«æŠ€åŠ¹æœãŒç™ºå‹•ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	waza_kouka	ƒ`ƒFƒbƒN‚·‚é‹ZŒø‰Ê
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	waza_kouka	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€åŠ¹æœ
  *	
- *	@retval	FALSE:Œø‰Ê‚ª”­“®‚µ‚Ä‚¢‚È‚¢@TRUE:Œø‰Ê‚ª”­“®
+ *	@retval	FALSE:åŠ¹æœãŒç™ºå‹•ã—ã¦ã„ãªã„ã€€TRUE:åŠ¹æœãŒç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerWazaKoukaCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_kouka)
@@ -4665,10 +4665,10 @@ BOOL	ST_ServerWazaKoukaCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int waza_kouka)
 
 //============================================================================================
 /**
- *	ƒ‹[ƒvŒn‚Ì‹Z‚Åƒ‹[ƒv‚·‚é‚É‰Šú‰»‚·‚éƒ[ƒN
+ *	ãƒ«ãƒ¼ãƒ—ç³»ã®æŠ€ã§ãƒ«ãƒ¼ãƒ—ã™ã‚‹æ™‚ã«åˆæœŸåŒ–ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerLoopInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -4683,10 +4683,10 @@ void	ST_ServerLoopInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	‘f‘‚³‚É‚æ‚é‹Z”­“®‡”Ô‚Ì‚½‚ß‚Ìƒ[ƒN‚ğ¶¬
+ *	ç´ æ—©ã•ã«ã‚ˆã‚‹æŠ€ç™ºå‹•é †ç•ªã®ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯ã‚’ç”Ÿæˆ
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerPSPAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -4715,7 +4715,7 @@ void	ST_ServerPSPAgiCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	‚¶‚ã‚¤‚è‚å‚­ƒ`ƒFƒbƒNƒe[ƒuƒ‹
+ *	ã˜ã‚…ã†ã‚Šã‚‡ããƒã‚§ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u16	JuuryokuWazaTable[]={
@@ -4729,14 +4729,14 @@ static	const	u16	JuuryokuWazaTable[]={
 
 //============================================================================================
 /**
- *	‚¶‚ã‚¤‚è‚å‚­ƒ`ƒFƒbƒN
+ *	ã˜ã‚…ã†ã‚Šã‚‡ããƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚éWazaNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹WazaNo
  *	
- *	@retval	FALSE:‚¶‚ã‚¤‚è‚å‚­‚Ì‰e‹¿‚ğ‚¤‚¯‚È‚¢@TRUE:‚¶‚ã‚¤‚è‚å‚­‚Ì‰e‹¿‚ğ‚¤‚¯‚é
+ *	@retval	FALSE:ã˜ã‚…ã†ã‚Šã‚‡ãã®å½±éŸ¿ã‚’ã†ã‘ãªã„ã€€TRUE:ã˜ã‚…ã†ã‚Šã‚‡ãã®å½±éŸ¿ã‚’ã†ã‘ã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerJuuryokuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_no)
@@ -4763,7 +4763,7 @@ BOOL	ST_ServerJuuryokuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int w
 
 //============================================================================================
 /**
- *	ƒq[ƒ‹ƒuƒƒbƒNƒ`ƒFƒbƒNƒe[ƒuƒ‹
+ *	ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u16	HealblockWazaTable[]={
@@ -4785,14 +4785,14 @@ static	const	u16	HealblockWazaTable[]={
 
 //============================================================================================
 /**
- *	ƒq[ƒ‹ƒuƒƒbƒNƒ`ƒFƒbƒN
+ *	ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚éWazaNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹WazaNo
  *	
- *	@retval	FALSE:ƒq[ƒ‹ƒuƒƒbƒN‚Ì‰e‹¿‚ğ‚¤‚¯‚È‚¢@TRUE:ƒq[ƒ‹ƒuƒƒbƒN‚Ì‰e‹¿‚ğ‚¤‚¯‚é
+ *	@retval	FALSE:ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã®å½±éŸ¿ã‚’ã†ã‘ãªã„ã€€TRUE:ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã®å½±éŸ¿ã‚’ã†ã‘ã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerHealblockCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_no)
@@ -4820,18 +4820,18 @@ BOOL	ST_ServerHealblockCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 
 //============================================================================================
 /**
- *	‚Æ‚Á‚Ä‚¨‚«ƒJƒEƒ“ƒgŒvZ
+ *	ã¨ã£ã¦ãŠãã‚«ã‚¦ãƒ³ãƒˆè¨ˆç®—
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerTotteokiCountCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
 	int	pos;
 
-	//‚Æ‚Á‚Ä‚¨‚«‚ÍAƒJƒEƒ“ƒg‚µ‚È‚¢
-	//‚Æ‚Á‚Ä‚¨‚«ƒJƒEƒ“ƒg‚ªMAX‚È‚çAƒJƒEƒ“ƒg‚µ‚È‚¢
+	//ã¨ã£ã¦ãŠãã¯ã€ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
+	//ã¨ã£ã¦ãŠãã‚«ã‚¦ãƒ³ãƒˆãŒMAXãªã‚‰ã€ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 	if((sp->waza_no_temp==WAZANO_TOTTEOKI)||(sp->psp[sp->attack_client].wkw.totteoki_count==WAZA_TEMOTI_MAX)){
 		return;
 	}
@@ -4847,11 +4847,11 @@ void	ST_ServerTotteokiCountCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	‹Z‚ğ‚¢‚­‚Â‚à‚Á‚Ä‚¢‚é‚©ƒJƒEƒ“ƒg
+ *	æŠ€ã‚’ã„ãã¤ã‚‚ã£ã¦ã„ã‚‹ã‹ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒJƒEƒ“ƒg‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ClientNo
  */
 //============================================================================================
 int		ST_ServerWazaCountGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -4872,10 +4872,10 @@ int		ST_ServerWazaCountGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒ_ƒ[ƒW‚ğ‰ñ”ğ‚·‚é“Á«‚Ìƒ`ƒFƒbƒN—pƒf[ƒ^ƒe[ƒuƒ‹
+ *	ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å›é¿ã™ã‚‹ç‰¹æ€§ã®ãƒã‚§ãƒƒã‚¯ç”¨ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
-//‚Ú‚¤‚¨‚ñƒe[ƒuƒ‹
+//ã¼ã†ãŠã‚“ãƒ†ãƒ¼ãƒ–ãƒ«
 static	u16	BouonWazaTable[]={
 	WAZANO_NAKIGOE,
 	WAZANO_HOERU,
@@ -4893,11 +4893,11 @@ static	u16	BouonWazaTable[]={
 
 //============================================================================================
 /**
- *	ƒ_ƒ[ƒW‚ğ‰ñ”ğ‚·‚é“Á«‚Ìƒ`ƒFƒbƒN
+ *	ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å›é¿ã™ã‚‹ç‰¹æ€§ã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	attack		UŒ‚‚·‚éClientNo
- *	@param[in]	defence		–hŒä‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	attack		æ”»æ’ƒã™ã‚‹ClientNo
+ *	@param[in]	defence		é˜²å¾¡ã™ã‚‹ClientNo
  */
 //============================================================================================
 int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
@@ -4907,7 +4907,7 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 
 	seq_no=0;
 
-	//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+	//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	if(ST_ServerTokuseiGet(sp,attack)==TOKUSYU_NOOMARUSUKIN){
 		wazatype=NORMAL_TYPE;
 	}
@@ -4919,14 +4919,14 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 		wazatype=sp->AIWT.wtd[sp->waza_no_now].wazatype;
 	}
 
-	//‚¿‚­‚Å‚ñƒ`ƒFƒbƒN
+	//ã¡ãã§ã‚“ãƒã‚§ãƒƒã‚¯
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_TIKUDEN)==TRUE){
 		if((wazatype==ELECTRIC_TYPE)&&(attack!=defence)){
 			sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[defence].hpmax,4);
 			seq_no=SUB_SEQ_TOKUSEI_HP_KAIFUKU;
 		}
 	}
-	//‚¿‚å‚·‚¢ƒ`ƒFƒbƒN
+	//ã¡ã‚‡ã™ã„ãƒã‚§ãƒƒã‚¯
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_TYOSUI)==TRUE){
 		if((wazatype==WATER_TYPE)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
@@ -4936,7 +4936,7 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 			seq_no=SUB_SEQ_TOKUSEI_HP_KAIFUKU;
 		}
 	}
-	//‚à‚ç‚¢‚Ñƒ`ƒFƒbƒN
+	//ã‚‚ã‚‰ã„ã³ãƒã‚§ãƒƒã‚¯
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_MORAIBI)==TRUE){
 		if((wazatype==FIRE_TYPE)&&
 		  ((sp->psp[defence].condition&CONDITION_KOORI)==0)&&
@@ -4946,7 +4946,7 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 			seq_no=SUB_SEQ_MORAIBI;
 		}
 	}
-	//‚Ú‚¤‚¨‚ñƒ`ƒFƒbƒN
+	//ã¼ã†ãŠã‚“ãƒã‚§ãƒƒã‚¯
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_BOUON)==TRUE){
 		{
 			int	no;
@@ -4959,13 +4959,13 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 			}
 		}
 	}
-	//‚Å‚ñ‚«ƒGƒ“ƒWƒ“ƒ`ƒFƒbƒN	
+	//ã§ã‚“ãã‚¨ãƒ³ã‚¸ãƒ³ãƒã‚§ãƒƒã‚¯	
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_DENKIENZIN)==TRUE){
 		if((wazatype==ELECTRIC_TYPE)&&(attack!=defence)){
 			seq_no=SUB_SEQ_DENKIENZIN;
 		}
 	}
-	//‚©‚ñ‚»‚¤‚Í‚¾ƒ`ƒFƒbƒN
+	//ã‹ã‚“ãã†ã¯ã ãƒã‚§ãƒƒã‚¯
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_KANSOUHADA)==TRUE){
 		if((wazatype==WATER_TYPE)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
@@ -4981,10 +4981,10 @@ int		ST_ServerDamageTokuseiCheck(SERVER_PARAM *sp,int attack,int defence)
 
 //============================================================================================
 /**
- *	ƒ^[ƒ“ƒ`ƒFƒbƒN‚Ì“Á«‚Ìƒ`ƒFƒbƒN
+ *	ã‚¿ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯æ™‚ã®ç‰¹æ€§ã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  */
 //============================================================================================
 BOOL	ST_ServerPCCTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -4998,11 +4998,11 @@ BOOL	ST_ServerPCCTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	ret=FALSE;
 
 	switch(ST_ServerTokuseiGet(sp,client_no)){
-	//‚©‚»‚­
+	//ã‹ãã
 	case TOKUSYU_KASOKU:
 		if((sp->psp[client_no].hp)&&
 		   (sp->psp[client_no].abiritycnt[COND_AGI]<12)&&
-		   //o‚Ä‚«‚½Å‰‚Ìƒ^[ƒ“‚ÍA‚©‚»‚­‚ğ–³‹
+		   //å‡ºã¦ããŸæœ€åˆã®ã‚¿ãƒ¼ãƒ³ã¯ã€ã‹ããã‚’ç„¡è¦–
 		   (sp->psp[client_no].wkw.nekodamashi_count!=sp->total_turn+1)){
 			sp->tsuika_para=ADD_COND2_AGIUP;
 			sp->tsuika_type=ADD_STATUS_TOKUSEI;
@@ -5011,7 +5011,7 @@ BOOL	ST_ServerPCCTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			ret=TRUE;
 		}
 		break;
-	//‚¾‚Á‚Ò
+	//ã ã£ã´
 	case TOKUSYU_DAPPI:
 #ifdef PM_DEBUG
 		if((sp->psp[client_no].condition&CONDITION_BAD)&&
@@ -5056,12 +5056,12 @@ BOOL	ST_ServerPCCTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒ_ƒ[ƒWŒvZ—p‚ÌŠ„‚èZ‚ğs‚¤iŠ„‚Á‚½Œ‹‰Ê‚ª‚O‚Ì‚ÍA1or-1•â³‚ğ‚·‚é
+ *	ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—ç”¨ã®å‰²ã‚Šç®—ã‚’è¡Œã†ï¼ˆå‰²ã£ãŸçµæœãŒï¼ã®æ™‚ã¯ã€1or-1è£œæ­£ã‚’ã™ã‚‹
  *
- *	@param[in]	data	Š„‚ç‚ê‚é”
- *	@param[in]	value	Š„‚é”
+ *	@param[in]	data	å‰²ã‚‰ã‚Œã‚‹æ•°
+ *	@param[in]	value	å‰²ã‚‹æ•°
  *
- *	@retval	¤
+ *	@retval	å•†
  */
 //============================================================================================
 int		ST_ServerDamageDiv(int data,int value)
@@ -5069,7 +5069,7 @@ int		ST_ServerDamageDiv(int data,int value)
 	int	zero_flag;
 
 #if AFTER_MASTER_070320_BT5_EUR_FIX
-	//Š„‚ç‚ê‚é”‚ª0‚Ì‚Í‚»‚Ì‚Ü‚Ü•Ô‚·
+	//å‰²ã‚‰ã‚Œã‚‹æ•°ãŒ0ã®æ™‚ã¯ãã®ã¾ã¾è¿”ã™
 	if(data==0){
 		return data;
 	}
@@ -5092,7 +5092,7 @@ int		ST_ServerDamageDiv(int data,int value)
 }
 
 //============================================================================================
-//			ST_ServerPokeAppearCheck‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+//			ST_ServerPokeAppearCheckã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
 //============================================================================================
 enum{
 	SPAC_WEATHER=0,
@@ -5121,12 +5121,12 @@ enum{
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ““oê‚Ìƒ`ƒFƒbƒN‚ğ‚¨‚±‚È‚¤
+ *	ãƒã‚±ãƒ¢ãƒ³ç™»å ´æ™‚ã®ãƒã‚§ãƒƒã‚¯ã‚’ãŠã“ãªã†
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	ƒ`ƒFƒbƒN‚Éˆø‚Á‚©‚©‚Á‚½‚É‹N“®‚·‚éSUB_SEQ_NO
+ * @retval	ãƒã‚§ãƒƒã‚¯ã«å¼•ã£ã‹ã‹ã£ãŸæ™‚ã«èµ·å‹•ã™ã‚‹SUB_SEQ_NO
  */
 //============================================================================================
 int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -5144,36 +5144,36 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	do{
 		switch(sp->spac_seq_no){
-		//“VŒóƒ`ƒFƒbƒN
+		//å¤©å€™ãƒã‚§ãƒƒã‚¯
 		case SPAC_WEATHER:
 			if(sp->weather_check_flag==0){
 				switch(BattleWorkWeatherGet(bw)){
-				case WEATHER_SYS_RAIN:			// ‰J
-				case WEATHER_SYS_STRAIN:		// ‘å‰J
-				case WEATHER_SYS_SPARK:			// ‘å‰J
+				case WEATHER_SYS_RAIN:			// é›¨
+				case WEATHER_SYS_STRAIN:		// å¤§é›¨
+				case WEATHER_SYS_SPARK:			// å¤§é›¨
 					seq_no=SUB_SEQ_FIELD_AME;
 					ret=SPAC_WAZA_SEQ;
 					break;
-				case WEATHER_SYS_SNOW:			// á
-				case WEATHER_SYS_SNOWSTORM:		// á
-				case WEATHER_SYS_SNOWSTORM_H:	// –Òá
+				case WEATHER_SYS_SNOW:			// é›ª
+				case WEATHER_SYS_SNOWSTORM:		// å¹é›ª
+				case WEATHER_SYS_SNOWSTORM_H:	// çŒ›å¹é›ª
 					seq_no=SUB_SEQ_FIELD_ARARE;
 					ret=SPAC_WAZA_SEQ;
 					break;
-				case WEATHER_SYS_SANDSTORM:		// BGg—p»—’
+				case WEATHER_SYS_SANDSTORM:		// BGä½¿ç”¨ç ‚åµ
 					seq_no=SUB_SEQ_FIELD_SUNAARASHI;
 					ret=SPAC_WAZA_SEQ;
 					break;
-				case WEATHER_SYS_MIST1:			// –¶•¥‚¢‚Ì–¶
-				case WEATHER_SYS_MIST2:			// –¶•¥‚¢‚Ì–¶
+				case WEATHER_SYS_MIST1:			// éœ§æ‰•ã„ã®éœ§
+				case WEATHER_SYS_MIST2:			// éœ§æ‰•ã„ã®éœ§
 					seq_no=SUB_SEQ_FIELD_HUKAIKIRI;
 					ret=SPAC_WAZA_SEQ;
 					break;
-				case WEATHER_SYS_HIGHSUNNY:		// “ú–{°‚ê
+				case WEATHER_SYS_HIGHSUNNY:		// æ—¥æœ¬æ™´ã‚Œ
 					seq_no=SUB_SEQ_FIELD_HARE;
 					ret=SPAC_WAZA_SEQ;
 					break;
-				case WEATHER_SYS_TRICKROOM:		// ƒgƒŠƒbƒNƒ‹[ƒ€
+				case WEATHER_SYS_TRICKROOM:		// ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
 					seq_no=SUB_SEQ_FIELD_TRICKROOM;
 					ret=SPAC_WAZA_SEQ;
 					break;
@@ -5186,7 +5186,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			}
 			sp->spac_seq_no++;
 			break;
-		//“Á«ƒgƒŒ[ƒXƒ`ƒFƒbƒN
+		//ç‰¹æ€§ãƒˆãƒ¬ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
 		case SPAC_TRACE:
 			{
 				int	def1,def2;
@@ -5221,7 +5221,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				if((sp->psp[client_no].appear_check_flag==0)&&
 				   (sp->psp[client_no].hp)){
 					switch(ST_ServerTokuseiGet(sp,client_no)){
-					//“Á«‚ ‚ß‚Ó‚ç‚µ
+					//ç‰¹æ€§ã‚ã‚ãµã‚‰ã—
 					case TOKUSYU_AMEHURASI:
 						sp->psp[client_no].appear_check_flag=1;
 						if((sp->field_condition&FIELD_CONDITION_AMEHURASHI)==0){
@@ -5229,7 +5229,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 							ret=SPAC_WAZA_SEQ;
 						}
 						break;
-					//“Á«‚·‚È‚¨‚±‚µ
+					//ç‰¹æ€§ã™ãªãŠã“ã—
 					case TOKUSYU_SUNAOKOSI:
 						sp->psp[client_no].appear_check_flag=1;
 						if((sp->field_condition&FIELD_CONDITION_SUNAOKOSHI)==0){
@@ -5237,7 +5237,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 							ret=SPAC_WAZA_SEQ;
 						}
 						break;
-					//“Á«‚Ğ‚Å‚è
+					//ç‰¹æ€§ã²ã§ã‚Š
 					case TOKUSYU_HIDERI:
 						sp->psp[client_no].appear_check_flag=1;
 						if((sp->field_condition&FIELD_CONDITION_HIDERI)==0){
@@ -5245,7 +5245,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 							ret=SPAC_WAZA_SEQ;
 						}
 						break;
-					//“Á«‚ä‚«‚Ó‚ç‚µ
+					//ç‰¹æ€§ã‚†ããµã‚‰ã—
 					case TOKUSYU_YUKIHURASI:
 						sp->psp[client_no].appear_check_flag=1;
 						if((sp->field_condition&FIELD_CONDITION_YUKIHURASHI)==0){
@@ -5264,7 +5264,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚¢‚©‚­ƒ`ƒFƒbƒN
+		//ç‰¹æ€§ã„ã‹ããƒã‚§ãƒƒã‚¯
 		case SPAC_IKAKU:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5282,7 +5282,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«ƒ_ƒEƒ“ƒ[ƒhƒ`ƒFƒbƒN
+		//ç‰¹æ€§ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 		case SPAC_DOWNLOAD:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5329,7 +5329,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚«‚¯‚ñ‚æ‚¿
+		//ç‰¹æ€§ãã‘ã‚“ã‚ˆã¡
 		case SPAC_KIKENYOCHI:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5349,7 +5349,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 									if(waza_no){
 										flag=0;
 										sp->damage=ST_ServerTypeCheck(bw,sp,waza_no,NULL,no,client_no,sp->damage,&flag);
-										//“Á«‚«‚¯‚ñ‚æ‚¿‚ÍAŒø‰Ê”²ŒQAˆêŒ‚•KE‚Ì‹Z‚É‘Î‚µ‚ÄŒxƒƒbƒZ[ƒW‚ğo‚·
+										//ç‰¹æ€§ãã‘ã‚“ã‚ˆã¡ã¯ã€åŠ¹æœæŠœç¾¤ã€ä¸€æ’ƒå¿…æ®ºã®æŠ€ã«å¯¾ã—ã¦è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
 										if(((flag&WAZA_STATUS_FLAG_KOUKANAI)==0)&&
 											(ST_ServerKikenyochiWazaSeqCheck(sp,waza_no)==FALSE)&&
 										   ((flag&WAZA_STATUS_FLAG_BATSUGUN)||
@@ -5377,7 +5377,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚æ‚¿‚Ş
+		//ç‰¹æ€§ã‚ˆã¡ã‚€
 		case SPAC_YOCHIMU:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5402,11 +5402,11 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 //									pow=WT_WazaDataParaGet(waza_no,ID_WTD_damage);
 									pow=sp->AIWT.wtd[waza_no].damage;
 									switch(pow){
-									//ˆĞ—Í‚P
+									//å¨åŠ›ï¼‘
 									case 1:
 //										switch(WT_WazaDataParaGet(waza_no,ID_WTD_battleeffect)){
 										switch(sp->AIWT.wtd[waza_no].battleeffect){
-										//ˆêŒ‚•KE
+										//ä¸€æ’ƒå¿…æ®º
 										case 38:
 											if((pow_temp<150)||
 											  ((pow_temp==150)&&(BattleWorkRandGet(bw)&1))){
@@ -5414,9 +5414,9 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 												sp->waza_work=waza_no;
 											}
 											break;
-										//ƒJƒEƒ“ƒ^[
-										//ƒ~ƒ‰[ƒR[ƒg
-										//‚ ‚¾‚¤‚¿
+										//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+										//ãƒŸãƒ©ãƒ¼ã‚³ãƒ¼ãƒˆ
+										//ã‚ã ã†ã¡
 										case 89:
 										case 144:
 										case 227:
@@ -5451,7 +5451,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 							seq_no=SUB_SEQ_YOCHIMU;
 							ret=SPAC_WAZA_SEQ;
 						}
-						//Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚ÍA‚Á‚Ä‚¢‚é‹Z‚©‚çƒ‰ƒ“ƒ_ƒ€‚Å‘I‘ğ
+						//è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ã€æŒã£ã¦ã„ã‚‹æŠ€ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§é¸æŠ
 						else if(hp){
 							no=ST_ServerDirClientGet(bw,sp,client_no);
 							pos=ST_ServerWazaCountGet(bw,sp,no);
@@ -5468,7 +5468,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚¨‚İ‚Æ‚¨‚µ
+		//ç‰¹æ€§ãŠã¿ã¨ãŠã—
 		case SPAC_OMITOOSHI:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5515,11 +5515,11 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«ƒXƒ[ƒXƒ^[ƒg
+		//ç‰¹æ€§ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
 		case SPAC_SLOWSTART:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
-				//‰‰ñƒ^[ƒ“‚ÆŒø‰ÊØ‚êƒ^[ƒ“‚ÉƒƒbƒZ[ƒW
+				//åˆå›ã‚¿ãƒ¼ãƒ³ã¨åŠ¹æœåˆ‡ã‚Œã‚¿ãƒ¼ãƒ³ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 				if((sp->psp[client_no].slow_start_flag==0)&&
 				   (sp->psp[client_no].hp)&&
 				   (ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_SUROOSUTAATO)&&
@@ -5545,7 +5545,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚©‚½‚â‚Ô‚è
+		//ç‰¹æ€§ã‹ãŸã‚„ã¶ã‚Š
 		case SPAC_KATAYABURI:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5563,7 +5563,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«ƒvƒŒƒbƒVƒƒ[
+		//ç‰¹æ€§ãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼
 		case SPAC_PRESSURE:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
@@ -5581,7 +5581,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//“Á«‚Ä‚ñ‚«‚â
+		//ç‰¹æ€§ã¦ã‚“ãã‚„
 		case SPAC_TENKIYA:
 			if(ST_ServerTenkiyaCheck(bw,sp,&seq_no)==TRUE){
 				//seq_no=SUB_SEQ_TENKIYA;
@@ -5591,12 +5591,12 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//‘•”õŒø‰Ê‚¨‹à2”{
+		//è£…å‚™åŠ¹æœãŠé‡‘2å€
 		case SPAC_OKANE2BAI:
 			for(i=0;i<client_set_max;i++){
 				client_no=sp->psp_agi_work[i];
 				if(ST_ItemParamGet(sp,sp->psp[client_no].item,ITEM_PRM_EQUIP)==SOUBI_OKANENIBAI){
-					sp->okodukai_value=2;	///<‚¨¬Œ­‚¢‚Ì”{—¦ƒ[ƒN
+					sp->okodukai_value=2;	///<ãŠå°é£ã„ã®å€ç‡ãƒ¯ãƒ¼ã‚¯
 				}
 			}
 			sp->spac_seq_no++;
@@ -5627,7 +5627,7 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->spac_seq_no++;
 			}
 			break;
-		//ƒ`ƒFƒbƒNI—¹
+		//ãƒã‚§ãƒƒã‚¯çµ‚äº†
 		case SPAC_END:
 			sp->spac_seq_no=0;
 			ret=SPAC_CHECK_END;
@@ -5640,13 +5640,13 @@ int	ST_ServerPokeAppearCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	‘Šè‘¤2‘Ì‚Ì‚¤‚¿1‘Ì‚ğƒ‰ƒ“ƒ_ƒ€‚Å‘I‘ği1vs1‚Ì‚Í‘f’¼‚É‘Šè‘¤‚ğ‘I‘ğj
+ *	ç›¸æ‰‹å´2ä½“ã®ã†ã¡1ä½“ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§é¸æŠï¼ˆ1vs1ã®æ™‚ã¯ç´ ç›´ã«ç›¸æ‰‹å´ã‚’é¸æŠï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- * @retval	‘I‘ğ‚µ‚½ClientNo
+ * @retval	é¸æŠã—ãŸClientNo
  */
 //============================================================================================
 int	ST_ServerDirClientGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -5679,13 +5679,13 @@ int	ST_ServerDirClientGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‹Z‚ªƒqƒbƒg‚µ‚½‚Éƒ`ƒFƒbƒN‚·‚é“Á«
+ *	æŠ€ãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	seq_no		”­“®‚µ‚½‚Ìseq_no‚ğ‘ã“ü‚·‚éƒ|ƒCƒ“ƒ^ƒ[ƒN
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	seq_no		ç™ºå‹•ã—ãŸæ™‚ã®seq_noã‚’ä»£å…¥ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	TRUE:“Á«”­“®@FALSE:“Á«•s”­
+ * @retval	TRUE:ç‰¹æ€§ç™ºå‹•ã€€FALSE:ç‰¹æ€§ä¸ç™º
  */
 //============================================================================================
 BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -5694,25 +5694,25 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 
 	ret=FALSE;
 
-	//UŒ‚‘ÎÛ‚ª‚¢‚È‚¯‚ê‚ÎAƒ`ƒFƒbƒN‚È‚µ
+	//æ”»æ’ƒå¯¾è±¡ãŒã„ãªã‘ã‚Œã°ã€ãƒã‚§ãƒƒã‚¯ãªã—
 	if(sp->defence_client==NONE_CLIENT_NO){
 		return ret;
 	}
 
-	//‚İ‚ª‚í‚è‚Å‚Í•s”­
+	//ã¿ãŒã‚ã‚Šã§ã¯ä¸ç™º
 	if(ST_ServerMigawariCheck(sp,sp->defence_client)==TRUE){
 		return ret;
 	}
 
 	switch(ST_ServerTokuseiGet(sp,sp->defence_client)){
-	//‚¹‚¢‚Å‚ñ‚«
+	//ã›ã„ã§ã‚“ã
 	case TOKUSYU_SEIDENKI:
 #ifdef PM_DEBUG
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5724,7 +5724,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5739,12 +5739,12 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//‚Ö‚ñ‚µ‚å‚­
+	//ã¸ã‚“ã—ã‚‡ã
 	case TOKUSYU_HENSYOKU:
 		{
 			u8	wazatype;
 
-			//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+			//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 			if(ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_NOOMARUSUKIN){
 				wazatype=NORMAL_TYPE;
 			}
@@ -5761,7 +5761,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			   (sp->waza_no_now!=WAZANO_WARUAGAKI)&&
 			  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 			   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
-				//‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+				//ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 			  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 //			   (WT_WazaDataParaGet(sp->waza_no_now,ID_WTD_damage))&&
 			   (sp->AIWT.wtd[sp->waza_no_now].damage)&&
@@ -5773,14 +5773,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			}
 		}
 		break;
-	//‚³‚ß‚Í‚¾
+	//ã•ã‚ã¯ã 
 	case TOKUSYU_SAMEHADA:
 		if((sp->psp[sp->attack_client].hp)&&
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚ÍA‚³‚ß‚Í‚¾‚ÌŒø‰Ê‚ğó‚¯‚È‚¢
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ã€ã•ã‚ã¯ã ã®åŠ¹æœã‚’å—ã‘ãªã„
 		   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5792,14 +5792,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//‚Ù‚¤‚µ
+	//ã»ã†ã—
 	case TOKUSYU_HOUSI:
 #ifdef PM_DEBUG
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		  //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		  //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5811,7 +5811,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5837,14 +5837,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//‚Ç‚­‚Ì‚Æ‚°
+	//ã©ãã®ã¨ã’
 	case TOKUSYU_DOKUNOTOGE:
 #ifdef PM_DEBUG
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5856,7 +5856,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5871,14 +5871,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//‚Ù‚Ì‚¨‚Ì‚©‚ç‚¾
+	//ã»ã®ãŠã®ã‹ã‚‰ã 
 	case TOKUSYU_HONOONOKARADA:
 #ifdef PM_DEBUG
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5890,7 +5890,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		   (sp->psp[sp->attack_client].condition==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5905,14 +5905,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//ƒƒƒƒƒ{ƒfƒB
+	//ãƒ¡ãƒ­ãƒ¡ãƒ­ãƒœãƒ‡ã‚£
 	case TOKUSYU_MEROMEROBODHI:
 #ifdef PM_DEBUG
 		if((sp->psp[sp->attack_client].hp)&&
 		  ((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5925,7 +5925,7 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		  ((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)==0)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
 		  ((sp->server_status_flag&SERVER_STATUS_FLAG_TAME)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -5941,14 +5941,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 			ret=TRUE;
 		}
 		break;
-	//‚ä‚¤‚Î‚­
+	//ã‚†ã†ã°ã
 	case TOKUSYU_YUUBAKU:
 		if((sp->defence_client==sp->kizetsu_client)&&
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚ÍA‚ä‚¤‚Î‚­‚ÌŒø‰Ê‚ğó‚¯‚È‚¢
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ã€ã‚†ã†ã°ãã®åŠ¹æœã‚’å—ã‘ãªã„
 		   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
-		   //“Á«‚µ‚ß‚è‚¯‚ª‚¢‚é‚ÍA‚ä‚¤‚Î‚­‚Å‚«‚È‚¢
+		   //ç‰¹æ€§ã—ã‚ã‚Šã‘ãŒã„ã‚‹æ™‚ã¯ã€ã‚†ã†ã°ãã§ããªã„
 		   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_SIMERIKE)==0)&&
-		   //‚Æ‚ñ‚Ú‚ª‚¦‚è“ü‚ê‘Ö‚¦‚Å‚ÍA”­“®‚È‚µ
+		   //ã¨ã‚“ã¼ãŒãˆã‚Šå…¥ã‚Œæ›¿ãˆã§ã¯ã€ç™ºå‹•ãªã—
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
 		   (sp->psp[sp->attack_client].hp)&&
 		  ((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)==0)&&
@@ -5968,14 +5968,14 @@ BOOL	ST_ServerWazaHitTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 
 //============================================================================================
 /**
- *	‹Z‚ªƒqƒbƒg‚µ‚½‚Éƒ`ƒFƒbƒN‚·‚é“Á«iƒXƒLƒ‹ƒXƒƒbƒv‚È‚Ç‚ÅA“Á«‚ª“ü‚ê‘Ö‚í‚Á‚Äó‘ÔˆÙí‚ğ’¼‚·ƒ`ƒFƒbƒNj
+ *	æŠ€ãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§ï¼ˆã‚¹ã‚­ãƒ«ã‚¹ãƒ¯ãƒƒãƒ—ãªã©ã§ã€ç‰¹æ€§ãŒå…¥ã‚Œæ›¿ã‚ã£ã¦çŠ¶æ…‹ç•°å¸¸ã‚’ç›´ã™ãƒã‚§ãƒƒã‚¯ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- * @param[in]	act_flag	“®ìƒtƒ‰ƒOi0:•K—v‚Èƒ[ƒN‚É‚·‚×‚Ä‘ã“ü@1:ƒV[ƒPƒ“ƒXƒiƒ“ƒo[—Ş‚Ì‘ã“ü‚Í‚µ‚È‚¢j
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ * @param[in]	act_flag	å‹•ä½œãƒ•ãƒ©ã‚°ï¼ˆ0:å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã«ã™ã¹ã¦ä»£å…¥ã€€1:ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼é¡ã®ä»£å…¥ã¯ã—ãªã„ï¼‰
  *
- * @retval	TRUE:“Á«”­“®@FALSE:“Á«•s”­
+ * @retval	TRUE:ç‰¹æ€§ç™ºå‹•ã€€FALSE:ç‰¹æ€§ä¸ç™º
  */
 //============================================================================================
 BOOL	ST_ServerTokuseiStatusRecoverCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int act_flag)
@@ -6032,7 +6032,7 @@ BOOL	ST_ServerTokuseiStatusRecoverCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cli
 		}
 		break;
 	case TOKUSYU_KARUWAZA:
-		//‚Ç‚ë‚Ú‚¤‚âƒgƒŠƒbƒN‚ÅƒAƒCƒeƒ€‚ğ“üè‚µ‚½‚Éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		//ã©ã‚ã¼ã†ã‚„ãƒˆãƒªãƒƒã‚¯ã§ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥æ‰‹ã—ãŸæ™‚ã«ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		if(sp->psp[client_no].item){
 			sp->psp[client_no].wkw.karuwaza_flag=1;
 		}
@@ -6053,13 +6053,13 @@ BOOL	ST_ServerTokuseiStatusRecoverCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cli
 
 //============================================================================================
 /**
- *	“ü‚ê‘Ö‚¦‚Éó‘ÔˆÙí‚ğ’¼‚·“Á«‚ğƒ`ƒFƒbƒN
+ *	å…¥ã‚Œæ›¿ãˆæ™‚ã«çŠ¶æ…‹ç•°å¸¸ã‚’ç›´ã™ç‰¹æ€§ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	tokusei		ƒ`ƒFƒbƒN‚·‚é“Á«
- * @param[in]	condition	ƒ`ƒFƒbƒN‚·‚éó‘ÔˆÙí
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	tokusei		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§
+ * @param[in]	condition	ãƒã‚§ãƒƒã‚¯ã™ã‚‹çŠ¶æ…‹ç•°å¸¸
  *
- * @retval	TRUE:“Á«”­“®@FALSE:“Á«•s”­
+ * @retval	TRUE:ç‰¹æ€§ç™ºå‹•ã€€FALSE:ç‰¹æ€§ä¸ç™º
  */
 //============================================================================================
 BOOL	ST_ServerTokuseiStatusRecoverReshuffleCheck(SERVER_PARAM *sp,int tokusei,int condition)
@@ -6102,13 +6102,13 @@ BOOL	ST_ServerTokuseiStatusRecoverReshuffleCheck(SERVER_PARAM *sp,int tokusei,in
 
 //============================================================================================
 /**
- *	‹Z‚ªƒqƒbƒg‚µ‚½‚Éƒ`ƒFƒbƒN‚·‚é“Á«iƒVƒ“ƒNƒ‚Ì‚İj
+ *	æŠ€ãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§ï¼ˆã‚·ãƒ³ã‚¯ãƒ­ã®ã¿ï¼‰
  *
- * @param[in]	bw				í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp				ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	server_seq_no	sp->next_server_seq_no‚ÉƒZƒbƒg‚·‚éƒiƒ“ƒo[
+ * @param[in]	bw				æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp				ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	server_seq_no	sp->next_server_seq_noã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	TRUE:“Á«”­“®@FALSE:“Á«•s”­
+ * @retval	TRUE:ç‰¹æ€§ç™ºå‹•ã€€FALSE:ç‰¹æ€§ä¸ç™º
  */
 //============================================================================================
 BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
@@ -6122,7 +6122,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 
 	seq_no=0;
 
-	//–hŒä‘¤ƒ`ƒFƒbƒN
+	//é˜²å¾¡å´ãƒã‚§ãƒƒã‚¯
 	if((sp->defence_client!=NONE_CLIENT_NO)&&
 	   (ST_ServerTokuseiGet(sp,sp->defence_client)==TOKUSYU_SINKURO)&&
 	   (sp->defence_client==sp->tsuika_client)&&
@@ -6131,7 +6131,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 		sp->tsuika_client=sp->attack_client;
 		ret=TRUE;
 	}
-	//UŒ‚‘¤ƒ`ƒFƒbƒN
+	//æ”»æ’ƒå´ãƒã‚§ãƒƒã‚¯
 	else if((ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_SINKURO)&&
 	   (sp->attack_client==sp->tsuika_client)&&
 	   (sp->server_status_flag&SERVER_STATUS_FLAG_SINKURO_TSUIKA)){
@@ -6160,7 +6160,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 		}
 	}
 #else AFTER_MASTER_061113_2_FIX
-	//–hŒä‘¤ƒ`ƒFƒbƒN
+	//é˜²å¾¡å´ãƒã‚§ãƒƒã‚¯
 	if((ST_ServerTokuseiGet(sp,sp->defence_client)==TOKUSYU_SINKURO)&&
 	   (sp->defence_client!=NONE_CLIENT_NO)&&
 	   (sp->defence_client==sp->tsuika_client)&&
@@ -6169,7 +6169,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 		sp->tsuika_client=sp->attack_client;
 		ret=TRUE;
 	}
-	//UŒ‚‘¤ƒ`ƒFƒbƒN
+	//æ”»æ’ƒå´ãƒã‚§ãƒƒã‚¯
 	else if((ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_SINKURO)&&
 	   (sp->attack_client==sp->tsuika_client)&&
 	   (sp->server_status_flag&SERVER_STATUS_FLAG_SINKURO_TSUIKA)){
@@ -6197,7 +6197,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 	}
 #endif AFTER_MASTER_061113_2_FIX
 
-	//‚Ä‚ñ‚«‚â‚àƒ^ƒCƒ~ƒ“ƒO‚Í‚¢‚Á‚µ‚å‚È‚Ì‚Åƒ`ƒFƒbƒN‚·‚é
+	//ã¦ã‚“ãã‚„ã‚‚ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã¯ã„ã£ã—ã‚‡ãªã®ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	ret=ST_ServerTenkiyaCheck(bw,sp,&seq_no);
 	if(ret==TRUE){
 		ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,seq_no);
@@ -6206,8 +6206,8 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 		return ret;
 	}
 
-	//ƒ`ƒFƒbƒN‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Í“¯‚¶‚È‚Ì‚ÅA‘•”õƒAƒCƒeƒ€u‚ ‚©‚¢‚¢‚Æv‚àƒ`ƒFƒbƒN
-	//–hŒä‘¤ƒ`ƒFƒbƒN
+	//ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã¯åŒã˜ãªã®ã§ã€è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ã‹ã„ã„ã¨ã€ã‚‚ãƒã‚§ãƒƒã‚¯
+	//é˜²å¾¡å´ãƒã‚§ãƒƒã‚¯
 	if((sp->defence_client!=NONE_CLIENT_NO)&&
 	   (ST_ServerSoubiEqpGet(sp,sp->defence_client)==SOUBI_MEROMERODETEKIMOMEROMERO)&&
 	   (sp->defence_client==sp->tsuika_client)&&
@@ -6216,7 +6216,7 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 		sp->tsuika_client=sp->attack_client;
 		ret=TRUE;
 	}
-	//UŒ‚‘¤ƒ`ƒFƒbƒN
+	//æ”»æ’ƒå´ãƒã‚§ãƒƒã‚¯
 	else if((ST_ServerSoubiEqpGet(sp,sp->attack_client)==SOUBI_MEROMERODETEKIMOMEROMERO)&&
 	   (sp->attack_client==sp->tsuika_client)&&
 	   (sp->ostf[sp->attack_client].status_flag&OSTF_STATUS_FLAG_MEROMERO)){
@@ -6240,13 +6240,13 @@ BOOL	ST_ServerSinkuroCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int server_seq_no)
 
 //============================================================================================
 /**
- *	ƒ^[ƒ“ƒ`ƒFƒbƒN‚Ì‘•”õƒAƒCƒeƒ€Œø‰Ê‚Ìƒ`ƒFƒbƒN
+ *	ã‚¿ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯æ™‚ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:‚È‚É‚à‚È‚µ	TRUE:‘•”õŒø‰Ê”­“®
+ *	@retval	FALSE:ãªã«ã‚‚ãªã—	TRUE:è£…å‚™åŠ¹æœç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -6429,7 +6429,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_KOUGEKIUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6441,7 +6441,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_BOUGYOUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6453,7 +6453,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_SUBAYASAUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6465,7 +6465,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_TOKUKOUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6477,7 +6477,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_TOKUBOUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6489,7 +6489,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_KURITHIKARUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6500,7 +6500,7 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			}
 			break;
 		case SOUBI_NOURYOKURNDUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6583,13 +6583,13 @@ BOOL	ST_ServerSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒ^[ƒ“ƒ`ƒFƒbƒN‚Ì‘•”õƒAƒCƒeƒ€Œø‰Ê‚Ìƒ`ƒFƒbƒNi‚½‚×‚Ì‚±‚µA‚­‚ë‚¢ƒwƒhƒj
+ *	ã‚¿ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯æ™‚ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯ï¼ˆãŸã¹ã®ã“ã—ã€ãã‚ã„ãƒ˜ãƒ‰ãƒ­ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:‚È‚É‚à‚È‚µ	TRUE:‘•”õŒø‰Ê”­“®
+ *	@retval	FALSE:ãªã«ã‚‚ãªã—	TRUE:è£…å‚™åŠ¹æœç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerSoubiItemTabenokosiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -6625,7 +6625,7 @@ BOOL	ST_ServerSoubiItemTabenokosiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int clie
 					ret=TRUE;
 				}
 			}
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚Íƒ_ƒ[ƒW‚È‚µ
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—
 			else if(ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_MAZIKKUGAADO){
 				sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[client_no].hpmax*-1,8);
 				seq_no=SUB_SEQ_EQPITEM_DAMAGE;
@@ -6648,14 +6648,14 @@ BOOL	ST_ServerSoubiItemTabenokosiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int clie
 
 //============================================================================================
 /**
- *	‘•”õƒAƒCƒeƒ€Œø‰Ê‚Ìƒ`ƒFƒbƒNió‘ÔˆÙíŒn‚ğ’¼‚·“z‚Ì‚İj
+ *	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯ï¼ˆçŠ¶æ…‹ç•°å¸¸ç³»ã‚’ç›´ã™å¥´ã®ã¿ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	seq_no		‹N“®‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	seq_no		èµ·å‹•ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	FALSE:‚È‚É‚à‚È‚µ	TRUE:‘•”õŒø‰Ê”­“®
+ *	@retval	FALSE:ãªã«ã‚‚ãªã—	TRUE:è£…å‚™åŠ¹æœç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int *seq_no)
@@ -6880,7 +6880,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_KOUGEKIUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6892,7 +6892,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_BOUGYOUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6904,7 +6904,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_SUBAYASAUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6916,7 +6916,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_TOKUKOUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6928,7 +6928,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_TOKUBOUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6940,7 +6940,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_KURITHIKARUUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6951,7 +6951,7 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 			}
 			break;
 		case SOUBI_NOURYOKURNDUP:
-			//“Á«‚­‚¢‚µ‚ñ‚Ú‚ÍA‘‚¢’iŠK‚Å‹N“®‚·‚é‚æ‚¤‚É
+			//ç‰¹æ€§ãã„ã—ã‚“ã¼ã¯ã€æ—©ã„æ®µéšã§èµ·å‹•ã™ã‚‹ã‚ˆã†ã«
 			if(ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_KUISINBOU){
 				atk/=2;
 			}
@@ -6992,13 +6992,13 @@ BOOL	ST_ServerSoubiItemConditionBadCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int cl
 
 //============================================================================================
 /*
- *	‘•”õƒAƒCƒeƒ€Œø‰Ê‚Ìƒ`ƒFƒbƒNiƒ_ƒ[ƒWŒnj
+ *	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æœã®ãƒã‚§ãƒƒã‚¯ï¼ˆãƒ€ãƒ¡ãƒ¼ã‚¸ç³»ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	‘•”õƒAƒCƒeƒ€ƒiƒ“ƒo[
+ *	@retval	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 BOOL	ST_ServerSoubiItemDamageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -7032,7 +7032,7 @@ BOOL	ST_ServerSoubiItemDamageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_n
 			ret=TRUE;
 			break;
 		case SOUBI_TEKINIMOTASETEDAMEEZI:
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚Íƒ_ƒ[ƒW‚È‚µ
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—
 			if(ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_MAZIKKUGAADO){
 				sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[client_no].hpmax*-1,atk);
 				seq_no=SUB_SEQ_EQPITEM_DAMAGE;
@@ -7055,12 +7055,12 @@ BOOL	ST_ServerSoubiItemDamageCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_n
 
 //============================================================================================
 /*
- *	‘•”õƒAƒCƒeƒ€ƒiƒ“ƒo[‚Ìæ“¾
+ *	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	‘•”õƒAƒCƒeƒ€ƒiƒ“ƒo[
+ *	@retval	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16	ST_ServerSoubiItemNoGet(SERVER_PARAM *sp,int client_no)
@@ -7068,11 +7068,11 @@ u16	ST_ServerSoubiItemNoGet(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,44);
 #endif
-	//“Á«‚Ô‚«‚æ‚¤‚ÍAƒAƒCƒeƒ€‚ğg‚¢‚±‚È‚¹‚È‚¢
+	//ç‰¹æ€§ã¶ãã‚ˆã†ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ã„ã“ãªã›ãªã„
 	if((ST_ServerTokuseiGet(sp,client_no)==TOKUSYU_BUKIYOU)){
 		return 0;
 	}
-	//ƒVƒƒƒbƒgƒAƒEƒg‚Ì‹ZŒø‰Ê”­“®’†‚ÍAƒAƒCƒeƒ€‚ªg‚¦‚È‚¢
+	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã®æŠ€åŠ¹æœç™ºå‹•ä¸­ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ãŒä½¿ãˆãªã„
 	if(sp->psp[client_no].wkw.shutout_count){
 		return 0;
 	}
@@ -7082,12 +7082,12 @@ u16	ST_ServerSoubiItemNoGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /*
- *	ƒ`ƒFƒbƒN‘ÎÛ‚ª“®ì‚ğI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚§ãƒƒã‚¯å¯¾è±¡ãŒå‹•ä½œã‚’çµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:‚Ü‚¾“®ì‚µ‚Ä‚¢‚È‚¢@TRUE:“®ìI—¹
+ *	@retval	FALSE:ã¾ã å‹•ä½œã—ã¦ã„ãªã„ã€€TRUE:å‹•ä½œçµ‚äº†
  */
 //============================================================================================
 BOOL	ST_ServerWazaEndCheck(SERVER_PARAM *sp,int client_no)
@@ -7100,13 +7100,13 @@ BOOL	ST_ServerWazaEndCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‹Z‚ªƒqƒbƒg‚µ‚½‚Éƒ`ƒFƒbƒN‚·‚é‘•”õŒø‰Ê
+ *	æŠ€ãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹è£…å‚™åŠ¹æœ
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[out]	seq_no		ƒV[ƒPƒ“ƒXƒiƒ“ƒo[Ši”[ƒ[ƒN
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[out]	seq_no		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼æ ¼ç´ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	TRUE:‘•”õŒø‰Ê”­“®@FALSE:‘•”õŒø‰Ê•s”­
+ * @retval	TRUE:è£…å‚™åŠ¹æœç™ºå‹•ã€€FALSE:è£…å‚™åŠ¹æœä¸ç™º
  */
 //============================================================================================
 BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -7119,12 +7119,12 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 
 	ret=FALSE;
 
-	//UŒ‚‘ÎÛ‚ª‚¢‚È‚¢ê‡‚ÍAƒ`ƒFƒbƒN‚È‚µ
+	//æ”»æ’ƒå¯¾è±¡ãŒã„ãªã„å ´åˆã¯ã€ãƒã‚§ãƒƒã‚¯ãªã—
 	if(sp->defence_client==NONE_CLIENT_NO){
 		return ret;
 	}
 
-	//‚İ‚ª‚í‚è‚Å‚Í•s”­
+	//ã¿ãŒã‚ã‚Šã§ã¯ä¸ç™º
 	if(ST_ServerMigawariCheck(sp,sp->defence_client)==TRUE){
 		return ret;
 	}
@@ -7138,7 +7138,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].item==0)&&
 		  ((sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->attack_client]))==0)&&
-		   //‚Í‚½‚«‚¨‚Æ‚·‚ÍœŠO
+		   //ã¯ãŸããŠã¨ã™ã¯é™¤å¤–
 		   (sp->waza_no_now!=WAZANO_HATAKIOTOSU)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
@@ -7151,7 +7151,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 		break;
 	case SOUBI_BUTURIDEKOUGEKI:
 		if((sp->psp[sp->attack_client].hp)&&
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚É‚Í•s”­
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã«ã¯ä¸ç™º
 		   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
 #if B1368_060815_FIX
 		  ((sp->server_status_flag2&SERVER_STATUS_FLAG2_TONBOGAERI)==0)&&
@@ -7164,7 +7164,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 		break;
 	case SOUBI_TOKUSYUDEKOUGEKI:
 		if((sp->psp[sp->attack_client].hp)&&
-			//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚É‚Í•s”­
+			//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã«ã¯ä¸ç™º
 		   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
 		   (sp->ostf[sp->defence_client].tokusyu_ostf_damage)){
 			sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[sp->attack_client].hpmax*-1,atk);
@@ -7198,12 +7198,12 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 
 //============================================================================================
 /**
- *	‘•”õŒø‰Êƒiƒ“ƒo[‚ğæ“¾
+ *	è£…å‚™åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‘•”õŒø‰Êƒiƒ“ƒo[‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	è£…å‚™åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‘•”õŒø‰Êƒiƒ“ƒo[
+ * @retval	è£…å‚™åŠ¹æœãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 s32	ST_ServerSoubiEqpGet(SERVER_PARAM *sp,int client_no)
@@ -7221,13 +7221,13 @@ s32	ST_ServerSoubiEqpGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‘•”õŒø‰ÊˆĞ—Í‚ğæ“¾
+ *	è£…å‚™åŠ¹æœå¨åŠ›ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‘•”õŒø‰ÊˆĞ—Í‚ğæ“¾‚·‚éClientNo
- * @param[in]	flag		‹ZŒø‰Ê‚ğ”»’f‚µ‚È‚­‚Ä‚¢‚¢‚©‚Ç‚¤‚©ƒtƒ‰ƒOi0:”»’f‚·‚é@1:”»’f‚µ‚È‚¢j
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	è£…å‚™åŠ¹æœå¨åŠ›ã‚’å–å¾—ã™ã‚‹ClientNo
+ * @param[in]	flag		æŠ€åŠ¹æœã‚’åˆ¤æ–­ã—ãªãã¦ã„ã„ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ï¼ˆ0:åˆ¤æ–­ã™ã‚‹ã€€1:åˆ¤æ–­ã—ãªã„ï¼‰
  *
- * @retval	‘•”õŒø‰ÊˆĞ—Í
+ * @retval	è£…å‚™åŠ¹æœå¨åŠ›
  */
 //============================================================================================
 s32	ST_ServerSoubiAtkGet(SERVER_PARAM *sp,int client_no,int flag)
@@ -7238,14 +7238,14 @@ s32	ST_ServerSoubiAtkGet(SERVER_PARAM *sp,int client_no,int flag)
 	AssertCheck(client_no,47);
 #endif
 	switch(flag){
-	case ATK_CHECK_NORMAL:	//ƒ`ƒFƒbƒN‚ ‚è
+	case ATK_CHECK_NORMAL:	//ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
 		item_no=ST_ServerSoubiItemNoGet(sp,client_no);
 		break;
-	case ATK_CHECK_SHUTOUT:	//ƒVƒƒƒbƒgƒAƒEƒg‚¾‚¯ƒ`ƒFƒbƒN‚ ‚è
+	case ATK_CHECK_SHUTOUT:	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã ã‘ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
 		if(sp->psp[client_no].wkw.shutout_count){
 			return 0;
 		}
-	case ATK_CHECK_NONE:	//ƒ`ƒFƒbƒN‚È‚µ
+	case ATK_CHECK_NONE:	//ãƒã‚§ãƒƒã‚¯ãªã—
 		item_no=sp->psp[client_no].item;
 		break;
 	}
@@ -7256,12 +7256,12 @@ s32	ST_ServerSoubiAtkGet(SERVER_PARAM *sp,int client_no,int flag)
 
 //============================================================================================
 /**
- *	‚µ‚º‚ñ‚Ì‚ß‚®‚İˆĞ—Í‚ğæ“¾
+ *	ã—ãœã‚“ã®ã‚ãã¿å¨åŠ›ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ˆĞ—Í‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å¨åŠ›ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‚µ‚º‚ñ‚Ì‚ß‚®‚İˆĞ—Í
+ * @retval	ã—ãœã‚“ã®ã‚ãã¿å¨åŠ›
  */
 //============================================================================================
 s32	ST_ServerShizennomegumiAtkGet(SERVER_PARAM *sp,int client_no)
@@ -7279,12 +7279,12 @@ s32	ST_ServerShizennomegumiAtkGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚µ‚º‚ñ‚Ì‚ß‚®‚İƒ^ƒCƒv‚ğæ“¾
+ *	ã—ãœã‚“ã®ã‚ãã¿ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ^ƒCƒv‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‚µ‚º‚ñ‚Ì‚ß‚®‚İƒ^ƒCƒv
+ * @retval	ã—ãœã‚“ã®ã‚ãã¿ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 s32	ST_ServerShizennomegumiTypeGet(SERVER_PARAM *sp,int client_no)
@@ -7302,12 +7302,12 @@ s32	ST_ServerShizennomegumiTypeGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚Â‚¢‚Î‚ŞŒø‰Êƒiƒ“ƒo[‚ğæ“¾
+ *	ã¤ã„ã°ã‚€åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‚Â‚¢‚Î‚ŞŒø‰Êƒiƒ“ƒo[‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã¤ã„ã°ã‚€åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‚Â‚¢‚Î‚ŞŒø‰Êƒiƒ“ƒo[
+ * @retval	ã¤ã„ã°ã‚€åŠ¹æœãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 s32	ST_ServerTsuibamuEqpGet(SERVER_PARAM *sp,int client_no)
@@ -7318,7 +7318,7 @@ s32	ST_ServerTsuibamuEqpGet(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,50);
 #endif
-	//‚Â‚¢‚Î‚Ş‚ÍA‹ZŒø‰Ê‚ÅƒAƒCƒeƒ€g‚¦‚È‚¢ó‹µ‚ğ”»’f‚µ‚È‚­‚Ä‚¢‚¢‚Ì‚ÅA’¼Úæ‚é
+	//ã¤ã„ã°ã‚€ã¯ã€æŠ€åŠ¹æœã§ã‚¢ã‚¤ãƒ†ãƒ ä½¿ãˆãªã„çŠ¶æ³ã‚’åˆ¤æ–­ã—ãªãã¦ã„ã„ã®ã§ã€ç›´æ¥å–ã‚‹
 //	item_no=ST_ServerSoubiItemNoGet(sp,client_no);
 	item_no=sp->psp[client_no].item;
 //	eqp=ItemParamGet(item_no,ITEM_PRM_TUIBAMU_EFF,HEAPID_BATTLE);
@@ -7326,7 +7326,7 @@ s32	ST_ServerTsuibamuEqpGet(SERVER_PARAM *sp,int client_no)
 
 #if 0
 	if(eqp){
-		//“Á«‚Ë‚ñ‚¿‚á‚­‚ÍA‚Â‚¢‚Î‚ß‚È‚¢
+		//ç‰¹æ€§ã­ã‚“ã¡ã‚ƒãã¯ã€ã¤ã„ã°ã‚ãªã„
 		if(ST_ServerKatayaburiTokuseiCheck(sp,sp->attack_client,client_no,TOKUSYU_NENTYAKU)==TRUE){
 			eqp=0;
 		}
@@ -7338,12 +7338,12 @@ s32	ST_ServerTsuibamuEqpGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚È‚°‚Â‚¯‚éŒø‰Êƒiƒ“ƒo[‚ğæ“¾
+ *	ãªã’ã¤ã‘ã‚‹åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‚È‚°‚Â‚¯‚éŒø‰Êƒiƒ“ƒo[‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãªã’ã¤ã‘ã‚‹åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‚È‚°‚Â‚¯‚éŒø‰Êƒiƒ“ƒo[
+ * @retval	ãªã’ã¤ã‘ã‚‹åŠ¹æœãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 s32	ST_ServerNagetsukeruEqpGet(SERVER_PARAM *sp,int client_no)
@@ -7351,7 +7351,7 @@ s32	ST_ServerNagetsukeruEqpGet(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,51);
 #endif
-	//ƒVƒƒƒbƒgƒAƒEƒg‚Ì‹ZŒø‰Ê”­“®’†‚ÍAƒAƒCƒeƒ€‚ªg‚¦‚È‚¢
+	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã®æŠ€åŠ¹æœç™ºå‹•ä¸­ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ãŒä½¿ãˆãªã„
 	if(sp->psp[client_no].wkw.shutout_count){
 		return 0;
 	}
@@ -7362,12 +7362,12 @@ s32	ST_ServerNagetsukeruEqpGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚È‚°‚Â‚¯‚éˆĞ—Í‚ğæ“¾
+ *	ãªã’ã¤ã‘ã‚‹å¨åŠ›ã‚’å–å¾—
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ˆĞ—Í‚ğæ“¾‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å¨åŠ›ã‚’å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‚È‚°‚Â‚¯‚éˆĞ—Í
+ * @retval	ãªã’ã¤ã‘ã‚‹å¨åŠ›
  */
 //============================================================================================
 s32	ST_ServerNagetsukeruAtkGet(SERVER_PARAM *sp,int client_no)
@@ -7375,7 +7375,7 @@ s32	ST_ServerNagetsukeruAtkGet(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,52);
 #endif
-	//ƒVƒƒƒbƒgƒAƒEƒg‚Ì‹ZŒø‰Ê”­“®’†‚ÍAƒAƒCƒeƒ€‚ªg‚¦‚È‚¢
+	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã®æŠ€åŠ¹æœç™ºå‹•ä¸­ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ãŒä½¿ãˆãªã„
 	if(sp->psp[client_no].wkw.shutout_count){
 		return 0;
 	}
@@ -7386,13 +7386,13 @@ s32	ST_ServerNagetsukeruAtkGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦‚ª‰Â”\‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãŒå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- * @retval	“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢‹ZŒø‰Ê‚Ì‹Zƒiƒ“ƒo[
+ * @retval	å…¥ã‚Œæ›¿ãˆã§ããªã„æŠ€åŠ¹æœã®æŠ€ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 int		ST_ServerPokemonSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -7404,18 +7404,18 @@ int		ST_ServerPokemonSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 #endif
 	wazano=0;
 
-	//‘•”õŒø‰Ê‚Å‚©‚È‚ç‚¸“ü‚ê‘Ö‚í‚ê‚éŒø‰Ê‚Ìê‡‚ÍA“ü‚ê‘Ö‚í‚ê‚é
+	//è£…å‚™åŠ¹æœã§ã‹ãªã‚‰ãšå…¥ã‚Œæ›¿ã‚ã‚Œã‚‹åŠ¹æœã®å ´åˆã¯ã€å…¥ã‚Œæ›¿ã‚ã‚Œã‚‹
 	if(ST_ServerSoubiEqpGet(sp,client_no)==SOUBI_KANARAZUIREKAWARERU){
 		return 0;
 	}
 
-	//‚µ‚ß‚Â‚¯‚éŒnA‚­‚ë‚¢‚Ü‚È‚´‚µA‚Ë‚ğ‚Í‚é‚ÍA“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢
+	//ã—ã‚ã¤ã‘ã‚‹ç³»ã€ãã‚ã„ã¾ãªã–ã—ã€ã­ã‚’ã¯ã‚‹ã¯ã€å…¥ã‚Œæ›¿ãˆã§ããªã„
 	if((sp->psp[client_no].condition2&(CONDITION2_SHIME|CONDITION2_KUROIMANAZASHI))||
 	   (sp->psp[client_no].waza_kouka&WAZAKOUKA_NEWOHARU)){
 		wazano=1;
 	}
 
-	//‘Šè‚ª“Á«‚©‚°‚Ó‚İA‚¶‚è‚å‚­‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢
+	//ç›¸æ‰‹ãŒç‰¹æ€§ã‹ã’ãµã¿ã€ã˜ã‚Šã‚‡ãã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€å…¥ã‚Œæ›¿ãˆã§ããªã„
 	if( ((ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_KAGEHUMI)&&
 		 (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ENEMY_SIDE_HP,client_no,TOKUSYU_KAGEHUMI)))||
 	   (((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)==METAL_TYPE)||
@@ -7424,7 +7424,7 @@ int		ST_ServerPokemonSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		wazano=1;
 	}
 #if B1373_060816_FIX
-	//‘Šè‚ª“Á«‚ ‚è‚¶‚²‚­‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢
+	//ç›¸æ‰‹ãŒç‰¹æ€§ã‚ã‚Šã˜ã”ãã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€å…¥ã‚Œæ›¿ãˆã§ããªã„
 	if((((ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_HUYUU)&&
 	 	 (sp->psp[client_no].wkw.denzihuyuu_count==0)&&
 		 (ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)!=HIKOU_TYPE)&&
@@ -7435,7 +7435,7 @@ int		ST_ServerPokemonSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		wazano=1;
 	}
 #else //B1373_060816_FIX
-	//‘Šè‚ª“Á«‚ ‚è‚¶‚²‚­‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢
+	//ç›¸æ‰‹ãŒç‰¹æ€§ã‚ã‚Šã˜ã”ãã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€å…¥ã‚Œæ›¿ãˆã§ããªã„
 	if((((ST_ServerTokuseiGet(sp,client_no)!=TOKUSYU_HUYUU)&&
 	 	 (sp->psp[client_no].wkw.denzihuyuu_count==0)&&
 		 (ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_type1,NULL)!=HIKOU_TYPE)&&
@@ -7451,13 +7451,13 @@ int		ST_ServerPokemonSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚Â‚¢‚Î‚ŞŒø‰Ê‚Ìƒ`ƒFƒbƒN
+ *	ã¤ã„ã°ã‚€åŠ¹æœã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:‚È‚É‚à‚È‚µ	TRUE:‚Â‚¢‚Î‚ŞŒø‰Ê”­“®
+ *	@retval	FALSE:ãªã«ã‚‚ãªã—	TRUE:ã¤ã„ã°ã‚€åŠ¹æœç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerTsuibamuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -7476,7 +7476,7 @@ BOOL	ST_ServerTsuibamuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	eqp=ST_ServerTsuibamuEqpGet(sp,client_no);
 	atk=ST_ServerSoubiAtkGet(sp,client_no,ATK_CHECK_NONE);
 
-	//‚İ‚ª‚í‚è‚©‚ç‚ÍA‚Â‚¢‚Î‚ß‚È‚¢
+	//ã¿ãŒã‚ã‚Šã‹ã‚‰ã¯ã€ã¤ã„ã°ã‚ãªã„
 	if(ST_ServerMigawariCheck(sp,sp->defence_client)==TRUE){
 		return ret;
 	}
@@ -7716,7 +7716,7 @@ BOOL	ST_ServerTsuibamuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		ret=TRUE;
 		break;
 	default:
-		//‘•”õ‚µ‚Ä‚¢‚é‚à‚Ì‚ª–Ø‚ÌÀ‚È‚çA‚Â‚¢‚Î‚Ş‚±‚Æ‚¾‚¯‚Í”­“®
+		//è£…å‚™ã—ã¦ã„ã‚‹ã‚‚ã®ãŒæœ¨ã®å®Ÿãªã‚‰ã€ã¤ã„ã°ã‚€ã“ã¨ã ã‘ã¯ç™ºå‹•
 		if(ItemNutsCheck(sp->psp[client_no].item)==TRUE){
 			ret=TRUE;
 		}
@@ -7724,7 +7724,7 @@ BOOL	ST_ServerTsuibamuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	}
 
 	if(ret==TRUE){
-		//“Á«‚Ô‚«‚æ‚¤A‹ZŒø‰ÊƒVƒƒƒbƒgƒAƒEƒg‚ÍAƒAƒCƒeƒ€‚ÌŒø‰Ê‚ğ”­Šö‚Å‚«‚È‚¢
+		//ç‰¹æ€§ã¶ãã‚ˆã†ã€æŠ€åŠ¹æœã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã¯ã€ã‚¢ã‚¤ãƒ†ãƒ ã®åŠ¹æœã‚’ç™ºæ®ã§ããªã„
 		if(((ST_ServerTokuseiGet(sp,sp->attack_client)==TOKUSYU_BUKIYOU))||
 			(sp->psp[sp->attack_client].waza_kouka&WAZAKOUKA_SHUTOUT)){
 			sp->temp_work=0;
@@ -7741,13 +7741,13 @@ BOOL	ST_ServerTsuibamuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚È‚°‚Â‚¯‚éŒø‰Ê‚Ìƒ`ƒFƒbƒN
+ *	ãªã’ã¤ã‘ã‚‹åŠ¹æœã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:‚È‚É‚à‚È‚µ	TRUE:‚È‚°‚Â‚¯‚éŒø‰Ê”­“®
+ *	@retval	FALSE:ãªã«ã‚‚ãªã—	TRUE:ãªã’ã¤ã‘ã‚‹åŠ¹æœç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerNagetsukeruCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
@@ -7765,7 +7765,7 @@ BOOL	ST_ServerNagetsukeruCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	sp->nagetsukeru_seq_no=0;
 	sp->tsuika_type=0;
 
-	//ˆĞ—Í‚Ì‚È‚¢ƒAƒCƒeƒ€‚ÍA”­“®‚Å‚«‚È‚¢
+	//å¨åŠ›ã®ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã¯ã€ç™ºå‹•ã§ããªã„
 	if(sp->damage_power==0){
 		return FALSE;
 	}
@@ -8030,7 +8030,7 @@ BOOL	ST_ServerNagetsukeruCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 		break;
 	}
 
-	//‚³‚µ‚¨‚³‚¦‚ç‚ê‚Ä‚¢‚é‚ÍA‘•”õŒø‰Ê‚Ì”­“®‚È‚µ
+	//ã•ã—ãŠã•ãˆã‚‰ã‚Œã¦ã„ã‚‹æ™‚ã¯ã€è£…å‚™åŠ¹æœã®ç™ºå‹•ãªã—
 	if(sp->psp[sp->defence_client].waza_kouka&WAZAKOUKA_SHUTOUT){
 		sp->nagetsukeru_seq_no=0;
 	}
@@ -8047,15 +8047,15 @@ BOOL	ST_ServerNagetsukeruCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒƒgƒƒm[ƒ€ƒ`ƒFƒbƒNi‹Z‚ğo‚·‘Oƒ`ƒFƒbƒNj
+ *	ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯ï¼ˆæŠ€ã‚’å‡ºã™å‰ãƒã‚§ãƒƒã‚¯ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerMetronomeBeforeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
-	//“¯‚¶‹Z‚ğo‚µ‘±‚¯‚é‚ÆˆĞ—ÍƒAƒbƒv‚Ìƒ`ƒFƒbƒNiŒp‘±‹ZŒn‚ÍœŠOj
+	//åŒã˜æŠ€ã‚’å‡ºã—ç¶šã‘ã‚‹ã¨å¨åŠ›ã‚¢ãƒƒãƒ—ã®ãƒã‚§ãƒƒã‚¯ï¼ˆç¶™ç¶šæŠ€ç³»ã¯é™¤å¤–ï¼‰
 	if(ST_ServerSoubiEqpGet(sp,sp->attack_client)==SOUBI_ONAZIWAZANOIRYOKUUP){
 		if(((sp->psp[sp->attack_client].condition2&CONDITION2_ABARERU)==0)&&
 		   ((sp->psp[sp->attack_client].condition2&CONDITION2_SAWAGU)==0)&&
@@ -8079,15 +8079,15 @@ void	ST_ServerMetronomeBeforeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ƒƒgƒƒm[ƒ€ƒ`ƒFƒbƒNi‹Z‚ğo‚µ‚½Œãƒ`ƒFƒbƒNj
+ *	ãƒ¡ãƒˆãƒ­ãƒãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯ï¼ˆæŠ€ã‚’å‡ºã—ãŸå¾Œãƒã‚§ãƒƒã‚¯ï¼‰
  *
- *	@param[in]	bw			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerMetronomeAfterCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
-	//“¯‚¶‹Z‚ğo‚µ‘±‚¯‚é‚ÆˆĞ—ÍƒAƒbƒv‚Ìƒ`ƒFƒbƒNiŒp‘±‹ZŒn‚ÍœŠOj
+	//åŒã˜æŠ€ã‚’å‡ºã—ç¶šã‘ã‚‹ã¨å¨åŠ›ã‚¢ãƒƒãƒ—ã®ãƒã‚§ãƒƒã‚¯ï¼ˆç¶™ç¶šæŠ€ç³»ã¯é™¤å¤–ï¼‰
 	if(ST_ServerSoubiEqpGet(sp,sp->attack_client)==SOUBI_ONAZIWAZANOIRYOKUUP){
 		if((sp->waza_status_flag&WAZA_STATUS_FLAG_NO_OUT)&&
 		   (sp->waza_no_metronome[sp->attack_client]==sp->waza_no_temp)&&
@@ -8107,12 +8107,12 @@ void	ST_ServerMetronomeAfterCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì‚â‚é‹C‚ğƒ`ƒFƒbƒN‚µ‚ÄA–Â‚«ºƒpƒ^[ƒ“‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ã‚„ã‚‹æ°—ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã€é³´ãå£°ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientType
- *	@param[in]	encount		TRUE:ƒGƒ“ƒJƒEƒ“ƒg“oê
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientType
+ *	@param[in]	encount		TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç™»å ´æ™‚
  */
 //============================================================================================
 int		ST_ServerPokeVoiceEffNoGet(SERVER_PARAM *sp,int client_no, int client_type, int encount)
@@ -8154,12 +8154,12 @@ int		ST_ServerPokeVoiceEffNoGet(SERVER_PARAM *sp,int client_no, int client_type,
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒh‘I‘ğ‚·‚éğŒ‚©’²‚×‚é
+ *	ã‚³ãƒãƒ³ãƒ‰é¸æŠã™ã‚‹æ¡ä»¶ã‹èª¿ã¹ã‚‹
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
  *
- *	@retval	FALSE:ƒRƒ}ƒ“ƒh‘I‘ğ‚È‚µ@TRUE:ƒRƒ}ƒ“ƒh‘I‘ğ‚ ‚è
+ *	@retval	FALSE:ã‚³ãƒãƒ³ãƒ‰é¸æŠãªã—ã€€TRUE:ã‚³ãƒãƒ³ãƒ‰é¸æŠã‚ã‚Š
  */
 //============================================================================================
 BOOL	ST_ServerCommandSelectCheck(SERVER_PARAM *sp,int client_no)
@@ -8169,13 +8169,13 @@ BOOL	ST_ServerCommandSelectCheck(SERVER_PARAM *sp,int client_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,57);
 #endif
-	///<”½“®‚Ì‚ÍAƒRƒ}ƒ“ƒh‘I‘ğ‚È‚µ
+	///<åå‹•ã®æ™‚ã¯ã€ã‚³ãƒãƒ³ãƒ‰é¸æŠãªã—
 	if((sp->psp[client_no].condition2&CONDITION2_HANDOU)||
-	///<‚ ‚Î‚ê‚Ä‚¢‚éÅ’†‚ÍAƒRƒ}ƒ“ƒh‘I‘ğ‚È‚µ
+	///<ã‚ã°ã‚Œã¦ã„ã‚‹æœ€ä¸­ã¯ã€ã‚³ãƒãƒ³ãƒ‰é¸æŠãªã—
 	   (sp->psp[client_no].condition2&CONDITION2_ABARERU)||
-	///<‚³‚í‚¢‚Å‚¢‚éÅ’†‚ÍAƒRƒ}ƒ“ƒh‘I‘ğ‚È‚µ
+	///<ã•ã‚ã„ã§ã„ã‚‹æœ€ä¸­ã¯ã€ã‚³ãƒãƒ³ãƒ‰é¸æŠãªã—
 	   (sp->psp[client_no].condition2&CONDITION2_SAWAGU)||
-	///<‚½‚ßŒn‚Ì‹Z‚Ì‚ÍAƒRƒ}ƒ“ƒh‘I‘ğ‚È‚µ
+	///<ãŸã‚ç³»ã®æŠ€ã®æ™‚ã¯ã€ã‚³ãƒãƒ³ãƒ‰é¸æŠãªã—
 	   (sp->psp[client_no].condition2&CONDITION2_KEEP)){
 		ret=FALSE;
 	}
@@ -8185,10 +8185,10 @@ BOOL	ST_ServerCommandSelectCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“•ßŠlî•ñ‚ÌƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³æ•ç²æƒ…å ±ã®ã‚»ãƒƒãƒˆ
  *
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pp	ƒZƒbƒg‚·‚éPOKEMON_PARAM\‘¢‘Ì
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 void	ST_ServerPokemonGetParamSet(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM *pp)
@@ -8198,16 +8198,16 @@ void	ST_ServerPokemonGetParamSet(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM 
 	int			ground_id;
 	int			ballID;
 
-	//MYSTATUS‚ğæ“¾
+	//MYSTATUSã‚’å–å¾—
 	status=BattleWorkMyStatusGet(bw,CLIENT_NO_MINE);
 
-	//’nˆæ–¼ID‚ğæ“¾
+	//åœ°åŸŸåIDã‚’å–å¾—
 	place=BattleWorkPlaceIDGet(bw);
 
-	//’nŒ`ƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+	//åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
 	ground_id=BattleWorkGroundIDGet(bw);
 
-	//ƒ|ƒPƒp[ƒN‚Å‚ÍA•ßŠlƒ{[ƒ‹‚ğ•ÏX‚µ‚È‚¢
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã§ã¯ã€æ•ç²ãƒœãƒ¼ãƒ«ã‚’å¤‰æ›´ã—ãªã„
 	if(BattleWorkFightTypeGet(bw)&FIGHT_TYPE_POKE_PARK){
 		ballID=PokeParaGet(pp,ID_PARA_get_ball,NULL);
 	}
@@ -8220,10 +8220,10 @@ void	ST_ServerPokemonGetParamSet(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM 
 
 //============================================================================================
 /**
- *	ƒNƒ‰ƒCƒAƒ“ƒg‚©‚ç‚Ì•Ô“š‚ğæ‚èo‚·
+ *	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ã®è¿”ç­”ã‚’å–ã‚Šå‡ºã™
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	æ‚èo‚·ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	å–ã‚Šå‡ºã™ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u8	ST_ServerBufferResGet(SERVER_PARAM *sp,int client_no)
@@ -8236,12 +8236,12 @@ u8	ST_ServerBufferResGet(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	‚İ‚ª‚í‚è‚Å‚Ó‚¹‚°‚é‚©ƒ`ƒFƒbƒN
+ *	ã¿ãŒã‚ã‚Šã§ãµã›ã’ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ *	@param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
- *@@retval FALSE:–h‚ª‚È‚¢@TRUE:–h‚®
+ *ã€€@retval FALSE:é˜²ãŒãªã„ã€€TRUE:é˜²ã
  */
 //============================================================================================
 BOOL	ST_ServerMigawariCheck(SERVER_PARAM *sp,int client_no)
@@ -8264,12 +8264,12 @@ BOOL	ST_ServerMigawariCheck(SERVER_PARAM *sp,int client_no)
 
 //============================================================================================
 /**
- *	©•ª‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ *	è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw	í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw	æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *@@retval FALSE:‘¼l‚Ìƒ|ƒPƒ‚ƒ“@TRUE:©•ª‚Ìƒ|ƒPƒ‚ƒ“
+ *ã€€@retval FALSE:ä»–äººã®ãƒã‚±ãƒ¢ãƒ³ã€€TRUE:è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³
  */
 //============================================================================================
 BOOL	ST_ServerPokeOneSelfCheckAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -8295,12 +8295,12 @@ BOOL	ST_ServerPokeOneSelfCheckAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	©•ª‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ *	è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	bw	í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp	ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	bw	æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp	ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *@@retval FALSE:‘¼l‚Ìƒ|ƒPƒ‚ƒ“@TRUE:©•ª‚Ìƒ|ƒPƒ‚ƒ“
+ *ã€€@retval FALSE:ä»–äººã®ãƒã‚±ãƒ¢ãƒ³ã€€TRUE:è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³
  */
 //============================================================================================
 BOOL	ST_ServerPokeOneSelfCheckActPP(BATTLE_WORK *bw,POKEMON_PARAM *pp)
@@ -8328,13 +8328,13 @@ BOOL	ST_ServerPokeOneSelfCheckActPP(BATTLE_WORK *bw,POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	“Á«‚Ä‚ñ‚«‚âƒ`ƒFƒbƒNiƒ|ƒPƒ‚ƒ“–¼Fƒ`ƒFƒŠƒVƒ…‚à“¯—l‚Ì“®‚«‚ğ‚·‚é‚Ì‚Å‚ ‚í‚¹‚Äƒ`ƒFƒbƒNj
+ *	ç‰¹æ€§ã¦ã‚“ãã‚„ãƒã‚§ãƒƒã‚¯ï¼ˆãƒã‚±ãƒ¢ãƒ³åï¼šãƒã‚§ãƒªã‚·ãƒ¥ã‚‚åŒæ§˜ã®å‹•ãã‚’ã™ã‚‹ã®ã§ã‚ã‚ã›ã¦ãƒã‚§ãƒƒã‚¯ï¼‰
  *
- *	@param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[out]	seq_no	‹N“®‚·‚éƒTƒuƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ *	@param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[out]	seq_no	èµ·å‹•ã™ã‚‹ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  *
- *@@retval FALSE:‚Ä‚ñ‚«‚â‚È‚µ@TRUE:‚Ä‚ñ‚«‚â”­“®
+ *ã€€@retval FALSE:ã¦ã‚“ãã‚„ãªã—ã€€TRUE:ã¦ã‚“ãã‚„ç™ºå‹•
  */
 //============================================================================================
 BOOL	ST_ServerTenkiyaCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -8459,9 +8459,9 @@ BOOL	ST_ServerTenkiyaCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 		if((sp->psp[sp->client_work].monsno==MONSNO_KIMAIRAN)&&
 		   (sp->psp[sp->client_work].hp)&&
 		   (sp->psp[sp->client_work].form_no==FORMNO_GIRATINA_ORIGIN)){
-			//ƒMƒ‰ƒeƒBƒi‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·‚Ì‚Í
-			//‚Ö‚ñ‚µ‚ñ‚µ‚Ä‚¢‚éƒMƒ‰ƒeƒBƒi
-			//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢‚Ì‚ÉA‚Í‚Á‚«‚ñ‚¾‚Ü‚ğŠ‚µ‚Ä‚¢‚È‚¢
+			//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™ã®ã¯
+			//ã¸ã‚“ã—ã‚“ã—ã¦ã„ã‚‹ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
+			//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„ã®ã«ã€ã¯ã£ãã‚“ã ã¾ã‚’æ‰€æŒã—ã¦ã„ãªã„
 			if((sp->psp[sp->client_work].condition2&CONDITION2_HENSHIN)||
 			 (((BattleWorkBattleStatusFlagGet(bw)&BATTLE_STATUS_FLAG_YABURETA_SEKAI)==0)&&
 			   (sp->psp[sp->client_work].item!=ITEM_HAKKINDAMA))){
@@ -8511,10 +8511,10 @@ BOOL	ST_ServerTenkiyaCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 
 //============================================================================================
 /**
- *	ListRow‚Ì‰Šú‰»‚ğ‚·‚é
+ *	ListRowã®åˆæœŸåŒ–ã‚’ã™ã‚‹
  *
- * @param[in]	bw			í“¬ƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw			æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //============================================================================================
@@ -8533,12 +8533,12 @@ void	ST_ServerListRowInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	ListRow‚Ì“ü‚ê‘Ö‚¦‚ğ‚·‚é
+ *	ListRowã®å…¥ã‚Œæ›¿ãˆã‚’ã™ã‚‹
  *
- * @param[in]	bw			í“¬ƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	“ü‚ê‘Ö‚¦‘ÎÛClientNo
- * @param[in]	sel_mons_no	“ü‚ê‘Ö‚¦‘ÎÛƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param[in]	bw			æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	å…¥ã‚Œæ›¿ãˆå¯¾è±¡ClientNo
+ * @param[in]	sel_mons_no	å…¥ã‚Œæ›¿ãˆå¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  */
 //============================================================================================
@@ -8575,7 +8575,7 @@ void	ST_ServerListRowChange(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int s
 		}
 	}
 
-	//æ“ª‚Æ‚¢‚ê‚©‚¦‚é
+	//å…ˆé ­ã¨ã„ã‚Œã‹ãˆã‚‹
 	work=sp->list_row[client_no][fb_flag];
 	sp->list_row[client_no][fb_flag]=sp->list_row[client_no][pos];
 	sp->list_row[client_no][pos]=work;
@@ -8583,7 +8583,7 @@ void	ST_ServerListRowChange(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int s
 
 //============================================================================================
 /**
- * \‘¢‘Ì’è‹`
+ * æ§‹é€ ä½“å®šç¾©
  */
 //============================================================================================
 
@@ -8607,7 +8607,7 @@ typedef struct{
 
 //============================================================================================
 /**
- *	‘•”õŒø‰Ê‚É‚æ‚é‹Zƒ^ƒCƒvUŒ‚—ÍƒAƒbƒvƒe[ƒuƒ‹
+ *	è£…å‚™åŠ¹æœã«ã‚ˆã‚‹æŠ€ã‚¿ã‚¤ãƒ—æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const u8 SoubiItemWazaTypePowUpTbl[][2]={
@@ -8648,7 +8648,7 @@ static	const u8 SoubiItemWazaTypePowUpTbl[][2]={
 
 //============================================================================================
 /**
- *	abiritycnt‚É‚æ‚éƒpƒ‰ƒ[ƒ^‘Œ¸ƒe[ƒuƒ‹
+ *	abiritycntã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¢—æ¸›ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 const	u8	CondChgTable[][2]={
@@ -8669,42 +8669,42 @@ const	u8	CondChgTable[][2]={
 
 //============================================================================================
 /**
- *	“Á«‚Ä‚Â‚Ì‚±‚Ô‚µ—pƒe[ƒuƒ‹
+ *	ç‰¹æ€§ã¦ã¤ã®ã“ã¶ã—ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u16	TetsunoKobushiTable[]={
-	WAZANO_REITOUPANTI,		//‚ê‚¢‚Æ‚¤ƒpƒ“ƒ`
-	WAZANO_HONOONOPANTI,	//‚Ù‚Ì‚¨‚Ìƒpƒ“ƒ`
-	WAZANO_KAMINARIPANTI,	//‚©‚İ‚È‚èƒpƒ“ƒ`
-	WAZANO_MAHHAPANTI,		//ƒ}ƒbƒnƒpƒ“ƒ`
-	WAZANO_KIAIPANTI,		//‚«‚ ‚¢ƒpƒ“ƒ`
-	WAZANO_PIYOPIYOPANTI,	//ƒsƒˆƒsƒˆƒpƒ“ƒ`
-	WAZANO_BAKURETUPANTI,	//‚Î‚­‚ê‚Âƒpƒ“ƒ`
-	WAZANO_AAMUHANMAA,		//ƒA[ƒ€ƒnƒ“ƒ}[
-	WAZANO_MEGATONPANTI,	//ƒƒKƒgƒ“ƒpƒ“ƒ`
-	WAZANO_RENZOKUPANTI,	//‚ê‚ñ‚¼‚­ƒpƒ“ƒ`
-	WAZANO_KOMETTOPANTI,	//ƒRƒƒbƒgƒpƒ“ƒ`
-	WAZANO_SYADOOPANTI,		//ƒVƒƒƒh[ƒpƒ“ƒ`
-	WAZANO_DOREINPANTI,		//ƒhƒŒƒCƒ“ƒpƒ“ƒ`
-	WAZANO_BARETTOPANTI,	//ƒoƒŒƒbƒgƒpƒ“ƒ`
-	WAZANO_SUKAIAPPAA,		//ƒXƒJƒCƒAƒbƒp[
+	WAZANO_REITOUPANTI,		//ã‚Œã„ã¨ã†ãƒ‘ãƒ³ãƒ
+	WAZANO_HONOONOPANTI,	//ã»ã®ãŠã®ãƒ‘ãƒ³ãƒ
+	WAZANO_KAMINARIPANTI,	//ã‹ã¿ãªã‚Šãƒ‘ãƒ³ãƒ
+	WAZANO_MAHHAPANTI,		//ãƒãƒƒãƒãƒ‘ãƒ³ãƒ
+	WAZANO_KIAIPANTI,		//ãã‚ã„ãƒ‘ãƒ³ãƒ
+	WAZANO_PIYOPIYOPANTI,	//ãƒ”ãƒ¨ãƒ”ãƒ¨ãƒ‘ãƒ³ãƒ
+	WAZANO_BAKURETUPANTI,	//ã°ãã‚Œã¤ãƒ‘ãƒ³ãƒ
+	WAZANO_AAMUHANMAA,		//ã‚¢ãƒ¼ãƒ ãƒãƒ³ãƒãƒ¼
+	WAZANO_MEGATONPANTI,	//ãƒ¡ã‚¬ãƒˆãƒ³ãƒ‘ãƒ³ãƒ
+	WAZANO_RENZOKUPANTI,	//ã‚Œã‚“ãããƒ‘ãƒ³ãƒ
+	WAZANO_KOMETTOPANTI,	//ã‚³ãƒ¡ãƒƒãƒˆãƒ‘ãƒ³ãƒ
+	WAZANO_SYADOOPANTI,		//ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ‘ãƒ³ãƒ
+	WAZANO_DOREINPANTI,		//ãƒ‰ãƒ¬ã‚¤ãƒ³ãƒ‘ãƒ³ãƒ
+	WAZANO_BARETTOPANTI,	//ãƒãƒ¬ãƒƒãƒˆãƒ‘ãƒ³ãƒ
+	WAZANO_SUKAIAPPAA,		//ã‚¹ã‚«ã‚¤ã‚¢ãƒƒãƒ‘ãƒ¼
 };
 
 //============================================================================================
 /**
- *	‹Z‚Ìƒ_ƒ[ƒWŒvZ‚ğ‚·‚éB
+ *	æŠ€ã®ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—ã‚’ã™ã‚‹ã€‚
  *
- * @param[in]	pspa		‹Z‚ğo‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pspd		‹Z‚ğó‚¯‚éƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano		ŒvZ‚·‚é‹Zƒiƒ“ƒo[
- * @param[in]	side_cond	ê‚É‚©‚©‚Á‚Ä‚¢‚éŒø‰Ê
- * @param[in]	pow			‹Z‚ÌˆĞ—Í(0:ƒe[ƒuƒ‹‚ğQÆ@0ˆÈŠO:‚»‚Ì’l‚ğQÆ)
- * @param[in]	type		‹Z‚Ìƒ^ƒCƒv(0:ƒe[ƒuƒ‹‚ğQÆ@0ˆÈŠO:‚»‚Ì’l‚ğQÆ)
- * @param[in]	attack		UŒ‚‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param[in]	defence		–hŒä‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param[in]	critical	‹}Š‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©(1:’Êí@2ˆÈã:ƒNƒŠƒeƒBƒJƒ‹j
+ * @param[in]	pspa		æŠ€ã‚’å‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pspd		æŠ€ã‚’å—ã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano		è¨ˆç®—ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	side_cond	å ´ã«ã‹ã‹ã£ã¦ã„ã‚‹åŠ¹æœ
+ * @param[in]	pow			æŠ€ã®å¨åŠ›(0:ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å‚ç…§ã€€0ä»¥å¤–:ãã®å€¤ã‚’å‚ç…§)
+ * @param[in]	type		æŠ€ã®ã‚¿ã‚¤ãƒ—(0:ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å‚ç…§ã€€0ä»¥å¤–:ãã®å€¤ã‚’å‚ç…§)
+ * @param[in]	attack		æ”»æ’ƒå´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	defence		é˜²å¾¡å´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	critical	æ€¥æ‰€ã«å½“ãŸã£ãŸã‹ã©ã†ã‹(1:é€šå¸¸ã€€2ä»¥ä¸Š:ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ï¼‰
  *
- *	@retval	ŒvZŒ‹‰Ê‚Ìƒ_ƒ[ƒW—Ê
+ *	@retval	è¨ˆç®—çµæœã®ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
  */
 //============================================================================================
 int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
@@ -8779,7 +8779,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		wazapow=pow;
 	}
 
-	//“Á«ƒm[ƒ}ƒ‹ƒXƒLƒ“‚ÍA‹Zƒ^ƒCƒv‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+	//ç‰¹æ€§ãƒãƒ¼ãƒãƒ«ã‚¹ã‚­ãƒ³ã¯ã€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	if(wdcp_a.speabino==TOKUSYU_NOOMARUSUKIN){
 		wazatype=NORMAL_TYPE;
 	}
@@ -8791,20 +8791,20 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 	}
 
 	GF_ASSERT_MSG(sp->damage_value>=10,"damage_value Under 10!\n");
-	wazapow=wazapow*sp->damage_value/10;	//‹Z‚É‚æ‚éƒ_ƒ[ƒW”{—¦ƒ[ƒN‚É‚æ‚éˆĞ—ÍƒAƒbƒvŒvZ
+	wazapow=wazapow*sp->damage_value/10;	//æŠ€ã«ã‚ˆã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸å€ç‡ãƒ¯ãƒ¼ã‚¯ã«ã‚ˆã‚‹å¨åŠ›ã‚¢ãƒƒãƒ—è¨ˆç®—
 
-	//‚¶‚ã‚¤‚Å‚ñ’†‚Í—‹‘®«‚Íƒ_ƒ[ƒW2”{
+	//ã˜ã‚…ã†ã§ã‚“ä¸­ã¯é›·å±æ€§ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸2å€
 	if((sp->psp[attack].waza_kouka&WAZAKOUKA_JUUDEN)&&
 	   (wazatype==ELECTRIC_TYPE)){	
 		wazapow*=2;
 	}
 
-	//‚Ä‚¾‚·‚¯’†‚Íƒ_ƒ[ƒW1.5”{
+	//ã¦ã ã™ã‘ä¸­ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸1.5å€
 	if(sp->otf[attack].tedasuke_flag){	
 		wazapow=wazapow*15/10;
 	}
 
-	//“Á«ƒeƒNƒjƒVƒƒƒ“‚ÍAˆĞ—Í50ˆÈ‰º‚Ì‹Z‚ğ1.5”{‚É‚·‚éi‚í‚é‚ ‚ª‚«‚ÍAœŠOj
+	//ç‰¹æ€§ãƒ†ã‚¯ãƒ‹ã‚·ãƒ£ãƒ³ã¯ã€å¨åŠ›50ä»¥ä¸‹ã®æŠ€ã‚’1.5å€ã«ã™ã‚‹ï¼ˆã‚ã‚‹ã‚ãŒãã¯ã€é™¤å¤–ï¼‰
 	if((wdcp_a.speabino==TOKUSYU_TEKUNISYAN)&&
 	   (wazano!=WAZANO_WARUAGAKI)&&
 	   (wazapow<=60)){
@@ -8813,19 +8813,19 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 
 	wazakind=sp->AIWT.wtd[wazano].kind;
 
-	//“Á«‚¿‚©‚ç‚à‚¿‚ÍAƒˆƒKƒpƒ[‚ÍAUŒ‚—Í‚ğ”{
+	//ç‰¹æ€§ã¡ã‹ã‚‰ã‚‚ã¡ã¯ã€ãƒ¨ã‚¬ãƒ‘ãƒ¯ãƒ¼ã¯ã€æ”»æ’ƒåŠ›ã‚’å€
 	if((wdcp_a.speabino==TOKUSYU_TIKARAMOTI)||(wdcp_a.speabino==TOKUSYU_YOGAPAWAA)){
 		pokepow=pokepow*2;
 	}
 
-	//“Á«ƒXƒ[ƒXƒ^[ƒg‚ÍAê‚É‚Å‚Ä‚©‚ç5ƒ^[ƒ“ˆÈ“à‚ÍAUŒ‚—Í‚ğ”¼•ª‚É‚·‚é
+	//ç‰¹æ€§ã‚¹ãƒ­ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆã¯ã€å ´ã«ã§ã¦ã‹ã‚‰5ã‚¿ãƒ¼ãƒ³ä»¥å†…ã¯ã€æ”»æ’ƒåŠ›ã‚’åŠåˆ†ã«ã™ã‚‹
 	if((wdcp_a.speabino==TOKUSYU_SUROOSUTAATO)&&
 	  ((ST_ServerParamDataGet(bw,sp,ID_SP_total_turn,NULL)-
 		ST_ServerPokemonServerParamGet(sp,attack,ID_PSP_wkw_slow_start_count,NULL))<5)){
 		pokepow/=2;
 	}
 
-	//ƒAƒCƒeƒ€‚Å‹Zƒ^ƒCƒv‚É‚æ‚éˆĞ—ÍƒAƒbƒv‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍAˆĞ—Í“•ªUŒ‚—ÍƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§æŠ€ã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹å¨åŠ›ã‚¢ãƒƒãƒ—ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€å¨åŠ›ï¼…åˆ†æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—
 	for(i=0;i<NELEMS(SoubiItemWazaTypePowUpTbl);i++){
 		if((wdcp_a.eqp==SoubiItemWazaTypePowUpTbl[i][0])&&(wazatype==SoubiItemWazaTypePowUpTbl[i][1])){
 			wazapow=wazapow*(100+wdcp_a.atc)/100;
@@ -8833,75 +8833,75 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		}
 	}
 
-	//ƒAƒCƒeƒ€‚Å“¯‚¶‹Z‚µ‚©‚¾‚¹‚È‚¢‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍAUŒ‚—Í1.5”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§åŒã˜æŠ€ã—ã‹ã ã›ãªã„ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€æ”»æ’ƒåŠ›1.5å€ã‚¢ãƒƒãƒ—
 	if(wdcp_a.eqp==SOUBI_ONAZIWAZAONLY){
 		pokepow=pokepow*150/100;
 	}
-	//ƒAƒCƒeƒ€‚Å“¯‚¶‹Z‚µ‚©‚¾‚¹‚È‚¢‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA“ÁU1.5”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§åŒã˜æŠ€ã—ã‹ã ã›ãªã„ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€ç‰¹æ”»1.5å€ã‚¢ãƒƒãƒ—
 	if(wdcp_a.eqp==SOUBI_ONAZIAWZAONLYTOKUSYUUP){
 		pokespepow=pokespepow*150/100;
 	}
 
-	//ƒAƒCƒeƒ€‚Å“ÁU•“Á–h‚ğ1.5”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA“ÁU•“Á–h1.5”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ç‰¹æ”»ï¼†ç‰¹é˜²ã‚’1.5å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€ç‰¹æ”»ï¼†ç‰¹é˜²1.5å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_TOKUKOUTOKUBOUUP)&&
 	  ((fight_type&FIGHT_TYPE_TOWER)==0)&&
 	  ((wdcp_a.monsno==MONSNO_RATHIOSU)||(wdcp_a.monsno==MONSNO_RATHIASU))){
 		pokespepow=pokespepow*150/100;
 	}
 
-	//ƒAƒCƒeƒ€‚Å“ÁU•“Á–h‚ğ1.5”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA“ÁU•“Á–h1.5”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ç‰¹æ”»ï¼†ç‰¹é˜²ã‚’1.5å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€ç‰¹æ”»ï¼†ç‰¹é˜²1.5å€ã‚¢ãƒƒãƒ—
 	if((wdcp_d.eqp==SOUBI_TOKUKOUTOKUBOUUP)&&
 	  ((fight_type&FIGHT_TYPE_TOWER)==0)&&
 	  ((wdcp_d.monsno==MONSNO_RATHIOSU)||(wdcp_d.monsno==MONSNO_RATHIASU))){
 		pokespedef=pokespedef*150/100;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒp[ƒ‹ƒ‹‚ª‚Â‚Æ“ÁU‚ğ2”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA“ÁU2”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ‘ãƒ¼ãƒ«ãƒ«ãŒæŒã¤ã¨ç‰¹æ”»ã‚’2å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€ç‰¹æ”»2å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_PAARURUTOKUKOUNIBAI)&&
 	   (wdcp_a.monsno==MONSNO_PAARURU)){
 		pokespepow*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒp[ƒ‹ƒ‹‚ª‚Â‚Æ“Á–h‚ğ2”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA“Á–h2”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ‘ãƒ¼ãƒ«ãƒ«ãŒæŒã¤ã¨ç‰¹é˜²ã‚’2å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€ç‰¹é˜²2å€ã‚¢ãƒƒãƒ—
 	if((wdcp_d.eqp==SOUBI_PAARURUTOKUBOUNIBAI)&&
 	   (wdcp_d.monsno==MONSNO_PAARURU)){
 		pokespedef*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅƒsƒJƒ`ƒ…ƒE‚ª‚Â‚ÆˆĞ—Í2”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍAˆĞ—Í2”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ”ã‚«ãƒãƒ¥ã‚¦ãŒæŒã¤ã¨å¨åŠ›2å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€å¨åŠ›2å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_PIKATYUUTOKUKOUNIBAI)&&
 	   (wdcp_a.monsno==MONSNO_PIKATYUU)){
 		wazapow*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒƒ^ƒ‚ƒ“‚ª‚Â‚Æ–hŒä—Í‚ğ2”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍA–hŒä—Í2”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ¡ã‚¿ãƒ¢ãƒ³ãŒæŒã¤ã¨é˜²å¾¡åŠ›ã‚’2å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€é˜²å¾¡åŠ›2å€ã‚¢ãƒƒãƒ—
 	if((wdcp_d.eqp==SOUBI_METAMONDATOBOUGYORYOKUUP)&&
 	   (wdcp_d.monsno==MONSNO_METAMON)){
 		pokedef*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅƒJƒ‰ƒJƒ‰AƒKƒ‰ƒKƒ‰‚ª‚Â‚ÆUŒ‚—Í‚ğ2”{‚Ì‘•”õŒø‰Ê‚Ì‚Æ‚«‚ÍAUŒ‚—Í2”{ƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã‚«ãƒ©ã‚«ãƒ©ã€ã‚¬ãƒ©ã‚¬ãƒ©ãŒæŒã¤ã¨æ”»æ’ƒåŠ›ã‚’2å€ã®è£…å‚™åŠ¹æœã®ã¨ãã¯ã€æ”»æ’ƒåŠ›2å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_KARAGARADATOKOUGEKINIBAI)&&
 	  ((wdcp_a.monsno==MONSNO_KARAKARA)||
 	   (wdcp_a.monsno==MONSNO_GARAGARA))){
 		pokepow*=2;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅƒfƒBƒAƒ‹ƒK‚ª‚Â‚Æ‹Z‚ÌˆĞ—Í‚ğ1.5”{
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬ãŒæŒã¤ã¨æŠ€ã®å¨åŠ›ã‚’1.5å€
 	if((wdcp_a.eqp==SOUBI_DORAGONHAGANEUP)&&
 	  ((wazatype==DRAGON_TYPE)||(wazatype==METAL_TYPE))&&
 	   (wdcp_a.monsno==MONSNO_IA)){
 		wazapow=wazapow*(100+wdcp_a.atc)/100;
 	}
 
-	//ƒAƒCƒeƒ€‚Åƒpƒ‹ƒLƒA‚ª‚Â‚Æ‹Z‚ÌˆĞ—Í‚ğ1.5”{
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ãƒ‘ãƒ«ã‚­ã‚¢ãŒæŒã¤ã¨æŠ€ã®å¨åŠ›ã‚’1.5å€
 	if((wdcp_a.eqp==SOUBI_DORAGONMIZUUP)&&
 	  ((wazatype==DRAGON_TYPE)||(wazatype==WATER_TYPE))&&
 	   (wdcp_a.monsno==MONSNO_EA)){
 		wazapow=wazapow*(100+wdcp_a.atc)/100;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅƒMƒ‰ƒeƒBƒi‚ª‚Â‚Æ‹Z‚ÌˆĞ—Í‚ğ1.5”{
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã‚®ãƒ©ãƒ†ã‚£ãƒŠãŒæŒã¤ã¨æŠ€ã®å¨åŠ›ã‚’1.5å€
 	if((wdcp_a.eqp==SOUBI_DORAGONGHOSTUP)&&
 	  ((wazatype==DRAGON_TYPE)||(wazatype==GHOST_TYPE))&&
 	  ((ST_ServerPokemonServerParamGet(sp,attack,ID_PSP_condition2,NULL)&CONDITION2_HENSHIN)==0)&&
@@ -8909,38 +8909,38 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		wazapow=wazapow*(100+wdcp_a.atc)/100;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅA•¨—UŒ‚‚ÌˆĞ—Í‚ğƒAƒbƒv‚Ì‚ÍAˆĞ—Í‚ğƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã€ç‰©ç†æ”»æ’ƒã®å¨åŠ›ã‚’ã‚¢ãƒƒãƒ—ã®æ™‚ã¯ã€å¨åŠ›ã‚’ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_BUTURIIRYOKUUP)&&(wazakind==KIND_BUTSURI)){
 		wazapow=wazapow*(100+wdcp_a.atc)/100;
 	}
 
-	//ƒAƒCƒeƒ€‚ÅA“ÁêUŒ‚‚ÌˆĞ—Í‚ğƒAƒbƒv‚Ì‚ÍAˆĞ—Í‚ğƒAƒbƒv
+	//ã‚¢ã‚¤ãƒ†ãƒ ã§ã€ç‰¹æ®Šæ”»æ’ƒã®å¨åŠ›ã‚’ã‚¢ãƒƒãƒ—ã®æ™‚ã¯ã€å¨åŠ›ã‚’ã‚¢ãƒƒãƒ—
 	if((wdcp_a.eqp==SOUBI_TOKUSYUIRYOKUUP)&&(wazakind==KIND_TOKUSYU)){
 		wazapow=wazapow*(100+wdcp_a.atc)/100;
 	}
 
-	//“Áê”\—Í‚ ‚Â‚¢‚µ‚Ú‚¤‚ÍA‚Ù‚Ì‚¨A‚±‚¨‚è‚É‚Â‚æ‚¢
+	//ç‰¹æ®Šèƒ½åŠ›ã‚ã¤ã„ã—ã¼ã†ã¯ã€ã»ã®ãŠã€ã“ãŠã‚Šã«ã¤ã‚ˆã„
 	if((ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_ATUISIBOU)==TRUE)&&
 	  ((wazatype==FIRE_TYPE)||(wazatype==KOORI_TYPE))){
 		wazapow/=2;
 	}
 
-	//“Áê”\—Í‚Í‚è‚«‚è‚ÍAUŒ‚—Í1.5”{ƒAƒbƒv
+	//ç‰¹æ®Šèƒ½åŠ›ã¯ã‚Šãã‚Šã¯ã€æ”»æ’ƒåŠ›1.5å€ã‚¢ãƒƒãƒ—
 	if(wdcp_a.speabino==TOKUSYU_HARIKIRI){
 		pokepow=pokepow*150/100;
 	}
 
-	//“Áê”\—Í‚±‚ñ‚¶‚å‚¤‚ÍAó‘ÔˆÙí‚Ì‚Æ‚«‚ÉUŒ‚—Í1.5”{ƒAƒbƒv
+	//ç‰¹æ®Šèƒ½åŠ›ã“ã‚“ã˜ã‚‡ã†ã¯ã€çŠ¶æ…‹ç•°å¸¸ã®ã¨ãã«æ”»æ’ƒåŠ›1.5å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.speabino==TOKUSYU_KONZYOU)&&(wdcp_a.condition)){
 		pokepow=pokepow*150/100;
 	}
 
-	//“Áê”\—Í‚Ó‚µ‚¬‚È‚¤‚ë‚±‚ÍAó‘ÔˆÙí‚Ì‚Æ‚«‚É–hŒä—Í1.5”{ƒAƒbƒv
+	//ç‰¹æ®Šèƒ½åŠ›ãµã—ããªã†ã‚ã“ã¯ã€çŠ¶æ…‹ç•°å¸¸ã®ã¨ãã«é˜²å¾¡åŠ›1.5å€ã‚¢ãƒƒãƒ—
 	if((ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_HUSIGINAUROKO)==TRUE)&&(wdcp_d.condition)){
 		pokedef=pokedef*150/100;
 	}
 
-	//“Áê”\—Íƒvƒ‰ƒXAƒ}ƒCƒiƒX‚Í‚¨Œİ‚¢‚ªê‚É‚¢‚é‚Æ“ÁêUŒ‚—Í‚ğ1.5”{ƒAƒbƒv
+	//ç‰¹æ®Šèƒ½åŠ›ãƒ—ãƒ©ã‚¹ã€ãƒã‚¤ãƒŠã‚¹ã¯ãŠäº’ã„ãŒå ´ã«ã„ã‚‹ã¨ç‰¹æ®Šæ”»æ’ƒåŠ›ã‚’1.5å€ã‚¢ãƒƒãƒ—
 	if((wdcp_a.speabino==TOKUSYU_PURASU)&&
 	   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_MINE_SIDE_HP,attack,TOKUSYU_MAINASU))){
 		pokespepow=pokespepow*150/100;
@@ -8950,43 +8950,43 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		pokespepow=pokespepow*150/100;
 	}
 
-	//‹ZŒø‰Ê‚Ç‚ë‚ ‚»‚Ñ‚ÍA“d‹CŒn‚Ì‹Z‚ÌˆĞ—Í‚ğ”¼Œ¸
+	//æŠ€åŠ¹æœã©ã‚ã‚ãã³ã¯ã€é›»æ°—ç³»ã®æŠ€ã®å¨åŠ›ã‚’åŠæ¸›
 	if((wazatype==ELECTRIC_TYPE)&&(ST_ServerWazaKoukaCheck(bw,sp,WAZAKOUKA_DOROASOBI))){
 		wazapow/=2;
 	}
 
-	//‹ZŒø‰Ê‚İ‚¸‚ ‚»‚Ñ‚ÍA‰ŠŒn‚Ì‹Z‚ÌˆĞ—Í‚ğ”¼Œ¸
+	//æŠ€åŠ¹æœã¿ãšã‚ãã³ã¯ã€ç‚ç³»ã®æŠ€ã®å¨åŠ›ã‚’åŠæ¸›
 	if((wazatype==FIRE_TYPE)&&(ST_ServerWazaKoukaCheck(bw,sp,WAZAKOUKA_MIZUASOBI))){
 		wazapow/=2;
 	}
 
-	//“Áê”\—Í‚µ‚ñ‚è‚å‚­‚ÍHP1/3ˆÈ‰º‚Å‘ƒ^ƒCƒv‚ÌˆĞ—Í‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ®Šèƒ½åŠ›ã—ã‚“ã‚Šã‚‡ãã¯HP1/3ä»¥ä¸‹ã§è‰ã‚¿ã‚¤ãƒ—ã®å¨åŠ›ã‚’1.5å€ã«ã™ã‚‹
 	if((wazatype==KUSA_TYPE)&&(wdcp_a.speabino==TOKUSYU_SINRYOKU)&&(wdcp_a.hp<=(wdcp_a.hpmax/3))){
 		wazapow=wazapow*150/100;
 	}
 
-	//“Áê”\—Í‚à‚¤‚©‚ÍHP1/3ˆÈ‰º‚Å‰Šƒ^ƒCƒv‚ÌˆĞ—Í‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ®Šèƒ½åŠ›ã‚‚ã†ã‹ã¯HP1/3ä»¥ä¸‹ã§ç‚ã‚¿ã‚¤ãƒ—ã®å¨åŠ›ã‚’1.5å€ã«ã™ã‚‹
 	if((wazatype==FIRE_TYPE)&&(wdcp_a.speabino==TOKUSYU_MOUKA)&&(wdcp_a.hp<=(wdcp_a.hpmax/3))){
 		wazapow=wazapow*150/100;
 	}
 
-	//“Áê”\—Í‚°‚«‚è‚ã‚¤‚ÍHP1/3ˆÈ‰º‚Å…ƒ^ƒCƒv‚ÌˆĞ—Í‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ®Šèƒ½åŠ›ã’ãã‚Šã‚…ã†ã¯HP1/3ä»¥ä¸‹ã§æ°´ã‚¿ã‚¤ãƒ—ã®å¨åŠ›ã‚’1.5å€ã«ã™ã‚‹
 	if((wazatype==WATER_TYPE)&&(wdcp_a.speabino==TOKUSYU_GEKIRYUU)&&(wdcp_a.hp<=(wdcp_a.hpmax/3))){
 		wazapow=wazapow*150/100;
 	}
-	//“Áê”\—Í‚Ş‚µ‚Ì‚µ‚ç‚¹‚ÍHP1/3ˆÈ‰º‚Å’ƒ^ƒCƒv‚ÌˆĞ—Í‚ğ1.5”{‚É‚·‚é
+	//ç‰¹æ®Šèƒ½åŠ›ã‚€ã—ã®ã—ã‚‰ã›ã¯HP1/3ä»¥ä¸‹ã§è™«ã‚¿ã‚¤ãƒ—ã®å¨åŠ›ã‚’1.5å€ã«ã™ã‚‹
 	if((wazatype==MUSHI_TYPE)&&(wdcp_a.speabino==TOKUSYU_MUSINOSIRASE)&&(wdcp_a.hp<=(wdcp_a.hpmax/3))){
 		wazapow=wazapow*150/100;
 	}
-	//“Á«‚½‚¢‚Ë‚Â‚ÍA‰ŠŒn‚Ì‹Z‚ÌˆĞ—Í‚ğ”¼Œ¸
+	//ç‰¹æ€§ãŸã„ã­ã¤ã¯ã€ç‚ç³»ã®æŠ€ã®å¨åŠ›ã‚’åŠæ¸›
 	if((wazatype==FIRE_TYPE)&&(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_TAINETU)==TRUE)){
 		wazapow/=2;
 	}
-	//“Á«‚©‚ñ‚»‚¤‚Í‚¾‚ÍA‰ŠŒn‚Ì‹Z‚ÌˆĞ—Í‚ğ25%‘
+	//ç‰¹æ€§ã‹ã‚“ãã†ã¯ã ã¯ã€ç‚ç³»ã®æŠ€ã®å¨åŠ›ã‚’25%å¢—
 	if((wazatype==FIRE_TYPE)&&(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_KANSOUHADA)==TRUE)){
 		wazapow=wazapow*125/100;
 	}
-	//“Á«‚½‚ñ‚¶‚ã‚ñ‚ÍA”\—Í•Ï‰»’l‚ğ”{
+	//ç‰¹æ€§ãŸã‚“ã˜ã‚…ã‚“ã¯ã€èƒ½åŠ›å¤‰åŒ–å€¤ã‚’å€
 	if(wdcp_a.speabino==TOKUSYU_TANZYUN){
 		condpow*=2;
 		if(condpow<-6){
@@ -9003,7 +9003,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 			condspepow=6;
 		}
 	}
-	//“Á«‚½‚ñ‚¶‚ã‚ñ‚ÍA”\—Í•Ï‰»’l‚ğ”{
+	//ç‰¹æ€§ãŸã‚“ã˜ã‚…ã‚“ã¯ã€èƒ½åŠ›å¤‰åŒ–å€¤ã‚’å€
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_TANZYUN)==TRUE){
 		conddef*=2;
 		if(conddef<-6){
@@ -9021,12 +9021,12 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		}
 	}
 
-	//“Á«‚Ä‚ñ‚Ë‚ñ‚ÍA”\—Í•Ï‰»’l‚ğƒtƒ‰ƒbƒg
+	//ç‰¹æ€§ã¦ã‚“ã­ã‚“ã¯ã€èƒ½åŠ›å¤‰åŒ–å€¤ã‚’ãƒ•ãƒ©ãƒƒãƒˆ
 	if(ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_TENNEN)==TRUE){
 		condpow=0;
 		condspepow=0;
 	}
-	//“Á«‚Ä‚ñ‚Ë‚ñ‚ÍA”\—Í•Ï‰»’l‚ğƒtƒ‰ƒbƒg
+	//ç‰¹æ€§ã¦ã‚“ã­ã‚“ã¯ã€èƒ½åŠ›å¤‰åŒ–å€¤ã‚’ãƒ•ãƒ©ãƒƒãƒˆ
 	if(wdcp_a.speabino==TOKUSYU_TENNEN){
 		conddef=0;
 		condspedef=0;
@@ -9037,18 +9037,18 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 	condspepow+=6;
 	condspedef+=6;
 
-	//“Á«‚Æ‚¤‚»‚¤‚µ‚ñ‚ÍA«•Ê‚ªˆê‚¾‚Á‚½‚ç1.25”{‚É‚·‚é
+	//ç‰¹æ€§ã¨ã†ãã†ã—ã‚“ã¯ã€æ€§åˆ¥ãŒä¸€ç·’ã ã£ãŸã‚‰1.25å€ã«ã™ã‚‹
 	if((wdcp_a.speabino==TOKUSYU_TOUSOUSIN)&&
 	   (wdcp_a.sex==wdcp_d.sex)&&(wdcp_a.sex!=PARA_UNK)&&(wdcp_d.sex!=PARA_UNK)){
 		wazapow=wazapow*125/100;
 	}
-	//“Á«‚Æ‚¤‚»‚¤‚µ‚ñ‚ÍA«•Ê‚ªˆá‚Á‚½‚ç0.75”{‚É‚·‚é
+	//ç‰¹æ€§ã¨ã†ãã†ã—ã‚“ã¯ã€æ€§åˆ¥ãŒé•ã£ãŸã‚‰0.75å€ã«ã™ã‚‹
 	if((wdcp_a.speabino==TOKUSYU_TOUSOUSIN)&&
 	   (wdcp_a.sex!=wdcp_d.sex)&&(wdcp_a.sex!=PARA_UNK)&&(wdcp_d.sex!=PARA_UNK)){
 		wazapow=wazapow*75/100;
 	}
 
-	//“Á«‚Ä‚Â‚Ì‚±‚Ô‚µ‚ÍAƒpƒ“ƒ`Œn‚Ì‹Z‚ÌˆĞ—Í‚ğ1.2”{‚É‚·‚é
+	//ç‰¹æ€§ã¦ã¤ã®ã“ã¶ã—ã¯ã€ãƒ‘ãƒ³ãƒç³»ã®æŠ€ã®å¨åŠ›ã‚’1.2å€ã«ã™ã‚‹
 	for(i=0;i<NELEMS(TetsunoKobushiTable);i++){
 		if((TetsunoKobushiTable[i]==wazano)&&(wdcp_a.speabino==TOKUSYU_TETUNOKOBUSI)){
 			wazapow=wazapow*12/10;
@@ -9056,19 +9056,19 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		}
 	}
 
-	//“VŒóƒ`ƒFƒbƒNi‚Ì‚¤‚Ä‚ñ‚«‚Ìƒ|ƒPƒ‚ƒ“‚ªí“¬‚Éo‚Ä‚¢‚éê‡‚Í“VŒóƒ`ƒFƒbƒN‚µ‚È‚¢j
+	//å¤©å€™ãƒã‚§ãƒƒã‚¯ï¼ˆã®ã†ã¦ã‚“ãã®ãƒã‚±ãƒ¢ãƒ³ãŒæˆ¦é—˜ã«å‡ºã¦ã„ã‚‹å ´åˆã¯å¤©å€™ãƒã‚§ãƒƒã‚¯ã—ãªã„ï¼‰
 	if((ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_NOOTENKI)==0)&&
 	   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_EAROKKU)==0)){
-		//“Á«ƒTƒ“ƒpƒ[‚ÍA‚Í‚ê‚ÌA“ÁU‚ğ1.5”{‚É‚·‚é
+		//ç‰¹æ€§ã‚µãƒ³ãƒ‘ãƒ¯ãƒ¼ã¯ã€ã¯ã‚Œã®æ™‚ã€ç‰¹æ”»ã‚’1.5å€ã«ã™ã‚‹
 		if((field_cond&FIELD_CONDITION_HARE_ALL)&&(wdcp_a.speabino==TOKUSYU_SANPAWAA)){
 			pokespepow=pokespepow*15/10;
 		}
-		//Šâƒ^ƒCƒv‚ÍA‚·‚È‚ ‚ç‚µ‚ÌA“Á–h‚ğ1.5”{‚É‚·‚é
+		//å²©ã‚¿ã‚¤ãƒ—ã¯ã€ã™ãªã‚ã‚‰ã—ã®æ™‚ã€ç‰¹é˜²ã‚’1.5å€ã«ã™ã‚‹
 		if((field_cond&FIELD_CONDITION_SUNAARASHI_ALL)&&
 		  ((wdcp_d.type1==IWA_TYPE)||(wdcp_d.type2==IWA_TYPE))){
 			pokespedef=pokespedef*15/10;
 		}
-		//“Á«ƒtƒ‰ƒ[ƒMƒtƒg‚ÍA“VŒó‚ª°‚ê‚Ì‚Æ‚«A©•ª‚Æ–¡•û‚ÌUŒ‚‚Æ“Á–h‚ğ1.5”{‚·‚éB
+		//ç‰¹æ€§ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚®ãƒ•ãƒˆã¯ã€å¤©å€™ãŒæ™´ã‚Œã®ã¨ãã€è‡ªåˆ†ã¨å‘³æ–¹ã®æ”»æ’ƒã¨ç‰¹é˜²ã‚’1.5å€ã™ã‚‹ã€‚
 		if((field_cond&FIELD_CONDITION_HARE_ALL)&&
 		   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_MINE_SIDE_HP,attack,TOKUSYU_HURAWAAGIHUTO))){
 			pokepow=pokepow*15/10;
@@ -9080,12 +9080,12 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		}
 	}
 
-	//u‚¶‚Î‚­vu‚¾‚¢‚Î‚­‚Í‚Âv‚ÍA–hŒä—Í‚ğ”¼•ª‚É‚µ‚ÄŒvZ‚·‚é
+	//ã€Œã˜ã°ãã€ã€Œã ã„ã°ãã¯ã¤ã€ã¯ã€é˜²å¾¡åŠ›ã‚’åŠåˆ†ã«ã—ã¦è¨ˆç®—ã™ã‚‹
 	if(sp->AIWT.wtd[wazano].battleeffect==7){
 		pokedef=pokedef/2;
 	}
 
-	if(wazakind==KIND_BUTSURI){	//•¨—UŒ‚
+	if(wazakind==KIND_BUTSURI){	//ç‰©ç†æ”»æ’ƒ
 		if(critical>1){
 			if(condpow>6){
 				damage=pokepow*CondChgTable[condpow][0];
@@ -9120,12 +9120,12 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		damage/=damage2;
 		damage/=50;
 
-		//“Áê”\—Í‚±‚ñ‚¶‚å‚¤‚ÍAó‘ÔˆÙí‚ÅUŒ‚—Í‚ğ‚ ‚°‚é‚Ì‚Å‚±‚Ì”»’è‚Í–³‹
+		//ç‰¹æ®Šèƒ½åŠ›ã“ã‚“ã˜ã‚‡ã†ã¯ã€çŠ¶æ…‹ç•°å¸¸ã§æ”»æ’ƒåŠ›ã‚’ã‚ã’ã‚‹ã®ã§ã“ã®åˆ¤å®šã¯ç„¡è¦–
 		if((wdcp_a.condition&CONDITION_YAKEDO)&&(wdcp_a.speabino!=TOKUSYU_KONZYOU)){
 			damage/=2;
 		}
 
-		//í“¬Œø‰Ê186‚ÍƒK[ƒh‚Ì‰e‹¿‚ğó‚¯‚È‚¢
+		//æˆ¦é—˜åŠ¹æœ186ã¯ã‚¬ãƒ¼ãƒ‰ã®å½±éŸ¿ã‚’å—ã‘ãªã„
 		if(((side_cond&SIDE_CONDITION_BUTSURIGUARD)!=0)&&(critical==1)&&(sp->AIWT.wtd[wazano].battleeffect!=186)){
 			if((fight_type&FIGHT_TYPE_2vs2)&&(ST_ServerHitCountCheck(bw,sp,SHCC_SIDE,defence)==2)){
 				damage=damage*2/3;
@@ -9135,7 +9135,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 			}
 		}
 	}
-	else if(wazakind==KIND_TOKUSYU){			//“ÁêUŒ‚
+	else if(wazakind==KIND_TOKUSYU){			//ç‰¹æ®Šæ”»æ’ƒ
 		if(critical>1){
 			if(condspepow>6){
 				damage=pokespepow*CondChgTable[condspepow][0];
@@ -9170,7 +9170,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		damage/=damage2;
 		damage/=50;
 
-		//í“¬Œø‰Ê186‚ÍƒK[ƒh‚Ì‰e‹¿‚ğó‚¯‚È‚¢
+		//æˆ¦é—˜åŠ¹æœ186ã¯ã‚¬ãƒ¼ãƒ‰ã®å½±éŸ¿ã‚’å—ã‘ãªã„
 		if(((side_cond&SIDE_CONDITION_TOKUSYUGUARD)!=0)&&(critical==1)&&(sp->AIWT.wtd[wazano].battleeffect!=186)){
 			if((fight_type&FIGHT_TYPE_2vs2)&&(ST_ServerHitCountCheck(bw,sp,SHCC_SIDE,defence)==2)){
 				damage=damage*2/3;
@@ -9193,7 +9193,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		damage=damage*3/4;
 	}
 
-	//“VŒóƒ`ƒFƒbƒNi‚Ì‚¤‚Ä‚ñ‚«‚Ìƒ|ƒPƒ‚ƒ“‚ªí“¬‚Éo‚Ä‚¢‚éê‡‚Í“VŒóƒ`ƒFƒbƒN‚µ‚È‚¢j
+	//å¤©å€™ãƒã‚§ãƒƒã‚¯ï¼ˆã®ã†ã¦ã‚“ãã®ãƒã‚±ãƒ¢ãƒ³ãŒæˆ¦é—˜ã«å‡ºã¦ã„ã‚‹å ´åˆã¯å¤©å€™ãƒã‚§ãƒƒã‚¯ã—ãªã„ï¼‰
 	if((ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_NOOTENKI)==0)&&
 	   (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_EAROKKU)==0)){
 		if(field_cond&FIELD_CONDITION_AME_ALL){
@@ -9222,7 +9222,7 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 		}
 	}
 
-	//“Áê”\—Í‚à‚ç‚¢‚Ñƒ`ƒFƒbƒN
+	//ç‰¹æ®Šèƒ½åŠ›ã‚‚ã‚‰ã„ã³ãƒã‚§ãƒƒã‚¯
 	if((ST_ServerPokemonServerParamGet(sp,attack,ID_PSP_wkw_moraibi_flag,NULL))&&(wazatype==FIRE_TYPE)){
 		damage=damage*15/10;
 	}
@@ -9232,14 +9232,14 @@ int	ST_WazaDamageCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,
 
 // =================================================================
 // void	WS_DAMAGE_LOSS
-// ŠT—v  : ƒ_ƒ[ƒWŒvZ‚Å‹‚ß‚½’l‚ğ85%`100%‚Ì”ÍˆÍ‚Å’²®‚·‚é
-// ˆø”  : none
-// –ß‚è’l: none
+// æ¦‚è¦  : ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—ã§æ±‚ã‚ãŸå€¤ã‚’85%ã€œ100%ã®ç¯„å›²ã§èª¿æ•´ã™ã‚‹
+// å¼•æ•°  : none
+// æˆ»ã‚Šå€¤: none
 // =================================================================
 int		ST_DamageLossCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int damage)
 {
 #ifdef PM_DEBUG
-	//ƒfƒoƒbƒOƒ‚[ƒh‚Åƒ_ƒ[ƒWŒÅ’èƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍALossCalc‚Í‚µ‚È‚¢
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§ãƒ€ãƒ¡ãƒ¼ã‚¸å›ºå®šãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ã€LossCalcã¯ã—ãªã„
 	if(sp->dbp.debug_flag&DEBUG_FLAG_DAMAGE_LOCK){
 		return damage;
 	}
@@ -9258,7 +9258,7 @@ int		ST_DamageLossCalc(BATTLE_WORK *bw,SERVER_PARAM *sp,int damage)
 
 //============================================================================================
 /**
- *	ƒNƒŠƒeƒBƒJƒ‹ƒqƒbƒg‚ª‚Å‚éŠm—¦ƒe[ƒuƒ‹
+ *	ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒ’ãƒƒãƒˆãŒã§ã‚‹ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u8	CriticalTable[]={
@@ -9267,14 +9267,14 @@ static	const	u8	CriticalTable[]={
 
 //============================================================================================
 /**
- *	‹}Š‚É“–‚½‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ *	æ€¥æ‰€ã«å½“ãŸã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp				ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	attack			UŒ‚‘¤ClientNo
- * @param[in]	defence			–hŒä‘¤ClientNo
- * @param[in]	critical_count	ƒNƒŠƒeƒBƒJƒ‹ƒqƒbƒg‚Ì”{—¦‚ğ•Ï“®‚³‚¹‚éƒ[ƒN
+ * @param[in]	sp				ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	attack			æ”»æ’ƒå´ClientNo
+ * @param[in]	defence			é˜²å¾¡å´ClientNo
+ * @param[in]	critical_count	ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒ’ãƒƒãƒˆã®å€ç‡ã‚’å¤‰å‹•ã•ã›ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	1:ƒ_ƒ[ƒW”{—¦1”{	2:ƒ_ƒ[ƒW”{—¦2”{
+ * @retval	1:ãƒ€ãƒ¡ãƒ¼ã‚¸å€ç‡1å€	2:ãƒ€ãƒ¡ãƒ¼ã‚¸å€ç‡2å€
  */
 //============================================================================================
 int		ST_CriticalCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,int defence,int critical_count,u32 side_condition)
@@ -9300,7 +9300,7 @@ int		ST_CriticalCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,int defence,in
 	work=(((condition2&CONDITION2_KIAIDAME)!=0)*2)+
 		 (eqp==SOUBI_KYUUSYONIATARIYASUI)+
 		 critical_count+
-		 //“Á«‚«‚å‚¤‚¤‚ñ‚ÍA‹}Šƒqƒbƒg’iŠK‚ğ‚PƒAƒbƒv‚·‚é
+		 //ç‰¹æ€§ãã‚‡ã†ã†ã‚“ã¯ã€æ€¥æ‰€ãƒ’ãƒƒãƒˆæ®µéšã‚’ï¼‘ã‚¢ãƒƒãƒ—ã™ã‚‹
 		 (speabi==TOKUSYU_KYOUUN)+
 		 (2*((eqp==SOUBI_RAKKIIDATOKYUUSYONIATARIYASUI)&&(monsno==MONSNO_RAKKII)))+
 		 (2*((eqp==SOUBI_KAMONEGIKYUUSYOATARIYASUI)&&(monsno==MONSNO_KAMONEGI)));
@@ -9310,7 +9310,7 @@ int		ST_CriticalCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,int defence,in
 	}
 
 	if(BattleWorkRandGet(bw)%CriticalTable[work]==0){
-		//“Á«ƒJƒuƒgƒA[ƒ}[AƒVƒFƒ‹ƒA[ƒ}[‚ª‚ ‚é‚Æ‚«‚Í‹}Š‚É‚ ‚½‚ç‚È‚¢
+		//ç‰¹æ€§ã‚«ãƒ–ãƒˆã‚¢ãƒ¼ãƒãƒ¼ã€ã‚·ã‚§ãƒ«ã‚¢ãƒ¼ãƒãƒ¼ãŒã‚ã‚‹ã¨ãã¯æ€¥æ‰€ã«ã‚ãŸã‚‰ãªã„
 		if((ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_KABUTOAAMAA)==FALSE)&&
 		   (ST_ServerKatayaburiTokuseiCheck(sp,attack,defence,TOKUSYU_SHERUAAMAA)==FALSE)&&
 		  ((side_condition&SIDE_CONDITION_OMAZINAI)==0)&&
@@ -9319,7 +9319,7 @@ int		ST_CriticalCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,int defence,in
 		}
 	}
 
-	//“Á«ƒXƒiƒCƒp[‚ÍA‹}Š”{—¦‚ğ3”{‚É‚·‚é
+	//ç‰¹æ€§ã‚¹ãƒŠã‚¤ãƒ‘ãƒ¼ã¯ã€æ€¥æ‰€å€ç‡ã‚’3å€ã«ã™ã‚‹
 	if((ret==2)&&(ST_ServerTokuseiGet(sp,attack)==TOKUSYU_SUNAIPAA)){
 		ret=3;
 	}
@@ -9329,49 +9329,49 @@ int		ST_CriticalCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int attack,int defence,in
 
 //============================================================================================
 /**
- * “Áê‚È‹Zƒe[ƒuƒ‹
+ * ç‰¹æ®ŠãªæŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 #define	MONOMANE_NG_TBL_END	(0xfffe)
 #define	WAZA_OUT_NG_TBL_END	(0xffff)
 
 static	const u16 WazaOutNGTbl[]={
-	WAZANO_YUBIWOHURU,			// ‚ä‚Ñ‚ğ‚Ó‚é
-	WAZANO_WARUAGAKI,			// ‚í‚é‚ ‚ª‚«
-	WAZANO_SUKETTI,				// ƒXƒPƒbƒ`
-	WAZANO_MONOMANE,			// ‚à‚Ì‚Ü‚Ë
-	WAZANO_OSYABERI,			// ‚¨‚µ‚á‚×‚è
-	MONOMANE_NG_TBL_END,		// ‚à‚Ì‚Ü‚Ë‚Å‚«‚È‚¢ƒe[ƒuƒ‹‚ÌƒGƒ“ƒh
-	WAZANO_NEGOTO,				// ‚Ë‚²‚Æ
-	WAZANO_NEKONOTE,			// ‚Ë‚±‚Ì‚Ä
-	WAZANO_OUMUGAESI,			// ƒIƒEƒ€‚ª‚¦‚µ
-	WAZANO_KAUNTAA,				// ƒJƒEƒ“ƒ^[
-	WAZANO_MIRAAKOOTO,			// ƒ~ƒ‰[ƒR[ƒg
-	WAZANO_MAMORU,				// ‚Ü‚à‚é
-	WAZANO_MIKIRI,				// ‚İ‚«‚è
-	WAZANO_KORAERU,				// ‚±‚ç‚¦‚é
-	WAZANO_MITIDURE,			// ‚İ‚¿‚Ã‚ê
-	WAZANO_DOROBOU,				// ‚Ç‚ë‚Ú‚¤
-	WAZANO_KONOYUBITOMARE,		// ‚±‚Ì‚ä‚Ñ‚Æ‚Ü‚ê
-	WAZANO_YOKODORI,			// ‚æ‚±‚Ç‚è
-	WAZANO_TEDASUKE,			// ‚Ä‚¾‚·‚¯
-	WAZANO_HOSIGARU,			// ‚Ù‚µ‚ª‚é
-	WAZANO_TORIKKU,				// ƒgƒŠƒbƒN
-	WAZANO_KIAIPANTI,			// ‚«‚ ‚¢ƒpƒ“ƒ`
-	WAZANO_FEINTO,				// ƒtƒFƒCƒ“ƒg
-	WAZANO_MANEKKO,				// ‚Ü‚Ë‚Á‚±
-	WAZANO_SAKIDORI,			// ‚³‚«‚Ç‚è
-	WAZANO_SURIKAE,				// ‚·‚è‚©‚¦
+	WAZANO_YUBIWOHURU,			// ã‚†ã³ã‚’ãµã‚‹
+	WAZANO_WARUAGAKI,			// ã‚ã‚‹ã‚ãŒã
+	WAZANO_SUKETTI,				// ã‚¹ã‚±ãƒƒãƒ
+	WAZANO_MONOMANE,			// ã‚‚ã®ã¾ã­
+	WAZANO_OSYABERI,			// ãŠã—ã‚ƒã¹ã‚Š
+	MONOMANE_NG_TBL_END,		// ã‚‚ã®ã¾ã­ã§ããªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¨ãƒ³ãƒ‰
+	WAZANO_NEGOTO,				// ã­ã”ã¨
+	WAZANO_NEKONOTE,			// ã­ã“ã®ã¦
+	WAZANO_OUMUGAESI,			// ã‚ªã‚¦ãƒ ãŒãˆã—
+	WAZANO_KAUNTAA,				// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	WAZANO_MIRAAKOOTO,			// ãƒŸãƒ©ãƒ¼ã‚³ãƒ¼ãƒˆ
+	WAZANO_MAMORU,				// ã¾ã‚‚ã‚‹
+	WAZANO_MIKIRI,				// ã¿ãã‚Š
+	WAZANO_KORAERU,				// ã“ã‚‰ãˆã‚‹
+	WAZANO_MITIDURE,			// ã¿ã¡ã¥ã‚Œ
+	WAZANO_DOROBOU,				// ã©ã‚ã¼ã†
+	WAZANO_KONOYUBITOMARE,		// ã“ã®ã‚†ã³ã¨ã¾ã‚Œ
+	WAZANO_YOKODORI,			// ã‚ˆã“ã©ã‚Š
+	WAZANO_TEDASUKE,			// ã¦ã ã™ã‘
+	WAZANO_HOSIGARU,			// ã»ã—ãŒã‚‹
+	WAZANO_TORIKKU,				// ãƒˆãƒªãƒƒã‚¯
+	WAZANO_KIAIPANTI,			// ãã‚ã„ãƒ‘ãƒ³ãƒ
+	WAZANO_FEINTO,				// ãƒ•ã‚§ã‚¤ãƒ³ãƒˆ
+	WAZANO_MANEKKO,				// ã¾ã­ã£ã“
+	WAZANO_SAKIDORI,			// ã•ãã©ã‚Š
+	WAZANO_SURIKAE,				// ã™ã‚Šã‹ãˆ
 	WAZA_OUT_NG_TBL_END
 };
 
 //============================================================================================
 /**
- *	‚à‚Ì‚Ü‚Ë‚Å‚«‚é‹Z‚©ƒ`ƒFƒbƒN
+ *	ã‚‚ã®ã¾ã­ã§ãã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:‚Å‚«‚È‚¢@TRUE:‚Å‚«‚é
+ * @retval	FALSE:ã§ããªã„ã€€TRUE:ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_MonomaneNGCheck(u16 waza_no)
@@ -9391,13 +9391,13 @@ BOOL	ST_MonomaneNGCheck(u16 waza_no)
 
 //============================================================================================
 /**
- *	‚ä‚Ñ‚ğ‚Ó‚é‚Å‚¾‚¹‚é‹Z‚©ƒ`ƒFƒbƒN
+ *	ã‚†ã³ã‚’ãµã‚‹ã§ã ã›ã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éClientNo
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ClientNo
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:o‚¹‚È‚¢@TRUE:o‚¹‚é
+ * @retval	FALSE:å‡ºã›ãªã„ã€€TRUE:å‡ºã›ã‚‹
  */
 //============================================================================================
 BOOL	ST_YubiwohuruNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,u16 waza_no)
@@ -9409,7 +9409,7 @@ BOOL	ST_YubiwohuruNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,u16 waz
 #endif
 	i=0;
 
-	//‚¶‚ã‚¤‚è‚å‚­‚Æ‚©‚¢‚Ó‚­‚Ó‚¤‚¶‚à‚ ‚í‚¹‚Äƒ`ƒFƒbƒN
+	//ã˜ã‚…ã†ã‚Šã‚‡ãã¨ã‹ã„ãµããµã†ã˜ã‚‚ã‚ã‚ã›ã¦ãƒã‚§ãƒƒã‚¯
 	if((ST_ServerJuuryokuCheck(bw,sp,client_no,waza_no)==TRUE)||
 	   (ST_ServerHealblockCheck(bw,sp,client_no,waza_no)==TRUE)){
 		return FALSE;
@@ -9426,7 +9426,7 @@ BOOL	ST_YubiwohuruNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,u16 waz
 
 //============================================================================================
 /**
- *	ƒIƒEƒ€‚ª‚¦‚µ‚Å•Ô‚¹‚é‚©AƒAƒ“ƒR[ƒ‹o—ˆ‚é‹Z‚©ƒ`ƒFƒbƒN—p‹Zƒiƒ“ƒo[ƒe[ƒuƒ‹
+ *	ã‚ªã‚¦ãƒ ãŒãˆã—ã§è¿”ã›ã‚‹ã‹ã€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«å‡ºæ¥ã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯ç”¨æŠ€ãƒŠãƒ³ãƒãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 
@@ -9441,11 +9441,11 @@ static	const	u16		WazaOumuEncoreNGCheckTable[]={
 
 //============================================================================================
 /**
- *	ƒIƒEƒ€‚ª‚¦‚µ‚Å•Ô‚¹‚é‚©AƒAƒ“ƒR[ƒ‹o—ˆ‚é‹Z‚©ƒ`ƒFƒbƒN
+ *	ã‚ªã‚¦ãƒ ãŒãˆã—ã§è¿”ã›ã‚‹ã‹ã€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«å‡ºæ¥ã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:o‚¹‚È‚¢@TRUE:o‚¹‚é
+ * @retval	FALSE:å‡ºã›ãªã„ã€€TRUE:å‡ºã›ã‚‹
  */
 //============================================================================================
 BOOL	ST_OumuEncoreNGCheck(SERVER_PARAM *sp,u16 waza_no)
@@ -9468,7 +9468,7 @@ BOOL	ST_OumuEncoreNGCheck(SERVER_PARAM *sp,u16 waza_no)
 
 //============================================================================================
 /**
- *	‚³‚«‚Ç‚è¬Œ÷‚·‚é‹Z‚©ƒ`ƒFƒbƒN—p‹Zƒiƒ“ƒo[ƒe[ƒuƒ‹
+ *	ã•ãã©ã‚ŠæˆåŠŸã™ã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯ç”¨æŠ€ãƒŠãƒ³ãƒãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 
@@ -9483,11 +9483,11 @@ static	const	u16		SakidoriNGCheckTable[]={
 
 //============================================================================================
 /**
- *	‚³‚«‚Ç‚è¬Œ÷‚·‚é‹Z‚©ƒ`ƒFƒbƒN
+ *	ã•ãã©ã‚ŠæˆåŠŸã™ã‚‹æŠ€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:o‚¹‚È‚¢@TRUE:o‚¹‚é
+ * @retval	FALSE:å‡ºã›ãªã„ã€€TRUE:å‡ºã›ã‚‹
  */
 //============================================================================================
 BOOL	ST_SakidoriNGCheck(SERVER_PARAM *sp,u16 waza_no)
@@ -9508,13 +9508,13 @@ BOOL	ST_SakidoriNGCheck(SERVER_PARAM *sp,u16 waza_no)
 
 //============================================================================================
 /**
- *	ƒAƒCƒeƒ€ƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+ *	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	item_no		æ“¾‚µ‚½‚¢ƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param[in]	param		æ“¾‚µ‚½‚¢ƒpƒ‰ƒ[ƒ^‚ÌID
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	item_no		å–å¾—ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	param		å–å¾—ã—ãŸã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ID
  *
- * @retval	’l
+ * @retval	å€¤
  */
 //============================================================================================
 s32	ST_ItemParamGet(SERVER_PARAM *sp,u16 item_no,u16 param)
@@ -9530,13 +9530,13 @@ s32	ST_ItemParamGet(SERVER_PARAM *sp,u16 item_no,u16 param)
 
 //============================================================================================
 /**
- *	dirƒpƒ‰ƒ[ƒ^‚©‚çClientNo‚ğæ“¾
+ *	dirãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ClientNoã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir		æ“¾‚µ‚½‚¢ClientNo‚ÌŒü‚«
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir		å–å¾—ã—ãŸã„ClientNoã®å‘ã
  *
- * @retval	’l
+ * @retval	å€¤
  */
 //============================================================================================
 int		ST_ServerDir2ClientNoGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int dir)
@@ -9557,10 +9557,10 @@ int		ST_ServerDir2ClientNoGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int dir)
 
 //============================================================================================
 /**
- *	ƒgƒŠƒbƒNƒ‹[ƒ€Œø‰Ê
+ *	ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ åŠ¹æœ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	ST_ServerTrickRoomAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -9595,31 +9595,31 @@ void	ST_ServerTrickRoomAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 //============================================================================================
 /**
- *	‚İ‚ª‚í‚è‚ª‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄASTATUS_EFFECT‚ª”­“®‚Å‚«‚é‚©”»’f—pƒe[ƒuƒ‹
+ *	ã¿ãŒã‚ã‚ŠãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã€STATUS_EFFECTãŒç™ºå‹•ã§ãã‚‹ã‹åˆ¤æ–­ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	int	MigawariOKStatusEffect[]={
-	STATUS_EFF_MIGAWARI_OUT,	///< o‰æ–ÊŠO‚É
-	STATUS_EFF_MIGAWARI_IN,		///< o‰æ–Ê“à‚É
-	STATUS_EFF_ITEM_POUCH,		///< oƒGƒlƒR‚µ‚Á‚Û‚ÆƒsƒbƒslŒ`
-	STATUS_WEATHER_MIST,		///< “VŒó –¶
-	STATUS_WEATHER_RAIN,		///< “VŒó ‰J
-	STATUS_WEATHER_ICE,			///< “VŒó ‚ ‚ç‚ê
-	STATUS_WEATHER_SAND,		///< “VŒó »‚ ‚ç‚µ
-	STATUS_WEATHER_SUN,			///< “VŒó ‚Ğ‚´‚µ
-	STATUS_ACTION_DOLL_ON,		///< o“®‚« ‚İ‚ª‚í‚è‚¨‚¿‚Ä‚­‚é
-	STATUS_ACTION_DOLL_OFF,		///< “®‚« ‚İ‚ª‚í‚èOFF
+	STATUS_EFF_MIGAWARI_OUT,	///< oç”»é¢å¤–ã«
+	STATUS_EFF_MIGAWARI_IN,		///< oç”»é¢å†…ã«
+	STATUS_EFF_ITEM_POUCH,		///< oã‚¨ãƒã‚³ã—ã£ã½ã¨ãƒ”ãƒƒãƒ”äººå½¢
+	STATUS_WEATHER_MIST,		///< å¤©å€™ éœ§
+	STATUS_WEATHER_RAIN,		///< å¤©å€™ é›¨
+	STATUS_WEATHER_ICE,			///< å¤©å€™ ã‚ã‚‰ã‚Œ
+	STATUS_WEATHER_SAND,		///< å¤©å€™ ç ‚ã‚ã‚‰ã—
+	STATUS_WEATHER_SUN,			///< å¤©å€™ ã²ã–ã—
+	STATUS_ACTION_DOLL_ON,		///< oå‹•ã ã¿ãŒã‚ã‚ŠãŠã¡ã¦ãã‚‹
+	STATUS_ACTION_DOLL_OFF,		///< å‹•ã ã¿ãŒã‚ã‚ŠOFF
 };
 
 //============================================================================================
 /**
- *	‚İ‚ª‚í‚è‚ª‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄASTATUS_EFFECT‚ª”­“®‚Å‚«‚é‚©”»’f
+ *	ã¿ãŒã‚ã‚ŠãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã€STATUS_EFFECTãŒç™ºå‹•ã§ãã‚‹ã‹åˆ¤æ–­
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚µ‚½‚¢ClientNo
- * @param[in]	status		ƒ`ƒFƒbƒN‚µ‚½‚¢STATUS_EFFECTƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã—ãŸã„ClientNo
+ * @param[in]	status		ãƒã‚§ãƒƒã‚¯ã—ãŸã„STATUS_EFFECTãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:”­“®‚Å‚«‚È‚¢@TRUE:”­“®‚Å‚«‚é
+ * @retval	FALSE:ç™ºå‹•ã§ããªã„ã€€TRUE:ç™ºå‹•ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerStatusEffectMigawariCheck(SERVER_PARAM *sp,int client_no,int status)
@@ -9648,13 +9648,13 @@ BOOL	ST_ServerStatusEffectMigawariCheck(SERVER_PARAM *sp,int client_no,int statu
 
 //============================================================================================
 /**
- *	UŒ‚‚ªƒqƒbƒg‚µ‚½‚Éƒ`ƒFƒbƒN‚·‚é‘•”õŒø‰Êi‚Æ‚ñ‚Ú‚ª‚¦‚èŒÀ’èj
+ *	æ”»æ’ƒãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹è£…å‚™åŠ¹æœï¼ˆã¨ã‚“ã¼ãŒãˆã‚Šé™å®šï¼‰
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚µ‚½‚¢ClientNo
- * @param[in]	status		ƒ`ƒFƒbƒN‚µ‚½‚¢STATUS_EFFECTƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã—ãŸã„ClientNo
+ * @param[in]	status		ãƒã‚§ãƒƒã‚¯ã—ãŸã„STATUS_EFFECTãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:”­“®‚Å‚«‚È‚¢@TRUE:”­“®‚Å‚«‚é
+ * @retval	FALSE:ç™ºå‹•ã§ããªã„ã€€TRUE:ç™ºå‹•ã§ãã‚‹
  */
 //============================================================================================
 BOOL	ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
@@ -9690,7 +9690,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,i
 	}
 
 	if((eqp_a==SOUBI_WAZAIRYOKUUPHPMAINASU)&&
-		//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚Íƒ_ƒ[ƒW‚È‚µ
+		//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—
 	   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
 	   (sp->server_status_flag&SERVER_STATUS_FLAG_WAZA_HIT)&&
 	   (sp->AIWT.wtd[sp->waza_no_now].kind!=KIND_HENKA)&&
@@ -9703,7 +9703,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,i
 
 	if((eqp_d==SOUBI_BUTURIDEKOUGEKI)&&
 	   (sp->psp[sp->attack_client].hp)&&
-		//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚É‚Í•s”­
+		//ç‰¹æ€§ãƒã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã«ã¯ä¸ç™º
 	   (ST_ServerTokuseiGet(sp,sp->attack_client)!=TOKUSYU_MAZIKKUGAADO)&&
 	   (sp->ostf[sp->defence_client].butsuri_ostf_damage)){
 		sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[sp->attack_client].hpmax*-1,atk_d);
@@ -9726,11 +9726,11 @@ BOOL	ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,i
 
 //============================================================================================
 /**
- *	UŒ‚‘ÎÛ‚ªƒvƒŒƒbƒVƒƒ[‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄPP‚ğŒ¸‚ç‚·
+ *	æ”»æ’ƒå¯¾è±¡ãŒãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦PPã‚’æ¸›ã‚‰ã™
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	attack		UŒ‚‘¤ClientNo
- * @param[in]	defence		–hŒä‘¤ClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	attack		æ”»æ’ƒå´ClientNo
+ * @param[in]	defence		é˜²å¾¡å´ClientNo
  */
 //============================================================================================
 void	ST_ServerPressurePPDecCheck(SERVER_PARAM *sp,int attack,int defence)
@@ -9744,10 +9744,10 @@ void	ST_ServerPressurePPDecCheck(SERVER_PARAM *sp,int attack,int defence)
 
 //============================================================================================
 /**
- *	‘Îí˜^‰æÄ¶‚ğ’†’f‚·‚é‚©ƒ`ƒFƒbƒN
+ *	å¯¾æˆ¦éŒ²ç”»å†ç”Ÿã‚’ä¸­æ–­ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 BOOL	ST_BattleRecordStopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
@@ -9760,18 +9760,18 @@ BOOL	ST_BattleRecordStopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 }
 
 //============================================================================================
-//			ƒpƒ‰ƒ[ƒ^ƒQƒbƒgŒn
+//			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚²ãƒƒãƒˆç³»
 //============================================================================================
 //============================================================================================
 /**
- *	SERVER_PARAM\‘¢‘Ì‚Ìƒƒ“ƒo‚Ì’l‚ğæ“¾
+ *	SERVER_PARAMæ§‹é€ ä½“ã®ãƒ¡ãƒ³ãƒã®å€¤ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id			æ“¾‚µ‚½‚¢ƒƒ“ƒo‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	client_no	æ“¾‚µ‚½‚¢ƒƒ“ƒo‚ÌClientNoi•K—v‚Èê‡j
+ * @param[in]	bw			æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id			å–å¾—ã—ãŸã„ãƒ¡ãƒ³ãƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	client_no	å–å¾—ã—ãŸã„ãƒ¡ãƒ³ãƒã®ClientNoï¼ˆå¿…è¦ãªå ´åˆï¼‰
  *
- * @retval	’l
+ * @retval	å€¤
  */
 //============================================================================================
 int		ST_ServerParamDataGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no)
@@ -9830,20 +9830,20 @@ int		ST_ServerParamDataGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no
 		return sp->next_server_seq_no;
 		break;
 	}
-	GF_ASSERT_MSG((0),"’è‹`‚³‚ê‚Ä‚¢‚È‚¢ID‚Å‚·\n");
+	GF_ASSERT_MSG((0),"å®šç¾©ã•ã‚Œã¦ã„ãªã„IDã§ã™\n");
 	return 0;
 }
 
 //============================================================================================
-//			ƒpƒ‰ƒ[ƒ^ƒZƒbƒgŒn
+//			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆç³»
 //============================================================================================
 //============================================================================================
 /**
- *	ostf_status_flag‚ğƒZƒbƒg
+ *	ostf_status_flagã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	ƒZƒbƒg‚·‚éClientNo
- * @param[in]	value		ƒZƒbƒg‚·‚é’l
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹ClientNo
+ * @param[in]	value		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	ST_ServerOSTFStatusFlagSet(SERVER_PARAM *sp,int client_no,u32 value)
@@ -9856,13 +9856,13 @@ void	ST_ServerOSTFStatusFlagSet(SERVER_PARAM *sp,int client_no,u32 value)
 
 //============================================================================================
 /**
- *	SERVER_PARAM‚Ìƒƒ“ƒo‚É’l‚ğƒZƒbƒg
+ *	SERVER_PARAMã®ãƒ¡ãƒ³ãƒã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id			ƒZƒbƒg‚µ‚½‚¢ƒƒ“ƒo‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param[in]	client_no	ƒZƒbƒg‚µ‚½‚¢ƒƒ“ƒo‚ÌClientNoi•K—v‚Èê‡j
- * @param[in]	data		ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw			æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id			ã‚»ãƒƒãƒˆã—ãŸã„ãƒ¡ãƒ³ãƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã—ãŸã„ãƒ¡ãƒ³ãƒã®ClientNoï¼ˆå¿…è¦ãªå ´åˆï¼‰
+ * @param[in]	data		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	ST_ServerParamDataPut(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no,int data)
@@ -9894,175 +9894,175 @@ void	ST_ServerParamDataPut(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no
 		sp->AIWT.AI_DirSelectClient[client_no]=data;
 		break;
 	default:
-		GF_ASSERT_MSG((0),"’è‹`‚³‚ê‚Ä‚¢‚È‚¢ID‚Å‚·\n");
+		GF_ASSERT_MSG((0),"å®šç¾©ã•ã‚Œã¦ã„ãªã„IDã§ã™\n");
 		break;
 	}
 }
 
 //============================================================================================
-//			ŠO•”ŒöŠJ‚µ‚È‚¢Œn
+//			å¤–éƒ¨å…¬é–‹ã—ãªã„ç³»
 //============================================================================================
 //============================================================================================
-//			’Ç‰ÁŒø‰Ê“®ì‚ğ‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[ƒe[ƒuƒ‹
+//			è¿½åŠ åŠ¹æœå‹•ä½œã‚’ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 //============================================================================================
 static const int AddStatusSeqNoTable[]=
 {
-	NULL,		//ƒ_ƒ~[
-	SUB_SEQ_NEMURI,				//‚Ë‚Ş‚è
-	SUB_SEQ_DOKU,				//“Å
-	SUB_SEQ_YAKEDO,				//‚â‚¯‚Ç
-	SUB_SEQ_KOORI,				//‚±‚¨‚è
-	SUB_SEQ_MAHI,				//‚Ü‚Ğ
-	SUB_SEQ_DOKUDOKU,			//‚Ç‚­‚Ç‚­
-	SUB_SEQ_KONRAN,				//‚±‚ñ‚ç‚ñ
-	SUB_SEQ_HIRUMU,				//‚Ğ‚é‚Ş
-	SUB_SEQ_NEMURU,				//‚Ë‚Ş‚é
-	SUB_SEQ_SAWAGU,				//‚³‚í‚®
-	SUB_SEQ_NEKONIKOBAN,		//‚Ë‚±‚É‚±‚Î‚ñ
-	SUB_SEQ_KEEP,				//‚½‚ßŒn‚Ì‹Z
-	SUB_SEQ_SHIME,				//‚µ‚ßŒn‚Ì‹Z
-	SUB_SEQ_HANEKAERI,			//‚Í‚Ë‚©‚¦‚èŒn‚Ì‹Z(1/4)
-	SUB_SEQ_ABICNT_CALC,		//UŒ‚—ÍƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//–hŒä—ÍƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//‘f‘‚³ƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//“ÁUƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//“Á–hƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//–½’†—¦ƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//‰ñ”ğ—¦ƒAƒbƒv
-	SUB_SEQ_ABICNT_CALC,		//UŒ‚—Íƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//–hŒä—Íƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//‘f‘‚³ƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//“ÁUƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//“Á–hƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//–½’†—¦ƒ_ƒEƒ“
-	SUB_SEQ_ABICNT_CALC,		//‰ñ”ğ—¦ƒ_ƒEƒ“
-	SUB_SEQ_HANDOU,				//‚Í‚ñ‚Ç‚¤
-	SUB_SEQ_IKARI,				//‚¢‚©‚è
-	SUB_SEQ_DOROBOU,			//‚Ç‚ë‚Ú‚¤
-	SUB_SEQ_KUROIMANAZASI,		//‚­‚ë‚¢‚Ü‚È‚´‚µ
-	SUB_SEQ_AKUMU,				//‚ ‚­‚Ş
-	SUB_SEQ_GENSHINOCHIKARA,	//‚°‚ñ‚µ‚Ì‚¿‚©‚ç
-	SUB_SEQ_KOUSOKUSPIN,		//‚±‚¤‚»‚­ƒXƒsƒ“
-	SUB_SEQ_NO_MAHI,			//‚Ü‚Ğ‚ğ‚È‚¨‚·
-	SUB_SEQ_BAKADIKARA,			//‚Î‚©‚À‚©‚ç
-	SUB_SEQ_HANEKAERI2,			//‚Í‚Ë‚©‚¦‚èŒn‚Ì‹Z(1/3)
-	SUB_SEQ_ABICNT_CALC,		//UŒ‚—ÍƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//–hŒä—ÍƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//‘f‘‚³ƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//“ÁUƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//“Á–hƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//–½’†—¦ƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//‰ñ”ğ—¦ƒAƒbƒv(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//UŒ‚—Íƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//–hŒä—Íƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//‘f‘‚³ƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//“ÁUƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//“Á–hƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//–½’†—¦ƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABICNT_CALC,		//‰ñ”ğ—¦ƒ_ƒEƒ“(2’iŠKj
-	SUB_SEQ_ABARERU,			//‚ ‚Î‚ê‚é
-	SUB_SEQ_HATAKIOTOSU,		//‚Í‚½‚«‚¨‚Æ‚·
-	SUB_SEQ_COSMO_POWER,		//ƒRƒXƒ‚ƒpƒ[i•¡”ƒAƒbƒviabiritycntŒnjj
-	SUB_SEQ_BUILD_UP,			//ƒrƒ‹ƒhƒAƒbƒvi•¡”ƒAƒbƒviabiritycntŒnjj
-	SUB_SEQ_KUSUGURU,			//‚­‚·‚®‚éi•¡”ƒ_ƒEƒ“iabiritycntŒnjj
-	SUB_SEQ_MEISOU,				//‚ß‚¢‚»‚¤i•¡”ƒAƒbƒviabiritycntŒnjj
-	SUB_SEQ_RYUUNOMAI,			//‚è‚ã‚¤‚Ì‚Ü‚¢i•¡”ƒAƒbƒviabiritycntŒnjj
-	SUB_SEQ_SUITORI,			//HP‚·‚¢‚Æ‚èŒn
-	SUB_SEQ_YUMEKUI,			//‚ä‚ß‚­‚¢
-	SUB_SEQ_KUROIKIRI,			//‚­‚ë‚¢‚«‚è
-	SUB_SEQ_GAMAN,				//‚ª‚Ü‚ñ
-	SUB_SEQ_WARUAGAKI,			//‚í‚é‚ ‚ª‚«
-	SUB_SEQ_TEXTURE,			//ƒeƒNƒXƒ`ƒƒ
-	SUB_SEQ_JIKOSAISEI,			//‚¶‚±‚³‚¢‚¹‚¢
-	SUB_SEQ_HIKARINOKABE,		//‚Ğ‚©‚è‚Ì‚©‚×
-	SUB_SEQ_RIHUREKUTAA,		//ƒŠƒtƒŒƒNƒ^[
-	SUB_SEQ_SIROIKIRI,			//‚µ‚ë‚¢‚«‚è
-	SUB_SEQ_KIAIDAME,			//‚«‚ ‚¢‚¾‚ß
-	SUB_SEQ_MONOMANE,			//‚à‚Ì‚Ü‚Ë
-	SUB_SEQ_YADORIGI,			//‚â‚Ç‚è‚¬‚Ì‚½‚Ë
-	SUB_SEQ_KANASIBARI,			//‚©‚È‚µ‚Î‚è
-	SUB_SEQ_ENCORE,				//ƒAƒ“ƒR[ƒ‹
-	SUB_SEQ_ITAMIWAKE,			//‚¢‚½‚İ‚í‚¯
-	SUB_SEQ_TEXTURE2,			//ƒeƒNƒXƒ`ƒƒ‚Q
-	SUB_SEQ_LOCKON,				//ƒƒbƒNƒIƒ“
-	SUB_SEQ_SKETCH,				//ƒXƒPƒbƒ`
-	SUB_SEQ_FEINT,				//ƒtƒFƒCƒ“ƒg
-	SUB_SEQ_MICHIDURE,			//‚İ‚¿‚Ã‚ê
-	SUB_SEQ_URAMI,				//‚¤‚ç‚İ
-	SUB_SEQ_GUARD,				//‚Ü‚à‚éA‚İ‚«‚éA‚±‚ç‚¦‚é‚È‚Ç
-	SUB_SEQ_IYASINOSUZU,		//‚¢‚â‚µ‚Ì‚·‚¸
-	SUB_SEQ_MIGAWARI,			//‚İ‚ª‚í‚è
-	SUB_SEQ_HUKITOBASI,			//‚Ó‚«‚Æ‚Î‚µ
-	SUB_SEQ_HENSIN,				//‚Ö‚ñ‚µ‚ñ
-	SUB_SEQ_CHIISAKUNARU,		//‚¿‚¢‚³‚­‚È‚é
-	SUB_SEQ_NORMAL_NOROI,		//‚Ì‚ë‚¢iƒm[ƒ}ƒ‹j
-	SUB_SEQ_GHOST_NOROI,		//‚Ì‚ë‚¢iƒS[ƒXƒgj
-	SUB_SEQ_ADD_MESSAGE_WORK,	//ƒƒbƒZ[ƒW•\¦
-	SUB_SEQ_MIYABURU,			//‚İ‚â‚Ô‚é
-	SUB_SEQ_HOROBINOUTA,		//‚Ù‚ë‚Ñ‚Ì‚¤‚½
-	SUB_SEQ_TENKOU,				//“VŒóŒn
-	SUB_SEQ_IBARU,				//‚¢‚Î‚é
-	SUB_SEQ_MEROMERO,			//ƒƒƒƒ
-	SUB_SEQ_SHINPI,				//‚µ‚ñ‚Ò‚Ì‚Ü‚à‚è
-	SUB_SEQ_PRESENT,			//ƒvƒŒƒ[ƒ“ƒg
-	SUB_SEQ_MAGNITUDE,			//ƒ}ƒOƒjƒ`ƒ…[ƒh
-	SUB_SEQ_BATONTOUCH,			//ƒoƒgƒ“ƒ^ƒbƒ`
-	SUB_SEQ_HARADAIKO,			//‚Í‚ç‚¾‚¢‚±
-	SUB_SEQ_TELEPORT,			//ƒeƒŒƒ|[ƒg
-	SUB_SEQ_HUKURODATAKI,		//‚Ó‚­‚ë‚¾‚½‚«
-	SUB_SEQ_TAKUWAERU,			//‚½‚­‚í‚¦‚é
-	SUB_SEQ_NOMIKOMU,			//‚Ì‚İ‚±‚Ş
-	SUB_SEQ_ICHAMON,			//‚¢‚¿‚á‚à‚ñ
-	SUB_SEQ_ODATERU,			//‚¨‚¾‚Ä‚é
-	SUB_SEQ_OKIMIYAGE,			//‚¨‚«‚İ‚â‚°
-	SUB_SEQ_JUUDEN,				//‚¶‚ã‚¤‚Å‚ñ
-	SUB_SEQ_CHOUHATSU,			//‚¿‚å‚¤‚Í‚Â
-	SUB_SEQ_TRICK,				//ƒgƒŠƒbƒN
-	SUB_SEQ_NARIKIRI,			//‚È‚è‚«‚è
-	SUB_SEQ_KAWARAWARI,			//‚©‚í‚ç‚í‚è
-	SUB_SEQ_AKUBI,				//‚ ‚­‚Ñ
-	SUB_SEQ_SKILLSWAP,			//ƒXƒLƒ‹ƒXƒƒbƒv
-	SUB_SEQ_REFRESH,			//ƒŠƒtƒŒƒbƒVƒ…
-	SUB_SEQ_HANEYASUME,			//‚Í‚Ë‚â‚·‚ß
-	SUB_SEQ_NO_NEMURI,			//‚ß‚´‚Ü‚µƒrƒ“ƒ^
-	SUB_SEQ_JUURYOKU,			//‚¶‚ã‚¤‚è‚å‚­
-	SUB_SEQ_MIRACLE_EYE,		//ƒ~ƒ‰ƒNƒ‹ƒAƒC
-	SUB_SEQ_IYASINONEGAI,		//‚¢‚â‚µ‚Ì‚Ë‚ª‚¢
-	SUB_SEQ_OIKAZE,				//‚¨‚¢‚©‚º
-	SUB_SEQ_INFIGHT,			//ƒCƒ“ƒtƒ@ƒCƒg
-	SUB_SEQ_POWER_TRICK,		//ƒpƒ[ƒgƒŠƒbƒN
-	SUB_SEQ_IEKI,				//‚¢‚¦‚«
-	SUB_SEQ_OMAZINAI,			//‚¨‚Ü‚¶‚È‚¢
-	SUB_SEQ_POWER_SWAP,			//ƒpƒ[ƒXƒƒbƒv
-	SUB_SEQ_GUARD_SWAP,			//ƒK[ƒhƒXƒƒbƒv
-	SUB_SEQ_NAYAMINOTANE,		//‚È‚â‚İ‚Ì‚½‚Ë
-	SUB_SEQ_HEART_SWAP,			//ƒn[ƒgƒXƒƒbƒv
-	SUB_SEQ_HEAT_ATTACK,		//ƒq[ƒgƒAƒ^ƒbƒN
-	SUB_SEQ_KIRIHARAI,			//‚«‚è‚Í‚ç‚¢
-	SUB_SEQ_HEALBLOCK,			//ƒq[ƒ‹ƒuƒƒbƒN
-	SUB_SEQ_TONBOGAERI,			//‚Æ‚ñ‚Ú‚ª‚¦‚è
-	SUB_SEQ_SHUTOUT,			//ƒVƒƒƒbƒgƒAƒEƒg
-	SUB_SEQ_TSUIBAMU,			//‚Â‚¢‚Î‚Ş
-	SUB_SEQ_NAGETSUKERU,		//‚È‚°‚Â‚¯‚é
-	SUB_SEQ_VOLT,				//ƒ{ƒ‹ƒeƒbƒJ[
-	SUB_SEQ_HANEKAERI3,			//‚Í‚Ë‚©‚¦‚èŒn‚Ì‹Z(1/2)
-	SUB_SEQ_YAKEDO_HIRUMU,		//‚â‚¯‚Ç{‚Ğ‚é‚Ş‚Ì’Ç‰ÁŒø‰Ê
-	SUB_SEQ_KOORI_HIRUMU,		//‚±‚¨‚è{‚Ğ‚é‚Ş‚Ì’Ç‰ÁŒø‰Ê
-	SUB_SEQ_MAHI_HIRUMU,		//‚Ü‚Ğ{‚Ğ‚é‚Ş‚Ì’Ç‰ÁŒø‰Ê
-	SUB_SEQ_OSYABERI,			//‚¨‚µ‚á‚×‚è‚Ì’Ç‰ÁŒø‰Ê
-	SUB_SEQ_MIKADUKINOMAI,		//‚İ‚©‚Ã‚«‚Ì‚Ü‚¢’Ç‰ÁŒø‰Ê
-	SUB_SEQ_SURIKOMI,			//‚·‚è‚±‚İ’Ç‰ÁŒø‰Ê
+	NULL,		//ãƒ€ãƒŸãƒ¼
+	SUB_SEQ_NEMURI,				//ã­ã‚€ã‚Š
+	SUB_SEQ_DOKU,				//æ¯’
+	SUB_SEQ_YAKEDO,				//ã‚„ã‘ã©
+	SUB_SEQ_KOORI,				//ã“ãŠã‚Š
+	SUB_SEQ_MAHI,				//ã¾ã²
+	SUB_SEQ_DOKUDOKU,			//ã©ãã©ã
+	SUB_SEQ_KONRAN,				//ã“ã‚“ã‚‰ã‚“
+	SUB_SEQ_HIRUMU,				//ã²ã‚‹ã‚€
+	SUB_SEQ_NEMURU,				//ã­ã‚€ã‚‹
+	SUB_SEQ_SAWAGU,				//ã•ã‚ã
+	SUB_SEQ_NEKONIKOBAN,		//ã­ã“ã«ã“ã°ã‚“
+	SUB_SEQ_KEEP,				//ãŸã‚ç³»ã®æŠ€
+	SUB_SEQ_SHIME,				//ã—ã‚ç³»ã®æŠ€
+	SUB_SEQ_HANEKAERI,			//ã¯ã­ã‹ãˆã‚Šç³»ã®æŠ€(1/4)
+	SUB_SEQ_ABICNT_CALC,		//æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//é˜²å¾¡åŠ›ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//ç´ æ—©ã•ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹æ”»ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹é˜²ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//å‘½ä¸­ç‡ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//å›é¿ç‡ã‚¢ãƒƒãƒ—
+	SUB_SEQ_ABICNT_CALC,		//æ”»æ’ƒåŠ›ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//é˜²å¾¡åŠ›ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//ç´ æ—©ã•ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹æ”»ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹é˜²ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//å‘½ä¸­ç‡ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_ABICNT_CALC,		//å›é¿ç‡ãƒ€ã‚¦ãƒ³
+	SUB_SEQ_HANDOU,				//ã¯ã‚“ã©ã†
+	SUB_SEQ_IKARI,				//ã„ã‹ã‚Š
+	SUB_SEQ_DOROBOU,			//ã©ã‚ã¼ã†
+	SUB_SEQ_KUROIMANAZASI,		//ãã‚ã„ã¾ãªã–ã—
+	SUB_SEQ_AKUMU,				//ã‚ãã‚€
+	SUB_SEQ_GENSHINOCHIKARA,	//ã’ã‚“ã—ã®ã¡ã‹ã‚‰
+	SUB_SEQ_KOUSOKUSPIN,		//ã“ã†ããã‚¹ãƒ”ãƒ³
+	SUB_SEQ_NO_MAHI,			//ã¾ã²ã‚’ãªãŠã™
+	SUB_SEQ_BAKADIKARA,			//ã°ã‹ã¢ã‹ã‚‰
+	SUB_SEQ_HANEKAERI2,			//ã¯ã­ã‹ãˆã‚Šç³»ã®æŠ€(1/3)
+	SUB_SEQ_ABICNT_CALC,		//æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//é˜²å¾¡åŠ›ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç´ æ—©ã•ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹æ”»ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹é˜²ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//å‘½ä¸­ç‡ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//å›é¿ç‡ã‚¢ãƒƒãƒ—(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//æ”»æ’ƒåŠ›ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//é˜²å¾¡åŠ›ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç´ æ—©ã•ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹æ”»ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//ç‰¹é˜²ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//å‘½ä¸­ç‡ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABICNT_CALC,		//å›é¿ç‡ãƒ€ã‚¦ãƒ³(2æ®µéšï¼‰
+	SUB_SEQ_ABARERU,			//ã‚ã°ã‚Œã‚‹
+	SUB_SEQ_HATAKIOTOSU,		//ã¯ãŸããŠã¨ã™
+	SUB_SEQ_COSMO_POWER,		//ã‚³ã‚¹ãƒ¢ãƒ‘ãƒ¯ãƒ¼ï¼ˆè¤‡æ•°ã‚¢ãƒƒãƒ—ï¼ˆabiritycntç³»ï¼‰ï¼‰
+	SUB_SEQ_BUILD_UP,			//ãƒ“ãƒ«ãƒ‰ã‚¢ãƒƒãƒ—ï¼ˆè¤‡æ•°ã‚¢ãƒƒãƒ—ï¼ˆabiritycntç³»ï¼‰ï¼‰
+	SUB_SEQ_KUSUGURU,			//ãã™ãã‚‹ï¼ˆè¤‡æ•°ãƒ€ã‚¦ãƒ³ï¼ˆabiritycntç³»ï¼‰ï¼‰
+	SUB_SEQ_MEISOU,				//ã‚ã„ãã†ï¼ˆè¤‡æ•°ã‚¢ãƒƒãƒ—ï¼ˆabiritycntç³»ï¼‰ï¼‰
+	SUB_SEQ_RYUUNOMAI,			//ã‚Šã‚…ã†ã®ã¾ã„ï¼ˆè¤‡æ•°ã‚¢ãƒƒãƒ—ï¼ˆabiritycntç³»ï¼‰ï¼‰
+	SUB_SEQ_SUITORI,			//HPã™ã„ã¨ã‚Šç³»
+	SUB_SEQ_YUMEKUI,			//ã‚†ã‚ãã„
+	SUB_SEQ_KUROIKIRI,			//ãã‚ã„ãã‚Š
+	SUB_SEQ_GAMAN,				//ãŒã¾ã‚“
+	SUB_SEQ_WARUAGAKI,			//ã‚ã‚‹ã‚ãŒã
+	SUB_SEQ_TEXTURE,			//ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	SUB_SEQ_JIKOSAISEI,			//ã˜ã“ã•ã„ã›ã„
+	SUB_SEQ_HIKARINOKABE,		//ã²ã‹ã‚Šã®ã‹ã¹
+	SUB_SEQ_RIHUREKUTAA,		//ãƒªãƒ•ãƒ¬ã‚¯ã‚¿ãƒ¼
+	SUB_SEQ_SIROIKIRI,			//ã—ã‚ã„ãã‚Š
+	SUB_SEQ_KIAIDAME,			//ãã‚ã„ã ã‚
+	SUB_SEQ_MONOMANE,			//ã‚‚ã®ã¾ã­
+	SUB_SEQ_YADORIGI,			//ã‚„ã©ã‚Šãã®ãŸã­
+	SUB_SEQ_KANASIBARI,			//ã‹ãªã—ã°ã‚Š
+	SUB_SEQ_ENCORE,				//ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«
+	SUB_SEQ_ITAMIWAKE,			//ã„ãŸã¿ã‚ã‘
+	SUB_SEQ_TEXTURE2,			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼’
+	SUB_SEQ_LOCKON,				//ãƒ­ãƒƒã‚¯ã‚ªãƒ³
+	SUB_SEQ_SKETCH,				//ã‚¹ã‚±ãƒƒãƒ
+	SUB_SEQ_FEINT,				//ãƒ•ã‚§ã‚¤ãƒ³ãƒˆ
+	SUB_SEQ_MICHIDURE,			//ã¿ã¡ã¥ã‚Œ
+	SUB_SEQ_URAMI,				//ã†ã‚‰ã¿
+	SUB_SEQ_GUARD,				//ã¾ã‚‚ã‚‹ã€ã¿ãã‚‹ã€ã“ã‚‰ãˆã‚‹ãªã©
+	SUB_SEQ_IYASINOSUZU,		//ã„ã‚„ã—ã®ã™ãš
+	SUB_SEQ_MIGAWARI,			//ã¿ãŒã‚ã‚Š
+	SUB_SEQ_HUKITOBASI,			//ãµãã¨ã°ã—
+	SUB_SEQ_HENSIN,				//ã¸ã‚“ã—ã‚“
+	SUB_SEQ_CHIISAKUNARU,		//ã¡ã„ã•ããªã‚‹
+	SUB_SEQ_NORMAL_NOROI,		//ã®ã‚ã„ï¼ˆãƒãƒ¼ãƒãƒ«ï¼‰
+	SUB_SEQ_GHOST_NOROI,		//ã®ã‚ã„ï¼ˆã‚´ãƒ¼ã‚¹ãƒˆï¼‰
+	SUB_SEQ_ADD_MESSAGE_WORK,	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SUB_SEQ_MIYABURU,			//ã¿ã‚„ã¶ã‚‹
+	SUB_SEQ_HOROBINOUTA,		//ã»ã‚ã³ã®ã†ãŸ
+	SUB_SEQ_TENKOU,				//å¤©å€™ç³»
+	SUB_SEQ_IBARU,				//ã„ã°ã‚‹
+	SUB_SEQ_MEROMERO,			//ãƒ¡ãƒ­ãƒ¡ãƒ­
+	SUB_SEQ_SHINPI,				//ã—ã‚“ã´ã®ã¾ã‚‚ã‚Š
+	SUB_SEQ_PRESENT,			//ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ
+	SUB_SEQ_MAGNITUDE,			//ãƒã‚°ãƒ‹ãƒãƒ¥ãƒ¼ãƒ‰
+	SUB_SEQ_BATONTOUCH,			//ãƒãƒˆãƒ³ã‚¿ãƒƒãƒ
+	SUB_SEQ_HARADAIKO,			//ã¯ã‚‰ã ã„ã“
+	SUB_SEQ_TELEPORT,			//ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
+	SUB_SEQ_HUKURODATAKI,		//ãµãã‚ã ãŸã
+	SUB_SEQ_TAKUWAERU,			//ãŸãã‚ãˆã‚‹
+	SUB_SEQ_NOMIKOMU,			//ã®ã¿ã“ã‚€
+	SUB_SEQ_ICHAMON,			//ã„ã¡ã‚ƒã‚‚ã‚“
+	SUB_SEQ_ODATERU,			//ãŠã ã¦ã‚‹
+	SUB_SEQ_OKIMIYAGE,			//ãŠãã¿ã‚„ã’
+	SUB_SEQ_JUUDEN,				//ã˜ã‚…ã†ã§ã‚“
+	SUB_SEQ_CHOUHATSU,			//ã¡ã‚‡ã†ã¯ã¤
+	SUB_SEQ_TRICK,				//ãƒˆãƒªãƒƒã‚¯
+	SUB_SEQ_NARIKIRI,			//ãªã‚Šãã‚Š
+	SUB_SEQ_KAWARAWARI,			//ã‹ã‚ã‚‰ã‚ã‚Š
+	SUB_SEQ_AKUBI,				//ã‚ãã³
+	SUB_SEQ_SKILLSWAP,			//ã‚¹ã‚­ãƒ«ã‚¹ãƒ¯ãƒƒãƒ—
+	SUB_SEQ_REFRESH,			//ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
+	SUB_SEQ_HANEYASUME,			//ã¯ã­ã‚„ã™ã‚
+	SUB_SEQ_NO_NEMURI,			//ã‚ã–ã¾ã—ãƒ“ãƒ³ã‚¿
+	SUB_SEQ_JUURYOKU,			//ã˜ã‚…ã†ã‚Šã‚‡ã
+	SUB_SEQ_MIRACLE_EYE,		//ãƒŸãƒ©ã‚¯ãƒ«ã‚¢ã‚¤
+	SUB_SEQ_IYASINONEGAI,		//ã„ã‚„ã—ã®ã­ãŒã„
+	SUB_SEQ_OIKAZE,				//ãŠã„ã‹ãœ
+	SUB_SEQ_INFIGHT,			//ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒˆ
+	SUB_SEQ_POWER_TRICK,		//ãƒ‘ãƒ¯ãƒ¼ãƒˆãƒªãƒƒã‚¯
+	SUB_SEQ_IEKI,				//ã„ãˆã
+	SUB_SEQ_OMAZINAI,			//ãŠã¾ã˜ãªã„
+	SUB_SEQ_POWER_SWAP,			//ãƒ‘ãƒ¯ãƒ¼ã‚¹ãƒ¯ãƒƒãƒ—
+	SUB_SEQ_GUARD_SWAP,			//ã‚¬ãƒ¼ãƒ‰ã‚¹ãƒ¯ãƒƒãƒ—
+	SUB_SEQ_NAYAMINOTANE,		//ãªã‚„ã¿ã®ãŸã­
+	SUB_SEQ_HEART_SWAP,			//ãƒãƒ¼ãƒˆã‚¹ãƒ¯ãƒƒãƒ—
+	SUB_SEQ_HEAT_ATTACK,		//ãƒ’ãƒ¼ãƒˆã‚¢ã‚¿ãƒƒã‚¯
+	SUB_SEQ_KIRIHARAI,			//ãã‚Šã¯ã‚‰ã„
+	SUB_SEQ_HEALBLOCK,			//ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯
+	SUB_SEQ_TONBOGAERI,			//ã¨ã‚“ã¼ãŒãˆã‚Š
+	SUB_SEQ_SHUTOUT,			//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆ
+	SUB_SEQ_TSUIBAMU,			//ã¤ã„ã°ã‚€
+	SUB_SEQ_NAGETSUKERU,		//ãªã’ã¤ã‘ã‚‹
+	SUB_SEQ_VOLT,				//ãƒœãƒ«ãƒ†ãƒƒã‚«ãƒ¼
+	SUB_SEQ_HANEKAERI3,			//ã¯ã­ã‹ãˆã‚Šç³»ã®æŠ€(1/2)
+	SUB_SEQ_YAKEDO_HIRUMU,		//ã‚„ã‘ã©ï¼‹ã²ã‚‹ã‚€ã®è¿½åŠ åŠ¹æœ
+	SUB_SEQ_KOORI_HIRUMU,		//ã“ãŠã‚Šï¼‹ã²ã‚‹ã‚€ã®è¿½åŠ åŠ¹æœ
+	SUB_SEQ_MAHI_HIRUMU,		//ã¾ã²ï¼‹ã²ã‚‹ã‚€ã®è¿½åŠ åŠ¹æœ
+	SUB_SEQ_OSYABERI,			//ãŠã—ã‚ƒã¹ã‚Šã®è¿½åŠ åŠ¹æœ
+	SUB_SEQ_MIKADUKINOMAI,		//ã¿ã‹ã¥ãã®ã¾ã„è¿½åŠ åŠ¹æœ
+	SUB_SEQ_SURIKOMI,			//ã™ã‚Šã“ã¿è¿½åŠ åŠ¹æœ
 };
 
 //============================================================================================
 /**
- *	’Ç‰ÁŒø‰Ê‚ğ‚·‚é‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+ *	è¿½åŠ åŠ¹æœã‚’ã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	type	’Ç‰ÁŒø‰Ê‚Ìƒ^ƒCƒv
- * @param[in]	flag	’Ç‰ÁŒø‰Ê‚Ìí—Ş
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	type	è¿½åŠ åŠ¹æœã®ã‚¿ã‚¤ãƒ—
+ * @param[in]	flag	è¿½åŠ åŠ¹æœã®ç¨®é¡
  *
- * @retval	’Ç‰ÁŒø‰Ê“®ì‚ğ‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @retval	è¿½åŠ åŠ¹æœå‹•ä½œã‚’ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 static	int		ST_ServerAddStatusParamSet(SERVER_PARAM *sp,int type,u32 flag)
@@ -10081,23 +10081,23 @@ static	int		ST_ServerAddStatusParamSet(SERVER_PARAM *sp,int type,u32 flag)
 		sp->tsuika_client=0;
 	}
 	else{
-		OS_TPrintf("ST_ServerAddStausParamSet:‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢->%08x\n",flag);
+		OS_TPrintf("ST_ServerAddStausParamSet:ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„->%08x\n",flag);
 	}
 
-	GF_ASSERT_MSG(NELEMS(AddStatusSeqNoTable)>(flag&ADD_STATUS_MASK),"‘¶İ‚µ‚È‚¢SUB_SEQ_NO‚Å‚·");
+	GF_ASSERT_MSG(NELEMS(AddStatusSeqNoTable)>(flag&ADD_STATUS_MASK),"å­˜åœ¨ã—ãªã„SUB_SEQ_NOã§ã™");
 
 	return AddStatusSeqNoTable[flag&ADD_STATUS_MASK];
 }
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Æ‹Z‚Ìƒ^ƒCƒv‚Ì‘Š«‚Åƒtƒ‰ƒO‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã¨æŠ€ã®ã‚¿ã‚¤ãƒ—ã®ç›¸æ€§ã§ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	client_no	‹Z‚ğŒJ‚èo‚·ClientNo
- * @param[in]	power		‘Š«‚ğ¦‚·ˆĞ—Í
- * @param[in]	damage		’~Ï‚³‚ê‚Ä‚¢‚éƒ_ƒ[ƒW
- * @param[in]	waza_damage	‹Z‚ÌˆĞ—Í
- * @param[out]	flag		ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚éƒ[ƒN
+ * @param[in]	client_no	æŠ€ã‚’ç¹°ã‚Šå‡ºã™ClientNo
+ * @param[in]	power		ç›¸æ€§ã‚’ç¤ºã™å¨åŠ›
+ * @param[in]	damage		è“„ç©ã•ã‚Œã¦ã„ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸
+ * @param[in]	waza_damage	æŠ€ã®å¨åŠ›
+ * @param[out]	flag		ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //============================================================================================
 static	int	ST_TypeCheckCalc(SERVER_PARAM *sp,int client_no,int power,int damage,int waza_damage,u32 *flag)
@@ -10105,7 +10105,7 @@ static	int	ST_TypeCheckCalc(SERVER_PARAM *sp,int client_no,int power,int damage,
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,66);
 #endif
-	//ƒ^ƒCƒv‚É‚æ‚é•â³ŒvZ
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹è£œæ­£è¨ˆç®—
 	if(((sp->server_status_flag&SERVER_STATUS_FLAG_TYPE_FLAT)==0)&&
 	   ((sp->server_status_flag&SERVER_STATUS_FLAG_TYPE_NONE)==0)&&
 		(damage)){
@@ -10146,26 +10146,26 @@ static	int	ST_TypeCheckCalc(SERVER_PARAM *sp,int client_no,int power,int damage,
 
 //============================================================================================
 /**
- *	‚½‚ß‹Z‚ª”­“®‚·‚éƒ^[ƒ“‚È‚Ì‚©ƒ`ƒFƒbƒNi‚½‚ß‹ZˆÈŠO‚Í‹­§“I‚É”­“®ˆµ‚¢j
+ *	ãŸã‚æŠ€ãŒç™ºå‹•ã™ã‚‹ã‚¿ãƒ¼ãƒ³ãªã®ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆãŸã‚æŠ€ä»¥å¤–ã¯å¼·åˆ¶çš„ã«ç™ºå‹•æ‰±ã„ï¼‰
  *
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	TRUEF”­“®@FALSE:‚½‚ß‚éƒ^[ƒ“
+ * @retval	TRUEï¼šç™ºå‹•ã€€FALSE:ãŸã‚ã‚‹ã‚¿ãƒ¼ãƒ³
  */
 //============================================================================================
 static BOOL	ST_TameWazaTurnCheck(SERVER_PARAM *sp,int waza_no)
 {
 	switch(sp->AIWT.wtd[waza_no].battleeffect){
-	case 26:	//‚ª‚Ü‚ñ
-	case 39:	//‚©‚Ü‚¢‚½‚¿
-	case 75:	//ƒSƒbƒhƒo[ƒh
-	case 145:	//ƒƒPƒbƒg“ª“Ë‚«
-	case 151:	//ƒ\[ƒ‰[ƒr[ƒ€
-	case 155:	//‚»‚ç‚ğ‚Æ‚Ô
-	case 255:	//ƒ_ƒCƒrƒ“ƒO
-	case 256:	//‚ ‚È‚ğ‚Ù‚é
-	case 263:	//‚Æ‚Ñ‚Í‚Ë‚é
-	case 273:	//ƒVƒƒƒh[ƒ_ƒCƒu
+	case 26:	//ãŒã¾ã‚“
+	case 39:	//ã‹ã¾ã„ãŸã¡
+	case 75:	//ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰
+	case 145:	//ãƒ­ã‚±ãƒƒãƒˆé ­çªã
+	case 151:	//ã‚½ãƒ¼ãƒ©ãƒ¼ãƒ“ãƒ¼ãƒ 
+	case 155:	//ãã‚‰ã‚’ã¨ã¶
+	case 255:	//ãƒ€ã‚¤ãƒ“ãƒ³ã‚°
+	case 256:	//ã‚ãªã‚’ã»ã‚‹
+	case 263:	//ã¨ã³ã¯ã­ã‚‹
+	case 273:	//ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–
 		return (sp->server_status_flag&SERVER_STATUS_FLAG_TAME_AFTER);
 		break;
 	}
@@ -10175,13 +10175,13 @@ static BOOL	ST_TameWazaTurnCheck(SERVER_PARAM *sp,int waza_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚Æ“Á«‚ğƒ`ƒFƒbƒN‚µ‚Äæ“¾‚·‚×‚«ƒ^ƒCƒv‚ğ•Ô‚·
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ç‰¹æ€§ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å–å¾—ã™ã¹ãã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
  *
- * @param[in]	sp		ƒT[ƒoƒ[ƒN\‘¢‘Ì
- * @param[in]	client	æ“¾‚·‚éClientNo
- * @param[in]	id		æ“¾‚·‚éƒ^ƒCƒviID_PSP_type1 or ID_PSP_type2j
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client	å–å¾—ã™ã‚‹ClientNo
+ * @param[in]	id		å–å¾—ã™ã‚‹ã‚¿ã‚¤ãƒ—ï¼ˆID_PSP_type1 or ID_PSP_type2ï¼‰
  *
- * @retval	TRUEF”­“®@FALSE:‚½‚ß‚éƒ^[ƒ“
+ * @retval	TRUEï¼šç™ºå‹•ã€€FALSE:ãŸã‚ã‚‹ã‚¿ãƒ¼ãƒ³
  */
 //============================================================================================
 static	u8	 ST_ServerTypeGet(SERVER_PARAM *sp,int client,int id)
@@ -10202,7 +10202,7 @@ static	u8	 ST_ServerTypeGet(SERVER_PARAM *sp,int client,int id)
 		GF_ASSERT(0);
 	}
 	
-	//ƒAƒEƒX‚ª“Á«ƒ}ƒ‹ƒ`ƒ^ƒCƒv‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA‘•”õ“¹‹ï‚É‚æ‚Á‚Äƒ^ƒCƒv‚ğ•Ï‚¦‚é
+	//ã‚¢ã‚¦ã‚¹ãŒç‰¹æ€§ãƒãƒ«ãƒã‚¿ã‚¤ãƒ—ã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€è£…å‚™é“å…·ã«ã‚ˆã£ã¦ã‚¿ã‚¤ãƒ—ã‚’å¤‰ãˆã‚‹
 	if((sp->psp[client].monsno==MONSNO_AUSU)&&
 	   (sp->psp[client].speabino==TOKUSYU_MARUTITAIPU)){
 //		switch(ItemParamGet(sp->psp[client].item,ITEM_PRM_EQUIP,HEAPID_BATTLE)){
@@ -10266,10 +10266,10 @@ static	u8	 ST_ServerTypeGet(SERVER_PARAM *sp,int client,int id)
 
 //============================================================================================
 /**
- *	‹Zƒiƒ“ƒo[ƒXƒgƒbƒN—pƒ[ƒN‚Ì‰Šú‰»
+ *	æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚¹ãƒˆãƒƒã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param[in]	sp			ƒT[ƒo—pƒpƒ‰ƒ[ƒ^ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒNƒŠƒA‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¯ãƒªã‚¢ã™ã‚‹ClientNo
  */
 //============================================================================================
 static	void	WazaNoStockClear(SERVER_PARAM *sp,u8 client_no)
@@ -10286,10 +10286,10 @@ static	void	WazaNoStockClear(SERVER_PARAM *sp,u8 client_no)
 
 //=========================================================================
 /**
- *	AI—p“Á«ƒ[ƒN‚ğƒNƒŠƒA
+ *	AIç”¨ç‰¹æ€§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
  *
- * @param[in]	sp			ƒT[ƒoƒVƒXƒeƒ€\‘¢‘Ì
- * @param[in]	client_no	ƒNƒŠƒA‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¯ãƒªã‚¢ã™ã‚‹ClientNo
  */
 //=========================================================================
 static	void	TokusyuNoClear(SERVER_PARAM *sp,u8 client_no)
@@ -10302,10 +10302,10 @@ static	void	TokusyuNoClear(SERVER_PARAM *sp,u8 client_no)
 
 //=========================================================================
 /**
- *	AI—p‘•”õƒAƒCƒeƒ€ƒ[ƒN‚ğƒNƒŠƒA
+ *	AIç”¨è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
  *
- * @param[in]	sp			ƒT[ƒoƒVƒXƒeƒ€\‘¢‘Ì
- * @param[in]	client_no	ƒNƒŠƒA‚·‚éClientNo
+ * @param[in]	sp			ã‚µãƒ¼ãƒã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¯ãƒªã‚¢ã™ã‚‹ClientNo
  */
 //=========================================================================
 static	void	SoubiItemClear(SERVER_PARAM *sp,u8 client_no)
@@ -10318,13 +10318,13 @@ static	void	SoubiItemClear(SERVER_PARAM *sp,u8 client_no)
 
 //=========================================================================
 /**
- *	ƒgƒŒ[ƒX‚Å‚«‚é“Á«‚©ƒ`ƒFƒbƒN‚µ‚Ä”­“®‚Å‚«‚é‚©‚ğ•Ô‚·
+ *	ãƒˆãƒ¬ãƒ¼ã‚¹ã§ãã‚‹ç‰¹æ€§ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ç™ºå‹•ã§ãã‚‹ã‹ã‚’è¿”ã™
  *
- * @param[in]	sp		ƒT[ƒoƒVƒXƒeƒ€\‘¢‘Ì
- * @param[in]	def1	ƒ`ƒFƒbƒN‘ÎÛClientNo
- * @param[in]	def2	ƒ`ƒFƒbƒN‘ÎÛClientNo
+ * @param[in]	sp		ã‚µãƒ¼ãƒã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
+ * @param[in]	def1	ãƒã‚§ãƒƒã‚¯å¯¾è±¡ClientNo
+ * @param[in]	def2	ãƒã‚§ãƒƒã‚¯å¯¾è±¡ClientNo
  *
- * @retval	”­“®‘ÎÛClientNo
+ * @retval	ç™ºå‹•å¯¾è±¡ClientNo
  */
 //=========================================================================
 static	int	ST_ServerTraceClientNoGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int def1,int def2)
@@ -10369,7 +10369,7 @@ static	int	ST_ServerTraceClientNoGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int def1,i
 
 //============================================================================================
 /**
- *	‚«‚¯‚ñ‚æ‚¿‚ÅœŠO‚·‚éí“¬Œø‰Êƒiƒ“ƒo[ƒe[ƒuƒ‹
+ *	ãã‘ã‚“ã‚ˆã¡ã§é™¤å¤–ã™ã‚‹æˆ¦é—˜åŠ¹æœãƒŠãƒ³ãƒãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	u16	KikenyochiNGWazaSeqTable[]={
@@ -10383,12 +10383,12 @@ static	const	u16	KikenyochiNGWazaSeqTable[]={
 
 //============================================================================================
 /**
- *	‚«‚¯‚ñ‚æ‚¿‚ÅœŠO‚·‚éí“¬Œø‰Êƒiƒ“ƒo[‚ğ’²‚×‚é
+ *	ãã‘ã‚“ã‚ˆã¡ã§é™¤å¤–ã™ã‚‹æˆ¦é—˜åŠ¹æœãƒŠãƒ³ãƒãƒ¼ã‚’èª¿ã¹ã‚‹
  *
- * @param[in]	sp			ƒT[ƒoƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no		ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	sp			ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:œŠO‚µ‚È‚¢ TRUE:œŠO‚·‚é
+ * @retval	FALSE:é™¤å¤–ã—ãªã„ TRUE:é™¤å¤–ã™ã‚‹
  */
 //============================================================================================
 static	BOOL	ST_ServerKikenyochiWazaSeqCheck(SERVER_PARAM *sp,int waza_no)
@@ -10406,14 +10406,14 @@ static	BOOL	ST_ServerKikenyochiWazaSeqCheck(SERVER_PARAM *sp,int waza_no)
 #if B1366_060815_FIX
 //============================================================================================
 /**
- * “Áê‚È‹Z‚Ìƒ^ƒCƒv‚ğæ“¾
+ * ç‰¹æ®ŠãªæŠ€ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	‹Z‚ğg—p‚·‚éClientNo
- * @param[in]	waza_no		ƒ^ƒCƒv‚ğæ“¾‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	æŠ€ã‚’ä½¿ç”¨ã™ã‚‹ClientNo
+ * @param[in]	waza_no		ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	‹Zƒ^ƒCƒv
+ * @retval	æŠ€ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 static	int		ST_AIWazaTypeGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int waza_no)
@@ -10524,15 +10524,15 @@ static	int		ST_AIWazaTypeGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 }
 #endif //B1366_060815_FIX
 
-//‹Z‚ÌƒV[ƒPƒ“ƒX“à‚Å‚àŒÄ‚Î‚ê‚é‚Ì‚Å,battle_aiAbc_common2‚ÌƒI[ƒo[ƒŒƒC‚©‚ç‚Í‚¸‚ê‚½‚±‚±‚É’u‚­
+//æŠ€ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å†…ã§ã‚‚å‘¼ã°ã‚Œã‚‹ã®ã§,battle_aiã€bc_common2ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‹ã‚‰ã¯ãšã‚ŒãŸã“ã“ã«ç½®ã
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‘I‘ğAI
+ *	ãƒã‚±ãƒ¢ãƒ³é¸æŠAI
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	‘I‘ğ‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	é¸æŠã™ã‚‹ClientNo
  *
- * @retval	‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒWƒVƒ‡ƒ“
+ * @retval	é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
  */
 //============================================================================================
 int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
@@ -10685,12 +10685,12 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	AI‚ª‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u‚ğæ“¾
+ *	AIãŒé¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒWƒVƒ‡ƒ“
+ * @retval	é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
  */
 //============================================================================================
 int	ClientAIReshuffleSelMonsNoGet(BATTLE_WORK *bw,int client_no)
@@ -10707,14 +10707,14 @@ int	ClientAIReshuffleSelMonsNoGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- * “Áê‚È‹Z‚Ìƒ^ƒCƒv‚ğæ“¾
+ * ç‰¹æ®ŠãªæŠ€ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sp			ƒT[ƒoƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	‹Z‚ğg—p‚·‚éClientNo
- * @param[in]	waza_no		ƒ^ƒCƒv‚ğæ“¾‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sp			ã‚µãƒ¼ãƒã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	æŠ€ã‚’ä½¿ç”¨ã™ã‚‹ClientNo
+ * @param[in]	waza_no		ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	‹Zƒ^ƒCƒv
+ * @retval	æŠ€ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 int		AIWazaTypeGetPP(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM *pp,int waza_no)

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	pm_overlay.c
- * @brief	ƒI[ƒo[ƒŒƒC§Œä
+ * @brief	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ¶å¾¡
  * @author	matsuda
- * @date	2005.06.16(–Ø)
+ * @date	2005.06.16(æœ¨)
  */
 //==============================================================================
 #include <nitro.h>
@@ -13,10 +13,10 @@
 
 
 #if 0
-NitroStaticInit‚ğg—p‚·‚é‚É‚Í
+NitroStaticInitã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯
 /*
- * NitroStaticInit() ‚ğ static initializer ‚Éw’è‚·‚é‚É‚Í
- * ‚±‚Ìƒwƒbƒ_‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ü‚·.
+ * NitroStaticInit() ã‚’ static initializer ã«æŒ‡å®šã™ã‚‹ã«ã¯
+ * ã“ã®ãƒ˜ãƒƒãƒ€ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¾ã™.
  */
 #include <nitro/sinit.h>
 
@@ -24,22 +24,22 @@ NitroStaticInit‚ğg—p‚·‚é‚É‚Í
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Šeƒƒ‚ƒŠƒGƒŠƒA‚ÅAˆê“x‚ÉƒI[ƒo[ƒŒƒCo—ˆ‚é”
+///å„ãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢ã§ã€ä¸€åº¦ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å‡ºæ¥ã‚‹æ•°
 #define AREA_WORK_MAX		(8)
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO—p’è‹`
+//	ãƒ‡ãƒãƒƒã‚°ç”¨å®šç¾©
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
-///’è‹`‚ª—LŒø‚Ìê‡‚ÍƒI[ƒo[ƒŒƒC‚ÌƒAƒ“ƒ[ƒhÀs‚ÉƒAƒ“ƒ[ƒh‚µ‚½—Ìˆæ‚ğƒNƒŠƒA‚·‚é
+///å®šç¾©ãŒæœ‰åŠ¹ã®å ´åˆã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å®Ÿè¡Œæ™‚ã«ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸé ˜åŸŸã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 #define DEBUG_OVELAY_UNLOAD_CLEAR
 #endif
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	FSOverlayID loaded_id;
@@ -53,13 +53,13 @@ typedef struct{
 }OVERLAY_SYSTEM;
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
 //==============================================================================
 static OVERLAY_SYSTEM OverlaySys;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Overlay_Unload(OVERLAY_WORK *ovwork);
 static BOOL Overlay_CrossAreaCheck(const FSOverlayID id);
@@ -81,7 +81,7 @@ BOOL Overlay_Call(const FSOverlayID id, int load_type, void(*func)(void *), void
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒo[ƒŒƒC§Œä‚ÌƒVƒXƒeƒ€ƒ[ƒN‚ğƒNƒŠƒA‚·‚é
+ * @brief   ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ¶å¾¡ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  */
 //--------------------------------------------------------------
 void Overlay_SystemWorkInit(void)
@@ -91,7 +91,7 @@ void Overlay_SystemWorkInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ“Ç‚İ‚ñ‚Å‚¢‚é‘S‚Ä‚ÌƒI[ƒo[ƒŒƒC‚ğƒAƒ“ƒ[ƒh‚µ‚Ä‚©‚çAƒVƒXƒeƒ€ƒ[ƒN‚ğƒNƒŠƒA‚·‚é
+ * @brief   ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹å…¨ã¦ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‹ã‚‰ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  */
 //--------------------------------------------------------------
 void Overlay_Init(void)
@@ -102,13 +102,13 @@ void Overlay_Init(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒo[ƒŒƒC‚ğƒAƒ“ƒ[ƒh‚µ‚Ü‚·
- * @param   ovwork		ƒI[ƒo[ƒŒƒCƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
+ * @param   ovwork		ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Overlay_Unload(OVERLAY_WORK *ovwork)
 {
-	//Œ»İ“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚ğƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+	//ç¾åœ¨èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 	BOOL ret;
 #ifdef DEBUG_OVELAY_UNLOAD_CLEAR
 	u32 start, end;
@@ -117,18 +117,18 @@ static void Overlay_Unload(OVERLAY_WORK *ovwork)
 	GF_ASSERT(ovwork->loaded == TRUE);
 
 #ifdef DEBUG_OVELAY_UNLOAD_CLEAR
-	//ƒAƒ“ƒ[ƒh‚µ‚½ƒI[ƒo[ƒŒƒC—Ìˆæ‚ğ0ƒNƒŠƒA‚·‚é‚½‚ß‚É‰ğ•ú‚·‚é‘O‚ÉƒAƒhƒŒƒXæ“¾
+	//ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã‚’0ã‚¯ãƒªã‚¢ã™ã‚‹ãŸã‚ã«è§£æ”¾ã™ã‚‹å‰ã«ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	Overlay_RamStartEndAdressGet(ovwork->loaded_id, &start, &end);
 #endif
 
 	ret = FS_UnloadOverlay(MI_PROCESSOR_ARM9, ovwork->loaded_id);
-	OS_Printf("overlay ‰ğ•ú‚µ‚Ü‚µ‚½ id = 0x%08X(10i”F%d)\n", 
+	OS_Printf("overlay è§£æ”¾ã—ã¾ã—ãŸ id = 0x%08X(10é€²æ•°ï¼š%d)\n", 
 		ovwork->loaded_id, ovwork->loaded_id);
 	GF_ASSERT(ret == TRUE);
 	ovwork->loaded = FALSE;
 
 #ifdef DEBUG_OVELAY_UNLOAD_CLEAR
-	//ƒAƒ“ƒ[ƒh‚µ‚½ƒI[ƒo[ƒŒƒC—Ìˆæ‚ğƒNƒŠƒA‚·‚é
+	//ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	OS_TPrintf("overlay unloade start address = 0x%08X\n", start);
 	OS_TPrintf("overlay unloade end address = 0x%08X\n", end);
 	//MI_CpuClear8((void*)start, end - start);
@@ -138,11 +138,11 @@ static void Overlay_Unload(OVERLAY_WORK *ovwork)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚µ‚½ƒI[ƒo[ƒŒƒCID‚ÌƒI[ƒo[ƒŒƒC‚ğƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŒ‡å®šã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   id		ƒI[ƒo[ƒŒƒCID
+ * @param   id		ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  *
- * ƒ[ƒh‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚Ü‚¹‚ñ
+ * ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ã¾ã›ã‚“
  */
 //--------------------------------------------------------------
 void Overlay_UnloadID(const FSOverlayID id)
@@ -156,7 +156,7 @@ void Overlay_UnloadID(const FSOverlayID id)
 	
 	for(i = 0; i < AREA_WORK_MAX; i++){
 		if(ovwork[i].loaded == TRUE && ovwork[i].loaded_id == id){
-			//Œ»İ“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚ğƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+			//ç¾åœ¨èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 			Overlay_Unload(&ovwork[i]);
 			return;
 		}
@@ -165,7 +165,7 @@ void Overlay_UnloadID(const FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒƒ‚ƒŠ‚É“WŠJ‚³‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒC‚ğ‘S‚ÄƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å…¨ã¦ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  */
 //--------------------------------------------------------------
 void Overlay_UnloadMain(void)
@@ -181,7 +181,7 @@ void Overlay_UnloadMain(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ITCM‚É“WŠJ‚³‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒC‚ğ‘S‚ÄƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+ * @brief   ITCMã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å…¨ã¦ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  */
 //--------------------------------------------------------------
 void Overlay_UnloadItcm(void)
@@ -197,7 +197,7 @@ void Overlay_UnloadItcm(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   DTCM‚É“WŠJ‚³‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒC‚ğ‘S‚ÄƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+ * @brief   DTCMã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å…¨ã¦ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  */
 //--------------------------------------------------------------
 void Overlay_UnloadDtcm(void)
@@ -213,10 +213,10 @@ void Overlay_UnloadDtcm(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚µ‚½ƒI[ƒo[ƒŒƒCID‚Æ“¯‚¶ƒƒ‚ƒŠƒGƒŠƒA‚É“WŠJ‚³‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒC—Ìˆæ‚ğ
- *          ‘S‚ÄƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŒ‡å®šã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã¨åŒã˜ãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢ã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã‚’
+ *          å…¨ã¦ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   id		ƒI[ƒo[ƒŒƒCID
+ * @param   id		ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  */
 //--------------------------------------------------------------
 void Overlay_UnloadSameArea(const FSOverlayID id)
@@ -242,7 +242,7 @@ void Overlay_UnloadSameArea(const FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ“Ç‚İ‚ñ‚Å‚¢‚éƒI[ƒo[ƒŒƒC‚Ö‚ÌƒAƒ“ƒ[ƒh‚ğA‘S‚Ä‚Ì—Ìˆæ‚É‘Î‚µ‚Äs‚¤
+ * @brief   ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã¸ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’ã€å…¨ã¦ã®é ˜åŸŸã«å¯¾ã—ã¦è¡Œã†
  */
 //--------------------------------------------------------------
 void Overlay_UnloadAll(void)
@@ -254,9 +254,9 @@ void Overlay_UnloadAll(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒI[ƒo[ƒŒƒCID‚Ì“WŠJæƒƒ‚ƒŠƒGƒŠƒA‚ğæ“¾‚·‚é
- * @param   id		ƒI[ƒo[ƒŒƒCID
- * @retval  “WŠJæƒƒ‚ƒŠƒGƒŠƒA(OVERLAY_AREA_???)
+ * @brief   æŒ‡å®šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã®å±•é–‹å…ˆãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢ã‚’å–å¾—ã™ã‚‹
+ * @param   id		ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
+ * @retval  å±•é–‹å…ˆãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢(OVERLAY_AREA_???)
  */
 //--------------------------------------------------------------
 int Overlay_MemoryAreaGet(const FSOverlayID id)
@@ -280,20 +280,20 @@ int Overlay_MemoryAreaGet(const FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚µ‚½ƒI[ƒo[ƒŒƒC‚ğƒ[ƒh‚·‚é
+ * @brief   æŒ‡å®šã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
- * @param   id				ƒ[ƒh‚·‚éƒI[ƒo[ƒŒƒCID
- * @param   load_type		ƒ[ƒhƒ^ƒCƒv(OVERLAY_LOAD_???)
+ * @param   id				ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
+ * @param   load_type		ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—(OVERLAY_LOAD_???)
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:å¤±æ•—
  *
- * •¡”‚ÌƒI[ƒo[ƒŒƒC‚ğÀs‚µ‚Ä‚¢‚éA—Ìˆæ‚ª”í‚Á‚½ê‡‚ÍƒI[ƒo[ƒŒƒC‚Í¸”s‚µ‚Ü‚·B
- * (ƒfƒoƒbƒO’†‚ÍGF_ASSERT‚Å’â~‚µ‚Ü‚·)
+ * è¤‡æ•°ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å®Ÿè¡Œã—ã¦ã„ã‚‹æ™‚ã€é ˜åŸŸãŒè¢«ã£ãŸå ´åˆã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã¯å¤±æ•—ã—ã¾ã™ã€‚
+ * (ãƒ‡ãƒãƒƒã‚°ä¸­ã¯GF_ASSERTã§åœæ­¢ã—ã¾ã™)
  *
- * ƒ[ƒh‚ÍFS_SetDefaultDMA(or FS_Init)‚Åİ’è‚³‚ê‚Ä‚¢‚é•û–@‚Ås‚¢‚Ü‚·B
- * g—p‚·‚éDMA,CPU‚ğ•ÏX‚µ‚½‚¢ê‡‚ÍA‚±‚ÌŠÖ”Às‘O‚ÉFS_SetDefaultDMA‚Åİ’è‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
- * ITCM,DTCM‚Ö‚Ìƒ[ƒh‚Í“à•”‚Åˆê“I‚ÉCPU‚É•ÏX‚µ‚Äƒ[ƒh‚ğs‚¢‚Ü‚·B(ƒ[ƒhŒã‚ÍŒ³‚Ìİ’è‚É–ß‚µ‚Ü‚·)
+ * ãƒ­ãƒ¼ãƒ‰ã¯FS_SetDefaultDMA(or FS_Init)ã§è¨­å®šã•ã‚Œã¦ã„ã‚‹æ–¹æ³•ã§è¡Œã„ã¾ã™ã€‚
+ * ä½¿ç”¨ã™ã‚‹DMA,CPUã‚’å¤‰æ›´ã—ãŸã„å ´åˆã¯ã€ã“ã®é–¢æ•°å®Ÿè¡Œå‰ã«FS_SetDefaultDMAã§è¨­å®šã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+ * ITCM,DTCMã¸ã®ãƒ­ãƒ¼ãƒ‰ã¯å†…éƒ¨ã§ä¸€æ™‚çš„ã«CPUã«å¤‰æ›´ã—ã¦ãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã„ã¾ã™ã€‚(ãƒ­ãƒ¼ãƒ‰å¾Œã¯å…ƒã®è¨­å®šã«æˆ»ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 BOOL Overlay_Load(const FSOverlayID id, int load_type)
@@ -304,12 +304,12 @@ BOOL Overlay_Load(const FSOverlayID id, int load_type)
 	OVERLAY_WORK *ovwork;
 	int i;
 	
-//	Overlay_Unload(memory_area);	//“¯—Ìˆæ‚ğg—p‚µ‚Ä‚¢‚éƒI[ƒo[ƒŒƒC‚ğƒAƒ“ƒ[ƒh
+//	Overlay_Unload(memory_area);	//åŒé ˜åŸŸã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 	if(Overlay_CrossAreaCheck(id) == FALSE){
 		return FALSE;
 	}
 
-	//‹ó‚«ƒ[ƒNƒT[ƒ`
+	//ç©ºããƒ¯ãƒ¼ã‚¯ã‚µãƒ¼ãƒ
 	memory_area = Overlay_MemoryAreaGet(id);
 	ovwork = Overlay_AreaOverlayWorkPtrGet(memory_area);
 	for(i = 0; i < AREA_WORK_MAX; i++){
@@ -321,12 +321,12 @@ BOOL Overlay_Load(const FSOverlayID id, int load_type)
 		}
 	}
 	if(i >= AREA_WORK_MAX){
-		GF_ASSERT(0);	//“¯ƒƒ‚ƒŠƒGƒŠƒA“à‚ÉƒI[ƒo[ƒŒƒCo—ˆ‚é”‚ğ’´‚¦‚Ä‚¢‚é
+		GF_ASSERT(0);	//åŒãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢å†…ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å‡ºæ¥ã‚‹æ•°ã‚’è¶…ãˆã¦ã„ã‚‹
 		return FALSE;
 	}
 	
 	if(memory_area == OVERLAY_AREA_ITCM || memory_area == OVERLAY_AREA_DTCM){
-		//TCM‚Ö‚Ì‘‚«‚İ‚ÍDMA‚Å‚Ío—ˆ‚È‚¢‚Ì‚Åˆê“I‚ÉCPU‚Ö•ÏX
+		//TCMã¸ã®æ›¸ãè¾¼ã¿ã¯DMAã§ã¯å‡ºæ¥ãªã„ã®ã§ä¸€æ™‚çš„ã«CPUã¸å¤‰æ›´
 		dma_bak = FS_SetDefaultDMA(FS_DMA_NOT_USE);
 	}
 	
@@ -341,35 +341,35 @@ BOOL Overlay_Load(const FSOverlayID id, int load_type)
 	case OVERLAY_LOAD_NOT_SYNCHRONIZE:
 		ret = load_overlay_low(MI_PROCESSOR_ARM9, id);
 		break;
-	default:		//•s–¾‚Èƒ[ƒhƒ^ƒCƒv
+	default:		//ä¸æ˜ãªãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—
 		GF_ASSERT(0);
 		return FALSE;
 	}
 
 	if(memory_area == OVERLAY_AREA_ITCM || memory_area == OVERLAY_AREA_DTCM){
-		//ˆê“I‚É•ÏX‚µ‚½‚Ì‚ğŒ³‚É–ß‚·
+		//ä¸€æ™‚çš„ã«å¤‰æ›´ã—ãŸã®ã‚’å…ƒã«æˆ»ã™
 		FS_SetDefaultDMA(dma_bak);
 	}
 
-	if(ret == FALSE){	//ƒ[ƒh¸”s
+	if(ret == FALSE){	//ãƒ­ãƒ¼ãƒ‰å¤±æ•—
 		OS_Printf("overlay 0x%08X is not available!\n", id);
 		GF_ASSERT(0);
 		return FALSE;
 	}
 
-	OS_Printf("overlay ƒ[ƒh‚µ‚Ü‚µ‚½ id = 0x%08X(10i”:%d)\n", id, id);
+	OS_Printf("overlay ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ id = 0x%08X(10é€²æ•°:%d)\n", id, id);
 	
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚µ‚½ƒI[ƒo[ƒŒƒCID‚Ì—Ìˆæ‚ªŒ»İ“WŠJ‚³‚ê‚Ä‚¢‚éƒI[ƒo[ƒŒƒC—Ìˆæ‚ÆƒAƒhƒŒƒX‚ª
- *          ”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN‚·‚é
+ * @brief   æŒ‡å®šã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã®é ˜åŸŸãŒç¾åœ¨å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã¨ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ
+ *          è¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param   id		ƒI[ƒo[ƒŒƒCID
+ * @param   id		ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  *
- * @retval  TRUE:”í‚Á‚Ä‚¢‚È‚¢B@FALSE:”í‚Á‚Ä‚¢‚é(ƒGƒ‰[‚Ìê‡‚à—L)
+ * @retval  TRUE:è¢«ã£ã¦ã„ãªã„ã€‚ã€€FALSE:è¢«ã£ã¦ã„ã‚‹(ã‚¨ãƒ©ãƒ¼ã®å ´åˆã‚‚æœ‰)
  */
 //--------------------------------------------------------------
 static BOOL Overlay_CrossAreaCheck(const FSOverlayID id)
@@ -393,8 +393,8 @@ static BOOL Overlay_CrossAreaCheck(const FSOverlayID id)
 			if(ret == TRUE){
 				if((start >= c_start && start < c_end) || (end > c_start && end <= c_end)
 						|| (start <= c_start && end >= c_end)){
-					OS_Printf("ƒI[ƒo[ƒŒƒC—Ìˆæ‚Éd•¡‚ª”­¶‚µ‚Ü‚µ‚½I\n");
-					OS_Printf("“WŠJÏ‚İID=%dAV‹K‚É“WŠJ‚µ‚æ‚¤‚Æ‚µ‚½ID=%d\n", 
+					OS_Printf("ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã«é‡è¤‡ãŒç™ºç”Ÿã—ã¾ã—ãŸï¼\n");
+					OS_Printf("å±•é–‹æ¸ˆã¿ID=%dã€æ–°è¦ã«å±•é–‹ã—ã‚ˆã†ã¨ã—ãŸID=%d\n", 
 						ovwork[i].loaded_id, id);
 					GF_ASSERT(0);
 					return FALSE;
@@ -408,9 +408,9 @@ static BOOL Overlay_CrossAreaCheck(const FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒƒ‚ƒŠƒGƒŠƒA‚ªQÆ‚·‚éƒI[ƒo[ƒŒƒCƒ[ƒN‚Ìæ“ªƒAƒhƒŒƒX‚ğæ“¾‚·‚é
- * @param   memory_area		ƒƒ‚ƒŠƒGƒŠƒA(OVERLAY_AREA_???)
- * @retval  w’èƒƒ‚ƒŠ‚É‘Î‰‚µ‚½ƒI[ƒo[ƒŒƒCƒ[ƒN‚Ìæ“ªƒAƒhƒŒƒX
+ * @brief   æŒ‡å®šãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢ãŒå‚ç…§ã™ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¯ãƒ¼ã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+ * @param   memory_area		ãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢(OVERLAY_AREA_???)
+ * @retval  æŒ‡å®šãƒ¡ãƒ¢ãƒªã«å¯¾å¿œã—ãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¯ãƒ¼ã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static OVERLAY_WORK * Overlay_AreaOverlayWorkPtrGet(int memory_area)
@@ -434,13 +434,13 @@ static OVERLAY_WORK * Overlay_AreaOverlayWorkPtrGet(int memory_area)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒI[ƒo[ƒŒƒCID‚Ìƒ[ƒhŠJnƒAƒhƒŒƒX‚Æƒ[ƒhI—¹ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief   æŒ‡å®šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã®ãƒ­ãƒ¼ãƒ‰é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ãƒ­ãƒ¼ãƒ‰çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- * @param   id			ƒI[ƒo[ƒŒƒCID
- * @param   start		æ“¾‚µ‚½ƒ[ƒhŠJnƒAƒhƒŒƒX‘ã“üæ
- * @param   end			æ“¾‚µ‚½ƒ[ƒhI—¹ƒAƒhƒŒƒX‘ã“üæ
+ * @param   id			ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
+ * @param   start		å–å¾—ã—ãŸãƒ­ãƒ¼ãƒ‰é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ä»£å…¥å…ˆ
+ * @param   end			å–å¾—ã—ãŸãƒ­ãƒ¼ãƒ‰çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹ä»£å…¥å…ˆ
  *
- * @retval  TRUE:³íI—¹B@FALSE:¸”s
+ * @retval  TRUE:æ­£å¸¸çµ‚äº†ã€‚ã€€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL Overlay_RamStartEndAdressGet(const FSOverlayID id, u32 *start, u32 *end)
@@ -462,13 +462,13 @@ static BOOL Overlay_RamStartEndAdressGet(const FSOverlayID id, u32 *start, u32 *
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ğ“¯Šú“I‚ÉÀs
+ * @brief   å…¨ã¦ã‚’åŒæœŸçš„ã«å®Ÿè¡Œ
  *
- * @param   target		ƒ[ƒh‚·‚é‘ÎÛiARM9ƒvƒƒZƒbƒT/ARM7ƒvƒƒZƒbƒTj
- * @param   id			ƒI[ƒo[ƒŒƒCID
+ * @param   target		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¯¾è±¡ï¼ˆARM9ãƒ—ãƒ­ã‚»ãƒƒã‚µ/ARM7ãƒ—ãƒ­ã‚»ãƒƒã‚µï¼‰
+ * @param   id			ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL load_overlay_high(MIProcessor target, FSOverlayID id)
@@ -478,13 +478,13 @@ static BOOL load_overlay_high(MIProcessor target, FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   •”•ª“I‚Éèì‹Æ‚ÅÀs (“¯Šú“I)
+ * @brief   éƒ¨åˆ†çš„ã«æ‰‹ä½œæ¥­ã§å®Ÿè¡Œ (åŒæœŸçš„)
  *
- * @param   target		ƒ[ƒh‚·‚é‘ÎÛiARM9ƒvƒƒZƒbƒT/ARM7ƒvƒƒZƒbƒTj
- * @param   id			ƒI[ƒo[ƒŒƒCID
+ * @param   target		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¯¾è±¡ï¼ˆARM9ãƒ—ãƒ­ã‚»ãƒƒã‚µ/ARM7ãƒ—ãƒ­ã‚»ãƒƒã‚µï¼‰
+ * @param   id			ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL load_overlay_middle(MIProcessor target, FSOverlayID id)
@@ -503,20 +503,20 @@ static BOOL load_overlay_middle(MIProcessor target, FSOverlayID id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ğèì‹Æ‚ÅÀs (”ñ“¯Šú“I)
+ * @brief   å…¨ã¦ã‚’æ‰‹ä½œæ¥­ã§å®Ÿè¡Œ (éåŒæœŸçš„)
  *
- * @param   target		ƒ[ƒh‚·‚é‘ÎÛiARM9ƒvƒƒZƒbƒT/ARM7ƒvƒƒZƒbƒTj
- * @param   id			ƒI[ƒo[ƒŒƒCID
+ * @param   target		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¯¾è±¡ï¼ˆARM9ãƒ—ãƒ­ã‚»ãƒƒã‚µ/ARM7ãƒ—ãƒ­ã‚»ãƒƒã‚µï¼‰
+ * @param   id			ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL load_overlay_low(MIProcessor target, FSOverlayID id)
 {
 	FSOverlayInfo info;
 	
-	//ƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚Ìî•ñ‚ğƒ[ƒh‚µ‚Ü‚·
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 	if (!FS_LoadOverlayInfo(&info, target, id)){
 		return FALSE;
 	}
@@ -524,7 +524,7 @@ static BOOL load_overlay_low(MIProcessor target, FSOverlayID id)
 	{
 		FSFile file;
 		
-		//FSFile\‘¢‘Ì‚ğ‰Šú‰»‚µ‚Ü‚·
+		//FSFileæ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™
 		FS_InitFile(&file);
 		(void)FS_LoadOverlayImageAsync(&info, &file);
 		(void)FS_WaitAsync(&file);

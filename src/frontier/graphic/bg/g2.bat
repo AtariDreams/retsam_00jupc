@@ -1,8 +1,8 @@
-REM ƒOƒ‰ƒtƒBƒbƒJ[‚ªŠÖ˜A‚Ã‚¯İ’è‚ğ‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚àƒRƒ“ƒo[ƒg‚³‚ê‚é
-REM cell‚ğg—p‚µ‚È‚¢BG‚ÍƒIƒvƒVƒ‡ƒ“w’è(-bg)‚ğ‚Â‚¯‚é
+REM ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚«ãƒ¼ãŒé–¢é€£ã¥ã‘è¨­å®šã‚’ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
+REM cellã‚’ä½¿ç”¨ã—ãªã„BGã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®š(-bg)ã‚’ã¤ã‘ã‚‹
 REM
-REM ƒoƒgƒ‹ƒXƒe[ƒW***********************************
-REM nsc‚ğw’è‚·‚é‚ÆAncg‚à‡‚í‚¹‚ÄƒRƒ“ƒo[ƒg‚³‚ê‚é
+REM ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸***********************************
+REM nscã‚’æŒ‡å®šã™ã‚‹ã¨ã€ncgã‚‚åˆã‚ã›ã¦ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
 
 del *.N*R
 
@@ -13,14 +13,14 @@ g2dcvtr bs_stage_alpha_a.nsc
 g2dcvtr bs_select.nsc
 g2dcvtr bs_stage_rouka.nsc
 REM
-REM nce‚ğw’è‚·‚é‚ÆAncg,ncl‚à‡‚í‚¹‚ÄƒRƒ“ƒo[ƒg‚³‚ê‚é
+REM nceã‚’æŒ‡å®šã™ã‚‹ã¨ã€ncg,nclã‚‚åˆã‚ã›ã¦ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
 REM g2dcvtr bs_stage.ncg 
 g2dcvtr bs_stage.ncl
 g2dcvtr bs_stage_alpha.ncl
 g2dcvtr bs_select.ncl
 g2dcvtr bs_stage_rouka.ncl
 
-REM ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹***********************************
+REM ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«***********************************
 g2dcvtr bc_ohma.nsc
 g2dcvtr bc_ohma.ncl
 g2dcvtr bc_rouka.nsc
@@ -42,7 +42,7 @@ g2dcvtr bc_taisen02.nsc
 g2dcvtr bc_taisen_status.nsc
 g2dcvtr bc_taisen_waza.nsc
 
-REM ƒoƒgƒ‹ƒ^ƒ[***********************************
+REM ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼***********************************
 g2dcvtr bt_mulbattle.nsc
 g2dcvtr bt_mulway.nsc
 g2dcvtr bt_mulway_a.nsc
@@ -52,7 +52,7 @@ g2dcvtr bt_way_a.nsc
 REM g2dcvtr bt.ncg
 g2dcvtr bt.ncl
 
-REM ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[***********************************
+REM ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼***********************************
 REM g2dcvtr bf_room.ncg
 g2dcvtr bf_room_battle.nsc
 g2dcvtr bf_room_exchange.nsc
@@ -70,8 +70,8 @@ g2dcvtr bf_rental_wifimode.nsc
 g2dcvtr bf_room.ncl
 g2dcvtr bf_rental.ncl
 
-REM ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg***********************************
-REM ‘Îí•”‰®
+REM ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ***********************************
+REM å¯¾æˆ¦éƒ¨å±‹
 g2dcvtr br_room.nsc
 g2dcvtr br_room_mul.nsc
 g2dcvtr br_rouka.nsc
@@ -79,7 +79,7 @@ REM g2dcvtr br_room.ncg
 REM g2dcvtr br_rouka.ncg
 g2dcvtr br_room.ncl
 g2dcvtr br_rouka.ncl
-REM ‘Îí•”‰®‚ÌŒ‹‰Êƒpƒlƒ‹
+REM å¯¾æˆ¦éƒ¨å±‹ã®çµæœãƒ‘ãƒãƒ«
 g2dcvtr br_kekka01_hp_a.nsc
 g2dcvtr br_kekka01_hp_b.nsc
 g2dcvtr br_kekka02_doku_a.nsc
@@ -112,7 +112,7 @@ g2dcvtr br_kekka20_through.nsc
 g2dcvtr br_kekka21_bp.nsc
 g2dcvtr br_kekka22_suka.nsc
 g2dcvtr br_kekka23_bp2.nsc
-REM ƒ‹[ƒŒƒbƒg‰æ–Ê
+REM ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢
 g2dcvtr br_panel.nsc
 g2dcvtr br_panel2.nsc
 g2dcvtr br_panel_mul.nsc
@@ -123,7 +123,7 @@ g2dcvtr br_panel_alpha2.nsc
 g2dcvtr br_panel_alpha2_mul.nsc
 REM g2dcvtr br_panel.ncg
 g2dcvtr br_panel.ncl
-REM ‚µ‚½‰æ–Ê•ª‚¯‚½
+REM ã—ãŸç”»é¢åˆ†ã‘ãŸ
 g2dcvtr br_button_bg.nsc
 g2dcvtr br_button_bg.ncl
 g2dcvtr br_room_kekka.ncl
@@ -151,19 +151,19 @@ g2dcvtr br_room_kekka21_bp.ncl
 g2dcvtr br_room_kekka22_suka.ncl
 g2dcvtr br_room_kekka23_bp2.ncl
 
-REM ƒtƒƒ“ƒeƒBƒA¬Ñ***********************************
+REM ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾***********************************
 g2dcvtr seiseki.nsc
 g2dcvtr seiseki.ncl
 
-REM wifiƒJƒEƒ“ƒ^[***********************************
+REM wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼***********************************
 g2dcvtr bf_connect.nsc
 g2dcvtr bf_connect.ncl
 
-REM ‰º‰æ–Ê***********************************
+REM ä¸‹ç”»é¢***********************************
 g2dcvtr batt_frontier.nsc
 g2dcvtr batt_frontier.ncl
 
 
-REM .lst‚É’Ç‰Á‚·‚é‚ÍÅŒã‚É‰üs‚ğ“ü‚ê‚é‚ÆƒGƒ‰[‚É‚È‚é‚Ì‚Å’ˆÓI
+REM .lstã«è¿½åŠ ã™ã‚‹æ™‚ã¯æœ€å¾Œã«æ”¹è¡Œã‚’å…¥ã‚Œã‚‹ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§æ³¨æ„ï¼
 
 

@@ -6,22 +6,22 @@
 #include "../sound_data.sbdl"
 
 ;******************
-;ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+;ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 ;******************
 
 @SEQ_TABLE	
-;@@@					bank 		vol 	chPr 	PlPr 	PlNum
-PCS_SE_ICON:	se_join_message,	BANK_SE_PCS,  	 60, 	96, 	64, 	15	;ƒT[ƒ`ƒƒ[ƒAƒCƒRƒ“iQ‰ÁƒƒbƒZ[ƒWj
+;ã€€ã€€ã€€					bank 		vol 	chPr 	PlPr 	PlNum
+PCS_SE_ICON:	se_join_message,	BANK_SE_PCS,  	 60, 	96, 	64, 	15	;ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚¢ã‚¤ã‚³ãƒ³ï¼ˆå‚åŠ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‰
 
 
 
 ;******************
-;ƒV[ƒPƒ“ƒXƒf[ƒ^
+;ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿
 ;******************
 
 @SEQ_DATA
 
-;ƒT[ƒ`ƒƒ[ƒAƒCƒRƒ“‰¹
+;ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚¢ã‚¤ã‚³ãƒ³éŸ³
 se_join_message:
 	alloctrack TRACK_1 | TRACK_2 | TRACK_3
 	opentrack 1, _track1

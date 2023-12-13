@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MB_GetGameEntryBitmap</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_GetGameEntryBitmap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,35 +22,35 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>game_reg</STRONG></EM></TD>
-      <TD width="87%">AID�r�b�g�}�b�v���擾����<A href="../mb_game_registry_type.html">MBGameRegistry</A>�\���̂ւ̃|�C���^</TD>
+      <TD width="87%">AIDビットマップを取得する<A href="../mb_game_registry_type.html">MBGameRegistry</A>構造体へのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�Q�[�����z�M���̏ꍇ�̓G���g���[���Ă���AID�r�b�g�}�b�v(�e�@���g��AID:0���܂�)���A<br>
-�Q�[�����z�M���ł͂Ȃ��ꍇ��0��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>ゲームが配信中の場合はエントリーしているAIDビットマップ(親機自身のAID:0も含む)を、<br>
+ゲームが配信中ではない場合は0を返します。</p>
 
-<H2>����</H2>
-<P>�w�肵���Q�[�����ɑ΂��Č��݃G���g���[���Ă���SAID�r�b�g�}�b�v���擾���܂��B<BR>
+<H2>説明</H2>
+<P>指定したゲーム情報に対して現在エントリーしている全AIDビットマップを取得します。<BR>
 <BR>
 </CODE></p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../mb_game_registry_type.html">MBGameRegistry</A> <BR>
 <A href="MB_RegisterFile.html">MB_RegisterFile</A> 
 <A href="MB_UnregisterFile.html">MB_UnregisterFile</A>
 <BR></CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/04/04 ����<br>
+2005/04/04 初版<br>
 </P>
 </body>
 </html>

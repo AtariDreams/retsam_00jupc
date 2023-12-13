@@ -1,33 +1,33 @@
 //==============================================================================================
 /**
  * @file	snd_test.c
- * @brief	ƒTƒEƒ“ƒhƒeƒXƒg(ƒTƒEƒ“ƒhƒ`ƒFƒbƒN)
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆ(ã‚µã‚¦ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯)
  * @author	nohara
  * @date	2005.07.04
  *
- * ƒƒTƒEƒ“ƒhƒeƒXƒg‚Ì—áŠOˆ—‚É‚Â‚¢‚Ä„
+ * ï¼œã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã®ä¾‹å¤–å‡¦ç†ã«ã¤ã„ã¦ï¼
  *
- * ‚Pj
- * ƒTƒEƒ“ƒhƒq[ƒv‚ğg—p‚µ‚ÄAƒf[ƒ^‚Ìƒ[ƒh‚ğs‚¤‚æ‚¤‚É‚·‚é‚ÆA
- * ‹È‚ÌÄ¶A’â~‚²‚Æ‚ÉAŠm•ÛAŠJ•ú‚ğs‚í‚È‚¢‚Æ‚¢‚¯‚È‚­‚È‚è‚Ü‚·B
+ * ï¼‘ï¼‰
+ * ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ã‚’ä½¿ç”¨ã—ã¦ã€ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã‚ˆã†ã«ã™ã‚‹ã¨ã€
+ * æ›²ã®å†ç”Ÿã€åœæ­¢ã”ã¨ã«ã€ç¢ºä¿ã€é–‹æ”¾ã‚’è¡Œã‚ãªã„ã¨ã„ã‘ãªããªã‚Šã¾ã™ã€‚
  *
- * ‚±‚ê‚¾‚ÆABGM‚ÆSE‚ğ“¯‚ÉÄ¶‚·‚é‚±‚Æ‚ª“ï‚µ‚¢‚Ì‚ÅA
+ * ã“ã‚Œã ã¨ã€BGMã¨SEã‚’åŒæ™‚ã«å†ç”Ÿã™ã‚‹ã“ã¨ãŒé›£ã—ã„ã®ã§ã€
  *
- * ƒq[ƒv‚ğ‘S‚ÄƒNƒŠƒA‚µ‚ÄA
- * PLAYER_BGM‚ÉBGM‚ÌƒV[ƒPƒ“ƒXAƒoƒ“ƒNA”gŒ`ƒA[ƒJƒCƒu•ª‚ÌƒvƒŒƒCƒ„[ƒq[ƒv‚ğŠm•ÛA
+ * ãƒ’ãƒ¼ãƒ—ã‚’å…¨ã¦ã‚¯ãƒªã‚¢ã—ã¦ã€
+ * PLAYER_BGMã«BGMã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€ãƒãƒ³ã‚¯ã€æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã‚’ç¢ºä¿ã€
  *
- * BGM‚ÍPLAYER_BGM‚ÌƒvƒŒƒCƒ„[ƒq[ƒv‚ÅÄ¶‚·‚é‚æ‚¤‚É‚µ‚Ü‚·B
- * ME‚àPLAYER_BGM‚ÌƒvƒŒƒCƒ„[ƒq[ƒv‚ÅÄ¶‚·‚é‚æ‚¤‚É‚µ‚Ü‚·B
+ * BGMã¯PLAYER_BGMã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã§å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚
+ * MEã‚‚PLAYER_BGMã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã§å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚
  *
- * ‚Qj
- * SE‚ÍAÄ¶‚·‚é‚½‚Ñ‚ÉAƒV[ƒPƒ“ƒXAƒoƒ“ƒNA”gŒ`ƒA[ƒJƒCƒu‚ğ
- * ƒTƒEƒ“ƒhƒq[ƒv‚Åƒ[ƒh‚µ‚È‚¨‚·‚æ‚¤‚É‚µ‚Ü‚·B
+ * ï¼’ï¼‰
+ * SEã¯ã€å†ç”Ÿã™ã‚‹ãŸã³ã«ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€ãƒãƒ³ã‚¯ã€æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’
+ * ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ã§ãƒ­ãƒ¼ãƒ‰ã—ãªãŠã™ã‚ˆã†ã«ã—ã¾ã™ã€‚
  *
- * ‚Rj
- * ã‹L‚Ì—áŠOˆ—‚ğ‚µ‚Ä‚¢‚é‚Ì‚ÅA
- * ƒTƒEƒ“ƒhİ’è‚ªAƒQ[ƒ€“à‚Æ‚ÍA‘S‚­ˆÙ‚È‚è‚Ü‚·B
- * ‚»‚Ì‚½‚ßA’Êí‚ÌƒTƒEƒ“ƒh‰Šú‰»‚ğ’Ê‚µ‚½•û‚ªA
- * ˆÀ‘S‚È‚Ì‚ÅAI—¹ˆ—‚ÅAƒ\ƒtƒgƒŠƒZƒbƒg‚ğ‚©‚¯‚Ä‚¢‚Ü‚·B
+ * ï¼“ï¼‰
+ * ä¸Šè¨˜ã®ä¾‹å¤–å‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§ã€
+ * ã‚µã‚¦ãƒ³ãƒ‰è¨­å®šãŒã€ã‚²ãƒ¼ãƒ å†…ã¨ã¯ã€å…¨ãç•°ãªã‚Šã¾ã™ã€‚
+ * ãã®ãŸã‚ã€é€šå¸¸ã®ã‚µã‚¦ãƒ³ãƒ‰åˆæœŸåŒ–ã‚’é€šã—ãŸæ–¹ãŒã€
+ * å®‰å…¨ãªã®ã§ã€çµ‚äº†å‡¦ç†ã§ã€ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆã‚’ã‹ã‘ã¦ã„ã¾ã™ã€‚
  */
 //==============================================================================================
 #include "common.h"
@@ -53,7 +53,7 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 enum{
@@ -61,58 +61,58 @@ enum{
 	BUF_SE,
 	BUF_PV,
 
-	BUF_MAX,								//ƒoƒbƒtƒ@‚ÌÅ‘å”
+	BUF_MAX,								//ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 };
 
-#define SND_TEST_BUF_SIZE		(48)		//ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+#define SND_TEST_BUF_SIZE		(48)		//ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
-//ƒTƒEƒ“ƒhƒeƒXƒg\‘¢‘Ì
+//ã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆæ§‹é€ ä½“
 typedef	struct {
 	BOOL end_flag;
-	u8	seq;							//ˆ—ƒiƒ“ƒo[
-	s8  select;							//‘I‘ğ‘ÎÛ
+	u8	seq;							//å‡¦ç†ãƒŠãƒ³ãƒãƒ¼
+	s8  select;							//é¸æŠå¯¾è±¡
 	u16 dmy2;
 
-	int	old_bgm;						//ŒÃ‚¢BGMƒiƒ“ƒo[
-	int	bgm;							//BGMƒiƒ“ƒo[
-	int	se;								//SEƒiƒ“ƒo[
-	int	pv;								//ƒ|ƒPƒ‚ƒ“–Â‚«ºƒiƒ“ƒo[
+	int	old_bgm;						//å¤ã„BGMãƒŠãƒ³ãƒãƒ¼
+	int	bgm;							//BGMãƒŠãƒ³ãƒãƒ¼
+	int	se;								//SEãƒŠãƒ³ãƒãƒ¼
+	int	pv;								//ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ãƒŠãƒ³ãƒãƒ¼
 
-	int bgm_lv;							//ŠK‘w
-	int se_lv[SE_HANDLE_MAX];			//ŠK‘w
-	int pv_lv;							//ŠK‘w
+	int bgm_lv;							//éšå±¤
+	int se_lv[SE_HANDLE_MAX];			//éšå±¤
+	int pv_lv;							//éšå±¤
 
-	u8  bgm_play_flag;					//ˆê“x‚Å‚àÄ¶‚µ‚½‚©ƒtƒ‰ƒO
-	u8  se_play_flag[SE_HANDLE_MAX];	//ˆê“x‚Å‚àÄ¶‚µ‚½‚©ƒtƒ‰ƒO
-	u8  pv_play_flag;					//ˆê“x‚Å‚àÄ¶‚µ‚½‚©ƒtƒ‰ƒO
+	u8  bgm_play_flag;					//ä¸€åº¦ã§ã‚‚å†ç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°
+	u8  se_play_flag[SE_HANDLE_MAX];	//ä¸€åº¦ã§ã‚‚å†ç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°
+	u8  pv_play_flag;					//ä¸€åº¦ã§ã‚‚å†ç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°
 	u8  dmy3;
 	
-	int pitch;							//‰¹’ö
-	int tempo;							//ƒeƒ“ƒ|
-	int var;							//ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹ƒ[ƒN‚ÉƒZƒbƒg‚·‚é’l
+	int pitch;							//éŸ³ç¨‹
+	int tempo;							//ãƒ†ãƒ³ãƒ
+	int var;							//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆã™ã‚‹å€¤
 
 	u16* pMsg;
 
 	GF_BGL_INI * bgl;
 
-	GF_BGL_BMPWIN bmpwin;				//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN bmpwin;				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
 	STRBUF* msg_buf[BUF_MAX];
 
-	MSGDATA_MANAGER* msgman;			//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
+	MSGDATA_MANAGER* msgman;			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 
 }SND_TEST_WORK;
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 static void SndTestCall(SND_TEST_WORK * wk);
@@ -130,10 +130,10 @@ static void SndTestPlay( SND_TEST_WORK* wk );
 
 //static void (* const SndTestTable[])() = {
 static void (* const SndTestTable[])(SND_TEST_WORK*) = {
-	SndTestSeqInit,						//‰Šú‰»
-	SndTestSeqBgmFadeWait,				//BGMƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
-	SndTestSeqKeyCheck,					//ƒL[ƒ`ƒFƒbƒN
-	SndTestSeqExit,						//I—¹
+	SndTestSeqInit,						//åˆæœŸåŒ–
+	SndTestSeqBgmFadeWait,				//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
+	SndTestSeqKeyCheck,					//ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
+	SndTestSeqExit,						//çµ‚äº†
 };
 
 static void SndTestNumMsgSet( GF_BGL_BMPWIN* win, int num, u8 x, u8 y );
@@ -145,34 +145,34 @@ static void SndTestSysMsgSet( SND_TEST_WORK* wk );
 static void SndTestStrPrint( GF_BGL_BMPWIN* win, u32 fontID, u32 strID, u32 x, u32 y, u32 wait, pStrPrintCallBack callback );
 static void SndTestTrackMute( SND_TEST_WORK* wk );
 
-//BGİ’è
+//BGè¨­å®š
 static void SetBank();
 static void BgSet( SND_TEST_WORK* wk );
 
 
 //==================================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==================================================================================================
 static const BMPWIN_DAT	SndTestWinData = {
-	SND_TEST_BMPWIN_FRAME,					//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	SND_TEST_BMPWIN_PX1,SND_TEST_BMPWIN_PY1,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ã‚ÌX,YÀ•WiƒLƒƒƒ‰’PˆÊ‚Åw’èj
-	SND_TEST_BMPWIN_SX,	SND_TEST_BMPWIN_SY,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌX,YƒTƒCƒYiƒLƒƒƒ‰’PˆÊ‚Åw’èj
-	SND_TEST_BMPWIN_PL,						//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[	
-	SND_TEST_BMPWIN_CH						//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	SND_TEST_BMPWIN_FRAME,					//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	SND_TEST_BMPWIN_PX1,SND_TEST_BMPWIN_PY1,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸Šã®X,Yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	SND_TEST_BMPWIN_SX,	SND_TEST_BMPWIN_SY,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®X,Yã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	SND_TEST_BMPWIN_PL,						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼	
+	SND_TEST_BMPWIN_CH						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 
 //==================================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==================================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒhƒeƒXƒgŒÄ‚Ño‚µ
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
  *
  * @param	none
  *
@@ -189,43 +189,43 @@ static void SndTestCall(SND_TEST_WORK * wk)
 
 	wk->bgl = GF_BGL_BglIniAlloc( HEAPID_BASE_DEBUG );
 
-	//BGİ’è
-	GF_Disp_GX_VisibleControlInit();	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
-	SetBank();							//VRAMƒoƒ“ƒNİ’è
-	BgSet(wk);							//BGİ’è
-	GF_Disp_DispOn();					//•\¦—LŒøİ’è
-	MSG_PrintInit();					//•¶š•\¦‰Šú‰»ŠÖ”
+	//BGè¨­å®š
+	GF_Disp_GX_VisibleControlInit();	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
+	SetBank();							//VRAMãƒãƒ³ã‚¯è¨­å®š
+	BgSet(wk);							//BGè¨­å®š
+	GF_Disp_DispOn();					//è¡¨ç¤ºæœ‰åŠ¹è¨­å®š
+	MSG_PrintInit();					//æ–‡å­—è¡¨ç¤ºåˆæœŸåŒ–é–¢æ•°
 
 	OS_Printf( "\n\n//==========================================\n" );
-	OS_Printf( "//\tƒTƒEƒ“ƒhƒeƒXƒg@ƒXƒ^[ƒg\n" );
+	OS_Printf( "//\tã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã€€ã‚¹ã‚¿ãƒ¼ãƒˆ\n" );
 	OS_Printf( "//==========================================\n" );
 
 	wk->end_flag = FALSE;
-	wk->seq			= 0;									//ˆ—ƒiƒ“ƒo[
-	SndTestWorkInit(wk);									//ƒ[ƒN‰Šú‰»
+	wk->seq			= 0;									//å‡¦ç†ãƒŠãƒ³ãƒãƒ¼
+	SndTestWorkInit(wk);									//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 									NARC_msg_snd_test_name_dat, HEAPID_BASE_DEBUG );
 
-	//app‰Šú‰»(fld_debug.c)
+	//appåˆæœŸåŒ–(fld_debug.c)
 	//FieldBitMapWinCgxSet();
 	
 	//SystemFontPaletteLoad( PALTYPE_MAIN_BG, 0, HEAPID_BASE_DEBUG );
 
-	GF_BGL_BmpWinAddEx( wk->bgl, &wk->bmpwin, &SndTestWinData );		//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
-	GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_WHITE );				//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinAddEx( wk->bgl, &wk->bmpwin, &SndTestWinData );		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
+	GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_WHITE );				//å¡—ã‚Šã¤ã¶ã—
 
-	SndTestSysMsgSet( wk );									//•K—v‚Èî•ñƒƒbƒZ[ƒW
-	SndTestCursor( wk );									//ƒJ[ƒ\ƒ‹XV
+	SndTestSysMsgSet( wk );									//å¿…è¦ãªæƒ…å ±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	SndTestCursor( wk );									//ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
 
-	//‹È–¼ƒƒbƒZ[ƒW•\¦
-	MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMƒiƒ“ƒo[
-	MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEƒiƒ“ƒo[
-	MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVƒiƒ“ƒo[
+	//æ›²åãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMãƒŠãƒ³ãƒãƒ¼
+	MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEãƒŠãƒ³ãƒãƒ¼
+	MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVãƒŠãƒ³ãƒãƒ¼
 
-	SndTestNumMsgSet( &wk->bmpwin, wk->pitch, ST_TYPE_X+88, ST_BGM_MSG_Y );//‰¹’ö
-	SndTestNumMsgSet( &wk->bmpwin, wk->tempo, ST_TYPE_X+168, ST_BGM_MSG_Y );//ƒeƒ“ƒ|
+	SndTestNumMsgSet( &wk->bmpwin, wk->pitch, ST_TYPE_X+88, ST_BGM_MSG_Y );//éŸ³ç¨‹
+	SndTestNumMsgSet( &wk->bmpwin, wk->tempo, ST_TYPE_X+168, ST_BGM_MSG_Y );//ãƒ†ãƒ³ãƒ
 
 	GF_BGL_BmpWinOn( &wk->bmpwin );
 
@@ -235,9 +235,9 @@ static void SndTestCall(SND_TEST_WORK * wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒN‰Šú‰»
+ * @brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -246,13 +246,13 @@ static void SndTestWorkInit( SND_TEST_WORK* wk )
 {
 	int i;
 
-	wk->select		= SND_TEST_TYPE_BGM;		//‘I‘ğ‘ÎÛ
+	wk->select		= SND_TEST_TYPE_BGM;		//é¸æŠå¯¾è±¡
 
-	wk->bgm			= SND_TEST_BGM_START_NO;	//BGMƒXƒ^[ƒgƒiƒ“ƒo[
-	wk->se			= SND_TEST_SE_START_NO;		//SEƒXƒ^[ƒgƒiƒ“ƒo[
-	wk->pv			= SND_TEST_PV_START_NO;		//ƒ|ƒPƒ‚ƒ“–Â‚«ºƒXƒ^[ƒgƒiƒ“ƒo[
+	wk->bgm			= SND_TEST_BGM_START_NO;	//BGMã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
+	wk->se			= SND_TEST_SE_START_NO;		//SEã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
+	wk->pv			= SND_TEST_PV_START_NO;		//ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 
-	//‰ŠúŠK‘w
+	//åˆæœŸéšå±¤
 	wk->bgm_lv		= 1;			
 	wk->pv_lv		= 1;		
 
@@ -260,7 +260,7 @@ static void SndTestWorkInit( SND_TEST_WORK* wk )
 		wk->se_lv[i] = 1;		
 	}
 
-	//ˆê“x‚Å‚àÄ¶‚µ‚½‚©ƒtƒ‰ƒO
+	//ä¸€åº¦ã§ã‚‚å†ç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°
 	wk->bgm_play_flag	= 0;					
 	wk->pv_play_flag	= 0;
 
@@ -270,10 +270,10 @@ static void SndTestWorkInit( SND_TEST_WORK* wk )
 
 	wk->pMsg = NULL;
 
-	wk->pitch		= 0;	//‰¹’ö
-	wk->tempo		= 256;	//ƒeƒ“ƒ|
+	wk->pitch		= 0;	//éŸ³ç¨‹
+	wk->tempo		= 256;	//ãƒ†ãƒ³ãƒ
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	for(i=0; i<BUF_MAX; i++)
 	{
 		wk->msg_buf[i] = STRBUF_Create(SND_TEST_BUF_SIZE*2, HEAPID_BASE_DEBUG);
@@ -284,13 +284,13 @@ static void SndTestWorkInit( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ÿ‚Ìˆ—‚Ö
+ * @brief	æ¬¡ã®å‡¦ç†ã¸
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * •K—v‚Èˆ—‚ğ’Ç‰Á‚µ‚Ä‚¢‚­(ƒTƒuƒV[ƒPƒ“ƒX‚ÌƒNƒŠƒA‚È‚Ç)
+ * å¿…è¦ãªå‡¦ç†ã‚’è¿½åŠ ã—ã¦ã„ã(ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ã‚¯ãƒªã‚¢ãªã©)
  */
 //--------------------------------------------------------------
 static void SndTestSeqNext( SND_TEST_WORK* wk)
@@ -301,27 +301,27 @@ static void SndTestSeqNext( SND_TEST_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void SndTestSeqInit( SND_TEST_WORK* wk )
 {
-	//Snd_BgmFadeOut( 60 );				//BGMƒtƒF[ƒhƒAƒEƒg
-	Snd_Stop();							//‘S’â~
-	Snd_BgmChannelSetAndReverbSet( 0 );	//g—p‰Â”\ƒ`ƒƒƒ“ƒlƒ‹‘€ìAƒŠƒo[ƒuİ’è(ƒNƒŠƒA)
+	//Snd_BgmFadeOut( 60 );				//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	Snd_Stop();							//å…¨åœæ­¢
+	Snd_BgmChannelSetAndReverbSet( 0 );	//ä½¿ç”¨å¯èƒ½ãƒãƒ£ãƒ³ãƒãƒ«æ“ä½œã€ãƒªãƒãƒ¼ãƒ–è¨­å®š(ã‚¯ãƒªã‚¢)
 	SndTestSeqNext(wk);
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+ * @brief	BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -330,21 +330,21 @@ static void SndTestSeqBgmFadeWait( SND_TEST_WORK* wk )
 {
 	int ret;
 
-	if( Snd_FadeCheck() ){						//BGMƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	if( Snd_FadeCheck() ){						//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		return;
 	}
 
-	Snd_HeapStateClear();						//‰½‚àƒ[ƒh‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é(í’“‚àÁ‚µ‚½ó‘Ô)
+	Snd_HeapStateClear();						//ä½•ã‚‚ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹(å¸¸é§ã‚‚æ¶ˆã—ãŸçŠ¶æ…‹)
 	
-	//ƒx[ƒVƒbƒNƒoƒ“ƒNA”gŒ`ƒ[ƒh
+	//ãƒ™ãƒ¼ã‚·ãƒƒã‚¯ãƒãƒ³ã‚¯ã€æ³¢å½¢ãƒ­ãƒ¼ãƒ‰
 	Snd_DebugLoadBank( BANK_BASIC );
 	
-	//ƒvƒŒƒCƒ„[ƒq[ƒvì¬
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	ret = Snd_PlayerHeapCreate( PLAYER_BGM, 70000 );
-	//Snd_UseHeapSizeOsPrint();					//’Ç‰Á‚µ‚½ƒTƒEƒ“ƒhƒq[ƒv‚Ì—e—Ê‚ğo—Í‚·‚é
+	//Snd_UseHeapSizeOsPrint();					//è¿½åŠ ã—ãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ã®å®¹é‡ã‚’å‡ºåŠ›ã™ã‚‹
 	//OS_Printf( "player_bgm heap create = %d\n", ret );
 
-	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE) );	//ŠK‘w•Û‘¶
+	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE) );	//éšå±¤ä¿å­˜
 
 	SndTestSeqNext(wk);
 	return;
@@ -352,9 +352,9 @@ static void SndTestSeqBgmFadeWait( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -363,7 +363,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 {
 	int ret, i, spd;
 
-	//‰¹’ö•ÏX
+	//éŸ³ç¨‹å¤‰æ›´
 	if( sys.cont & PAD_BUTTON_SELECT ){
 		if( sys.repeat & PAD_KEY_UP ){
 			wk->pitch++;
@@ -376,7 +376,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 		return;
 	}
 
-	//ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹ƒ[ƒN‚ğ•ÏX
+	//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’å¤‰æ›´
 	if( (sys.cont & PAD_BUTTON_R) && (sys.repeat & PAD_KEY_UP) ){
 
 		wk->var++;
@@ -395,7 +395,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 		return;
 	}
 
-	//ƒeƒ“ƒ|•ÏX
+	//ãƒ†ãƒ³ãƒå¤‰æ›´
 	if( sys.cont & PAD_BUTTON_START ){
 		if( sys.repeat & PAD_KEY_UP ){
 			wk->tempo+=32;
@@ -408,35 +408,35 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 		return;
 	}
 
-	//‘ÎÛ‚ğ•ÏX(©BGM©PV©SE©)
+	//å¯¾è±¡ã‚’å¤‰æ›´(â†BGMâ†PVâ†SEâ†)
 	if( sys.trg & PAD_KEY_DOWN ){
 		wk->select++;
 		if( wk->select >= SND_TEST_TYPE_MAX ){
 			wk->select = SND_TEST_TYPE_BGM;
 		}
 
-		SndTestCursor( wk );					//ƒJ[ƒ\ƒ‹XV
+		SndTestCursor( wk );					//ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
 		GF_BGL_BmpWinOn( &wk->bmpwin );
 	}
 
-	//‘ÎÛ‚ğ•ÏX(¨BGM¨SE¨PV¨)
+	//å¯¾è±¡ã‚’å¤‰æ›´(â†’BGMâ†’SEâ†’PVâ†’)
 	if( sys.trg & PAD_KEY_UP ){
 		wk->select--;
 		if( wk->select < SND_TEST_TYPE_BGM ){
 			wk->select = (SND_TEST_TYPE_MAX-1);
 		}
 
-		SndTestCursor( wk );					//ƒJ[ƒ\ƒ‹XV
+		SndTestCursor( wk );					//ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
 		GF_BGL_BmpWinOn( &wk->bmpwin );
 	}
 
-	//ƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚ği‚ß‚é
+	//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’é€²ã‚ã‚‹
 	if( sys.repeat & PAD_KEY_RIGHT ){
 
 		if( (sys.cont & PAD_BUTTON_R) || (sys.cont & PAD_BUTTON_L) ){
-			spd = 10;												//10‚¸‚Â
+			spd = 10;												//10ãšã¤
 		}else{
-			spd = 1;												//1‚¸‚Â
+			spd = 1;												//1ãšã¤
 		}
 
 		switch( wk->select ){
@@ -447,7 +447,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->bgm = SND_TEST_BGM_START_NO;
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		case SND_TEST_TYPE_SE:
@@ -456,7 +456,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->se = SND_TEST_SE_START_NO;
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		case SND_TEST_TYPE_PV:
@@ -465,19 +465,19 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->pv = SND_TEST_PV_START_NO;
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		};
 	}
 
-	//ƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚ğ–ß‚·
+	//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’æˆ»ã™
 	if( sys.repeat & PAD_KEY_LEFT ){
 
 		if( (sys.cont & PAD_BUTTON_R) || (sys.cont & PAD_BUTTON_L) ){
-			spd = 10;												//10‚¸‚Â
+			spd = 10;												//10ãšã¤
 		}else{
-			spd = 1;												//1‚¸‚Â
+			spd = 1;												//1ãšã¤
 		}
 
 		switch( wk->select ){
@@ -488,7 +488,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->bgm = (SND_TEST_BGM_END_NO);
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_BGM );					//BGMãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		case SND_TEST_TYPE_SE:
@@ -497,7 +497,7 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->se = (SND_TEST_SE_END_NO);
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_SE );						//SEãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		case SND_TEST_TYPE_PV:
@@ -506,25 +506,25 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 				wk->pv = (SND_TEST_PV_END_NO);
 			}
 
-			MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVƒiƒ“ƒo[
+			MsgRewrite( wk, SND_TEST_TYPE_PV );						//PVãƒŠãƒ³ãƒãƒ¼
 			GF_BGL_BmpWinOn( &wk->bmpwin );
 			break;
 		};
 	}
 
-	//’â~
+	//åœæ­¢
 	if( sys.trg & PAD_BUTTON_B ){
 		SndTestStop(wk);
 	}
 
-	//Ä¶(’â~‚³‚¹‚Ä‚©‚çÄ¶)
+	//å†ç”Ÿ(åœæ­¢ã•ã›ã¦ã‹ã‚‰å†ç”Ÿ)
 	if( sys.trg & PAD_BUTTON_A ){
 		SndTestStop(wk);
 		SndTestPlay(wk);
 
 #if 1
-		//ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹ƒ[ƒN‘€ì
-		//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ªŠÖ˜A•t‚¯‚ç‚ê‚½Œã‚É‘€ì‚·‚éI
+		//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯æ“ä½œ
+		//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãŒé–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸå¾Œã«æ“ä½œã™ã‚‹ï¼
 		Snd_PlayerWriteVariable( wk->var );
 		SndTestNumMsgSet( &wk->bmpwin, wk->var, ST_TYPE_X+168, ST_BGM_MSG_Y+16 );
 		GF_BGL_BmpWinOn( &wk->bmpwin );
@@ -532,18 +532,18 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 
 	}
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	//if( sys.cont & PAD_BUTTON_SELECT ){
 	if( sys.cont & PAD_BUTTON_Y ){
-		Snd_Stop();						//‘S‚Ä’â~
-		SndTestInit( wk );				//ƒ[ƒNAƒf[ƒ^‚È‚ÇƒNƒŠƒA
+		Snd_Stop();						//å…¨ã¦åœæ­¢
+		SndTestInit( wk );				//ãƒ¯ãƒ¼ã‚¯ã€ãƒ‡ãƒ¼ã‚¿ãªã©ã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinOn( &wk->bmpwin );
 	}
 
-	//I—¹
+	//çµ‚äº†
 	//if( sys.cont & PAD_BUTTON_START ){
 	if( sys.cont & PAD_BUTTON_X ){
-		Snd_Stop();						//‘S‚Ä’â~
+		Snd_Stop();						//å…¨ã¦åœæ­¢
 		SndTestSeqNext(wk);
 		return;
 	}
@@ -553,9 +553,9 @@ static void SndTestSeqKeyCheck( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -564,25 +564,25 @@ static void SndTestSeqExit( SND_TEST_WORK* wk )
 {
 	int i;
 
-	//BMPƒEƒBƒ“ƒhƒEOFF
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF
 	GF_BGL_BmpWinOff( &wk->bmpwin );
 	
-	//BMPƒŠƒXƒg”jŠü
+	//BMPãƒªã‚¹ãƒˆç ´æ£„
 	//BmpListExit( wp->bmplistContID,&DebugList,&DebugCursor );
 	//BmpListExit( wk->blwin, NULL, NULL );
 
-	//BMPWindowÁ‹
+	//BMPWindowæ¶ˆå»
 	GF_BGL_BmpWinDel( &wk->bmpwin );
 
 	MSGMAN_Delete( wk->msgman );
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	GF_BGL_BGControlExit( wk->bgl, SND_TEST_BMPWIN_FRAME );
 
-	//bglíœ
+	//bglå‰Šé™¤
 	sys_FreeMemoryEz( wk->bgl );
 
-	//•¶šƒoƒbƒtƒ@íœ
+	//æ–‡å­—ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	for(i=0; i<BUF_MAX; i++)
 	{
 		if(wk->msg_buf[i]){
@@ -597,9 +597,9 @@ static void SndTestSeqExit( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒh’â~ˆ—
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰åœæ­¢å‡¦ç†
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -628,9 +628,9 @@ static void SndTestStop( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒhÄ¶ˆ—
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿå‡¦ç†
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -645,10 +645,10 @@ static void SndTestPlay( SND_TEST_WORK* wk )
 		break;
 
 	case SND_TEST_TYPE_SE:
-		//ƒV[ƒPƒ“ƒXAƒoƒ“ƒNA”gŒ`ƒA[ƒJƒCƒuƒ[ƒh(ƒq[ƒvƒŒƒxƒ‹‚Í“K“–‚Å‚·)
-		Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SE) );		//ŠJ•ú
-		Snd_ArcLoadSeq( wk->se );										//ƒ[ƒh
-		//Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE) );	//ŠK‘w•Û‘¶
+		//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€ãƒãƒ³ã‚¯ã€æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ­ãƒ¼ãƒ‰(ãƒ’ãƒ¼ãƒ—ãƒ¬ãƒ™ãƒ«ã¯é©å½“ã§ã™)
+		Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SE) );		//é–‹æ”¾
+		Snd_ArcLoadSeq( wk->se );										//ãƒ­ãƒ¼ãƒ‰
+		//Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_SE) );	//éšå±¤ä¿å­˜
 		ret = Snd_ArcPlayerStartSeqEx( SND_HANDLE_SE_1, PLAYER_SE_1, wk->se );
 		//OS_Printf( "se_play = %d\n", ret );
 		break;
@@ -664,13 +664,13 @@ static void SndTestPlay( SND_TEST_WORK* wk )
 
 //==============================================================================================
 //
-//	İ’èŠÖ”
+//	è¨­å®šé–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMƒoƒ“ƒNİ’è
+ * @brief	VRAMãƒãƒ³ã‚¯è¨­å®š
  *
  * @param	none
  *
@@ -681,28 +681,28 @@ static void SetBank(void)
 {
 	//display.c
 	
-	GF_BGL_DISPVRAM vramSetTable = {	//VRAMİ’è\‘¢‘Ì
-		//GX_VRAM_BG_256_AB,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BG_128_C,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+	GF_BGL_DISPVRAM vramSetTable = {	//VRAMè¨­å®šæ§‹é€ ä½“
+		//GX_VRAM_BG_256_AB,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BG_128_C,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_32_H,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_32_H,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		//GX_VRAM_OBJ_64_E,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJ_16_F,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		//GX_VRAM_OBJ_64_E,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJ_16_F,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		//GX_VRAM_SUB_OBJ_NONE,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		//GX_VRAM_SUB_OBJ_NONE,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_01_AB,			//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		//GX_VRAM_TEX_0_A,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
-		//GX_VRAM_TEX_NONE,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		//GX_VRAM_TEXPLTT_NONE			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
-		//GX_VRAM_TEXPLTT_0123_E		//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_01_AB,			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		//GX_VRAM_TEX_0_A,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
+		//GX_VRAM_TEX_NONE,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		//GX_VRAM_TEXPLTT_NONE			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
+		//GX_VRAM_TEXPLTT_0123_E		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &vramSetTable );
@@ -711,7 +711,7 @@ static void SetBank(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGİ’è
+ * @brief	BGè¨­å®š
  *
  * @param	none
  *
@@ -724,37 +724,37 @@ static void BgSet( SND_TEST_WORK* wk )
 	
 #if 1
 	{
-		GF_BGL_SYS_HEADER BGsys_data = {	//BGƒVƒXƒeƒ€\‘¢‘Ì
-			GX_DISPMODE_GRAPHICS,			//•\¦ƒ‚[ƒhw’è 
-			GX_BGMODE_0,					//‚a‚fƒ‚[ƒhw’è(ƒƒCƒ“ƒXƒNƒŠ[ƒ“)
-			GX_BGMODE_0,					//‚a‚fƒ‚[ƒhw’è(ƒTƒuƒXƒNƒŠ[ƒ“)
-			GX_BG0_AS_2D,					//‚a‚f‚O‚Ì‚Q‚cA‚R‚cƒ‚[ƒh‘I‘ğ
-			//GX_BG0_AS_3D,					//‚a‚f‚O‚Ì‚Q‚cA‚R‚cƒ‚[ƒh‘I‘ğ
+		GF_BGL_SYS_HEADER BGsys_data = {	//BGã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
+			GX_DISPMODE_GRAPHICS,			//è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æŒ‡å®š 
+			GX_BGMODE_0,					//ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(ãƒ¡ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)
+			GX_BGMODE_0,					//ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)
+			GX_BG0_AS_2D,					//ï¼¢ï¼§ï¼ã®ï¼’ï¼¤ã€ï¼“ï¼¤ãƒ¢ãƒ¼ãƒ‰é¸æŠ
+			//GX_BG0_AS_3D,					//ï¼¢ï¼§ï¼ã®ï¼’ï¼¤ã€ï¼“ï¼¤ãƒ¢ãƒ¼ãƒ‰é¸æŠ
 		};
 
-		//ƒƒCƒ“AƒTƒu‚ÌƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚Ì•\¦ƒ‚[ƒhİ’è
-		//ƒƒCƒ“AƒTƒu‚Ì‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»(display.c)
-		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEİ’è\‘¢‘Ì‰Šú‰»
+		//ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã®è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰è¨­å®š
+		//ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã®ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–(display.c)
+		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šæ§‹é€ ä½“åˆæœŸåŒ–
 		GF_BGL_InitBG( &BGsys_data );
 	}
 #endif
 
-	{	//BMPƒEƒBƒ“ƒhƒE
-		GF_BGL_BGCNT_HEADER BmpWinBgCntData = {	//BGƒRƒ“ƒgƒ[ƒ‹İ’è\‘¢‘Ì
-			0, 0,								//‰Šú•\¦‚w‚x
-			0x800,								//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒY( 0 = g—p‚µ‚È‚¢ )
-			0,									//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒIƒtƒZƒbƒg
+	{	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+		GF_BGL_BGCNT_HEADER BmpWinBgCntData = {	//BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®šæ§‹é€ ä½“
+			0, 0,								//åˆæœŸè¡¨ç¤ºï¼¸ï¼¹
+			0x800,								//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º( 0 = ä½¿ç”¨ã—ãªã„ )
+			0,									//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-			//BGİ’è
-			GF_BGL_SCRSIZ_256x256,				//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-			GX_BG_COLORMODE_16,					//ƒJƒ‰[ƒ‚[ƒh
-			GX_BG_SCRBASE_0xd000,				//ƒXƒNƒŠ[ƒ“ƒx[ƒXƒuƒƒbƒN
-			GX_BG_CHARBASE_0x00000,				//ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒuƒƒbƒN
-			GX_BG_EXTPLTT_01,					//‚a‚fŠg’£ƒpƒŒƒbƒgƒXƒƒbƒg‘I‘ğ
+			//BGè¨­å®š
+			GF_BGL_SCRSIZ_256x256,				//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+			GX_BG_COLORMODE_16,					//ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
+			GX_BG_SCRBASE_0xd000,				//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯
+			GX_BG_CHARBASE_0x00000,				//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯
+			GX_BG_EXTPLTT_01,					//ï¼¢ï¼§æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆé¸æŠ
 
-			0,									//•\¦ƒvƒ‰ƒCƒIƒŠƒeƒB[
-			0, 0,								//ƒGƒŠƒAƒI[ƒo[ƒtƒ‰ƒOAƒ_ƒ~[
-			FALSE								//ƒ‚ƒUƒCƒNİ’è
+			0,									//è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+			0, 0,								//ã‚¨ãƒªã‚¢ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ©ã‚°ã€ãƒ€ãƒŸãƒ¼
+			FALSE								//ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
 		};
 
 		GF_BGL_BGControlSet(wk->bgl, SND_TEST_BMPWIN_FRAME, 
@@ -767,12 +767,12 @@ static void BgSet( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	”šƒƒbƒZ[ƒW•\¦
+ * @brief	æ•°å­—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	win_index	ƒrƒbƒgƒ}ƒbƒvINDEX
- * @param	num			”’l
- * @param	x			•\¦ˆÊ’uX
- * @param	y			•\¦ˆÊ’uY
+ * @param	win_index	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—INDEX
+ * @param	num			æ•°å€¤
+ * @param	x			è¡¨ç¤ºä½ç½®X
+ * @param	y			è¡¨ç¤ºä½ç½®Y
  *
  * @retval	none
  */
@@ -790,12 +790,12 @@ static void SndTestNumMsgSet( GF_BGL_BMPWIN* win, int num, u8 x, u8 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒhƒl[ƒ€ƒƒbƒZ[ƒW•\¦
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ¼ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	win_index	ƒrƒbƒgƒ}ƒbƒvINDEX
- * @param	num			”’l
- * @param	x			•\¦ˆÊ’uX
- * @param	y			•\¦ˆÊ’uY
+ * @param	win_index	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—INDEX
+ * @param	num			æ•°å€¤
+ * @param	x			è¡¨ç¤ºä½ç½®X
+ * @param	y			è¡¨ç¤ºä½ç½®Y
  *
  * @retval	none
  */
@@ -808,15 +808,15 @@ static void SndTestNameMsgSet( GF_BGL_BMPWIN* win, const STRBUF* msg, u8 x, u8 y
 
 //------------------------------------------------------------------
 /**
- * ŒÅ’è•¶š—ño—Í
+ * å›ºå®šæ–‡å­—åˆ—å‡ºåŠ›
  *
  * @param   win			BitmapWindow
- * @param   fontID		ƒtƒHƒ“ƒg
- * @param   strID		•¶š—ñ‚h‚c
- * @param   x			•`‰æ‚wÀ•W
- * @param   y			•`‰æ‚xÀ•W
- * @param   wait		ƒEƒFƒCƒg
- * @param   callback	ƒR[ƒ‹ƒoƒbƒN
+ * @param   fontID		ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param   strID		æ–‡å­—åˆ—ï¼©ï¼¤
+ * @param   x			æç”»ï¼¸åº§æ¨™
+ * @param   y			æç”»ï¼¹åº§æ¨™
+ * @param   wait		ã‚¦ã‚§ã‚¤ãƒˆ
+ * @param   callback	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -835,10 +835,10 @@ static void SndTestStrPrint( GF_BGL_BMPWIN* win, u32 fontID, u32 strID, u32 x, u
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒƒbƒZ[ƒWÄ•\¦
+ * @brief	BGMãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å†è¡¨ç¤º
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	select	‘I‘ğ‘ÎÛ
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	select	é¸æŠå¯¾è±¡
  *
  * @retval	none
  */
@@ -850,12 +850,12 @@ static void MsgRewrite( SND_TEST_WORK* wk, s8 select )
 
 	switch( select ){
 	case SND_TEST_TYPE_BGM:
-		//wk->bgm,se,pv‚É‚ÍAƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅA
-		//ƒXƒ^[ƒgƒiƒ“ƒo[‚ğˆø‚«A‘I‘ğ‚µ‚Ä‚¢‚é’l‚É‚µ‚ÄA
-		//ƒƒbƒZ[ƒWID‚ÌƒXƒ^[ƒgƒiƒ“ƒo[‚ğ‘«‚µƒƒbƒZ[ƒW‚ğ•\¦‚·‚é
+		//wk->bgm,se,pvã«ã¯ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€
+		//ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å¼•ãã€é¸æŠã—ã¦ã„ã‚‹å€¤ã«ã—ã¦ã€
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¶³ã—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
 		msg_h_id = wk->bgm - SND_TEST_BGM_START_NO + msg_seq_pv_end + 1;
 
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinFill( &wk->bmpwin, 
 							FBMP_COL_WHITE, ST_TYPE_X, ST_BGM_MSG_Y+16, 8*24, 16*1 );
 
@@ -880,15 +880,15 @@ static void MsgRewrite( SND_TEST_WORK* wk, s8 select )
 	case SND_TEST_TYPE_SE:
 		msg_h_id = wk->se - SND_TEST_SE_START_NO + msg_seq_bgm_end + 1;
 
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinFill( &wk->bmpwin, 
 							FBMP_COL_WHITE, ST_TYPE_X, ST_SE_MSG_Y+16, 8*24, 16*1 );
 
-		//ƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚©‚çASE‚ÌƒvƒŒƒCƒ„[ƒiƒ“ƒo[‚ğæ“¾
+		//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã€SEã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 		type = Snd_GetPlayerNo(wk->se);
 		type -= PLAYER_SE_1;
 
-		//SE‚Ì‚İƒvƒŒƒCƒ„[ƒiƒ“ƒo[•\¦
+		//SEã®ã¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤º
 		SndTestStrPrint( &wk->bmpwin, FONT_SYSTEM, msg_PLAYER, 
 						ST_TYPE_X+32, ST_SE_MSG_Y, MSG_NO_PUT, NULL );
 		SndTestNumMsgSet( &wk->bmpwin, type, ST_TYPE_X+32+56, ST_SE_MSG_Y );
@@ -905,7 +905,7 @@ static void MsgRewrite( SND_TEST_WORK* wk, s8 select )
 	case SND_TEST_TYPE_PV:
 		msg_h_id = wk->pv - SND_TEST_PV_START_NO + msg_seq_pv001;
 
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinFill( &wk->bmpwin, 
 							FBMP_COL_WHITE, ST_TYPE_X, ST_PV_MSG_Y+16, 8*24, 16*1 );
 
@@ -923,33 +923,33 @@ static void MsgRewrite( SND_TEST_WORK* wk, s8 select )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šúó‘Ô‚É‚·‚é(X_BUTTON‚ğ‰Ÿ‚µ‚½‚Ì‰Šú‰»I)
+ * @brief	åˆæœŸçŠ¶æ…‹ã«ã™ã‚‹(X_BUTTONã‚’æŠ¼ã—ãŸæ™‚ã®åˆæœŸåŒ–ï¼)
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void SndTestInit( SND_TEST_WORK* wk )
 {
-	//ƒ[ƒN‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	SndTestWorkInit( wk );
 
-	//‘‚«’¼‚µ
-	MsgRewrite( wk, SND_TEST_TYPE_BGM );		//BGMƒiƒ“ƒo[
-	MsgRewrite( wk, SND_TEST_TYPE_SE );			//SEƒiƒ“ƒo[
-	MsgRewrite( wk, SND_TEST_TYPE_PV );			//PVƒiƒ“ƒo[
+	//æ›¸ãç›´ã—
+	MsgRewrite( wk, SND_TEST_TYPE_BGM );		//BGMãƒŠãƒ³ãƒãƒ¼
+	MsgRewrite( wk, SND_TEST_TYPE_SE );			//SEãƒŠãƒ³ãƒãƒ¼
+	MsgRewrite( wk, SND_TEST_TYPE_PV );			//PVãƒŠãƒ³ãƒãƒ¼
 
-	SndTestCursor( wk );						//ƒJ[ƒ\ƒ‹XV
+	SndTestCursor( wk );						//ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -970,7 +970,7 @@ static void SndTestCursor( SND_TEST_WORK* wk )
 		break;
 	};
 
-	//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinFill( &wk->bmpwin, 
 						FBMP_COL_WHITE, ST_CURSOR_X, ST_BGM_MSG_Y, 8*1, 16*8 );
 	GF_BGL_BmpWinFill( &wk->bmpwin, 
@@ -981,9 +981,9 @@ static void SndTestCursor( SND_TEST_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€ƒƒbƒZ[ƒW
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
- * @param	wk		SND_TEST_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_TEST_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1007,7 +1007,7 @@ static void SndTestSysMsgSet( SND_TEST_WORK* wk )
 
 //==============================================================================================
 //
-//	PROCŠÖ˜A
+//	PROCé–¢é€£
 //
 //==============================================================================================
 
@@ -1048,10 +1048,10 @@ static PROC_RESULT SoundTestProc_End(PROC * proc, int * seq)
 	PROC_FreeWork(proc);
 	//Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
 
-	//ƒ\ƒtƒgƒŠƒZƒbƒg
-	//Ú×‚Íƒ\[ƒXæ“ª‚ÌuƒTƒEƒ“ƒhƒeƒXƒg‚Ì—áŠOˆ—‚É‚Â‚¢‚Äv‚ğQÆ‚µ‚Ä‰º‚³‚¢
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
+	//è©³ç´°ã¯ã‚½ãƒ¼ã‚¹å…ˆé ­ã®ã€Œã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã®ä¾‹å¤–å‡¦ç†ã«ã¤ã„ã¦ã€ã‚’å‚ç…§ã—ã¦ä¸‹ã•ã„
 	//OS_InitReset();
-	OS_ResetSystem(0);									//ƒ\ƒtƒgƒŠƒZƒbƒg
+	OS_ResetSystem(0);									//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
 	return PROC_RES_FINISH;
 }
 

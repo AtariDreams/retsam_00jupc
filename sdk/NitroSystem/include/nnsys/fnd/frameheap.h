@@ -24,7 +24,7 @@ extern "C" {
 
 
 /* =======================================================================
-    �萔��`
+    定数定義
    ======================================================================== */
 
 #define NNS_FND_FRMHEAP_FREE_HEAD (1 <<0)
@@ -33,46 +33,46 @@ extern "C" {
 
 
 /* =======================================================================
-    �^��`
+    型定義
    ======================================================================== */
 
 typedef struct NNSiFndFrmHeapState NNSiFndFrmHeapState;
 
-// ��ԕۑ��p�\����
+// 状態保存用構造体
 struct NNSiFndFrmHeapState
 {
-	u32						tagName;        // �^�O��
-	void*					headAllocator;  // �t���[���q�[�v�̐擪�ʒu
-	void*					tailAllocator;  // �t���[���q�[�v�̖����ʒu
-	NNSiFndFrmHeapState*    pPrevState;     // 1�O�̏�ԕۑ��ւ̃|�C���^
+	u32						tagName;        // タグ名
+	void*					headAllocator;  // フレームヒープの先頭位置
+	void*					tailAllocator;  // フレームヒープの末尾位置
+	NNSiFndFrmHeapState*    pPrevState;     // 1つ前の状態保存へのポインタ
 };
 
 typedef struct NNSiFndFrmHeapHead NNSiFndFrmHeapHead;
 
-// �t���[���q�[�v�̃w�b�_���
+// フレームヒープのヘッダ情報
 struct NNSiFndFrmHeapHead
 {
-	void*				    headAllocator;  // �擪�������m�ۃ|�C���^
-	void*				    tailAllocator;  // �����������m�ۃ|�C���^
+	void*				    headAllocator;  // 先頭メモリ確保ポインタ
+	void*				    tailAllocator;  // 末尾メモリ確保ポインタ
 
-	NNSiFndFrmHeapState*	pState;         // ��ԕۑ��p�����[�^
+	NNSiFndFrmHeapState*	pState;         // 状態保存パラメータ
 };
 
 
 /* =======================================================================
-    �}�N���֐�
+    マクロ関数
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateFrmHeap
 
-  Description:  �t���[���q�[�v���쐬���܂��B
+  Description:  フレームヒープを作成します。
 
-  Arguments:    startAddress: �q�[�v�̈�̐擪�A�h���X�B
-                size:         �q�[�v�̈�̃T�C�Y�B
+  Arguments:    startAddress: ヒープ領域の先頭アドレス。
+                size:         ヒープ領域のサイズ。
 
-  Returns:      �֐������������ꍇ�A�쐬���ꂽ�t���[���q�[�v�̃n���h�����Ԃ�܂��B
-                �֐������s����ƁANNS_FND_INVALID_HEAP_HANDLE ���Ԃ�܂��B
+  Returns:      関数が成功した場合、作成されたフレームヒープのハンドルが返ります。
+                関数が失敗すると、NNS_FND_INVALID_HEAP_HANDLE が返ります。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndCreateFrmHeap(startAddress, size) \
                         NNS_FndCreateFrmHeapEx(startAddress, size, 0)
@@ -80,15 +80,15 @@ struct NNSiFndFrmHeapHead
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromFrmHeap
 
-  Description:  �t���[���q�[�v���烁�����u���b�N���m�ۂ��܂��B
-                �������u���b�N�̃A���C�����g��4�o�C�g�Œ�ł��B
+  Description:  フレームヒープからメモリブロックを確保します。
+                メモリブロックのアライメントは4バイト固定です。
 
-  Arguments:    heap:   �t���[���q�[�v�̃n���h���B
-                size:   �m�ۂ��郁�����u���b�N�̃T�C�Y(�o�C�g�P��)�B
+  Arguments:    heap:   フレームヒープのハンドル。
+                size:   確保するメモリブロックのサイズ(バイト単位)。
 
-  Returns:      �������u���b�N�̊m�ۂ����������ꍇ�A�m�ۂ����������u���b�N�ւ�
-                �|�C���^���Ԃ�܂��B
-                ���s�����ꍇ�ANULL���Ԃ�܂��B
+  Returns:      メモリブロックの確保が成功した場合、確保したメモリブロックへの
+                ポインタが返ります。
+                失敗した場合、NULLが返ります。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndAllocFromFrmHeap(heap, size) \
                         NNS_FndAllocFromFrmHeapEx(heap, size, NNS_FND_HEAP_DEFAULT_ALIGNMENT)
@@ -96,19 +96,19 @@ struct NNSiFndFrmHeapHead
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocatableSizeForFrmHeap
 
-  Description:  �t���[���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y���擾���܂��B
-                �������u���b�N�̃A���C�����g��4�o�C�g�Œ�ł��B
+  Description:  フレームヒープ内の割り当て可能な最大サイズを取得します。
+                メモリブロックのアライメントは4バイト固定です。
 
-  Arguments:    heap:      �t���[���q�[�v�̃n���h���B
+  Arguments:    heap:      フレームヒープのハンドル。
 
-  Returns:      �t���[���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y��Ԃ��܂�(�o�C�g�P��)�B
+  Returns:      フレームヒープ内の割り当て可能な最大サイズを返します(バイト単位)。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndGetAllocatableSizeForFrmHeap(heap) \
                         NNS_FndGetAllocatableSizeForFrmHeapEx(heap, NNS_FND_HEAP_DEFAULT_ALIGNMENT)
 
 
 /* =======================================================================
-    �֐��v���g�^�C�v
+    関数プロトタイプ
    ======================================================================== */
 
 void*               NNSi_FndGetFreeStartForFrmHeap(

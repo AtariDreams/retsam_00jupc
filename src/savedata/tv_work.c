@@ -32,13 +32,13 @@ static void TVWORK_ClearUsedTopicIndex(TV_WORK * tvwk);
 static MY_TOPIC * GetMyTopicByTopicType(TV_WORK * tvwk, TVTOPICTYPE topic_type);
 //============================================================================================
 //
-//		ƒZ[ƒuƒVƒXƒeƒ€‚É•K—v‚ÈŠÖ”
+//		ã‚»ãƒ¼ãƒ–ã‚·ã‚¹ãƒ†ãƒ ã«å¿…è¦ãªé–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒr•ú‘—ƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚Ìæ“¾
- * @return	int		ƒf[ƒ^ƒTƒCƒY
+ * @brief	ãƒ†ãƒ¬ãƒ“æ”¾é€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®å–å¾—
+ * @return	int		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //----------------------------------------------------------
 int TVWORK_GetWorkSize(void)
@@ -48,8 +48,8 @@ int TVWORK_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒr•ú‘—ƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»
- * @param	tv		ƒeƒŒƒr•ú‘—ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ†ãƒ¬ãƒ“æ”¾é€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	tv		ãƒ†ãƒ¬ãƒ“æ”¾é€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void TVWORK_Init(TV_WORK * tv)
@@ -72,8 +72,8 @@ void TVWORK_Init(TV_WORK * tv)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªƒgƒsƒbƒN‚ÌƒNƒŠƒA
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è‡ªåˆ†ãƒˆãƒ”ãƒƒã‚¯ã®ã‚¯ãƒªã‚¢
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void TVWORK_ClearMyTopic(TV_WORK * tvwk)
@@ -81,7 +81,7 @@ void TVWORK_ClearMyTopic(TV_WORK * tvwk)
 	MI_CpuClearFast(tvwk->MyWatchTopic, sizeof(MY_TOPIC) * MY_WATCH_MAX);
 	MI_CpuClearFast(tvwk->MyRecordTopic, sizeof(MY_TOPIC) * MY_RECORD_MAX);
 	MI_CpuClearFast(tvwk->MyQandATopic, sizeof(MY_TOPIC) * MY_QANDA_MAX);
-	TVWORK_StartProgram(tvwk);		//QÆ‚³‚ê‚Ä‚¢‚é‚Æ–â‘è‚È‚Ì‚ÅA”O‚Ì‚½‚ß
+	TVWORK_StartProgram(tvwk);		//å‚ç…§ã•ã‚Œã¦ã„ã‚‹ã¨å•é¡Œãªã®ã§ã€å¿µã®ãŸã‚
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TVWORK)
 	SVLD_SetCrc(GMDATA_ID_TVWORK);
 #endif //CRC_LOADCHECK
@@ -89,8 +89,8 @@ void TVWORK_ClearMyTopic(TV_WORK * tvwk)
 
 //----------------------------------------------------------
 /**
- * @brief	‘¼lƒgƒsƒbƒN‚ÌƒNƒŠƒA
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ä»–äººãƒˆãƒ”ãƒƒã‚¯ã®ã‚¯ãƒªã‚¢
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void TVWORK_ClearOtherTopic(TV_WORK * tvwk)
@@ -98,7 +98,7 @@ void TVWORK_ClearOtherTopic(TV_WORK * tvwk)
 	MI_CpuClearFast(tvwk->OtherWatchTopic, sizeof(OTHER_TOPIC) * OTHER_WATCH_MAX);
 	MI_CpuClearFast(tvwk->OtherRecordTopic, sizeof(OTHER_TOPIC) * OTHER_RECORD_MAX);
 	MI_CpuClearFast(tvwk->OtherQandATopic, sizeof(OTHER_TOPIC) * OTHER_QANDA_MAX);
-	TVWORK_StartProgram(tvwk);		//QÆ‚³‚ê‚Ä‚¢‚é‚Æ–â‘è‚È‚Ì‚ÅA”O‚Ì‚½‚ß
+	TVWORK_StartProgram(tvwk);		//å‚ç…§ã•ã‚Œã¦ã„ã‚‹ã¨å•é¡Œãªã®ã§ã€å¿µã®ãŸã‚
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TVWORK)
 	SVLD_SetCrc(GMDATA_ID_TVWORK);
 #endif //CRC_LOADCHECK
@@ -106,12 +106,12 @@ void TVWORK_ClearOtherTopic(TV_WORK * tvwk)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒr—pŠÔŒo‰ßˆ—
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	min_diff		‘O‰ñ‚ÌXV‚©‚ç‚ÌŒo‰ßŠÔi•ª’PˆÊj
- * @param	now_minute		Œ»İ‚ÌŠÔi•ªj
+ * @brief	ãƒ†ãƒ¬ãƒ“ç”¨æ™‚é–“çµŒéå‡¦ç†
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	min_diff		å‰å›ã®æ›´æ–°ã‹ã‚‰ã®çµŒéæ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
+ * @param	now_minute		ç¾åœ¨ã®æ™‚é–“ï¼ˆåˆ†ï¼‰
  *
- * ŠÔŒo‰ßˆ—i•ª’PˆÊj‚©‚çŒÄ‚Ño‚³‚ê‚éB
+ * æ™‚é–“çµŒéå‡¦ç†ï¼ˆåˆ†å˜ä½ï¼‰ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
  */
 //----------------------------------------------------------
 void TVWORK_UpdateMinuteCount(TV_WORK * tvwk, int min_diff, int now_minute)
@@ -136,8 +136,8 @@ void TVWORK_UpdateMinuteCount(TV_WORK * tvwk, int min_diff, int now_minute)
 
 //----------------------------------------------------------
 /**
- * @brief	”Ô‘g•ú‘—ŠJn
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç•ªçµ„æ”¾é€é–‹å§‹
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void TVWORK_StartProgram(TV_WORK * tvwk)
@@ -153,8 +153,8 @@ void TVWORK_StartProgram(TV_WORK * tvwk)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	”Ô‘gI—¹ó‘ÔƒZƒbƒg
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç•ªçµ„çµ‚äº†çŠ¶æ…‹ã‚»ãƒƒãƒˆ
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval	TRUE
  * @retval	FALSE
  */
@@ -168,8 +168,8 @@ void TVWORK_SetProgramEnd(TV_WORK * tvwk, BOOL flag)
 }
 //----------------------------------------------------------
 /**
- * @brief	”Ô‘gI—¹ó‘Ô‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç•ªçµ„çµ‚äº†çŠ¶æ…‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval	TRUE
  * @retval	FALSE
  */
@@ -181,8 +181,8 @@ BOOL TVWORK_IsProgramEnd(const TV_WORK * tvwk)
 
 //----------------------------------------------------------
 /**
- * @brief	•ú‘—Ï‚İƒgƒsƒbƒN“o˜^
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ”¾é€æ¸ˆã¿ãƒˆãƒ”ãƒƒã‚¯ç™»éŒ²
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void TVWORK_SetUsedTopicIndex(TV_WORK * tvwk, int index)
@@ -208,8 +208,8 @@ void TVWORK_SetUsedTopicIndex(TV_WORK * tvwk, int index)
 
 //----------------------------------------------------------
 /**
- * @brief	•ú‘—‚µ‚½ƒgƒsƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğƒNƒŠƒA‚·‚é
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ”¾é€ã—ãŸãƒˆãƒ”ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 static void TVWORK_ClearUsedTopicIndex(TV_WORK * tvwk)
@@ -224,8 +224,8 @@ static void TVWORK_ClearUsedTopicIndex(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	•ú‘—‚µ‚½ƒgƒsƒbƒN‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
- * @param	tvwk			ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ”¾é€ã—ãŸãƒˆãƒ”ãƒƒã‚¯ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	tvwk			ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 BOOL TVWORK_IsUsedTopicIndex(const TV_WORK * tvwk, int index)
@@ -241,9 +241,9 @@ BOOL TVWORK_IsUsedTopicIndex(const TV_WORK * tvwk, int index)
 
 //----------------------------------------------------------
 /**
- * @brief	•ú‘—‚µ‚½ƒgƒsƒbƒN‚Ì”‚ğ•Ô‚·
- * @param	tvwk	ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		•ú‘—‚µ‚½ƒgƒsƒbƒN‚Ì”
+ * @brief	æ”¾é€ã—ãŸãƒˆãƒ”ãƒƒã‚¯ã®æ•°ã‚’è¿”ã™
+ * @param	tvwk	ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æ”¾é€ã—ãŸãƒˆãƒ”ãƒƒã‚¯ã®æ•°
  */
 //----------------------------------------------------------
 int TVWORK_GetUsedTopicNumber(const TV_WORK * tvwk)
@@ -275,12 +275,12 @@ static void TVTOPIC_SetTopic(TVTOPIC * topic, int topic_id, const u8 * data)
 //----------------------------------------------------------
 /**
  * @brief
- * @param	tvwk		ƒeƒŒƒrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	prog_id		”Ô‘gID
- * @param	topic_id	ƒgƒsƒbƒNID
- * @param	data		ƒf[ƒ^
- * @retval	TRUE		“o˜^‚Å‚«‚½
- * @retval	FALSE		“o˜^‚Å‚«‚È‚©‚Á‚½
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	prog_id		ç•ªçµ„ID
+ * @param	topic_id	ãƒˆãƒ”ãƒƒã‚¯ID
+ * @param	data		ãƒ‡ãƒ¼ã‚¿
+ * @retval	TRUE		ç™»éŒ²ã§ããŸ
+ * @retval	FALSE		ç™»éŒ²ã§ããªã‹ã£ãŸ
  */
 //----------------------------------------------------------
 BOOL TVWORK_MakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id, const u8 * data)
@@ -289,7 +289,7 @@ BOOL TVWORK_MakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id, cons
 	MY_TOPIC * topic;
 	topic = GetMyTopicByTopicType(tvwk, topic_type);
 
-	//“¯‚¶ƒgƒsƒbƒN‚ª‚ ‚éê‡‚Ìˆ—
+	//åŒã˜ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã®å‡¦ç†
 	for (i = 0; i < MY_TOPIC_COMMON_MAX; i++) {
 		if (topic[i].topic.topic_id == topic_id) {
 			if (topic[i].topic.see_count >= BROADCAST_MAX) {
@@ -299,14 +299,14 @@ BOOL TVWORK_MakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id, cons
 			return FALSE;
 		}
 	}
-	//‹ó‚«‚ğ’T‚·
+	//ç©ºãã‚’æ¢ã™
 	for (i = 0; i < MY_TOPIC_COMMON_MAX; i++) {
 		if (topic[i].topic.topic_id == 0) {
 			TVTOPIC_SetTopic(&topic[i].topic, topic_id, data);
 			return TRUE;
 		}
 	}
-	//ŒÃ‚¢ƒgƒsƒbƒN‚ğ’T‚µ‚Äã‘‚«‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	//å¤ã„ãƒˆãƒ”ãƒƒã‚¯ã‚’æ¢ã—ã¦ä¸Šæ›¸ãã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	for (i = 0; i < MY_TOPIC_COMMON_MAX; i++) {
 		if (topic[i].topic.see_count >= BROADCAST_MAX) {
 			TVTOPIC_SetTopic(&topic[i].topic, topic_id, data);
@@ -381,7 +381,7 @@ static MY_TOPIC * GetMyTopicByTopicType(TV_WORK * tvwk, TVTOPICTYPE topic_type)
 		mt = tvwk->MyRecordTopic;
 		break;
 	case TVTOPICTYPE_EVENT:
-	case TVTOPICTYPE_VARIETY:			//šƒoƒ‰ƒGƒeƒBŒ^’Ç‰Á
+	case TVTOPICTYPE_VARIETY:			//â˜…ãƒãƒ©ã‚¨ãƒ†ã‚£å‹è¿½åŠ 
 		GF_ASSERT(0);
 	}
 	return mt;
@@ -405,7 +405,7 @@ static OTHER_TOPIC * GetOtherTopicByTopicType(TV_WORK * tvwk, TVTOPICTYPE topic_
 		ot = tvwk->OtherQandATopic;
 		break;
 	case TVTOPICTYPE_EVENT:
-	case TVTOPICTYPE_VARIETY:			//šƒoƒ‰ƒGƒeƒBŒ^’Ç‰Á
+	case TVTOPICTYPE_VARIETY:			//â˜…ãƒãƒ©ã‚¨ãƒ†ã‚£å‹è¿½åŠ 
 		GF_ASSERT(0);
 	}
 	return ot;
@@ -414,7 +414,7 @@ static OTHER_TOPIC * GetOtherTopicByTopicType(TV_WORK * tvwk, TVTOPICTYPE topic_
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN‚ÌID‚ğæ“¾
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ã®IDã‚’å–å¾—
  * @param	topic
  */
 //----------------------------------------------------------
@@ -424,7 +424,7 @@ int TVTOPIC_GetTopicID(const TVTOPIC * topic)
 }
 //----------------------------------------------------------
 /**
- * @brief	‹’®‰ñ”‚ÌƒJƒEƒ“ƒgƒAƒbƒv
+ * @brief	è¦–è´å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
  * @param	topic
  */
 //----------------------------------------------------------
@@ -440,7 +440,7 @@ void TVTOPIC_CountUpBroadcast(TVTOPIC * topic)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN‚Ì“à—eƒf[ƒ^‚ğæ“¾
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ã®å†…å®¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  * @param	topic
  */
 //----------------------------------------------------------
@@ -481,11 +481,11 @@ static int SelectMyTopic(const MY_TOPIC * topic, int max,
 		if (topic[i].topic.topic_id == topic_id) {
 			int count = topic[i].topic.see_count;
 			if (see_flag && count) {
-			//‹’®ƒf[ƒ^
+			//è¦–è´ãƒ‡ãƒ¼ã‚¿
 				array[n] = i+1;
 				n ++;
 			} else if (!see_flag && count == 0) {
-			//–¢‹’®ƒf[ƒ^
+			//æœªè¦–è´ãƒ‡ãƒ¼ã‚¿
 				array[n] = i+1;
 				n ++;
 			}
@@ -506,11 +506,11 @@ static int SelectOtherTopic(const OTHER_TOPIC * other, int max,
 		int count = other[i].topic.see_count;
 		if (other[i].topic.topic_id == topic_id) {
 			if (see_flag && count) {
-			//‹’®ƒf[ƒ^
+			//è¦–è´ãƒ‡ãƒ¼ã‚¿
 				array[n] = TVWORK_MakeOtherIndex(i+1);
 				n ++;
 			} else if (!see_flag && count == 0) {
-			//–¢‹’®ƒf[ƒ^
+			//æœªè¦–è´ãƒ‡ãƒ¼ã‚¿
 				array[n] = TVWORK_MakeOtherIndex(i+1);
 				n ++;
 			}
@@ -522,12 +522,12 @@ static int SelectOtherTopic(const OTHER_TOPIC * other, int max,
 
 //----------------------------------------------------------
 /**
- * @brief	w’èğŒ‚ÌƒgƒsƒbƒNƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
- * @param	tvwk		ƒeƒŒƒrƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	topic_type	ƒf[ƒ^w’èiŠÄ‹EƒŒƒR[ƒhE¿–âj
- * @param	topic_id	ƒgƒsƒbƒN‚Ìí—ŞID
- * @param	see_flag	Œ©‚½ƒf[ƒ^‚©‚Ç‚¤‚©
- * @param	array		Œ‹‰Ê‚ğ•Û‘¶‚·‚é”z—ñ
+ * @brief	æŒ‡å®šæ¡ä»¶ã®ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	topic_type	ãƒ‡ãƒ¼ã‚¿æŒ‡å®šï¼ˆç›£è¦–ãƒ»ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ»è³ªå•ï¼‰
+ * @param	topic_id	ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡ID
+ * @param	see_flag	è¦‹ãŸãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹
+ * @param	array		çµæœã‚’ä¿å­˜ã™ã‚‹é…åˆ—
  */
 //----------------------------------------------------------
 int TVWORK_SearchTopics(const TV_WORK * tvwk, TVTOPICTYPE topic_type,
@@ -554,11 +554,11 @@ int TVWORK_SearchTopics(const TV_WORK * tvwk, TVTOPICTYPE topic_type,
 		}
 	case TVTOPICTYPE_EVENT:
 		//GF_ASSERT(0);
-		//–œ‚ªˆêƒCƒxƒ“ƒgŒ^‚ğŒŸõ‚µ‚Ä‚à‚Oƒf[ƒ^‚È‚µ‚Å•Ô‚·
+		//ä¸‡ãŒä¸€ã‚¤ãƒ™ãƒ³ãƒˆå‹ã‚’æ¤œç´¢ã—ã¦ã‚‚ï¼ï¼ï¼ãƒ‡ãƒ¼ã‚¿ãªã—ã§è¿”ã™
 		return 0;
-	case TVTOPICTYPE_VARIETY:		//š
+	case TVTOPICTYPE_VARIETY:		//â˜…
 		//GF_ASSERT(0);
-		//–œ‚ªˆêƒoƒ‰ƒGƒeƒBŒ^‚ğŒŸõ‚µ‚Ä‚à‚Oƒf[ƒ^‚È‚µ‚Å•Ô‚·
+		//ä¸‡ãŒä¸€ãƒãƒ©ã‚¨ãƒ†ã‚£å‹ã‚’æ¤œç´¢ã—ã¦ã‚‚ï¼ï¼ï¼ãƒ‡ãƒ¼ã‚¿ãªã—ã§è¿”ã™
 		return 0;
 	}
 	return 0;
@@ -566,13 +566,13 @@ int TVWORK_SearchTopics(const TV_WORK * tvwk, TVTOPICTYPE topic_type,
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN‚ğ¶¬‰Â”\‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param	tvwk		ƒeƒŒƒrƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		ƒf[ƒ^w’èiŠÄ‹EƒŒƒR[ƒhE¿–âj
- * @param	topic_id	ƒgƒsƒbƒN‚Ìí—ŞID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ã‚’ç”Ÿæˆå¯èƒ½ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		ãƒ‡ãƒ¼ã‚¿æŒ‡å®šï¼ˆç›£è¦–ãƒ»ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ»è³ªå•ï¼‰
+ * @param	topic_id	ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡ID
  *
- * –{—ˆ‚ÍƒgƒsƒbƒN‚Ì•ú‘—‰ñ”‚È‚Ç‚ğŠÜ‚ß‚Äƒ`ƒFƒbƒN‚·‚é‚ª‚Ü‚¸‚Í
- * ŠÈ’P‚É–¢’®æ‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN‚ğ•Ô‚µ‚Ä‚¢‚é
+ * æœ¬æ¥ã¯ãƒˆãƒ”ãƒƒã‚¯ã®æ”¾é€å›æ•°ãªã©ã‚’å«ã‚ã¦ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŒã¾ãšã¯
+ * ç°¡å˜ã«æœªè´å–ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’è¿”ã—ã¦ã„ã‚‹
  */
 //----------------------------------------------------------
 BOOL TVWORK_EnableMakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id)
@@ -583,29 +583,29 @@ BOOL TVWORK_EnableMakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id
 	MY_TOPIC * mtopic;
 	MI_CpuClear8(array, MY_TOPIC_COMMON_MAX);
 
-	//–¢‹’®ƒf[ƒ^‚ğƒ`ƒFƒbƒN
+	//æœªè¦–è´ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯
 	n = TVWORK_SearchTopics(tvwk, topic_type, topic_id, TRUE, FALSE, array);
 	if (n != 0) {
-		//Œ©‚½‚±‚Æ‚Ì‚È‚¢ƒf[ƒ^‚ª‚ ‚é
+		//è¦‹ãŸã“ã¨ã®ãªã„ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
 		return FALSE;
 	}
 
-	//‹’®ƒf[ƒ^‚ğƒ`ƒFƒbƒN
+	//è¦–è´ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯
 	n = TVWORK_SearchTopics(tvwk, topic_type, topic_id, TRUE, TRUE, array);
 	if (n != 0) {
-		//‹’®Ïƒf[ƒ^‚ª‚ ‚Á‚½ê‡
+		//è¦–è´æ¸ˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸå ´åˆ
 		for (i = 0; i < MY_TOPIC_COMMON_MAX & array[i] != 0; i++) {
 			mtopic = TVWORK_GetMyTopicByIndex(tvwk, topic_type, array[i]);
 			if (mtopic->topic.see_count >= BROADCAST_MAX) {
-				//‹’®ƒf[ƒ^‚ª‚ ‚é‚ªã‘‚«‰Â”\ 
+				//è¦–è´ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãŒä¸Šæ›¸ãå¯èƒ½ 
 				return TRUE;
 			}
 		}
-		//‹’®ƒf[ƒ^‚ª‚ ‚èAã‘‚«•s‰Â”\ 
+		//è¦–è´ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã€ä¸Šæ›¸ãä¸å¯èƒ½ 
 		return FALSE;
 	}
 
-	//‹ó‚«‚©Aã‘‚«‰Â”\‚ÈêŠ‚ğ’T‚·
+	//ç©ºãã‹ã€ä¸Šæ›¸ãå¯èƒ½ãªå ´æ‰€ã‚’æ¢ã™
 	for (i = 1; i <= MY_TOPIC_COMMON_MAX; i++) {
 		mtopic = TVWORK_GetMyTopicByIndex(tvwk, topic_type, i);
 		if (mtopic->topic.topic_id == 0 ||
@@ -614,7 +614,7 @@ BOOL TVWORK_EnableMakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id
 		}
 	}
 
-	//‹ó‚«‚àã‘‚«‰Â”\‚ÈƒgƒsƒbƒN‚à‚È‚¢
+	//ç©ºãã‚‚ä¸Šæ›¸ãå¯èƒ½ãªãƒˆãƒ”ãƒƒã‚¯ã‚‚ãªã„
 	return FALSE;
 }
 
@@ -643,7 +643,7 @@ OTHER_TOPIC * TVWORK_GetOtherTopicByIndex(TV_WORK * tvwk, TVTOPICTYPE topic_type
 
 //----------------------------------------------------------
 /**
- * @brief	ƒCƒ“ƒfƒbƒNƒX’l‚ª©•ªƒf[ƒ^‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ãŒè‡ªåˆ†ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  * @param	index
  * @retval	TRUE
  * @retval	FALSE
@@ -660,9 +660,9 @@ BOOL TVWORK_IsMineIndex(int index)
 
 //----------------------------------------------------------
 /**
- * @brief	‘¼lƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX’l‚É•ÏŠ·‚·‚é
+ * @brief	ä»–äººãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã«å¤‰æ›ã™ã‚‹
  * @param	index
- * @param	int		‘¼lƒf[ƒ^—pƒCƒ“ƒfƒbƒNƒX’l
+ * @param	int		ä»–äººãƒ‡ãƒ¼ã‚¿ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
  */
 //----------------------------------------------------------
 int TVWORK_MakeOtherIndex(int index)
@@ -674,15 +674,15 @@ int TVWORK_MakeOtherIndex(int index)
 //============================================================================================
 //
 //
-//				ó‹µ•Ûƒ[ƒN‚Ìæ“¾
+//				çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯ã®å–å¾—
 //
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾FƒRƒ“ƒeƒXƒg
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
  * @param	tvwk
- * @return	TOPICTEMP_CONTEST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_CONTESTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_CONTEST * TVWORK_GetContestTemp(TV_WORK * tvwk)
@@ -691,9 +691,9 @@ TOPICTEMP_CONTEST * TVWORK_GetContestTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾FƒRƒ“ƒeƒXƒg
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
  * @param	tvwk
- * @return	TOPICTEMP_CONTEST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_CONTESTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_PARK * TVWORK_GetParkTemp(TV_WORK * tvwk)
@@ -702,9 +702,9 @@ TOPICTEMP_PARK * TVWORK_GetParkTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾FƒRƒ“ƒeƒXƒg
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
  * @param	tvwk
- * @return	TOPICTEMP_CONTEST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_CONTESTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_PORUTO * TVWORK_GetPorutoTemp(TV_WORK * tvwk)
@@ -713,9 +713,9 @@ TOPICTEMP_PORUTO * TVWORK_GetPorutoTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾Fƒoƒgƒ‹ƒ^ƒ[
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
  * @param	tvwk
- * @return	TOPICTEMP_BTOWER‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_BTOWERã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_BTOWER * TVWORK_GetBTowerTemp(TV_WORK * tvwk)
@@ -724,9 +724,9 @@ TOPICTEMP_BTOWER * TVWORK_GetBTowerTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾FƒTƒtƒ@ƒŠ
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šã‚µãƒ•ã‚¡ãƒª
  * @param	tvwk
- * @return	TOPICTEMP_SAFARI‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_SAFARIã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_SAFARI * TVWORK_GetSafariTemp(TV_WORK * tvwk)
@@ -735,9 +735,9 @@ TOPICTEMP_SAFARI * TVWORK_GetSafariTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾Fƒoƒgƒ‹ƒXƒe[ƒWš
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸â˜…
  * @param	tvwk
- * @return	TOPICTEMP_STAGE‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_STAGEã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_STAGE * TVWORK_GetStageTemp(TV_WORK * tvwk)
@@ -746,9 +746,9 @@ TOPICTEMP_STAGE * TVWORK_GetStageTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾Fƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µš
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—â˜…
  * @param	tvwk
- * @return	TOPICTEMP_FRIEND‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_FRIENDã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_FRIEND * TVWORK_GetFriendTemp(TV_WORK * tvwk)
@@ -757,9 +757,9 @@ TOPICTEMP_FRIEND * TVWORK_GetFriendTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾Fƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lš
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººâ˜…
  * @param	tvwk
- * @return	TOPICTEMP_BP‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_BPã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_BP * TVWORK_GetBPTemp(TV_WORK * tvwk)
@@ -768,9 +768,9 @@ TOPICTEMP_BP * TVWORK_GetBPTemp(TV_WORK * tvwk)
 }
 //----------------------------------------------------------
 /**
- * @brief	ó‹µ•Ûƒ[ƒNæ“¾FGTS–¼lš
+ * @brief	çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯å–å¾—ï¼šGTSåäººâ˜…
  * @param	tvwk
- * @return	TOPICTEMP_GTS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	TOPICTEMP_GTSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 TOPICTEMP_GTS * TVWORK_GetGTSTemp(TV_WORK * tvwk)
@@ -783,7 +783,7 @@ TOPICTEMP_GTS * TVWORK_GetGTSTemp(TV_WORK * tvwk)
 //============================================================================================
 //
 //
-//				ƒfƒoƒbƒOî•ñ•\¦
+//				ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¡¨ç¤º
 //
 //
 //============================================================================================

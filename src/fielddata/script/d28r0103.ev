@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_d28r0103evd.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d28r0103_flag_change
 _EVENT_DATA		ev_d28r0103_init_change
@@ -27,18 +27,18 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d28r0103_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D28R0103	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D28R0103	//åˆ°ç€
 
 	_IF_FLAGOFF_JUMP	FE_D05R0114_CLEAR,ev_d28r0103_door_exit_move_1
 	_IF_FLAGON_JUMP		FE_D05R0114_CLEAR,ev_d28r0103_door_exit_move_2
 	_END
 
-/*ƒCƒAAƒGƒA‚Æí“¬‘O‚Íd28r0102‚É‚Í“ü‚ê‚È‚¢I*/
+/*ã‚¤ã‚¢ã€ã‚¨ã‚¢ã¨æˆ¦é—˜å‰ã¯d28r0102ã«ã¯å…¥ã‚Œãªã„ï¼*/
 ev_d28r0103_door_exit_move_1:
 	_SXY_EXIT_POS_CHANGE	D28R0103_SP_MAT01,10,29
 	_END
 
-/*ƒCƒAAƒGƒA‚Æí“¬Œã‚Íd28r0101‚É‚Í“ü‚ê‚È‚¢I*/
+/*ã‚¤ã‚¢ã€ã‚¨ã‚¢ã¨æˆ¦é—˜å¾Œã¯d28r0101ã«ã¯å…¥ã‚Œãªã„ï¼*/
 ev_d28r0103_door_exit_move_2:
 	_SXY_EXIT_POS_CHANGE	D28R0103_MAT01,10,29
 	_END
@@ -48,7 +48,7 @@ ev_d28r0103_door_exit_move_2:
 /*						INIT_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d28r0103_init_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D28R0103	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D28R0103	//åˆ°ç€
 
 	_IF_FLAGON_CALL	FE_INIT_CHANGE_OBJ_DEL,ev_d28r0103_init_change_obj_del
 
@@ -64,7 +64,7 @@ ev_d28r0103_init_change_obj_del:
 
 
 /********************************************************************/
-/*								ƒnƒC								*/
+/*								ãƒã‚¤								*/
 /********************************************************************/
 ev_d28r0103_hai:
 	_TALK_OBJ_START
@@ -84,14 +84,14 @@ ev_d28r0103_hai:
 	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d28r0103_legend_capture_ng
 
-//ƒnƒC•ß‚Ü‚¦‚½
+//ãƒã‚¤æ•ã¾ãˆãŸ
 ev_d28r0103_legend_event_clear:
-	//ƒNƒŠƒAƒtƒ‰ƒOon
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on
 	_FLAG_SET			FE_D28R0103_LEGEND_CLEAR
 	_TALK_OBJ_END
 	_END
 
-//ƒnƒC•ß‚Ü‚¦‘¹‚Ë‚½A“|‚µ‚½
+//ãƒã‚¤æ•ã¾ãˆæã­ãŸã€å€’ã—ãŸ
 ev_d28r0103_legend_capture_ng:
 	_TALKMSG			msg_d28r0103_sppoke3_02
 	_LAST_KEYWAIT
@@ -99,21 +99,21 @@ ev_d28r0103_legend_capture_ng:
 	_TALK_OBJ_END
 	_END
 
-//‘S–Å
+//å…¨æ»…
 ev_d28r0103_legend_lose:
 	_NORMAL_LOSE	
 	_TALK_OBJ_END
 	_END
 /********************************************************************/
-/*							ƒMƒ“ƒK’cŠ²•”							*/
+/*							ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨							*/
 /********************************************************************/
 ev_d28r0103_gkanbu3:
-	_TALK_OBJ_START_TURN_NOT	/*U‚èŒü‚«‚È‚µ*/
+	_TALK_OBJ_START_TURN_NOT	/*æŒ¯ã‚Šå‘ããªã—*/
 
 	_TALK_KEYWAIT	msg_d28r0103_gkanbu3_01
 	_TALK_CLOSE
 
-	/*U‚èŒü‚«@ƒrƒbƒNƒŠ*/
+	/*æŒ¯ã‚Šå‘ãã€€ãƒ“ãƒƒã‚¯ãƒª*/
 	_TURN_HERO_SITE
 	_OBJ_ANIME		D28R0103_GKANBU3,anm_d28r0103_gkanbu3_01
 	_OBJ_ANIME_WAIT
@@ -123,7 +123,7 @@ ev_d28r0103_gkanbu3:
 	_TALK_KEYWAIT	msg_d28r0103_gkanbu3_02
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GINGALEADER3_01,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d28r0103_battle_lose
@@ -134,11 +134,11 @@ ev_d28r0103_gkanbu3:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒMƒ“ƒK’cÁ‚·
+	//ã‚®ãƒ³ã‚¬å›£æ¶ˆã™
 	_OBJ_DEL		D28R0103_GKANBU3
 	_FLAG_SET		FE_L02_GINGA_WIN
 
-	/*L01‚ÌŒÎ*/
+	/*L01ã®æ¹–*/
 	_FLAG_SET		SYS_FLAG_BGM_D28
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -148,7 +148,7 @@ ev_d28r0103_gkanbu3:
 	_END
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’cŠ²•”	ƒrƒbƒNƒŠ
+//ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨	ãƒ“ãƒƒã‚¯ãƒª
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d28r0103_gkanbu3_01
 	_ANIME_DATA	AC_MARK_GYOE,1
@@ -156,7 +156,7 @@ _ANIME_LABEL	anm_d28r0103_gkanbu3_01
 
 
 /********************************************************************/
-/*							‹¤’Ê”s–kˆ—							*/
+/*							å…±é€šæ•—åŒ—å‡¦ç†							*/
 /********************************************************************/
 ev_d28r0103_battle_lose:
 	_TRAINER_LOSE

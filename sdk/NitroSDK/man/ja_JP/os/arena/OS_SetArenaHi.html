@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_Set*ArenaHi</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_Set*ArenaHi</H1>
-<H2>\•¶</H2>
+<H2>æ§‹æ–‡</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
@@ -26,50 +26,50 @@ void OS_SetWramSubArenaHi( void* newHi );
 void OS_SetWramSubPrivArenaHi( void* newHi );
 </CODE></PRE>
 </DL>
-<H2>ˆø”</H2>
+<H2>å¼•æ•°</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>id</STRONG></EM></TD>
-      <TD width="87%">ƒAƒŠ[ƒiID</TD>
+      <TD width="87%">ã‚¢ãƒªãƒ¼ãƒŠID</TD>
     </TR>
     <TR>
       <TD><B><I>newHi</I></B></TD>
-      <TD>ƒAƒŠ[ƒi‚ÌãˆÊ‹«ŠEƒAƒhƒŒƒX</TD>
+      <TD>ã‚¢ãƒªãƒ¼ãƒŠã®ä¸Šä½å¢ƒç•Œã‚¢ãƒ‰ãƒ¬ã‚¹</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>•Ô‚è’l</H2>
-<P>‚È‚µB</P>
-<H2>à–¾</H2>
-<P>ƒAƒŠ[ƒi‚ÌãˆÊ‚Ì‹«ŠE‚ğİ’è‚µ‚Ü‚·B<BR>
-id ‚ÍƒAƒŠ[ƒiID‚ÅƒAƒŠ[ƒi‚ğw’è‚µ‚Ü‚·BƒAƒŠ[ƒiID‚É‚Â‚¢‚Ä‚Í <A href="OS_InitArena.html">OS_InitArena()</A> ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</P>
+<H2>è¿”ã‚Šå€¤</H2>
+<P>ãªã—ã€‚</P>
+<H2>èª¬æ˜</H2>
+<P>ã‚¢ãƒªãƒ¼ãƒŠã®ä¸Šä½ã®å¢ƒç•Œã‚’è¨­å®šã—ã¾ã™ã€‚<BR>
+id ã¯ã‚¢ãƒªãƒ¼ãƒŠIDã§ã‚¢ãƒªãƒ¼ãƒŠã‚’æŒ‡å®šã—ã¾ã™ã€‚ã‚¢ãƒªãƒ¼ãƒŠIDã«ã¤ã„ã¦ã¯ <A href="OS_InitArena.html">OS_InitArena()</A> ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</P>
 <BLOCKQUOTE>
-<P>(—á)<BR>
-// ƒƒCƒ“ƒƒ‚ƒŠã‚ÌƒAƒŠ[ƒi‚Ìİ’è<BR>
+<P>(ä¾‹)<BR>
+// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚¢ãƒªãƒ¼ãƒŠã®è¨­å®š<BR>
 OS_SetArenaLo( OS_ARENA_MAIN, (void*)__bss_end__ );<BR>
 OS_SetArenaHi( OS_ARENA_MAIN, (void*)((u32)__bss_end__ + 0x3000) );</P>
 </BLOCKQUOTE>
 <P>
-OS_SetMainArenaHi ‚Í OS_SetArenaHi( OS_ARENA_MAIN, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetSubPrivArenaHi ‚Í OS_SetArenaHi( OS_ARENA_MAIN_SUBPRIV, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetMainExArenaHi ‚Í OS_SetArenaHi( OS_ARENA_MAINEX, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetITCMArenaHi ‚Í OS_SetArenaHi( OS_ARENA_ITCM, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetDTCMArenaHi ‚Í OS_SetArenaHi( OS_ARENA_DTCM, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetSharedArenaHi ‚Í OS_SetArenaHi( OS_ARENA_SHARED, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetWramMainArenaHi ‚Í OS_SetArenaHi( OS_ARENA_WRAM_MAIN, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetWramSubArenaHi ‚Í OS_SetArenaHi( OS_ARENA_WRAM_SUB, c ) ‚Ì inline ‚Å‚·B<BR>
-OS_SetWramSubPrivArenaHi ‚Í OS_SetArenaHi( OS_ARENA_WRAM_SUBPRIV, c ) ‚Ì inline ‚Å‚·B</P>
-<H2>QÆ</H2>
+OS_SetMainArenaHi ã¯ OS_SetArenaHi( OS_ARENA_MAIN, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetSubPrivArenaHi ã¯ OS_SetArenaHi( OS_ARENA_MAIN_SUBPRIV, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetMainExArenaHi ã¯ OS_SetArenaHi( OS_ARENA_MAINEX, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetITCMArenaHi ã¯ OS_SetArenaHi( OS_ARENA_ITCM, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetDTCMArenaHi ã¯ OS_SetArenaHi( OS_ARENA_DTCM, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetSharedArenaHi ã¯ OS_SetArenaHi( OS_ARENA_SHARED, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetWramMainArenaHi ã¯ OS_SetArenaHi( OS_ARENA_WRAM_MAIN, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetWramSubArenaHi ã¯ OS_SetArenaHi( OS_ARENA_WRAM_SUB, â€¦ ) ã® inline ã§ã™ã€‚<BR>
+OS_SetWramSubPrivArenaHi ã¯ OS_SetArenaHi( OS_ARENA_WRAM_SUBPRIV, â€¦ ) ã® inline ã§ã™ã€‚</P>
+<H2>å‚ç…§</H2>
 <P><CODE>
 <A href="OS_InitArena.html">OS_InitArena</A>,
 <A href="OS_SetArenaLo.html">OS_SetArenaLo</A>,
 <A href="OS_GetArenaHi.html">OS_GetArenaHi</A>
 <BR>
 </CODE></P>
-<H2>—š—ğ</H2>
-<P>2004/02/19 ƒAƒŠ[ƒi‚ª‚U¨‚XŒÂ‚É<BR>
-2004/01/16 MainEx ‚É‚Â‚¢‚Ä’Ç‰Á<BR>
-2004/01/06 ‰”Å</P>
+<H2>å±¥æ­´</H2>
+<P>2004/02/19 ã‚¢ãƒªãƒ¼ãƒŠãŒï¼–â†’ï¼™å€‹ã«<BR>
+2004/01/16 MainEx ã«ã¤ã„ã¦è¿½åŠ <BR>
+2004/01/06 åˆç‰ˆ</P>
 </BODY>
 </HTML>

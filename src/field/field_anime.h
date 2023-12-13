@@ -1,6 +1,6 @@
 /**
  * @file	field_anime.h
- * @brief	フィールド転送アニメ処理
+ * @brief	繝輔ぅ繝ｼ繝ｫ繝芽ｻ｢騾√い繝九Γ蜃ｦ逅�
  * @author	Akito Mori
  * @date	2005.04.
  *

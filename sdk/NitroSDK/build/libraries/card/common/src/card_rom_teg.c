@@ -29,22 +29,22 @@
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadCartridge
 
-  Description:  �ݒ肳�ꂽ���e�Ɋ�Â��ăJ�[�g���b�W�A�N�Z�X�����s.
+  Description:  設定された内容に基づいてカートリッジアクセスを実行.
 
-  Arguments:    p          �A�N�Z�X���e���ݒ肳�ꂽ�\����
+  Arguments:    p          アクセス内容が設定された構造体
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void CARDi_ReadCartridge(CARDRomStat * p)
 {
     CARDiCommon *const c = &cardi_common;
-    /* 32bit DMA �g�p�\���̐ÓI���� */
+    /* 32bit DMA 使用可能かの静的判定 */
     const BOOL is_dma_static =
 #if defined(SDK_ARM9)
         !CARDi_IsTcm(c->dst, c->len) &&
 #endif
         (c->dma <= MI_DMA_MAX_NUM) && (((c->src ^ c->dst) & 3) == 0);
-    /* �y�[�W�P�ʂŒ��ړ]���̌J��Ԃ� */
+    /* ページ単位で直接転送の繰り返し */
     const u8 *src = (const u8 *)(c->src + HW_CTRDG_ROM);
     u8     *dst = (u8 *)c->dst;
     u32     len = c->len;
@@ -80,9 +80,9 @@ static void CARDi_ReadCartridge(CARDRomStat * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadPxi
 
-  Description:  �ݒ肳�ꂽ���e�Ɋ�Â���PXI �ɂ�� CARD ���[�h�v�������s.
+  Description:  設定された内容に基づいてPXI による CARD リード要求を実行.
 
-  Arguments:    p          �A�N�Z�X���e���ݒ肳�ꂽ�\����
+  Arguments:    p          アクセス内容が設定された構造体
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -91,7 +91,7 @@ static void CARDi_ReadPxi(CARDRomStat * p)
     CARDiCommon *const c = &cardi_common;
     do
     {
-        /* �y�[�W�P�ʂ� PXI ���[�h�v�� */
+        /* ページ単位で PXI リード要求 */
         p->cache_page = (u8 *)CARD_ALIGN_HI_BIT(c->src);
         DC_InvalidateRange(p->cache_buf, sizeof(p->cache_buf));
         c->cmd->src = (u32)p->cache_page;
@@ -102,9 +102,9 @@ static void CARDi_ReadPxi(CARDRomStat * p)
             break;
         {
             /*
-             * �L���b�V������R�s�[.
-             * (���̕����͍Œ� 85[us] �������ďd���̂�
-             *  ���荞�݋쓮�ɂ���ƃA�v�����s����ɂȂ肤��)
+             * キャッシュからコピー.
+             * (この部分は最長 85[us] かかって重いので
+             *  割り込み駆動にするとアプリが不安定になりうる)
              */
             const u32 mod = (u32)(c->src - (u32)p->cache_page);
             u32     len = CARD_ROM_PAGE_SIZE - mod;
@@ -124,11 +124,11 @@ static void CARDi_ReadPxi(CARDRomStat * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadPxi
 
-  Description:  �J�[�h ID �̓ǂݏo��.
+  Description:  カード ID の読み出し.
 
   Arguments:    None.
 
-  Returns:      �ǂݏo�����J�[�h ID.
+  Returns:      読み出したカード ID.
  *---------------------------------------------------------------------------*/
 u32 CARDi_ReadRomID(void)
 {
@@ -140,7 +140,7 @@ u32 CARDi_ReadRomID(void)
     SDK_ASSERT(CARD_IsAvailable());
     SDK_ASSERT(CARDi_GetTargetMode() == CARD_TARGET_ROM);
 
-    /* TEG �ŃJ�[�g���b�W�Ȃ�Ăяo���s�\ */
+    /* TEG でカートリッジなら呼び出し不可能 */
     if (CARDi_IsTrueRom())
     {
         OS_TPanic("cannot call CARD_ReadRomID() on (TEG && cartridge)!");
@@ -149,7 +149,7 @@ u32 CARDi_ReadRomID(void)
     CARDi_WaitTask(c, NULL, NULL);
 
 #if defined(SDK_ARM9)
-    /* TEG �� ARM9 �Ȃ烊�N�G�X�g�ŉ��� */
+    /* TEG で ARM9 ならリクエストで解決 */
     cardi_common.cur_th = OS_GetCurrentThread();
     (void)CARDi_Request(c, CARD_REQ_READ_ID, 1);
     ret = (u32)c->cmd->id;
@@ -161,23 +161,23 @@ u32 CARDi_ReadRomID(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_GetRomAccessor
 
-  Description:  ��������ƂɈقȂ�J�[�h�A�N�Z�X�֐��ւ̃|�C���^��Ԃ�.
+  Description:  動作環境ごとに異なるカードアクセス関数へのポインタを返す.
 
   Arguments:    None.
 
-  Returns:      TEG �łł��邱�̎����ɂ����Ă͈ȉ��̂����ꂩ.
+  Returns:      TEG 版であるこの実装においては以下のいずれか.
                 CARDi_ReadCard(), CARDi_ReadPxi(), CARDi_ReadCartridge().
  *---------------------------------------------------------------------------*/
 void    (*CARDi_GetRomAccessor(void)) (CARDRomStat *)
 {
-    /* TEG �� CARD �Ȃ� ARM7 ����̂݃A�N�Z�X�\ */
+    /* TEG で CARD なら ARM7 からのみアクセス可能 */
     if (CARDi_IsTrueRom())
     {
 #if defined(SDK_ARM9)
-        /* ����� ARM9 ����� PXI �o�R */
+        /* よって ARM9 からは PXI 経由 */
         return CARDi_ReadPxi;
 #else
-        /* ����� ARM7 ����͒��ڃA�N�Z�X */
+        /* よって ARM7 からは直接アクセス */
         return CARDi_ReadCard;
 #endif /* SDK_ARM9 */
     }

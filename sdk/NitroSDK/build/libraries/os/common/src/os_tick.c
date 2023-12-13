@@ -48,39 +48,39 @@
   add getTick function for PROFILE
 
   Revision 1.3  2004/03/02 09:04:00  yada
-  ƒ`ƒbƒN‚ÌƒJƒEƒ“ƒgƒAƒbƒvƒ‹[ƒ`ƒ“C³B
+  ãƒãƒƒã‚¯ã®ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ«ãƒ¼ãƒãƒ³ä¿®æ­£ã€‚
 
   Revision 1.2  2004/03/01 12:05:00  yada
-  ‰pŒê‚ÌŠÖ”commentì¬
+  è‹±èªã®é–¢æ•°commentä½œæˆ
 
   Revision 1.1  2004/02/25 11:38:17  yada
-  systemClock¨Tick ‚É”º‚¤•ÏX
+  systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.8  2004/02/24 10:49:49  yada
-  OS_GetTick() ’Ç‰Á
+  OS_GetTick() è¿½åŠ 
 
   Revision 1.7  2004/02/23 07:36:47  yada
-  sytem clock ‚ğ 64ƒrƒbƒg’l‚É
+  sytem clock ã‚’ 64ãƒ“ãƒƒãƒˆå€¤ã«
 
   Revision 1.6  2004/02/20 04:40:33  yada
-  ƒ^ƒCƒ}İ’è•s‹ï‡C³
+  ã‚¿ã‚¤ãƒè¨­å®šä¸å…·åˆä¿®æ­£
 
   Revision 1.5  2004/02/12 09:57:58  yada
-  GetTime, SetTime ‚ğŠ„‚è‚İl—¶‚µ‚½‚à‚Ì‚É•ÏX
+  GetTime, SetTime ã‚’å‰²ã‚Šè¾¼ã¿è€ƒæ…®ã—ãŸã‚‚ã®ã«å¤‰æ›´
 
   Revision 1.4  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.3  2004/02/04 07:36:43  yada
-  OS_IsSystemClockAvailable() ’Ç‰ÁB
-  OS_GetSystemClock(), OS_SetSystemClock()‚ğ
-  OS_GetTime(),OS_SetTime() ‚Ö–¼Ì•ÏXB
+  OS_IsSystemClockAvailable() è¿½åŠ ã€‚
+  OS_GetSystemClock(), OS_SetSystemClock()ã‚’
+  OS_GetTime(),OS_SetTime() ã¸åç§°å¤‰æ›´ã€‚
 
   Revision 1.2  2004/02/03 11:22:12  yada
-  systemClock’l‚ğ u32 ‚©‚ç OSTime(u64)‚É•ÏX
+  systemClockå€¤ã‚’ u32 ã‹ã‚‰ OSTime(u64)ã«å¤‰æ›´
 
   Revision 1.1  2004/02/02 05:29:18  yada
-  ƒVƒXƒeƒ€ƒNƒƒbƒNfirstRelease
+  ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ­ãƒƒã‚¯firstRelease
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

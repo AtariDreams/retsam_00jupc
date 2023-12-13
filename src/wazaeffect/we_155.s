@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_155.s
- * @brief	ƒzƒlƒu[ƒƒ‰ƒ“			155
+ * @brief	ãƒ›ãƒãƒ–ãƒ¼ãƒ¡ãƒ©ãƒ³			155
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒzƒlƒu[ƒƒ‰ƒ“			155
+//	â– ãƒ›ãƒãƒ–ãƒ¼ãƒ¡ãƒ©ãƒ³			155
 //
 //
 // =============================================================================
@@ -35,36 +35,36 @@ WEST_HONEBUUMERAN:
 
 	LOAD_PARTICLE_DROP	0,W_001_SPA
 	
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		BONE_RES_NO, BONE_ACT_NUM, BONE_RES_NUM, BONE_RES_NUM, BONE_RES_NUM, BONE_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	BONE_RES_NO, EFFECT_155_NCGR_BIN
 	CATS_PLTT_RES_LOAD	BONE_RES_NO, EFFECT_155_NCLR, 1
 	CATS_CELL_RES_LOAD	BONE_RES_NO, EFFECT_155_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	BONE_RES_NO, EFFECT_155_NANR_BIN
 	
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		BONE_RES_NO, WEST_CSP_WE_155, EFFECT_155_NCGR_BIN, EFFECT_155_NCLR, EFFECT_155_NCER_BIN, EFFECT_155_NANR_BIN, 0, 0, 0,0,
 	//SE_L			SEQ_SE_DP_W233
 
-	// ƒqƒbƒgƒ}[ƒN@
+	// ãƒ’ãƒƒãƒˆãƒžãƒ¼ã‚¯ã€€
 	WAIT	5
 	SE_FLOW_LR		SEQ_SE_DP_HURU
 	WAIT	5
 	ADD_PARTICLE 	0,W_001_001_HIT_MARK, EMTFUNC_DEFENCE_POS
 	SE_R			SEQ_SE_DP_030
 
-	// ‚Ó‚é‚¦‚³‚¹‚é
+	// ãµã‚‹ãˆã•ã›ã‚‹
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, WE155_SHAKE_WIDTH, 0,WE155_SHAKE_SYNC, WE155_SHAKE_NUM, WE_TOOL_E1 | WE_TOOL_SSP, 0, 0
 	
 
-	// œ‚ð‚Æ‚é‰¹
+	// éª¨ã‚’ã¨ã‚‹éŸ³
 	WAIT 8
 	SE_L			SEQ_SE_DP_W091
 	
 	WAIT_PARTICLE
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		BONE_RES_NO
 
 	EXIT_PARTICLE	0,

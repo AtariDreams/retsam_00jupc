@@ -25,37 +25,37 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendJointSRTBasic
 
-    �W���C���g�s����W�I���g���G���W���ɐݒ肷��B
-    �ʏ�ANNS_G3dSendJointSRT_FuncArray�Ƀ|�C���^���i�[����Ă��āA
-    NNS_G3D_SCALINGRULE_STANDARD(<model_info>::scaling_rule��standard�̏ꍇ)
-    ���w�肳��Ă����ꍇ�ɌĂяo�����悤�ɂȂ��Ă���B
+    ジョイント行列をジオメトリエンジンに設定する。
+    通常、NNS_G3dSendJointSRT_FuncArrayにポインタが格納されていて、
+    NNS_G3D_SCALINGRULE_STANDARD(<model_info>::scaling_ruleがstandardの場合)
+    が指定されていた場合に呼び出されるようになっている。
 
-    �܂��A�Ăяo�����ɂ́APosition/Vector���[�h�ł���A���H�Ώۂ̍s��
-    �J�����g�s��ɓ����Ă���K�v������B
+    また、呼び出し時には、Position/Vectorモードであり、加工対象の行列が
+    カレント行列に入っている必要がある。
  *---------------------------------------------------------------------------*/
 void NNSi_G3dSendJointSRTBasic(const NNSG3dJntAnmResult* result)
 {
     NNS_G3D_NULL_ASSERT(result);
 
-    // ���̎��_��
-    // �s�񃂁[�h��Position/Vector���[�h�łȂ���΂Ȃ�Ȃ��B
-    // ���H�Ώۂ̍s�񂪃J�����g�s��ɂȂ��Ă��Ȃ���΂Ȃ�Ȃ��B
+    // この時点で
+    // 行列モードはPosition/Vectorモードでなければならない。
+    // 加工対象の行列がカレント行列になっていなければならない。
     if (!(result->flag & NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO))
     {
         if (!(result->flag & NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO))
         {
             // HACK ALLERT
-            // rot��trans�͘A�����Ă���Ƃ������Ƃ��O��
-            // �܂�A�R�[�h��NNSG3dJntAnmResult�̃����o�̏��ԂɈˑ����Ă���B
+            // rotとtransは連続しているということが前提
+            // つまり、コードはNNSG3dJntAnmResultのメンバの順番に依存している。
             NNS_G3dGeBufferOP_N(G3OP_MTX_MULT_4x3,
                                 (u32*)&result->rot._00,
                                 G3OP_MTX_MULT_4x3_NPARAMS);
         }
         else
         {
-            // Position/Vector���[�h�͒x�����A
-            // ���[�h��؂�ւ��邽�߂̃R�}���h���M�̂��߂�
-            // CPU��]�v�Ɏg���͖̂]�܂����Ȃ��B
+            // Position/Vectorモードは遅いが、
+            // モードを切り替えるためのコマンド送信のために
+            // CPUを余計に使うのは望ましくない。
             NNS_G3dGeBufferOP_N(G3OP_MTX_TRANS,
                                 (u32*)&result->trans.x,
                                 G3OP_MTX_TRANS_NPARAMS);
@@ -83,7 +83,7 @@ void NNSi_G3dSendJointSRTBasic(const NNSG3dJntAnmResult* result)
 /*---------------------------------------------------------------------------*
     NNSi_G3dGetJointScaleBasic
 
-    �������ʂ̃X�P�[�����O���s���܂��B*(p + 3), *(p + 4), *(p + 5)�͎g�p���܂���
+    ごく普通のスケーリングを行います。*(p + 3), *(p + 4), *(p + 5)は使用しません
  *---------------------------------------------------------------------------*/
 void NNSi_G3dGetJointScaleBasic(NNSG3dJntAnmResult* pResult,
                                 const fx32* p,
@@ -91,8 +91,8 @@ void NNSi_G3dGetJointScaleBasic(NNSG3dJntAnmResult* pResult,
                                 u32 srtflag)
 {
     // NOTICE:
-    // cmd��NULL�ł��悢
-    // NNS_G3D_SRTFLAG_SCALE_ONE��ON�Ȃ�p��NULL�ł��悢
+    // cmdはNULLでもよい
+    // NNS_G3D_SRTFLAG_SCALE_ONEがONならpはNULLでもよい
 
     NNS_G3D_NULL_ASSERT(pResult);
     
@@ -109,7 +109,7 @@ void NNSi_G3dGetJointScaleBasic(NNSG3dJntAnmResult* pResult,
         pResult->scale.z = *(p + 2);
     }
 
-    // �g�p���Ȃ����Z�b�g���Ă����̂�����(�u�����h�Ƃ̌��ˍ���)
+    // 使用しないがセットしておくのが無難(ブレンドとの兼ね合い)
     pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE |
                      NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE;
 }

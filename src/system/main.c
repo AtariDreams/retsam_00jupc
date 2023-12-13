@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	main.c
- * @brief	�|�P�����c�o���C��
+ * @brief	ポケモンＤＰメイン
  * @author	GAME FREAK Inc.
  */
 //=============================================================================
@@ -45,13 +45,13 @@ static void ErrorCheckComm(void);
 void sleepFunc(void);
 
 
-#define COMM_ERROR_RESET_KEY_WAIT	( 30 )	// ���Z�b�g�ŃL�[���͂��󂯕t����܂ł̎���
+#define COMM_ERROR_RESET_KEY_WAIT	( 30 )	// リセットでキー入力を受け付けるまでの時間
 
 //=============================================================================
 //=============================================================================
 //#define TEST_60_FRAME
 
-//--- �f�o�b�O�p  �`��x���𔭐�������
+//--- デバッグ用  描画遅延を発生させる
 
 
 // -------------------------------------------------------------------------
@@ -67,14 +67,14 @@ static void delayDebug(void);
 
 
 
-// WIFI�@�ΐ�AUTOӰ�ރf�o�b�N
+// WIFI　対戦AUTOモードデバック
 #ifdef _WIFI_DEBUG_TUUSHIN
 static void wifiDebug(void);
 WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #endif	// _WIFI_DEBUG_TUUSHIN
 
 
-// A�{�^����0.6�b�ɂP�񉟂�
+// Aボタンを0.6秒に１回押す
 //#define PAD_DEBUG
 #ifdef PAD_DEBUG
 static void DebugPad();
@@ -82,8 +82,8 @@ static void DebugPad();
 #endif // PAD_DEBUG
 
 
-// R�{�^����������MAIN���[�v�ɂ������Ă��鎞�Ԃ�
-// �\�����܂�
+// Rボタンを押すとMAINループにかかっている時間を
+// 表示します
 //#define DEBUG_PRINT_TIME
 #ifdef DEBUG_PRINT_TIME
 static OSTick DEBUG_PRINT_TIME_StartTime;
@@ -99,24 +99,24 @@ static void DEBUG_PRINT_TIME_End( void );
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���C������p���[�N
+ * @brief	メイン制御用ワーク
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	FSOverlayID ov_id;				///<���݂̃��C���v���Z�X�̃I�[�o�[���CID
-	PROC * proc;					///<���݂̃��C���v���Z�X�̃|�C���^
-	FSOverlayID next_ov_id;			///<���̃��C���v���Z�X�̃I�[�o�[���CID
-	const PROC_DATA * next_data;	///<���̃��C���v���Z�X�f�[�^�ւ̃|�C���^
-	MAINWORK work;					///<���C���v���Z�X�p���[�N�imain.h�Œ�`�j
+	FSOverlayID ov_id;				///<現在のメインプロセスのオーバーレイID
+	PROC * proc;					///<現在のメインプロセスのポインタ
+	FSOverlayID next_ov_id;			///<次のメインプロセスのオーバーレイID
+	const PROC_DATA * next_data;	///<次のメインプロセスデータへのポインタ
+	MAINWORK work;					///<メインプロセス用ワーク（main.hで定義）
 }SYSWORK;
 
 static SYSWORK main;
 
 #ifdef	PM_DEBUG
-DEBUG_FLAG_DATA	DebugFlagData;		///<�f�o�b�O�f�[�^
+DEBUG_FLAG_DATA	DebugFlagData;		///<デバッグデータ
 #endif
 
-///IPL�̃o�b�N���C�g�ݒ�ۑ��p���[�N
+///IPLのバックライト設定保存用ワーク
 static PMBackLightSwitch backlightDefault;
 
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
@@ -126,7 +126,7 @@ int AGBCartridge_TriggerFlag;
 
 //=============================================================================
 //
-//				���C��
+//				メイン
 //
 //=============================================================================
 extern const PROC_DATA TitleProcData;
@@ -135,13 +135,13 @@ FS_EXTERN_OVERLAY( title );
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���C���֐�
+ * @brief	メイン関数
  */
 //---------------------------------------------------------------------------
 void NitroMain(void)
 {
 	//===========================
-	//		������
+	//		初期化
 	//===========================
 	GF_AssertInit();
 
@@ -156,7 +156,7 @@ void NitroMain(void)
 
 	Main_Init();
 
-	// �t�H���g�f�[�^�̃��[�h
+	// フォントデータのロード
 	FontProcInit();
 	FontProc_LoadFont( FONT_SYSTEM, HEAPID_BASE_APP );
 	FontProc_LoadFont( FONT_TALK, HEAPID_BASE_APP );
@@ -169,15 +169,15 @@ void NitroMain(void)
 
 	APTM_Init();
 
-    if( DWC_INIT_RESULT_DESTROY_OTHER_SETTING == mydwc_init(HEAPID_BASE_APP) ){ //dwc������
-        DWClibWarningCall(HEAPID_BASE_APP,0); //dwc�������̃G���[�\��
+    if( DWC_INIT_RESULT_DESTROY_OTHER_SETTING == mydwc_init(HEAPID_BASE_APP) ){ //dwc初期化
+        DWClibWarningCall(HEAPID_BASE_APP,0); //dwc初期化のエラー表示
     }
 
-//�o�b�N�A�b�v�t���b�V�����Ȃ��Ƃ��̏����͐��i�łł̂ݗL���ɂ���
+//バックアップフラッシュがないときの処理は製品版でのみ有効にする
 #ifndef	PM_DEBUG
 	if (SaveData_GetFlashExistsFlag(main.work.savedata) == FALSE) {
-		//�o�b�N�A�b�v�t���b�V���̑��݂��F�߂��Ȃ��Ƃ���
-		//�G���[��ʂɑJ�ڂ���
+		//バックアップフラッシュの存在が認められないときは
+		//エラー画面に遷移する
 		//Main_SetNextProc(NO_OVERLAY_ID, &BackupErrorProcData);
 		BackupErrorWarningCall( 0 );
 	} else
@@ -190,9 +190,9 @@ void NitroMain(void)
 			break;
 		case _SOFT_RESET_NETERROR:
 
-#if PLFIX_T1238	// �ʐM�G���[��̉�ʕ��A�ŉ�ʂ����������Ă����ʂ��\������Ă��܂�
-				// �o�O���C��
-			// �}�X�^�[�P�x��ݒ�
+#if PLFIX_T1238	// 通信エラー後の画面復帰で画面を初期化している場面が表示されてしまう
+				// バグを修正
+			// マスター輝度を設定
 			WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 			WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 #endif
@@ -201,41 +201,41 @@ void NitroMain(void)
 			Main_SetNextProc( OVERLAY_ID_GAMESTART, &ContinueGameStartProcData);
 			break;
 		default:
-			GF_ASSERT_MSG(0, "����`�ȃ��Z�b�g��`���Ԃ�܂����I\n");
+			GF_ASSERT_MSG(0, "未定義なリセット定義が返りました！\n");
 		};
 	}
 
-	sys.DS_Boot_Flag = TRUE;		//�u�[�g�t���O
+	sys.DS_Boot_Flag = TRUE;		//ブートフラグ
 
 	sys.vsync_flame_counter = 0;
 	Main_InitRandom();
 
-	//�P�x�ύX�\���̏�����
+	//輝度変更構造体初期化
 	BrightnessChgInit();
 
-	// �v���C���ԃJ�E���g������
+	// プレイ時間カウント初期化
 	PlayTimeCtrl_Init();
 
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
 	AGBCartridge_TriggerFlag = FALSE;
 #endif
 	//===========================
-	//	���C�����[�v
+	//	メインループ
 	//===========================
 	while (1) {
 		
 #ifdef DEBUG_PRINT_TIME
 		DEBUG_PRINT_TIME_Start();
 #endif
-        ErrorCheckComm(); // �ʐM�G���[����
+        ErrorCheckComm(); // 通信エラー検査
 
-        sleepFunc();   // �X���[�v�@�\����
+        sleepFunc();   // スリープ機能部分
 
-		sys_MainKeyRead();	//�L�[���ǂݎ��
+		sys_MainKeyRead();	//キー情報読み取り
 
 		GF_AssertMain();
 
-// WIFI�@�ΐ�AUTOӰ�ރf�o�b�N
+// WIFI　対戦AUTOモードデバック
 #ifdef _WIFI_DEBUG_TUUSHIN
 		wifiDebug();
 #endif	// _WIFI_DEBUG_TUUSHIN
@@ -247,22 +247,22 @@ void NitroMain(void)
         
 		if ((sys.cont_org & (PAD_BUTTON_START|PAD_BUTTON_SELECT|PAD_BUTTON_L|PAD_BUTTON_R))
 			==(PAD_BUTTON_START|PAD_BUTTON_SELECT|PAD_BUTTON_L|PAD_BUTTON_R)) {
-            if(sys.DontSoftReset == 0){  // �}������BIT�������������OK
+            if(sys.DontSoftReset == 0){  // 抑制するBITが何も無ければOK
                 ResetFunc(_SOFT_RESET_NORMAL);
             }
 		}
         
-        if(CommUpdateData()){  // �f�[�^���L�ʐM�̒ʐM����
-            ErrorCheckComm(); // �ʐM�G���[����
+        if(CommUpdateData()){  // データ共有通信の通信処理
+            ErrorCheckComm(); // 通信エラー検査
 
-			Main_CallProc();	//���C���v���Z�X�Ăяo��
+			Main_CallProc();	//メインプロセス呼び出し
 
 			TCBSYS_Main( sys.mainTCBSys );
 			TCBSYS_Main( sys.printTCBSys );
 #ifndef TEST_60_FRAME
 			if(!sys.vsync_flame_counter){
-                OS_WaitIrq(TRUE, OS_IE_V_BLANK);	// �u�u�����N�҂�
-                sys.vsync_counter++;	// �u�u�����N�p�J�E���^
+                OS_WaitIrq(TRUE, OS_IE_V_BLANK);	// Ｖブランク待ち
+                sys.vsync_counter++;	// Ｖブランク用カウンタ
             }
 #endif
         }
@@ -273,18 +273,18 @@ void NitroMain(void)
         delayDebug();
 #endif// _DELAY_DEBUG
 
-		GF_G3_SwapBuffers();	// G3_SwapBuffers�Ăяo��
+		GF_G3_SwapBuffers();	// G3_SwapBuffers呼び出し
 #ifndef TEST_60_FRAME
 		TCBSYS_Main( sys.printTCBSys );
 #endif
-        OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// �u�u�����N�҂�
-		sys.vsync_counter++;	// �u�u�����N�p�J�E���^
+        OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// Ｖブランク待ち
+		sys.vsync_counter++;	// Ｖブランク用カウンタ
 		sys.vsync_flame_counter = 0;
 
 
 		//===========================
-		BrightnessChgMain();	//�P�x�ύX���C��
-		WIPE_SYS_Main();		///<���C�v�������C��
+		BrightnessChgMain();	//輝度変更メイン
+		WIPE_SYS_Main();		///<ワイプ処理メイン
 		if (sys.pVBlank != NULL) {
 			sys.pVBlank(sys.pVBlankWork);
 		}
@@ -302,14 +302,14 @@ void NitroMain(void)
 //=============================================================================
 //
 //
-//		���C���v���Z�X����
+//		メインプロセス制御
 //
 //
 //=============================================================================
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���C���v���Z�X������
+ * @brief	メインプロセス初期化
  */
 //---------------------------------------------------------------------------
 void Main_Init(void)
@@ -322,7 +322,7 @@ void Main_Init(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���C���v���Z�X���s
+ * @brief	メインプロセス実行
  */
 //---------------------------------------------------------------------------
 static void Main_CallProc(void)
@@ -334,7 +334,7 @@ static void Main_CallProc(void)
 			return;
 		}
 		if (main.next_ov_id != NO_OVERLAY_ID) {
-			//�K�v�ł���΃I�[�o�[���C�̃��[�h���s��
+			//必要であればオーバーレイのロードを行う
 			Overlay_Load(main.next_ov_id, OVERLAY_LOAD_SYNCHRONIZE);
 		}
 		main.ov_id = main.next_ov_id;
@@ -348,7 +348,7 @@ static void Main_CallProc(void)
 		PROC_Delete(main.proc);
 		main.proc = NULL;
 		if (main.ov_id != NO_OVERLAY_ID) {
-			//�K�v�ł���΃I�[�o�[���C�̃A�����[�h���s��
+			//必要であればオーバーレイのアンロードを行う
 			Overlay_UnloadID(main.ov_id);
 		}
 	}
@@ -356,9 +356,9 @@ static void Main_CallProc(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���̃v���Z�X�̓o�^
- * @param	ov_id		�I�[�o�[���CID
- * @param	proc_data	PROC_DATA�ւ̃|�C���^
+ * @brief	次のプロセスの登録
+ * @param	ov_id		オーバーレイID
+ * @param	proc_data	PROC_DATAへのポインタ
  */
 //---------------------------------------------------------------------------
 void Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data)
@@ -370,17 +370,17 @@ void Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���Z�b�g�̑ҋ@��Ԃ̎��ɍŒ���K�v�ȃ��[�v����
+ * @brief	リセットの待機状態の時に最低限必要なループ処理
  * @param	none
  */
 //---------------------------------------------------------------------------
 
 static void ResetUpdateVBlank(void)
 {
-    if(CommUpdateData()){  // �f�[�^���L�ʐM�̒ʐM����
+    if(CommUpdateData()){  // データ共有通信の通信処理
     }
     OS_WaitIrq(TRUE, OS_IE_V_BLANK);
-    sys.vsync_counter++;	// �u�u�����N�p�J�E���^
+    sys.vsync_counter++;	// Ｖブランク用カウンタ
     sys.vsync_flame_counter = 0;
     if (sys.pVBlank != NULL) {
         sys.pVBlank(sys.pVBlankWork);
@@ -389,16 +389,16 @@ static void ResetUpdateVBlank(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���Z�b�g�̑ҋ@��Ԃ̎��ɍŒ���K�v�ȃ��[�v���� ���Z�b�g�����ۂɂ�����
- * @param	resetNo   OS_ResetSystem�ɓn�����Z�b�g���
+ * @brief	リセットの待機状態の時に最低限必要なループ処理 リセットが実際にかかる
+ * @param	resetNo   OS_ResetSystemに渡すリセット種類
  */
 //---------------------------------------------------------------------------
 
 static void ResetLoop(int resetNo)
 {
-    if(CommStateIsResetEnd()){ // �ʐM�I��
-        if(CARD_TryWaitBackupAsync()==TRUE){  //�������[�J�[�h�I��
-            OS_ResetSystem(resetNo);  // �ؒf�m�F��I��
+    if(CommStateIsResetEnd()){ // 通信終了
+        if(CARD_TryWaitBackupAsync()==TRUE){  //メモリーカード終了
+            OS_ResetSystem(resetNo);  // 切断確認後終了
         }
     }
     ResetUpdateVBlank();
@@ -406,8 +406,8 @@ static void ResetLoop(int resetNo)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�ʐM�G���[����
- * @param	resetNo   OS_ResetSystem�ɓn�����Z�b�g���
+ * @brief	通信エラー検査
+ * @param	resetNo   OS_ResetSystemに渡すリセット種類
  */
 //---------------------------------------------------------------------------
 
@@ -415,13 +415,13 @@ static void ErrorCheckComm(void)
 {
     int type = CommIsResetError();
     switch(type){
-      case COMM_ERROR_RESET_SAVEPOINT:  // ���Z�b�g�𔺂��ʐM�G���[����
+      case COMM_ERROR_RESET_SAVEPOINT:  // リセットを伴う通信エラー発生
         ResetErrorFunc(_SOFT_RESET_NETERROR,type);
         break;
-      case COMM_ERROR_RESET_TITLE:  // �^�C�g���߂�G���[
+      case COMM_ERROR_RESET_TITLE:  // タイトル戻りエラー
         ResetErrorFunc(_SOFT_RESET_NORMAL,type);
         break;
-      case COMM_ERROR_RESET_GTS:  // GTS���L�̃G���[
+      case COMM_ERROR_RESET_GTS:  // GTS特有のエラー
         ResetErrorFunc(_SOFT_RESET_NETERROR,type);
         break;
     }
@@ -429,27 +429,27 @@ static void ErrorCheckComm(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�\�t�g�E�G�A���Z�b�g���N�����ꍇ�̏���
- * @param	resetNo   OS_ResetSystem�ɓn�����Z�b�g���
+ * @brief	ソフトウエアリセットが起きた場合の処理
+ * @param	resetNo   OS_ResetSystemに渡すリセット種類
  */
 //---------------------------------------------------------------------------
 static void ResetFunc(int resetNo)
 {
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_WHITE );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_WHITE );
-    if(CommStateExitReset()){  // �ʐM���Z�b�g�ֈڍs
-        SaveData_DivSave_Cancel(SaveData_GetPointer()); //�����Z�[�u���Ă���L�����Z�����Ă����Ȃ��ƃ��Z�b�g�ł��Ȃ�
+    if(CommStateExitReset()){  // 通信リセットへ移行
+        SaveData_DivSave_Cancel(SaveData_GetPointer()); //もしセーブしてたらキャンセルしておかないとリセットできない
     }
 	while (1) {
-        sleepFunc();   // �X���[�v�@�\����
+        sleepFunc();   // スリープ機能部分
         ResetLoop(resetNo);
     }
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�ʐM�G���[�ɂ��\�t�g�E�G�A���Z�b�g���N�����ꍇ�̏���
- * @param	resetNo   OS_ResetSystem�ɓn�����Z�b�g���
+ * @brief	通信エラーによるソフトウエアリセットが起きた場合の処理
+ * @param	resetNo   OS_ResetSystemに渡すリセット種類
  */
 //---------------------------------------------------------------------------
 
@@ -462,34 +462,34 @@ static void ResetErrorFunc(int resetNo, int messageType)
         ComErrorWarningResetCall(HEAPID_BASE_SYSTEM,COMM_ERRORTYPE_GTS,0);
     }
     else if(_SOFT_RESET_NORMAL == resetNo){
-		if( CommStateIsWifiConnect() == TRUE ){	// Wi-Fi�ڑ���
+		if( CommStateIsWifiConnect() == TRUE ){	// Wi-Fi接続中
 	        ComErrorWarningResetCall(HEAPID_BASE_SYSTEM,COMM_ERRORTYPE_TITLE_WIFI,0);
 		}else{
 	        ComErrorWarningResetCall(HEAPID_BASE_SYSTEM,COMM_ERRORTYPE_TITLE,0);
 		}
     }
     else { 
-		if( CommStateIsWifiConnect() == TRUE ){	// Wi-Fi�ڑ���
-			// Wi-Fi�ʐM���イ�Ȃ�Wi-Fi�ʐM�p���b�Z�[�W�\��
+		if( CommStateIsWifiConnect() == TRUE ){	// Wi-Fi接続中
+			// Wi-Fi通信ちゅうならWi-Fi通信用メッセージ表示
 			ComErrorWarningResetCall(HEAPID_BASE_SYSTEM,COMM_ERRORTYPE_ARESET_WIFI,0);
 	    }else{
 			ComErrorWarningResetCall(HEAPID_BASE_SYSTEM,COMM_ERRORTYPE_ARESET,0);
 		}
 	}
 
-    CommStateExitReset();  // �ʐM���Z�b�g�ֈڍs
+    CommStateExitReset();  // 通信リセットへ移行
 
 
-	// 080624 tomoya	Sound��~
-	// V�u�����N�̃^�C�~���O�ŌĂ΂�Ă����̂ŁA
-	// �ꉞ���荞�ݑ҂����s��
+	// 080624 tomoya	Sound停止
+	// Vブランクのタイミングで呼ばれていたので、
+	// 一応割り込み待ちを行う
     ResetUpdateVBlank();	
 	Snd_Main();
 
 	button_wait = 0;
     while(1){
-        sleepFunc();   // �X���[�v�@�\����
-		sys_MainKeyRead();	//�L�[���ǂݎ��
+        sleepFunc();   // スリープ機能部分
+		sys_MainKeyRead();	//キー情報読み取り
 	
 		if( button_wait >= COMM_ERROR_RESET_KEY_WAIT ){
 	        if(sys.trg & PAD_BUTTON_DECIDE){
@@ -503,18 +503,18 @@ static void ResetErrorFunc(int resetNo, int messageType)
 			button_wait ++;
 		}
     }
-    ResetFunc(resetNo);  // ���Z�b�g������
+    ResetFunc(resetNo);  // リセット処理へ
 }
 
 //=============================================================================
 //=============================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	��������������
+ * @brief	乱数初期化処理
  *
- * RTC�̎��ԂƃQ�[���J�n�����Vsync�J�E���^�̒l�ŏ��������s���Ă���B
- * ���ꂼ�ꂪ�g����R���e�L�X�g���ƂɃV�[�h�⃏�[�N��ێ����Ă���ꍇ�́A
- * ���ꂼ��ŏ�����������ʓr�s��
+ * RTCの時間とゲーム開始からのVsyncカウンタの値で初期化を行っている。
+ * それぞれが使われるコンテキストごとにシードやワークを保持している場合は、
+ * それぞれで初期化処理を別途行う
  */
 //---------------------------------------------------------------------------
 void Main_InitRandom(void)
@@ -534,7 +534,7 @@ void Main_InitRandom(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�X���[�v��Ԃ̊Ǘ�
+ * @brief	スリープ状態の管理
  * @param	none
  */
 //---------------------------------------------------------------------------
@@ -543,7 +543,7 @@ void sleepFunc(void)
   PMBackLightSwitch up,down;
   PMWakeUpTrigger trigger;
     
-  if(PAD_DetectFold()){ // �ӂ����܂��Ă���
+  if(PAD_DetectFold()){ // ふたが閉まっている
     if(sys.DontSleep == 0){
       StopTP_Sleep();
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
@@ -552,7 +552,7 @@ void sleepFunc(void)
     SLEEPFUNCLOOP:
 #endif      
       trigger = PM_TRIGGER_COVER_OPEN|PM_TRIGGER_CARD;
-      // �����AGB�J�[�g���b�W���h�����Ă���ꍇ�̂ݕ��A�����ɃJ�[�g���b�W�ݒ�
+      // 特定のAGBカートリッジが刺さっている場合のみ復帰条件にカートリッジ設定
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
       if(sys.AgbCasetteVersion && AGBCartridge_TriggerFlag == FALSE)
 	trigger |= PM_TRIGGER_CARTRIDGE;
@@ -562,13 +562,13 @@ void sleepFunc(void)
 #endif
       //SLEEP
       PM_GoSleepMode( trigger, 0, 0 );
-      // ���A��A�J�[�h��������Ă�����d��OFF
+      // 復帰後、カードが抜かれていたら電源OFF
       if(CARD_IsPulledOut()){
 	PM_ForceToPowerOff();
       } else {
-	// ���A��A�J�[�g���b�W��������Ă�����c
+	// 復帰後、カートリッジが抜かれていたら…
 	if(PAD_DetectFold()){
-	  // �܂��ӂ����܂��Ă����ԂȂ�΍ēx�X���[�v�ɓ�������ɓd��OFF
+	  // まだふたが閉まっている状態ならば再度スリープに入った後に電源OFF
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
 	  AGBCartridge_TriggerFlag = TRUE;
 	  goto SLEEPFUNCLOOP;
@@ -578,7 +578,7 @@ void sleepFunc(void)
 #endif
 	} else {
 #if !AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
-	  // �ӂ����J���Ă�����d��OFF
+	  // ふたが開いていたら電源OFF
 	  PM_ForceToPowerOff();
 #endif
 	}
@@ -591,7 +591,7 @@ void sleepFunc(void)
 	PM_SetBackLight(PM_LCD_ALL,PM_BACKLIGHT_OFF);
       }
     }
-  } else{  // �J���Ă���
+  } else{  // 開いている
     PM_GetBackLight(&up,&down);
     if(PM_BACKLIGHT_OFF == up){
       //PM_SetBackLight(PM_LCD_ALL,PM_BACKLIGHT_ON);
@@ -603,9 +603,9 @@ void sleepFunc(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�`��x���@�f�o�b�O�֐� 
- *  ���̊֐����g���� �X���[���[�V�����ōĐ��\�Ȃ̂�
- *  �ǂ�ȃt���[���œ����Ă��邩�킩��܂�
+ * @brief	描画遅延　デバッグ関数 
+ *  この関数を使うと スローモーションで再生可能なので
+ *  どんなフレームで動いているかわかります
  */
 //---------------------------------------------------------------------------
 #ifdef	PM_DEBUG
@@ -618,7 +618,7 @@ static void delayDebug(void)
     if(sys.cont & PAD_BUTTON_SELECT){
         if(sys.trg & PAD_BUTTON_Y){
             trg = 1 - trg;
-            OS_TPrintf("DEBUG:�`��x�� %d\n", trg);
+            OS_TPrintf("DEBUG:描画遅延 %d\n", trg);
         }
     }
     if(trg){
@@ -637,9 +637,9 @@ static void delayDebug(void)
 }
 
 
-// WIFI�@�ΐ�AUTOӰ�ރf�o�b�N
+// WIFI　対戦AUTOモードデバック
 #ifdef _WIFI_DEBUG_TUUSHIN
-extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// �f�o�b�N�J�n���
+extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// デバック開始情報
 extern u32 D_Tomoya_WiFiLobby_ChannelPrefix;
 extern BOOL D_Tomoya_WiFiLobby_ChannelPrefixFlag;
 extern BOOL D_Tomoya_WiFiLobby_ALLVip;
@@ -657,16 +657,16 @@ static void wifiDebug(void)
 			D_Tomoya_WiFiLobby_ChannelPrefixFlag= TRUE;
 
 
-			OS_TPrintf( "�f�o�b�OWIFIӰ�ށ@X\n" );
+			OS_TPrintf( "デバッグWIFIモード　X\n" );
 		}else if( sys.trg & PAD_BUTTON_Y ){
 
 			sys.trg ^= PAD_BUTTON_Y;
 			WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_MODE = _WIFI_DEBUG_MODE_Y;
-			OS_TPrintf( "�f�o�b�OWIFIӰ�ށ@Y\n" );
+			OS_TPrintf( "デバッグWIFIモード　Y\n" );
 		}
 	}
 	if( sys.trg & PAD_BUTTON_R ){
-		OS_TPrintf( "�f�o�b�OWIFIӰ�ށ@OFF\n" );
+		OS_TPrintf( "デバッグWIFIモード　OFF\n" );
 		memset( &WIFI_DEBUG_BATTLE_Work, 0, sizeof(WIFI_DEBUG_BATTLE_WK) );
 		WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_MODE = _WIFI_DEBUG_NONE;
 	}
@@ -675,7 +675,7 @@ static void wifiDebug(void)
 		return ;
 	}
 
-	/* wifi���X�g��ʗp */
+	/* wifiリスト画面用 */
 	if( WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_A_REQ == TRUE ){
 		sys.trg |= PAD_BUTTON_A;
 		sys.cont |= PAD_BUTTON_A;
@@ -691,9 +691,9 @@ static void wifiDebug(void)
 		sys.tp_y	= 180;
 	}
 
-	/* �t�B�[���h�p���� */
+	/* フィールド用処理 */
 	switch( WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_SEQ ){
-	case 0:	// �ҋ@
+	case 0:	// 待機
 		WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_MOVE_WAIT = 0;
 		break;
 
@@ -705,7 +705,7 @@ static void wifiDebug(void)
 		}
 		break;
 
-	case 2:	// �E��
+	case 2:	// 右へ
 		sys.trg |= PAD_KEY_RIGHT;
 		sys.cont |= PAD_KEY_RIGHT;
 
@@ -727,7 +727,7 @@ static void wifiDebug(void)
 		}
 		break;
 
-	case 4:	// ����
+	case 4:	// 左へ
 		sys.trg |= PAD_KEY_LEFT;
 		sys.cont |= PAD_KEY_LEFT;
 
@@ -782,7 +782,7 @@ static void DebugPad()
 #ifdef DEBUG_PRINT_TIME
 static void DEBUG_PRINT_TIME_Start( void )
 {
-	// �`�b�N�̒l���擾
+	// チックの値を取得
 	DEBUG_PRINT_TIME_StartTime = OS_GetTick();
 }
 static void DEBUG_PRINT_TIME_End( void )

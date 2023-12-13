@@ -2,7 +2,7 @@
 //=============================================================================
 /**
  * @file	tr_ai_seq_def.h
- * @bfief	�g���[�i�[AI�p�̃}�N����`�t�@�C���i�A�h�o���X�ł��ڐA�j
+ * @bfief	トレーナーAI用のマクロ定義ファイル（アドバンス版を移植）
  * @author	HisashiSogabe
  * @date	2006.03.22
  */
@@ -19,7 +19,7 @@
 	.include	"../../../include/itemtool/itemequip.h"
 
 //======================================================
-//	AI�̓���V�[�P���X����macro
+//	AIの動作シーケンス命令macro
 //======================================================
 
 	.macro	INIT_CMD
@@ -32,22 +32,22 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 	INIT_CMD
-//�����_������
+//ランダム分岐
 	DEF_CMD		AI_IF_RND_UNDER
 	DEF_CMD		AI_IF_RND_OVER
 	DEF_CMD		AI_IF_RND_EQUAL
 	DEF_CMD		AI_IFN_RND_EQUAL
 
-//�|�C���g�����Z
+//ポイント加減算
 	DEF_CMD		AI_INCDEC
 
-//HP�ł̕���
+//HPでの分岐
 	DEF_CMD		AI_IF_HP_UNDER
 	DEF_CMD		AI_IF_HP_OVER
 	DEF_CMD		AI_IF_HP_EQUAL
 	DEF_CMD		AI_IFN_HP_EQUAL
 
-//��Ԉُ���`�F�b�N
+//状態異常をチェック
 	DEF_CMD		AI_IF_COND
 	DEF_CMD		AI_IFN_COND
 	DEF_CMD		AI_IF_COND2
@@ -57,7 +57,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	DEF_CMD		AI_IF_SIDE_CONDITION
 	DEF_CMD		AI_IFN_SIDE_CONDITION		//0x10
 
-//�v�Z���ʂɂ�镪��
+//計算結果による分岐
 	DEF_CMD		AI_IF_UNDER
 	DEF_CMD		AI_IF_OVER
 	DEF_CMD		AI_IF_EQUAL
@@ -65,230 +65,230 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	DEF_CMD		AI_IF_BIT
 	DEF_CMD		AI_IFN_BIT
 
-//�Z�i���o�[�̃`�F�b�N
+//技ナンバーのチェック
 	DEF_CMD		AI_IF_WAZANO
 	DEF_CMD		AI_IFN_WAZANO
 
-//�e�[�u���Q�Ƃɂ�镪��
+//テーブル参照による分岐
 	DEF_CMD		AI_IF_TABLE_JUMP
 	DEF_CMD		AI_IFN_TABLE_JUMP
 
-//�������_���[�W�Z�������Ă��邩���f���ĕ���
+//自分がダメージ技を持っているか判断して分岐
 	DEF_CMD		AI_IF_HAVE_DAMAGE_WAZA
 	DEF_CMD		AI_IFN_HAVE_DAMAGE_WAZA
 
-//�^�[���̃`�F�b�N
+//ターンのチェック
 	DEF_CMD		AI_CHECK_TURN
 
-//�^�C�v�̃`�F�b�N
+//タイプのチェック
 	DEF_CMD		AI_CHECK_TYPE
 
-//�U���Z���ǂ����̃`�F�b�N
+//攻撃技かどうかのチェック
 	DEF_CMD		AI_CHECK_IRYOKU
 
-//�З͂���ԍ������̃`�F�b�N
+//威力が一番高いかのチェック
 	DEF_CMD		AI_COMP_POWER
 
-//�O�̃^�[���Ɏg�����Z�̃`�F�b�N
+//前のターンに使った技のチェック
 	DEF_CMD		AI_CHECK_LAST_WAZA
 
-//�i�[���ꂽ�Z�̃^�C�v�`�F�b�N
+//格納された技のタイプチェック
 	DEF_CMD		AI_IF_WAZA_TYPE			//0x20
 	DEF_CMD		AI_IFN_WAZA_TYPE
 
-//�ǂ��炪��s���̃`�F�b�N
+//どちらが先行かのチェック
 	DEF_CMD		AI_IF_FIRST
 	DEF_CMD		AI_IFN_FIRST
 
-//�T�������̂��邩�̃`�F�b�N
+//控えが何体いるかのチェック
 	DEF_CMD		AI_CHECK_BENCH_COUNT
 
-//���݂̋Z�i���o�[�̃`�F�b�N
+//現在の技ナンバーのチェック
 	DEF_CMD		AI_CHECK_WAZANO
 
-//���݂̋Z�i���o�[�̃V�[�P���X�i���o�[�̃`�F�b�N
+//現在の技ナンバーのシーケンスナンバーのチェック
 	DEF_CMD		AI_CHECK_WAZASEQNO
 
-//����\�͂̃`�F�b�N
+//特殊能力のチェック
 	DEF_CMD		AI_CHECK_TOKUSEI
 
-//�����Ƒ���̑����`�F�b�N
+//自分と相手の相性チェック
 	DEF_CMD		AI_CHECK_AISYOU
 	DEF_CMD		AI_CHECK_WAZA_AISYOU
 
-//�T���̏�ԃ`�F�b�N
+//控えの状態チェック
 	DEF_CMD		AI_IF_BENCH_COND
 	DEF_CMD		AI_IFN_BENCH_COND
 
-//�V��`�F�b�N
+//天候チェック
 	DEF_CMD		AI_CHECK_WEATHER
 
-//�Z�̃V�[�P���X�i���o�[���`�F�b�N���āA����
+//技のシーケンスナンバーをチェックして、分岐
 	DEF_CMD		AI_IF_WAZA_SEQNO_JUMP
 	DEF_CMD		AI_IFN_WAZA_SEQNO_JUMP
 
-//�����⑊��̃p�����[�^�ω��l���Q�Ƃ��ĕ���
+//自分や相手のパラメータ変化値を参照して分岐
 	DEF_CMD		AI_IF_PARA_UNDER
 	DEF_CMD		AI_IF_PARA_OVER				//0x30
 	DEF_CMD		AI_IF_PARA_EQUAL
 	DEF_CMD		AI_IFN_PARA_EQUAL
 
-//�Z�̃_���[�W�v�Z�����đ��肪�m���ɂȂ邩�`�F�b�N
+//技のダメージ計算をして相手が瀕死になるかチェック
 	DEF_CMD		AI_IF_WAZA_HINSHI
 	DEF_CMD		AI_IFN_WAZA_HINSHI
 
-//����̋Z�������Ă��邩�̃`�F�b�N�����ĕ���
+//特定の技を持っているかのチェックをして分岐
 	DEF_CMD		AI_IF_HAVE_WAZA
 	DEF_CMD		AI_IFN_HAVE_WAZA
 
-//����̋Z�V�[�P���X�������Ă��邩�̃`�F�b�N�����ĕ���
+//特定の技シーケンスを持っているかのチェックをして分岐
 	DEF_CMD		AI_IF_HAVE_WAZA_SEQNO
 	DEF_CMD		AI_IFN_HAVE_WAZA_SEQNO
 
-//�|�P�����̏�Ԃ��`�F�b�N�����ĕ���
+//ポケモンの状態をチェックをして分岐
 	DEF_CMD		AI_IF_POKE_CHECK_STATE
 
-//�Z�̏�Ԃ��`�F�b�N�����ĕ���
+//技の状態をチェックをして分岐
 	DEF_CMD		AI_IF_WAZA_CHECK_STATE
 
-//�ɂ�������񂽂�
+//にげるをせんたく
 	DEF_CMD		AI_ESCAPE
 
-//�T�t�@���]�[���ł̓�����m�����v�Z���ē�����Ƃ��̃A�h���X���w��
+//サファリゾーンでの逃げる確率を計算して逃げるときのアドレスを指定
 	DEF_CMD		AI_SAFARI_ESCAPE_JUMP
 
-//�T�t�@���]�[���ł̓���A�N�V������I��
+//サファリゾーンでの特殊アクションを選択
 	DEF_CMD		AI_SAFARI
 
-//�����A�C�e���̃`�F�b�N
+//装備アイテムのチェック
 	DEF_CMD		AI_CHECK_ITEM
 
-//�����A�C�e���̃`�F�b�N
+//装備アイテムのチェック
 	DEF_CMD		AI_CHECK_SOUBIITEM
 
-//�|�P�����̐��ʂ̃`�F�b�N
+//ポケモンの性別のチェック
 	DEF_CMD		AI_CHECK_POKESEX
 
-//�˂����܂��J�E���^�̃`�F�b�N
+//ねこだましカウンタのチェック
 	DEF_CMD		AI_CHECK_NEKODAMASI			//0x40
 
-//�����킦��J�E���^�̃`�F�b�N
+//たくわえるカウンタのチェック
 	DEF_CMD		AI_CHECK_TAKUWAERU
 
-//�퓬�^�C�v�̃`�F�b�N
+//戦闘タイプのチェック
 	DEF_CMD		AI_CHECK_FIGHT_TYPE
 
-//���T�C�N���ł���A�C�e���̃`�F�b�N
+//リサイクルできるアイテムのチェック
 	DEF_CMD		AI_CHECK_RECYCLE_ITEM
 
-//���[�N�ɓ����Ă���Z�i���o�[�̃^�C�v���`�F�b�N
+//ワークに入っている技ナンバーのタイプをチェック
 	DEF_CMD		AI_CHECK_WORKWAZA_TYPE
 
-//���[�N�ɓ����Ă���Z�i���o�[�̈З͂��`�F�b�N
+//ワークに入っている技ナンバーの威力をチェック
 	DEF_CMD		AI_CHECK_WORKWAZA_POW
 
-//���[�N�ɓ����Ă���Z�i���o�[�̃V�[�P���X�i���o�[���`�F�b�N
+//ワークに入っている技ナンバーのシーケンスナンバーをチェック
 	DEF_CMD		AI_CHECK_WORKWAZA_SEQNO
 
-//�܂���J�E���^���`�F�b�N
+//まもるカウンタをチェック
 	DEF_CMD		AI_CHECK_MAMORU_COUNT
 
-//�ėp�I�Ȗ���
+//汎用的な命令
 	DEF_CMD		AI_GOSUB
 	DEF_CMD		AI_JUMP
 	DEF_CMD		AI_AIEND
 
-//���݂��̃��x�����`�F�b�N���ĕ���
+//お互いのレベルをチェックして分岐
 	DEF_CMD		AI_IF_LEVEL
 
-//������Ԃ��`�F�b�N���ĕ���
+//挑発状態かチェックして分岐
 	DEF_CMD		AI_IF_CHOUHATSU
 	DEF_CMD		AI_IFN_CHOUHATSU
 
-//�U���Ώۂ��������ǂ����`�F�b�N
+//攻撃対象が味方がどうかチェック
 	DEF_CMD		AI_IF_MIKATA_ATTACK
 
-//�w��^�C�v�������Ă��邩�ǂ����`�F�b�N
+//指定タイプを持っているかどうかチェック
 	DEF_CMD		AI_CHECK_HAVE_TYPE
 
-//�w��Ƃ������������Ă��邩�ǂ����`�F�b�N
+//指定とくせいを持っているかどうかチェック
 	DEF_CMD		AI_CHECK_HAVE_TOKUSEI		//0x50
 
-//���������炢�уp���[�A�b�v��Ԃ��`�F�b�N���ĕ���
+//相方がもらいびパワーアップ状態かチェックして分岐
 	DEF_CMD		AI_IF_ALREADY_MORAIBI
 
-//�A�C�e���������Ă��邩�`�F�b�N���ĕ���
+//アイテムを持っているかチェックして分岐
 	DEF_CMD		AI_IF_HAVE_ITEM
 
-//FIELD_CONDITION�`�F�b�N
+//FIELD_CONDITIONチェック
 	DEF_CMD		AI_FIELD_CONDITION_CHECK
 
-//SIDE_CONDITION�̃J�E���g���擾
+//SIDE_CONDITIONのカウントを取得
 	DEF_CMD		AI_CHECK_SIDE_CONDITION_COUNT
 
-//�T���|�P������HP�������`�F�b�N
+//控えポケモンのHP減少をチェック
 	DEF_CMD		AI_IF_BENCH_HPDEC
 
-//�T���|�P������PP�������`�F�b�N
+//控えポケモンのPP減少をチェック
 	DEF_CMD		AI_IF_BENCH_PPDEC
 
-//�����A�C�e���̂Ȃ�����З͂��擾
+//装備アイテムのなげつける威力を取得
 	DEF_CMD		AI_CHECK_NAGETSUKERU_IRYOKU
 
-//PP���擾
+//PPを取得
 	DEF_CMD		AI_CHECK_PP_REMAIN
 
-//�Ƃ��Ă����`�F�b�N
+//とっておきチェック
 	DEF_CMD		AI_IF_TOTTEOKI
 
-//�Z�̕��ރ`�F�b�N
+//技の分類チェック
 	DEF_CMD		AI_CHECK_WAZA_KIND
 
-//���肪�Ō�ɏo�����Z�̕��ރ`�F�b�N
+//相手が最後に出した技の分類チェック
 	DEF_CMD		AI_CHECK_LAST_WAZA_KIND
 
-//�f�����Ŏw�肵���������ʂ��`�F�b�N
+//素早さで指定した側が何位かチェック
 	DEF_CMD		AI_CHECK_AGI_RANK
 
-//�X���[�X�^�[�g���^�[���ڂ�
+//スロースタート何ターン目か
 	DEF_CMD		AI_CHECK_SLOWSTART_TURN
 
-//�T���ɂ�������_���[�W��^���邩�ǂ����`�F�b�N
+//控えにいる方がダメージを与えるかどうかチェック
 	DEF_CMD		AI_IF_BENCH_DAMAGE_MAX
 
-//���Q�̋Z�������Ă��邩�`�F�b�N
+//抜群の技を持っているかチェック
 	DEF_CMD		AI_IF_HAVE_BATSUGUN
 
-//�w�肵������̍Ō�ɏo�����Z�Ǝ����̋Z�Ƃ̃_���[�W���`�F�b�N
+//指定した相手の最後に出した技と自分の技とのダメージをチェック
 	DEF_CMD		AI_IF_LAST_WAZA_DAMAGE_CHECK
 
-//�w�肵������̃X�e�[�^�X�㏸���̒l���擾
+//指定した相手のステータス上昇分の値を取得
 	DEF_CMD		AI_CHECK_STATUS_UP
 
-//�w�肵������Ƃ̃X�e�[�^�X�������擾
+//指定した相手とのステータス差分を取得
 	DEF_CMD		AI_CHECK_STATUS_DIFF
 
-//�w�肵������Ƃ̃X�e�[�^�X���`�F�b�N���ĕ���
+//指定した相手とのステータスをチェックして分岐
 	DEF_CMD		AI_IF_CHECK_STATUS_UNDER
 	DEF_CMD		AI_IF_CHECK_STATUS_OVER
 	DEF_CMD		AI_IF_CHECK_STATUS_EQUAL
 
-//�З͂���ԍ������̃`�F�b�N�i�p�[�g�i�[���܂ށj
+//威力が一番高いかのチェック（パートナーも含む）
 	DEF_CMD		AI_COMP_POWER_WITH_PARTNER
 
-//�w�肵�����肪�m�����`�F�b�N���ĕ���
+//指定した相手が瀕死かチェックして分岐
 	DEF_CMD		AI_IF_HINSHI
 	DEF_CMD		AI_IFN_HINSHI
 
-//�Z���ʂ��l�����������擾�i�ړ��|�P������p����ȊO�̗p�r�Ŏg�p����̂͌��ցj
+//技効果を考慮した特性取得（移動ポケモン専用それ以外の用途で使用するのは厳禁）
 	DEF_CMD		AI_GET_TOKUSEI
 
 //------------------------------------------------------------
 //
-//	�����_������
+//	ランダム分岐
 //
-//	value:��r����l
-//	adrs:��ѐ�
+//	value:比較する値
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -318,9 +318,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�|�C���g�����Z
+//	ポイント加減算
 //
-//	value:�����Z����l
+//	value:加減算する値
 //
 //------------------------------------------------------------
 
@@ -331,11 +331,11 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	HP�ł̕���
+//	HPでの分岐
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	value:��r����l
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	value:比較する値
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -369,15 +369,15 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	��Ԉُ���`�F�b�N
+//	状態異常をチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	condition:��r����l�iserver.def�ɒ�`�j
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	condition:比較する値（server.defに定義）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
-//CONDITION_�`�n�̃`�F�b�N
+//CONDITION_〜系のチェック
 	.macro		IF_COND				side,condition,adrs
 	.long		AI_IF_COND
 	.long		\side
@@ -392,7 +392,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.long		(\adrs-.)/4-1
 	.endm
 
-//CONDITION2_�`�n�̃`�F�b�N
+//CONDITION2_〜系のチェック
 	.macro		IF_COND2			side,condition,adrs
 	.long		AI_IF_COND2
 	.long		\side
@@ -407,7 +407,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.long		(\adrs-.)/4-1
 	.endm
 
-//WAZAKOUKA_�`�n�̃`�F�b�N
+//WAZAKOUKA_〜系のチェック
 	.macro		IF_WAZAKOUKA		side,condition,adrs
 	.long		AI_IF_WAZAKOUKA
 	.long		\side
@@ -422,7 +422,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.long		(\adrs-.)/4-1
 	.endm
 
-//SODE_CONDITION_�`�n�̃`�F�b�N
+//SODE_CONDITION_〜系のチェック
 	.macro		IF_SIDE_CONDITION	side,condition,adrs
 	.long		AI_IF_SIDE_CONDITION
 	.long		\side
@@ -439,10 +439,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�v�Z���ʂɂ�镪��i���[�N�Ɋi�[����n�̖��߂̂��ƂɎ��s����j
+//	計算結果による分岐（ワークに格納する系の命令のあとに実行する）
 //
-//	value:��r����l
-//	adrs:��ѐ�
+//	value:比較する値
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -483,7 +483,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�Z�i���o�[���`�F�b�N���ĕ���
+//	技ナンバーをチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_WAZANO		wazano,adrs
@@ -500,12 +500,12 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肳�ꂽ�e�[�u�����Q�Ƃ��Ĉ�v�A�s��v�ŕ���
+//	指定されたテーブルを参照して一致、不一致で分岐
 //
-//	tableadrs:�`�F�b�N����i���o�[�����񂳂ꂽ�e�[�u���̃A�h���X
-//	jumpadrs:�����ɍ��v�����Ƃ��̂Ƃѐ�	
+//	tableadrs:チェックするナンバーが羅列されたテーブルのアドレス
+//	jumpadrs:条件に合致したときのとび先	
 //
-//	�e�[�u���̏I�[��1BYTE�̕���0xff�A2BYTE�̕���0xffff
+//	テーブルの終端は1BYTEの方は0xff、2BYTEの方は0xffff
 //
 //------------------------------------------------------------
 
@@ -523,9 +523,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�������_���[�W�Z�������Ă��邩���f���ĕ���
+//	自分がダメージ技を持っているか判断して分岐
 //
-//	adrs:��ѐ�
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -540,7 +540,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�^�[���̃`�F�b�N�i�����^�[���ڂ������[�N�ɓ����j
+//	ターンのチェック（今何ターン目かをワークに入れる）
 //------------------------------------------------------------
 
 	.macro		CHECK_TURN
@@ -549,9 +549,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�^�C�v�̃`�F�b�N(�|�P�������邢�͋Z�̃^�C�v�����[�N�ɓ����j
+//	タイプのチェック(ポケモンあるいは技のタイプをワークに入れる）
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -561,7 +561,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�U���Z���ǂ����̃`�F�b�N�i�Z�̈З͂����[�N�ɓ����)
+//	攻撃技かどうかのチェック（技の威力をワークに入れる)
 //------------------------------------------------------------
 
 	.macro		CHECK_IRYOKU
@@ -569,9 +569,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�З͂���ԍ������̃`�F�b�N
+//	威力が一番高いかのチェック
 //
-//	@param		flag	�_���[�W���X�v�Z�̂Ԃꂠ��Ȃ��t���O
+//	@param		flag	ダメージロス計算のぶれありなしフラグ
 //
 //------------------------------------------------------------
 	.macro		COMP_POWER		flag
@@ -581,9 +581,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�O�̃^�[���Ɏg�����Z�̃`�F�b�N�i�Z�̃i���o�[�����[�N�ɓ����j
+//	前のターンに使った技のチェック（技のナンバーをワークに入れる）
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_LAST_WAZA		side
@@ -593,10 +593,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�i�[���ꂽ�Z�̃^�C�v�`�F�b�N
+//	格納された技のタイプチェック
 //
-//	type:�`�F�b�N����^�C�v�iagbmons.def�ɒ�`�j	
-//	adrs:��ѐ�
+//	type:チェックするタイプ（agbmons.defに定義）	
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 	.macro		IF_WAZA_TYPE		type,adrs
@@ -613,10 +613,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�ǂ��炪��s���̃`�F�b�N
+//	どちらが先行かのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -634,9 +634,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�T�������̂��邩�`�F�b�N�i�������[�N�ɓ����j
+//	控えが何体いるかチェック（数をワークに入れる）
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -646,7 +646,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���݂̋Z�i���o�[�̃`�F�b�N
+//	現在の技ナンバーのチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_WAZANO
@@ -654,7 +654,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���݂̋Z�i���o�[�̃V�[�P���X�i���o�[�̃`�F�b�N
+//	現在の技ナンバーのシーケンスナンバーのチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_WAZASEQNO
@@ -663,9 +663,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	����\�͂̃`�F�b�N�i����\�̓i���o�[�����[�N�ɓ����j
+//	特殊能力のチェック（特殊能力ナンバーをワークに入れる）
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -676,7 +676,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�����Ƒ���̑����`�F�b�N���Ĉ�Ԃ����{�������[�N�Ɋi�[
+//	自分と相手の相性チェックして一番いい倍率をワークに格納
 //
 //------------------------------------------------------------
 
@@ -686,10 +686,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�Z�Ƒ���̑������`�F�b�N���Ă��ăA�h���X�ɃW�����v
+//	技と相手の相性をチェックしてしてアドレスにジャンプ
 //
-//	aisyou:�Z�Ƒ���̑����ɂ��{���itr_ai_def.h�ɒ�`�j
-//	adrs:��ѐ�
+//	aisyou:技と相手の相性による倍率（tr_ai_def.hに定義）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -701,7 +701,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�T���̏�ԃ`�F�b�N
+//	控えの状態チェック
 //
 //	IF_COND
 //
@@ -723,8 +723,8 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�V��`�F�b�N�i�V��i���o�[�����[�N�ɓ����j
-//				�i�V��i���o�[��tr_ai_def.h�ɒ�`�j
+//	天候チェック（天候ナンバーをワークに入れる）
+//				（天候ナンバーはtr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -734,10 +734,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�Z�̃V�[�P���X�i���o�[���`�F�b�N���āA����
+//	技のシーケンスナンバーをチェックして、分岐
 //
-//	seqno:�Z�̃V�[�P���X�i���o�[
-//	adrs:��ѐ�
+//	seqno:技のシーケンスナンバー
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -755,12 +755,12 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�����⑊��̃p�����[�^�ω��l���Q�Ƃ��ĕ���
+//	自分や相手のパラメータ変化値を参照して分岐
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	para:�`�F�b�N����p�����[�^�itr_ai_def.h�ɒ�`�j
-//	value:��r����l�i�O�`�P�Q�j
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	para:チェックするパラメータ（tr_ai_def.hに定義）
+//	value:比較する値（０〜１２）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -798,10 +798,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�Z�̃_���[�W�v�Z�����đ��肪�m���ɂȂ邩�`�F�b�N���ĕ���
+//	技のダメージ計算をして相手が瀕死になるかチェックして分岐
 //
-//	@param		flag	�_���[�W���X�v�Z�̂Ԃꂠ��Ȃ��t���O
-//	@param		adrs	��ѐ�
+//	@param		flag	ダメージロス計算のぶれありなしフラグ
+//	@param		adrs	飛び先
 //
 //------------------------------------------------------------
 
@@ -819,11 +819,11 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	����̋Z�������Ă��邩�̃`�F�b�N
+//	特定の技を持っているかのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	wazano:�`�F�b�N����Z�i���o�[
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	wazano:チェックする技ナンバー
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -843,11 +843,11 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	����̋Z�V�[�P���X�������Ă��邩�̃`�F�b�N
+//	特定の技シーケンスを持っているかのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	seqno:�`�F�b�N����Z�V�[�P���X�i���o�[
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	seqno:チェックする技シーケンスナンバー
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -867,11 +867,11 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�|�P�����̏�Ԃ��`�F�b�N���ĕ���i���Ȃ��΂�Ƃ��A�A���R�[���Ƃ��j
+//	ポケモンの状態をチェックして分岐（かなしばりとか、アンコールとか）
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	id:�`�F�b�N������ID(tr_ai_def.h�ɒ�`�j
-//	adrs:��ѐ�
+//	side:チェックする側を指定（tr_ai_def.hに定義）
+//	id:チェックする状態ID(tr_ai_def.hに定義）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -884,10 +884,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	���v�Z���Ă���Z�̏�Ԃ��`�F�b�N���ĕ���
+//	今計算している技の状態をチェックして分岐
 //
-//	id:�`�F�b�N������ID(tr_ai_def.h�ɒ�`�j
-//	adrs:��ѐ�
+//	id:チェックする状態ID(tr_ai_def.hに定義）
+//	adrs:飛び先
 //
 //------------------------------------------------------------
 
@@ -898,7 +898,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�ɂ�������񂽂�
+//	にげるをせんたく
 //------------------------------------------------------------
 
 	.macro		ESCAPE
@@ -906,7 +906,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�T�t�@���]�[���ł̓�����m�����v�Z���ē�����Ƃ��̃A�h���X���w��
+//	サファリゾーンでの逃げる確率を計算して逃げるときのアドレスを指定
 //------------------------------------------------------------
 
 	.macro		SAFARI_ESCAPE_JUMP		adrs
@@ -915,7 +915,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�T�t�@���]�[���ł̓���A�N�V������I��
+//	サファリゾーンでの特殊アクションを選択
 //------------------------------------------------------------
 
 	.macro		SAFARI
@@ -925,9 +925,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		�����A�C�e���̃`�F�b�N
+//		装備アイテムのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_ITEM		side
@@ -937,9 +937,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		�����A�C�e���̃`�F�b�N
+//		装備アイテムのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -950,9 +950,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		�|�P�����̐��ʂ̃`�F�b�N
+//		ポケモンの性別のチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -963,9 +963,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		�˂����܂��J�E���^�̃`�F�b�N
+//		ねこだましカウンタのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -976,9 +976,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		�����킦��J�E���^�̃`�F�b�N
+//		たくわえるカウンタのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -988,7 +988,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//		�퓬�^�C�v�̃`�F�b�N
+//		戦闘タイプのチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_FIGHT_TYPE
@@ -997,9 +997,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//		���T�C�N���ł���A�C�e���̃`�F�b�N
+//		リサイクルできるアイテムのチェック
 //
-//	side:�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	side:チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 
@@ -1009,7 +1009,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���[�N�ɓ����Ă���Z�i���o�[�̃^�C�v���`�F�b�N
+//	ワークに入っている技ナンバーのタイプをチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_WORKWAZA_TYPE
@@ -1017,7 +1017,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���[�N�ɓ����Ă���Z�i���o�[�̈З͂��`�F�b�N
+//	ワークに入っている技ナンバーの威力をチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_WORKWAZA_POW
@@ -1025,7 +1025,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���[�N�ɓ����Ă���Z�i���o�[�̃V�[�P���X�i���o�[���`�F�b�N
+//	ワークに入っている技ナンバーのシーケンスナンバーをチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_WORKWAZA_SEQNO
@@ -1033,7 +1033,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�܂���J�E���^���`�F�b�N
+//	まもるカウンタをチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_MAMORU_COUNT		side
@@ -1042,10 +1042,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�ėp�I�Ȗ��ߌQ
+//	汎用的な命令群
 //------------------------------------------------------------
 
-//�ėp�I�Ȗ���
+//汎用的な命令
 	.macro		GOSUB		adrs
 	.long		AI_GOSUB
 	.long		(\adrs-.)/4-1
@@ -1061,7 +1061,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���݂��̃��x�����`�F�b�N���ĕ���
+//	お互いのレベルをチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_LEVEL		value,adrs
@@ -1071,7 +1071,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	������Ԃ��`�F�b�N���ĕ���
+//	挑発状態かチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_CHOUHATSU	adrs
@@ -1085,7 +1085,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�U���Ώۂ��������ǂ����`�F�b�N���ĕ���
+//	攻撃対象が味方がどうかチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_MIKATA_ATTACK	adrs
@@ -1094,7 +1094,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�w�肳�ꂽ�^�C�v�������Ă��邩�`�F�b�N
+//	指定されたタイプを持っているかチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_HAVE_TYPE			side, type
@@ -1104,7 +1104,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�w�肳�ꂽ�Ƃ������������Ă��邩�`�F�b�N
+//	指定されたとくせいを持っているかチェック
 //------------------------------------------------------------
 
 	.macro		CHECK_HAVE_TOKUSEI		side, abi
@@ -1114,7 +1114,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���������炢�уp���[�A�b�v��Ԃ��`�F�b�N���ĕ���
+//	相方がもらいびパワーアップ状態かチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_ALREADY_MORAIBI		side, adrs
@@ -1124,7 +1124,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�A�C�e���������Ă��邩�`�F�b�N���ĕ���
+//	アイテムを持っているかチェックして分岐
 //------------------------------------------------------------
 
 	.macro		IF_HAVE_ITEM		side, item, adrs
@@ -1135,10 +1135,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	FIELD_CONDITION�`�F�b�N
+//	FIELD_CONDITIONチェック
 //
-//	@param	flag	�`�F�b�N����t�B�[���h�R���f�B�V�����ibattle_server.h�ɒ�`�j
-//	@param	adrs	�`�F�b�N�����t�B�[���h�R���f�B�V���������������̂Ƃѐ�
+//	@param	flag	チェックするフィールドコンディション（battle_server.hに定義）
+//	@param	adrs	チェックしたフィールドコンディション中だった時のとび先
 //
 //------------------------------------------------------------
 	.macro		FIELD_CONDITION_CHECK	flag,adrs
@@ -1148,10 +1148,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	SIDE_CONDITION�̃J�E���g���擾
+//	SIDE_CONDITIONのカウントを取得
 //
-//	@param	side	�擾���鑤���w��itr_ai_def.h�ɒ�`�j
-//	@param	flag	�`�F�b�N����t�B�[���h�R���f�B�V�����ibattle_server.h�ɒ�`�j
+//	@param	side	取得する側を指定（tr_ai_def.hに定義）
+//	@param	flag	チェックするフィールドコンディション（battle_server.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_SIDE_CONDITION_COUNT	side,flag
@@ -1161,10 +1161,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 	
 //------------------------------------------------------------
-//	�T���|�P������HP�������`�F�b�N
+//	控えポケモンのHP減少をチェック
 //
-//	@param	side	�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	@param	adrs	HP���������|�P�������������̂Ƃѐ�
+//	@param	side	チェックする側を指定（tr_ai_def.hに定義）
+//	@param	adrs	HP減少したポケモンがいた時のとび先
 //
 //------------------------------------------------------------
 	.macro		IF_BENCH_HPDEC		side,adrs
@@ -1174,10 +1174,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�T���|�P������PP�������`�F�b�N
+//	控えポケモンのPP減少をチェック
 //
-//	@param	side	�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	@param	adrs	PP���������|�P�������������̂Ƃѐ�
+//	@param	side	チェックする側を指定（tr_ai_def.hに定義）
+//	@param	adrs	PP減少したポケモンがいた時のとび先
 //
 //------------------------------------------------------------
 	.macro		IF_BENCH_PPDEC		side,adrs
@@ -1187,9 +1187,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�����A�C�e���̂Ȃ�����З͂��擾
+//	装備アイテムのなげつける威力を取得
 //
-//	@param	side	�擾���鑤���w��itr_ai_def.h�ɒ�`�j
+//	@param	side	取得する側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_NAGETSUKERU_IRYOKU	side
@@ -1198,7 +1198,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	���݃`�F�b�N���̋Z�̎c��PP���擾
+//	現在チェック中の技の残りPPを取得
 //------------------------------------------------------------
 	.macro		CHECK_PP_REMAIN
 	.long		AI_CHECK_PP_REMAIN
@@ -1206,10 +1206,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�Ƃ��Ă����`�F�b�N
+//	とっておきチェック
 //
-//	@param	side	�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
-//	@param	adrs	�Ƃ��Ă������o���鎞�̂Ƃѐ�
+//	@param	side	チェックする側を指定（tr_ai_def.hに定義）
+//	@param	adrs	とっておきを出せる時のとび先
 //
 //------------------------------------------------------------
 	.macro		IF_TOTTEOKI		side,adrs
@@ -1219,14 +1219,14 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//	�Z�̕��ރ`�F�b�N
+//	技の分類チェック
 //------------------------------------------------------------
 	.macro		CHECK_WAZA_KIND
 	.long		AI_CHECK_WAZA_KIND
 	.endm
 
 //------------------------------------------------------------
-//	���肪�Ō�ɏo�����Z�̕��ރ`�F�b�N
+//	相手が最後に出した技の分類チェック
 //------------------------------------------------------------
 	.macro		CHECK_LAST_WAZA_KIND
 	.long		AI_CHECK_LAST_WAZA_KIND
@@ -1234,9 +1234,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�f�����Ŏw�肵���������ʂ��`�F�b�N
+//	素早さで指定した側が何位かチェック
 //
-//	@param	side	�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	@param	side	チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_AGI_RANK		side
@@ -1246,9 +1246,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�X���[�X�^�[�g���^�[���ڂ�
+//	スロースタート何ターン目か
 //
-//	@param	side	�`�F�b�N���鑤���w��itr_ai_def.h�ɒ�`�j
+//	@param	side	チェックする側を指定（tr_ai_def.hに定義）
 //
 //------------------------------------------------------------
 	.macro		CHECK_SLOWSTART_TURN	side
@@ -1258,10 +1258,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�T���ɂ�������_���[�W��^���邩�ǂ����`�F�b�N
+//	控えにいる方がダメージを与えるかどうかチェック
 //
-//	@param	flag	�_���[�W���X�v�Z�̂Ԃꂠ��Ȃ��t���O
-//	@param	adrs	�^����ꍇ�̂Ƃѐ�
+//	@param	flag	ダメージロス計算のぶれありなしフラグ
+//	@param	adrs	与える場合のとび先
 //
 //------------------------------------------------------------
 	.macro		IF_BENCH_DAMAGE_MAX		flag,adrs
@@ -1272,9 +1272,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	���Q�̋Z�������Ă��邩�`�F�b�N
+//	抜群の技を持っているかチェック
 //
-//	@param	adrs	�����Ă����Ƃ��̂Ƃѐ�
+//	@param	adrs	持っていたときのとび先
 //
 //------------------------------------------------------------
 	.macro		IF_HAVE_BATSUGUN		adrs
@@ -1284,11 +1284,11 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肵������̍Ō�ɏo�����Z�Ǝ����̋Z�Ƃ̃_���[�W���`�F�b�N
+//	指定した相手の最後に出した技と自分の技とのダメージをチェック
 //
-//	@param	side	�`�F�b�N���鑤
-//	@param	flag	�_���[�W���X�v�Z�̂Ԃꂠ��Ȃ��t���O
-//	@param	adrs	�`�F�b�N�������̕����_���[�W���傫�����̂Ƃѐ�
+//	@param	side	チェックする側
+//	@param	flag	ダメージロス計算のぶれありなしフラグ
+//	@param	adrs	チェックした側の方がダメージが大きい時のとび先
 //
 //------------------------------------------------------------
 	.macro		IF_LAST_WAZA_DAMAGE_CHECK	side,flag,adrs
@@ -1300,9 +1300,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肵������̃X�e�[�^�X�㏸���̒l���擾
+//	指定した相手のステータス上昇分の値を取得
 //
-//	@param	side	�`�F�b�N���鑤
+//	@param	side	チェックする側
 //
 //------------------------------------------------------------
 	.macro		CHECK_STATUS_UP		side
@@ -1312,14 +1312,14 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肵������Ƃ̃X�e�[�^�X�������擾
+//	指定した相手とのステータス差分を取得
 //
-//	@param	side	�`�F�b�N���鑤
-//	@param	flag	�`�F�b�N����X�e�[�^�X���
-//					COND_POW:�U����
-//					COND_DEF:�h���
-//					COND_SPEPOW:���U
-//					COND_SPEDEF:���h
+//	@param	side	チェックする側
+//	@param	flag	チェックするステータス種類
+//					COND_POW:攻撃力
+//					COND_DEF:防御力
+//					COND_SPEPOW:特攻
+//					COND_SPEDEF:特防
 //
 //------------------------------------------------------------
 	.macro		CHECK_STATUS_DIFF		side,flag
@@ -1330,19 +1330,19 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肵������Ƃ̃X�e�[�^�X���`�F�b�N���ĕ���
+//	指定した相手とのステータスをチェックして分岐
 //
-//	@param	side	�`�F�b�N���鑤
-//	@param	flag	�`�F�b�N����X�e�[�^�X���
+//	@param	side	チェックする側
+//	@param	flag	チェックするステータス種類
 //					COND_HP:HP
-//					COND_POW:�U����
-//					COND_DEF:�h���
-//					COND_SPEPOW:���U
-//					COND_SPEDEF:���h
-//	@param	adrs	�����
+//					COND_POW:攻撃力
+//					COND_DEF:防御力
+//					COND_SPEPOW:特攻
+//					COND_SPEDEF:特防
+//	@param	adrs	分岐先
 //
 //------------------------------------------------------------
-//��������
+//自分が下
 	.macro		IF_CHECK_STATUS_UNDER		side,flag,adrs
 	.long		AI_IF_CHECK_STATUS_UNDER
 	.long		\side
@@ -1350,7 +1350,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.long		(\adrs-.)/4-1
 	.endm
 
-//��������
+//自分が上
 	.macro		IF_CHECK_STATUS_OVER		side,flag,adrs
 	.long		AI_IF_CHECK_STATUS_OVER
 	.long		\side
@@ -1358,7 +1358,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.long		(\adrs-.)/4-1
 	.endm
 
-//�����l
+//同じ値
 	.macro		IF_CHECK_STATUS_EQUAL		side,flag,adrs
 	.long		AI_IF_CHECK_STATUS_EQUAL
 	.long		\side
@@ -1368,9 +1368,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�З͂���ԍ������̃`�F�b�N�i�p�[�g�i�[���܂ށj
+//	威力が一番高いかのチェック（パートナーも含む）
 //
-//	@param		flag	�_���[�W���X�v�Z�̂Ԃꂠ��Ȃ��t���O
+//	@param		flag	ダメージロス計算のぶれありなしフラグ
 //
 //------------------------------------------------------------
 	.macro		COMP_POWER_WITH_PARTNER		flag
@@ -1380,10 +1380,10 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�w�肵�����肪�m�����`�F�b�N���ĕ���
+//	指定した相手が瀕死かチェックして分岐
 //
-//	@param		side	�`�F�b�N���鑊��iCHECK_ATTACK�ACHECK_DEFENCE�͎w��ł��܂���i�m�������肦�Ȃ��j�j
-//	@param		adrs	�`�F�b�N���ʂł̕����iIF_HINSHI�F�m���������� IFN_HINSHI�F�m������Ȃ������Ƃ��j
+//	@param		side	チェックする相手（CHECK_ATTACK、CHECK_DEFENCEは指定できません（瀕死がありえない））
+//	@param		adrs	チェック結果での分岐先（IF_HINSHI：瀕死だった時 IFN_HINSHI：瀕死じゃなかったとき）
 //
 //------------------------------------------------------------
 	.macro		IF_HINSHI		side,adrs
@@ -1400,9 +1400,9 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 
 //------------------------------------------------------------
 //
-//	�Z���ʂ��l�����������擾�i�ړ��|�P������p����ȊO�̗p�r�Ŏg�p����̂͌��ցj
+//	技効果を考慮した特性取得（移動ポケモン専用それ以外の用途で使用するのは厳禁）
 //
-//	@param		side	�擾���鑊��
+//	@param		side	取得する相手
 //
 //------------------------------------------------------------
 	.macro		GET_TOKUSEI	side
@@ -1411,7 +1411,7 @@ DEF_CMD_COUNT 	=	(DEF_CMD_COUNT + 1)
 	.endm
 
 //------------------------------------------------------------
-//�A�h���X���I�t�Z�b�g�ɕϊ�
+//アドレスをオフセットに変換
 //------------------------------------------------------------
 	.macro		ADRS		dest,src
 	.long		(\dest-\src)/4

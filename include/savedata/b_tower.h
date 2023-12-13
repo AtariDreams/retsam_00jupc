@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower.h
- *	@brief	�o�g���^���[�֘A�@�Z�[�u�f�[�^
+ *	@brief	バトルタワー関連　セーブデータ
  *	@author	Miyuki Iwasawa
  *	@date	06.04.14
  */
@@ -11,89 +11,89 @@
 #include "b_tower_def.h"
 
 /**
- * @brief	�o�g���^���[�@�v���C�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　プレイデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _BTLTOWER_PLAYWORK	BTLTOWER_PLAYWORK;
 
 /**
- * @brief	�o�g���^���[�@�X�R�A�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　スコアデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _BTLTOWER_SCOREWORK	BTLTOWER_SCOREWORK;
 
 /**
- * @brief	�o�g���^���[�@�v���C���[���b�Z�[�W�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　プレイヤーメッセージデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _BTLTOWER_PLAYER_MSG	BTLTOWER_PLAYER_MSG;
 
 /**
- * @brief	�o�g���^���[�@WIFI�|�P�����f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　WIFIポケモンデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 //typedef struct _BTLTOWER_POKE	BTLTOWER_POKE;
 /**
- * @brief	�o�g���^���[�@WIFI�v���C���[�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　WIFIプレイヤーデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _BTLTOWER_WIFI_PLAYER	BTLTOWER_WIFI_PLAYER;
 /**
- * @brief	�o�g���^���[�@WIFI���[�_�[�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　WIFIリーダーデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 //typedef struct _BTLTOWER_WIFI_LEADER	BTLTOWER_WIFI_LEADER;
 
 
 /**
- * @brief	�o�g���^���[�@WIFI�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ * @brief	バトルタワー　WIFIデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _BTLTOWER_WIFI_DATA	BTLTOWER_WIFI_DATA;
 
 
 /**
- * �^���[�|�P�����f�[�^�^
- * �@battle/b_tower_data.h��K�v�ȉӏ��ȊO�ł�
- *	include���Ȃ��ōςނ悤�ɒ�`���Ă���
+ * タワーポケモンデータ型
+ * 　battle/b_tower_data.hを必要な箇所以外では
+ *	includeしないで済むように定義しておく
  */
 typedef struct _B_TOWER_POKEMON	B_TOWER_POKEMON;
 
 /**
- * �^���[�p�[�g�i�[�f�[�^�^
- * �@battle/b_tower_data.h��K�v�ȉӏ��ȊO�ł�
- *	include���Ȃ��ōςނ悤�ɒ�`���Ă���
+ * タワーパートナーデータ型
+ * 　battle/b_tower_data.hを必要な箇所以外では
+ *	includeしないで済むように定義しておく
  */
 typedef struct _B_TOWER_PARTNER_DATA	B_TOWER_PARTNER_DATA;
 
 /**
- * @brief	�o�g���^���[�@WIFI���[�_�[�f�[�^�\���̂ւ̕s���S�^�|�C���^
- *  battle/b_tower_data.h��K�v�ȉӏ��ȊO�ł�
- *	include���Ȃ��ōςނ悤�ɒ�`���Ă���
+ * @brief	バトルタワー　WIFIリーダーデータ構造体への不完全型ポインタ
+ *  battle/b_tower_data.hを必要な箇所以外では
+ *	includeしないで済むように定義しておく
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _B_TOWER_LEADER_DATA	B_TOWER_LEADER_DATA;
 
 /**
- *	@biref	�^���[AI�}���`�y�A�̕ۑ����K�v�ȃ|�P�����p�����[�^
+ *	@biref	タワーAIマルチペアの保存が必要なポケモンパラメータ
  *	
- *  battle/b_tower_data.h��K�v�ȉӏ��ȊO�ł�
- *	include���Ȃ��ōςނ悤�ɒ�`���Ă���
+ *  battle/b_tower_data.hを必要な箇所以外では
+ *	includeしないで済むように定義しておく
  */
 typedef struct _B_TOWER_PAREPOKE_PARAM B_TOWER_PAREPOKE_PARAM;
 
 
 /**
- *	@brief	�o�g���^���[ WIFI���C�u�����\���̂ւ̕s���S�|�C���^
- *	Wifi���C�u�����w�b�_���O���ɔ���J�ɂ��Ă������߂ɒ�`
+ *	@brief	バトルタワー WIFIライブラリ構造体への不完全ポインタ
+ *	Wifiライブラリヘッダを外部に非公開にしておくために定義
  */
 typedef struct Dpw_Bt_PokemonData	DPW_BT_POKEMON_DATA;
 typedef struct Dpw_Bt_Player	DPW_BT_PLAYER;
@@ -101,17 +101,17 @@ typedef struct Dpw_Bt_Leader	DPW_BT_LEADER;
 typedef struct Dpw_Bt_Room		DPW_BT_ROOM;
 
 /**
- *	@biref	�o�g���^���[ WIFI���[���f�[�^ID(rank��roomno)
+ *	@biref	バトルタワー WIFIルームデータID(rankとroomno)
  *
- *	�����N�ƃ��[���i���o�[���擾�������Ƃ��悤�̌��J�\���̃f�[�^�^
+ *	ランクとルームナンバーを取得したいときようの公開構造体データ型
  */
 typedef struct{
-	u8	rank;	//���[�������N(1-10)
-	u8	no;		//���[��No(1-200)
+	u8	rank;	//ルームランク(1-10)
+	u8	no;		//ルームNo(1-200)
 }BTOWER_ROOMID;
 
 //========================================================
-//�Z�[�u�f�[�^�A�N�Z�X
+//セーブデータアクセス
 //========================================================
 
 #ifdef GLOBAL
@@ -124,145 +124,145 @@ typedef struct{
 #define GLOBAL	extern
 #endif
 
-///���[�N�T�C�Y�擾���N���A
+///ワークサイズ取得＆クリア
 //////////////////////////////////
 /**
- *	@brief	�^���[�@�v���C�f�[�^�T�C�Y
+ *	@brief	タワー　プレイデータサイズ
  */
 GLOBAL int TowerPlayData_GetWorkSize(void);
 
 /**
- *	@brief	�^���[�@�v���C���[�X�R�A�f�[�^�T�C�Y
+ *	@brief	タワー　プレイヤースコアデータサイズ
  */
 GLOBAL int	TowerSocreData_GetWorkSize(void);
 
 /**
- *	@brief	�^���[�@�|�P�����f�[�^�T�C�Y
+ *	@brief	タワー　ポケモンデータサイズ
  */
 GLOBAL int TowerWifiPoke_GetWorkSize(void);
 
 /**
- *	@brief	�^���[�@Wifi�f�[�^�T�C�Y
+ *	@brief	タワー　Wifiデータサイズ
  */
 GLOBAL int	TowerWifiData_GetWorkSize(void);
 /**
- *	@brief�@�^���[ Wifi/�g���[�i�[���[�h�v���C���[�f�[�^�\���̃f�[�^�T�C�Y
+ *	@brief　タワー Wifi/トレーナーロードプレイヤーデータ構造体データサイズ
  */
 GLOBAL int TowerDpwBtPlayer_GetWorkSize(void);
 
 /**
- *	@brief	�^���[�@�v���C�f�[�^�N���A
+ *	@brief	タワー　プレイデータクリア
  */
 GLOBAL void TowerPlayData_Clear(BTLTOWER_PLAYWORK* dat);
 
 /**
- *	@brief	�^���[	�X�R�A�f�[�^�N���A
+ *	@brief	タワー	スコアデータクリア
  */
 GLOBAL void TowerScoreData_Clear(BTLTOWER_SCOREWORK* dat);
 
 /**
- *	@brief	�^���[�@�v���C���[���b�Z�[�W�f�[�^�N���A
+ *	@brief	タワー　プレイヤーメッセージデータクリア
  */
 GLOBAL void TowerPlayerMsg_Clear(BTLTOWER_PLAYER_MSG* dat);
 
 /**
- *	@brief	�^���[�@Wifi�f�[�^�N���A
+ *	@brief	タワー　Wifiデータクリア
  */
 GLOBAL void TowerWifiData_Clear(BTLTOWER_WIFI_DATA* dat);
 
-///�u���b�N�f�[�^�A�N�Z�X�n
+///ブロックデータアクセス系
 /////////////////////////////////
 /**
- *	@brief	�^���[�@�v���C�f�[�^�ւ̃|�C���^���擾
+ *	@brief	タワー　プレイデータへのポインタを取得
  */
 GLOBAL BTLTOWER_PLAYWORK* SaveData_GetTowerPlayData(SAVEDATA* sv);
 
 /**
- *	@brief	�^���[�@�X�R�A�f�[�^�ւ̃|�C���^���擾
+ *	@brief	タワー　スコアデータへのポインタを取得
  */
 GLOBAL BTLTOWER_SCOREWORK* SaveData_GetTowerScoreData(SAVEDATA* sv);
 
 /**
- *	@brief	�^���[ Wifi�f�[�^�ւ̃|�C���^���擾	
+ *	@brief	タワー Wifiデータへのポインタを取得	
  */
 GLOBAL BTLTOWER_WIFI_DATA*	SaveData_GetTowerWifiData(SAVEDATA* sv);
 
 ////////////////////////////////////////////////////////////
-//�v���C�f�[�^�擾�n
+//プレイデータ取得系
 ////////////////////////////////////////////////////////////
 /**
- *	@brief	�v���C�f�[�^�@�擾
+ *	@brief	プレイデータ　取得
  *
  *	@param	dat	BTLTOWRE_PLAYWORK*
- *	@param	id	�擾����f�[�^ID BTOWER_PSD_ID�^
- *	@param	buf	void*:�f�[�^�擾�|�C���^
+ *	@param	id	取得するデータID BTOWER_PSD_ID型
+ *	@param	buf	void*:データ取得ポインタ
  */
 GLOBAL u32	TowerPlayData_Get(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,void* buf);
 
 /**
- *	@brief	�v���C�f�[�^�@�Z�b�g
+ *	@brief	プレイデータ　セット
  *	
  *	@param	dat	BTLTOWRE_PLAYWORK*
- *	@param	id	�擾����f�[�^ID BTOWER_PSD_ID�^
- *	@param	buf	void*:�f�[�^���i�[�����o�b�t�@�ւ̃|�C���^
+ *	@param	id	取得するデータID BTOWER_PSD_ID型
+ *	@param	buf	void*:データを格納したバッファへのポインタ
  */
 GLOBAL void TowerPlayData_Put(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,const void* buf);
 
 /**
- *	@brief �v���C�f�[�^�@Wifi���R�[�h�f�[�^Add	
+ *	@brief プレイデータ　WifiレコードデータAdd	
  *
- *	@param	down	�|���ꂽ�|�P�����ǉ���
- *	@param	turn	���������^�[���ǉ���
- *	@param	damage	�󂯂��_���[�W�ǉ��l
+ *	@param	down	倒されたポケモン追加数
+ *	@param	turn	かかったターン追加数
+ *	@param	damage	受けたダメージ追加値
  */
 GLOBAL void TowerPlayData_WifiRecordAdd(BTLTOWER_PLAYWORK* dat,u8 down,u16 turn,u16 damage);
 
 /**
- *	@brief	�v���C�f�[�^�@�������Z�[�u�ς݂��ǂ����H
+ *	@brief	プレイデータ　正しくセーブ済みかどうか？
  *
- *	@retval	TRUE	�������Z�[�u����Ă���
- *	@retval FALSE	�Z�[�u����Ă��Ȃ�
+ *	@retval	TRUE	正しくセーブされている
+ *	@retval FALSE	セーブされていない
  */
 GLOBAL BOOL TowerPlayData_GetSaveFlag(BTLTOWER_PLAYWORK* dat);
 /**
- *	@brief	�v���C�f�[�^�@�Z�[�u��ԃt���O���Z�b�g
+ *	@brief	プレイデータ　セーブ状態フラグをセット
  */
 GLOBAL void TowerPlayData_SetSaveFlag(BTLTOWER_PLAYWORK* dat,BOOL flag);
 
 
-///�X�R�A�f�[�^�擾�n
+///スコアデータ取得系
 /////////////////////////////////////////////////
 
 /**
- *	@brief	�X�R�A�f�[�^ �o�g���|�C���g�Z�b�g
+ *	@brief	スコアデータ バトルポイントセット
  *
- *	�L���R�}���h set/get/add/sub
+ *	有効コマンド set/get/add/sub
  */
 GLOBAL u16 TowerScoreData_SetBattlePoint(BTLTOWER_SCOREWORK* dat,u16 num,BTWR_DATA_SETID mode);
 
 /**
- *	@brief	SAVEDATA����o�g���|�C���g��Get
+ *	@brief	SAVEDATAからバトルポイントをGet
  */
 static inline u16 BattlePoint_Get(SAVEDATA* sv)
 {
 	return TowerScoreData_SetBattlePoint(SaveData_GetTowerScoreData(sv),0,BTWR_DATA_get);
 }
 /**
- *	@brief	SAVEDATA����o�g���|�C���g��Set
+ *	@brief	SAVEDATAからバトルポイントをSet
  */
 static inline u16 BattlePoint_Set(SAVEDATA* sv,u16 num)
 {
 	return TowerScoreData_SetBattlePoint(SaveData_GetTowerScoreData(sv),num,BTWR_DATA_set);
 }
 /**
- *	@brief	SAVEDATA����o�g���|�C���g��Add
+ *	@brief	SAVEDATAからバトルポイントをAdd
  */
 static inline u16	BattlePoint_Add(SAVEDATA* sv,u16 num)
 {
 	return TowerScoreData_SetBattlePoint(SaveData_GetTowerScoreData(sv),num,BTWR_DATA_add);
 }
 /**
- *	@brief	SAVEDATA����o�g���|�C���g��Sub
+ *	@brief	SAVEDATAからバトルポイントをSub
  */
 static inline u16	BattlePoint_Sub(SAVEDATA* sv,u16 num)
 {
@@ -270,192 +270,192 @@ static inline u16	BattlePoint_Sub(SAVEDATA* sv,u16 num)
 }
 
 /**
- *	@brief	�X�R�A�f�[�^�@Wifi�A���s��J�E���g����
+ *	@brief	スコアデータ　Wifi連続敗戦カウント操作
  *
- *	�L���R�}���h get/reset/inc
+ *	有効コマンド get/reset/inc
  *
- *	@return	�����̃J�E���g
+ *	@return	操作後のカウント
  */
 GLOBAL u8 TowerScoreData_SetWifiLoseCount(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode);
 
 /**
- *	@brief	�X�R�A�f�[�^�@Wifi�����N����
+ *	@brief	スコアデータ　Wifiランク操作
  *
- *	�L���R�}���h get/reset/inc/dec
+ *	有効コマンド get/reset/inc/dec
  */
 GLOBAL u8	TowerScoreData_SetWifiRank(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode);
 
 /**
- *	@brief	�g�p�|�P�����f�[�^�ۑ�
+ *	@brief	使用ポケモンデータ保存
  */
 GLOBAL void TowerScoreData_SetUsePokeData(BTLTOWER_SCOREWORK* dat,
 				BTWR_SCORE_POKE_DATA mode,B_TOWER_POKEMON* poke);
 /**
- *	@brief	�g�p�|�P�����f�[�^���o�b�t�@�ɃR�s�[���Ď擾(WiFi�\���̃f�[�^�^)
+ *	@brief	使用ポケモンデータをバッファにコピーして取得(WiFi構造体データ型)
  */
 GLOBAL void TowerScoreData_GetUsePokeDataDpw(BTLTOWER_SCOREWORK* dat,
 			BTWR_SCORE_POKE_DATA mode,DPW_BT_POKEMON_DATA* poke);
 
 /**
- *	@brief	�g�p�|�P�����f�[�^���o�b�t�@�ɃR�s�[���Ď擾
+ *	@brief	使用ポケモンデータをバッファにコピーして取得
  */
 GLOBAL void TowerScoreData_GetUsePokeData(BTLTOWER_SCOREWORK* dat,
 			BTWR_SCORE_POKE_DATA mode,B_TOWER_POKEMON* poke);
 
 
 /**
- *	@brief	�X�R�A�f�[�^�@���񐔑���
+ *	@brief	スコアデータ　周回数操作
  */
 GLOBAL u16 TowerScoreData_SetStage(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode);
 
 /**
- *	@brief	���݂̃X�e�[�W�l�𒼐ڃZ�b�g����
+ *	@brief	現在のステージ値を直接セットする
  */
 GLOBAL u16 TowerScoreData_SetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value);
 
 #ifdef PM_DEBUG
 /**
- *	@brief	�f�o�b�O����@���݂̃X�e�[�W�l�𒼐ڃZ�b�g����
+ *	@brief	デバッグ限定　現在のステージ値を直接セットする
  */
 GLOBAL u16 TowerScoreData_DebugSetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value);
 #endif	//PM_DEBUG
 /**
- *	@brief	�X�R�A�f�[�^ Wifi���ё���
+ *	@brief	スコアデータ Wifi成績操作
  */
 GLOBAL u16	TowerScoreData_SetWifiScore(BTLTOWER_SCOREWORK* dat,BTLTOWER_PLAYWORK *playdata);
 
 /**
- *	@brief	�X�R�A�f�[�^�@Wifi����0�N���A
+ *	@brief	スコアデータ　Wifi成績0クリア
  */
 GLOBAL void TowerScoreData_ClearWifiScore(BTLTOWER_SCOREWORK* dat);
 
 /**
- *	@brief	�X�R�A�f�[�^�@Wifi���ю擾
+ *	@brief	スコアデータ　Wifi成績取得
  */
 GLOBAL u16	TowerScoreData_GetWifiScore(BTLTOWER_SCOREWORK* dat);
 
 /**
- *	@brief	�X�R�A�f�[�^���珟�������������擾
+ *	@brief	スコアデータから勝ち抜いた数を取得
  */
 GLOBAL u8	TowerScoreData_GetWifiWinNum(BTLTOWER_SCOREWORK* dat);
 
 /**
- *	@brief	�X�R�A�f�[�^ �t���O�G���A�Z�b�g
+ *	@brief	スコアデータ フラグエリアセット
  *
- *	�L���R�}���h�Freset/set/get
+ *	有効コマンド：reset/set/get
  */
 GLOBAL BOOL TowerScoreData_SetFlags(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode);
 
 /**
- *	@brief	�^���[�p���t�ω������_���V�[�h�ۑ�
+ *	@brief	タワー用日付変化ランダムシード保存
  */
 GLOBAL void TowerScoreData_SetDayRndSeed(BTLTOWER_SCOREWORK* dat,u32 rnd_seed);
 
 /**
- *	@brief	�^���[�p���t�ω������_���V�[�h�擾
+ *	@brief	タワー用日付変化ランダムシード取得
  */
 GLOBAL u32 TowerScoreData_GetDayRndSeed(BTLTOWER_SCOREWORK* dat);
 
 
 //=======================================================
-//�@�^���[�@�v���C���[���b�Z�[�W�f�[�^�A�N�Z�X�n
+//　タワー　プレイヤーメッセージデータアクセス系
 //=======================================================
 /**
- *	@brief	�ȈՉ�b�f�[�^���Z�b�g
+ *	@brief	簡易会話データをセット
  */
 GLOBAL void TowerPlayerMsg_Set(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id,PMS_DATA* src);
 
 /**
- *	@brief	�ȈՉ�b�f�[�^���擾
+ *	@brief	簡易会話データを取得
  */
 GLOBAL PMS_DATA* TowerPlayerMsg_Get(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id);
 
 //=======================================================
-//�@�^���[�@Wifi�f�[�^�A�N�Z�X�n
+//　タワー　Wifiデータアクセス系
 //=======================================================
 /**
- *	@brief	�w�肵�����[���f�[�^�̎擾�t���O�𗧂Ă�
+ *	@brief	指定したルームデータの取得フラグを立てる
  *
- *	@param	rank	1�I���W���Ȃ̂Œ���
- *	@param	roomno	1�I���W���Ȃ̂Œ���
+ *	@param	rank	1オリジンなので注意
+ *	@param	roomno	1オリジンなので注意
  */
 GLOBAL void TowerWifiData_SetRoomDataFlag(BTLTOWER_WIFI_DATA* dat,
 		u8 rank,u8 roomno,RTCDate *day);
 
 /**
- *	@brief	���[���f�[�^�擾�t���O���N���A����
+ *	@brief	ルームデータ取得フラグをクリアする
  */
 GLOBAL void TowerWifiData_ClearRoomDataFlag(BTLTOWER_WIFI_DATA* dat);
 
 /**
- *	@brief	�w�肵�����[����DL�t���O�������Ă��邩�`�F�b�N
+ *	@brief	指定したルームのDLフラグが立っているかチェック
  *
- *	@param	rank	1�I���W���Ȃ̂Œ���
- *	@param	roomno	1�I���W���Ȃ̂Œ���
+ *	@param	rank	1オリジンなので注意
+ *	@param	roomno	1オリジンなので注意
  */
 GLOBAL BOOL TowerWifiData_CheckRoomDataFlag(BTLTOWER_WIFI_DATA* dat,u8 rank,u8 roomno,RTCDate* day);
 
 
 /**
- *	@brief	�v���C���[�f�[�^�����݂��邩�`�F�b�N
+ *	@brief	プレイヤーデータが存在するかチェック
  */
 GLOBAL BOOL TowerWifiData_IsPlayerDataEnable(BTLTOWER_WIFI_DATA* dat);
 
 /**
- *	@brief	���[�_�[�f�[�^�����邩�ǂ����`�F�b�N
+ *	@brief	リーダーデータがあるかどうかチェック
  */
 GLOBAL BOOL TowerWifiData_IsLeaderDataEnable(BTLTOWER_WIFI_DATA* dat);
 
 /**
- *	@brief	�v���C���[�f�[�^���Z�[�u
+ *	@brief	プレイヤーデータをセーブ
  *	
- *	@param	rank	1�I���W���Ȃ̂Œ���
- *	@param	roomno	1�I���W���Ȃ̂Œ���
+ *	@param	rank	1オリジンなので注意
+ *	@param	roomno	1オリジンなので注意
  */
 GLOBAL void TowerWifiData_SetPlayerData(BTLTOWER_WIFI_DATA* dat,DPW_BT_PLAYER* src,u8 rank,u8 roomno);
 
 /**
- *	@brief	�v���C���[�f�[�^���N���A
+ *	@brief	プレイヤーデータをクリア
  */
 GLOBAL void TowerWifiData_ClearPlayerData(BTLTOWER_WIFI_DATA* dat);
 
 /**
- *	@brief	�v���C���[�f�[�^��RoomID(�����N��roomNo)���擾
+ *	@brief	プレイヤーデータのRoomID(ランクとroomNo)を取得
  *
- *	@param	roomid	BTOWER_ROOMID�^(b_tower.h�Ō��J)
+ *	@param	roomid	BTOWER_ROOMID型(b_tower.hで公開)
  */
 GLOBAL void TowerWifiData_GetPlayerDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *roomid);
 
 /**
- *	@brief	�v���C���[�f�[�^���^���[�퓬�p�ɉ�
+ *	@brief	プレイヤーデータをタワー戦闘用に解凍
  */
 GLOBAL void TowerWifiData_GetBtlPlayerData(BTLTOWER_WIFI_DATA* dat,
 		B_TOWER_PARTNER_DATA* player,const u8 round);
 
 /**
- *	@brief	���[�_�[�f�[�^���Z�[�u
+ *	@brief	リーダーデータをセーブ
  *	
- *	@param	rank	1�I���W���Ȃ̂Œ���
- *	@param	roomno	1�I���W���Ȃ̂Œ���
+ *	@param	rank	1オリジンなので注意
+ *	@param	roomno	1オリジンなので注意
  */
 GLOBAL void TowerWifiData_SetLeaderData(BTLTOWER_WIFI_DATA* dat,DPW_BT_LEADER* src,u8 rank,u8 roomno);
 
 /**
- *	@brief	���[�_�[�f�[�^���N���A
+ *	@brief	リーダーデータをクリア
  */
 GLOBAL void TowerWifiData_ClearLeaderData(BTLTOWER_WIFI_DATA* dat);
 
 /**
- *	@brief	���[�_�[�f�[�^��RoomID(�����N��roomNo)���擾
+ *	@brief	リーダーデータのRoomID(ランクとroomNo)を取得
  *
- *	@param	roomid	BTOWER_ROOMID�^(b_tower.h�Ō��J)
+ *	@param	roomid	BTOWER_ROOMID型(b_tower.hで公開)
  */
 GLOBAL void TowerWifiData_GetLeaderDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *roomid);
 
 /**
- *	@brief	���[�_�[�f�[�^��Alloc�����������ɃR�s�[���Ď擾����
+ *	@brief	リーダーデータをAllocしたメモリにコピーして取得する
  *
- *	��������Alloc�����������̈��Ԃ��̂ŁA�Ăяo�����������I�ɉ�����邱�ƁI
+ *	＊内部でAllocしたメモリ領域を返すので、呼び出し側が明示的に解放すること！
  */
 GLOBAL B_TOWER_LEADER_DATA* TowerWifiData_GetLeaderDataAlloc(BTLTOWER_WIFI_DATA* dat,int heapID) ;
 

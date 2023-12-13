@@ -12,16 +12,16 @@
 #
 # $Log: overlay.lsf,v $
 # Revision 1.4  2006/05/11 12:55:47  yasu
-# ’˜ì”N“x‚Ì•ÏX
+# è‘—ä½œå¹´åº¦ã®å¤‰æ›´
 #
 # Revision 1.3  2006/05/10 03:18:56  yasu
-# IF-ELSE-ENDIF ‚ÌğŒ”»’è‚Ìƒ`ƒFƒbƒN‚¨‚æ‚Ñ searchsymbol •¶‚ÌƒeƒXƒg
+# IF-ELSE-ENDIF ã®æ¡ä»¶åˆ¤å®šã®ãƒã‚§ãƒƒã‚¯ãŠã‚ˆã³ searchsymbol æ–‡ã®ãƒ†ã‚¹ãƒˆ
 #
 # Revision 1.2  2005/08/26 11:23:38  yasu
-# ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰
+# ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 #
 # Revision 1.1  2005/08/26 04:35:19  yasu
-# DTCM overlay ‚ÌƒAƒŠ[ƒi‚ª‚¨‚©‚µ‚­‚È‚é‚Ì‚ğC³
+# DTCM overlay æ™‚ã®ã‚¢ãƒªãƒ¼ãƒŠãŒãŠã‹ã—ããªã‚‹ã®ã‚’ä¿®æ­£
 # $NoKeywords: $
 #----------------------------------------------------------------------------
 #

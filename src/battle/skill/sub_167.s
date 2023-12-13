@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_167.s
- *@brief	�퓬�V�[�P���X
- *			�Ȃ�݂̂��˃V�[�P���X
+ *@brief	戦闘シーケンス
+ *			なやみのたねシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.15
  *
@@ -19,7 +19,7 @@ SUB_167:
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_NAMAKE,Umakukimaran
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
-	//�͂����񂾂܂��������Ă���|�P�����ɂ́A���܂����܂��
+	//はっきんだまを所持しているポケモンには、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF
 	PSP_VALUE		VAL_SET,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_HUMIN

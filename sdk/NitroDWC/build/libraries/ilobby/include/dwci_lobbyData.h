@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_LOBBY_DATA_H_
@@ -33,11 +33,11 @@
 #include "dwci_lobbyCallback.h"
 #include "ppw_timer.h"
 
-// ƒ`ƒƒƒ“ƒlƒ‹–¼
+// ãƒãƒ£ãƒ³ãƒãƒ«å
 static const char DWCi_LOBBY_CHANNEL_NAME_PREFIX[] = "#GSP";
 
 
-// ƒƒr[î•ñ(“à•”g—p)
+// ãƒ­ãƒ“ãƒ¼æƒ…å ±(å†…éƒ¨ä½¿ç”¨)
 class DWCi_Lobby : public DWCi_Base
 {
     CHAT chat;
@@ -54,20 +54,20 @@ class DWCi_Lobby : public DWCi_Base
     u32 connectingWaitCount;
     BOOL serverDisconnectedMe;
     
-    // Ã“IƒR[ƒ‹ƒoƒbƒN
+    // é™çš„ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     const DWCi_LobbyGlobalCallbacks globalCallbacks;
     
     //
-    // ƒ†[ƒUIDƒRƒ“ƒeƒi
+    // ãƒ¦ãƒ¼ã‚¶IDã‚³ãƒ³ãƒ†ãƒŠ
     //
     typedef std::map<s32, DWCi_String, std::less<s32>, DWCi_Allocator<std::pair<s32, DWCi_String> > > UserContainer;
     UserContainer users;
     
     //
-    // ƒ`ƒƒƒ“ƒlƒ‹ƒRƒ“ƒeƒi
+    // ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒŠ
     //
-    // key: ƒ`ƒƒƒ“ƒlƒ‹–¼
-    // value: DWCi_LobbyChannel = { ƒAƒNƒeƒBƒx[ƒgÏ‚İ‚©, ƒ`ƒƒƒ“ƒlƒ‹“à‚Ìƒ†[ƒUID, ƒ`ƒƒƒ“ƒlƒ‹‚Ì‰ŠúÅ‘ål”, ƒ`ƒƒƒ“ƒlƒ‹ƒR[ƒ‹ƒoƒbƒN }
+    // key: ãƒãƒ£ãƒ³ãƒãƒ«å
+    // value: DWCi_LobbyChannel = { ã‚¢ã‚¯ãƒ†ã‚£ãƒ™ãƒ¼ãƒˆæ¸ˆã¿ã‹, ãƒãƒ£ãƒ³ãƒãƒ«å†…ã®ãƒ¦ãƒ¼ã‚¶ID, ãƒãƒ£ãƒ³ãƒãƒ«ã®åˆæœŸæœ€å¤§äººæ•°, ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ }
     //
     typedef std::set<s32, std::less<s32>, DWCi_Allocator<s32> > UserIdContainer;
     
@@ -90,7 +90,7 @@ class DWCi_Lobby : public DWCi_Base
     typedef std::map<DWCi_String, DWCi_LobbyChannel, std::less<DWCi_String>, DWCi_Allocator<std::pair<DWCi_String, DWCi_LobbyChannel> > > ChannelContainer;
     ChannelContainer channels;
     
-    // “®“IƒR[ƒ‹ƒoƒbƒNŠÇ—
+    // å‹•çš„ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç®¡ç†
     DWCi_CallbackManager callbackManager;
     PPW_LobbyTimerManager timerManager;
 
@@ -117,7 +117,7 @@ public:
     
     void SetState(DWCi_LOBBY_STATE _state)
     {
-        // ƒGƒ‰[‚Í‘JˆÚ‚µ‚È‚¢
+        // ã‚¨ãƒ©ãƒ¼æ™‚ã¯é·ç§»ã—ãªã„
         if(state == DWCi_LOBBY_STATE_ERROR)
         {
             DWC_Printf(DWC_REPORTFLAG_ERROR, "SetState: Can' set state because state is already error.");
@@ -202,7 +202,7 @@ public:
     {
         error = _error;
         
-        // ƒXƒe[ƒg‚ğƒGƒ‰[‚É‚µ‚Ä‚Ù‚Æ‚ñ‚Ç‚ÌŠÖ”‚ğŒÄ‚×‚È‚­‚·‚éB
+        // ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚¨ãƒ©ãƒ¼ã«ã—ã¦ã»ã¨ã‚“ã©ã®é–¢æ•°ã‚’å‘¼ã¹ãªãã™ã‚‹ã€‚
         state = DWCi_LOBBY_STATE_ERROR;
     }
     
@@ -232,7 +232,7 @@ public:
         return callbackManager;
     }
 
-    // æ“¾‚µ‚½‚Æ‚«‚ÍQÆ‚ğ•Û‚µ‚È‚¢‚±‚ÆB
+    // å–å¾—ã—ãŸã¨ãã¯å‚ç…§ã‚’ä¿æŒã—ãªã„ã“ã¨ã€‚
     PPW_LobbyTimerManager& GetTimerManager()
     {
         return timerManager;
@@ -251,8 +251,8 @@ public:
     std::vector<s32, DWCi_Allocator<s32> > AddUsers(int numUsers, const char** users, const DWCi_String& channelName);
     
 private:
-    // find_if—pŠÖ”ƒIƒuƒWƒFƒNƒg ChannelContainer::value_type == std::pair<DWCi_String, UserIdContainer>
-    // ƒ`ƒƒƒ“ƒlƒ‹ƒRƒ“ƒeƒi‚Éw’è‚µ‚½ƒ†[ƒU‚ª‚¢‚é‚©
+    // find_ifç”¨é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ChannelContainer::value_type == std::pair<DWCi_String, UserIdContainer>
+    // ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒŠã«æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶ãŒã„ã‚‹ã‹
     struct ExistUserInChannelContainer : public std::unary_function<ChannelContainer::value_type, bool>
     {
         const s32 userId;
@@ -275,7 +275,7 @@ public:
     
     s32 FindUser(const DWCi_String& nick) const;
 
-    // ŠY“–ƒ†[ƒUID‚Ìƒ†[ƒU‚ğ‘{‚·
+    // è©²å½“ãƒ¦ãƒ¼ã‚¶IDã®ãƒ¦ãƒ¼ã‚¶ã‚’æœã™
     DWCi_String FindUser(s32 userId) const;
     
     s32 RenameUser(const DWCi_String& oldNick, const DWCi_String& newNick);

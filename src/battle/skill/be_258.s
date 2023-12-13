@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_258.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			258�@�G�̉�𗦂��P�i�K������{
- *				 ���葤�̂Ђ���̂��ׁA���t���N�^�[�A����҂̂܂���A���낢����A�܂��т��A�ǂ��т��̌��ʂ��Ȃ����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			258　敵の回避率を１段階下げる＋
+ *				 相手側のひかりのかべ、リフレクター、しんぴのまもり、しろいきり、まきびし、どくびしの効果をなくす。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

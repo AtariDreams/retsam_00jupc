@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_189.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			189@‘ŠŽè‚Ì‚g‚o|Ž©•ª‚Ì‚g‚o•ª‚Ìƒ_ƒ[ƒW‚ð—^‚¦‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			189ã€€ç›¸æ‰‹ã®ï¼¨ï¼°âˆ’è‡ªåˆ†ã®ï¼¨ï¼°åˆ†ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸Žãˆã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.09
@@ -15,14 +15,14 @@
 	.include	"waza_seq_def.h"
 
 BE_189:
-	//‘ŠŽè‚ÌHP‚ðŽæ“¾
+	//ç›¸æ‰‹ã®HPã‚’å–å¾—
 	PSP_VALUE_WORK	VAL_GET,SIDE_DEFENCE,ID_PSP_hp,BUF_PARA_DAMAGE
-	//Ž©•ª‚ÌHP‚ðŽæ“¾
+	//è‡ªåˆ†ã®HPã‚’å–å¾—
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_hp,BUF_PARA_CALC_WORK
-	//‘ŠŽè‚ÌHP<=Ž©•ª‚ÌHP‚È‚çA‚¤‚Ü‚­‚«‚Ü‚ç‚ñ
+	//ç›¸æ‰‹ã®HP<=è‡ªåˆ†ã®HPãªã‚‰ã€ã†ã¾ããã¾ã‚‰ã‚“
 	IF_WORK			IF_FLAG_NC,BUF_PARA_DAMAGE,BUF_PARA_CALC_WORK,Umakukimaran
 
-	//ƒ_ƒ[ƒW—ÊŒvŽZ
+	//ãƒ€ãƒ¡ãƒ¼ã‚¸é‡è¨ˆç®—
 	VALUE_WORK		VAL_SUB,BUF_PARA_DAMAGE,BUF_PARA_CALC_WORK
 	VALUE			VAL_MUL,BUF_PARA_DAMAGE,-1
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT

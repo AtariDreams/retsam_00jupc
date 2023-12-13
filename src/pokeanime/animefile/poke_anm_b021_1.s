@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b021_1.s
- * @brief	‚‘¬‰ñ“]
+ * @brief	é«˜é€Ÿå›žè»¢
  * @author	
  * @date	
  *
@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê	‚‘¬‰ñ“]ƒNƒCƒbƒNx2
+//	èƒŒé¢	é«˜é€Ÿå›žè»¢ã‚¯ã‚¤ãƒƒã‚¯x2
 //
 //
 // =============================================================================
@@ -29,7 +29,7 @@ PAST_ANIME_B021_1:
 	SET_ADD_PARAM	PARAM_DY,USE_VAL,HEIGHT,PARAM_SET
 	APPLY_TRANS
 	
-	//2Žü‚˜2‚ðCALC_NUMx2‰ñ‚Åˆ—
+	//2å‘¨ï½˜2ã‚’CALC_NUMx2å›žã§å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,WIDTH,0x20000*2,0,CALC_NUM*2
 	CALL_MF_CURVE_DIVTIME	APPLY_ADD,0,CURVE_COS_MINUS,TARGET_DY,HEIGHT,0x20000*2,0,CALC_NUM*2
 	HOLD_CMD

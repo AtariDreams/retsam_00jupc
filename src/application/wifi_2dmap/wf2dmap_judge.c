@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_judge.c
- *	@brief		ƒRƒ}ƒ“ƒh”»’fƒ‚ƒWƒ…[ƒ‹•ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒoƒbƒtƒ@
+ *	@brief		ã‚³ãƒãƒ³ãƒ‰åˆ¤æ–­ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
  *	@author		tomoya takahashi
  *	@data		2007.03.15
  *
@@ -16,19 +16,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒRƒ}ƒ“ƒhƒWƒƒƒbƒWƒ‚ƒWƒ…[ƒ‹
+ *			ã‚³ãƒãƒ³ãƒ‰ã‚¸ãƒ£ãƒƒã‚¸ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 #define WF2DMAP_JUDGEWALLWALK_WAIT_FRAME	(8)
@@ -46,7 +46,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_JUDGESysNoneJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act );
@@ -65,17 +65,17 @@ static void WF2DMAP_JUDGESysACTCMDSet( WF2DMAP_ACTCMD* p_act, const WF2DMAP_OBJW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhÀs”»’fˆ—
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œåˆ¤æ–­å‡¦ç†
  *
- *	@param	cp_mapsys		ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_objsys		ƒIƒuƒWƒFƒNƒgƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_req			ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒf[ƒ^
- *	@param	p_act			ÀsƒRƒ}ƒ“ƒhŠi”[æ
+ *	@param	cp_mapsys		ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_objsys		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_req			ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_act			å®Ÿè¡Œã‚³ãƒãƒ³ãƒ‰æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	ƒRƒ}ƒ“ƒhÀs‰Â”\
- *	@retval	FALSE	ƒRƒ}ƒ“ƒhÀs•s‰Â”\
+ *	@retval	TRUE	ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œå¯èƒ½
+ *	@retval	FALSE	ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œä¸å¯èƒ½
  *
- *	ƒRƒ}ƒ“ƒhÀs‰Â”\‚Ép_act‚ÉÀsƒRƒ}ƒ“ƒh‚ªŠi”[‚³‚ê‚Ü‚·
+ *	ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œå¯èƒ½æ™‚ã«p_actã«å®Ÿè¡Œã‚³ãƒãƒ³ãƒ‰ãŒæ ¼ç´ã•ã‚Œã¾ã™
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_JUDGESysCmdJudge( const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act )
@@ -102,11 +102,11 @@ BOOL WF2DMAP_JUDGESysCmdJudge( const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OB
 	GF_ASSERT( cp_req );
 	GF_ASSERT( p_act );
 
-	// playID‚Ìƒ[ƒN‚ğæ“¾
+	// playIDã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	cp_wk = WF2DMAP_OBJWkConstGet( cp_objsys, cp_req->playid );
 	GF_ASSERT(cp_wk);
 
-	// “®ìŠJn‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+	// å‹•ä½œé–‹å§‹ã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
 	result = pJudge[ cp_req->cmd ]( cp_wk, cp_mapsys, cp_objsys, cp_req, p_act );
 	return result;
 }  
@@ -114,20 +114,20 @@ BOOL WF2DMAP_JUDGESysCmdJudge( const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OB
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN‚·‚éŠÖ”ŒQ
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°ç¾¤
  *
- *	@param	cp_wk			ƒ[ƒN
- *	@param	cp_mapsys		ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_objsys		ƒIƒuƒWƒFƒNƒgƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_req			ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh
+ *	@param	cp_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mapsys		ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_objsys		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_req			ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰
  *
- *	@retval	TRUE	Às‚µ‚Ä‚æ‚¢
- *	@retval	FALSE	Às‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+ *	@retval	TRUE	å®Ÿè¡Œã—ã¦ã‚ˆã„
+ *	@retval	FALSE	å®Ÿè¡Œã—ã¦ã¯ã„ã‘ãªã„
  */
 //-----------------------------------------------------------------------------
 // WF2DMAP_CMD_NONE
@@ -139,7 +139,7 @@ static BOOL WF2DMAP_JUDGESysNoneJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP
 	
 	if( (status == WF2DMAP_OBJST_NONE) || (status == WF2DMAP_OBJST_BUSY) ){
 
-		// “®ì‚µ‚Ä‘åä•v‚È‚çƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhì¬
+		// å‹•ä½œã—ã¦å¤§ä¸ˆå¤«ãªã‚‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ä½œæˆ
 		WF2DMAP_JUDGESysACTCMDSet( p_act, cp_wk, cp_req->cmd, cp_req->playid, cp_req->way );
 		return TRUE;
 	}
@@ -157,7 +157,7 @@ static BOOL WF2DMAP_JUDGESysTurnJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP
 	
 	if( (status == WF2DMAP_OBJST_NONE) ){
 		if( way != cp_req->way ){
-			// “®ì‚µ‚Ä‘åä•v‚È‚çƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhì¬
+			// å‹•ä½œã—ã¦å¤§ä¸ˆå¤«ãªã‚‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ä½œæˆ
 			WF2DMAP_JUDGESysACTCMDSet( p_act, cp_wk, cp_req->cmd, cp_req->playid, cp_req->way );
 			return TRUE;
 		}
@@ -176,41 +176,41 @@ static BOOL WF2DMAP_JUDGESysWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP
 	do{
 		status = WF2DMAP_OBJWkDataGet( cp_wk, WF2DMAP_OBJPM_ST );
 	
-		// ‘Ò‹@ó‘Ô‚Å‚È‚­‚Ä‚Í‚È‚ç‚È‚¢
+		// å¾…æ©ŸçŠ¶æ…‹ã§ãªãã¦ã¯ãªã‚‰ãªã„
 		if( (status != WF2DMAP_OBJST_NONE) ){
 			break;
 		}
 
-		// ƒ}ƒbƒv‚Æ‚Ì“–‚½‚è”»’è
+		// ãƒãƒƒãƒ—ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 		hit = WF2DMAP_JUDGESysMapHitCheck( cp_wk, cp_mapsys, cp_req->way );
 
-		// “–‚½‚è”»’è‚Ì‚È‚¢ƒ}ƒbƒv‚Å‚È‚¢‚Æ‚¢‚¯‚È‚¢
+		// å½“ãŸã‚Šåˆ¤å®šã®ãªã„ãƒãƒƒãƒ—ã§ãªã„ã¨ã„ã‘ãªã„
 		if( hit == TRUE ){
-			// “–‚½‚è”»’è‚ ‚é‚Ì‚Åi‚ß‚È‚¢
+			// å½“ãŸã‚Šåˆ¤å®šã‚ã‚‹ã®ã§é€²ã‚ãªã„
 			break;
 		}
 
-		// ‘¼‚Ìl•¨ƒIƒuƒWƒFƒNƒg‚Æ‚©‚Ô‚Á‚Ä‚Í‚¢‚¯‚È‚¢
+		// ä»–ã®äººç‰©ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã‹ã¶ã£ã¦ã¯ã„ã‘ãªã„
 		hit = WF2DMAP_JUDGESysObjHitCheck( cp_wk, cp_objsys, cp_req->way );
-		// “–‚½‚è”»’è‚Ì‚È‚¢ƒ}ƒbƒv‚Å‚È‚¢‚Æ‚¢‚¯‚È‚¢
+		// å½“ãŸã‚Šåˆ¤å®šã®ãªã„ãƒãƒƒãƒ—ã§ãªã„ã¨ã„ã‘ãªã„
 		if( hit == TRUE ){
-			// “–‚½‚è”»’è‚ ‚é‚Ì‚Åi‚ß‚È‚¢
+			// å½“ãŸã‚Šåˆ¤å®šã‚ã‚‹ã®ã§é€²ã‚ãªã„
 			break;
 		}
 		
-		// ‚±‚±‚Ü‚Å‰½–‚à‚È‚¯‚ê‚Î‚ ‚é‚¢‚Ä‚n‚j
+		// ã“ã“ã¾ã§ä½•äº‹ã‚‚ãªã‘ã‚Œã°ã‚ã‚‹ã„ã¦ï¼¯ï¼«
 		WF2DMAP_JUDGESysACTCMDSet( p_act, cp_wk, cp_req->cmd, cp_req->playid, cp_req->way );
 		return TRUE;
 
 	}while(0);
 	
 	
-	// ‘Ò‹@ó‘Ô‚ªWF2DMAP_JUDGEWALLWALK_WAIT_FRAMEƒtƒŒ[ƒ€ˆÈã‚½‚Á‚½‚ç•Ç•à‚«
+	// å¾…æ©ŸçŠ¶æ…‹ãŒWF2DMAP_JUDGEWALLWALK_WAIT_FRAMEãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸ŠãŸã£ãŸã‚‰å£æ­©ã
 	if( (status == WF2DMAP_OBJST_NONE) ){
 		st_frame = WF2DMAP_OBJWkDataGet( cp_wk, WF2DMAP_OBJPM_STFRAME );
 //		TOMOYA_PRINT( "st_frame %d\n", st_frame );
 		if( st_frame >= WF2DMAP_JUDGEWALLWALK_WAIT_FRAME ){
-			// ƒ_ƒ~[ƒ‹[ƒv‚©‚ç”²‚¯‚Ä‚«‚½ê‡‚Í•à‚­‚±‚Æ‚ª‚Å‚«‚È‚¢
+			// ãƒ€ãƒŸãƒ¼ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã¦ããŸå ´åˆã¯æ­©ãã“ã¨ãŒã§ããªã„
 			WF2DMAP_JUDGESysACTCMDSet( p_act, cp_wk, WF2DMAP_CMD_WALLWALK, cp_req->playid, cp_req->way );
 			return TRUE;
 		}
@@ -221,7 +221,7 @@ static BOOL WF2DMAP_JUDGESysWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP
 // WF2DMAP_CMD_RUN
 static BOOL WF2DMAP_JUDGESysRunJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act )
 {
-	// •à‚«‚Æˆê
+	// æ­©ãã¨ä¸€ç·’
 	return WF2DMAP_JUDGESysWalkJudge( cp_wk, cp_mapsys, cp_objsys, cp_req, p_act );
 	
 }
@@ -243,14 +243,14 @@ static BOOL WF2DMAP_JUDGESysBusyJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP
 // WF2DMAP_CMD_WALLWALK
 static BOOL WF2DMAP_JUDGESysWallWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act )
 {
-	GF_ASSERT( 0 );	// WALLWALK‚ÍƒWƒƒƒbƒW‚µ‚Ü‚¹‚ñ
+	GF_ASSERT( 0 );	// WALLWALKã¯ã‚¸ãƒ£ãƒƒã‚¸ã—ã¾ã›ã‚“
 	return FALSE;
 }
 
 // WF2DMAP_CMD_SLOWWALK
 static BOOL WF2DMAP_JUDGESysSlowWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act )
 {
-	// •à‚«‚Æˆê
+	// æ­©ãã¨ä¸€ç·’
 	return WF2DMAP_JUDGESysWalkJudge( cp_wk, cp_mapsys, cp_objsys, cp_req, p_act );
 }
 
@@ -261,7 +261,7 @@ static BOOL WF2DMAP_JUDGESysStayWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2
 
 	status = WF2DMAP_OBJWkDataGet( cp_wk, WF2DMAP_OBJPM_ST );
 	
-	// ‰½‚à‚È‚µó‘Ô‚È‚ç‹–‚·
+	// ä½•ã‚‚ãªã—çŠ¶æ…‹ãªã‚‰è¨±ã™
 	if( (status == WF2DMAP_OBJST_NONE) ){
 		WF2DMAP_JUDGESysACTCMDSet( p_act, cp_wk, cp_req->cmd, cp_req->playid, cp_req->way );
 		return TRUE;
@@ -277,39 +277,39 @@ static BOOL WF2DMAP_JUDGESysStayWalkJudge( const WF2DMAP_OBJWK* cp_wk, const WF2
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv‚Æ‚Ì“–‚½‚è”»’è
+ *	@brief	ãƒãƒƒãƒ—ã¨ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	cp_wk			ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	cp_mapsys		ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	way				i‚Ş•ûŒü
+ *	@param	cp_wk			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_mapsys		ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	way				é€²ã‚€æ–¹å‘
  *
- *	@retval	TRUE	‚ ‚½‚é
- *	@retval	FALSE	‚ ‚½‚ç‚È‚¢
+ *	@retval	TRUE	ã‚ãŸã‚‹
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_JUDGESysMapHitCheck( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_MAPSYS* cp_mapsys, WF2DMAP_WAY way )
 {
 	WF2DMAP_POS pos;
 
-	// i‚ñ‚¾æ‚ÌÀ•W‚ğæ“¾
+	// é€²ã‚“ã å…ˆã®åº§æ¨™ã‚’å–å¾—
 	pos = WF2DMAP_OBJWkMatrixGet( cp_wk );
 	pos = WF2DMAP_OBJToolWayPosGet( pos, way );
 
-	// i‚ñ‚¾æ‚Ìƒ}ƒbƒvƒf[ƒ^æ“¾
+	// é€²ã‚“ã å…ˆã®ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 	return WF2DMAP_MAPSysHitGet( cp_mapsys,
 			WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg‚Æ‚Ì“–‚½‚è”»’è
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	cp_wk			ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	cp_objsys		ƒIƒuƒWƒFƒNƒgƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *	@param	way				i‚Ş•ûŒü
+ *	@param	cp_wk			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_objsys		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	way				é€²ã‚€æ–¹å‘
  *
- *	@retval	TRUE	‚ ‚½‚é
- *	@retval	FALSE	‚ ‚½‚ç‚È‚¢
+ *	@retval	TRUE	ã‚ãŸã‚‹
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_JUDGESysObjHitCheck( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_OBJSYS* cp_objsys, WF2DMAP_WAY way )
@@ -326,13 +326,13 @@ static BOOL WF2DMAP_JUDGESysObjHitCheck( const WF2DMAP_OBJWK* cp_wk, const WF2DM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhİ’è
+ *	@brief	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰è¨­å®š
  *
- *	@param	p_act		İ’èæƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
- *	@param	cp_wk		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	cmd			ƒRƒ}ƒ“ƒh
- *	@param	playid		ƒvƒŒƒCID
- *	@param	way			•ûŒü
+ *	@param	p_act		è¨­å®šå…ˆã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰
+ *	@param	cp_wk		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd			ã‚³ãƒãƒ³ãƒ‰
+ *	@param	playid		ãƒ—ãƒ¬ã‚¤ID
+ *	@param	way			æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_JUDGESysACTCMDSet( WF2DMAP_ACTCMD* p_act, const WF2DMAP_OBJWK* cp_wk, WF2DMAP_CMD cmd, u32 playid, WF2DMAP_WAY way )

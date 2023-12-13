@@ -1,11 +1,11 @@
 #ifndef _T05PC0101_DEF_H_
 #define _T05PC0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T05PC0101_PCWOMAN1		(1)
 #define	SCRID_T05PC0101_OLDWOMAN1		(2)
 #define	SCRID_T05PC0101_BABYGIRL1		(3)
 #define	SCRID_T05PC0101_MIDDLEMAN1		(4)
-#define	SCRID_T05PC0101_DATA_MAX		(4)		//最大数
+#define	SCRID_T05PC0101_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_T05PC0101_DEF_H_

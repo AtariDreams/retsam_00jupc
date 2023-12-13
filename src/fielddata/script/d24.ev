@@ -1,6 +1,6 @@
 //====================================================================
 //							d24
-//						‚±‚¤‚Ä‚Â‚¶‚Ü
+//						ã“ã†ã¦ã¤ã˜ã¾
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_d24evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d24_flag_change
 _EVENT_DATA		ev_d24_ship
@@ -25,17 +25,17 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d24_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D24	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D24	//åˆ°ç€
 	_END
 
 #define BLOCK_SIZE	(32)
 
 /********************************************************************/
-/*						‘D‚Ì‘Dˆõ									*/
+/*						èˆ¹ã®èˆ¹å“¡									*/
 /********************************************************************/
 ev_d24_ship:
 	_TALK_OBJ_START
-	/*˜b‚µ‚©‚¯Œü‚«‚ðŽæ“¾*/
+	/*è©±ã—ã‹ã‘å‘ãã‚’å–å¾—*/
 	_PLAYER_DIR_GET	SCWK_TEMP0
 	_TURN_HERO_SITE
 
@@ -43,29 +43,29 @@ ev_d24_ship:
 	_YES_NO_WIN		SCWK_ANSWER
 	_TALK_CLOSE
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d24_ship_in
-	_JUMP		ev_d24_ship_end		//‚¨‚í‚è
+	_JUMP		ev_d24_ship_end		//ãŠã‚ã‚Š
 
 //====================================================================
 //
-//		ƒ~ƒIƒVƒeƒB
+//		ãƒŸã‚ªã‚·ãƒ†ã‚£
 //
 //====================================================================
 ev_d24_ship_in:
-	/*‘Dˆõ‘D‚Ö*/
+	/*èˆ¹å“¡èˆ¹ã¸*/
 	_TALK_KEYWAIT	msg_d24_seaman_02
 	_TALK_CLOSE
 	_CALL	ev_d24_seaman01_ship_in
-	/*ŽålŒöŒü‚«‚Å•ªŠò*/
-	_IFVAL_CALL	SCWK_TEMP0,EQ,DIR_DOWN,ev_d24_player_ship_in_d	/*ŽålŒöˆÚ“®i‰º¨‰E¨Á‚¦‚éj*/
-	_IFVAL_CALL	SCWK_TEMP0,EQ,DIR_LEFT,ev_d24_player_ship_in_l	/*ŽålŒöˆÚ“®i¶¨Á‚¦‚éj*/
-	/*‘Dƒfƒ‚*/
+	/*ä¸»äººå…¬å‘ãã§åˆ†å²*/
+	_IFVAL_CALL	SCWK_TEMP0,EQ,DIR_DOWN,ev_d24_player_ship_in_d	/*ä¸»äººå…¬ç§»å‹•ï¼ˆä¸‹â†’å³â†’æ¶ˆãˆã‚‹ï¼‰*/
+	_IFVAL_CALL	SCWK_TEMP0,EQ,DIR_LEFT,ev_d24_player_ship_in_l	/*ä¸»äººå…¬ç§»å‹•ï¼ˆå·¦â†’æ¶ˆãˆã‚‹ï¼‰*/
+	/*èˆ¹ãƒ‡ãƒ¢*/
 	_CALL_SHIP_DEMO	SHIP_DIR_DOWN,DIR_LEFT,ZONE_ID_C02,BLOCK_SIZE*1+12,BLOCK_SIZE*23+14
 	_TALK_OBJ_END
 	_END
 
 //====================================================================
 //
-//		‘Dˆ—I‚í‚è
+//		èˆ¹å‡¦ç†çµ‚ã‚ã‚Š
 //
 //====================================================================
 ev_d24_ship_end:
@@ -77,14 +77,14 @@ ev_d24_ship_end:
 
 //====================================================================
 //
-//		‘Dˆõ‘D‚É“ü‚é
+//		èˆ¹å“¡èˆ¹ã«å…¥ã‚‹
 //
 //====================================================================
 ev_d24_seaman01_ship_in:
 	_OBJ_ANIME		D24_SEAMAN_01,anm_d24_ship_seaman_01
 	_OBJ_ANIME_WAIT
 	
-	/*“ü‚é‰¹*/
+	/*å…¥ã‚‹éŸ³*/
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	
 	_OBJ_ANIME		D24_SEAMAN_01,anm_d24_ship_vanish_in
@@ -93,14 +93,14 @@ ev_d24_seaman01_ship_in:
 
 //====================================================================
 //
-//		ŽålŒö‘D‚É“ü‚éi‰ºŒü‚«j
+//		ä¸»äººå…¬èˆ¹ã«å…¥ã‚‹ï¼ˆä¸‹å‘ãï¼‰
 //
 //====================================================================
 ev_d24_player_ship_in_d:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d24_ship_player_d
 	_OBJ_ANIME_WAIT
 	
-	/*“ü‚é‰¹*/
+	/*å…¥ã‚‹éŸ³*/
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d24_ship_vanish_in
@@ -109,14 +109,14 @@ ev_d24_player_ship_in_d:
 	
 //====================================================================
 //
-//		ŽålŒö‘D‚É“ü‚éi¶Œü‚«j
+//		ä¸»äººå…¬èˆ¹ã«å…¥ã‚‹ï¼ˆå·¦å‘ãï¼‰
 //
 //====================================================================
 ev_d24_player_ship_in_l:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d24_ship_player_l
 	_OBJ_ANIME_WAIT
 	
-	/*“ü‚é‰¹*/
+	/*å…¥ã‚‹éŸ³*/
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d24_ship_vanish_in
@@ -124,7 +124,7 @@ ev_d24_player_ship_in_l:
 	_RET
 	
 //--------------------------------------------------------------------
-//‘Dˆõ@‘D‚Ì‚Ù‚¤Œü‚­
+//èˆ¹å“¡ã€€èˆ¹ã®ã»ã†å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d24_ship_seaman_01
 	_ANIME_DATA	AC_DIR_L,1
@@ -132,14 +132,14 @@ _ANIME_LABEL anm_d24_ship_seaman_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‘DˆõEŽålŒö@‘D‚É“ü‚éiÁ‚¦‚éj
+//èˆ¹å“¡ãƒ»ä¸»äººå…¬ã€€èˆ¹ã«å…¥ã‚‹ï¼ˆæ¶ˆãˆã‚‹ï¼‰
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d24_ship_vanish_in
 	_ANIME_DATA	AC_VANISH_ON,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö@‘D‚É“ü‚éi‰ºŒü‚«‚Ì‚Æ‚«j
+//ä¸»äººå…¬ã€€èˆ¹ã«å…¥ã‚‹ï¼ˆä¸‹å‘ãã®ã¨ãï¼‰
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d24_ship_player_d
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -148,7 +148,7 @@ _ANIME_LABEL anm_d24_ship_player_d
 	_ANIME_DATA	ACMD_END,0
 	
 //--------------------------------------------------------------------
-//ŽålŒö@‘D‚É“ü‚éi¶Œü‚«‚Ì‚Æ‚«j
+//ä¸»äººå…¬ã€€èˆ¹ã«å…¥ã‚‹ï¼ˆå·¦å‘ãã®ã¨ãï¼‰
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d24_ship_player_l
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -157,7 +157,7 @@ _ANIME_LABEL anm_d24_ship_player_l
 	
 
 /********************************************************************/
-/*								ƒQƒ“								*/
+/*								ã‚²ãƒ³								*/
 /********************************************************************/
 ev_d24_seven3:
 	_TALK_OBJ_START
@@ -165,26 +165,26 @@ ev_d24_seven3:
 	_PLAYER_NAME	0	
 	_TALK_KEYWAIT	msg_d24_seven3_01
 
-	/*ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg*/
-	_LDVAL			SCWK_TEMP0,ITEM_HIDENMASIN04		/*‚Ð‚Å‚ñƒ}ƒVƒ“‚O‚S*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ*/
+	_LDVAL			SCWK_TEMP0,ITEM_HIDENMASIN04		/*ã²ã§ã‚“ãƒžã‚·ãƒ³ï¼ï¼”*/
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
-	/*ƒ~ƒI‚ÌƒWƒ€ƒoƒbƒWŽæ“¾‚µ‚Ä‚¢‚é‚©*/
+	/*ãƒŸã‚ªã®ã‚¸ãƒ ãƒãƒƒã‚¸å–å¾—ã—ã¦ã„ã‚‹ã‹*/
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C02,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d24_seven3_badge_nothing
 	_JUMP			ev_d24_seven3_badge_get
 	_END
 
-/*ƒoƒbƒW‚ ‚è*/
+/*ãƒãƒƒã‚¸ã‚ã‚Š*/
 ev_d24_seven3_badge_get:
 	_TALK_KEYWAIT	msg_d24_seven3_02
 	_JUMP			d24_seven3_common
 	_END
 
-/*ƒoƒbƒW‚à‚Á‚Ä‚È‚¢*/
+/*ãƒãƒƒã‚¸ã‚‚ã£ã¦ãªã„*/
 ev_d24_seven3_badge_nothing:
 	_TALK_KEYWAIT	msg_d24_seven3_03
 	_JUMP			d24_seven3_common
@@ -193,7 +193,7 @@ ev_d24_seven3_badge_nothing:
 d24_seven3_common:
 	_TALK_CLOSE
 
-	/*“´ŒA“à‚ÉˆÚ“®‚·‚é*/
+	/*æ´žçªŸå†…ã«ç§»å‹•ã™ã‚‹*/
 	_OBJ_ANIME		D24_SEVEN3,anm_d24_seven3_01
 	_OBJ_ANIME_WAIT
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
@@ -204,7 +204,7 @@ d24_seven3_common:
 	_END
 
 //--------------------------------------------------------------------
-//ƒQƒ“@“´ŒA‚ÉˆÚ“®
+//ã‚²ãƒ³ã€€æ´žçªŸã«ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d24_seven3_01
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1

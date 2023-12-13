@@ -1,15 +1,15 @@
 //====================================================================
-//						ŒÅ’èƒV[ƒ‹ƒAƒCƒeƒ€ƒf[ƒ^
+//						å›ºå®šã‚·ãƒ¼ãƒ«ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 // 06.05.29 Satoshi Nohara
 //
-// œfs_seal.xls‚ğƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·
+// â—fs_seal.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™
 //
 //====================================================================
 
 typedef u16 FS_SEAL_DATA;
 
-//‚b‚O‚W‚Ìsê@Œ—j“ú
+//ï¼£ï¼ï¼˜ã®å¸‚å ´ã€€æœˆæ›œæ—¥
 const FS_SEAL_DATA fs_seal_c08_market_01[] = {
 	SEAL_ID_HART01,
 	SEAL_ID_STAR02,
@@ -22,7 +22,7 @@ const FS_SEAL_DATA fs_seal_c08_market_01[] = {
 };
 #define FS_SEAL_C08_MARKET_01_MAX	( NELEMS(fs_seal_c08_market_01) )
 
-//‰Î—j
+//ç«æ›œ
 const FS_SEAL_DATA fs_seal_c08_market_02[] = {
 	SEAL_ID_HART02,
 	SEAL_ID_STAR03,
@@ -35,7 +35,7 @@ const FS_SEAL_DATA fs_seal_c08_market_02[] = {
 };
 #define FS_SEAL_C08_MARKET_02_MAX	( NELEMS(fs_seal_c08_market_02) )
 
-//…—j
+//æ°´æ›œ
 const FS_SEAL_DATA fs_seal_c08_market_03[] = {
 	SEAL_ID_HART03,
 	SEAL_ID_STAR04,
@@ -48,7 +48,7 @@ const FS_SEAL_DATA fs_seal_c08_market_03[] = {
 };
 #define FS_SEAL_C08_MARKET_03_MAX	( NELEMS(fs_seal_c08_market_03) )
 
-//–Ø—j
+//æœ¨æ›œ
 const FS_SEAL_DATA fs_seal_c08_market_04[] = {
 	SEAL_ID_HART04,
 	SEAL_ID_BALL01,
@@ -61,7 +61,7 @@ const FS_SEAL_DATA fs_seal_c08_market_04[] = {
 };
 #define FS_SEAL_C08_MARKET_04_MAX	( NELEMS(fs_seal_c08_market_04) )
 
-//‹à—j
+//é‡‘æ›œ
 const FS_SEAL_DATA fs_seal_c08_market_05[] = {
 	SEAL_ID_BALL02,
 	SEAL_ID_PAPER01,
@@ -74,7 +74,7 @@ const FS_SEAL_DATA fs_seal_c08_market_05[] = {
 };
 #define FS_SEAL_C08_MARKET_05_MAX	( NELEMS(fs_seal_c08_market_05) )
 
-//“y—j
+//åœŸæ›œ
 const FS_SEAL_DATA fs_seal_c08_market_06[] = {
 	SEAL_ID_BALL03,
 	SEAL_ID_PAPER02,
@@ -87,7 +87,7 @@ const FS_SEAL_DATA fs_seal_c08_market_06[] = {
 };
 #define FS_SEAL_C08_MARKET_06_MAX	( NELEMS(fs_seal_c08_market_06) )
 
-//“ú—j
+//æ—¥æ›œ
 const FS_SEAL_DATA fs_seal_c08_market_07[] = {
 	SEAL_ID_STAR01,
 	SEAL_ID_ONPU07,
@@ -100,7 +100,7 @@ const FS_SEAL_DATA fs_seal_c08_market_07[] = {
 };
 #define FS_SEAL_C08_MARKET_07_MAX	( NELEMS(fs_seal_c08_market_07) )
 
-//ƒf[ƒ^ƒe[ƒuƒ‹
+//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 const FS_SEAL_DATA* fs_seal_data[] = {
 	fs_seal_c08_market_01,
 	fs_seal_c08_market_02,

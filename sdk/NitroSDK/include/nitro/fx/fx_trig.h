@@ -12,19 +12,19 @@
 
   $Log: fx_trig.h,v $
   Revision 1.23  2007/01/18 04:08:37  okubata_ryoma
-  FX_AsinIdx, FX_AcosIdx ŠÖ”‚Ì’Ç‰Á
+  FX_AsinIdx, FX_AcosIdx é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.22  2006/01/18 02:11:21  kitase_hirotake
   do-indent
 
   Revision 1.21  2005/11/14 05:10:03  okubata_ryoma
-  SDK_INLINE ‚É‘Î‰
+  SDK_INLINE ã«å¯¾å¿œ
 
   Revision 1.20  2005/03/03 13:11:32  takano_makoto
-  extern‚ª”²‚¯‚Ä‚¢‚é•Ï”éŒ¾‚ğC³
+  externãŒæŠœã‘ã¦ã„ã‚‹å¤‰æ•°å®£è¨€ã‚’ä¿®æ­£
 
   Revision 1.19  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.18  2005/02/28 05:26:13  yosizaki
   do-indent.

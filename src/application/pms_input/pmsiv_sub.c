@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsiv_sub.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–Êi•`‰æ‰º¿‚¯FƒTƒu‰æ–Êj
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆæç”»ä¸‹è«‹ã‘ï¼šã‚µãƒ–ç”»é¢ï¼‰
  * @author	taya
  * @date	06.02.10
  */
@@ -263,7 +263,7 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
-	// ƒ‚[ƒhƒ{ƒ^ƒ“‚Ì•¶š‚ğ’†‰›Šñ‚¹
+	// ãƒ¢ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’ä¸­å¤®å¯„ã›
 
 	enum {
 		CGX_WIDTH  = 11,
@@ -321,7 +321,7 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
-	// ƒ‚[ƒhƒ{ƒ^ƒ“‚Ì•¶š‚ğ’†‰›Šñ‚¹
+	// ãƒ¢ãƒ¼ãƒ‰ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’ä¸­å¤®å¯„ã›
 
 	enum {
 		COL_1 = 0x01,
@@ -332,7 +332,7 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 		WRITE_Y_ORG = 22,
 		WRITE_Y_DIFF = 56,
 
-		BUTTON_WIDTH = 88,		// setup_cgs_datas() ‚Ì CGX_WIDTH * 8
+		BUTTON_WIDTH = 88,		// setup_cgs_datas() ã® CGX_WIDTH * 8
 	};
 
 	static const s16 write_y[] = {
@@ -353,7 +353,7 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 
     for (j = 0; j < nlines; j++) {
         STRBUF_CopyLine(line, str, j);
-        x = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, line, 0, BUTTON_WIDTH);	// 1s‚¸‚Â‚É•ÏX‚µ‚½‚ª”O‚Ì‚½‚ß•¡”s‘Î‰
+        x = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, line, 0, BUTTON_WIDTH);	// 1è¡Œãšã¤ã«å¤‰æ›´ã—ãŸãŒå¿µã®ãŸã‚è¤‡æ•°è¡Œå¯¾å¿œ
         for (i = 0; i < NELEMS(write_y); i++) {
             y = write_y[i] + yofs;
             GF_STR_PrintColor(win, FONT_BUTTON, line, x, y,
@@ -597,7 +597,7 @@ static void ChangeButtonTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * –îˆóƒ{ƒ^ƒ“•`‰æƒIƒ“^ƒIƒt
+ * çŸ¢å°ãƒœã‚¿ãƒ³æç”»ã‚ªãƒ³ï¼ã‚ªãƒ•
  *
  * @param   wk		
  * @param   flag		
@@ -620,7 +620,7 @@ void PMSIV_SUB_VisibleArrowButton( PMSIV_SUB* wk, BOOL flag )
 
 //------------------------------------------------------------------
 /**
- * –îˆóƒ{ƒ^ƒ“ó‘ÔØ‚è‘Ö‚¦
+ * çŸ¢å°ãƒœã‚¿ãƒ³çŠ¶æ…‹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   wk		
  * @param   pos		

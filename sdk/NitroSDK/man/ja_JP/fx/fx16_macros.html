@@ -2,63 +2,63 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>fx16�^�p�̃}�N��</title>
+<title>fx16型用のマクロ</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
 </head>
 
 <body>
 
-<h1 align="left">fx16�^�p�̃}�N��</h1>
-<h2>����</h2>
+<h1 align="left">fx16型用のマクロ</h1>
+<h2>説明</h2>
 <TABLE border="0" width="100%">
   <TBODY>
     <TR>
       <TD width="154">FX16_SHIFT</TD>
-      <TD width="487">fx16�^�̂��߂̃V�t�g��(12)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型のためのシフト数(12)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_INT_SIZE</TD>
-      <TD width="487">fx16�^�̐��������̃r�b�g��(3)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型の整数部分のビット幅(3)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_DEC_SIZE</TD>
-      <TD width="487">fx16�^�̏��������̃r�b�g��(12)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型の小数部分のビット幅(12)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_INT_MASK</TD>
-      <TD width="487">fx16�^�̐��������̃}�X�N(0x7000)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型の整数部分のマスク(0x7000)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_DEC_MASK</TD>
-      <TD width="487">fx16�^�̏��������̃}�X�N(0x0fff)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型の小数部分のマスク(0x0fff)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_SIGN_MASK</TD>
-      <TD width="487">fx16�^�̕��������̃}�X�N(0x8000)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型の符号部分のマスク(0x8000)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_MAX</TD>
-      <TD width="487">fx16�^����肤��ő�l(0x7fff)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型が取りうる最大値(0x7fff)が定義されています。</TD>
     </TR>
     <TR>
       <TD width="154">FX16_MIN</TD>
-      <TD width="487">fx16�^����肤��ŏ��l(0x8000)����`����Ă��܂��B</TD>
+      <TD width="487">fx16型が取りうる最小値(0x8000)が定義されています。</TD>
     </TR>
     <TR>
       <TD>FX_FX16_TO_F32</TD>
-      <TD>fx16�^��f32�^�ɕϊ����܂��B</TD>
+      <TD>fx16型をf32型に変換します。</TD>
     </TR>
     <TR>
       <TD>FX_F32_TO_FX16<BR>
       FX16_CONST</TD>
-      <TD>f32�^��fx16�^�ɕϊ����܂��B</TD>
+      <TD>f32型をfx16型に変換します。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�}�N���̒�`</H2>
+<H2>マクロの定義</H2>
 <PRE><CODE>#define FX16_SHIFT          12
 #define FX16_INT_SIZE       3
 #define FX16_DEC_SIZE       12
@@ -77,7 +77,7 @@
 #define FX16_CONST(x)       FX_F32_TO_FX16(x)
 
 </CODE></PRE>
-<h2>����</h2>
+<h2>履歴</h2>
 <P>Ver. 2004/02/25</P>
 </body>
 </html>

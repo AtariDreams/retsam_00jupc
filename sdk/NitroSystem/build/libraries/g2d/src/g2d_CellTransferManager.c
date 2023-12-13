@@ -28,7 +28,7 @@ VramTransferTaskRegisterFuncPtr                s_pTaskRegisterFunc = NULL;
 
 
 //------------------------------------------------------------------------------
-// �}�l�[�W���̏�Ԃ͕s���ł͂Ȃ���
+// マネージャの状態は不正ではないか
 static NNS_G2D_INLINE BOOL IsCellTransferStateManagerValid_()
 {
     return (BOOL)( ( s_pCellStateArray != NULL) && 
@@ -37,7 +37,7 @@ static NNS_G2D_INLINE BOOL IsCellTransferStateManagerValid_()
 }
 
 //------------------------------------------------------------------------------
-// �n���h���͗L����
+// ハンドルは有効か
 static NNS_G2D_INLINE BOOL IsValidHandle_( u32 handle )
 {
     NNS_G2D_ASSERT( IsCellTransferStateManagerValid_() );
@@ -66,7 +66,7 @@ GetValidCellTransferState_( u32 validHandle )
 
 
 //------------------------------------------------------------------------------
-// Vram�]���^�X�N�Ƃ��ēo�^����K�v������̂�?
+// Vram転送タスクとして登録する必要があるのか?
 static NNS_G2D_INLINE BOOL ShouldRegisterAsVramTransferTask_
 ( 
     const NNSG2dCellTransferState*    pState,
@@ -80,7 +80,7 @@ static NNS_G2D_INLINE BOOL ShouldRegisterAsVramTransferTask_
 }
 
 //------------------------------------------------------------------------------
-// �`�摮�������Z�b�g���܂�
+// 描画属性をリセットします
 static NNS_G2D_INLINE void ResetCellTransferStateDrawnFlag_
 ( 
     NNSG2dCellTransferState*  pState 
@@ -92,7 +92,7 @@ static NNS_G2D_INLINE void ResetCellTransferStateDrawnFlag_
 
 
 //------------------------------------------------------------------------------
-// �]�����f�[�^���擾����
+// 転送元データを取得する
 static NNS_G2D_INLINE const void* GetVramTransferSrc_
 ( 
     const NNSG2dCellTransferState*    pState,
@@ -110,7 +110,7 @@ static NNS_G2D_INLINE const void* GetVramTransferSrc_
 }
 
 //------------------------------------------------------------------------------
-// �]�����f�[�^�͗L�����H
+// 転送元データは有効か？
 static NNS_G2D_INLINE BOOL IsVramTransferSrcDataValid_
 ( 
     const NNSG2dCellTransferState*    pState,
@@ -123,22 +123,22 @@ static NNS_G2D_INLINE BOOL IsVramTransferSrcDataValid_
 
 
 //------------------------------------------------------------------------------
-// �]���̏������ƂƂ̂��Ă��邩 
+// 転送の準備がととのっているか 
 static NNS_G2D_INLINE BOOL IsCellTransferStateValid_
 ( 
     const NNSG2dCellTransferState*  pState, 
     NNS_G2D_VRAM_TYPE               type
 )
 {
-    // �]�����̃f�[�^���ݒ肳��Ă���
-    // �]�����̗̈悪�ݒ肳��Ă���
+    // 転送元のデータが設定されている
+    // 転送元の領域が設定されている
     return (BOOL)( NNSi_G2dIsVramLocationReadyToUse( &pState->dstVramLocation, type ) && 
                    IsVramTransferSrcDataValid_( pState, type ) );
 }
 
 //------------------------------------------------------------------------------
-// �񋓎q�̕ϊ�
-// ���݂̂Ƃ���͂����̃L���X�g
+// 列挙子の変換
+// 現在のところはただのキャスト
 static NNS_G2D_INLINE NNS_GFD_DST_TYPE 
 ConvertVramType_( NNS_G2D_VRAM_TYPE type )
 {
@@ -156,8 +156,8 @@ ConvertVramType_( NNS_G2D_VRAM_TYPE type )
 
 //------------------------------------------------------------------------------
 // 
-// �^�X�N�̐���
-// NNSG2dCellTransferState ����͂Ƃ��� �}�l�[�W���ɓo�^����^�X�N�𐶐����܂�
+// タスクの生成
+// NNSG2dCellTransferState を入力として マネージャに登録するタスクを生成します
 //
 static NNS_G2D_INLINE BOOL MakeVramTransferTask_
 (
@@ -170,7 +170,7 @@ static NNS_G2D_INLINE BOOL MakeVramTransferTask_
     NNS_G2D_ASSERT( IsCellTransferStateValid_( pState, type ) );
     
     //
-    // Vram�]���^�X�N�̓o�^���O�����W���[���ɈϏ����܂�
+    // Vram転送タスクの登録を外部モジュールに委譲します
     //
     return (*s_pTaskRegisterFunc )( ConvertVramType_( type ),
                                     NNSi_G2dGetVramLocation( &pState->dstVramLocation, type ),
@@ -178,7 +178,7 @@ static NNS_G2D_INLINE BOOL MakeVramTransferTask_
                                     pState->szByte );
 }
 //------------------------------------------------------------------------------
-// NNSG2dCellTransferState�̃��Z�b�g
+// NNSG2dCellTransferStateのリセット
 static NNS_G2D_INLINE void ResetCellTransferState_( NNSG2dCellTransferState* pState )
 {
     NNS_G2D_NULL_ASSERT( pState );
@@ -198,7 +198,7 @@ static NNS_G2D_INLINE void ResetCellTransferState_( NNSG2dCellTransferState* pSt
     }
 }
 //------------------------------------------------------------------------------
-// ���C�u�����������J
+// ライブラリ内部公開
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -212,7 +212,7 @@ NNSi_G2dGetCellTransferState
 }
 
 //------------------------------------------------------------------------------
-// �w��n���h���̓]����ԊǗ��I�u�W�F�N�g�ɓ]��������ݒ肵�܂��B
+// 指定ハンドルの転送状態管理オブジェクトに転送請求を設定します。
 void NNSi_G2dInitCellTransferState
 ( 
     u32                   handle,
@@ -236,7 +236,7 @@ void NNSi_G2dInitCellTransferState
         
         NNS_G2D_NULL_ASSERT( pState );
         
-        // �ǂꂩ���L���ł��邱��
+        // どれかが有効であること
         NNS_G2D_ASSERT( dstAddr3D       != NNS_G2D_VRAM_ADDR_NONE   ||
                         dstAddr2DMain   != NNS_G2D_VRAM_ADDR_NONE   || 
                         dstAddr2DSub    != NNS_G2D_VRAM_ADDR_NONE    );
@@ -261,7 +261,7 @@ void NNSi_G2dInitCellTransferState
             }
         }
         
-        // ����NULL�͖��炩�ɗL���ł͂Ȃ�
+        // 両方NULLは明らかに有効ではない
         NNS_G2D_ASSERT( pSrcNCGR != NULL || pSrcNCBR != NULL );
         
         pState->szDst     = szDst;
@@ -275,21 +275,21 @@ void NNSi_G2dInitCellTransferState
 
 
 //------------------------------------------------------------------------------
-// �������֘A
+// 初期化関連
 //------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitCellTransferStateManager
 
-  Description:  �Z��VRAM�]����ԃI�u�W�F�N�g�}�l�[�W�������������܂��B
-                �Z��VRAM�]����ԃI�u�W�F�N�g�o�b�t�@�������Ƃ��ēn���܂��B
-                pTaskRegisterFunc �� VRAM�]���^�X�N�o�^�𐿋�����֐��ւ̃|�C���^�ł��B
+  Description:  セルVRAM転送状態オブジェクトマネージャを初期化します。
+                セルVRAM転送状態オブジェクトバッファを引数として渡します。
+                pTaskRegisterFunc は VRAM転送タスク登録を請求する関数へのポインタです。
                 
                 
-  Arguments:    pCellStateArray          [OUT] �Z��VRAM�]����ԃI�u�W�F�N�g�o�b�t�@ 
-                numCellState             [IN]  �Z��VRAM�]����ԃI�u�W�F�N�g�o�b�t�@�� 
-                pTaskRegisterFunc        [IN]  VRAM�]���o�^�֐��̃|�C���^ 
+  Arguments:    pCellStateArray          [OUT] セルVRAM転送状態オブジェクトバッファ 
+                numCellState             [IN]  セルVRAM転送状態オブジェクトバッファ長 
+                pTaskRegisterFunc        [IN]  VRAM転送登録関数のポインタ 
                     
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void 
@@ -311,7 +311,7 @@ NNS_G2dInitCellTransferStateManager
     s_numCellState          = numCellState;
     
     //
-    // ���ׂĂ� NNSG2dCellTransferState �����Z�b�g����
+    // すべての NNSG2dCellTransferState をリセットする
     //
     {
         u32     i;
@@ -324,67 +324,67 @@ NNS_G2dInitCellTransferStateManager
 
 
 //------------------------------------------------------------------------------
-// �]���֘A
+// 転送関連
 //------------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dUpdateCellTransferStateManager
 
-  Description:  �]����ԊǗ��}�l�[�W�����X�V���܂��B
+  Description:  転送状態管理マネージャを更新します。
                 
-                ���t���[���A�j���X�V�A�`�搿�����I��������AVRAM�]���̑O�ɌĂ�ł��������B
-                (�Ăяo���ʒu���d�v�ł��B)
+                毎フレームアニメ更新、描画請求が終了した後、VRAM転送の前に呼んでください。
+                (呼び出す位置が重要です。)
                 
-                �����œo�^����Ă��邷�ׂĂ̓]����ԃI�u�W�F�N�g�ɂ��āA
-                VRAM�]���̐����̕K�v�����邩�𔻒肵�A�K�v�Ȃ�΃^�X�N�̐������s���Ă��܂��B
+                内部で登録されているすべての転送状態オブジェクトについて、
+                VRAM転送の生成の必要があるかを判定し、必要ならばタスクの生成を行っています。
                 
                 
                 
-  Arguments:    �Ȃ�
+  Arguments:    なし
                     
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dUpdateCellTransferStateManager()
 {
     u32 i;
-    // �g�p����Ă���A���ׂĂ�Vram�]����ԃI�u�W�F�N�g�ɂ���...
+    // 使用されている、すべてのVram転送状態オブジェクトについて...
     for( i = 0; i < s_numCellState; i++ )
     {
         NNS_G2D_VRAM_TYPE           type;
         NNSG2dCellTransferState*  pState                = &s_pCellStateArray[i];
         
-        // �A�N�e�B�u���H
+        // アクティブか？
         if( pState->bActive )
         {
             //
-            // ���ׂĂ̎�ނ̕`��HW�ɂ���...
+            // すべての種類の描画HWについて...
             //
             for( type = NNS_G2D_VRAM_TYPE_3DMAIN; type < NNS_G2D_VRAM_TYPE_MAX; type++ )
             {
                 //
-                // �]������K�v������Ȃ�...
+                // 転送する必要があるなら...
                 //
                 
                 if( ShouldRegisterAsVramTransferTask_( pState, type ) )
                 {
                     
-                    // �}�l�[�W������擾                   
-                    // ����                    
+                    // マネージャから取得                   
+                    // 生成                    
                     if( MakeVramTransferTask_( pState, type ) )
                     {
                         // OS_Printf( "VRAM transfer task is registered ! surface_Id = %d \n", type );
-                        // �o�^������Ԃ����Z�b�g(�]�����s��ꂽVRAM��ނ���)
+                        // 登録請求状態をリセット(転送が行われたVRAM種類だけ)
                         NNSi_G2dSetCellTransferStateRequestFlag( pState, type, FALSE );                    
                     }else{
-                        // �o�^�Ɏ��s����
-                        // TODO �F�x���H: �A�T�[�g
+                        // 登録に失敗した
+                        // TODO ：警告？: アサート
                     }
                 }
             }
             
             //
-            // �`���ԂɃ��Z�b�g(���ׂĂ�VRAM���)
+            // 描画状態にリセット(すべてのVRAM種類)
             //
             ResetCellTransferStateDrawnFlag_( pState );
         }
@@ -396,19 +396,19 @@ void NNS_G2dUpdateCellTransferStateManager()
 
 
 //------------------------------------------------------------------------------
-// �o�^�֘A
+// 登録関連
 //------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetCellTransferStateRequested
 
-  Description:  �w��n���h���̓]����ԊǗ��I�u�W�F�N�g�ɓ]��������ݒ肵�܂��B
+  Description:  指定ハンドルの転送状態管理オブジェクトに転送請求を設定します。
                 
                 
-  Arguments:    handle:         [IN]  �]����ԊǗ��I�u�W�F�N�g�̃n���h��
-             srcOffset:         [IN]  �]�����f�[�^�擪����� �I�t�Z�b�g�l
-                szByte:         [IN]  �]���T�C�Y
+  Arguments:    handle:         [IN]  転送状態管理オブジェクトのハンドル
+             srcOffset:         [IN]  転送元データ先頭からの オフセット値
+                szByte:         [IN]  転送サイズ
                     
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetCellTransferStateRequested
@@ -427,9 +427,9 @@ void NNS_G2dSetCellTransferStateRequested
         NNS_G2D_NULL_ASSERT( pState );
         NNS_G2D_ASSERT( szByte <= pState->szDst );
         //
-        // �]��������Ԃɐ���
+        // 転送請求状態に推移
         //
-        pState->bTransferRequested    = 0xFFFFFFFF;// memo:ON�ɂ���Ƃ��͈�Ă�ON�������肦�Ȃ�
+        pState->bTransferRequested    = 0xFFFFFFFF;// memo:ONにするときは一斉にONしかありえない
         pState->srcOffset             = srcOffset;
         pState->szByte                = szByte;       
     }
@@ -438,19 +438,19 @@ void NNS_G2dSetCellTransferStateRequested
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetNewCellTransferStateHandle
 
-  Description:  �Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h�����擾���܂��B
-                �Z��VRAM�]����ԃI�u�W�F�N�g�ւ̑���͂��̃n���h�����g�p���čs���܂��B
-                �n���h���̓Z���A�j���[�V�������̂̃����o�Ƃ��ĕۑ�����܂��B
-                �n���h���̎擾�Ɏ��s�����ꍇ�� NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE ��Ԃ��܂��B
-                �����ŃZ��VRAM�]����ԃI�u�W�F�N�g�o�b�t�@����`�T�����Ă��܂��B
-                �i�p�t�H�[�}���X�N���e�B�J���ȏꏊ�ł̌Ăт����͔����Ă��������B�j
+  Description:  セルVRAM転送状態オブジェクトのハンドルを取得します。
+                セルVRAM転送状態オブジェクトへの操作はこのハンドルを使用して行います。
+                ハンドルはセルアニメーション実体のメンバとして保存されます。
+                ハンドルの取得に失敗した場合は NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE を返します。
+                内部でセルVRAM転送状態オブジェクトバッファを線形探索しています。
+                （パフォーマンスクリティカルな場所での呼びだしは避けてください。）
 
                 
                 
-  Arguments:    �Ȃ�
+  Arguments:    なし
                     
-  Returns:      �Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h��
-                �n���h���̎擾�Ɏ��s�����ꍇ�� NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE ��Ԃ��܂��B
+  Returns:      セルVRAM転送状態オブジェクトのハンドル
+                ハンドルの取得に失敗した場合は NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE を返します。
   
  *---------------------------------------------------------------------------*/
 u32 
@@ -460,7 +460,7 @@ NNS_G2dGetNewCellTransferStateHandle()
     
     
     //
-    // �g�p����Ă��Ȃ��]����ԃI�u�W�F�N�g��z��̐擪���猟�����܂�
+    // 使用されていない転送状態オブジェクトを配列の先頭から検索します
     // 
     {
         u32 i = 0;
@@ -474,22 +474,22 @@ NNS_G2dGetNewCellTransferStateHandle()
         }
     }    
     
-    // �����ł��Ȃ�����
+    // 発見できなかった
     return NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFreeCellTransferStateHandle
 
-  Description:  �Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h����ԋp���܂��B
-                �g�p���Ȃ��Ȃ����n���h���ɑ΂��Ď��s���Ă��������B
+  Description:  セルVRAM転送状態オブジェクトのハンドルを返却します。
+                使用しなくなったハンドルに対して実行してください。
 
 
                 
                 
-  Arguments:    handle              [IN] �Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h��
+  Arguments:    handle              [IN] セルVRAM転送状態オブジェクトのハンドル
                     
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void

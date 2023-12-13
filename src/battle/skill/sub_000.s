@@ -2,8 +2,8 @@
 /**
  *
  *@file		sub_000.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒg
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  *@author	HisashiSogabe
  *@data		2005.07.20
  *
@@ -14,11 +14,11 @@
 	.include	"waza_seq_def.h"
 
 SUB_000:
-	//ƒgƒŒ[ƒi[í‚È‚çƒgƒŒ[ƒi[ƒGƒ“ƒJƒEƒ“ƒg‚Ö
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ãªã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã¸
 	IF						IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TRAINER,TrainerEncount
-	//ƒTƒtƒ@ƒŠƒ][ƒ“‚È‚çƒTƒtƒ@ƒŠƒGƒ“ƒJƒEƒ“ƒg‚Ö
+	//ã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³ãªã‚‰ã‚µãƒ•ã‚¡ãƒªã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã¸
 	IF						IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_SAFARI,SafariEncount
-	//ƒ|ƒPƒp[ƒN‚È‚çƒ|ƒPƒp[ƒNƒGƒ“ƒJƒEƒ“ƒg‚Ö
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãªã‚‰ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã¸
 	IF						IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_POKE_PARK,PokeparkEncount
 	POKEMON_ENCOUNT			SIDE_ENEMY
 	TRAINER_ENCOUNT			SIDE_MINE
@@ -69,7 +69,7 @@ MsgNext:
 	SERVER_WAIT
 	BRANCH					SUB_000_END
 
-//ƒgƒŒ[ƒi[ƒGƒ“ƒJƒEƒ“ƒg
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 TrainerEncount:
 	IF							IF_FLAG_BIT,BUF_PARA_BATTLE_STATUS_FLAG,BATTLE_STATUS_FLAG_REC_CHILD,TrainerEncountReverse
 TrainerEncountNormal:
@@ -102,7 +102,7 @@ TrainerOutMine1:
 	BALL_GAUGE_RESOURCE_DELETE
 	BRANCH					SUB_000_END
 
-//˜^‰æÄ¶Žž‚ÉŽq‹@‘¤‚¾‚Á‚½•û‚ÌƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+//éŒ²ç”»å†ç”Ÿæ™‚ã«å­æ©Ÿå´ã ã£ãŸæ–¹ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 TrainerEncountReverse:
 	ENCOUNT_EFFECT
 	TRAINER_ENCOUNT				SIDE_ALL
@@ -133,7 +133,7 @@ TrainerOutMine2:
 	BALL_GAUGE_RESOURCE_DELETE
 	BRANCH					SUB_000_END
 
-//ƒTƒtƒ@ƒŠƒGƒ“ƒJƒEƒ“ƒg
+//ã‚µãƒ•ã‚¡ãƒªã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 SafariEncount:
 	POKEMON_ENCOUNT			SIDE_ENEMY
 	TRAINER_ENCOUNT			SIDE_MINE
@@ -149,7 +149,7 @@ SafariEncount:
 	SERVER_WAIT
 	BRANCH					SUB_000_END
 
-//ƒ|ƒPƒp[ƒNƒGƒ“ƒJƒEƒ“ƒg
+//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 PokeparkEncount:
 	POKEMON_ENCOUNT			SIDE_ENEMY
 	TRAINER_ENCOUNT			SIDE_MINE

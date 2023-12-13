@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerCountPlayingSeq*</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerCountPlayingSeq*</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">int NNS_SndPlayerCountPlayingSeqByPlayerNo( int <var>playerNo</var> );</code><br><code class="funcprototype">int NNS_SndPlayerCountPlayingSeqBySeqNo( int <var>seqNo</var> );</code><br><code class="funcprototype">int NNS_SndPlayerCountPlayingSeqBySeqArcNo( int <var>seqArcNo</var> );</code><br><code class="funcprototype">int NNS_SndPlayerCountPlayingSeqBySeqArcIdx(
@@ -19,7 +19,7 @@
         int <var>index</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,55 +27,55 @@
 <tbody>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>seqNo</code></strong></em></td>
-<td>�V�[�P���X�ԍ��ł��B</td>
+<td>シーケンス番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>seqArcNo</code></strong></em></td>
-<td>�V�[�P���X�A�[�J�C�u�ԍ��ł��B</td>
+<td>シーケンスアーカイブ番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>index</code></strong></em></td>
-<td>�V�[�P���X�A�[�J�C�u���̃C���f�b�N�X�ԍ��ł��B</td>
+<td>シーケンスアーカイブ中のインデックス番号です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDA5NWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Đ����̃V�[�P���X�̐���Ԃ��܂��B</p>
+      <p>再生中のシーケンスの数を返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAGOWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-<tt class="function">NNS_SndPlayerCountPlayingSeqByPlayerNo</tt>�֐��́A�v���C���[�ԍ�<em><strong><code>playerNo</code></strong></em>�Ŏw�肵���v���C���[�ōĐ����̃V�[�P���X�̐��𐔂��܂��B
+<tt class="function">NNS_SndPlayerCountPlayingSeqByPlayerNo</tt>関数は、プレイヤー番号<em><strong><code>playerNo</code></strong></em>で指定したプレイヤーで再生中のシーケンスの数を数えます。
 </p>
       <p>
-<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqNo</tt>�֐��́A�V�[�P���X�ԍ�<em><strong><code>seqNo</code></strong></em>���w�肵�āA�Đ����̃V�[�P���X�̐��𐔂��܂��B����́A<tt class="function"><a href="NNS_SndPlayerSetSeqNo.html">NNS_SndPlayerSetSeqNo</a></tt>�֐��ŃZ�b�g�����V�[�P���X�ԍ����A<em><strong><code>seqNo</code></strong></em>�Ɠ����ł���V�[�P���X�̐��𐔂��܂��B
+<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqNo</tt>関数は、シーケンス番号<em><strong><code>seqNo</code></strong></em>を指定して、再生中のシーケンスの数を数えます。これは、<tt class="function"><a href="NNS_SndPlayerSetSeqNo.html">NNS_SndPlayerSetSeqNo</a></tt>関数でセットしたシーケンス番号が、<em><strong><code>seqNo</code></strong></em>と同じであるシーケンスの数を数えます。
 </p>
       <p>
-<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqArcNo</tt>�֐��́A�V�[�P���X�A�[�J�C�u�ԍ�<em><strong><code>seqArcNo</code></strong></em>���w�肵�āA�Đ����̃V�[�P���X�̐��𐔂��܂��B
-����́A<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>�֐��ŃZ�b�g�����V�[�P���X�A�[�J�C�u�ԍ����A<em><strong><code>seqArcNo</code></strong></em>�Ɠ����ł���V�[�P���X�̐��𐔂��܂��B
-<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqArcIdx</tt>�֐��́A�V�[�P���X�A�[�J�C�u�ԍ�<em><strong><code>seqArcNo</code></strong></em>��
-�C���f�b�N�X�ԍ�<em><strong><code>index</code></strong></em>�̗������������V�[�P���X�̐��𐔂��܂��B
+<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqArcNo</tt>関数は、シーケンスアーカイブ番号<em><strong><code>seqArcNo</code></strong></em>を指定して、再生中のシーケンスの数を数えます。
+これは、<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>関数でセットしたシーケンスアーカイブ番号が、<em><strong><code>seqArcNo</code></strong></em>と同じであるシーケンスの数を数えます。
+<tt class="function">NNS_SndPlayerCountPlayingSeqBySeqArcIdx</tt>関数は、シーケンスアーカイブ番号<em><strong><code>seqArcNo</code></strong></em>と
+インデックス番号<em><strong><code>index</code></strong></em>の両方が等しいシーケンスの数を数えます。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-�����̊֐����Ԃ��l�́A�V�[�P���X�𑦍��ɒ�~������֐����A
-<tt class="function"><a href="NNS_SndMain.html">NNS_SndMain</a></tt>�֐����Ăт����Ȃ�����A�X�V����邱�Ƃ͂���܂���B
+これらの関数が返す値は、シーケンスを即座に停止させる関数か、
+<tt class="function"><a href="NNS_SndMain.html">NNS_SndMain</a></tt>関数を呼びださない限り、更新されることはありません。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndPlayerSetSeqNo.html">NNS_SndPlayerSetSeqNo</a>, <a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a>, <a href="NNS_SndMain.html">NNS_SndMain</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>
