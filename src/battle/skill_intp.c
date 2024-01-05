@@ -60,9 +60,9 @@
 
 #include "battle_snd_def.h"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/skill/waza_seq.naix"
@@ -2541,7 +2541,7 @@ static	BOOL	WS_GET_EXP_CHECK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				}
 			}
 			totalexp=PokePersonalParaGet(sp->psp[sp->kizetsu_client].monsno,ID_PER_give_exp);
-			totalexp=(totalexp*sp->psp[sp->kizetsu_client].level)/7;
+			totalexp=(totalexp*sp->psp[sp->kizetsu_client].level)/5;
 			if(get_exp_item_total){
 				sp->get_exp=(totalexp/2)/get_exp_poke_total;
 				if(sp->get_exp==0){
