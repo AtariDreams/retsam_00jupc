@@ -137,11 +137,10 @@ BOOL PokeParty_Delete(POKEPARTY * party, int pos)
 	PARTY_POS_ASSERT(party, pos);
 	GF_ASSERT( party->PokeCount > 0 );
 
-	for (i = pos ;i < party->PokeCount - 1; i ++) {
+	for (i = pos ;i < --party->PokeCount; i ++) {
 		party->member[i] = party->member[i + 1];
 	}
 	PokeParaInit(&party->member[i]);
-	party->PokeCount--;
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE)
 	SVLD_SetCrc(GMDATA_ID_TEMOTI_POKE);
