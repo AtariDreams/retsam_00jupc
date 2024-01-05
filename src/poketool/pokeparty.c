@@ -114,8 +114,7 @@ BOOL PokeParty_Add(POKEPARTY * party, POKEMON_PARAM * poke)
 		//ŽèŽ‚¿‚ª‚¢‚Á‚Ï‚¢
 		return FALSE;
 	}
-	party->member[party->PokeCount] = *poke;
-	party->PokeCount ++;
+	party->member[party->PokeCount++] = *poke;
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE)
 	SVLD_SetCrc(GMDATA_ID_TEMOTI_POKE);
