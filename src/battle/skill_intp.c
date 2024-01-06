@@ -60,9 +60,9 @@
 
 #include "battle_snd_def.h"
 
-#include "fight_def.h"		///<BattleWorkへの依存度が高い?/ースなので、許可
-#include "server_def.h"		///<ServerParamへの依存度が高い?/ースなので、許可
-#include "client_def.h"		///<ClientParamへの依存度が高い?/ースなので、許可
+#include "fight_def.h"
+#include "server_def.h"
+#include "client_def.h"
 
 //MAKEの依存関係に含めるためにInclude（本来は必要ない）
 #include "battle/skill/waza_seq.naix"
@@ -1591,7 +1591,7 @@ static	void	DamageCalcAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			sp->psp[sp->attack_client].wkw.sakidori_count--;
 		}
 		if((sp->sakidori_total_turn-sp->psp[sp->attack_client].wkw.sakidori_count)<2){
-			sp->damage=sp->damage*15/10;
+			sp->damage+=sp->damage>>1;
 		}
 		else{
 			sp->psp[sp->attack_client].wkw.sakidori_flag=0;
