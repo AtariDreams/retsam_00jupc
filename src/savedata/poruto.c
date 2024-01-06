@@ -563,7 +563,8 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 					if(param[j] == 0){
 						break;
 					}
-					j = (j+1)%PORUTO_FTYPE_NUM;	
+					if (++j >= PORUTO_FTYPE_NUM)
+						j = 0;
 				}
 				param[j] = 2;
 			}
@@ -583,7 +584,8 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 					if(param[j] == 0){
 						break;
 					}
-					j = (j+1)%PORUTO_FTYPE_NUM;	
+					if (++j >= PORUTO_FTYPE_NUM)
+						j = 0;
 				}
 				param[j] = gf_rand()%(PARA_DMYMAX-1)+1;
 			}
@@ -624,7 +626,6 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num)
 {
 	u16	ret = 0,i;
-	
 	for(i = 0;i < PORUTO_STOCK_MAX;i++){
 		if(PorutoData_IsEnable(&block->poruto[i])){
 			continue;
@@ -651,7 +652,7 @@ u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num)
  */
 u16 PORUTO_GetNullDataCount(PORUTO_BLOCK* block)
 {
-	u16 i,count;
+	u32 i,count;
 
 	count = 0;
 

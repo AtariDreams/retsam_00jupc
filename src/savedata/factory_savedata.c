@@ -347,7 +347,7 @@ void FACTORYSCORE_PutScoreData( FACTORYSCORE* wk, u8 id, u8 param, const void* b
 		if( buf8[0] >= 1 ){
 			wk->clear_flag |= (1 << param);					//セット
 		}else{
-			wk->clear_flag &= (0xff ^ (1 << param));		//リセット
+			wk->clear_flag &= ~(1 << param);		//リセット
 		}
 		OS_Printf( "after clear_flag = %d\n", wk->clear_flag );
 		break;

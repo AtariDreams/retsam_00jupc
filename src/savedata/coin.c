@@ -81,7 +81,7 @@ BOOL COIN_Add(COIN * coin, u32 addvalue)
 //---------------------------------------------------------------------------
 BOOL COIN_AddCheck(const COIN * coin, u32 addvalue)
 {
-	if (addvalue + (u32)coin->value <= COIN_MAX) {
+	if (addvalue + coin->value <= COIN_MAX) {
 		return TRUE;
 	} else {
 		return FALSE;

@@ -91,7 +91,6 @@ void SEEDBED_Init(SEEDBED * sbed)
 
 	for (i = 0; i < SEEDBED_MAX; i++) {
 		sbed[i].stat = SEEDSTAT_NOTHING;
-		sbed[i].type = 0;
 	}
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_MISC)
 	SVLD_SetCrc(GMDATA_ID_MISC);
@@ -222,7 +221,7 @@ static int get_grow_time(const SEED_TABLE * prm, int type, int compost)
 	if (compost == SEEDCOMPOST_SUKUSUKU) {
 		time = (time * 3) / 4;		// base * 0.75
 	} else if (compost == SEEDCOMPOST_YURURI) {
-		time = time + (time / 2);	// base * 1.5
+		time = time + (time >> 1);	// base * 1.5
 	}
 	return time;
 }
@@ -234,7 +233,7 @@ static int get_root_power(const SEED_TABLE * prm, int type, int compost)
 	if (compost == SEEDCOMPOST_YURURI) {
 		return power / 2;
 	} else if (compost == SEEDCOMPOST_SUKUSUKU) {
-		return power + power / 2;
+		return power + (power >> 1);
 	} else {
 		return power;
 	}
