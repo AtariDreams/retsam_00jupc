@@ -302,7 +302,7 @@ u32 BAPP_CursorMove( BAPP_CURSOR_MVWK * wk )
 		pm_ret = PointerWkMoveSel( wk->cp_wk,NULL,NULL,NULL,NULL,wk->cur_pos,POINT_MV_RIGHT );
 		mv     = POINT_MV_RIGHT;
 	}else{
-		pm_ret = BAPP_CMV_NONE;
+		pm_ret = POINT_SEL_NOMOVE;
 	}
 
 	if( pm_ret != POINT_SEL_NOMOVE ){
