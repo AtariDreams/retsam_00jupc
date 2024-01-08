@@ -36,7 +36,7 @@
  * T0834	タッチトイ操作が他プレイヤーのタッチトイ操作に影響を与える
  * 場所	src/application/wifi_lobby/wflby_ev_def.c
  */
-#define PL_T0834_080709_FIX	(0)
+#define PL_T0834_080709_FIX	(1)
 
 
 /*
@@ -51,13 +51,13 @@
  * T0855	DLバトルタワーで成績が反映されない
  * 場所	src/frontier/fssc_tower.c
  */
-#define PL_T0855_080710_FIX	(0)
+#define PL_T0855_080710_FIX	(1)
 
 /*
  * T0856	参加人数とRingBuffの人数が合致していない場合の対処としてRing書き込みにNULL検査を追加
  * 場所	src/communication/comm_ring_buff.c
  */
-#define PL_T0856_080710_FIX  (0)
+#define PL_T0856_080710_FIX  (1)
 
 /*
  * G0197 	DPからPLに「こうかん」を申し込むととまる
@@ -76,7 +76,7 @@
  *
  * 場所	src/wifi/dwc_rap.c
  */
-#define PL_G0197_080710_FIX	(0)
+#define PL_G0197_080710_FIX	(1)
 
 /*
  * T0857	DPの募集に対し、申し込みを行った時にアイコンは募集内容のものが表示されているのに
@@ -87,14 +87,14 @@
  *
  *	場所 src/application/wifi_p2pmatch/wifi_p2pmatch.c
  */
-#define PL_T0857_080711_FIX	(0)
+#define PL_T0857_080711_FIX	(1)
 
 
 /*
  * S0793	あまいみつ購入メッセージで、余計な送りカーソルが表示されている
  * 場所	src/fielddata/script/d13r0101.ev
  */
-#define PL_S0793_080711_FIX	(0)
+#define PL_S0793_080711_FIX	(1)
 
 /*
  * S0792	
@@ -102,7 +102,7 @@
  * 使うとにんじゃごっこケンキチの隠れている場所のグラフィックがなくなってしまう
  * 場所 src/field/fldeff_hide.c
  */
-#define PL_S0792_080711_FIX (0)
+#define PL_S0792_080711_FIX (1)
 
 /*
  * G0198
@@ -135,7 +135,7 @@
  * 
  * 場所 src/application/wifi_note/pl_wifi_note.c
  */
-#define PL_T0861_080712_FIX (0)
+#define PL_T0861_080712_FIX (1)
 
 
 /*
@@ -178,7 +178,7 @@
  * 
  * 場所 src/application/wifi_lobby/wflby_ev_def.c
  */
-#define PL_T0867_080716_FIX (0)
+#define PL_T0867_080716_FIX (1)
 
 /*
  * T0394	いかりを連続で選択していないときにいかり解除するときに他の状態を解除してしまう
@@ -186,7 +186,7 @@
  * 
  * 場所 src/battle/server.c
  */
-#define PL_T0394_080716_FIX (0)
+#define PL_T0394_080716_FIX (1)
 
 /*
  * S0802	マナフィーイベントで図鑑に登録されているのに、図鑑に登録されたメッセージが表示される
@@ -197,7 +197,7 @@
  *		src/field/scr_field.c
  *		src/field/scr_field.h
  */
-#define PL_S0802_080716_FIX (0)
+#define PL_S0802_080716_FIX (1)
 
 /*
  * G0200	他人のプロフィールを表示しようとしたフレーム内で、
@@ -205,7 +205,7 @@
  * 
  * 場所 src/application/wifi_lobby/wflby_room.c
  */
-#define PL_G0200_080716_FIX (0)
+#define PL_G0200_080716_FIX (1)
 
 
 /*
