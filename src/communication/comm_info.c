@@ -123,7 +123,7 @@ void CommInfoInitialize(SAVEDATA* pSaveData, const REGULATION* pReg)
 
 void CommInfoFinalize(void)
 {
-    int i;
+    u32 i;
 
     if(_pCommInfo){
         for(i = 0; i < COMM_MACHINE_MAX ; i++){

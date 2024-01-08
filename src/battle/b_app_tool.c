@@ -312,7 +312,7 @@ u32 BAPP_CursorMove( BAPP_CURSOR_MVWK * wk )
 			if( wk->old_pos != 0xff ){
 				pm_ret = wk->old_pos;
 			}else{
-				pm_ret ^= BAPP_CMV_RETBIT;
+				pm_ret &= ~BAPP_CMV_RETBIT;
 			}
 		}
 
