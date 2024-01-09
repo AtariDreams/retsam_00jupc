@@ -702,11 +702,6 @@ void	*ItemDataTableLoad(int heapID)
 //--------------------------------------------------------------------------------------------
 ITEMDATA	*GetItemDataPointer(ITEMDATA *item,u16 index)
 {
-	u8 *ret_item;
-
-	ret_item=(u8 *)item;
-	ret_item+=index*36;
-
-	return (ITEMDATA *)ret_item;
+	return item + index;
 }
 
